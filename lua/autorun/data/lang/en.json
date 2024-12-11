@@ -1,0 +1,82 @@
+{
+    "citizen": {
+        "job": {
+            "worker": "Worker",
+            "clerk": "Clerk",
+            "technician": "Technician",
+            "medic": "Medical Staff",
+            "scientist": "Scientist",
+            "engineer": "Engineer",
+            "teacher": "Teacher",
+            "chef": "Chef",
+            "janitor": "Janitor",
+            "mechanic": "Mechanic"
+        }
+    },
+    "worker": {
+        "spec": {
+            "construction": "Construction Worker",
+            "factory": "Factory Worker",
+            "warehouse": "Warehouse Worker",
+            "maintenance": "Maintenance Worker",
+            "mining": "Mining Worker",
+            "agriculture": "Agricultural Worker"
+        }
+    },
+    "clerk": {
+        "spec": {
+            "office": "Office Clerk",
+            "retail": "Retail Clerk",
+            "records": "Records Clerk",
+            "logistics": "Logistics Clerk",
+            "reception": "Receptionist"
+        }
+    },
+    "tech": {
+        "spec": {
+            "electrical": "Electrical Technician",
+            "computer": "Computer Technician",
+            "network": "Network Technician",
+            "security": "Security Technician",
+            "maintenance": "Maintenance Technician"
+        }
+    },
+    "medic": {
+        "spec": {
+            "general": "General Practitioner",
+            "emergency": "Emergency Medical Staff",
+            "surgery": "Surgical Staff",
+            "pharmacy": "Pharmacy Staff",
+            "laboratory": "Laboratory Staff"
+        }
+    },
+    "scientist": {
+        "spec": {
+            "research": "Research Scientist",
+            "biology": "Biologist",
+            "physics": "Physicist",
+            "chemistry": "Chemist",
+            "robotics": "Robotics Scientist"
+        }
+    },
+    "metrocop": {
+        "rank": {
+            "recruit": "Civil Protection Recruit",
+            "officer": "Civil Protection Officer",
+            "sergeant": "Civil Protection Sergeant",
+            "lieutenant": "Civil Protection Lieutenant",
+            "captain": "Civil Protection Captain",
+            "commander": "Civil Protection Commander"
+        }
+    },
+    "combine": {
+        "rank": {
+            "grunt": "Combine Grunt",
+            "soldier": "Combine Soldier",
+            "elite": "Combine Elite",
+            "suppressor": "Combine Suppressor",
+            "commander": "Combine Commander",
+            "overlord": "Combine Overlord"
+        }
+    }
+} 

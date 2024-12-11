@@ -1,0 +1,9 @@
+{
+    "specializations": [
+        "medic.spec.general",
+        "medic.spec.emergency",
+        "medic.spec.surgery",
+        "medic.spec.pharmacy",
+        "medic.spec.laboratory"
+    ]
+} 

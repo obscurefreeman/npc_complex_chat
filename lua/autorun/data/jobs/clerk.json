@@ -1,0 +1,9 @@
+{
+    "specializations": [
+        "clerk.spec.office",
+        "clerk.spec.retail",
+        "clerk.spec.records",
+        "clerk.spec.logistics",
+        "clerk.spec.reception"
+    ]
+} 

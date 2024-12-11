@@ -1,1 +1,10 @@
- 
+{
+    "ranks": {
+        "i1": "combine.rank.grunt",
+        "i2": "combine.rank.soldier",
+        "i3": "combine.rank.elite",
+        "i4": "combine.rank.suppressor",
+        "i5": "combine.rank.commander",
+        "i6": "combine.rank.overlord"
+    }
+} 

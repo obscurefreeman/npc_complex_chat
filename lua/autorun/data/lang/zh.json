@@ -1,0 +1,82 @@
+{
+    "citizen": {
+        "job": {
+            "worker": "工人",
+            "clerk": "文员",
+            "technician": "技术员",
+            "medic": "医务人员",
+            "scientist": "科学家",
+            "engineer": "工程师",
+            "teacher": "教师",
+            "chef": "厨师",
+            "janitor": "清洁工",
+            "mechanic": "机械师"
+        }
+    },
+    "worker": {
+        "spec": {
+            "construction": "建筑工人",
+            "factory": "工厂工人",
+            "warehouse": "仓库工人",
+            "maintenance": "维修工人",
+            "mining": "矿工",
+            "agriculture": "农业工人"
+        }
+    },
+    "clerk": {
+        "spec": {
+            "office": "办公室文员",
+            "retail": "零售文员",
+            "records": "档案管理员",
+            "logistics": "物流文员",
+            "reception": "接待员"
+        }
+    },
+    "tech": {
+        "spec": {
+            "electrical": "电气技术员",
+            "computer": "计算机技术员",
+            "network": "网络技术员",
+            "security": "安全技术员",
+            "maintenance": "维护技术员"
+        }
+    },
+    "medic": {
+        "spec": {
+            "general": "全科医生",
+            "emergency": "急诊医务人员",
+            "surgery": "外科医务人员",
+            "pharmacy": "药剂师",
+            "laboratory": "实验室人员"
+        }
+    },
+    "scientist": {
+        "spec": {
+            "research": "研究员",
+            "biology": "生物学家",
+            "physics": "物理学家",
+            "chemistry": "化学家",
+            "robotics": "机器人学家"
+        }
+    },
+    "metrocop": {
+        "rank": {
+            "recruit": "城市保护新兵",
+            "officer": "城市保护警官",
+            "sergeant": "城市保护中士",
+            "lieutenant": "城市保护中尉",
+            "captain": "城市保护队长",
+            "commander": "城市保护指挥官"
+        }
+    },
+    "combine": {
+        "rank": {
+            "grunt": "联合军新兵",
+            "soldier": "联合军士兵",
+            "elite": "联合军精英",
+            "suppressor": "联合军镇压者",
+            "commander": "联合军指挥官",
+            "overlord": "联合军统治者"
+        }
+    }
+} 

@@ -1,1 +1,14 @@
- 
+{
+    "jobs": [
+        "citizen.job.worker",
+        "citizen.job.clerk",
+        "citizen.job.technician",
+        "citizen.job.medic",
+        "citizen.job.scientist",
+        "citizen.job.engineer",
+        "citizen.job.teacher",
+        "citizen.job.chef",
+        "citizen.job.janitor",
+        "citizen.job.mechanic"
+    ]
+} 

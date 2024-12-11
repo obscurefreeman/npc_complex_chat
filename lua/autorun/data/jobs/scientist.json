@@ -1,0 +1,9 @@
+{
+    "specializations": [
+        "scientist.spec.research",
+        "scientist.spec.biology",
+        "scientist.spec.physics",
+        "scientist.spec.chemistry",
+        "scientist.spec.robotics"
+    ]
+} 

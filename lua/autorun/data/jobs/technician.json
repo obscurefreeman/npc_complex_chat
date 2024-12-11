@@ -1,0 +1,9 @@
+{
+    "specializations": [
+        "tech.spec.electrical",
+        "tech.spec.computer",
+        "tech.spec.network",
+        "tech.spec.security",
+        "tech.spec.maintenance"
+    ]
+} 

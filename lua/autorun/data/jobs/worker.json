@@ -1,0 +1,10 @@
+{
+    "specializations": [
+        "worker.spec.construction",
+        "worker.spec.factory",
+        "worker.spec.warehouse",
+        "worker.spec.maintenance",
+        "worker.spec.mining",
+        "worker.spec.agriculture"
+    ]
+} 
