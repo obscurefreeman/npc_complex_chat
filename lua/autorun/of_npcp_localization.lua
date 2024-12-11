@@ -4,7 +4,7 @@ LANG.LanguageData = {}
 
 -- 加载语言文件
 function LANG:LoadLanguageFile(lang)
-    local langData = file.Read("data/lang/" .. lang .. ".json", "GAME")
+    local langData = file.Read("data/of_npcp/lang/" .. lang .. ".json", "GAME")
     if langData then
         self.LanguageData[lang] = util.JSONToTable(langData)
         return true
