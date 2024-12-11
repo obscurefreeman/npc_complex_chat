@@ -6,7 +6,7 @@ function GetNPCIdentityText(identity)
     if identity.job then
         text = L(identity.job)
         if identity.specialization then
-            text = text .. " - " .. L(identity.specialization)
+            text = L(identity.specialization)
         end
     elseif identity.rank then
         text = L(identity.rank)
@@ -150,7 +150,7 @@ if CLIENT then
                 if dist <= 1000 then
                     local identity = clientNPCs[ent:EntIndex()]
                     if identity then
-                        local pos = ent:GetPos() + Vector(0, 0, ent:OBBMaxs().z + 10)
+                        local pos = ent:GetPos() + Vector(0, 0, ent:OBBMaxs().z + 5)
                         local ang = Angle(0, ply:EyeAngles().y - 90, 90)
                         
                         cam.Start3D2D(pos, ang, 0.1)
