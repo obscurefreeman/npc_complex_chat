@@ -70,10 +70,20 @@ if SERVER then
         
         if npcInfo == "npc_citizen" then
             identity.job = citizenJobs[math.random(#citizenJobs)]
-            if string.find(ent:GetModel(), "male" or "Male") then
-                identity.gender = "male"
-            elseif string.find(ent:GetModel(), "female" or "Female") then
+            identity.model = ent:GetModel()
+
+            if string.find(identity.model, "group01" ) then
+                identity.type = "citizens"
+            elseif string.find(identity.model, "group02" ) then
+                identity.type = "refugees"
+            elseif string.find(identity.model, "group03" ) then
+                identity.type = "rebels"
+            end
+
+            if string.find(identity.model, "female" ) then
                 identity.gender = "female"
+            elseif string.find(identity.model, "male" ) then
+                identity.gender = "male"
             end
             
             if jobSpecializations[identity.job] then
