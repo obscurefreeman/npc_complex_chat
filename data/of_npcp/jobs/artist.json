@@ -1,0 +1,12 @@
+{
+    "specializations": [
+        "artist.spec.painter",
+        "artist.spec.sculptor",
+        "artist.spec.photographer",
+        "artist.spec.musician",
+        "artist.spec.dancer",
+        "artist.spec.actor",
+        "artist.spec.writer",
+        "artist.spec.designer"
+    ]
+} 

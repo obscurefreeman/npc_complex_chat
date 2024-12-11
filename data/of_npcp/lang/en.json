@@ -7,10 +7,9 @@
             "medic": "Medical Staff",
             "scientist": "Scientist",
             "engineer": "Engineer",
-            "teacher": "Teacher",
-            "chef": "Chef",
-            "janitor": "Janitor",
-            "mechanic": "Mechanic"
+            "artist": "Artist",
+            "writer": "Writer",
+            "athlete": "Athlete"
         }
     },
     "worker": {
@@ -20,7 +19,12 @@
             "warehouse": "Warehouse Worker",
             "maintenance": "Maintenance Worker",
             "mining": "Mining Worker",
-            "agriculture": "Agricultural Worker"
+            "agriculture": "Agricultural Worker",
+            "janitor": "Janitor",
+            "chef": "Chef",
+            "electrician": "Electrician",
+            "plumber": "Plumber",
+            "carpenter": "Carpenter"
         }
     },
     "clerk": {
@@ -29,7 +33,12 @@
             "retail": "Retail Clerk",
             "records": "Records Clerk",
             "logistics": "Logistics Clerk",
-            "reception": "Receptionist"
+            "reception": "Receptionist",
+            "accountant": "Accountant",
+            "human_resources": "Human Resources Specialist",
+            "marketing": "Marketing Specialist",
+            "teacher": "Teacher",
+            "lawyer": "Lawyer"
         }
     },
     "tech": {
@@ -38,7 +47,10 @@
             "computer": "Computer Technician",
             "network": "Network Technician",
             "security": "Security Technician",
-            "maintenance": "Maintenance Technician"
+            "maintenance": "Maintenance Technician",
+            "software": "Software Technician",
+            "hardware": "Hardware Technician",
+            "database": "Database Administrator"
         }
     },
     "medic": {
@@ -46,8 +58,11 @@
             "general": "General Practitioner",
             "emergency": "Emergency Medical Staff",
             "surgery": "Surgical Staff",
-            "pharmacy": "Pharmacy Staff",
-            "laboratory": "Laboratory Staff"
+            "pharmacy": "Pharmacist",
+            "laboratory": "Laboratory Staff",
+            "pediatrics": "Pediatrician",
+            "cardiology": "Cardiologist",
+            "neurology": "Neurologist"
         }
     },
     "scientist": {
@@ -56,7 +71,57 @@
             "biology": "Biologist",
             "physics": "Physicist",
             "chemistry": "Chemist",
-            "robotics": "Robotics Scientist"
+            "robotics": "Robotics Scientist",
+            "mathematics": "Mathematician",
+            "astronomy": "Astronomer",
+            "geology": "Geologist"
+        }
+    },
+    "engineer": {
+        "spec": {
+            "mechanic": "Mechanical Engineer",
+            "electrical": "Electrical Engineer",
+            "civil": "Civil Engineer",
+            "chemical": "Chemical Engineer",
+            "aerospace": "Aerospace Engineer",
+            "computer": "Computer Engineer",
+            "software": "Software Engineer"
+        }
+    },
+    "artist": {
+        "spec": {
+            "painter": "Painter",
+            "sculptor": "Sculptor",
+            "photographer": "Photographer",
+            "musician": "Musician",
+            "dancer": "Dancer",
+            "actor": "Actor",
+            "writer": "Writer",
+            "designer": "Designer"
+        }
+    },
+    "writer": {
+        "spec": {
+            "novelist": "Novelist",
+            "poet": "Poet",
+            "journalist": "Journalist",
+            "editor": "Editor",
+            "translator": "Translator",
+            "screenwriter": "Screenwriter",
+            "playwright": "Playwright",
+            "biographer": "Biographer"
+        }
+    },
+    "athlete": {
+        "spec": {
+            "runner": "Runner",
+            "swimmer": "Swimmer",
+            "basketball_player": "Basketball Player",
+            "football_player": "Football Player",
+            "tennis_player": "Tennis Player",
+            "gymnast": "Gymnast",
+            "cyclist": "Cyclist",
+            "wrestler": "Wrestler"
         }
     },
     "metrocop": {

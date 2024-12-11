@@ -5,6 +5,11 @@
         "worker.spec.warehouse",
         "worker.spec.maintenance",
         "worker.spec.mining",
-        "worker.spec.agriculture"
+        "worker.spec.agriculture",
+        "worker.spec.janitor",
+        "worker.spec.chef",
+        "worker.spec.electrician",
+        "worker.spec.plumber",
+        "worker.spec.carpenter"
     ]
 } 

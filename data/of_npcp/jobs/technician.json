@@ -4,6 +4,9 @@
         "tech.spec.computer",
         "tech.spec.network",
         "tech.spec.security",
-        "tech.spec.maintenance"
+        "tech.spec.maintenance",
+        "tech.spec.software",
+        "tech.spec.hardware",
+        "tech.spec.database"
     ]
 } 

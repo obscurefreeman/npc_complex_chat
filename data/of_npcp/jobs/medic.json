@@ -4,6 +4,9 @@
         "medic.spec.emergency",
         "medic.spec.surgery",
         "medic.spec.pharmacy",
-        "medic.spec.laboratory"
+        "medic.spec.laboratory",
+        "medic.spec.pediatrics",
+        "medic.spec.cardiology",
+        "medic.spec.neurology"
     ]
 } 

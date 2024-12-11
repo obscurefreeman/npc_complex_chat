@@ -4,6 +4,11 @@
         "clerk.spec.retail",
         "clerk.spec.records",
         "clerk.spec.logistics",
-        "clerk.spec.reception"
+        "clerk.spec.reception",
+        "clerk.spec.accountant",
+        "clerk.spec.human_resources",
+        "clerk.spec.marketing",
+        "clerk.spec.teacher",
+        "clerk.spec.lawyer"
     ]
 } 

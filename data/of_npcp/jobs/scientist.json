@@ -4,6 +4,9 @@
         "scientist.spec.biology",
         "scientist.spec.physics",
         "scientist.spec.chemistry",
-        "scientist.spec.robotics"
+        "scientist.spec.robotics",
+        "scientist.spec.mathematics",
+        "scientist.spec.astronomy",
+        "scientist.spec.geology"
     ]
 } 

@@ -6,9 +6,8 @@
         "citizen.job.medic",
         "citizen.job.scientist",
         "citizen.job.engineer",
-        "citizen.job.teacher",
-        "citizen.job.chef",
-        "citizen.job.janitor",
-        "citizen.job.mechanic"
+        "citizen.job.artist",
+        "citizen.job.writer",
+        "citizen.job.athlete"
     ]
 } 

@@ -7,10 +7,9 @@
             "medic": "医务人员",
             "scientist": "科学家",
             "engineer": "工程师",
-            "teacher": "教师",
-            "chef": "厨师",
-            "janitor": "清洁工",
-            "mechanic": "机械师"
+            "artist": "艺术家",
+            "writer": "作家",
+            "athlete": "运动员"
         }
     },
     "worker": {
@@ -20,7 +19,12 @@
             "warehouse": "仓库工人",
             "maintenance": "维修工人",
             "mining": "矿工",
-            "agriculture": "农业工人"
+            "agriculture": "农业工人",
+            "janitor": "清洁工",
+            "chef": "厨师",
+            "electrician": "电工",
+            "plumber": "水管工",
+            "carpenter": "木工"
         }
     },
     "clerk": {
@@ -29,7 +33,12 @@
             "retail": "零售文员",
             "records": "档案管理员",
             "logistics": "物流文员",
-            "reception": "接待员"
+            "reception": "接待员",
+            "accountant": "会计",
+            "human_resources": "人力资源专员",
+            "marketing": "市场营销专员",
+            "teacher": "教师",
+            "lawyer": "律师"
         }
     },
     "tech": {
@@ -38,7 +47,10 @@
             "computer": "计算机技术员",
             "network": "网络技术员",
             "security": "安全技术员",
-            "maintenance": "维护技术员"
+            "maintenance": "维护技术员",
+            "software": "软件技术员",
+            "hardware": "硬件技术员",
+            "database": "数据库管理员"
         }
     },
     "medic": {
@@ -47,7 +59,10 @@
             "emergency": "急诊医务人员",
             "surgery": "外科医务人员",
             "pharmacy": "药剂师",
-            "laboratory": "实验室人员"
+            "laboratory": "实验室人员",
+            "pediatrics": "儿科医生",
+            "cardiology": "心脏病学家",
+            "neurology": "神经病学家"
         }
     },
     "scientist": {
@@ -56,7 +71,57 @@
             "biology": "生物学家",
             "physics": "物理学家",
             "chemistry": "化学家",
-            "robotics": "机器人学家"
+            "robotics": "机器人学家",
+            "mathematics": "数学家",
+            "astronomy": "天文学家",
+            "geology": "地质学家"
+        }
+    },
+    "engineer": {
+        "spec": {
+            "mechanic": "机械师",
+            "electrical": "电气工程师",
+            "civil": "土木工程师",
+            "chemical": "化学工程师",
+            "aerospace": "航空航天工程师",
+            "computer": "计算机工程师",
+            "software": "软件工程师"
+        }
+    },
+    "artist": {
+        "spec": {
+            "painter": "画家",
+            "sculptor": "雕塑家",
+            "photographer": "摄影师",
+            "musician": "音乐家",
+            "dancer": "舞者",
+            "actor": "演员",
+            "writer": "作家",
+            "designer": "设计师"
+        }
+    },
+    "writer": {
+        "spec": {
+            "novelist": "小说家",
+            "poet": "诗人",
+            "journalist": "记者",
+            "editor": "编辑",
+            "translator": "翻译家",
+            "screenwriter": "编剧",
+            "playwright": "剧作家",
+            "biographer": "传记作家"
+        }
+    },
+    "athlete": {
+        "spec": {
+            "runner": "跑步运动员",
+            "swimmer": "游泳运动员",
+            "basketball_player": "篮球运动员",
+            "football_player": "足球运动员",
+            "tennis_player": "网球运动员",
+            "gymnast": "体操运动员",
+            "cyclist": "自行车运动员",
+            "wrestler": "摔跤运动员"
         }
     },
     "metrocop": {
