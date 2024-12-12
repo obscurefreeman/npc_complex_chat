@@ -179,6 +179,23 @@ if SERVER then
         local entIndex = net.ReadInt(32)
         local action = net.ReadString()
         
+        if entIndex == -1 then
+            -- 处理所有NPC的操作
+            for _, ent in ipairs(ents.GetAll()) do
+                if IsValid(ent) and ent:IsNPC() then
+                    if action == "healall" then
+                        ent:SetHealth(ent:GetMaxHealth())
+                    elseif action == "killall" then
+                        ent:TakeDamage(ent:GetMaxHealth(), ply, ply)
+                    elseif action == "removeall" then
+                        ent:Remove()
+                    end
+                end
+            end
+            return
+        end
+        
+        -- 处理单个NPC的操作
         local ent = Entity(entIndex)
         if IsValid(ent) and ent:IsNPC() then
             if action == "heal" then

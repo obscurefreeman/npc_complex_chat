@@ -101,7 +101,40 @@ local function RefreshNPCButtons(left_panel, right_panel)
                     RefreshNPCButtons(left_panel, right_panel)
                 end)
             end)
-
+                        
+            menu:AddOption("治疗所有 NPC", function()
+                net.Start("NPCAction")
+                    net.WriteInt(-1, 32)
+                    net.WriteString("healall")
+                net.SendToServer()
+                
+                timer.Simple(0.1, function()
+                    RefreshNPCButtons(left_panel, right_panel)
+                end)
+            end)
+            
+            menu:AddOption("杀死所有 NPC", function()
+                net.Start("NPCAction")
+                    net.WriteInt(-1, 32)
+                    net.WriteString("killall")
+                net.SendToServer()
+                
+                timer.Simple(0.1, function()
+                    RefreshNPCButtons(left_panel, right_panel)
+                end)
+            end)
+            
+            menu:AddOption("删除所有 NPC", function()
+                net.Start("NPCAction")
+                    net.WriteInt(-1, 32)
+                    net.WriteString("removeall")
+                net.SendToServer()
+                
+                timer.Simple(0.1, function()
+                    RefreshNPCButtons(left_panel, right_panel)
+                end)
+            end)
+            
             menu:AddOption("刷新列表", function()
                 RefreshNPCButtons(left_panel, right_panel)
             end)
