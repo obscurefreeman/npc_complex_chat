@@ -172,12 +172,32 @@ if CLIENT then
     -- 客户端NPC数据存储
     local clientNPCs = {}
     
+    -- 添加获取NPC列表的函数
+    function GetAllNPCsList()
+        return clientNPCs
+    end
+    
+    -- 创建一个钩子系统来通知界面更新
+    hook.Add("NPCListUpdated", "UpdateNPCMenu", function()
+        hook.Run("RefreshNPCMenu")
+    end)
+    
     -- 接收服务器发送的NPC身份信息
     net.Receive("NPCIdentityUpdate", function()
         local ent = net.ReadEntity()
         local identity = net.ReadTable()
         if IsValid(ent) then
             clientNPCs[ent:EntIndex()] = identity
+            -- 触发NPC列表更新事件
+            hook.Run("NPCListUpdated")
+        end
+    end)
+    
+    -- 清理钩子需要同时触发更新事件
+    hook.Add("EntityRemoved", "CleanupClientNPCData", function(ent)
+        if IsValid(ent) and ent:IsNPC() then
+            clientNPCs[ent:EntIndex()] = nil
+            hook.Run("NPCListUpdated")
         end
     end)
     

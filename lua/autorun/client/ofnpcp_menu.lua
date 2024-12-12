@@ -1,8 +1,32 @@
 AddCSLuaFile()
 
+local function RefreshNPCButtons(left_panel)
+	-- 清除现有按钮
+	left_panel:Clear()
+	
+	-- 获取所有NPC数据
+	local npcs = GetAllNPCsList()
+	
+	-- 为每个NPC创建按钮
+	for entIndex, npcData in pairs(npcs) do
+		local button = vgui.Create("XPButton", left_panel)
+		button:Dock(TOP)
+		button:DockMargin(0, 0, 0, 2)
+		button:SetText(L(npcData.name))
+        if npcData.job then
+            button:SetToolTip(L(npcData.job))
+            if npcData.specialization then
+                button:SetToolTip(L(npcData.specialization))
+            end
+        elseif npcData.rank then
+            button:SetToolTip(L(npcData.rank))
+        end
+	end
+end
+
 local function example()
 	local frame = vgui.Create("XPFrame")
-	frame:SetTitle("示例窗口")
+	frame:SetTitle("NPC性格控制")
 	-- frame:SetBackgroundBlur(false)
 	-- frame:SetFrameBlur(false)
 	frame:SetNoRounded(false)
@@ -38,35 +62,19 @@ local function example()
 	left_panel:DockMargin(6, 6, 6, 6)
 	left_panel:SetWide(frame:GetWide() / 2 - 4)
 
-	-- Horizontal Scroller
-	local horizontal_scroll = vgui.Create("XPHorizontalScroller", left_panel)
-	horizontal_scroll:Dock(TOP)
-	horizontal_scroll:SetTall(frame:GetTall() / 2 - 8)
-	horizontal_scroll:SetOverlap(-3)
-
-	for i = 1, 12 do
-		local button = vgui.Create("XPButton", horizontal_scroll)
-		button:SetText("按钮 #" .. i)
-		button:SetWide(horizontal_scroll:GetTall())
-
-		button.DoClick = function()
-			local menu = vgui.Create("XPMenu", parent)
-
-			for i = 1, 3 do
-				menu:AddOption("菜单按钮 #" .. i)
-			end
-
-			menu:Open()
+	-- 初始加载NPC列表
+	RefreshNPCButtons(left_panel)
+	
+	-- 添加更新钩子
+	hook.Add("RefreshNPCMenu", "UpdateNPCButtonList", function()
+		if IsValid(left_panel) then
+			RefreshNPCButtons(left_panel)
 		end
-
-		horizontal_scroll:AddPanel(button)
-	end
-
-	for i = 1, 12 do
-		local button = vgui.Create("XPButton", left_panel)
-		button:Dock(TOP)
-		button:SetText("按钮 #" .. i)
-		button:SetToolTip("点击不会有任何反应")
+	end)
+	
+	-- 当面板关闭时移除钩子
+	frame.OnRemove = function()
+		hook.Remove("RefreshNPCMenu", "UpdateNPCButtonList")
 	end
 
 	--[[
