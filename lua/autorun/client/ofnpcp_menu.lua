@@ -9,44 +9,37 @@ local function RefreshNPCButtons(left_panel, right_panel)
 	
 	-- 为每个NPC创建按钮
 	for entIndex, npcData in pairs(npcs) do
-		-- 创建一个容器面板来放置图标和按钮
-		local container = vgui.Create("DPanel", left_panel)
-		container:Dock(TOP)
-		container:DockMargin(0, 0, 0, 2)
-		container:SetTall(64) -- 设置合适的高度
-		container:SetPaintBackground(false)
+		-- 创建新的NPC按钮
+		local button = vgui.Create("OFNPCButton", left_panel)
+		button:Dock(TOP)
+		button:DockMargin(0, 0, 0, 2)
+		button:SetTall(64)
+		button:SetModel(npcData.model or "models/error.mdl")
+		button:SetTitle(L(npcData.name))
 		
-		-- 创建模型图标
-		local icon = vgui.Create("ModelImage", container)
-		icon:Dock(LEFT)
-		icon:SetSize(64, 64)
-		icon:SetModel(npcData.model or "models/error.mdl")
+		-- 设置描述文字
+		local description = ""
+		if npcData.job then
+			description = L(npcData.job)
+			if npcData.specialization then
+				description = description .. " - " .. L(npcData.specialization)
+			end
+		elseif npcData.rank then
+			description = L(npcData.rank)
+		end
+		button:SetDescription(description)
 		
-		-- 创建按钮
-		local button = vgui.Create("XPButton", container)
-		button:Dock(RIGHT)
-		button:SetSize(left_panel:GetWide() - 88, 64) -- 调整按钮宽度
-		button:SetText(L(npcData.name))
-        if npcData.job then
-            button:SetToolTip(L(npcData.job))
-            if npcData.specialization then
-                button:SetToolTip(L(npcData.specialization))
-            end
-        elseif npcData.rank then
-            button:SetToolTip(L(npcData.rank))
-        end
-		
-		-- 修改按钮点击事件
+		-- 按钮点击事件
 		button.DoClick = function()
 			right_panel:Clear()
 			
-			local nameEntry = vgui.Create("XPTextEntry", right_panel)
-            nameEntry:Dock(TOP)
-            nameEntry:DockMargin(4, 4, 4, 4)
-            nameEntry:SetTall(32)
+			local nameEntry = vgui.Create("OFTextEntry", right_panel)
+			nameEntry:Dock(TOP)
+			nameEntry:DockMargin(4, 4, 4, 4)
+			nameEntry:SetTall(32)
 			nameEntry:SetValue(L(npcData.name) or "")
 			
-			local submitButton = vgui.Create("XPButton", right_panel)
+			local submitButton = vgui.Create("OFButton", right_panel)
 			submitButton:Dock(TOP)
 			submitButton:DockMargin(4, 4, 4, 4)
 			submitButton:SetText("确认修改")
@@ -72,86 +65,83 @@ local function RefreshNPCButtons(left_panel, right_panel)
 			end
 		end
 
-        button.DoRightClick = function()
-            local menu = vgui.Create("XPMenu")
-            menu:AddOption("治疗 NPC", function()
-                net.Start("NPCAction")
-                    net.WriteInt(entIndex, 32)
-                    net.WriteString("heal")
-                net.SendToServer()
-            end)
-            
-            menu:AddOption("杀死 NPC", function()
-                net.Start("NPCAction")
-                    net.WriteInt(entIndex, 32)
-                    net.WriteString("kill")
-                net.SendToServer()
-                
-                timer.Simple(0.1, function()
-                    RefreshNPCButtons(left_panel, right_panel)
-                end)
-            end)
-            
-            menu:AddOption("删除 NPC", function()
-                net.Start("NPCAction")
-                    net.WriteInt(entIndex, 32)
-                    net.WriteString("remove")
-                net.SendToServer()
-                timer.Simple(0.1, function()
-                    RefreshNPCButtons(left_panel, right_panel)
-                end)
-            end)
-                        
-            menu:AddOption("治疗所有 NPC", function()
-                net.Start("NPCAction")
-                    net.WriteInt(-1, 32)
-                    net.WriteString("healall")
-                net.SendToServer()
-                
-                timer.Simple(0.1, function()
-                    RefreshNPCButtons(left_panel, right_panel)
-                end)
-            end)
-            
-            menu:AddOption("杀死所有 NPC", function()
-                net.Start("NPCAction")
-                    net.WriteInt(-1, 32)
-                    net.WriteString("killall")
-                net.SendToServer()
-                
-                timer.Simple(0.1, function()
-                    RefreshNPCButtons(left_panel, right_panel)
-                end)
-            end)
-            
-            menu:AddOption("删除所有 NPC", function()
-                net.Start("NPCAction")
-                    net.WriteInt(-1, 32)
-                    net.WriteString("removeall")
-                net.SendToServer()
-                
-                timer.Simple(0.1, function()
-                    RefreshNPCButtons(left_panel, right_panel)
-                end)
-            end)
-            
-            menu:AddOption("刷新列表", function()
-                RefreshNPCButtons(left_panel, right_panel)
-            end)
-            
-            menu:Open()
-        end
+		button.DoRightClick = function()
+			local menu = vgui.Create("OFMenu")
+			menu:AddOption("治疗 NPC", function()
+				net.Start("NPCAction")
+					net.WriteInt(entIndex, 32)
+					net.WriteString("heal")
+				net.SendToServer()
+			end)
+			
+			menu:AddOption("杀死 NPC", function()
+				net.Start("NPCAction")
+					net.WriteInt(entIndex, 32)
+					net.WriteString("kill")
+				net.SendToServer()
+				
+				timer.Simple(0.1, function()
+					RefreshNPCButtons(left_panel, right_panel)
+				end)
+			end)
+			
+			menu:AddOption("删除 NPC", function()
+				net.Start("NPCAction")
+					net.WriteInt(entIndex, 32)
+					net.WriteString("remove")
+				net.SendToServer()
+				timer.Simple(0.1, function()
+					RefreshNPCButtons(left_panel, right_panel)
+				end)
+			end)
+						
+			menu:AddOption("治疗所有 NPC", function()
+				net.Start("NPCAction")
+					net.WriteInt(-1, 32)
+					net.WriteString("healall")
+				net.SendToServer()
+				
+				timer.Simple(0.1, function()
+					RefreshNPCButtons(left_panel, right_panel)
+				end)
+			end)
+			
+			menu:AddOption("杀死所有 NPC", function()
+				net.Start("NPCAction")
+					net.WriteInt(-1, 32)
+					net.WriteString("killall")
+				net.SendToServer()
+				
+				timer.Simple(0.1, function()
+					RefreshNPCButtons(left_panel, right_panel)
+				end)
+			end)
+			
+			menu:AddOption("删除所有 NPC", function()
+				net.Start("NPCAction")
+					net.WriteInt(-1, 32)
+					net.WriteString("removeall")
+				net.SendToServer()
+				
+				timer.Simple(0.1, function()
+					RefreshNPCButtons(left_panel, right_panel)
+				end)
+			end)
+			
+			menu:AddOption("刷新列表", function()
+				RefreshNPCButtons(left_panel, right_panel)
+			end)
+			
+			menu:Open()
+		end
 	end
 end
 
 local function example()
-	local frame = vgui.Create("XPFrame")
+	local frame = vgui.Create("OFFrame")
 	frame:SetTitle("NPC性格控制")
-	-- frame:SetBackgroundBlur(false)
-	-- frame:SetFrameBlur(false)
-	frame:SetNoRounded(false)
 
-	local sheet = vgui.Create("XPPropertySheet", frame)
+	local sheet = vgui.Create("OFPropertySheet", frame)
 	sheet:DockMargin(4, 4, 4, 4)
 	sheet:Dock(FILL)
 
@@ -160,29 +150,16 @@ local function example()
 
 	local pan2 = vgui.Create("EditablePanel", sheet)
 	sheet:AddSheet("空白标签页", pan2)
-
-	local bottom_button1 = frame:SetBottomButton("左侧", LEFT, function()
-		frame:Remove()
-	end)
-
-	local bottom_button2 = frame:SetBottomButton("右侧", RIGHT, function()
-		frame:Remove()
-	end)
-
-	local bottom_button3 = frame:SetBottomButton("关闭", FILL, function()
-		frame:Remove()
-	end)
-
 	--[[
 		Left Panel
 	]]
 
-	local left_panel = vgui.Create("XPScrollPanel", pan1)
+	local left_panel = vgui.Create("OFScrollPanel", pan1)
 	left_panel:Dock(LEFT)
 	left_panel:DockMargin(6, 6, 6, 6)
 	left_panel:SetWide(frame:GetWide() / 2 - 4)
 
-    local right_panel = vgui.Create("XPScrollPanel", pan1)
+    local right_panel = vgui.Create("OFScrollPanel", pan1)
 	right_panel:Dock(RIGHT)
 	right_panel:DockMargin(6, 6, 6, 6)
 	right_panel:SetWide(frame:GetWide() / 2 - 20)
