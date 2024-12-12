@@ -48,6 +48,27 @@ if CLIENT then
     -- 对话框设置
     local activeDialogs = {}
     
+    -- 添加一个UTF8字符串截取的辅助函数
+    local function utf8sub(str, startChar, endChar)
+        if not str then return "" end
+        
+        local chars = utf8.codes(str)
+        local result = {}
+        local count = 0
+        
+        for p, c in chars do
+            count = count + 1
+            if count >= startChar then
+                table.insert(result, utf8.char(c))
+            end
+            if endChar and count >= endChar then
+                break
+            end
+        end
+        
+        return table.concat(result)
+    end
+    
     -- 接收服务器的对话请求
     net.Receive("NPCTalkStart", function()
         local npc = net.ReadEntity()
@@ -107,10 +128,10 @@ if CLIENT then
                 continue
             end
             
-            -- 逐字显示文本
-            if dialog.charIndex < #dialog.text and currentTime >= dialog.nextCharTime then
+            -- 修改逐字显示文本的逻辑
+            if dialog.charIndex < utf8.len(dialog.text) and currentTime >= dialog.nextCharTime then
                 dialog.charIndex = dialog.charIndex + 1
-                dialog.currentText = string.sub(dialog.text, 1, dialog.charIndex)
+                dialog.currentText = utf8sub(dialog.text, 1, dialog.charIndex)
                 dialog.nextCharTime = currentTime + CHAR_DELAY
             end
             
@@ -125,6 +146,9 @@ if CLIENT then
             
             -- 开始3D2D渲染
             cam.Start3D2D(pos, npcAngles, 0.1)
+                -- 启用穿墙显示
+                -- cam.IgnoreZ(true)
+                
                 -- 计算文本尺寸
                 surface.SetFont("NPCTalkFont")
                 local textWidth, textHeight = surface.GetTextSize(dialog.currentText)
@@ -147,6 +171,9 @@ if CLIENT then
                     Color(255, 255, 255, 255),
                     TEXT_ALIGN_CENTER
                 )
+                
+                -- 恢复正常Z缓冲
+                -- cam.IgnoreZ(false)
             cam.End3D2D()
         end
     end)
