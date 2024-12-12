@@ -1,5 +1,3 @@
-AddCSLuaFile()
-
 local function example()
 	local frame = vgui.Create("XPFrame")
 	frame:SetTitle("示例窗口")
@@ -25,7 +23,7 @@ local function example()
 		frame:Remove()
 	end)
 
-	local bottom_button3 = frame:SetBottomButton("关闭", FILL, function()
+	local bottom_button3 = frame:SetBottomButton("填充", FILL, function()
 		frame:Remove()
 	end)
 
@@ -127,11 +125,4 @@ local function example()
 		txt:SetText("简单复选框")
 	end
 end
-
-list.Set("DesktopWindows", "ofnpcp", {
-    title = "npc性格",
-    icon = "oftoollogo/ofnpcplogo.png",
-    init = function()
-        example()
-    end
-})
+concommand.Add("xpgui_example", example)
