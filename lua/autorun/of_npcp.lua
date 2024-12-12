@@ -1,20 +1,3 @@
--- 共享函数区域（SERVER和CLIENT都可以访问）
-function GetNPCIdentityText(identity)
-    if not identity then return "" end
-    
-    local text = ""
-    if identity.job then
-        text = L(identity.name) .. " - " .. L(identity.job)
-        if identity.specialization then
-            text = L(identity.name) .. " - " .. L(identity.specialization)
-        end
-    elseif identity.rank then
-        text = L(identity.name) .. " - " .. L(identity.rank)
-    end
-    
-    return text
-end
-
 if SERVER then
     -- 将 npcs 设置为全局变量
     _G.npcs = {}
