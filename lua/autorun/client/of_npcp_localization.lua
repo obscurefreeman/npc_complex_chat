@@ -25,18 +25,22 @@ end
 
 -- 获取翻译文本
 function LANG:GetPhrase(key)
+    
     if not self.LanguageData[self.CurrentLanguage] then
         self:LoadLanguageFile(self.CurrentLanguage)
     end
     
     local keys = string.Split(key, ".")
     local current = self.LanguageData[self.CurrentLanguage]
-    
-    for _, k in ipairs(keys) do
-        if current[k] then
+
+    for i, k in ipairs(keys) do
+        if type(current) == "table" and current[k] then
             current = current[k]
+        elseif tonumber(k) and type(current) == "table" and #current >= tonumber(k) then
+            -- 处理数组索引
+            current = current[tonumber(k)]
         else
-            return key -- 如果找不到翻译，返回原始key
+            return key
         end
     end
     
