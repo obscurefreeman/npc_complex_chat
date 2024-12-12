@@ -9,9 +9,23 @@ local function RefreshNPCButtons(left_panel)
 	
 	-- 为每个NPC创建按钮
 	for entIndex, npcData in pairs(npcs) do
-		local button = vgui.Create("XPButton", left_panel)
-		button:Dock(TOP)
-		button:DockMargin(0, 0, 0, 2)
+		-- 创建一个容器面板来放置图标和按钮
+		local container = vgui.Create("DPanel", left_panel)
+		container:Dock(TOP)
+		container:DockMargin(0, 0, 0, 2)
+		container:SetTall(64) -- 设置合适的高度
+		container:SetPaintBackground(false)
+		
+		-- 创建模型图标
+		local icon = vgui.Create("ModelImage", container)
+		icon:Dock(LEFT)
+		icon:SetSize(64, 64)
+		icon:SetModel(npcData.model or "models/error.mdl")
+		
+		-- 创建按钮
+		local button = vgui.Create("XPButton", container)
+		button:Dock(RIGHT)
+		button:SetSize(left_panel:GetWide() - 88, 64) -- 调整按钮宽度
 		button:SetText(L(npcData.name))
         if npcData.job then
             button:SetToolTip(L(npcData.job))
