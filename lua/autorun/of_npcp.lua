@@ -16,12 +16,14 @@ function GetNPCIdentityText(identity)
 end
 
 if SERVER then
+    -- 将 npcs 设置为全局变量
+    _G.npcs = {}
+    
     -- 在文件开头添加必要的变量
     local citizenJobs = {}
     local metropoliceRanks = {}
     local combineRanks = {}
     local jobSpecializations = {}
-    local npcs = {}
     local maleNames = {}
     local femaleNames = {}
 

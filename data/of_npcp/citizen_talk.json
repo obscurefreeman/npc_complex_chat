@@ -1,1 +1,39 @@
- 
+{
+    "greetings": {
+        "citizens": [
+            "greeting.citizen.1",
+            "greeting.citizen.2",
+            "greeting.citizen.3",
+            "greeting.citizen.4",
+            "greeting.citizen.5"
+        ],
+        "refugees": [
+            "greeting.refugee.1",
+            "greeting.refugee.2",
+            "greeting.refugee.3",
+            "greeting.refugee.4",
+            "greeting.refugee.5"
+        ],
+        "rebels": [
+            "greeting.rebel.1",
+            "greeting.rebel.2",
+            "greeting.rebel.3",
+            "greeting.rebel.4",
+            "greeting.rebel.5"
+        ],
+        "metropolice": [
+            "greeting.metrocop.1",
+            "greeting.metrocop.2",
+            "greeting.metrocop.3",
+            "greeting.metrocop.4",
+            "greeting.metrocop.5"
+        ],
+        "combine": [
+            "greeting.combine.1",
+            "greeting.combine.2",
+            "greeting.combine.3",
+            "greeting.combine.4",
+            "greeting.combine.5"
+        ]
+    }
+} 
