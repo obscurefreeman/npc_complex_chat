@@ -4,12 +4,12 @@ function GetNPCIdentityText(identity)
     
     local text = ""
     if identity.job then
-        text = L(identity.job)
+        text = L(identity.name) .. " - " .. L(identity.job)
         if identity.specialization then
-            text = L(identity.specialization)
+            text = L(identity.name) .. " - " .. L(identity.specialization)
         end
     elseif identity.rank then
-        text = L(identity.rank)
+        text = L(identity.name) .. " - " .. L(identity.rank)
     end
     
     return text
@@ -22,6 +22,8 @@ if SERVER then
     local combineRanks = {}
     local jobSpecializations = {}
     local npcs = {}
+    local maleNames = {}
+    local femaleNames = {}
 
     -- 添加网络字符串
     util.AddNetworkString("NPCIdentityUpdate")
@@ -57,6 +59,28 @@ if SERVER then
                 jobSpecializations[job] = util.JSONToTable(specData).specializations
             end
         end
+
+        -- 加载名字数据
+        local maleNamesData = file.Read("data/of_npcp/name_male.json", "GAME")
+        local femaleNamesData = file.Read("data/of_npcp/name_female.json", "GAME")
+
+        if maleNamesData then
+            local success, data = pcall(util.JSONToTable, maleNamesData)
+            if success and data then
+                maleNames = data.names
+            else
+                print("【晦涩弗里曼】解析 name_male.json 时出错。")
+            end
+        end
+
+        if femaleNamesData then
+            local success, data = pcall(util.JSONToTable, femaleNamesData)
+            if success and data then
+                femaleNames = data.names
+            else
+                print("【晦涩弗里曼】解析 name_female.json 时出错。")
+            end
+        end
     end
 
     -- 在服务器启动时加载数据
@@ -90,12 +114,21 @@ if SERVER then
                 local specs = jobSpecializations[identity.job]
                 identity.specialization = specs[math.random(#specs)]
             end
+
+            -- 根据性别分配名字
+            if identity.gender == "female" then
+                identity.name = femaleNames[math.random(#femaleNames)]
+            else
+                identity.name = maleNames[math.random(#maleNames)]
+            end
         elseif npcInfo == "npc_metropolice" then
             local rank = math.random(1, 6)
             identity.rank = metropoliceRanks["i" .. rank]
+            identity.name = maleNames[math.random(#maleNames)]
         elseif npcInfo == "npc_combine_s" then
             local rank = math.random(1, 6)
             identity.rank = combineRanks["i" .. rank]
+            identity.name = maleNames[math.random(#maleNames)]
         end
 
         -- 存储NPC身份信息

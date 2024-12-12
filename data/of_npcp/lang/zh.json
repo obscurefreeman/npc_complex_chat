@@ -143,5 +143,51 @@
             "commander": "联合军指挥官",
             "overlord": "联合军统治者"
         }
+    },
+    "name": {
+        "male": {
+            "Alex": "亚历克斯",
+            "Ben": "本",
+            "Charlie": "查理",
+            "Daniel": "丹尼尔",
+            "Eric": "埃里克",
+            "Frank": "弗兰克",
+            "George": "乔治",
+            "Henry": "亨利",
+            "Ian": "伊恩",
+            "Jack": "杰克",
+            "Kevin": "凯文",
+            "Leo": "里奥",
+            "Mike": "迈克",
+            "Nathan": "内森",
+            "Oliver": "奥利弗",
+            "Peter": "彼得",
+            "Quinn": "奎因",
+            "Ryan": "瑞安",
+            "Steve": "史蒂夫",
+            "Tom": "汤姆"
+        },
+        "female": {
+            "Amy": "艾米",
+            "Beth": "贝丝",
+            "Claire": "克莱尔",
+            "Diana": "戴安娜",
+            "Emma": "艾玛",
+            "Faith": "费思",
+            "Grace": "格蕾丝",
+            "Hannah": "汉娜",
+            "Iris": "艾丽丝",
+            "Jane": "简",
+            "Kate": "凯特",
+            "Lucy": "露西",
+            "Mary": "玛丽",
+            "Nina": "妮娜",
+            "Olivia": "奥利维亚",
+            "Penny": "佩妮",
+            "Quinn": "奎茵",
+            "Rose": "罗丝",
+            "Sarah": "莎拉",
+            "Tina": "蒂娜"
+        }
     }
 } 
