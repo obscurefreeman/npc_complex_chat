@@ -60,7 +60,54 @@ local function RefreshNPCButtons(left_panel, right_panel)
 					net.SendToServer()
 				end
 			end
+			
+			-- 添加分隔线
+			local divider = vgui.Create("DPanel", right_panel)
+			divider:Dock(TOP)
+			divider:DockMargin(4, 8, 4, 8)
+			divider:SetTall(2)
+			divider.Paint = function(self, w, h)
+				surface.SetDrawColor(100, 100, 100, 255)
+				surface.DrawRect(0, 0, w, h)
+			end
 		end
+
+        button.DoRightClick = function()
+            local menu = vgui.Create("XPMenu")
+            menu:AddOption("治疗 NPC", function()
+                net.Start("NPCAction")
+                    net.WriteInt(entIndex, 32)
+                    net.WriteString("heal")
+                net.SendToServer()
+            end)
+            
+            menu:AddOption("杀死 NPC", function()
+                net.Start("NPCAction")
+                    net.WriteInt(entIndex, 32)
+                    net.WriteString("kill")
+                net.SendToServer()
+                
+                timer.Simple(0.1, function()
+                    RefreshNPCButtons(left_panel, right_panel)
+                end)
+            end)
+            
+            menu:AddOption("删除 NPC", function()
+                net.Start("NPCAction")
+                    net.WriteInt(entIndex, 32)
+                    net.WriteString("remove")
+                net.SendToServer()
+                timer.Simple(0.1, function()
+                    RefreshNPCButtons(left_panel, right_panel)
+                end)
+            end)
+
+            menu:AddOption("刷新列表", function()
+                RefreshNPCButtons(left_panel, right_panel)
+            end)
+            
+            menu:Open()
+        end
 	end
 end
 

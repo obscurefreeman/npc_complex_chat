@@ -31,6 +31,9 @@ if SERVER then
     -- 添加新的网络字符串
     util.AddNetworkString("UpdateNPCName")
 
+    -- 在其他网络字符串后添加
+    util.AddNetworkString("NPCAction")
+
     -- 加载JSON文件
     local function LoadNPCData()
         local citizenData = file.Read("data/of_npcp/citizen_jobs.json", "GAME")
@@ -185,6 +188,23 @@ if SERVER then
             net.Broadcast()
         end
     end)
+
+    -- 在其他网络接收函数后添加
+    net.Receive("NPCAction", function(len, ply)
+        local entIndex = net.ReadInt(32)
+        local action = net.ReadString()
+        
+        local ent = Entity(entIndex)
+        if IsValid(ent) and ent:IsNPC() then
+            if action == "heal" then
+                ent:SetHealth(ent:GetMaxHealth())
+            elseif action == "kill" then
+                ent:TakeDamage(ent:GetMaxHealth(), ply, ply)
+            elseif action == "remove" then
+                ent:Remove()
+            end
+        end
+    end)
 end
 
 if CLIENT then
@@ -212,29 +232,29 @@ if CLIENT then
     end)
     
     -- 添加NPC顶显示功能
-    hook.Add("PostDrawOpaqueRenderables", "DrawNPCInfo", function()
-        local ply = LocalPlayer()
-        if not IsValid(ply) then return end
+    -- hook.Add("PostDrawOpaqueRenderables", "DrawNPCInfo", function()
+    --     local ply = LocalPlayer()
+    --     if not IsValid(ply) then return end
         
-        for _, ent in ipairs(ents.GetAll()) do
-            if IsValid(ent) and ent:IsNPC() then
-                local dist = ply:GetPos():Distance(ent:GetPos())
-                -- 只渲染1000单位以内的NPC信息
-                if dist <= 1000 then
-                    local identity = clientNPCs[ent:EntIndex()]
-                    if identity then
-                        local pos = ent:GetPos() + Vector(0, 0, ent:OBBMaxs().z + 5)
-                        local ang = Angle(0, ply:EyeAngles().y - 90, 90)
+    --     for _, ent in ipairs(ents.GetAll()) do
+    --         if IsValid(ent) and ent:IsNPC() then
+    --             local dist = ply:GetPos():Distance(ent:GetPos())
+    --             -- 只渲染1000单位以内的NPC信息
+    --             if dist <= 1000 then
+    --                 local identity = clientNPCs[ent:EntIndex()]
+    --                 if identity then
+    --                     local pos = ent:GetPos() + Vector(0, 0, ent:OBBMaxs().z + 5)
+    --                     local ang = Angle(0, ply:EyeAngles().y - 90, 90)
                         
-                        cam.Start3D2D(pos, ang, 0.1)
-                            local text = GetNPCIdentityText(identity)
-                            draw.SimpleText(text, "DermaLarge", 0, 0, color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
-                        cam.End3D2D()
-                    end
-                end
-            end
-        end
-    end)
+    --                     cam.Start3D2D(pos, ang, 0.1)
+    --                         local text = GetNPCIdentityText(identity)
+    --                         draw.SimpleText(text, "DermaLarge", 0, 0, color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+    --                     cam.End3D2D()
+    --                 end
+    --             end
+    --         end
+    --     end
+    -- end)
 
     -- 客户端没有清理已移除NPC的数据
     hook.Add("EntityRemoved", "CleanupClientNPCData", function(ent)
