@@ -91,10 +91,10 @@ if SERVER then
         local identity = {}
 
         identity.info = npcInfo
+        identity.model = ent:GetModel()
         
         if npcInfo == "npc_citizen" then
             identity.job = citizenJobs[math.random(#citizenJobs)]
-            identity.model = ent:GetModel()
 
             if string.find(identity.model, "group01" ) then
                 identity.type = "citizens"
@@ -169,10 +169,9 @@ if SERVER then
 end
 
 if CLIENT then
-    -- 客户端NPC数据存储
+    -- 只定义一次clientNPCs
     local clientNPCs = {}
     
-    -- 添加获取NPC列表的函数
     function GetAllNPCsList()
         return clientNPCs
     end
@@ -189,14 +188,6 @@ if CLIENT then
         if IsValid(ent) then
             clientNPCs[ent:EntIndex()] = identity
             -- 触发NPC列表更新事件
-            hook.Run("NPCListUpdated")
-        end
-    end)
-    
-    -- 清理钩子需要同时触发更新事件
-    hook.Add("EntityRemoved", "CleanupClientNPCData", function(ent)
-        if IsValid(ent) and ent:IsNPC() then
-            clientNPCs[ent:EntIndex()] = nil
             hook.Run("NPCListUpdated")
         end
     end)
@@ -227,9 +218,6 @@ if CLIENT then
     end)
 
     -- 客户端没有清理已移除NPC的数据
-    local clientNPCs = {}
-    
-    -- 应该添加清理钩子
     hook.Add("EntityRemoved", "CleanupClientNPCData", function(ent)
         if IsValid(ent) and ent:IsNPC() then
             clientNPCs[ent:EntIndex()] = nil
