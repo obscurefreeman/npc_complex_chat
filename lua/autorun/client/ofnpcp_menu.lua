@@ -1,6 +1,6 @@
 AddCSLuaFile()
 
-local function RefreshNPCButtons(left_panel)
+local function RefreshNPCButtons(left_panel, right_panel)
 	-- 清除现有按钮
 	left_panel:Clear()
 	
@@ -35,6 +35,32 @@ local function RefreshNPCButtons(left_panel)
         elseif npcData.rank then
             button:SetToolTip(L(npcData.rank))
         end
+		
+		-- 修改按钮点击事件
+		button.DoClick = function()
+			right_panel:Clear()
+			
+			local nameEntry = vgui.Create("XPTextEntry", right_panel)
+            nameEntry:Dock(TOP)
+            nameEntry:DockMargin(4, 4, 4, 4)
+            nameEntry:SetTall(32)
+			nameEntry:SetValue(L(npcData.name) or "")
+			
+			local submitButton = vgui.Create("XPButton", right_panel)
+			submitButton:Dock(TOP)
+			submitButton:DockMargin(4, 4, 4, 4)
+			submitButton:SetText("确认修改")
+			submitButton.DoClick = function()
+				local newName = nameEntry:GetValue()
+				if newName and newName ~= "" then
+					-- 发送更新请求到服务器
+					net.Start("UpdateNPCName")
+						net.WriteInt(entIndex, 32)
+						net.WriteString(newName)
+					net.SendToServer()
+				end
+			end
+		end
 	end
 end
 
@@ -76,77 +102,24 @@ local function example()
 	left_panel:DockMargin(6, 6, 6, 6)
 	left_panel:SetWide(frame:GetWide() / 2 - 4)
 
+    local right_panel = vgui.Create("XPScrollPanel", pan1)
+	right_panel:Dock(RIGHT)
+	right_panel:DockMargin(6, 6, 6, 6)
+	right_panel:SetWide(frame:GetWide() / 2 - 20)
+
 	-- 初始加载NPC列表
-	RefreshNPCButtons(left_panel)
+	RefreshNPCButtons(left_panel, right_panel)
 	
 	-- 添加更新钩子
 	hook.Add("RefreshNPCMenu", "UpdateNPCButtonList", function()
 		if IsValid(left_panel) then
-			RefreshNPCButtons(left_panel)
+			RefreshNPCButtons(left_panel, right_panel)
 		end
 	end)
 	
 	-- 当面板关闭时移除钩子
 	frame.OnRemove = function()
 		hook.Remove("RefreshNPCMenu", "UpdateNPCButtonList")
-	end
-
-	--[[
-		Right Panel
-	]]
-
-	local right_panel = vgui.Create("XPScrollPanel", pan1)
-	right_panel:Dock(RIGHT)
-	right_panel:DockMargin(6, 6, 6, 6)
-	right_panel:SetWide(frame:GetWide() / 2 - 20)
-
-	-- ComboBox
-	local combobox = vgui.Create("XPComboBox", right_panel)
-	combobox:Dock(TOP)
-	combobox:DockMargin(4, 4, 4, 16)
-	combobox:SetValue("请选择一个数字")
-
-	for i = 1, 9 do
-		combobox:AddChoice(i)
-	end
-
-	-- List
-	local list = vgui.Create("XPListView", right_panel)
-	list:Dock(TOP)
-	list:SetTall(frame:GetTall() / 2)
-	list:DockMargin(4, 4, 4, 4)
-
-	list:AddColumn("序号")
-	list:AddColumn("当前值+前值")
-
-	for i = 1, 32 do
-		list:AddLine(i, i + (i - 1))
-	end
-
-	-- Text Entry
-	local entry = vgui.Create("XPTextEntry", right_panel)
-	entry:Dock(TOP)
-	entry:DockMargin(4, 4, 4, 4)
-	entry:SetTall(32)
-	entry:SetText("文本输入框")
-
-	-- Checkbox
-	for i = 1, 6 do
-		local pnl = vgui.Create("EditablePanel", right_panel)
-		pnl:Dock(TOP)
-		pnl:SetTall(24)
-		pnl:DockMargin(4, 4, 4, 4)
-
-		local cb = vgui.Create("XPCheckBox", pnl)
-		cb:SetPos(0, 0)
-		cb:SetSize(24, 24)
-		cb:SetValue(true)
-
-		local txt = vgui.Create("DLabel", pnl)
-		txt:SetFont("xpgui_medium")
-		txt:SetPos(28, 0)
-		txt:SetWide(frame:GetWide() / 2)
-		txt:SetText("简单复选框")
 	end
 end
 

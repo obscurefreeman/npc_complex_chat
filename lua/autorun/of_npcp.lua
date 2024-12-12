@@ -28,6 +28,9 @@ if SERVER then
     -- 添加网络字符串
     util.AddNetworkString("NPCIdentityUpdate")
 
+    -- 添加新的网络字符串
+    util.AddNetworkString("UpdateNPCName")
+
     -- 加载JSON文件
     local function LoadNPCData()
         local citizenData = file.Read("data/of_npcp/citizen_jobs.json", "GAME")
@@ -164,6 +167,22 @@ if SERVER then
     hook.Add("EntityRemoved", "CleanupNPCData", function(ent)
         if IsValid(ent) and ent:IsNPC() then
             npcs[ent:EntIndex()] = nil
+        end
+    end)
+
+    -- 添加接收客户端请求更新NPC名字的处理函数
+    net.Receive("UpdateNPCName", function(len, ply)
+        local entIndex = net.ReadInt(32)
+        local newName = net.ReadString()
+        
+        if npcs[entIndex] then
+            npcs[entIndex].name = newName
+            
+            -- 广播更新后的身份信息给所有客户端
+            net.Start("NPCIdentityUpdate")
+                net.WriteEntity(Entity(entIndex))
+                net.WriteTable(npcs[entIndex])
+            net.Broadcast()
         end
     end)
 end
