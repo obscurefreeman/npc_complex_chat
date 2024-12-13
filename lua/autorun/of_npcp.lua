@@ -146,17 +146,23 @@ if SERVER then
         if identity.job then
             -- 分配能力tag
             if tagData.ability_tags[identity.job] then
-                identity.ability_tag = tagData.ability_tags[identity.job][math.random(#tagData.ability_tags[identity.job])]
+                local abilityTag = tagData.ability_tags[identity.job]
+                identity.ability_tag = abilityTag.id
+                identity.ability_desc = abilityTag.desc
             end
         end
         
         -- 分配交易和社交tag
         if tagData.trade_tags and #tagData.trade_tags > 0 then
-            identity.trade_tag = tagData.trade_tags[math.random(#tagData.trade_tags)]
+            local tradeTag = tagData.trade_tags[math.random(#tagData.trade_tags)]
+            identity.trade_tag = tradeTag.id
+            identity.trade_desc = tradeTag.desc
         end
         
         if tagData.social_tags and #tagData.social_tags > 0 then
-            identity.social_tag = tagData.social_tags[math.random(#tagData.social_tags)]
+            local socialTag = tagData.social_tags[math.random(#tagData.social_tags)]
+            identity.social_tag = socialTag.id
+            identity.social_desc = socialTag.desc
         end
         
         -- 存储NPC身份信息

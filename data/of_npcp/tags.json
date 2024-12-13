@@ -1,29 +1,92 @@
 {
     "ability_tags": {
-        "citizen.job.medic": "tag.ability.selfheal",
-        "citizen.job.scholar": "tag.ability.inspiration",
-        "citizen.job.worker": "tag.ability.endurance",
-        "citizen.job.technician": "tag.ability.expertise",
-        "citizen.job.researcher": "tag.ability.curiosity",
-        "citizen.job.artist": "tag.ability.creativity",
-        "citizen.job.athlete": "tag.ability.strength"
+        "citizen.job.medic": {
+            "id": "tag.ability.selfheal",
+            "desc": "tag.ability.selfheal.desc"
+        },
+        "citizen.job.scholar": {
+            "id": "tag.ability.inspiration", 
+            "desc": "tag.ability.inspiration.desc"
+        },
+        "citizen.job.worker": {
+            "id": "tag.ability.endurance",
+            "desc": "tag.ability.endurance.desc"
+        },
+        "citizen.job.technician": {
+            "id": "tag.ability.expertise",
+            "desc": "tag.ability.expertise.desc"
+        },
+        "citizen.job.researcher": {
+            "id": "tag.ability.curiosity",
+            "desc": "tag.ability.curiosity.desc"
+        },
+        "citizen.job.artist": {
+            "id": "tag.ability.creativity",
+            "desc": "tag.ability.creativity.desc"
+        },
+        "citizen.job.athlete": {
+            "id": "tag.ability.strength",
+            "desc": "tag.ability.strength.desc"
+        }
     },
     "trade_tags": [
-        "tag.trade.merchant",
-        "tag.trade.honest",
-        "tag.trade.deceiver",
-        "tag.trade.quality",
-        "tag.trade.bargainer",
-        "tag.trade.affordable",
-        "tag.trade.greedy"
+        {
+            "id": "tag.trade.merchant",
+            "desc": "tag.trade.merchant.desc"
+        },
+        {
+            "id": "tag.trade.honest",
+            "desc": "tag.trade.honest.desc"
+        },
+        {
+            "id": "tag.trade.deceiver",
+            "desc": "tag.trade.deceiver.desc"
+        },
+        {
+            "id": "tag.trade.quality",
+            "desc": "tag.trade.quality.desc"
+        },
+        {
+            "id": "tag.trade.bargainer",
+            "desc": "tag.trade.bargainer.desc"
+        },
+        {
+            "id": "tag.trade.affordable",
+            "desc": "tag.trade.affordable.desc"
+        },
+        {
+            "id": "tag.trade.greedy",
+            "desc": "tag.trade.greedy.desc"
+        }
     ],
     "social_tags": [
-        "tag.social.friendly",
-        "tag.social.fake",
-        "tag.social.hospitable",
-        "tag.social.cold",
-        "tag.social.diplomatic",
-        "tag.social.loner",
-        "tag.social.straightforward"
+        {
+            "id": "tag.social.friendly",
+            "desc": "tag.social.friendly.desc"
+        },
+        {
+            "id": "tag.social.fake",
+            "desc": "tag.social.fake.desc"
+        },
+        {
+            "id": "tag.social.hospitable",
+            "desc": "tag.social.hospitable.desc"
+        },
+        {
+            "id": "tag.social.cold",
+            "desc": "tag.social.cold.desc"
+        },
+        {
+            "id": "tag.social.diplomatic",
+            "desc": "tag.social.diplomatic.desc"
+        },
+        {
+            "id": "tag.social.loner",
+            "desc": "tag.social.loner.desc"
+        },
+        {
+            "id": "tag.social.straightforward",
+            "desc": "tag.social.straightforward.desc"
+        }
     ]
 } 

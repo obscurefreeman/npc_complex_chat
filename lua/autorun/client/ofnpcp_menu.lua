@@ -71,8 +71,8 @@ local function RefreshNPCButtons(left_panel, right_panel)
 				abilityButton:DockMargin(4, 4, 4, 4)
 				abilityButton:SetTall(64)
 				abilityButton:SetIcon("ofnpcp/roleicons/verified.png")
-				abilityButton:SetTitle("能力特征")
-				abilityButton:SetDescription(L(npcData.ability_tag))
+				abilityButton:SetTitle(L(npcData.ability_tag))
+				abilityButton:SetDescription(L(npcData.ability_desc))
 				abilityButton:SetBorderColor(Color(100, 255, 100))
 			end
 			
@@ -82,8 +82,8 @@ local function RefreshNPCButtons(left_panel, right_panel)
 				tradeButton:DockMargin(4, 4, 4, 4)
 				tradeButton:SetTall(64)
 				tradeButton:SetIcon("ofnpcp/roleicons/owner.png")
-				tradeButton:SetTitle("交易特征")
-				tradeButton:SetDescription(L(npcData.trade_tag))
+				tradeButton:SetTitle(L(npcData.trade_tag))
+				tradeButton:SetDescription(L(npcData.trade_desc))
 				tradeButton:SetBorderColor(Color(255, 200, 100))
 			end
 			
@@ -93,8 +93,8 @@ local function RefreshNPCButtons(left_panel, right_panel)
 				socialButton:DockMargin(4, 4, 4, 4)
 				socialButton:SetTall(64)
 				socialButton:SetIcon("ofnpcp/roleicons/partner.png")
-				socialButton:SetTitle("社交特征")
-				socialButton:SetDescription(L(npcData.social_tag))
+				socialButton:SetTitle(L(npcData.social_tag))
+				socialButton:SetDescription(L(npcData.social_desc))
 				socialButton:SetBorderColor(Color(100, 200, 255))
 			end
 		end

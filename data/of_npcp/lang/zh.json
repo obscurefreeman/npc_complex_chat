@@ -282,30 +282,51 @@
     "tag": {
         "ability": {
             "selfheal": "医者自医",
+            "selfheal.desc": "具有自我治疗的能力,可以恢复生命值",
             "inspiration": "灵感迸发",
+            "inspiration.desc": "能激发他人潜能,提升周围友军的能力",
             "endurance": "坚韧不拔",
+            "endurance.desc": "具有超强的耐力,可以承受更多伤害",
             "expertise": "技术专精",
+            "expertise.desc": "精通各种技术,可以修理设备和武器",
             "curiosity": "求知若渴",
+            "curiosity.desc": "对新事物充满好奇,学习能力极强",
             "creativity": "艺术灵感",
-            "strength": "强健体魄"
+            "creativity.desc": "富有创造力,能激发他人的艺术潜能",
+            "strength": "强健体魄",
+            "strength.desc": "体格强健,具有更强的近战能力"
         },
         "trade": {
             "merchant": "精明商人",
+            "merchant.desc": "善于经商,能获得更多利润",
             "honest": "童叟无欺",
+            "honest.desc": "诚实可靠,商品质量有保证",
             "deceiver": "两面三刀",
+            "deceiver.desc": "狡猾奸诈,可能会欺骗顾客",
             "quality": "货真价实",
+            "quality.desc": "商品质量上乘,深受顾客信赖",
             "bargainer": "讨价还价",
+            "bargainer.desc": "善于谈判,可以获得更好的价格",
             "affordable": "物美价廉",
-            "greedy": "奸商本色"
+            "affordable.desc": "价格实惠,商品质优价廉",
+            "greedy": "奸商本色",
+            "greedy.desc": "贪得无厌,经常哄抬物价"
         },
         "social": {
             "friendly": "平易近人",
+            "friendly.desc": "性格友善,容易与人相处",
             "fake": "虚情假意",
+            "fake.desc": "表里不一,难以真诚相待",
             "hospitable": "热情好客",
+            "hospitable.desc": "待人热情,乐于助人",
             "cold": "冷漠无情",
+            "cold.desc": "性格冷淡,不愿与人交往",
             "diplomatic": "八面玲珑",
+            "diplomatic.desc": "为人圆滑,善于处理人际关系",
             "loner": "独来独往",
-            "straightforward": "心直口快"
+            "loner.desc": "喜欢独处,不愿与人交往",
+            "straightforward": "心直口快",
+            "straightforward.desc": "性格直率,说话直来直去"
         }
     }
 } 
