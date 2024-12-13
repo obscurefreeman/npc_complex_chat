@@ -278,5 +278,34 @@
             "2": "保持警惕。",
             "3": "继续监视。"
         }
+    },
+    "tag": {
+        "ability": {
+            "selfheal": "医者自医",
+            "inspiration": "灵感迸发",
+            "endurance": "坚韧不拔",
+            "expertise": "技术专精",
+            "curiosity": "求知若渴",
+            "creativity": "艺术灵感",
+            "strength": "强健体魄"
+        },
+        "trade": {
+            "merchant": "精明商人",
+            "honest": "童叟无欺",
+            "deceiver": "两面三刀",
+            "quality": "货真价实",
+            "bargainer": "讨价还价",
+            "affordable": "物美价廉",
+            "greedy": "奸商本色"
+        },
+        "social": {
+            "friendly": "平易近人",
+            "fake": "虚情假意",
+            "hospitable": "热情好客",
+            "cold": "冷漠无情",
+            "diplomatic": "八面玲珑",
+            "loner": "独来独往",
+            "straightforward": "心直口快"
+        }
     }
 } 

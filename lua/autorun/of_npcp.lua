@@ -9,6 +9,7 @@ if SERVER then
     local jobSpecializations = {}
     local maleNames = {}
     local femaleNames = {}
+    local tagData = {}
 
     -- 添加网络字符串
     util.AddNetworkString("NPCIdentityUpdate")
@@ -72,6 +73,17 @@ if SERVER then
                 print("【晦涩弗里曼】解析 name_female.json 时出错。")
             end
         end
+
+        -- 加载tag数据
+        local tagJsonData = file.Read("data/of_npcp/tags.json", "GAME")
+        if tagJsonData then
+            local success, data = pcall(util.JSONToTable, tagJsonData)
+            if success and data then
+                tagData = data
+            else
+                print("【晦涩弗里曼】解析 tags.json 时出错。")
+            end
+        end
     end
 
     -- 在服务器启动时加载数据
@@ -130,6 +142,23 @@ if SERVER then
             identity.name = maleNames[math.random(#maleNames)]
         end
 
+        -- 在分配完基本信息后添加tag分配
+        if identity.job then
+            -- 分配能力tag
+            if tagData.ability_tags[identity.job] then
+                identity.ability_tag = tagData.ability_tags[identity.job][math.random(#tagData.ability_tags[identity.job])]
+            end
+        end
+        
+        -- 分配交易和社交tag
+        if tagData.trade_tags and #tagData.trade_tags > 0 then
+            identity.trade_tag = tagData.trade_tags[math.random(#tagData.trade_tags)]
+        end
+        
+        if tagData.social_tags and #tagData.social_tags > 0 then
+            identity.social_tag = tagData.social_tags[math.random(#tagData.social_tags)]
+        end
+        
         -- 存储NPC身份信息
         npcs[ent:EntIndex()] = identity
         

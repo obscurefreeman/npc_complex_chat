@@ -2,7 +2,6 @@
     "citizen": {
         "job": {
             "worker": "Worker",
-            "clerk": "Clerk",
             "technician": "Technician",
             "medic": "Medical Staff",
             "researcher": "Researcher",
@@ -206,6 +205,35 @@
             "1": "巡逻区域一切正常。",
             "2": "保持警惕。",
             "3": "继续监视。"
+        }
+    },
+    "tag": {
+        "ability": {
+            "selfheal": "Self-Healing",
+            "inspiration": "Inspirational",
+            "endurance": "Enduring",
+            "expertise": "Technical Expert",
+            "curiosity": "Knowledge Seeker",
+            "creativity": "Creative Mind",
+            "strength": "Physical Prowess"
+        },
+        "trade": {
+            "merchant": "Shrewd Merchant",
+            "honest": "Honest Trader",
+            "deceiver": "Double-Dealer",
+            "quality": "Quality Guarantee",
+            "bargainer": "Bargainer",
+            "affordable": "Cost-Effective",
+            "greedy": "Greedy Merchant"
+        },
+        "social": {
+            "friendly": "Approachable",
+            "fake": "Two-Faced",
+            "hospitable": "Hospitable",
+            "cold": "Cold-Hearted",
+            "diplomatic": "Diplomatic",
+            "loner": "Lone Wolf",
+            "straightforward": "Straightforward"
         }
     }
 } 

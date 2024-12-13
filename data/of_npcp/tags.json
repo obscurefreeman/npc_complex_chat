@@ -1,0 +1,29 @@
+{
+    "ability_tags": {
+        "citizen.job.medic": "tag.ability.selfheal",
+        "citizen.job.scholar": "tag.ability.inspiration",
+        "citizen.job.worker": "tag.ability.endurance",
+        "citizen.job.technician": "tag.ability.expertise",
+        "citizen.job.researcher": "tag.ability.curiosity",
+        "citizen.job.artist": "tag.ability.creativity",
+        "citizen.job.athlete": "tag.ability.strength"
+    },
+    "trade_tags": [
+        "tag.trade.merchant",
+        "tag.trade.honest",
+        "tag.trade.deceiver",
+        "tag.trade.quality",
+        "tag.trade.bargainer",
+        "tag.trade.affordable",
+        "tag.trade.greedy"
+    ],
+    "social_tags": [
+        "tag.social.friendly",
+        "tag.social.fake",
+        "tag.social.hospitable",
+        "tag.social.cold",
+        "tag.social.diplomatic",
+        "tag.social.loner",
+        "tag.social.straightforward"
+    ]
+} 
