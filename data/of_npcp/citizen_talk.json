@@ -35,5 +35,39 @@
             "greeting.combine.4",
             "greeting.combine.5"
         ]
+    },
+    "idle": {
+        "citizens": [
+            "idle.citizen.1",
+            "idle.citizen.2",
+            "idle.citizen.3"
+        ],
+        "metropolice": [
+            "idle.metrocop.1",
+            "idle.metrocop.2",
+            "idle.metrocop.3"
+        ],
+        "combine": [
+            "idle.combine.1",
+            "idle.combine.2",
+            "idle.combine.3"
+        ]
+    },
+    "kill": {
+        "citizens": [
+            "kill.citizen.1",
+            "kill.citizen.2",
+            "kill.citizen.3"
+        ],
+        "metropolice": [
+            "kill.metrocop.1",
+            "kill.metrocop.2",
+            "kill.metrocop.3"
+        ],
+        "combine": [
+            "kill.combine.1",
+            "kill.combine.2",
+            "kill.combine.3"
+        ]
     }
 } 
