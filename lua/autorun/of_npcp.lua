@@ -85,14 +85,20 @@ if SERVER then
         identity.model = ent:GetModel()
         
         if npcInfo == "npc_citizen" then
-            identity.job = citizenJobs[math.random(#citizenJobs)]
+            
 
-            if string.find(identity.model, "group01" ) then
-                identity.type = "citizens"
-            elseif string.find(identity.model, "group02" ) then
-                identity.type = "refugees"
-            elseif string.find(identity.model, "group03" ) then
-                identity.type = "rebels"
+            if string.find(identity.model, "group03m" ) then
+                identity.job = "citizen.job.medic"
+                identity.type = "medic"
+            else
+                identity.job = citizenJobs[math.random(#citizenJobs)]
+                if string.find(identity.model, "group01" ) then
+                    identity.type = "citizens"
+                elseif string.find(identity.model, "group02" ) then
+                    identity.type = "refugees"
+                elseif string.find(identity.model, "group03" ) then
+                    identity.type = "rebels"
+                end
             end
 
             if string.find(identity.model, "female" ) then
@@ -113,11 +119,13 @@ if SERVER then
                 identity.name = maleNames[math.random(#maleNames)]
             end
         elseif npcInfo == "npc_metropolice" then
-            local rank = math.random(1, 6)
+            identity.type = "metropolice"
+            local rank = math.random(1, 5)
             identity.rank = metropoliceRanks["i" .. rank]
             identity.name = maleNames[math.random(#maleNames)]
         elseif npcInfo == "npc_combine_s" then
-            local rank = math.random(1, 6)
+            identity.type = "combine"
+            local rank = math.random(1, 33)
             identity.rank = combineRanks["i" .. rank]
             identity.name = maleNames[math.random(#maleNames)]
         end

@@ -1,10 +1,9 @@
 {
     "ranks": {
-        "i1": "metrocop.rank.recruit",
-        "i2": "metrocop.rank.officer",
-        "i3": "metrocop.rank.sergeant",
-        "i4": "metrocop.rank.lieutenant",
-        "i5": "metrocop.rank.captain",
-        "i6": "metrocop.rank.commander"
+        "i1": "metrocop.rank.trainee",
+        "i2": "metrocop.rank.backup",
+        "i3": "metrocop.rank.support",
+        "i4": "metrocop.rank.force",
+        "i5": "metrocop.rank.veteran"
     }
 } 

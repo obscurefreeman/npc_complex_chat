@@ -13,7 +13,7 @@ local function RefreshNPCButtons(left_panel, right_panel)
 		local button = vgui.Create("OFNPCButton", left_panel)
 		button:Dock(TOP)
 		button:DockMargin(0, 0, 0, 2)
-		button:SetTall(64)
+		button:SetTall(ScrW()/ 24)
 		button:SetModel(npcData.model or "models/error.mdl")
 		button:SetTitle(L(npcData.name))
 		
