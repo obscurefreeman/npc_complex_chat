@@ -5,10 +5,9 @@
             "clerk": "Clerk",
             "technician": "Technician",
             "medic": "Medical Staff",
-            "scientist": "Scientist",
-            "engineer": "Engineer",
+            "researcher": "Researcher",
             "artist": "Artist",
-            "writer": "Writer",
+            "scholar": "Scholar",
             "athlete": "Athlete"
         }
     },
@@ -25,20 +24,6 @@
             "electrician": "Electrician",
             "plumber": "Plumber",
             "carpenter": "Carpenter"
-        }
-    },
-    "clerk": {
-        "spec": {
-            "office": "Office Clerk",
-            "retail": "Retail Clerk",
-            "records": "Records Clerk",
-            "logistics": "Logistics Clerk",
-            "reception": "Receptionist",
-            "accountant": "Accountant",
-            "human_resources": "Human Resources Specialist",
-            "marketing": "Marketing Specialist",
-            "teacher": "Teacher",
-            "lawyer": "Lawyer"
         }
     },
     "tech": {
@@ -65,7 +50,7 @@
             "neurology": "Neurologist"
         }
     },
-    "scientist": {
+    "researcher": {
         "spec": {
             "research": "Research Scientist",
             "biology": "Biologist",
@@ -74,11 +59,7 @@
             "robotics": "Robotics Scientist",
             "mathematics": "Mathematician",
             "astronomy": "Astronomer",
-            "geology": "Geologist"
-        }
-    },
-    "engineer": {
-        "spec": {
+            "geology": "Geologist",
             "mechanic": "Mechanical Engineer",
             "electrical": "Electrical Engineer",
             "civil": "Civil Engineer",
@@ -100,7 +81,7 @@
             "designer": "Designer"
         }
     },
-    "writer": {
+    "scholar": {
         "spec": {
             "novelist": "Novelist",
             "poet": "Poet",
@@ -109,7 +90,19 @@
             "translator": "Translator",
             "screenwriter": "Screenwriter",
             "playwright": "Playwright",
-            "biographer": "Biographer"
+            "biographer": "Biographer",
+            "philosopher": "Philosopher",
+            "historian": "Historian",
+            "office": "Office Clerk",
+            "retail": "Retail Clerk",
+            "records": "Records Clerk",
+            "logistics": "Logistics Clerk",
+            "reception": "Receptionist",
+            "accountant": "Accountant",
+            "human_resources": "Human Resources Specialist",
+            "marketing": "Marketing Specialist",
+            "teacher": "Teacher",
+            "lawyer": "Lawyer"
         }
     },
     "athlete": {

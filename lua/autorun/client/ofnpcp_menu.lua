@@ -150,6 +150,15 @@ local function example()
 
 	local pan2 = vgui.Create("EditablePanel", sheet)
 	sheet:AddSheet("空白标签页", pan2)
+	
+	-- 添加技能按钮到pan2
+	local skillButton = vgui.Create("OFSkillButton", pan2)
+	skillButton:SetSize(300, 64)
+	skillButton:SetIcon("path/to/your/icon")
+	skillButton:SetTitle("技能名称")
+	skillButton:SetDescription("技能描述")
+	skillButton:SetBorderColor(Color(255, 100, 100))
+	skillButton:SetPos(10, 10) -- 设置按钮位置
 
 	-- 创建一个水平分割面板
 	local horizontalDivider = vgui.Create("DHorizontalDivider", pan1)

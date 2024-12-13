@@ -2,13 +2,11 @@
     "citizen": {
         "job": {
             "worker": "工人",
-            "clerk": "文员",
             "technician": "技术员",
             "medic": "医务人员",
-            "scientist": "科学家",
-            "engineer": "工程师",
+            "researcher": "研究人员",
             "artist": "艺术家",
-            "writer": "作家",
+            "scholar": "文员",
             "athlete": "运动员"
         }
     },
@@ -25,20 +23,6 @@
             "electrician": "电工",
             "plumber": "水管工",
             "carpenter": "木工"
-        }
-    },
-    "clerk": {
-        "spec": {
-            "office": "办公室文员",
-            "retail": "零售文员",
-            "records": "档案管理员",
-            "logistics": "物流文员",
-            "reception": "接待员",
-            "accountant": "会计",
-            "human_resources": "人力资源专员",
-            "marketing": "市场营销专员",
-            "teacher": "教师",
-            "lawyer": "律师"
         }
     },
     "tech": {
@@ -65,7 +49,7 @@
             "neurology": "神经病学家"
         }
     },
-    "scientist": {
+    "researcher": {
         "spec": {
             "research": "研究员",
             "biology": "生物学家",
@@ -74,12 +58,8 @@
             "robotics": "机器人学家",
             "mathematics": "数学家",
             "astronomy": "天文学家",
-            "geology": "地质学家"
-        }
-    },
-    "engineer": {
-        "spec": {
-            "mechanic": "机械师",
+            "geology": "地质学家",
+            "mechanic": "机械工程师",
             "electrical": "电气工程师",
             "civil": "土木工程师",
             "chemical": "化学工程师",
@@ -100,7 +80,7 @@
             "designer": "设计师"
         }
     },
-    "writer": {
+    "scholar": {
         "spec": {
             "novelist": "小说家",
             "poet": "诗人",
@@ -109,7 +89,19 @@
             "translator": "翻译家",
             "screenwriter": "编剧",
             "playwright": "剧作家",
-            "biographer": "传记作家"
+            "biographer": "传记作家",
+            "philosopher": "哲学家",
+            "historian": "历史学家",
+            "office": "办公室文员",
+            "retail": "零售文员",
+            "records": "档案管理员",
+            "logistics": "物流文员",
+            "reception": "接待员",
+            "accountant": "会计",
+            "human_resources": "人力资源专员",
+            "marketing": "市场营销专员",
+            "teacher": "教师",
+            "lawyer": "律师"
         }
     },
     "athlete": {

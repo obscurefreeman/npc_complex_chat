@@ -1,0 +1,24 @@
+{
+    "specializations": [
+        "scholar.spec.novelist",
+        "scholar.spec.poet",
+        "scholar.spec.journalist",
+        "scholar.spec.editor",
+        "scholar.spec.translator",
+        "scholar.spec.screenwriter",
+        "scholar.spec.playwright",
+        "scholar.spec.biographer",
+        "scholar.spec.philosopher",
+        "scholar.spec.historian",
+        "scholar.spec.office",
+        "scholar.spec.retail",
+        "scholar.spec.records",
+        "scholar.spec.logistics",
+        "scholar.spec.reception",
+        "scholar.spec.accountant",
+        "scholar.spec.human_resources",
+        "scholar.spec.marketing",
+        "scholar.spec.teacher",
+        "scholar.spec.lawyer"
+    ]
+} 

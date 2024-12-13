@@ -1,13 +1,11 @@
 {
     "jobs": [
         "citizen.job.worker",
-        "citizen.job.clerk",
         "citizen.job.technician",
         "citizen.job.medic",
-        "citizen.job.scientist",
-        "citizen.job.engineer",
+        "citizen.job.researcher",
         "citizen.job.artist",
-        "citizen.job.writer",
+        "citizen.job.scholar",
         "citizen.job.athlete"
     ]
 } 
