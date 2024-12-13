@@ -150,19 +150,19 @@ local function example()
 
 	local pan2 = vgui.Create("EditablePanel", sheet)
 	sheet:AddSheet("空白标签页", pan2)
-	--[[
-		Left Panel
-	]]
 
-	local left_panel = vgui.Create("OFScrollPanel", pan1)
-	left_panel:Dock(LEFT)
-	left_panel:DockMargin(6, 6, 6, 6)
-	left_panel:SetWide(frame:GetWide() / 2 - 4)
+	-- 创建一个水平分割面板
+	local horizontalDivider = vgui.Create("DHorizontalDivider", pan1)
+	horizontalDivider:Dock(FILL)
+	horizontalDivider:DockMargin(6, 6, 6, 6)
+	horizontalDivider:SetLeftWidth(ScrW()/ 3) -- 设置左侧面板的初始宽度
+	horizontalDivider:SetDividerWidth(8) -- 设置分割线宽度
 
-    local right_panel = vgui.Create("OFScrollPanel", pan1)
-	right_panel:Dock(RIGHT)
-	right_panel:DockMargin(6, 6, 6, 6)
-	right_panel:SetWide(frame:GetWide() / 2 - 20)
+	local left_panel = vgui.Create("OFScrollPanel")
+	horizontalDivider:SetLeft(left_panel)
+
+	local right_panel = vgui.Create("OFScrollPanel")
+	horizontalDivider:SetRight(right_panel)
 
 	-- 初始加载NPC列表
 	RefreshNPCButtons(left_panel, right_panel)
@@ -181,7 +181,7 @@ local function example()
 end
 
 list.Set("DesktopWindows", "ofnpcp", {
-    title = "npc性格",
+    title = "NPC 性格",
     icon = "oftoollogo/ofnpcplogo.png",
     init = function()
         example()
