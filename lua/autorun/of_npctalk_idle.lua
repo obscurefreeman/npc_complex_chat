@@ -10,16 +10,23 @@ if SERVER then
         local players = player.GetAll()
         if #players == 0 then return end
         
-        -- 获取所有NPC
-        local npcs = ents.FindByClass("npc_*")
-        if #npcs == 0 then return end
+        -- 获取所有有身份的NPC
+        local validNPCs = {}
+        for entIndex, identity in pairs(_G.npcs) do
+            local npc = Entity(entIndex)
+            if IsValid(npc) and npc:IsNPC() then
+                table.insert(validNPCs, npc)
+            end
+        end
+        
+        if #validNPCs == 0 then return end
         
         -- 随机打乱NPC列表顺序
-        table.Shuffle(npcs)
+        table.Shuffle(validNPCs)
         
         local talksThisCheck = 0
         
-        for _, npc in ipairs(npcs) do
+        for _, npc in ipairs(validNPCs) do
             -- 限制每次检查最多触发的对话数量
             if talksThisCheck >= MAX_TALKS_PER_CHECK then break end
             
@@ -55,9 +62,8 @@ if SERVER then
             
             if not hasNearbyPlayer then continue end
             
-            -- 获取NPC身份信息
-            local identity = _G.npcs and _G.npcs[npc:EntIndex()]
-            if not identity then continue end
+            -- 获取NPC身份信息（这里我们已经确保NPC有身份信息）
+            local identity = _G.npcs[npc:EntIndex()]
             
             -- 从JSON文件获取空闲对话
             local idlePhrases
