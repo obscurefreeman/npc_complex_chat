@@ -210,51 +210,51 @@
     "tag": {
         "ability": {
             "selfheal": "Self-Healing",
-            "selfheal.desc": "Has the ability to heal themselves and restore health",
+            "selfhealdesc": "Has the ability to heal themselves and restore health",
             "inspiration": "Inspirational",
-            "inspiration.desc": "Can inspire others and boost allies' abilities",
+            "inspirationdesc": "Can inspire others and boost allies' abilities",
             "endurance": "Enduring",
-            "endurance.desc": "Has exceptional endurance and can withstand more damage",
+            "endurancedesc": "Has exceptional endurance and can withstand more damage",
             "expertise": "Technical Expert",
-            "expertise.desc": "Proficient in various technologies, can repair equipment and weapons",
+            "expertisedesc": "Proficient in various technologies, can repair equipment and weapons",
             "curiosity": "Knowledge Seeker",
-            "curiosity.desc": "Curious about new things with strong learning abilities",
+            "curiositydesc": "Curious about new things with strong learning abilities",
             "creativity": "Creative Mind",
-            "creativity.desc": "Full of creativity, can inspire others' artistic potential",
+            "creativitydesc": "Full of creativity, can inspire others' artistic potential",
             "strength": "Physical Prowess",
-            "strength.desc": "Physically strong with enhanced melee combat abilities"
+            "strengthdesc": "Physically strong with enhanced melee combat abilities"
         },
         "trade": {
             "merchant": "Shrewd Merchant",
-            "merchant.desc": "Skilled in business, can obtain more profits",
+            "merchantdesc": "Skilled in business, can obtain more profits",
             "honest": "Honest Trader",
-            "honest.desc": "Reliable and trustworthy with quality guaranteed goods",
+            "honestdesc": "Reliable and trustworthy with quality guaranteed goods",
             "deceiver": "Double-Dealer",
-            "deceiver.desc": "Cunning and deceptive, may deceive customers",
+            "deceiverdesc": "Cunning and deceptive, may deceive customers",
             "quality": "Quality Guarantee",
-            "quality.desc": "High-quality merchandise, trusted by customers",
+            "qualitydesc": "High-quality merchandise, trusted by customers",
             "bargainer": "Bargainer",
-            "bargainer.desc": "Good at negotiating, can get better prices",
+            "bargainerdesc": "Good at negotiating, can get better prices",
             "affordable": "Cost-Effective",
-            "affordable.desc": "Affordable prices with good quality products",
+            "affordabledesc": "Affordable prices with good quality products",
             "greedy": "Greedy Merchant",
-            "greedy.desc": "Insatiable, often inflates prices"
+            "greedydesc": "Insatiable, often inflates prices"
         },
         "social": {
             "friendly": "Approachable",
-            "friendly.desc": "Friendly personality, easy to get along with",
+            "friendlydesc": "Friendly personality, easy to get along with",
             "fake": "Two-Faced",
-            "fake.desc": "Insincere, difficult to trust",
+            "fakedesc": "Insincere, difficult to trust",
             "hospitable": "Hospitable",
-            "hospitable.desc": "Warm and welcoming, willing to help others",
+            "hospitabledesc": "Warm and welcoming, willing to help others",
             "cold": "Cold-Hearted",
-            "cold.desc": "Cold personality, unwilling to socialize",
+            "colddesc": "Cold personality, unwilling to socialize",
             "diplomatic": "Diplomatic",
-            "diplomatic.desc": "Smooth operator, good at handling relationships",
+            "diplomaticdesc": "Smooth operator, good at handling relationships",
             "loner": "Lone Wolf",
-            "loner.desc": "Prefers solitude, avoids social interaction",
+            "lonerdesc": "Prefers solitude, avoids social interaction",
             "straightforward": "Straightforward",
-            "straightforward.desc": "Direct personality, speaks their mind"
+            "straightforwarddesc": "Direct personality, speaks their mind"
         }
     }
 } 
