@@ -132,17 +132,19 @@ if CLIENT then
             npcAngles:RotateAroundAxis(npcAngles:Up(), -90)
             npcAngles:RotateAroundAxis(npcAngles:Forward(), 90)
             
-            -- 计算显示位置（NPC头顶上方）
-            local pos = npcPos + Vector(0, 0, dialog.npc:OBBMaxs().z + 5)
+            local headBoneIndex = dialog.npc:LookupBone("ValveBiped.Bip01_Head1")
+            local headPos = dialog.npc:GetBonePosition(headBoneIndex)
+            local pos = Vector(npcPos.x, npcPos.y, headPos.z + 13)
             
             -- 开始3D2D渲染
             cam.Start3D2D(pos, npcAngles, 0.1)
+                local screenScale = ScrH() / 1080
                 -- 计算文本尺寸
-                surface.SetFont("ofgui_huge")
+                surface.SetFont("ofgui_eva")
                 local textWidth, textHeight = surface.GetTextSize(dialog.currentText)
                 
                 -- 绘制背景
-                local padding = 10
+                local padding = 15 * screenScale
                 local boxWidth = textWidth + padding * 2
                 local boxHeight = textHeight + padding * 2
                 local boxX = -boxWidth/2
@@ -153,7 +155,7 @@ if CLIENT then
                 -- 绘制文本
                 draw.DrawText(
                     dialog.currentText,
-                    "ofgui_huge",
+                    "ofgui_eva",
                     0,
                     boxY + padding,
                     Color(255, 255, 255, 255),

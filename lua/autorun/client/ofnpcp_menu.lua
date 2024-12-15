@@ -67,27 +67,41 @@ local function RefreshNPCButtons(left_panel, right_panel)
 			-- 添加水平滚动条
 			local horizontal_scroll = vgui.Create("OFHorizontalScroller", right_panel)
 			horizontal_scroll:Dock(TOP)
-			horizontal_scroll:SetTall(ScrW() / 8 - 8)
+			horizontal_scroll:SetTall(ScrW() / 6 - 8)
 			horizontal_scroll:SetOverlap(-3)
 
-			for i = 1, 12 do
-				local button = vgui.Create("OFButton", horizontal_scroll)
-				button:SetText("按钮 #" .. i)
-				button:SetWide(horizontal_scroll:GetTall())
-
-				button.DoClick = function()
-					local menu = vgui.Create("OFMenu", parent)
-
-					for i = 1, 3 do
-						menu:AddOption("菜单按钮 #" .. i)
-					end
-
-					menu:Open()
-				end
-
-				horizontal_scroll:AddPanel(button)
+			if npcData.ability_tag then
+				local abilityButton = vgui.Create("OFCard", horizontal_scroll)
+				abilityButton:SetWide(ScrW() / 9)
+				abilityButton:Dock(LEFT)
+				abilityButton:SetIcon("ofnpcp/roleicons/verified.png")
+				abilityButton:SetTitle(L(npcData.ability_tag))
+				abilityButton:SetDescription(L(npcData.ability_desc))
+				abilityButton:SetBorderColor(Color(100, 255, 100))
+				horizontal_scroll:AddPanel(abilityButton)
 			end
-
+			
+			if npcData.trade_tag then
+				local tradeButton = vgui.Create("OFCard", horizontal_scroll)
+				tradeButton:SetWide(ScrW() / 9)
+				tradeButton:Dock(LEFT)
+				tradeButton:SetIcon("ofnpcp/roleicons/owner.png")
+				tradeButton:SetTitle(L(npcData.trade_tag))
+				tradeButton:SetDescription(L(npcData.trade_desc))
+				tradeButton:SetBorderColor(Color(255, 200, 100))
+				horizontal_scroll:AddPanel(tradeButton)
+			end
+			
+			if npcData.social_tag then
+				local socialButton = vgui.Create("OFCard", horizontal_scroll)
+				socialButton:SetWide(ScrW() / 9)
+				socialButton:Dock(LEFT)
+				socialButton:SetIcon("ofnpcp/roleicons/partner.png")
+				socialButton:SetTitle(L(npcData.social_tag))
+				socialButton:SetDescription(L(npcData.social_desc))
+				socialButton:SetBorderColor(Color(100, 200, 255))
+				horizontal_scroll:AddPanel(socialButton)
+			end
 			-- 添加tag显示
 			if npcData.ability_tag then
 				local abilityButton = vgui.Create("OFSkillButton", right_panel)
