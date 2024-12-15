@@ -135,6 +135,47 @@ local function RefreshNPCButtons(left_panel, right_panel)
 				socialButton:SetDescription(L(npcData.social_desc))
 				socialButton:SetBorderColor(Color(100, 200, 255))
 			end
+
+			-- 显示评论
+			if npcData.comments then
+				for _, commentData in ipairs(npcData.comments) do
+					local commentLabel = vgui.Create("OFNPCButton", right_panel)
+					commentLabel:Dock(TOP)
+					commentLabel:DockMargin(4, 4, 4, 4)
+					commentLabel:SetModel(commentData.model or "models/error.mdl")
+					commentLabel:SetTitle(commentData.player)
+					commentLabel:SetDescription(commentData.comment)
+				end
+			end
+
+			-- 添加评论输入框
+			local commentEntry = vgui.Create("OFTextEntry", right_panel)
+			commentEntry:Dock(TOP)
+			commentEntry:DockMargin(4, 4, 4, 4)
+			commentEntry:SetTall(32)
+			commentEntry:SetPlaceholderText("在此输入评论...")
+
+			-- 添加提交评论按钮
+			local submitCommentButton = vgui.Create("OFButton", right_panel)
+			submitCommentButton:Dock(TOP)
+			submitCommentButton:DockMargin(4, 4, 4, 4)
+			submitCommentButton:SetText("提交评论")
+			submitCommentButton.DoClick = function()
+				local comment = commentEntry:GetValue()
+				if comment and comment ~= "" then
+					-- 发送评论到服务器
+					net.Start("SubmitNPCComment")
+						net.WriteInt(entIndex, 32)
+						net.WriteString(comment)
+					net.SendToServer()
+
+					-- 刷新右侧栏
+					RefreshNPCButtons(left_panel, right_panel)  -- 刷新右侧栏以显示最新评论
+
+					-- 清空评论输入框
+					commentEntry:SetValue("")  -- 清空聊天框
+				end
+			end
 		end
 
 		button.DoRightClick = function()

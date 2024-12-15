@@ -20,6 +20,9 @@ if SERVER then
     -- 在其他网络字符串后添加
     util.AddNetworkString("NPCAction")
 
+    -- 添加网络字符串
+    util.AddNetworkString("SubmitNPCComment")
+
     -- 加载JSON文件
     local function LoadNPCData()
         local citizenData = file.Read("data/of_npcp/citizen_jobs.json", "GAME")
@@ -248,6 +251,32 @@ if SERVER then
             elseif action == "remove" then
                 ent:Remove()
             end
+        end
+    end)
+
+    -- 处理评论的接收
+    net.Receive("SubmitNPCComment", function(len, ply)
+        local entIndex = net.ReadInt(32)
+        local comment = net.ReadString()
+
+        if _G.npcs[entIndex] then
+            -- 如果评论表不存在，则初始化
+            if not _G.npcs[entIndex].comments then
+                _G.npcs[entIndex].comments = {}
+            end
+
+            -- 添加评论
+            table.insert(_G.npcs[entIndex].comments, {
+                player = ply:Nick(),
+                model = ply:GetModel(),
+                comment = comment
+            })
+
+            -- 广播更新后的身份信息给所有客户端
+            net.Start("NPCIdentityUpdate")
+                net.WriteEntity(Entity(entIndex))
+                net.WriteTable(_G.npcs[entIndex])
+            net.Broadcast()
         end
     end)
 end
