@@ -64,6 +64,30 @@ local function RefreshNPCButtons(left_panel, right_panel)
 				surface.DrawRect(0, 0, w, h)
 			end
 
+			-- 添加水平滚动条
+			local horizontal_scroll = vgui.Create("OFHorizontalScroller", right_panel)
+			horizontal_scroll:Dock(TOP)
+			horizontal_scroll:SetTall(ScrW() / 8 - 8)
+			horizontal_scroll:SetOverlap(-3)
+
+			for i = 1, 12 do
+				local button = vgui.Create("OFButton", horizontal_scroll)
+				button:SetText("按钮 #" .. i)
+				button:SetWide(horizontal_scroll:GetTall())
+
+				button.DoClick = function()
+					local menu = vgui.Create("OFMenu", parent)
+
+					for i = 1, 3 do
+						menu:AddOption("菜单按钮 #" .. i)
+					end
+
+					menu:Open()
+				end
+
+				horizontal_scroll:AddPanel(button)
+			end
+
 			-- 添加tag显示
 			if npcData.ability_tag then
 				local abilityButton = vgui.Create("OFSkillButton", right_panel)
@@ -184,15 +208,6 @@ local function example()
 
 	local pan2 = vgui.Create("EditablePanel", sheet)
 	sheet:AddSheet("空白标签页", pan2)
-	
-	-- 添加技能按钮到pan2
-	local skillButton = vgui.Create("OFSkillButton", pan2)
-	skillButton:SetSize(300, 64)
-	skillButton:SetIcon("ofnpcp/roleicons/partner.png")
-	skillButton:SetTitle("技能名称")
-	skillButton:SetDescription("技能描述")
-	skillButton:SetBorderColor(Color(255, 100, 100))
-	skillButton:SetPos(10, 10) -- 设置按钮位置
 
 	-- 创建一个水平分割面板
 	local horizontalDivider = vgui.Create("DHorizontalDivider", pan1)

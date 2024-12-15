@@ -107,8 +107,8 @@ if CLIENT then
         table.insert(activeDialogs, dialog)
     end)
     
-    -- 添加新的 PostDrawTranslucentRenderables 钩子
-    hook.Add("PostDrawTranslucentRenderables", "DrawNPCDialog3D", function()
+    -- 添加新的 HUDPaint 钩子
+    hook.Add("HUDPaint", "DrawNPCDialog", function()
         local currentTime = CurTime()
         
         for i = #activeDialogs, 1, -1 do
@@ -133,40 +133,35 @@ if CLIENT then
                 dialog.nextCharTime = currentTime + CHAR_DELAY
             end
             
-            -- 获取NPC的位置和角度
-            local npcPos = dialog.npc:GetPos()
-            local npcAngles = LocalPlayer():EyeAngles()
-            npcAngles:RotateAroundAxis(npcAngles:Up(), -90)
-            npcAngles:RotateAroundAxis(npcAngles:Forward(), 90)
+            -- 获取NPC在屏幕上的位置
+            local pos = dialog.npc:GetPos() + Vector(0, 0, dialog.npc:OBBMaxs().z + 5)
+            local screenPos = pos:ToScreen()
             
-            -- 计算显示位置（NPC头顶上方）
-            local pos = npcPos + Vector(0, 0, dialog.npc:OBBMaxs().z + 5)
+            -- 如果NPC不在屏幕上，跳过渲染
+            if not screenPos.visible then continue end
             
-            -- 开始3D2D渲染
-            cam.Start3D2D(pos, npcAngles, 0.1)
-                -- 计算文本尺寸
-                surface.SetFont("NPCTalkFont")
-                local textWidth, textHeight = surface.GetTextSize(dialog.currentText)
-                
-                -- 绘制背景
-                local padding = 10
-                local boxWidth = textWidth + padding * 2
-                local boxHeight = textHeight + padding * 2
-                local boxX = -boxWidth/2
-                local boxY = -boxHeight/2
-                
-                draw.RoundedBox(8, boxX, boxY, boxWidth, boxHeight, Color(0, 0, 0, 200))
-                
-                -- 绘制文本
-                draw.DrawText(
-                    dialog.currentText,
-                    "NPCTalkFont",
-                    0,
-                    boxY + padding,
-                    Color(255, 255, 255, 255),
-                    TEXT_ALIGN_CENTER
-                )
-            cam.End3D2D()
+            -- 计算文本尺寸
+            surface.SetFont("NPCTalkFont")
+            local textWidth, textHeight = surface.GetTextSize(dialog.currentText)
+            
+            -- 绘制背景
+            local padding = 10
+            local boxWidth = textWidth + padding * 2
+            local boxHeight = textHeight + padding * 2
+            local boxX = screenPos.x - boxWidth/2
+            local boxY = screenPos.y - boxHeight
+            
+            draw.RoundedBox(8, boxX, boxY, boxWidth, boxHeight, Color(0, 0, 0, 200))
+            
+            -- 绘制文本
+            draw.DrawText(
+                dialog.currentText,
+                "NPCTalkFont",
+                screenPos.x,
+                boxY + padding,
+                Color(255, 255, 255, 255),
+                TEXT_ALIGN_CENTER
+            )
         end
     end)
 end
