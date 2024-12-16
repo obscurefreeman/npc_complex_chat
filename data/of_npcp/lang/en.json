@@ -279,6 +279,23 @@
             "3": "Continue monitoring."
         }
     },
+    "death": {
+        "citizen": {
+            "1": "Ouch!",
+            "2": "Ouyo!",
+            "3": "Ahh!"
+        },
+        "metrocop": {
+            "1": "Ouch!",
+            "2": "Ouyo!",
+            "3": "Ahh!"
+        },
+        "combine": {
+            "1": "Ouch!",
+            "2": "Ouyo!",
+            "3": "Ahh!"
+        }
+    },
     "tag": {
         "ability": {
             "selfheal": "Self-Healing",

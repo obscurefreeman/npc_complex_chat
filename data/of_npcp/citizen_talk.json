@@ -69,5 +69,22 @@
             "kill.combine.2",
             "kill.combine.3"
         ]
+    },
+    "death": {
+        "citizens": [
+            "death.citizen.1",
+            "death.citizen.2",
+            "death.citizen.3"
+        ],
+        "metropolice": [
+            "death.metrocop.1",
+            "death.metrocop.2",
+            "death.metrocop.3"
+        ],
+        "combine": [
+            "death.combine.1",
+            "death.combine.2",
+            "death.combine.3"
+        ]
     }
 } 
