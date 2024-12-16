@@ -118,22 +118,94 @@
     },
     "metrocop": {
         "rank": {
-            "recruit": "Civil Protection Recruit",
-            "officer": "Civil Protection Officer",
-            "sergeant": "Civil Protection Sergeant",
-            "lieutenant": "Civil Protection Lieutenant",
-            "captain": "Civil Protection Captain",
-            "commander": "Civil Protection Commander"
+            "trainee": "Trainee Officer",
+            "backup": "Backup Officer",
+            "support": "Support Officer",
+            "force": "Main Force Officer",
+            "veteran": "Veteran Officer"
         }
     },
     "combine": {
         "rank": {
-            "grunt": "Combine Grunt",
-            "soldier": "Combine Soldier",
-            "elite": "Combine Elite",
-            "suppressor": "Combine Suppressor",
-            "commander": "Combine Commander",
-            "overlord": "Combine Overlord"
+            "recruit": "Recruit",
+            "private": "Private",
+            "private_first": "Private First Class",
+            "corporal": "Corporal",
+            "lance_corporal": "Lance Corporal",
+            "sergeant": "Sergeant",
+            "tech_sergeant": "Technical Sergeant",
+            "staff_sergeant": "Staff Sergeant",
+            "master_sergeant": "Master Sergeant",
+            "first_sergeant": "First Sergeant",
+            "sergeant_major": "Sergeant Major",
+            "warrant_officer": "Warrant Officer",
+            "officer_cadet": "Officer Cadet",
+            "second_lieutenant": "Second Lieutenant",
+            "first_lieutenant": "First Lieutenant",
+            "lieutenant_captain": "Lieutenant Captain",
+            "sub_captain": "Sub-Captain",
+            "captain": "Captain",
+            "lieutenant_commander": "Lieutenant Commander",
+            "sub_commander": "Sub-Commander",
+            "commander": "Commander",
+            "lieutenant_major": "Lieutenant Major",
+            "sub_major": "Sub-Major",
+            "major": "Major",
+            "lieutenant_colonel": "Lieutenant Colonel",
+            "sub_colonel": "Sub-Colonel",
+            "colonel": "Colonel",
+            "sub_general": "Sub-General",
+            "brigadier_general": "Brigadier General",
+            "major_general": "Major General",
+            "lieutenant_general": "Lieutenant General",
+            "general": "General",
+            "marshal": "Marshal"
+        }
+    },
+    "name": {
+        "male": {
+            "Alex": "Alex",
+            "Ben": "Ben",
+            "Charlie": "Charlie",
+            "Daniel": "Daniel",
+            "Eric": "Eric",
+            "Frank": "Frank",
+            "George": "George",
+            "Henry": "Henry",
+            "Ian": "Ian",
+            "Jack": "Jack",
+            "Kevin": "Kevin",
+            "Leo": "Leo",
+            "Mike": "Mike",
+            "Nathan": "Nathan",
+            "Oliver": "Oliver",
+            "Peter": "Peter",
+            "Quinn": "Quinn",
+            "Ryan": "Ryan",
+            "Steve": "Steve",
+            "Tom": "Tom"
+        },
+        "female": {
+            "Amy": "Amy",
+            "Beth": "Beth",
+            "Claire": "Claire",
+            "Diana": "Diana",
+            "Emma": "Emma",
+            "Faith": "Faith",
+            "Grace": "Grace",
+            "Hannah": "Hannah",
+            "Iris": "Iris",
+            "Jane": "Jane",
+            "Kate": "Kate",
+            "Lucy": "Lucy",
+            "Mary": "Mary",
+            "Nina": "Nina",
+            "Olivia": "Olivia",
+            "Penny": "Penny",
+            "Quinn": "Quinn",
+            "Rose": "Rose",
+            "Sarah": "Sarah",
+            "Tina": "Tina"
         }
     },
     "greeting": {
@@ -175,86 +247,86 @@
     },
     "idle": {
         "citizen": {
-            "1": "今天天气不错...",
-            "2": "希望能早点下班。",
-            "3": "这日子什么时候是个头啊。"
+            "1": "The weather is nice today...",
+            "2": "Hope to get off work early.",
+            "3": "When will this day end?"
         },
         "metrocop": {
-            "1": "巡逻区域一切正常。",
-            "2": "保持警惕。",
-            "3": "继续监视。"
+            "1": "Patrol area is normal.",
+            "2": "Stay alert.",
+            "3": "Continue monitoring."
         },
         "combine": {
-            "1": "巡逻区域一切正常。",
-            "2": "保持警惕。",
-            "3": "继续监视。"
+            "1": "Patrol area is normal.",
+            "2": "Stay alert.",
+            "3": "Continue monitoring."
         }
     },
     "kill": {
         "citizen": {
-            "1": "对不起，我别无选择！",
-            "2": "这都是为了生存...",
-            "3": "我不想这样的！"
+            "1": "I'm sorry, I have no choice!",
+            "2": "It's all for survival...",
+            "3": "I don't want this!"
         },
         "metrocop": {
-            "1": "又一个叛徒被清除了。",
-            "2": "这就是反抗的代价。",
-            "3": "维持秩序。"
+            "1": "Another traitor has been eliminated.",
+            "2": "This is the price of rebellion.",
+            "3": "Maintain order."
         },
         "combine": {
-            "1": "巡逻区域一切正常。",
-            "2": "保持警惕。",
-            "3": "继续监视。"
+            "1": "Patrol area is normal.",
+            "2": "Stay alert.",
+            "3": "Continue monitoring."
         }
     },
     "tag": {
         "ability": {
             "selfheal": "Self-Healing",
-            "selfhealdesc": "Has the ability to heal themselves and restore health",
-            "inspiration": "Inspirational",
-            "inspirationdesc": "Can inspire others and boost allies' abilities",
+            "selfhealdesc": "Has the ability to heal themselves and restore health. Death Note: Randomly restores a certain amount of health to an ally.",
+            "inspiration": "Inspiration Burst",
+            "inspirationdesc": "Gains double experience points for leveling up. Let's brainstorm! Death Note: Randomly shares experience points with an ally.",
             "endurance": "Enduring",
-            "endurancedesc": "Has exceptional endurance and can withstand more damage",
+            "endurancedesc": "Has tough skin, reducing damage taken by 30%. Death Note: Grants a random ally 3 seconds of invincibility.",
             "expertise": "Technical Expert",
-            "expertisedesc": "Proficient in various technologies, can repair equipment and weapons",
+            "expertisedesc": "Proficient in various technologies, equipped with grenades, can repair equipment and weapons. Death Note: Adds 'Explosive Trait' to the killer's hand.",
             "curiosity": "Knowledge Seeker",
-            "curiositydesc": "Curious about new things with strong learning abilities",
-            "creativity": "Creative Mind",
-            "creativitydesc": "Full of creativity, can inspire others' artistic potential",
+            "curiositydesc": "Vampiric trait, dealing damage to enemies restores health. Death Note: Doubles the health of a random ally.",
+            "creativity": "Creative Inspiration",
+            "creativitydesc": "Full of creativity, increases team damage by 30%. Death Note: Adds a random item to an ally's hand.",
             "strength": "Physical Prowess",
-            "strengthdesc": "Physically strong with enhanced melee combat abilities"
+            "strengthdesc": "Physically strong, restores health equal to the damage taken after 3 seconds. Death Note: Adds 'Weak Trait' to the killer's and a random ally's hand."
         },
         "trade": {
             "merchant": "Shrewd Merchant",
-            "merchantdesc": "Skilled in business, can obtain more profits",
+            "merchantdesc": "Hides markup information if the product is overpriced. Exaggerates discount values if the product is discounted.",
             "honest": "Honest Trader",
-            "honestdesc": "Reliable and trustworthy with quality guaranteed goods",
+            "honestdesc": "Reliable and trustworthy with guaranteed product quality.",
             "deceiver": "Double-Dealer",
-            "deceiverdesc": "Cunning and deceptive, may deceive customers",
+            "deceiverdesc": "The quality and effects of sold products may not match reality.",
             "quality": "Quality Guarantee",
-            "qualitydesc": "High-quality merchandise, trusted by customers",
+            "qualitydesc": "High-quality products, but likely overpriced.",
             "bargainer": "Bargainer",
-            "bargainerdesc": "Good at negotiating, can get better prices",
+            "bargainerdesc": "All products randomly marked up, but a non-legendary quality item is randomly gifted upon purchase.",
             "affordable": "Cost-Effective",
-            "affordabledesc": "Affordable prices with good quality products",
+            "affordabledesc": "Discounts on sold items increase, but legendary items cannot be sold.",
             "greedy": "Greedy Merchant",
-            "greedydesc": "Insatiable, often inflates prices"
+            "greedydesc": "All markups displayed as discounts, and hidden extra fees must be paid when purchasing items."
         },
         "social": {
             "friendly": "Approachable",
-            "friendlydesc": "Friendly personality, easy to get along with",
+            "friendlydesc": "For every hostile relationship, one random character likes them.",
             "fake": "Two-Faced",
-            "fakedesc": "Insincere, difficult to trust",
+            "fakedesc": "Hides all dialogues, revealing the previous round's dialogue in the next round.",
             "hospitable": "Hospitable",
-            "hospitabledesc": "Warm and welcoming, willing to help others",
+            "hospitabledesc": "Triggers a liking state just by talking to them.",
             "cold": "Cold-Hearted",
-            "colddesc": "Cold personality, unwilling to socialize",
+            "colddesc": "All diplomatic effects are halved.",
             "diplomatic": "Diplomatic",
-            "diplomaticdesc": "Smooth operator, good at handling relationships",
+            "diplomaticdesc": "All hostile relationships are displayed as friendly.",
             "loner": "Lone Wolf",
-            "lonerdesc": "Prefers solitude, avoids social interaction",
+            "lonerdesc": "All diplomatic effects do not apply to them.",
             "straightforward": "Straightforward",
-            "straightforwarddesc": "Direct personality, speaks their mind"
+            "straightforwarddesc": "All diplomatic effects are doubled."
         }
     }
 } 

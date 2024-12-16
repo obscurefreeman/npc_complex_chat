@@ -67,8 +67,9 @@ local function RefreshNPCButtons(left_panel, right_panel)
 			-- 添加水平滚动条
 			local horizontal_scroll = vgui.Create("OFHorizontalScroller", right_panel)
 			horizontal_scroll:Dock(TOP)
-			horizontal_scroll:SetTall(ScrW() / 6 - 8)
+			horizontal_scroll:SetTall(ScrW() / 6)
 			horizontal_scroll:SetOverlap(-3)
+			-- horizontal_scroll:SetUseLiveDrag(true)
 
 			if npcData.ability_tag then
 				local abilityButton = vgui.Create("OFCard", horizontal_scroll)
@@ -259,7 +260,7 @@ local function example()
 	sheet:Dock(FILL)
 
 	local pan1 = vgui.Create("EditablePanel", sheet)
-	sheet:AddSheet("预览标签页", pan1)
+	sheet:AddSheet("图鉴", pan1)
 
 	local pan2 = vgui.Create("EditablePanel", sheet)
 	sheet:AddSheet("空白标签页", pan2)
