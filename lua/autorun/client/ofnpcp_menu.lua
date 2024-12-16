@@ -251,7 +251,7 @@ local function RefreshNPCButtons(left_panel, right_panel)
 	end
 end
 
-local function example()
+local function AddOFFrame()
 	local frame = vgui.Create("OFFrame")
 	frame:SetTitle("NPC性格控制")
 
@@ -298,6 +298,6 @@ list.Set("DesktopWindows", "ofnpcp", {
     title = "NPC 性格",
     icon = "oftoollogo/ofnpcplogo.png",
     init = function()
-        example()
+        AddOFFrame()
     end
 })
