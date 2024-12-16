@@ -10,6 +10,7 @@ if SERVER then
     local maleNames = {}
     local femaleNames = {}
     local tagData = {}
+    local nicknames = {}
 
     -- 添加网络字符串
     util.AddNetworkString("NPCIdentityUpdate")
@@ -89,12 +90,31 @@ if SERVER then
     -- 在服务器启动时加载数据
     hook.Add("Initialize", "LoadNPCData", LoadNPCData)
 
-    -- 修改AssignNPCIdentity函数，添加打印信息
+    -- 加载绰号数据
+    local function LoadNicknameData()
+        local nicknameData = file.Read("data/of_npcp/citizen_nickname.json", "GAME")
+        if nicknameData then
+            local success, data = pcall(util.JSONToTable, nicknameData)
+            if success and data then
+                nicknames = data.nicknames
+            else
+                print("【晦涩弗里曼】解析 citizen_nickname.json 时出错。")
+            end
+        else
+            print("【晦涩弗里曼】无法加载 citizen_nickname.json。")
+        end
+    end
+
+    -- 在服务器启动时加载绰号数据
+    hook.Add("Initialize", "LoadNicknameData", LoadNicknameData)
+
+    -- 修改AssignNPCIdentity函数，添加绰号分配
     function AssignNPCIdentity(ent, npcInfo)
         local identity = {}
 
         identity.info = npcInfo
         identity.model = ent:GetModel()
+        identity.nickname = nicknames[math.random(#nicknames)]
         
         if npcInfo == "npc_citizen" then
             if string.find(identity.model, "group03m") then

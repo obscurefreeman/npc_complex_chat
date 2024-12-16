@@ -15,7 +15,7 @@ local function RefreshNPCButtons(left_panel, right_panel)
 		button:DockMargin(0, 0, 0, 2)
 		button:SetTall(ScrW()/ 24)
 		button:SetModel(npcData.model or "models/error.mdl")
-		button:SetTitle(L(npcData.name))
+		button:SetTitle(L(npcData.name) .. " “" .. L(npcData.nickname) .. "”")
 		
 		-- 设置描述文字
 		local description = ""
