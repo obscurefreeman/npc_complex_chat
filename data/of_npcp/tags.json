@@ -61,8 +61,8 @@
     ],
     "social_tags": [
         {
-            "id": "tag.social.friendly",
-            "desc": "tag.social.friendlydesc"
+            "id": "tag.social.chivalrous",
+            "desc": "tag.social.chivalrousdesc"
         },
         {
             "id": "tag.social.fake",
@@ -81,12 +81,16 @@
             "desc": "tag.social.diplomaticdesc"
         },
         {
-            "id": "tag.social.loner",
-            "desc": "tag.social.lonerdesc"
+            "id": "tag.social.solitary",
+            "desc": "tag.social.solitarydesc"
         },
         {
             "id": "tag.social.straightforward",
             "desc": "tag.social.straightforwarddesc"
+        },
+        {
+            "id": "tag.social.mighty",
+            "desc": "tag.social.mightydesc"
         }
     ]
 } 

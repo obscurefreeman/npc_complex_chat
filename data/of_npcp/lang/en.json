@@ -313,20 +313,22 @@
             "greedydesc": "All markups displayed as discounts, and hidden extra fees must be paid when purchasing items."
         },
         "social": {
-            "friendly": "Approachable",
-            "friendlydesc": "For every hostile relationship, one random character likes them.",
-            "fake": "Two-Faced",
-            "fakedesc": "Hides all dialogues, revealing the previous round's dialogue in the next round.",
+            "chivalrous": "Chivalrous",
+            "chivalrousdesc": "Once a positive or negative state is triggered, it cannot be removed.",
+            "fake": "Fake",
+            "fakedesc": "Hides all dialogue, revealing the previous turn's dialogue in the next turn.",
             "hospitable": "Hospitable",
-            "hospitabledesc": "Triggers a liking state just by talking to them.",
-            "cold": "Cold-Hearted",
-            "colddesc": "All diplomatic effects are halved.",
+            "hospitabledesc": "If there is no character in the team that dislikes you, talking to them will trigger a liking state.",
+            "cold": "Cold",
+            "colddesc": "All diplomatic and hostile effects received and caused are halved, and all hostile effects are doubled.",
             "diplomatic": "Diplomatic",
             "diplomaticdesc": "All hostile relationships are displayed as friendly.",
-            "loner": "Lone Wolf",
-            "lonerdesc": "All diplomatic effects do not apply to them.",
+            "solitary": "Solitary",
+            "solitarydesc": "For each new positive relationship, one negative relationship is eliminated or weakened.",
             "straightforward": "Straightforward",
-            "straightforwarddesc": "All diplomatic effects are doubled."
+            "straightforwarddesc": "Diplomatic and hostile effects caused are doubled.",
+            "mighty": "Mighty", 
+            "mightydesc": "If your level is higher than theirs, they receive double the effect, and vice versa."
         }
     }
 } 
