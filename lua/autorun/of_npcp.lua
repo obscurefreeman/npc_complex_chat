@@ -48,11 +48,8 @@ if SERVER then
 
         -- 加载职业细分
         for _, job in ipairs(citizenJobs) do
-            local jobName = string.match(job, "citizen%.job%.(.+)")
-            local specData = file.Read("data/of_npcp/jobs/" .. jobName .. ".json", "GAME")
-            if specData then
-                jobSpecializations[job] = util.JSONToTable(specData).specializations
-            end
+            local jobName = job.job
+            jobSpecializations[jobName] = job.specializations
         end
 
         -- 加载名字数据
@@ -100,25 +97,24 @@ if SERVER then
         identity.model = ent:GetModel()
         
         if npcInfo == "npc_citizen" then
-            
-
-            if string.find(identity.model, "group03m" ) then
+            if string.find(identity.model, "group03m") then
                 identity.job = "citizen.job.medic"
                 identity.type = "medic"
             else
-                identity.job = citizenJobs[math.random(#citizenJobs)]
-                if string.find(identity.model, "group01" ) then
+                identity.job = citizenJobs[math.random(#citizenJobs)].job
+                identity.type = "citizens"  -- 默认类型
+                if string.find(identity.model, "group01") then
                     identity.type = "citizens"
-                elseif string.find(identity.model, "group02" ) then
+                elseif string.find(identity.model, "group02") then
                     identity.type = "refugees"
-                elseif string.find(identity.model, "group03" ) then
+                elseif string.find(identity.model, "group03") then
                     identity.type = "rebels"
                 end
             end
 
-            if string.find(identity.model, "female" ) then
+            if string.find(identity.model, "female") then
                 identity.gender = "female"
-            elseif string.find(identity.model, "male" ) then
+            elseif string.find(identity.model, "male") then
                 identity.gender = "male"
             end
             
@@ -183,7 +179,6 @@ if SERVER then
             print(key .. ": " .. value)
         end
         print("================")
-        
     end
     
     hook.Add("OnEntityCreated", "NPCPersonality", function(ent)
@@ -220,7 +215,7 @@ if SERVER then
         end
     end)
 
-    -- 在其他网络接收函数后添加
+    -- 在其他网络接收函数后添���
     net.Receive("NPCAction", function(len, ply)
         local entIndex = net.ReadInt(32)
         local action = net.ReadString()
