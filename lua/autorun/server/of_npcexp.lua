@@ -1,4 +1,4 @@
-hook.Add("OnNPCKilled", "NPCTalkKill", function(victim, attacker, inflictor)
+hook.Add("OnNPCKilled", "NPCRankUp", function(victim, attacker, inflictor)
     if not (IsValid(attacker) and attacker:IsNPC()) then return end
     local identity = OFNPCS and OFNPCS[attacker:EntIndex()]
     if not identity then return end
@@ -12,6 +12,12 @@ hook.Add("OnNPCKilled", "NPCTalkKill", function(victim, attacker, inflictor)
                 if identity.exp >= nextLevelExp then
                     identity.rank = identity.rank + 1
                     identity.exp = identity.exp - nextLevelExp
+                    
+                    -- 广播更新后的身份信息给所有客户端
+                    net.Start("NPCIdentityUpdate")
+                        net.WriteEntity(attacker)  -- 发送攻击者实体
+                        net.WriteTable(identity)     -- 发送更新后的身份信息
+                    net.Broadcast()
                 end
             end
         else
@@ -22,6 +28,12 @@ hook.Add("OnNPCKilled", "NPCTalkKill", function(victim, attacker, inflictor)
                 if identity.exp >= nextLevelExp then
                     identity.rank = identity.rank + 1
                     identity.exp = identity.exp - nextLevelExp
+                    
+                    -- 广播更新后的身份信息给所有客户端
+                    net.Start("NPCIdentityUpdate")
+                        net.WriteEntity(attacker)  -- 发送攻击者实体
+                        net.WriteTable(identity)     -- 发送更新后的身份信息
+                    net.Broadcast()
                 end
             end
         end
