@@ -112,6 +112,7 @@ if SERVER then
             if string.find(identity.model, "group03m") then
                 identity.job = "citizen.job.medic"
                 identity.type = "medic"
+                identity.rank = math.random(1, 39)
             else
                 identity.job = citizenJobs[math.random(#citizenJobs)].job
                 identity.type = "citizen"  -- 默认类型
@@ -121,6 +122,7 @@ if SERVER then
                     identity.type = "refugee"
                 elseif string.find(identity.model, "group03") then
                     identity.type = "rebel"
+                    identity.rank = math.random(1, 39)
                 end
             end
 

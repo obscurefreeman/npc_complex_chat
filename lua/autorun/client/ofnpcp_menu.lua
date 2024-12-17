@@ -28,18 +28,18 @@ local function RefreshNPCButtons(left_panel, right_panel)
 		
 		-- 设置描述文字
 		local description = ""
-		if npcData.job then
-			description = L(npcData.job)
-			if npcData.specialization then
-				description = description .. " - " .. L(npcData.specialization)
-			end
-		elseif npcData.rank then
+		if npcData.rank then
 			if npcData.type == "metropolice" then
 				local rank = metropoliceRanks["i" .. npcData.rank]
 				description = L(rank)
-			elseif npcData.type == "combine" then
+			else
 				local rank = combineRanks["i" .. npcData.rank]
 				description = L(rank)
+			end
+		elseif npcData.job then
+			description = L(npcData.job)
+			if npcData.specialization then
+				description = description .. " - " .. L(npcData.specialization)
 			end
 		end
 		button:SetDescription(description)
