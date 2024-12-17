@@ -216,46 +216,46 @@
     },
     "greeting": {
         "citizen": {
-            "1": "Hello, citizen. How's your day?",
-            "2": "May the Union bring peace.",
-            "3": "How's work going lately?",
-            "4": "Take care and stay safe.",
-            "5": "Hope for a peaceful day."
+            "1": "Hello, /player/. How are you doing today?",
+            "2": "/player/? What brings you here?",
+            "3": "/player/, is your work going well recently?",
+            "4": "/player/, do you know how to gain experience? I'm a newbie.",
+            "5": "Hey, /player/, it's time to have some fun!"
         },
         "refugee": {
-            "1": "It's relatively safe here...",
-            "2": "Please don't cause any trouble.",
-            "3": "We're all trying to survive.",
-            "4": "Keeping a low profile is wise.",
-            "5": "May we all get through this."
+            "1": "Hello, /player/. How are you doing today?",
+            "2": "/player/? What brings you here?",
+            "3": "/player/, is your work going well recently?",
+            "4": "/player/, do you know how to gain experience? I'm a newbie.",
+            "5": "Hey, /player/, it's time to have some fun!"
         },
         "rebel": {
-            "1": "Freedom forever!",
-            "2": "Down with the Combine!",
-            "3": "Freeman will lead us to victory!",
-            "4": "We'll take back Earth!",
-            "5": "Resist until the end!"
+            "1": "Hello, /player/. How are you doing today?",
+            "2": "/player/? What brings you here?",
+            "3": "/player/, is your work going well recently?",
+            "4": "/player/, do you know how to gain experience? I'm a newbie.",
+            "5": "Hey, /player/, it's time to have some fun!"
         },
         "medic": {
-            "1": "Freedom forever!",
-            "2": "Down with the Combine!",
-            "3": "Freeman will lead us to victory!",
-            "4": "We'll take back Earth!",
-            "5": "Resist until the end!"
+            "1": "Hello, /player/. How are you doing today?",
+            "2": "/player/? What brings you here?",
+            "3": "/player/, is your work going well recently?",
+            "4": "/player/, do you know how to gain experience? I'm a newbie.",
+            "5": "Hey, /player/, it's time to have some fun!"
         },
         "metrocop": {
-            "1": "Move along, citizen.",
-            "2": "Stay alert.",
-            "3": "Nothing to see here.",
-            "4": "Compliance is survival.",
-            "5": "Keep moving."
+            "1": "Keep going, /player/.",
+            "2": "Hello, /player/.",
+            "3": "Nothing to see here, /player/.",
+            "4": "To obey is to survive.",
+            "5": "/player/, don't stop."
         },
         "combine": {
-            "1": "Follow orders.",
-            "2": "Area secured.",
-            "3": "Maintain vigilance.",
-            "4": "Eliminate all resistance.",
-            "5": "For the greater good."
+            "1": "Keep going, /player/.",
+            "2": "Hello, /player/.",
+            "3": "Nothing to see here, /player/.",
+            "4": "To obey is to survive.",
+            "5": "/player/, don't stop."
         }
     },
     "idle": {

@@ -88,7 +88,15 @@ if CLIENT then
                 if victimIdentity and victimIdentity.name then
                     translatedText = translatedText:gsub("/victim/", L(victimIdentity.name))
                 end
+            elseif dialogtype == "greeting" and IsValid(target) then
+                local playerNick = target:Nick()
+                if playerNick then
+                    translatedText = translatedText:gsub("/player/", playerNick)
+                end
             end
+
+            translatedText = translatedText:gsub("/map/", game.GetMap())
+            translatedText = translatedText:gsub("/time/", os.date("%H:%M"))
             
             -- 检查是否已存在相同NPC的对话
             for i, dialog in ipairs(activeDialogs) do

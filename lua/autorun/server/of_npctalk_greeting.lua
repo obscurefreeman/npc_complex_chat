@@ -39,7 +39,7 @@ hook.Add("PlayerUse", "NPCTalkGreeting", function(ply, ent)
     -- 如果成功获取问候语，随机选择一个
     if greetings and #greetings > 0 then
         local randomGreeting = greetings[math.random(#greetings)]
-        NPCTalkManager:StartDialog(ent, randomGreeting, ply)
+        NPCTalkManager:StartDialog(ent, randomGreeting, "greeting", ply)
     end
 end)
 
