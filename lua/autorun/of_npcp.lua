@@ -107,6 +107,11 @@ if SERVER then
         identity.info = npcInfo
         identity.model = ent:GetModel()
         identity.nickname = nicknames[math.random(#nicknames)]
+        
+        local gamename = list.Get( "NPC" )[identity.info] and list.Get( "NPC" )[identity.info].Name
+        if gamename then
+            identity.gamename = gamename
+        end
 
         if npcInfo == "npc_citizen" then
             if string.find(identity.model, "group03m") then
@@ -159,6 +164,9 @@ if SERVER then
             identity.exp = 0
             identity.exp_per_rank = CalculateExpNeeded(identity.rank)
             identity.name = maleNames[math.random(#maleNames)]
+        else
+            identity.type = "other"
+            identity.name = maleNames[math.random(#maleNames)]
         end
 
         -- 在分配完基本信息后添加tag分配
@@ -203,10 +211,10 @@ if SERVER then
     
     hook.Add("OnEntityCreated", "NPCPersonality", function(ent)
         timer.Simple(0, function()
-            if not IsValid(ent) then return end  -- 检查实体是否仍然有效
+            if not IsValid(ent) or not ent:IsNPC() then return end  -- 检查实体是否仍然有效
             
             local class = ent:GetClass()
-            -- 正确的条件判断
+
             if class == "npc_citizen" or class == "npc_metropolice" or class == "npc_combine_s" then
                 AssignNPCIdentity(ent, class)
             end

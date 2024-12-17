@@ -43,6 +43,8 @@ local function RefreshNPCButtons(left_panel, right_panel)
 			if npcData.specialization then
 				description = description .. " - " .. L(npcData.specialization)
 			end
+		elseif npcData.gamename then
+			description = npcData.gamename
 		end
 		button:SetDescription(description)
 		
