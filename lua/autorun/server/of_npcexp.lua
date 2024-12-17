@@ -1,52 +1,45 @@
--- 定义全局变量
-NPC_EXP = {}
-local MAX_LEVEL = 10  -- 最大等级
-local EXP_PER_LEVEL = {0, 100, 300, 600, 1000, 1500, 2100, 2800, 3600, 4500, 5500}  -- 每个等级所需的经验值
+hook.Add("OnNPCKilled", "NPCTalkKill", function(victim, attacker, inflictor)
+    if not (IsValid(attacker) and attacker:IsNPC()) then return end
+    local identity = OFNPCS and OFNPCS[attacker:EntIndex()]
+    if not identity then return end
 
--- 初始化NPC经验
-function InitializeNPCExp(ent)
-    if IsValid(ent) and ent:IsNPC() then
-        NPC_EXP[ent:EntIndex()] = {level = 1, exp = 0}
-    end
-end
+    if identity.rank and identity.exp and identity.exp_per_rank ~= 0 then
+        if identity.type == "metropolice" then
+            if identity.rank < 5 then
+                identity.exp = identity.exp + 1000
+                local nextLevelExp = CalculateExpNeeded(identity.rank)
 
--- NPC击杀敌人时调用的函数
-function OnNPCKillEnemy(npc, enemy)
-    if IsValid(npc) and IsValid(enemy) then
-        local npcExpData = NPC_EXP[npc:EntIndex()]
-        if npcExpData and npcExpData.level < MAX_LEVEL then
-            npcExpData.exp = npcExpData.exp + 50  -- 击杀敌人获得50经验
-            CheckLevelUp(npc)
+                if identity.exp >= nextLevelExp then
+                    identity.rank = identity.rank + 1
+                    identity.exp = identity.exp - nextLevelExp
+                end
+            end
+        else
+            if identity.rank < 39 then
+                identity.exp = identity.exp + 1000
+                local nextLevelExp = CalculateExpNeeded(identity.rank)
+
+                if identity.exp >= nextLevelExp then
+                    identity.rank = identity.rank + 1
+                    identity.exp = identity.exp - nextLevelExp
+                end
+            end
         end
     end
-end
-
--- 检查是否升级
-function CheckLevelUp(npc)
-    local npcExpData = NPC_EXP[npc:EntIndex()]
-    while npcExpData.exp >= EXP_PER_LEVEL[npcExpData.level] do
-        npcExpData.exp = npcExpData.exp - EXP_PER_LEVEL[npcExpData.level]
-        npcExpData.level = npcExpData.level + 1
-        if npcExpData.level >= MAX_LEVEL then
-            npcExpData.exp = 0  -- 达到满级后经验清零
-            break
-        end
-    end
-end
-
--- 在NPC创建时初始化经验
-hook.Add("OnEntityCreated", "InitializeNPCExpOnCreate", function(ent)
-    timer.Simple(0, function()
-        InitializeNPCExp(ent)
-    end)
 end)
 
--- 处理NPC击杀敌人的事件
-hook.Add("EntityTakeDamage", "NPCGainExpOnKill", function(ent, dmginfo)
-    if IsValid(ent) and ent:IsNPC() and IsValid(dmginfo:GetAttacker()) and dmginfo:GetAttacker():IsPlayer() then
-        local victim = dmginfo:GetInflictor()
-        if victim and victim:IsNPC() and victim:Health() <= 0 then
-            OnNPCKillEnemy(ent, victim)
-        end
+
+-- 计算升级所需经验的函数
+function CalculateExpNeeded(level)
+    if level >= 1 and level <= 10 then
+        return 120 + (level - 1) * 20
+    elseif level >= 11 and level <= 20 then
+        return 300 + (level - 11) * 40
+    elseif level >= 21 and level <= 30 then
+        return 660 + (level - 21) * 60
+    elseif level >= 31 and level <= 39 then
+        return 1200 + (level - 31) * 80
+    else
+        return 0  -- 超出范围的等级
     end
-end) 
+end

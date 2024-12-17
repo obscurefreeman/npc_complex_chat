@@ -107,12 +107,14 @@ if SERVER then
         identity.info = npcInfo
         identity.model = ent:GetModel()
         identity.nickname = nicknames[math.random(#nicknames)]
-        
+
         if npcInfo == "npc_citizen" then
             if string.find(identity.model, "group03m") then
                 identity.job = "citizen.job.medic"
                 identity.type = "medic"
                 identity.rank = math.random(1, 39)
+                identity.exp = 0
+                identity.exp_per_rank = CalculateExpNeeded(identity.rank)
             else
                 identity.job = citizenJobs[math.random(#citizenJobs)].job
                 identity.type = "citizen"  -- 默认类型
@@ -123,6 +125,8 @@ if SERVER then
                 elseif string.find(identity.model, "group03") then
                     identity.type = "rebel"
                     identity.rank = math.random(1, 39)
+                    identity.exp = 0
+                    identity.exp_per_rank = CalculateExpNeeded(identity.rank)
                 end
             end
 
@@ -146,10 +150,14 @@ if SERVER then
         elseif npcInfo == "npc_metropolice" then
             identity.type = "metropolice"
             identity.rank = math.random(1, 5)
+            identity.exp = 0
+            identity.exp_per_rank = CalculateExpNeeded(identity.rank)
             identity.name = maleNames[math.random(#maleNames)]
         elseif npcInfo == "npc_combine_s" then
             identity.type = "combine"
             identity.rank = math.random(1, 39)
+            identity.exp = 0
+            identity.exp_per_rank = CalculateExpNeeded(identity.rank)
             identity.name = maleNames[math.random(#maleNames)]
         end
 
