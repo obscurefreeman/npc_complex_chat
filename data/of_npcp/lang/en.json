@@ -236,6 +236,13 @@
             "4": "We'll take back Earth!",
             "5": "Resist until the end!"
         },
+        "medic": {
+            "1": "Freedom forever!",
+            "2": "Down with the Combine!",
+            "3": "Freeman will lead us to victory!",
+            "4": "We'll take back Earth!",
+            "5": "Resist until the end!"
+        },
         "metrocop": {
             "1": "Move along, citizen.",
             "2": "Stay alert.",
@@ -257,6 +264,21 @@
             "2": "Hope to get off work early.",
             "3": "When will this day end?"
         },
+        "refugee": {
+            "1": "What should I do?",
+            "2": "Is it safe here?",
+            "3": "When can I go home?"
+        },
+        "rebel": {
+            "1": "We will definitely win.",
+            "2": "The days of freedom will come.",
+            "3": "We cannot give up."
+        },
+        "medic": {
+            "1": "I need more medical supplies.",
+            "2": "There is a smell of blood here.",
+            "3": "I hope the fighting ends soon."
+        },
         "metrocop": {
             "1": "Patrol area is normal.",
             "2": "Stay alert.",
@@ -270,9 +292,24 @@
     },
     "kill": {
         "citizen": {
-            "1": "I'm sorry, I have no choice!",
-            "2": "It's all for survival...",
-            "3": "I don't want this!"
+            "1": "Another one!",
+            "2": "I defeated you!",
+            "3": "The enemy has fallen!"
+        },
+        "refugee": {
+            "1": "Another one!",
+            "2": "I defeated you!",
+            "3": "The enemy has fallen!"
+        },
+        "rebel": {
+            "1": "Another one!",
+            "2": "I defeated you!",
+            "3": "The enemy has fallen!"
+        },
+        "medic": {
+            "1": "Another one!",
+            "2": "I defeated you!",
+            "3": "The enemy has fallen!"
         },
         "metrocop": {
             "1": "Another traitor has been eliminated.",
@@ -288,17 +325,32 @@
     "death": {
         "citizen": {
             "1": "Ouch!",
-            "2": "Ouyo!",
+            "2": "Oh!",
+            "3": "Ahh!"
+        },
+        "refugee": {
+            "1": "Ouch!",
+            "2": "Oh!",
+            "3": "Ahh!"
+        },
+        "rebel": {
+            "1": "Ouch!",
+            "2": "Oh!",
+            "3": "Ahh!"
+        },
+        "medic": {
+            "1": "Ouch!",
+            "2": "Oh!",
             "3": "Ahh!"
         },
         "metrocop": {
             "1": "Ouch!",
-            "2": "Ouyo!",
+            "2": "Oh!",
             "3": "Ahh!"
         },
         "combine": {
             "1": "Ouch!",
-            "2": "Ouyo!",
+            "2": "Oh!",
             "3": "Ahh!"
         }
     },

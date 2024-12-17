@@ -114,13 +114,13 @@ if SERVER then
                 identity.type = "medic"
             else
                 identity.job = citizenJobs[math.random(#citizenJobs)].job
-                identity.type = "citizens"  -- 默认类型
+                identity.type = "citizen"  -- 默认类型
                 if string.find(identity.model, "group01") then
-                    identity.type = "citizens"
+                    identity.type = "citizen"
                 elseif string.find(identity.model, "group02") then
-                    identity.type = "refugees"
+                    identity.type = "refugee"
                 elseif string.find(identity.model, "group03") then
-                    identity.type = "rebels"
+                    identity.type = "rebel"
                 end
             end
 
@@ -157,7 +157,7 @@ if SERVER then
             if tagData.tag_ability[identity.job] then
                 local abilityTag = tagData.tag_ability[identity.job]
                 identity.tag_ability = abilityTag.id
-                identity.ability_desc = abilityTag.desc
+                identity.tag_ability_desc = abilityTag.desc
             end
         end
         
@@ -165,13 +165,13 @@ if SERVER then
         if tagData.tag_trade and #tagData.tag_trade > 0 then
             local tradeTag = tagData.tag_trade[math.random(#tagData.tag_trade)]
             identity.tag_trade = tradeTag.id
-            identity.trade_desc = tradeTag.desc
+            identity.tag_trade_desc = tradeTag.desc
         end
         
         if tagData.tag_social and #tagData.tag_social > 0 then
             local socialTag = tagData.tag_social[math.random(#tagData.tag_social)]
             identity.tag_social = socialTag.id
-            identity.social_desc = socialTag.desc
+            identity.tag_social_desc = socialTag.desc
         end
         
         -- 存储NPC身份信息

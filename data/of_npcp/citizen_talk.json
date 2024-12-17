@@ -1,25 +1,32 @@
 {
     "greetings": {
-        "citizens": [
+        "citizen": [
             "greeting.citizen.1",
             "greeting.citizen.2",
             "greeting.citizen.3",
             "greeting.citizen.4",
             "greeting.citizen.5"
         ],
-        "refugees": [
+        "refugee": [
             "greeting.refugee.1",
             "greeting.refugee.2",
             "greeting.refugee.3",
             "greeting.refugee.4",
             "greeting.refugee.5"
         ],
-        "rebels": [
+        "rebel": [
             "greeting.rebel.1",
             "greeting.rebel.2",
             "greeting.rebel.3",
             "greeting.rebel.4",
             "greeting.rebel.5"
+        ],
+        "medic": [
+            "greeting.medic.1",
+            "greeting.medic.2",
+            "greeting.medic.3",
+            "greeting.medic.4",
+            "greeting.medic.5"
         ],
         "metropolice": [
             "greeting.metrocop.1",
@@ -37,10 +44,25 @@
         ]
     },
     "idle": {
-        "citizens": [
+        "citizen": [
             "idle.citizen.1",
             "idle.citizen.2",
             "idle.citizen.3"
+        ],
+        "refugee": [
+            "idle.refugee.1",
+            "idle.refugee.2",
+            "idle.refugee.3"
+        ],
+        "rebel": [
+            "idle.rebel.1",
+            "idle.rebel.2",
+            "idle.rebel.3"
+        ],
+        "medic": [
+            "idle.medic.1",
+            "idle.medic.2",
+            "idle.medic.3"
         ],
         "metropolice": [
             "idle.metrocop.1",
@@ -54,10 +76,25 @@
         ]
     },
     "kill": {
-        "citizens": [
+        "citizen": [
             "kill.citizen.1",
             "kill.citizen.2",
             "kill.citizen.3"
+        ],
+        "refugee": [
+            "kill.refugee.1",
+            "kill.refugee.2",
+            "kill.refugee.3"
+        ],
+        "rebel": [
+            "kill.rebel.1",
+            "kill.rebel.2",
+            "kill.rebel.3"
+        ],
+        "medic": [
+            "kill.medic.1",
+            "kill.medic.2",
+            "kill.medic.3"
         ],
         "metropolice": [
             "kill.metrocop.1",
@@ -71,10 +108,25 @@
         ]
     },
     "death": {
-        "citizens": [
+        "citizen": [
             "death.citizen.1",
             "death.citizen.2",
             "death.citizen.3"
+        ],
+        "refugee": [
+            "death.refugee.1",
+            "death.refugee.2",
+            "death.refugee.3"
+        ],
+        "rebel": [
+            "death.rebel.1",
+            "death.rebel.2",
+            "death.rebel.3"
+        ],
+        "medic": [
+            "death.medic.1",
+            "death.medic.2",
+            "death.medic.3"
         ],
         "metropolice": [
             "death.metrocop.1",
