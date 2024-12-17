@@ -31,9 +31,11 @@ local function RefreshNPCButtons(left_panel, right_panel)
 		if npcData.rank then
 			if npcData.type == "metropolice" then
 				local rank = metropoliceRanks["i" .. npcData.rank]
+				button:SetBadge("ofnpcp/rankicons/rank_".. npcData.rank .. ".tga")
 				description = L(rank)
 			else
 				local rank = combineRanks["i" .. npcData.rank]
+				button:SetBadge("ofnpcp/rankicons/rank_".. npcData.rank .. ".tga")
 				description = L(rank)
 			end
 		elseif npcData.job then
