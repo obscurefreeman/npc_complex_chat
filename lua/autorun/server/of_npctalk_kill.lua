@@ -24,6 +24,6 @@ hook.Add("OnNPCKilled", "NPCTalkKill", function(victim, attacker, inflictor)
     -- 如果成功获取击杀语音，随机选择一个
     if killPhrases and #killPhrases > 0 then
         local randomKillPhrase = killPhrases[math.random(#killPhrases)]
-        NPCTalkManager:StartDialog(attacker, randomKillPhrase, victim)
+        NPCTalkManager:StartDialog(attacker, randomKillPhrase, "kill", victim)
     end
 end)

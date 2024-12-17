@@ -17,8 +17,8 @@ if SERVER then
     end
     
     -- 开始新对话
-    function NPCTalkManager:StartDialog(npc, dialogKey, victim)
-        if not IsValid(npc) then 
+    function NPCTalkManager:StartDialog(npc, dialogKey, dialogtype, target)
+        if not IsValid(npc) or not dialogKey or not dialogtype then 
             return 
         end
         
@@ -35,9 +35,9 @@ if SERVER then
         net.Start("NPCTalkStart")
         net.WriteEntity(npc)
         net.WriteString(dialogKey)
-        if IsValid(victim) then 
-            net.WriteEntity(victim)
-        end
+        net.WriteString(dialogtype)
+        local ent = IsValid( target ) and target or Entity( 0 )
+        net.WriteEntity(ent)
         net.Send(player.GetAll())
     end
 end
@@ -72,7 +72,8 @@ if CLIENT then
     net.Receive("NPCTalkStart", function()
         local npc = net.ReadEntity()
         local dialogKey = net.ReadString()
-        local victim = net.ReadEntity()
+        local dialogtype = net.ReadString()
+        local target = net.ReadEntity()
         
         if IsValid(npc) then
             -- 获取翻译后的文本
@@ -81,9 +82,9 @@ if CLIENT then
                 return 
             end
 
-            if IsValid(victim) then
+            if dialogtype == "kill" and IsValid(target) then
                 local npcs = GetAllNPCsList()
-                local victimIdentity = npcs[victim:EntIndex()]
+                local victimIdentity = npcs[target:EntIndex()]
                 if victimIdentity and victimIdentity.name then
                     translatedText = translatedText:gsub("/victim/", L(victimIdentity.name))
                 end
