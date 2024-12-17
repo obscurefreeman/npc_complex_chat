@@ -1,6 +1,15 @@
 AddCSLuaFile()
 
 local function RefreshNPCButtons(left_panel, right_panel)
+	local metropoliceData = file.Read("data/of_npcp/metropolice_ranks.json", "GAME")
+	local combineData = file.Read("data/of_npcp/combine_ranks.json", "GAME")
+	if metropoliceData then
+		metropoliceRanks = util.JSONToTable(metropoliceData).ranks
+	end
+	if combineData then
+		combineRanks = util.JSONToTable(combineData).ranks
+	end
+
 	-- 清除现有按钮
 	left_panel:Clear()
 	
@@ -25,7 +34,13 @@ local function RefreshNPCButtons(left_panel, right_panel)
 				description = description .. " - " .. L(npcData.specialization)
 			end
 		elseif npcData.rank then
-			description = L(npcData.rank)
+			if npcData.type == "metropolice" then
+				local rank = metropoliceRanks["i" .. npcData.rank]
+				description = L(rank)
+			elseif npcData.type == "combine" then
+				local rank = combineRanks["i" .. npcData.rank]
+				description = L(rank)
+			end
 		end
 		button:SetDescription(description)
 		

@@ -27,8 +27,6 @@ if SERVER then
     -- 加载JSON文件
     local function LoadNPCData()
         local citizenData = file.Read("data/of_npcp/citizen_jobs.json", "GAME")
-        local metropoliceData = file.Read("data/of_npcp/metropolice_ranks.json", "GAME")
-        local combineData = file.Read("data/of_npcp/combine_ranks.json", "GAME")
 
         if citizenData then
             local success, data = pcall(util.JSONToTable, citizenData)
@@ -39,12 +37,6 @@ if SERVER then
             end
         else
             print("【晦涩弗里曼】无法加载 citizen_jobs.json。")
-        end
-        if metropoliceData then
-            metropoliceRanks = util.JSONToTable(metropoliceData).ranks
-        end
-        if combineData then
-            combineRanks = util.JSONToTable(combineData).ranks
         end
 
         -- 加载职业细分
@@ -151,13 +143,11 @@ if SERVER then
             end
         elseif npcInfo == "npc_metropolice" then
             identity.type = "metropolice"
-            local rank = math.random(1, 5)
-            identity.rank = metropoliceRanks["i" .. rank]
+            identity.rank = math.random(1, 5)
             identity.name = maleNames[math.random(#maleNames)]
         elseif npcInfo == "npc_combine_s" then
             identity.type = "combine"
-            local rank = math.random(1, 33)
-            identity.rank = combineRanks["i" .. rank]
+            identity.rank = math.random(1, 39)
             identity.name = maleNames[math.random(#maleNames)]
         end
 
