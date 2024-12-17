@@ -11,7 +11,7 @@ timer.Create("NPCIdleTalkCheck", IDLE_CHECK_INTERVAL, 0, function()
     
     -- 获取所有有身份的NPC
     local validNPCs = {}
-    for entIndex, identity in pairs(_G.npcs) do
+    for entIndex, identity in pairs(OFNPCS) do
         local npc = Entity(entIndex)
         if IsValid(npc) and npc:IsNPC() then
             table.insert(validNPCs, npc)
@@ -62,7 +62,7 @@ timer.Create("NPCIdleTalkCheck", IDLE_CHECK_INTERVAL, 0, function()
         if not hasNearbyPlayer then continue end
         
         -- 获取NPC身份信息（这里我们已经确保NPC有身份信息）
-        local identity = _G.npcs[npc:EntIndex()]
+        local identity = OFNPCS[npc:EntIndex()]
         
         -- 从JSON文件获取空闲对话
         local idlePhrases

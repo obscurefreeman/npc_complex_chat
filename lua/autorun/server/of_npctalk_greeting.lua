@@ -21,7 +21,7 @@ hook.Add("PlayerUse", "NPCTalkGreeting", function(ply, ent)
     playerCooldowns[steamID] = CurTime()
     
     -- 获取NPC身份信息
-    local identity = _G.npcs and _G.npcs[npcIndex]
+    local identity = OFNPCS and OFNPCS[npcIndex]
     if not identity then return end
     
     -- 从JSON文件获取问候语

@@ -2,7 +2,7 @@
 local function ShowDeathDialog(npc)
     if not IsValid(npc) then return end
 
-    local identity = _G.npcs[npc:EntIndex()]
+    local identity = OFNPCS[npc:EntIndex()]
     if not identity then return end
 
     -- 从JSON文件获取死亡对话

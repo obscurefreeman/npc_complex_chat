@@ -6,7 +6,7 @@ hook.Add("OnNPCKilled", "NPCTalkKill", function(npc, attacker, inflictor)
     if NPCTalkManager:IsNPCTalking(attacker) then return end
     
     -- 获取NPC身份信息
-    local identity = _G.npcs and _G.npcs[attacker:EntIndex()]
+    local identity = OFNPCS and OFNPCS[attacker:EntIndex()]
     if not identity then return end
     
     -- 从JSON文件获取击杀语音

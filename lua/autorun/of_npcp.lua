@@ -1,6 +1,6 @@
 if SERVER then
     -- 将 npcs 设置为全局变量
-    _G.npcs = {}
+    OFNPCS = {}
     
     -- 在文件开头添加必要的变量
     local citizenJobs = {}
@@ -264,14 +264,14 @@ if SERVER then
         local entIndex = net.ReadInt(32)
         local comment = net.ReadString()
 
-        if _G.npcs[entIndex] then
+        if OFNPCS[entIndex] then
             -- 如果评论表不存在，则初始化
-            if not _G.npcs[entIndex].comments then
-                _G.npcs[entIndex].comments = {}
+            if not OFNPCS[entIndex].comments then
+                OFNPCS[entIndex].comments = {}
             end
 
             -- 添加评论
-            table.insert(_G.npcs[entIndex].comments, {
+            table.insert(OFNPCS[entIndex].comments, {
                 player = ply:Nick(),
                 model = ply:GetModel(),
                 comment = comment
@@ -280,7 +280,7 @@ if SERVER then
             -- 广播更新后的身份信息给所有客户端
             net.Start("NPCIdentityUpdate")
                 net.WriteEntity(Entity(entIndex))
-                net.WriteTable(_G.npcs[entIndex])
+                net.WriteTable(OFNPCS[entIndex])
             net.Broadcast()
         end
     end)
