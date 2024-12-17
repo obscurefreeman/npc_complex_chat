@@ -1,5 +1,5 @@
 if SERVER then
-    -- 将 npcs 设置为全局变量
+    -- 将 OFNPCS 设置为全局变量
     OFNPCS = {}
     
     -- 在文件开头添加必要的变量
@@ -154,28 +154,28 @@ if SERVER then
         -- 在分配完基本信息后添加tag分配
         if identity.job then
             -- 分配能力tag
-            if tagData.ability_tags[identity.job] then
-                local abilityTag = tagData.ability_tags[identity.job]
-                identity.ability_tag = abilityTag.id
+            if tagData.tag_ability[identity.job] then
+                local abilityTag = tagData.tag_ability[identity.job]
+                identity.tag_ability = abilityTag.id
                 identity.ability_desc = abilityTag.desc
             end
         end
         
         -- 分配交易和社交tag
-        if tagData.trade_tags and #tagData.trade_tags > 0 then
-            local tradeTag = tagData.trade_tags[math.random(#tagData.trade_tags)]
-            identity.trade_tag = tradeTag.id
+        if tagData.tag_trade and #tagData.tag_trade > 0 then
+            local tradeTag = tagData.tag_trade[math.random(#tagData.tag_trade)]
+            identity.tag_trade = tradeTag.id
             identity.trade_desc = tradeTag.desc
         end
         
-        if tagData.social_tags and #tagData.social_tags > 0 then
-            local socialTag = tagData.social_tags[math.random(#tagData.social_tags)]
-            identity.social_tag = socialTag.id
+        if tagData.tag_social and #tagData.tag_social > 0 then
+            local socialTag = tagData.tag_social[math.random(#tagData.tag_social)]
+            identity.tag_social = socialTag.id
             identity.social_desc = socialTag.desc
         end
         
         -- 存储NPC身份信息
-        npcs[ent:EntIndex()] = identity
+        OFNPCS[ent:EntIndex()] = identity
         
         -- 向客户端广播NPC身份信息
         net.Start("NPCIdentityUpdate")
@@ -205,7 +205,7 @@ if SERVER then
 
     hook.Add("EntityRemoved", "CleanupNPCData", function(ent)
         if IsValid(ent) and ent:IsNPC() then
-            npcs[ent:EntIndex()] = nil
+            OFNPCS[ent:EntIndex()] = nil
         end
     end)
 
@@ -214,13 +214,13 @@ if SERVER then
         local entIndex = net.ReadInt(32)
         local newName = net.ReadString()
         
-        if npcs[entIndex] then
-            npcs[entIndex].name = newName
+        if OFNPCS[entIndex] then
+            OFNPCS[entIndex].name = newName
             
             -- 广播更新后的身份信息给所有客户端
             net.Start("NPCIdentityUpdate")
                 net.WriteEntity(Entity(entIndex))
-                net.WriteTable(npcs[entIndex])
+                net.WriteTable(OFNPCS[entIndex])
             net.Broadcast()
         end
     end)

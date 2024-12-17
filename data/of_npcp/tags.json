@@ -1,5 +1,5 @@
 {
-    "ability_tags": {
+    "tag_ability": {
         "citizen.job.medic": {
             "id": "tag.ability.selfheal",
             "desc": "tag.ability.selfhealdesc"
@@ -29,7 +29,7 @@
             "desc": "tag.ability.strengthdesc"
         }
     },
-    "trade_tags": [
+    "tag_trade": [
         {
             "id": "tag.trade.merchant",
             "desc": "tag.trade.merchantdesc"
@@ -59,7 +59,7 @@
             "desc": "tag.trade.greedydesc"
         }
     ],
-    "social_tags": [
+    "tag_social": [
         {
             "id": "tag.social.chivalrous",
             "desc": "tag.social.chivalrousdesc"

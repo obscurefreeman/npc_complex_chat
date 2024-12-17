@@ -86,68 +86,68 @@ local function RefreshNPCButtons(left_panel, right_panel)
 			horizontal_scroll:SetOverlap(-3)
 			-- horizontal_scroll:SetUseLiveDrag(true)
 
-			if npcData.ability_tag then
+			if npcData.tag_ability then
 				local abilityButton = vgui.Create("OFCard", horizontal_scroll)
 				abilityButton:SetWide(ScrW() / 9)
 				abilityButton:Dock(LEFT)
 				abilityButton:SetIcon("ofnpcp/roleicons/verified.png")
-				abilityButton:SetTitle(L(npcData.ability_tag))
+				abilityButton:SetTitle(L(npcData.tag_ability))
 				abilityButton:SetDescription(L(npcData.ability_desc))
 				abilityButton:SetBorderColor(Color(100, 255, 100))
 				horizontal_scroll:AddPanel(abilityButton)
 			end
 			
-			if npcData.trade_tag then
+			if npcData.tag_trade then
 				local tradeButton = vgui.Create("OFCard", horizontal_scroll)
 				tradeButton:SetWide(ScrW() / 9)
 				tradeButton:Dock(LEFT)
 				tradeButton:SetIcon("ofnpcp/roleicons/owner.png")
-				tradeButton:SetTitle(L(npcData.trade_tag))
+				tradeButton:SetTitle(L(npcData.tag_trade))
 				tradeButton:SetDescription(L(npcData.trade_desc))
 				tradeButton:SetBorderColor(Color(255, 200, 100))
 				horizontal_scroll:AddPanel(tradeButton)
 			end
 			
-			if npcData.social_tag then
+			if npcData.tag_social then
 				local socialButton = vgui.Create("OFCard", horizontal_scroll)
 				socialButton:SetWide(ScrW() / 9)
 				socialButton:Dock(LEFT)
 				socialButton:SetIcon("ofnpcp/roleicons/partner.png")
-				socialButton:SetTitle(L(npcData.social_tag))
+				socialButton:SetTitle(L(npcData.tag_social))
 				socialButton:SetDescription(L(npcData.social_desc))
 				socialButton:SetBorderColor(Color(100, 200, 255))
 				horizontal_scroll:AddPanel(socialButton)
 			end
 			-- 添加tag显示
-			if npcData.ability_tag then
+			if npcData.tag_ability then
 				local abilityButton = vgui.Create("OFSkillButton", right_panel)
 				abilityButton:Dock(TOP)
 				abilityButton:DockMargin(4, 4, 4, 4)
 				abilityButton:SetTall(64)
 				abilityButton:SetIcon("ofnpcp/roleicons/verified.png")
-				abilityButton:SetTitle(L(npcData.ability_tag))
+				abilityButton:SetTitle(L(npcData.tag_ability))
 				abilityButton:SetDescription(L(npcData.ability_desc))
 				abilityButton:SetBorderColor(Color(100, 255, 100))
 			end
 			
-			if npcData.trade_tag then
+			if npcData.tag_trade then
 				local tradeButton = vgui.Create("OFSkillButton", right_panel)
 				tradeButton:Dock(TOP)
 				tradeButton:DockMargin(4, 4, 4, 4)
 				tradeButton:SetTall(64)
 				tradeButton:SetIcon("ofnpcp/roleicons/owner.png")
-				tradeButton:SetTitle(L(npcData.trade_tag))
+				tradeButton:SetTitle(L(npcData.tag_trade))
 				tradeButton:SetDescription(L(npcData.trade_desc))
 				tradeButton:SetBorderColor(Color(255, 200, 100))
 			end
 			
-			if npcData.social_tag then
+			if npcData.tag_social then
 				local socialButton = vgui.Create("OFSkillButton", right_panel)
 				socialButton:Dock(TOP)
 				socialButton:DockMargin(4, 4, 4, 4)
 				socialButton:SetTall(64)
 				socialButton:SetIcon("ofnpcp/roleicons/partner.png")
-				socialButton:SetTitle(L(npcData.social_tag))
+				socialButton:SetTitle(L(npcData.tag_social))
 				socialButton:SetDescription(L(npcData.social_desc))
 				socialButton:SetBorderColor(Color(100, 200, 255))
 			end
