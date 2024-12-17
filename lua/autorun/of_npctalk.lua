@@ -17,7 +17,7 @@ if SERVER then
     end
     
     -- 开始新对话
-    function NPCTalkManager:StartDialog(npc, dialogKey, target)
+    function NPCTalkManager:StartDialog(npc, dialogKey, victim)
         if not IsValid(npc) then 
             return 
         end
@@ -35,7 +35,10 @@ if SERVER then
         net.Start("NPCTalkStart")
         net.WriteEntity(npc)
         net.WriteString(dialogKey)
-        net.Send(target or player.GetAll())
+        if IsValid(victim) then 
+            net.WriteEntity(victim)
+        end
+        net.Send(player.GetAll())
     end
 end
 
@@ -69,35 +72,42 @@ if CLIENT then
     net.Receive("NPCTalkStart", function()
         local npc = net.ReadEntity()
         local dialogKey = net.ReadString()
+        local victim = net.ReadEntity()
         
-        if not IsValid(npc) then 
-            return 
-        end
-        
-        -- 获取翻译后的文本
-        local translatedText = L(dialogKey)
-        if not translatedText then 
-            return 
-        end
-        
-        -- 检查是否已存在相同NPC的对话
-        for i, dialog in ipairs(activeDialogs) do
-            if dialog.npc == npc then
-                return
+        if IsValid(npc) then
+            -- 获取翻译后的文本
+            local translatedText = L(dialogKey)
+            if not translatedText then 
+                return 
             end
+
+            if IsValid(victim) then
+                local npcs = GetAllNPCsList()
+                local victimIdentity = npcs[victim:EntIndex()]
+                if victimIdentity and victimIdentity.name then
+                    translatedText = translatedText:gsub("/victim/", L(victimIdentity.name))
+                end
+            end
+            
+            -- 检查是否已存在相同NPC的对话
+            for i, dialog in ipairs(activeDialogs) do
+                if dialog.npc == npc then
+                    return
+                end
+            end
+            
+            -- 创建新的对话
+            local dialog = {
+                npc = npc,
+                text = translatedText,
+                currentText = "",
+                startTime = CurTime(),
+                nextCharTime = CurTime(),
+                charIndex = 0
+            }
+            
+            table.insert(activeDialogs, dialog)
         end
-        
-        -- 创建新的对话
-        local dialog = {
-            npc = npc,
-            text = translatedText,
-            currentText = "",
-            startTime = CurTime(),
-            nextCharTime = CurTime(),
-            charIndex = 0
-        }
-        
-        table.insert(activeDialogs, dialog)
     end)
     
     -- 添加新的 PostDrawTranslucentRenderables 钩子

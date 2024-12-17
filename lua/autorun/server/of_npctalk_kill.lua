@@ -1,5 +1,5 @@
 -- 当NPC杀死其他NPC或玩家时触发
-hook.Add("OnNPCKilled", "NPCTalkKill", function(npc, attacker, inflictor)
+hook.Add("OnNPCKilled", "NPCTalkKill", function(victim, attacker, inflictor)
     if not (IsValid(attacker) and attacker:IsNPC()) then return end
     
     -- 检查是否正在对话
@@ -24,6 +24,6 @@ hook.Add("OnNPCKilled", "NPCTalkKill", function(npc, attacker, inflictor)
     -- 如果成功获取击杀语音，随机选择一个
     if killPhrases and #killPhrases > 0 then
         local randomKillPhrase = killPhrases[math.random(#killPhrases)]
-        NPCTalkManager:StartDialog(attacker, randomKillPhrase)
+        NPCTalkManager:StartDialog(attacker, randomKillPhrase, victim)
     end
 end)
