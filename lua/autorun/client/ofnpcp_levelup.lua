@@ -40,16 +40,16 @@ net.Receive("OFNPCRankUp", function()
         alpha = 255 * (1 - (elapsed / textDuration) ^ 2)
         
         local screenPos = pos:ToScreen()  -- 将世界坐标转换为屏幕坐标
-        local textHeight = draw.GetFontHeight("ofgui_big")
-
+        -- 计算文本宽度
+        local textWidth, textHeight = surface.GetTextSize(levelUpText)  -- 获取文本的宽度和高度
         -- 绘制等级图片
         local rankImagePath = rankimage  -- 使用等级图片路径
         surface.SetMaterial(Material(rankImagePath))  -- 设置图片材质
         surface.SetDrawColor(255, 255, 255, alpha)  -- 设置图片透明度
-        surface.DrawTexturedRect(screenPos.x - textHeight / 2, screenPos.y - textHeight / 2, textHeight, textHeight)  -- 绘制图片
+        surface.DrawTexturedRect(screenPos.x - textHeight * 44 / 63 / 2 - textWidth / 2, screenPos.y - textHeight / 2, textHeight * 44 / 63, textHeight)  -- 绘制图片
 
         -- 绘制文本
-        draw.SimpleText(levelUpText, "ofgui_big", screenPos.x, screenPos.y, Color(255, 255, 255, alpha), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+        draw.SimpleText(levelUpText, "ofgui_big", screenPos.x + textHeight * 44 / 63 / 2, screenPos.y, Color(255, 255, 255, alpha), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
     end
 
     -- 在HUD中绘制文本
