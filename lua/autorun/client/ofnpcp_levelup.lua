@@ -31,6 +31,7 @@ net.Receive("OFNPCRankUp", function()
 
     -- 在NPC上方显示文本
     local function DrawLevelUpText()
+        if not IsValid(ent) then return end  -- 检查实体是否有效
         local elapsed = CurTime() - startTime  -- 计算经过的时间
         local pos = ent:GetPos() + Vector(0, 0, ent:OBBCenter().z + (elapsed * 10))
         
