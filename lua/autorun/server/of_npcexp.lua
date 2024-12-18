@@ -36,14 +36,8 @@ hook.Add("OnNPCKilled", "NPCRankUp", function(victim, attacker, inflictor)
                     net.Start("NPCIdentityUpdate")
                         net.WriteEntity(attacker)  -- 发送攻击者实体
                         net.WriteTable(identity)     -- 发送更新后的身份信息
+                        net.WriteBool(leveledUp)     -- 发送更新后的身份信息
                     net.Broadcast()
-
-                    if leveledUp then
-                        net.Start("OFNPCRankUp")
-                        net.WriteEntity(attacker)  -- 发送攻击者实体
-                        net.WriteTable(identity)     -- 发送更新后的身份信息
-                        net.Send(player.GetAll())
-                    end
                 end
             end
         end

@@ -316,11 +316,20 @@ if CLIENT then
     net.Receive("NPCIdentityUpdate", function()
         local ent = net.ReadEntity()
         local identity = net.ReadTable()
+        local leveledUp = net.ReadBool()
+
         if IsValid(ent) then
             clientNPCs[ent:EntIndex()] = identity
             -- 触发NPC列表更新事件
             hook.Run("NPCListUpdated")
         end
+
+        LocalPlayer():ChatPrint("是否晋级: " .. tostring(leveledUp))
+
+        if leveledUp then
+            hook.Run("OFNPCRankUp", ent, identity)
+        end
+
     end)
     
     -- 添加NPC顶显示功能

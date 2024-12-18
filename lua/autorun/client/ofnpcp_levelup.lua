@@ -1,6 +1,5 @@
-net.Receive("OFNPCRankUp", function()
-    local ent = net.ReadEntity()
-    local identity = net.ReadTable()
+-- 添加debug，要求检查hook是否触发
+hook.Add("OFNPCRankUp", "DisplayLevelUp", function(ent, identity)
 
     -- 创建一个文本标签来显示晋级信息
     local levelUpText = "晋级到 " .. identity.rank .. " 级！"
@@ -20,7 +19,6 @@ net.Receive("OFNPCRankUp", function()
         cam.End3D2D()
     end
 
-    -- 玩家打出相同的文字
     LocalPlayer():ChatPrint(levelUpText)
 
     -- 在HUD中绘制文本
