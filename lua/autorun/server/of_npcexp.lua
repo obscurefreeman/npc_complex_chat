@@ -4,6 +4,7 @@ hook.Add("OnNPCKilled", "NPCRankUp", function(victim, attacker, inflictor)
     if not identity then return end
 
     if identity.rank and identity.exp and identity.exp_per_rank ~= 0 then
+        local leveledUp = false  -- 新增变量来跟踪是否升级
         if identity.type == "metropolice" then
             if identity.rank < 5 then
                 identity.exp = identity.exp + 1000
@@ -12,11 +13,13 @@ hook.Add("OnNPCKilled", "NPCRankUp", function(victim, attacker, inflictor)
                 if identity.exp >= nextLevelExp then
                     identity.rank = identity.rank + 1
                     identity.exp = identity.exp - nextLevelExp
+                    leveledUp = true  -- 标记为升级
                     
                     -- 广播更新后的身份信息给所有客户端
                     net.Start("NPCIdentityUpdate")
                         net.WriteEntity(attacker)  -- 发送攻击者实体
                         net.WriteTable(identity)     -- 发送更新后的身份信息
+                        net.WriteBool(leveledUp)     -- 发送是否晋级的信息
                     net.Broadcast()
                 end
             end
@@ -34,6 +37,13 @@ hook.Add("OnNPCKilled", "NPCRankUp", function(victim, attacker, inflictor)
                         net.WriteEntity(attacker)  -- 发送攻击者实体
                         net.WriteTable(identity)     -- 发送更新后的身份信息
                     net.Broadcast()
+
+                    if leveledUp then
+                        net.Start("OFNPCRankUp")
+                        net.WriteEntity(attacker)  -- 发送攻击者实体
+                        net.WriteTable(identity)     -- 发送更新后的身份信息
+                        net.Send(player.GetAll())
+                    end
                 end
             end
         end

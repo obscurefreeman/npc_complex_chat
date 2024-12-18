@@ -87,6 +87,12 @@ if CLIENT then
                 local victimIdentity = npcs[target:EntIndex()]
                 if victimIdentity and victimIdentity.name then
                     translatedText = translatedText:gsub("/victim/", L(victimIdentity.name))
+                elseif list.Get("NPC")[target:GetClass()] and list.Get("NPC")[target:GetClass()].Name then
+                    local victimgamename = list.Get("NPC")[target:GetClass()].Name
+
+                    translatedText = translatedText:gsub("/victim/", victimgamename)
+                else
+                    return
                 end
             elseif dialogtype == "greeting" and IsValid(target) then
                 local playerNick = target:Nick()

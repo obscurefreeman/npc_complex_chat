@@ -14,15 +14,10 @@ if SERVER then
 
     -- 添加网络字符串
     util.AddNetworkString("NPCIdentityUpdate")
-
-    -- 添加新的网络字符串
     util.AddNetworkString("UpdateNPCName")
-
-    -- 在其他网络字符串后添加
     util.AddNetworkString("NPCAction")
-
-    -- 添加网络字符串
     util.AddNetworkString("SubmitNPCComment")
+    util.AddNetworkString("OFNPCRankUp")
 
     -- 加载JSON文件
     local function LoadNPCData()
@@ -243,7 +238,7 @@ if SERVER then
         end
     end)
 
-    -- 在其他网络接收函数后添���
+    -- 在其他网络接收函数后添加
     net.Receive("NPCAction", function(len, ply)
         local entIndex = net.ReadInt(32)
         local action = net.ReadString()
