@@ -1,9 +1,32 @@
 net.Receive("OFNPCRankUp", function()
+
+	local metropoliceData = file.Read("data/of_npcp/metropolice_ranks.json", "GAME")
+	local combineData = file.Read("data/of_npcp/combine_ranks.json", "GAME")
+	if metropoliceData then
+		metropoliceRanks = util.JSONToTable(metropoliceData).ranks
+	end
+	if combineData then
+		combineRanks = util.JSONToTable(combineData).ranks
+	end
+
     local ent = net.ReadEntity()
     local identity = net.ReadTable()
+    local rankname = ""
+    local rankimage = ""
+
+    if identity.type == "metropolice" then
+        local rank = metropoliceRanks["i" .. identity.rank]
+        rankimage = "ofnpcp/rankicons/rank_".. identity.rank .. ".tga"
+        rankname = L(rank)
+    else
+        local rank = combineRanks["i" .. identity.rank]
+        rankimage = "ofnpcp/rankicons/rank_".. identity.rank .. ".tga"
+        rankname = L(rank)
+    end
 
     -- 创建一个文本标签来显示晋级信息
-    local levelUpText = "晋级到 " .. identity.rank .. " 级！"
+    local levelUpText1 = "晋级"
+    local levelUpText2 = rankname
     local textDuration = 2  -- 持续时间为2秒
     local startTime = CurTime()  -- 记录开始时间
 
@@ -18,7 +41,17 @@ net.Receive("OFNPCRankUp", function()
         alpha = 255 * (1 - (elapsed / textDuration) ^ 2)
         
         local screenPos = pos:ToScreen()  -- 将世界坐标转换为屏幕坐标
-        draw.SimpleText(levelUpText, "ofgui_big", screenPos.x, screenPos.y, Color(255, 255, 255, alpha), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+
+        -- 绘制等级图片
+        local rankImagePath = rankimage  -- 使用等级图片路径
+        surface.SetMaterial(Material(rankImagePath))  -- 设置图片材质
+        surface.SetDrawColor(255, 255, 255, alpha)  -- 设置图片透明度
+        local imageSize = 64  -- 图片大小（根据需要调整）
+        surface.DrawTexturedRect(screenPos.x - imageSize / 2, screenPos.y - 50, imageSize, imageSize)  -- 绘制图片
+
+        -- 绘制文本
+        draw.SimpleText(levelUpText1, "ofgui_big", screenPos.x, screenPos.y, Color(255, 255, 255, alpha), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+        draw.SimpleText(levelUpText2, "ofgui_big", screenPos.x, screenPos.y + 30, Color(255, 255, 255, alpha), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
     end
 
     -- 在HUD中绘制文本
