@@ -20,9 +20,6 @@ net.Receive("OFNPCRankUp", function()
         cam.End3D2D()
     end
 
-    -- 玩家打出相同的文字
-    LocalPlayer():ChatPrint(levelUpText)
-
     -- 在HUD中绘制文本
     hook.Add("PostDrawOpaqueRenderables", "DrawLevelUpText", function()
         DrawLevelUpText()

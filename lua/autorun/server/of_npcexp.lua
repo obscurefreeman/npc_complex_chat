@@ -31,6 +31,7 @@ hook.Add("OnNPCKilled", "NPCRankUp", function(victim, attacker, inflictor)
                 if identity.exp >= nextLevelExp then
                     identity.rank = identity.rank + 1
                     identity.exp = identity.exp - nextLevelExp
+                    leveledUp = true  -- 标记为升级
                     
                     -- 广播更新后的身份信息给所有客户端
                     net.Start("NPCIdentityUpdate")

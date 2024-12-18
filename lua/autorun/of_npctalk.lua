@@ -88,7 +88,7 @@ if CLIENT then
                 if victimIdentity and victimIdentity.name then
                     translatedText = translatedText:gsub("/victim/", L(victimIdentity.name))
                 elseif list.Get("NPC")[target:GetClass()] and list.Get("NPC")[target:GetClass()].Name then
-                    local victimgamename = list.Get("NPC")[target:GetClass()].Name
+                    local victimgamename = language. GetPhrase(list.Get("NPC")[target:GetClass()].Name)
 
                     translatedText = translatedText:gsub("/victim/", victimgamename)
                 else
