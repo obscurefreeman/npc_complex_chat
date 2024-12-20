@@ -27,31 +27,39 @@ if CLIENT then
 
         -- 创建菜单
         local frame = vgui.Create("DFrame")
-        frame:SetTitle("选择对话")
-        frame:SetSize(300, 200)
-        frame:Center()
+        frame:SetSize(600 * OFGUI.ScreenScale, 200 * OFGUI.ScreenScale)
+        frame:SetPos(ScrW() / 2 - 300 * OFGUI.ScreenScale, ScrH() - 220 * OFGUI.ScreenScale)
+        frame:SetDraggable(false)
         frame:MakePopup()
+        frame:ShowCloseButton(false)
 
-        local list = vgui.Create("DListView", frame)
-        list:Dock(FILL)
-        list:AddColumn("对话选项")
+        -- 创建ScrollPanel
+        local scrollPanel = vgui.Create("OFScrollPanel", frame)
+        scrollPanel:Dock(FILL)
 
         for _, option in ipairs(playerTalkOptions) do
             local npcs = GetAllNPCsList()
             local npcIdentity = npcs[npc:EntIndex()]
             local translatedOption = L(option):gsub("/name/", L(npcIdentity.name))
-            list:AddLine(translatedOption)
-        end
 
-        -- 处理对话选项选择
-        list.OnRowSelected = function(_, _, line)
-            local selectedOption = line:GetValue(1)
-            -- 发送选定的对话选项到服务器
-            net.Start("NPCDialogOptionSelected")
-            net.WriteEntity(npc)
-            net.WriteString(selectedOption)
-            net.SendToServer()
-            frame:Close()
+            -- 创建按钮并添加到ScrollPanel
+            local button = vgui.Create("OFChatButton", scrollPanel)
+            button:SetChatText(translatedOption)
+            button:Dock(TOP)
+            button:DockMargin(0, 5, 0, 0) -- 添加按钮之间的间距
+            button:SetIcon("ofnpcp/chaticons/chat.png")
+            button:SetHoveredColor(Color(100, 255, 100))
+            button:SetTall(50 * OFGUI.ScreenScale) -- 设置按钮的高度
+
+            -- 处理按钮点击事件
+            button.DoClick = function()
+                -- 发送选定的对话选项到服务器
+                net.Start("NPCDialogOptionSelected")
+                net.WriteEntity(npc)
+                net.WriteString(option)
+                net.SendToServer()
+                frame:Close()
+            end
         end
     end)
 
