@@ -1,0 +1,23 @@
+{
+    "makefriend": [
+        "playerchat.makefriend.1",
+        "playerchat.makefriend.2",
+        "playerchat.makefriend.3",
+        "playerchat.makefriend.4",
+        "playerchat.makefriend.5"
+    ],
+    "trade": [
+        "playerchat.trade.1",
+        "playerchat.trade.2",
+        "playerchat.trade.3",
+        "playerchat.trade.4",
+        "playerchat.trade.5"
+    ],
+    "leave": [
+        "playerchat.leave.1",
+        "playerchat.leave.2",
+        "playerchat.leave.3",
+        "playerchat.leave.4",
+        "playerchat.leave.5"
+    ]
+} 

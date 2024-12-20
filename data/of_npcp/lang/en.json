@@ -446,5 +446,28 @@
         "adventurer": "Adventurer",
         "online_fishing": "Online Fishing",
         "i_am_not_a_cheater": "I am not a cheater"
+    },
+    "playerchat": {
+        "makefriend": {
+            "1": "Hello, /name/! Nice to meet you!",
+            "2": "/name/, can we be friends?",
+            "3": "I like you, /name/!",
+            "4": "What do you like, /name/?",
+            "5": "Let's go on an adventure together, /name/!"
+        },
+        "trade": {
+            "1": "Do you want to trade?",
+            "2": "Your goods are very nice, /name/!",
+            "3": "Are there any goods for sale, /name/?",
+            "4": "I need to buy your stuff, /name/.",
+            "5": "Trade is a win-win, /name/!"
+        },
+        "leave": {
+            "1": "Goodbye, /name/! Hope to see you soon!",
+            "2": "Good luck to you, /name/!",
+            "3": "See you next time, /name/!",
+            "4": "Take care, /name/!",
+            "5": "Looking forward to your return, /name/!"
+        }
     }
 } 

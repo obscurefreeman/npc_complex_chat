@@ -2,6 +2,9 @@ local playerCooldowns = {}
 local PLAYER_COOLDOWN = 0.5
 local npcCooldowns = {}
 
+util.AddNetworkString("OpenNPCDialogMenu")
+util.AddNetworkString("NPCDialogOptionSelected")
+
 hook.Add("PlayerUse", "NPCTalkGreeting", function(ply, ent)
     -- 检查玩家冷却时间
     local steamID = ply:SteamID()
@@ -41,6 +44,10 @@ hook.Add("PlayerUse", "NPCTalkGreeting", function(ply, ent)
         local randomGreeting = greetings[math.random(#greetings)]
         NPCTalkManager:StartDialog(ent, randomGreeting, "greeting", ply)
     end
+    
+    net.Start("OpenNPCDialogMenu")
+    net.WriteEntity(ent)
+    net.Send(ply)
 end)
 
 -- 清理冷却时间数据
