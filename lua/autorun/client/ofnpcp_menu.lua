@@ -284,7 +284,7 @@ local function AddOFFrame()
 end
 
 list.Set("DesktopWindows", "ofnpcp", {
-    title = "NPC 性格",
+    title = "Gmod Legend",
     icon = "oftoollogo/ofnpcplogo.png",
     init = function()
         AddOFFrame()
