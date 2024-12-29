@@ -26,12 +26,10 @@ if CLIENT then
         end
 
         -- 创建菜单
-        local frame = vgui.Create("DFrame")
-        frame:SetSize(600 * OFGUI.ScreenScale, 200 * OFGUI.ScreenScale)
-        frame:SetPos(ScrW() / 2 - 300 * OFGUI.ScreenScale, ScrH() - 220 * OFGUI.ScreenScale)
-        frame:SetDraggable(false)
-        frame:MakePopup()
-        frame:ShowCloseButton(false)
+        local frame = vgui.Create("OFFrame")
+        frame:SetSize(800 * OFGUI.ScreenScale, 300 * OFGUI.ScreenScale)
+        frame:SetPos(ScrW() / 2 - 400 * OFGUI.ScreenScale, ScrH() - 400 * OFGUI.ScreenScale)
+        -- frame:SetDraggable(false)
 
         -- 创建ScrollPanel
         local scrollPanel = vgui.Create("OFScrollPanel", frame)
@@ -46,7 +44,7 @@ if CLIENT then
             local button = vgui.Create("OFChatButton", scrollPanel)
             button:SetChatText(translatedOption)
             button:Dock(TOP)
-            button:DockMargin(0, 5, 0, 0) -- 添加按钮之间的间距
+            button:DockMargin(4, 4, 4, 4) -- 添加按钮之间的间距
             button:SetIcon("ofnpcp/chaticons/chat.png")
             button:SetHoveredColor(Color(100, 255, 100))
             button:SetTall(50 * OFGUI.ScreenScale) -- 设置按钮的高度
