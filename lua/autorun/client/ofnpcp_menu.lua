@@ -1,5 +1,7 @@
 AddCSLuaFile()
 
+local frame  -- 添加一个变量来跟踪打开的菜单
+
 local function RefreshNPCButtons(left_panel, right_panel)
 	local metropoliceData = file.Read("data/of_npcp/metropolice_ranks.json", "GAME")
 	local combineData = file.Read("data/of_npcp/combine_ranks.json", "GAME")
@@ -235,7 +237,11 @@ local function RefreshNPCButtons(left_panel, right_panel)
 end
 
 local function AddOFFrame()
-	local frame = vgui.Create("OFFrame")
+	if IsValid(frame) then  -- 检查是否已经有一个打开的菜单
+		frame:Close()  -- 关闭已打开的菜单
+	end
+
+	frame = vgui.Create("OFFrame")  -- 创建新的菜单
 	frame:SetTitle("NPC性格控制")
 
 	local sheet = vgui.Create("OFPropertySheet", frame)
