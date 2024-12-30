@@ -4,7 +4,7 @@
             "worker": "工人",
             "technician": "技术员",
             "medic": "医务人员",
-            "researcher": "研究人员",
+            "researcher": "研究员",
             "artist": "艺术家",
             "scholar": "文员",
             "athlete": "运动员"
@@ -115,6 +115,14 @@
             "cyclist": "自行车运动员",
             "wrestler": "摔跤运动员"
         }
+    },
+    "factions": {
+        "bandit": "强盗",
+        "militia": "民兵",
+        "mercenary": "佣兵",
+        "rebel": "叛军",
+        "guild": "公会",
+        "cult": "邪教"
     },
     "metrocop": {
         "rank": {

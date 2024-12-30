@@ -116,6 +116,14 @@
             "wrestler": "Wrestler"
         }
     },
+    "factions": {
+        "bandit": "Bandit",
+        "militia": "Militia",
+        "mercenary": "Mercenary",
+        "rebel": "Rebel",
+        "guild": "Guild",
+        "cult": "Cult"
+    },
     "metrocop": {
         "rank": {
             "trainee": "Trainee Officer",

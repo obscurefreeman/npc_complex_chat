@@ -112,9 +112,6 @@ if SERVER then
             if string.find(identity.model, "group03m") then
                 identity.job = "citizen.job.medic"
                 identity.type = "medic"
-                identity.rank = math.random(1, 39)
-                identity.exp = 0
-                identity.exp_per_rank = CalculateExpNeeded(identity.rank)
             else
                 identity.job = citizenJobs[math.random(#citizenJobs)].job
                 identity.type = "citizen"  -- 默认类型
@@ -124,11 +121,12 @@ if SERVER then
                     identity.type = "refugee"
                 elseif string.find(identity.model, "group03") then
                     identity.type = "rebel"
-                    identity.rank = math.random(1, 39)
-                    identity.exp = 0
-                    identity.exp_per_rank = CalculateExpNeeded(identity.rank)
                 end
             end
+
+            identity.rank = math.random(1, 39)
+            identity.exp = 0
+            identity.exp_per_rank = CalculateExpNeeded(identity.rank)
 
             if string.find(identity.model, "female") then
                 identity.gender = "female"
@@ -149,13 +147,15 @@ if SERVER then
             end
         elseif npcInfo == "npc_metropolice" then
             identity.type = "metropolice"
-            identity.rank = math.random(1, 5)
+            identity.rank = math.random(1, 39)
+            identity.job = citizenJobs[math.random(#citizenJobs)].job
             identity.exp = 0
             identity.exp_per_rank = CalculateExpNeeded(identity.rank)
             identity.name = maleNames[math.random(#maleNames)]
         elseif npcInfo == "npc_combine_s" then
             identity.type = "combine"
             identity.rank = math.random(1, 39)
+            identity.job = citizenJobs[math.random(#citizenJobs)].job
             identity.exp = 0
             identity.exp_per_rank = CalculateExpNeeded(identity.rank)
             identity.name = maleNames[math.random(#maleNames)]

@@ -31,15 +31,9 @@ local function RefreshNPCButtons(left_panel, right_panel)
 		-- 设置描述文字
 		local description = ""
 		if npcData.rank then
-			if npcData.type == "metropolice" then
-				local rank = metropoliceRanks["i" .. npcData.rank]
-				button:SetBadge("ofnpcp/rankicons/rank_".. npcData.rank .. ".tga")
-				description = L(rank)
-			else
-				local rank = combineRanks["i" .. npcData.rank]
-				button:SetBadge("ofnpcp/rankicons/rank_".. npcData.rank .. ".tga")
-				description = L(rank)
-			end
+			local rank = combineRanks["i" .. npcData.rank]
+			button:SetBadge("ofnpcp/rankicons/rank_".. npcData.rank .. ".tga")
+			description = L(rank)
 		elseif npcData.job then
 			description = L(npcData.job)
 			if npcData.specialization then

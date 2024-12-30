@@ -113,5 +113,13 @@
                 "athlete.spec.wrestler"
             ]
         }
+    ],
+    "factions":[
+        "factions.bandit",
+        "factions.militia",
+        "factions.mercenary",
+        "factions.rebel",
+        "factions.guild",
+        "factions.cult"
     ]
 } 
