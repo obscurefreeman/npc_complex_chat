@@ -300,34 +300,34 @@
     },
     "kill": {
         "citizen": {
-            "1": "Another one!",
-            "2": "I defeated you!",
-            "3": "The enemy has fallen!"
+            "1": "/victim/, another one!",
+            "2": "I defeated you, /victim/!",
+            "3": "It seems /victim/ isn't doing well today..."
         },
         "refugee": {
-            "1": "Another one!",
-            "2": "I defeated you!",
-            "3": "The enemy has fallen!"
+            "1": "It seems someone has to collect /victim/'s body.",
+            "2": "/map/ has another corpse, farewell, /victim/.",
+            "3": "Haha, /victim/, you should be careful next time!"
         },
         "rebel": {
-            "1": "Another one!",
-            "2": "I defeated you!",
-            "3": "The enemy has fallen!"
+            "1": "I won't show mercy, /victim/!",
+            "2": "This blow is specially prepared for /victim/!",
+            "3": "It seems you're only good at talking, /victim/."
         },
         "medic": {
-            "1": "Another one!",
-            "2": "I defeated you!",
-            "3": "The enemy has fallen!"
+            "1": "I wanted to save you, /victim/, but you were too reckless.",
+            "2": "You shouldn't have come here, /victim/.",
+            "3": "Diagnosis: you're dead, /victim/!"
         },
         "metrocop": {
-            "1": "Another traitor has been eliminated.",
-            "2": "This is the price of rebellion.",
-            "3": "Maintain order."
+            "1": "You shouldn't have resisted, /victim/.",
+            "2": "/victim/ has been taken down.",
+            "3": "Suspect down."
         },
         "combine": {
-            "1": "Patrol area is normal.",
-            "2": "Stay alert.",
-            "3": "Continue monitoring."
+            "1": "Farewell, /victim/.",
+            "2": "Is this all your strength, /victim/?",
+            "3": "This is the consequence of opposing the Combine, /victim/."
         }
     },
     "death": {

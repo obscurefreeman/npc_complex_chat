@@ -138,5 +138,37 @@
             "death.combine.2",
             "death.combine.3"
         ]
+    },
+    "attack": {
+        "citizen": [
+            "attack.citizen.1",
+            "attack.citizen.2",
+            "attack.citizen.3"
+        ],
+        "refugee": [
+            "attack.refugee.1",
+            "attack.refugee.2",
+            "attack.refugee.3"
+        ],
+        "rebel": [
+            "attack.rebel.1",
+            "attack.rebel.2",
+            "attack.rebel.3"
+        ],
+        "medic": [
+            "attack.medic.1",
+            "attack.medic.2",
+            "attack.medic.3"
+        ],
+        "metropolice": [
+            "attack.metrocop.1",
+            "attack.metrocop.2",
+            "attack.metrocop.3"
+        ],
+        "combine": [
+            "attack.combine.1",
+            "attack.combine.2",
+            "attack.combine.3"
+        ]
     }
 } 
