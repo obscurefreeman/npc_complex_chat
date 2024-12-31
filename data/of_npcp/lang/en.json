@@ -298,6 +298,38 @@
             "3": "Continue monitoring."
         }
     },
+    "attack": {
+        "citizen": {
+            "1": "Run fast!",
+            "2": "We're under attack!",
+            "3": "Protect yourself!"
+        },
+        "refugee": {
+            "1": "Find cover quickly!",
+            "2": "Suppress them!",
+            "3": "Take the bullet, /victim/!"
+        },
+        "rebel": {
+            "1": "Taste this, /victim/!",
+            "2": "Fight for freedom!",
+            "3": "/victim/ is here!"
+        },
+        "medic": {
+            "1": "I need support!",
+            "2": "Keep your distance!",
+            "3": "Do something!"
+        },
+        "metrocop": {
+            "1": "Catch /victim/!",
+            "2": "Don't let /victim/ escape!",
+            "3": "Do you want to test the law?"
+        },
+        "combine": {
+            "1": "Fire!",
+            "2": "We'll find you, /victim/.",
+            "3": "Drop your weapon!"
+        }
+    },
     "kill": {
         "citizen": {
             "1": "/victim/, another one!",

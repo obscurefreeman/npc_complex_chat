@@ -82,17 +82,24 @@ if CLIENT then
                 return 
             end
 
-            if dialogtype == "kill" and IsValid(target) then
-                local npcs = GetAllNPCsList()
-                local victimIdentity = npcs[target:EntIndex()]
-                if victimIdentity and victimIdentity.name then
-                    translatedText = translatedText:gsub("/victim/", L(victimIdentity.name))
-                elseif list.Get("NPC")[target:GetClass()] and list.Get("NPC")[target:GetClass()].Name then
-                    local victimgamename = language. GetPhrase(list.Get("NPC")[target:GetClass()].Name)
-
-                    translatedText = translatedText:gsub("/victim/", victimgamename)
+            if (dialogtype == "kill" or dialogtype == "attack") and IsValid(target) then
+                if target:IsPlayer() then
+                    local playerNick = target:Nick()
+                    if playerNick then
+                        translatedText = translatedText:gsub("/victim/", playerNick)
+                    end
                 else
-                    return
+                    local npcs = GetAllNPCsList()
+                    local victimIdentity = npcs[target:EntIndex()]
+                    if victimIdentity and victimIdentity.name then
+                        translatedText = translatedText:gsub("/victim/", L(victimIdentity.name))
+                    elseif list.Get("NPC")[target:GetClass()] and list.Get("NPC")[target:GetClass()].Name then
+                        local victimgamename = language. GetPhrase(list.Get("NPC")[target:GetClass()].Name)
+
+                        translatedText = translatedText:gsub("/victim/", victimgamename)
+                    else
+                        return
+                    end
                 end
             elseif dialogtype == "greeting" and IsValid(target) then
                 local playerNick = target:Nick()
