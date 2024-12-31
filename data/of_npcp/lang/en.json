@@ -7,7 +7,8 @@
             "researcher": "Researcher",
             "artist": "Artist",
             "scholar": "Scholar",
-            "athlete": "Athlete"
+            "athlete": "Athlete",
+            "foodie": "Foodie"
         }
     },
     "worker": {
@@ -114,6 +115,13 @@
             "gymnast": "Gymnast",
             "cyclist": "Cyclist",
             "wrestler": "Wrestler"
+        }
+    },
+    "foodie": {
+        "spec": {
+            "chef": "Chef",
+            "baker": "Baker",
+            "pastry_chef": "Pastry Chef"
         }
     },
     "factions": {
@@ -409,7 +417,9 @@
             "creativity": "Creative Inspiration",
             "creativitydesc": "Full of creativity, increases team damage by 30%. Death Note: Adds a random item to an ally's hand.",
             "strength": "Physical Prowess",
-            "strengthdesc": "Physically strong, restores health equal to the damage taken after 3 seconds. Death Note: Adds 'Weak Trait' to the killer's and a random ally's hand."
+            "strengthdesc": "Physically strong, restores health equal to the damage taken after 3 seconds. Death Note: Adds 'Weak Trait' to the killer's and a random ally's hand.",
+            "gluttonous": "Feast of Gluttony",
+            "gluttonousdesc": "Team health increased by 30%."
         },
         "trade": {
             "merchant": "Shrewd Merchant",

@@ -6,8 +6,9 @@
             "medic": "医务人员",
             "researcher": "研究员",
             "artist": "艺术家",
-            "scholar": "文员",
-            "athlete": "运动员"
+            "scholar": "学者",
+            "athlete": "运动员",
+            "foodie": "美食家"
         }
     },
     "worker": {
@@ -114,6 +115,13 @@
             "gymnast": "体操运动员",
             "cyclist": "自行车运动员",
             "wrestler": "摔跤运动员"
+        }
+    },
+    "foodie": {
+        "spec": {
+            "chef": "厨师",
+            "baker": "面包师",
+            "pastry_chef": "糕点师"
         }
     },
     "factions": {
@@ -409,7 +417,9 @@
             "creativity": "艺术灵感",
             "creativitydesc": "富有创造力，团队伤害提升30%。亡计：将一张随机道具加入队友手牌。",
             "strength": "强健体魄",
-            "strengthdesc": "体格强健，受到多少伤害就在3秒后回复多少血量。亡计：在击杀者和随机队友手牌中加入“虚弱体质”。"
+            "strengthdesc": "体格强健，受到多少伤害就在3秒后回复多少血量。亡计：在击杀者和随机队友手牌中加入“虚弱体质”。",
+            "gluttonous": "饕餮盛宴",
+            "gluttonousdesc": "团队生命值提升30%。"
         },
         "trade": {
             "merchant": "精明商人",

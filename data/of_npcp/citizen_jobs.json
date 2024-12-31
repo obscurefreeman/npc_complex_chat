@@ -112,6 +112,14 @@
                 "athlete.spec.cyclist",
                 "athlete.spec.wrestler"
             ]
+        },
+        {
+            "job": "citizen.job.foodie",
+            "specializations": [
+                "foodie.spec.chef",
+                "foodie.spec.baker",
+                "foodie.spec.pastry_chef"
+            ]
         }
     ],
     "factions":[

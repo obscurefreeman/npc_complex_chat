@@ -27,6 +27,10 @@
         "citizen.job.athlete": {
             "id": "tag.ability.strength",
             "desc": "tag.ability.strengthdesc"
+        },
+        "citizen.job.foodie": {
+            "id": "tag.ability.gluttonous",
+            "desc": "tag.ability.gluttonousdesc"
         }
     },
     "tag_trade": [
