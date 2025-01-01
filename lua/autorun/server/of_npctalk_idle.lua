@@ -1,4 +1,4 @@
-local IDLE_CHECK_INTERVAL = 10
+local IDLE_CHECK_INTERVAL = math.random(5, 15)
 local TALK_DISTANCE = 500
 
 -- 定时检查空闲NPC
@@ -71,6 +71,7 @@ timer.Create("NPCIdleTalkCheck", IDLE_CHECK_INTERVAL, 0, function()
         if idlePhrases and #idlePhrases > 0 then
             local randomIdlePhrase = idlePhrases[math.random(#idlePhrases)]
             NPCTalkManager:StartDialog(npc, randomIdlePhrase, "idle", ply)
+            break -- 只处理一个NPC后退出循环
         end
     end
 end)
