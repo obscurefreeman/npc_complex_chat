@@ -1,7 +1,5 @@
-local IDLE_CHECK_INTERVAL = 30       -- 空闲检查间隔增加到30秒
-local IDLE_TALK_CHANCE = 10         -- 降低空闲说话几率到10%
-local TALK_DISTANCE = 500           -- 玩家必须在500单位距离内才会触发对话
-local MAX_TALKS_PER_CHECK = 2       -- 每次检查最多允许多少个NPC说话
+local IDLE_CHECK_INTERVAL = 10
+local TALK_DISTANCE = 500
 
 -- 定时检查空闲NPC
 timer.Create("NPCIdleTalkCheck", IDLE_CHECK_INTERVAL, 0, function()
@@ -23,14 +21,7 @@ timer.Create("NPCIdleTalkCheck", IDLE_CHECK_INTERVAL, 0, function()
     -- 随机打乱NPC列表顺序
     table.Shuffle(validNPCs)
     
-    local talksThisCheck = 0
-    
     for _, npc in ipairs(validNPCs) do
-        -- 限制每次检查最多触发的对话数量
-        if talksThisCheck >= MAX_TALKS_PER_CHECK then break end
-        
-        -- 随机判断是否说话
-        if math.random(1, 100) > IDLE_TALK_CHANCE then continue end
         
         -- 检查是否正在对话
         if NPCTalkManager:IsNPCTalking(npc) then continue end
@@ -79,8 +70,7 @@ timer.Create("NPCIdleTalkCheck", IDLE_CHECK_INTERVAL, 0, function()
         -- 如果成功获取空闲对话，随机选择一个
         if idlePhrases and #idlePhrases > 0 then
             local randomIdlePhrase = idlePhrases[math.random(#idlePhrases)]
-            NPCTalkManager:StartDialog(npc, randomIdlePhrase)
-            talksThisCheck = talksThisCheck + 1
+            NPCTalkManager:StartDialog(npc, randomIdlePhrase, "idle", ply)
         end
     end
 end)
