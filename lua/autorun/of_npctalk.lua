@@ -127,6 +127,12 @@ if CLIENT then
                 nextCharTime = CurTime(),
                 charIndex = 0
             }
+            Subtitles_Create({
+                npc = 233,
+                text =  translatedText,
+                npccol = Color(25,25,255,255), 
+                textcol = Color(255,255,255,255)
+            },tbl)
             
             table.insert(activeDialogs, dialog)
         end
