@@ -308,66 +308,88 @@
     },
     "attack": {
         "citizen": {
-            "1": "Run fast!",
+            "1": "Run!",
             "2": "We're under attack!",
-            "3": "Protect yourself!"
+            "3": "Protect yourself!",
+            "4": "Damn it.",
+            "5": "Someone's shooting!"
         },
         "refugee": {
-            "1": "Find cover quickly!",
+            "1": "Find cover!",
             "2": "Suppress them!",
-            "3": "Take the bullet, /victim/!"
+            "3": "Take a bullet, /victim/!",
+            "4": "Did you see that?",
+            "5": "You dare to come, /victim/?"
         },
         "rebel": {
             "1": "Taste this, /victim/!",
-            "2": "Fight for freedom!",
-            "3": "/victim/ is here!"
+            "2": "Fire!",
+            "3": "I see you, /victim/! You're here!",
+            "4": "I see them!",
+            "5": "We've encountered enemies!"
         },
         "medic": {
             "1": "I need support!",
             "2": "Keep your distance!",
-            "3": "Do something!"
+            "3": "Do something!",
+            "4": "Do you want to get a few more holes, /victim/?",
+            "5": "I've been wanting to kill you on /map/ for a long time, /victim/."
         },
         "metrocop": {
             "1": "Catch /victim/!",
             "2": "Don't let /victim/ escape!",
-            "3": "Do you want to test the law?"
+            "3": "Do you want to test the law?",
+            "4": "There's a situation at /map/.",
+            "5": "Don't move, I'm going to shoot."
         },
         "combine": {
-            "1": "Fire!",
-            "2": "We'll find you, /victim/.",
-            "3": "Drop your weapon!"
+            "1": "Open fire!",
+            "2": "I found you, /victim/.",
+            "3": "Put down your weapon!",
+            "4": "Drop your weapon!",
+            "5": "We're under attack."
         }
     },
     "kill": {
         "citizen": {
             "1": "/victim/, another one!",
             "2": "I defeated you, /victim/!",
-            "3": "It seems /victim/ isn't doing well today..."
+            "3": "Looks like /victim/ isn't doing well today~",
+            "4": "That's it!",
+            "5": "Haha, I got him!"
         },
         "refugee": {
-            "1": "It seems someone has to collect /victim/'s body.",
+            "1": "Looks like someone's got to collect /victim/'s body.",
             "2": "/map/ has another corpse, farewell, /victim/.",
             "3": "Haha, /victim/, you should be careful next time!"
         },
         "rebel": {
             "1": "I won't show mercy, /victim/!",
-            "2": "This blow is specially prepared for /victim/!",
-            "3": "It seems you're only good at talking, /victim/."
+            "2": "This hit is specially prepared for /victim/!",
+            "3": "Looks like you're just good at talking, /victim/."
         },
         "medic": {
-            "1": "I wanted to save you, /victim/, but you were too reckless.",
+            "1": "/victim/, you're too reckless.",
             "2": "You shouldn't have come here, /victim/.",
             "3": "Diagnosis: you're dead, /victim/!"
         },
         "metrocop": {
             "1": "You shouldn't have resisted, /victim/.",
             "2": "/victim/ has been taken down.",
-            "3": "Suspect down."
+            "3": "Suspect down.",
+            "4": "He's down.",
+            "5": "Effortless victory",
+            "6": "There's no more /victim/ business here.",
+            "7": "Looks like /victim/ can avoid prison."
         },
         "combine": {
             "1": "Farewell, /victim/.",
             "2": "Is this all your strength, /victim/?",
-            "3": "This is the consequence of opposing the Combine, /victim/."
+            "3": "This is the consequence of opposing the Combine, /victim/.",
+            "4": "Your resistance is futile, /victim/!",
+            "5": "Run, run!",
+            "6": "The Combine salutes you.",
+            "7": "Is this all you've got, /victim/?"
         }
     },
     "death": {

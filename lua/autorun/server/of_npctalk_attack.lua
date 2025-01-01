@@ -19,6 +19,7 @@ hook.Add("Think", "NPCTalkAttack", function()
                     if attackPhrases and #attackPhrases > 0 then
                         if math.random() <= 0.3 then
                             timer.Simple(math.random() * 1.5, function()  -- 随机延迟0到1.5秒
+                                if not IsValid(target) then return end  -- 检查目标是否有效且存活
                                 local randomAttackPhrase = attackPhrases[math.random(#attackPhrases)]
                                 NPCTalkManager:StartDialog(npc, randomAttackPhrase, "attack", target)
                             end)

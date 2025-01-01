@@ -79,7 +79,9 @@
         "citizen": [
             "kill.citizen.1",
             "kill.citizen.2",
-            "kill.citizen.3"
+            "kill.citizen.3",
+            "kill.citizen.4",
+            "kill.citizen.5"
         ],
         "refugee": [
             "kill.refugee.1",
@@ -99,12 +101,20 @@
         "metropolice": [
             "kill.metrocop.1",
             "kill.metrocop.2",
-            "kill.metrocop.3"
+            "kill.metrocop.3",
+            "kill.metrocop.4",
+            "kill.metrocop.5",
+            "kill.metrocop.6",
+            "kill.metrocop.7"
         ],
         "combine": [
             "kill.combine.1",
             "kill.combine.2",
-            "kill.combine.3"
+            "kill.combine.3",
+            "kill.combine.4",
+            "kill.combine.5",
+            "kill.combine.6",
+            "kill.combine.7"
         ]
     },
     "death": {
@@ -143,32 +153,44 @@
         "citizen": [
             "attack.citizen.1",
             "attack.citizen.2",
-            "attack.citizen.3"
+            "attack.citizen.3",
+            "attack.citizen.4",
+            "attack.citizen.5"
         ],
         "refugee": [
             "attack.refugee.1",
             "attack.refugee.2",
-            "attack.refugee.3"
+            "attack.refugee.3",
+            "attack.refugee.4",
+            "attack.refugee.5"
         ],
         "rebel": [
             "attack.rebel.1",
             "attack.rebel.2",
-            "attack.rebel.3"
+            "attack.rebel.3",
+            "attack.rebel.4",
+            "attack.rebel.5"
         ],
         "medic": [
             "attack.medic.1",
             "attack.medic.2",
-            "attack.medic.3"
+            "attack.medic.3",
+            "attack.medic.4",
+            "attack.medic.5"
         ],
         "metropolice": [
             "attack.metrocop.1",
             "attack.metrocop.2",
-            "attack.metrocop.3"
+            "attack.metrocop.3",
+            "attack.metrocop.4",
+            "attack.metrocop.5"
         ],
         "combine": [
             "attack.combine.1",
             "attack.combine.2",
-            "attack.combine.3"
+            "attack.combine.3",
+            "attack.combine.4",
+            "attack.combine.5"
         ]
     }
 } 
