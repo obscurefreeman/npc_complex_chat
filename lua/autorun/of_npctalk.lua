@@ -76,6 +76,10 @@ if CLIENT then
         local target = net.ReadEntity()
         
         if IsValid(npc) then
+
+            local npcs = GetAllNPCsList()
+            local npcIdentity = npcs[npc:EntIndex()]
+
             -- 获取翻译后的文本
             local translatedText = L(dialogKey)
             if not translatedText then 
@@ -89,7 +93,6 @@ if CLIENT then
                         translatedText = translatedText:gsub("/victim/", playerNick)
                     end
                 else
-                    local npcs = GetAllNPCsList()
                     local victimIdentity = npcs[target:EntIndex()]
                     if victimIdentity and victimIdentity.name then
                         translatedText = translatedText:gsub("/victim/", L(victimIdentity.name))
@@ -128,7 +131,7 @@ if CLIENT then
                 charIndex = 0
             }
             Subtitles_Create({
-                npc = 233,
+                npc = L(npcIdentity.name),
                 text =  translatedText,
                 npccol = Color(25,25,255,255), 
                 textcol = Color(255,255,255,255)
