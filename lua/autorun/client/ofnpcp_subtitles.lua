@@ -57,12 +57,12 @@ hook.Add("HUDPaint", "Subtitles_Hud", function()
 		-- 设置字体并获取文本宽度和高度
 		surface.SetFont("ofgui_medium")
 		local textw, texth = surface.GetTextSize(tostring(tbl.text))
-		local textw2, texth2 = surface.GetTextSize(tostring(tbl.npc) .. " ")
+		local textw2, texth2 = surface.GetTextSize(tostring(tbl.npc) .. ": ")
 
 		-- 绘制阴影效果
 		surface.SetTextColor(Color(0, 0, 0, 150)) -- 设置阴影颜色
 		surface.SetTextPos(w / 2 - (textw + textw2) / 2 + 1 * OFGUI.ScreenScale, h / 1.1 + derp - k * textheight + 1 * OFGUI.ScreenScale) -- 调整位置
-		surface.DrawText(oursubject .. " ")
+		surface.DrawText(oursubject .. ": ")
 		
 		surface.SetTextColor(Color(0, 0, 0, 150)) -- 设置阴影颜色
 		surface.SetTextPos(w / 2 - (textw + textw2) / 2 + textw2 + 1 * OFGUI.ScreenScale, h / 1.1 + derp - k * textheight + 1 * OFGUI.ScreenScale) -- 调整位置
@@ -72,7 +72,7 @@ hook.Add("HUDPaint", "Subtitles_Hud", function()
 		local textColor = tbl.npccol or Color(255, 255, 255)  -- 如果 tbl.npccol 无效，则使用白色
 		surface.SetTextColor(textColor)
 		surface.SetTextPos(w / 2 - (textw + textw2) / 2, h / 1.1 + derp - k * textheight)
-		surface.DrawText(oursubject .. " ")
+		surface.DrawText(oursubject .. ": ")
 
 		surface.SetTextColor(Color(255, 255, 255, 255))
 		surface.SetTextPos(w / 2 - (textw + textw2) / 2 + textw2, h / 1.1 + derp - k * textheight)

@@ -79,6 +79,7 @@ if CLIENT then
 
             local npcs = GetAllNPCsList()
             local npcIdentity = npcs[npc:EntIndex()]
+            local npcName = L(npcIdentity.name)
 
             -- 获取翻译后的文本
             local translatedText = L(dialogKey)
@@ -130,13 +131,15 @@ if CLIENT then
                 nextCharTime = CurTime(),
                 charIndex = 0
             }
+            
+            table.insert(activeDialogs, dialog)
+
             Subtitles_Create({
-                npc = L(npcIdentity.name),
+                npc = npcName,
                 text =  translatedText,
                 npccol = npcIdentity.color
             },tbl)
-            
-            table.insert(activeDialogs, dialog)
+
         end
     end)
     
