@@ -1,21 +1,18 @@
-﻿-- 字幕表
-Subtitles_Table = {}
-
-local Subtitles_CurTable = {}
+﻿local activeSubtitles = {}
 
 -- 创建字幕
-function Subtitles_Create(tbl2)
-	for _, v in pairs(Subtitles_CurTable) do
-		if v.text == tbl2.text then return end
+function Subtitles_Create(subtitletable)
+	for _, v in pairs(activeSubtitles) do
+		if v.text == subtitletable.text then return end
 	end
 	
-	if table.Count(Subtitles_CurTable) < 15 then
-		table.insert(Subtitles_CurTable, tbl2)
+	if table.Count(activeSubtitles) < 15 then
+		table.insert(activeSubtitles, subtitletable)
 		timer.Simple(5, function()
-			table.RemoveByValue(Subtitles_CurTable, tbl2)
+			table.RemoveByValue(activeSubtitles, subtitletable)
 		end)
 	else
-		table.remove(Subtitles_CurTable, 15)
+		table.remove(activeSubtitles, 15)
 	end
 end
 
@@ -27,10 +24,10 @@ hook.Add("HUDPaint", "Subtitles_Hud", function()
 	local derp = -40 * OFGUI.ScreenScale
 	local spacing
 	
-	for k, tbl in pairs(table.Reverse(Subtitles_CurTable)) do
+	for k, tbl in pairs(table.Reverse(activeSubtitles)) do
 		k = k - 1
-		local oursubject = tostring(tbl.npc)
-		local ourtext = tostring(tbl.text)
+		local subtitleSubject = tostring(tbl.npc)
+		local subtitleText = tostring(tbl.text)
 		local textheight = 35
 		local newline = ""
 		
@@ -39,10 +36,10 @@ hook.Add("HUDPaint", "Subtitles_Hud", function()
 		end
 		
 		-- 支持换行
-		if ourtext:find("\n") then
-			for k, v in pairs(string.Split(ourtext, "\n")) do
+		if subtitleText:find("\n") then
+			for k, v in pairs(string.Split(subtitleText, "\n")) do
 				if k == 1 then
-					ourtext = v
+					subtitleText = v
 				elseif k == 2 then
 					newline = v
 					spacing = 1
@@ -62,21 +59,21 @@ hook.Add("HUDPaint", "Subtitles_Hud", function()
 		-- 绘制阴影效果
 		surface.SetTextColor(Color(0, 0, 0, 150)) -- 设置阴影颜色
 		surface.SetTextPos(w / 2 - (textw + textw2) / 2 + 1 * OFGUI.ScreenScale, h / 1.1 + derp - k * textheight + 1 * OFGUI.ScreenScale) -- 调整位置
-		surface.DrawText(oursubject .. ": ")
+		surface.DrawText(subtitleSubject .. ": ")
 		
 		surface.SetTextColor(Color(0, 0, 0, 150)) -- 设置阴影颜色
 		surface.SetTextPos(w / 2 - (textw + textw2) / 2 + textw2 + 1 * OFGUI.ScreenScale, h / 1.1 + derp - k * textheight + 1 * OFGUI.ScreenScale) -- 调整位置
-		surface.DrawText(ourtext)
+		surface.DrawText(subtitleText)
 
 		-- 绘制实际文本
-		local textColor = tbl.npccol or Color(255, 255, 255)  -- 如果 tbl.npccol 无效，则使用白色
+		local textColor = tbl.color or Color(255, 255, 255)  -- 如果 tbl.color 无效，则使用白色
 		surface.SetTextColor(textColor)
 		surface.SetTextPos(w / 2 - (textw + textw2) / 2, h / 1.1 + derp - k * textheight)
-		surface.DrawText(oursubject .. ": ")
+		surface.DrawText(subtitleSubject .. ": ")
 
 		surface.SetTextColor(Color(255, 255, 255, 255))
 		surface.SetTextPos(w / 2 - (textw + textw2) / 2 + textw2, h / 1.1 + derp - k * textheight)
-		surface.DrawText(ourtext)
+		surface.DrawText(subtitleText)
 
 		-- 处理换行
 		if newline then

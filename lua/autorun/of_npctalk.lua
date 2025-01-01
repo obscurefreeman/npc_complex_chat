@@ -134,11 +134,13 @@ if CLIENT then
             
             table.insert(activeDialogs, dialog)
 
-            Subtitles_Create({
+            local dialogsubtitle = {
                 npc = npcName,
                 text =  translatedText,
-                npccol = npcIdentity.color
-            },tbl)
+                color = npcIdentity.color
+            }
+
+            Subtitles_Create(dialogsubtitle)
 
         end
     end)
