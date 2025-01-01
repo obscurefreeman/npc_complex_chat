@@ -66,7 +66,8 @@ hook.Add("HUDPaint", "Subtitles_Hud", function()
 		surface.DrawText(ourtext)
 
 		-- 绘制实际文本
-		surface.SetTextColor(tbl.npccol)
+		local textColor = tbl.npccol or Color(255, 255, 255)  -- 如果 tbl.npccol 无效，则使用白色
+		surface.SetTextColor(textColor)
 		surface.SetTextPos(w/2 - (textw + textw2)/2, h/1.1 + derp - k*textheight) 
 		surface.DrawText(oursubject.." ")
 

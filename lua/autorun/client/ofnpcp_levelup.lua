@@ -15,7 +15,7 @@ net.Receive("OFNPCRankUp", function()
     local rankimage = ""
 
     if identity.type == "metropolice" then
-        local rank = metropoliceRanks["i" .. identity.rank]
+        local rank = combineRanks["i" .. identity.rank]
         rankimage = "ofnpcp/rankicons/rank_".. identity.rank .. ".tga"
         rankname = L(rank)
     else

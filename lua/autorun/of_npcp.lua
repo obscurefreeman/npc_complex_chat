@@ -112,15 +112,19 @@ if SERVER then
             if string.find(identity.model, "group03m") then
                 identity.job = "citizen.job.medic"
                 identity.type = "medic"
+                identity.color = Color(245, 78, 162)
             else
                 identity.job = citizenJobs[math.random(#citizenJobs)].job
                 identity.type = "citizen"  -- 默认类型
                 if string.find(identity.model, "group01") then
                     identity.type = "citizen"
+                    identity.color = Color(1, 205, 200)
                 elseif string.find(identity.model, "group02") then
                     identity.type = "refugee"
+                    identity.color = Color(255, 204, 0)
                 elseif string.find(identity.model, "group03") then
                     identity.type = "rebel"
+                    identity.color = Color(255, 141, 23)
                 end
             end
 
@@ -152,6 +156,7 @@ if SERVER then
             identity.exp = 0
             identity.exp_per_rank = CalculateExpNeeded(identity.rank)
             identity.name = maleNames[math.random(#maleNames)]
+            identity.color = Color(135, 223, 214)
         elseif npcInfo == "npc_combine_s" then
             identity.type = "combine"
             identity.rank = math.random(1, 39)
@@ -159,6 +164,7 @@ if SERVER then
             identity.exp = 0
             identity.exp_per_rank = CalculateExpNeeded(identity.rank)
             identity.name = maleNames[math.random(#maleNames)]
+            identity.color = Color(0, 149, 223)
         else
             identity.type = "other"
             identity.name = maleNames[math.random(#maleNames)]
@@ -199,7 +205,11 @@ if SERVER then
         -- 在控制台打印NPC信息
         print("\n=== 新NPC生成 ===")
         for key, value in pairs(identity) do
-            print(key .. ": " .. value)
+            if type(value) == "string" then
+                print(key .. ": " .. value)
+            else
+                print(key .. ": " .. tostring(value))  -- 确保将非字符串值转换为字符串
+            end
         end
         print("================")
     end

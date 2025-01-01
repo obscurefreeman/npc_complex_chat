@@ -133,8 +133,7 @@ if CLIENT then
             Subtitles_Create({
                 npc = L(npcIdentity.name),
                 text =  translatedText,
-                npccol = Color(25,25,255,255), 
-                textcol = Color(255,255,255,255)
+                npccol = npcIdentity.color
             },tbl)
             
             table.insert(activeDialogs, dialog)
