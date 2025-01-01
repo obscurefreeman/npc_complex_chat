@@ -430,11 +430,11 @@
             "deceiverdesc": "The quality and effects of sold products may not match reality.",
             "quality": "Quality Guarantee",
             "qualitydesc": "High-quality products, but likely overpriced.",
-            "bargainer": "Bargainer",
+            "bargainer": "Horse-Trading",
             "bargainerdesc": "All products randomly marked up, but a non-legendary quality item is randomly gifted upon purchase.",
             "affordable": "Cost-Effective",
             "affordabledesc": "Discounts on sold items increase, but legendary items cannot be sold.",
-            "greedy": "Greedy Merchant",
+            "greedy": "Blinded by Greed",
             "greedydesc": "All markups displayed as discounts, and hidden extra fees must be paid when purchasing items."
         },
         "social": {

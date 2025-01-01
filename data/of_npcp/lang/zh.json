@@ -422,23 +422,23 @@
             "gluttonousdesc": "团队生命值提升30%。"
         },
         "trade": {
-            "merchant": "精明商人",
+            "merchant": "商业头脑",
             "merchantdesc": "如果商品溢价，则隐藏溢价信息。如果商品有折扣，则夸大折扣数值。",
             "honest": "童叟无欺",
             "honestdesc": "诚实可靠，商品质量有保证。",
-            "deceiver": "两面三刀",
+            "deceiver": "诳时惑众",
             "deceiverdesc": "售卖商品的品质和效果可能与实际不符。",
-            "quality": "货真价实",
+            "quality": "如假包换",
             "qualitydesc": "商品质量上乘，但大概率会溢价。",
             "bargainer": "讨价还价",
             "bargainerdesc": "所有商品随机溢价，但购买时随机赠送一个非传奇品质商品。",
             "affordable": "物美价廉",
             "affordabledesc": "售卖物品的折扣增加，但是无法出售传奇物品。",
-            "greedy": "奸商本色",
+            "greedy": "利欲熏心",
             "greedydesc": "所有溢价显示为折扣，当你购买商品时，需要强制支付隐藏的额外费用。"
         },
         "social": {
-            "chivalrous": "侠客风范",
+            "chivalrous": "义薄云天",
             "chivalrousdesc": "一旦触发正面或负面状态就无法解除。",
             "fake": "虚情假意",
             "fakedesc": "隐藏所有对话，下回合揭示上一回合的对话。",
