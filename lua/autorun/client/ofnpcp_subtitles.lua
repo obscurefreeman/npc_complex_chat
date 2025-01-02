@@ -1,19 +1,36 @@
 ﻿local activeSubtitles = {}
 
 -- 创建字幕
-function Subtitles_Create(subtitletable)
+function CreateNPCDialogSubtitles(npc, text)
+	local npcs = GetAllNPCsList()
+	local npcIdentity = npcs[npc:EntIndex()]
+
+	-- 这里不知道为什么npcIdentity报错，加个限制
+	if not npcIdentity then return end
+
+	local npcname = L(npcIdentity.name)
+	local npcnickname = L(npcIdentity.nickname)
+
+	-- 创建新的对话
+	local dialog = {
+		npcname = npcname,
+		npcnickname = npcnickname,
+		text = text,
+		color = npcIdentity.color
+	}
+
 	for _, v in pairs(activeSubtitles) do
-		if v.text == subtitletable.text then return end
+		if v.text == dialog.text then return end
 	end
 	
 	if table.Count(activeSubtitles) >= 3 then
 		table.remove(activeSubtitles, 1)
 	end
 	
-	table.insert(activeSubtitles, subtitletable)
+	table.insert(activeSubtitles, dialog)
 	timer.Simple(5, function()
 		for i, v in ipairs(activeSubtitles) do
-			if v == subtitletable then
+			if v == dialog then
 				table.remove(activeSubtitles, i)
 				break
 			end
@@ -22,7 +39,7 @@ function Subtitles_Create(subtitletable)
 end
 
 -- HUD绘制钩子
-hook.Add("HUDPaint", "Subtitles_Hud", function()
+hook.Add("HUDPaint", "DrawNPCDialogSubtitles", function()
 	local w = ScrW()
 	local h = ScrH()
 	
@@ -31,7 +48,7 @@ hook.Add("HUDPaint", "Subtitles_Hud", function()
 	
 	-- 修改为从上到下绘制字幕
 	for k, tbl in ipairs(activeSubtitles) do
-		local subtitleSubject = tostring(tbl.npc)
+		local subtitleName = tostring(tbl.npcname) .. " “" .. tostring(tbl.npcnickname) .. "” " .. ": "
 		local subtitleText = tostring(tbl.text)
 		local textheight = 35
 		local newline = ""
@@ -59,12 +76,12 @@ hook.Add("HUDPaint", "Subtitles_Hud", function()
 		-- 设置字体并获取文本宽度和高度
 		surface.SetFont("ofgui_medium")
 		local textw, texth = surface.GetTextSize(tostring(tbl.text))
-		local textw2, texth2 = surface.GetTextSize(tostring(tbl.npc) .. ": ")
+		local textw2, texth2 = surface.GetTextSize(subtitleName)
 
 		-- 绘制阴影效果
 		surface.SetTextColor(Color(0, 0, 0, 150)) -- 设置阴影颜色
 		surface.SetTextPos(w / 2 - (textw + textw2) / 2 + 1 * OFGUI.ScreenScale, h / 1.1 + derp + (k - 1) * textheight + 1 * OFGUI.ScreenScale) -- 调整位置
-		surface.DrawText(subtitleSubject .. ": ")
+		surface.DrawText(subtitleName)
 		
 		surface.SetTextColor(Color(0, 0, 0, 150)) -- 设置阴影颜色
 		surface.SetTextPos(w / 2 - (textw + textw2) / 2 + textw2 + 1 * OFGUI.ScreenScale, h / 1.1 + derp + (k - 1) * textheight + 1 * OFGUI.ScreenScale) -- 调整位置
@@ -74,7 +91,7 @@ hook.Add("HUDPaint", "Subtitles_Hud", function()
 		local textColor = tbl.color or Color(255, 255, 255)  -- 如果 tbl.color 无效，则使用白色
 		surface.SetTextColor(textColor)
 		surface.SetTextPos(w / 2 - (textw + textw2) / 2, h / 1.1 + derp + (k - 1) * textheight)
-		surface.DrawText(subtitleSubject .. ": ")
+		surface.DrawText(subtitleName)
 
 		surface.SetTextColor(Color(255, 255, 255, 255))
 		
