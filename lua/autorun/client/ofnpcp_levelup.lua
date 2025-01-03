@@ -1,28 +1,14 @@
 net.Receive("OFNPCRankUp", function()
 
-	local metropoliceData = file.Read("data/of_npcp/metropolice_ranks.json", "GAME")
-	local combineData = file.Read("data/of_npcp/combine_ranks.json", "GAME")
-	if metropoliceData then
-		metropoliceRanks = util.JSONToTable(metropoliceData).ranks
-	end
-	if combineData then
-		combineRanks = util.JSONToTable(combineData).ranks
-	end
-
     local ent = net.ReadEntity()
     local identity = net.ReadTable()
     local rankname = ""
     local rankimage = ""
 
-    if identity.type == "metropolice" then
-        local rank = combineRanks["i" .. identity.rank]
-        rankimage = "ofnpcp/rankicons/rank_".. identity.rank .. ".tga"
-        rankname = L(rank)
-    else
-        local rank = combineRanks["i" .. identity.rank]
-        rankimage = "ofnpcp/rankicons/rank_".. identity.rank .. ".tga"
-        rankname = L(rank)
-    end
+
+    local rank = GLOBAL_OFNPC_DATA.rankData["i" .. identity.rank]
+    rankimage = "ofnpcp/rankicons/rank_".. identity.rank .. ".tga"
+    rankname = L(rank)
 
     -- 创建一个文本标签来显示晋级信息
     local levelUpText = rankname

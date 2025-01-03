@@ -3,14 +3,6 @@ AddCSLuaFile()
 local frame  -- 添加一个变量来跟踪打开的菜单
 
 local function RefreshNPCButtons(left_panel, right_panel)
-	local metropoliceData = file.Read("data/of_npcp/metropolice_ranks.json", "GAME")
-	local combineData = file.Read("data/of_npcp/combine_ranks.json", "GAME")
-	if metropoliceData then
-		metropoliceRanks = util.JSONToTable(metropoliceData).ranks
-	end
-	if combineData then
-		combineRanks = util.JSONToTable(combineData).ranks
-	end
 
 	-- 清除现有按钮
 	left_panel:Clear()
@@ -31,7 +23,7 @@ local function RefreshNPCButtons(left_panel, right_panel)
 		-- 设置描述文字
 		local description = ""
 		if npcData.rank then
-			local rank = combineRanks["i" .. npcData.rank]
+			local rank = GLOBAL_OFNPC_DATA.rankData["i" .. npcData.rank]
 			button:SetBadge("ofnpcp/rankicons/rank_".. npcData.rank .. ".tga")
 			description = L(rank)
 		elseif npcData.job then

@@ -1,16 +1,6 @@
 if SERVER then
     -- 将 OFNPCS 设置为全局变量
     OFNPCS = {}
-    
-    -- 在文件开头添加必要的变量
-    local citizenJobs = {}
-    local metropoliceRanks = {}
-    local combineRanks = {}
-    local jobSpecializations = {}
-    local maleNames = {}
-    local femaleNames = {}
-    local tagData = {}
-    local nicknames = {}
 
     -- 添加网络字符串
     util.AddNetworkString("NPCIdentityUpdate")
@@ -19,81 +9,7 @@ if SERVER then
     util.AddNetworkString("SubmitNPCComment")
     util.AddNetworkString("OFNPCRankUp")
 
-    -- 加载JSON文件
-    local function LoadNPCData()
-        local citizenData = file.Read("data/of_npcp/citizen_jobs.json", "GAME")
 
-        if citizenData then
-            local success, data = pcall(util.JSONToTable, citizenData)
-            if success and data then
-                citizenJobs = data.jobs
-            else
-                print("【晦涩弗里曼】解析 citizen_jobs.json 时出错。")
-            end
-        else
-            print("【晦涩弗里曼】无法加载 citizen_jobs.json。")
-        end
-
-        -- 加载职业细分
-        for _, job in ipairs(citizenJobs) do
-            local jobName = job.job
-            jobSpecializations[jobName] = job.specializations
-        end
-
-        -- 加载名字数据
-        local maleNamesData = file.Read("data/of_npcp/name_male.json", "GAME")
-        local femaleNamesData = file.Read("data/of_npcp/name_female.json", "GAME")
-
-        if maleNamesData then
-            local success, data = pcall(util.JSONToTable, maleNamesData)
-            if success and data then
-                maleNames = data.names
-            else
-                print("【晦涩弗里曼】解析 name_male.json 时出错。")
-            end
-        end
-
-        if femaleNamesData then
-            local success, data = pcall(util.JSONToTable, femaleNamesData)
-            if success and data then
-                femaleNames = data.names
-            else
-                print("【晦涩弗里曼】解析 name_female.json 时出错。")
-            end
-        end
-
-        -- 加载tag数据
-        local tagJsonData = file.Read("data/of_npcp/tags.json", "GAME")
-        if tagJsonData then
-            local success, data = pcall(util.JSONToTable, tagJsonData)
-            if success and data then
-                tagData = data
-            else
-                print("【晦涩弗里曼】解析 tags.json 时出错。")
-            end
-        end
-    end
-
-    -- 在服务器启动时加载数据
-    hook.Add("Initialize", "LoadNPCData", LoadNPCData)
-
-    -- 加载绰号数据
-    local function LoadNicknameData()
-        local nicknameData = file.Read("data/of_npcp/citizen_nickname.json", "GAME")
-        if nicknameData then
-            local success, data = pcall(util.JSONToTable, nicknameData)
-            if success and data then
-                nicknames = data.nicknames
-            else
-                print("【晦涩弗里曼】解析 citizen_nickname.json 时出错。")
-            end
-        else
-            print("【晦涩弗里曼】无法加载 citizen_nickname.json。")
-        end
-    end
-
-    -- 在服务器启动时加载绰号数据
-    hook.Add("Initialize", "LoadNicknameData", LoadNicknameData)
 
     -- 修改AssignNPCIdentity函数，添加绰号分配
     function AssignNPCIdentity(ent, npcInfo)
@@ -101,7 +17,7 @@ if SERVER then
 
         identity.info = npcInfo
         identity.model = ent:GetModel()
-        identity.nickname = nicknames[math.random(#nicknames)]
+        identity.nickname = GLOBAL_OFNPC_DATA.nicknames[math.random(#GLOBAL_OFNPC_DATA.nicknames)]
         
         local gamename = list.Get( "NPC" )[identity.info] and list.Get( "NPC" )[identity.info].Name
         if gamename then
@@ -114,7 +30,7 @@ if SERVER then
                 identity.type = "medic"
                 identity.color = Color(245, 78, 162)
             else
-                identity.job = citizenJobs[math.random(#citizenJobs)].job
+                identity.job = GLOBAL_OFNPC_DATA.citizenJobs[math.random(#GLOBAL_OFNPC_DATA.citizenJobs)].job
                 identity.type = "citizen"  -- 默认类型
                 if string.find(identity.model, "group01") then
                     identity.type = "citizen"
@@ -137,6 +53,14 @@ if SERVER then
             elseif string.find(identity.model, "male") then
                 identity.gender = "male"
             end
+
+            local jobSpecializations = {}
+
+            -- 加载职业细分
+            for _, job in ipairs(GLOBAL_OFNPC_DATA.citizenJobs) do
+                local jobName = job.job
+                jobSpecializations[jobName] = job.specializations
+            end
             
             if jobSpecializations[identity.job] then
                 local specs = jobSpecializations[identity.job]
@@ -145,50 +69,50 @@ if SERVER then
 
             -- 根据性别分配名字
             if identity.gender == "female" then
-                identity.name = femaleNames[math.random(#femaleNames)]
+                identity.name = GLOBAL_OFNPC_DATA.femaleNames[math.random(#GLOBAL_OFNPC_DATA.femaleNames)]
             else
-                identity.name = maleNames[math.random(#maleNames)]
+                identity.name = GLOBAL_OFNPC_DATA.maleNames[math.random(#GLOBAL_OFNPC_DATA.maleNames)]
             end
         elseif npcInfo == "npc_metropolice" then
             identity.type = "metropolice"
             identity.rank = math.random(1, 39)
-            identity.job = citizenJobs[math.random(#citizenJobs)].job
+            identity.job = GLOBAL_OFNPC_DATA.citizenJobs[math.random(#GLOBAL_OFNPC_DATA.citizenJobs)].job
             identity.exp = 0
             identity.exp_per_rank = CalculateExpNeeded(identity.rank)
-            identity.name = maleNames[math.random(#maleNames)]
+            identity.name = GLOBAL_OFNPC_DATA.maleNames[math.random(#GLOBAL_OFNPC_DATA.maleNames)]
             identity.color = Color(135, 223, 214)
         elseif npcInfo == "npc_combine_s" then
             identity.type = "combine"
             identity.rank = math.random(1, 39)
-            identity.job = citizenJobs[math.random(#citizenJobs)].job
+            identity.job = GLOBAL_OFNPC_DATA.citizenJobs[math.random(#GLOBAL_OFNPC_DATA.citizenJobs)].job
             identity.exp = 0
             identity.exp_per_rank = CalculateExpNeeded(identity.rank)
-            identity.name = maleNames[math.random(#maleNames)]
+            identity.name = GLOBAL_OFNPC_DATA.maleNames[math.random(#GLOBAL_OFNPC_DATA.maleNames)]
             identity.color = Color(0, 149, 223)
         else
             identity.type = "other"
-            identity.name = maleNames[math.random(#maleNames)]
+            identity.name = GLOBAL_OFNPC_DATA.maleNames[math.random(#GLOBAL_OFNPC_DATA.maleNames)]
         end
 
         -- 在分配完基本信息后添加tag分配
         if identity.job then
             -- 分配能力tag
-            if tagData.tag_ability[identity.job] then
-                local abilityTag = tagData.tag_ability[identity.job]
+            if GLOBAL_OFNPC_DATA.tagData.tag_ability[identity.job] then
+                local abilityTag = GLOBAL_OFNPC_DATA.tagData.tag_ability[identity.job]
                 identity.tag_ability = abilityTag.id
                 identity.tag_ability_desc = abilityTag.desc
             end
         end
         
         -- 分配交易和社交tag
-        if tagData.tag_trade and #tagData.tag_trade > 0 then
-            local tradeTag = tagData.tag_trade[math.random(#tagData.tag_trade)]
+        if GLOBAL_OFNPC_DATA.tagData.tag_trade and #GLOBAL_OFNPC_DATA.tagData.tag_trade > 0 then
+            local tradeTag = GLOBAL_OFNPC_DATA.tagData.tag_trade[math.random(#GLOBAL_OFNPC_DATA.tagData.tag_trade)]
             identity.tag_trade = tradeTag.id
             identity.tag_trade_desc = tradeTag.desc
         end
         
-        if tagData.tag_social and #tagData.tag_social > 0 then
-            local socialTag = tagData.tag_social[math.random(#tagData.tag_social)]
+        if GLOBAL_OFNPC_DATA.tagData.tag_social and #GLOBAL_OFNPC_DATA.tagData.tag_social > 0 then
+            local socialTag = GLOBAL_OFNPC_DATA.tagData.tag_social[math.random(#GLOBAL_OFNPC_DATA.tagData.tag_social)]
             identity.tag_social = socialTag.id
             identity.tag_social_desc = socialTag.desc
         end
