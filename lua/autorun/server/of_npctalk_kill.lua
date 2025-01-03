@@ -10,16 +10,7 @@ hook.Add("OnNPCKilled", "NPCTalkKill", function(victim, attacker, inflictor)
     if not identity then return end
     
     -- 从JSON文件获取击杀语音
-    local killPhrases
-    if identity.type then
-        local dialogData = file.Read("data/of_npcp/citizen_talk.json", "GAME")
-        if dialogData then
-            local success, data = pcall(util.JSONToTable, dialogData)
-            if success and data then
-                killPhrases = data.kill[identity.type]
-            end
-        end
-    end
+    local killPhrases = GLOBAL_OFNPC_DATA.npcTalks.kill[identity.type]
     
     -- 如果成功获取击杀语音，随机选择一个
     if killPhrases and #killPhrases > 0 then

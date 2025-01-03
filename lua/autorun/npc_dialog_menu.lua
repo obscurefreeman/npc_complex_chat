@@ -9,18 +9,14 @@ if CLIENT then
             "leave"
         }
 
-        -- 从JSON文件获取对话文本
-        local playerTalkData = file.Read("data/of_npcp/player_talk.json", "GAME")
+        -- 从全局变量获取对话文本
         local playerTalkOptions = {}
-        if playerTalkData then
-            local success, data = pcall(util.JSONToTable, playerTalkData)
-            if success and data then
-                for _, option in ipairs(dialogOptions) do
-                    local phrases = data[option]
-                    if phrases then
-                        local randomPhrase = phrases[math.random(#phrases)]
-                        table.insert(playerTalkOptions, randomPhrase)
-                    end
+        if GLOBAL_OFNPC_DATA.playerTalks then
+            for _, option in ipairs(dialogOptions) do
+                local phrases = GLOBAL_OFNPC_DATA.playerTalks[option]
+                if phrases then
+                    local randomPhrase = phrases[math.random(#phrases)]
+                    table.insert(playerTalkOptions, randomPhrase)
                 end
             end
         end

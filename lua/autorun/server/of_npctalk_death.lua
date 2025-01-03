@@ -6,14 +6,7 @@ local function ShowDeathDialog(npc)
     if not identity then return end
 
     -- 从JSON文件获取死亡对话
-    local deathPhrases
-    local dialogData = file.Read("data/of_npcp/citizen_talk.json", "GAME")
-    if dialogData then
-        local success, data = pcall(util.JSONToTable, dialogData)
-        if success and data then
-            deathPhrases = data.death[identity.type]
-        end
-    end
+    local deathPhrases = GLOBAL_OFNPC_DATA.npcTalks.death[identity.type]
 
     -- 如果成功获取死亡对话，随机选择一个
     if deathPhrases and #deathPhrases > 0 then

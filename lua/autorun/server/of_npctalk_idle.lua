@@ -56,16 +56,7 @@ timer.Create("NPCIdleTalkCheck", IDLE_CHECK_INTERVAL, 0, function()
         local identity = OFNPCS[npc:EntIndex()]
         
         -- 从JSON文件获取空闲对话
-        local idlePhrases
-        if identity.type then
-            local dialogData = file.Read("data/of_npcp/citizen_talk.json", "GAME")
-            if dialogData then
-                local success, data = pcall(util.JSONToTable, dialogData)
-                if success and data then
-                    idlePhrases = data.idle[identity.type]
-                end
-            end
-        end
+        local idlePhrases = GLOBAL_OFNPC_DATA.npcTalks.idle[identity.type]
         
         -- 如果成功获取空闲对话，随机选择一个
         if idlePhrases and #idlePhrases > 0 then

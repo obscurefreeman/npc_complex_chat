@@ -7,14 +7,7 @@ hook.Add("Think", "NPCTalkAttack", function()
                 -- 如果目标从无到有，触发对话
                 local identity = OFNPCS and OFNPCS[npc:EntIndex()]
                 if identity then
-                    local attackPhrases
-                    local dialogData = file.Read("data/of_npcp/citizen_talk.json", "GAME")
-                    if dialogData then
-                        local success, data = pcall(util.JSONToTable, dialogData)
-                        if success and data then
-                            attackPhrases = data.attack[identity.type]
-                        end
-                    end
+                    local attackPhrases = GLOBAL_OFNPC_DATA.npcTalks.attack[identity.type]
 
                     if attackPhrases and #attackPhrases > 0 then
                         if math.random() <= 0.3 then

@@ -28,16 +28,7 @@ hook.Add("PlayerUse", "NPCTalkGreeting", function(ply, ent)
     if not identity then return end
     
     -- 从JSON文件获取问候语
-    local greetings
-    if identity.type then
-        local greetingsData = file.Read("data/of_npcp/citizen_talk.json", "GAME")
-        if greetingsData then
-            local success, data = pcall(util.JSONToTable, greetingsData)
-            if success and data then
-                greetings = data.greetings[identity.type]
-            end
-        end
-    end
+    local greetings = GLOBAL_OFNPC_DATA.npcTalks.greetings[identity.type]
     
     -- 如果成功获取问候语，随机选择一个
     if greetings and #greetings > 0 then
