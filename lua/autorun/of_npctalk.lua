@@ -162,7 +162,7 @@ if CLIENT then
                 dialog.currentText = utf8sub(dialog.text, 1, dialog.charIndex)
                 dialog.nextCharTime = currentTime + CHAR_DELAY
                 
-                dialog.npc:EmitSound("ofnpcp/type" .. math.random(1, 32) .. ".wav")
+                dialog.npc:EmitSound("ofnpcp/type/type" .. math.random(1, 32) .. ".wav")
             end
             
             -- 获取NPC的位置和角度
