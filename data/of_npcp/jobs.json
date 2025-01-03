@@ -1,5 +1,13 @@
 {
-    "jobs": [
+    "factions":[
+        "factions.bandit",
+        "factions.militia",
+        "factions.mercenary",
+        "factions.rebel",
+        "factions.guild",
+        "factions.cult"
+    ],
+    "citizen": [
         {
             "job": "citizen.job.worker",
             "specializations": [
@@ -121,13 +129,5 @@
                 "foodie.spec.pastry_chef"
             ]
         }
-    ],
-    "factions":[
-        "factions.bandit",
-        "factions.militia",
-        "factions.mercenary",
-        "factions.rebel",
-        "factions.guild",
-        "factions.cult"
     ]
 } 

@@ -17,7 +17,7 @@ if SERVER then
 
         identity.info = npcInfo
         identity.model = ent:GetModel()
-        identity.nickname = GLOBAL_OFNPC_DATA.nicknames[math.random(#GLOBAL_OFNPC_DATA.nicknames)]
+        identity.nickname = GLOBAL_OFNPC_DATA.names.nicknames[math.random(#GLOBAL_OFNPC_DATA.names.nicknames)]
         
         local gamename = list.Get( "NPC" )[identity.info] and list.Get( "NPC" )[identity.info].Name
         if gamename then
@@ -30,7 +30,7 @@ if SERVER then
                 identity.type = "medic"
                 identity.color = Color(245, 78, 162)
             else
-                identity.job = GLOBAL_OFNPC_DATA.citizenJobs[math.random(#GLOBAL_OFNPC_DATA.citizenJobs)].job
+                identity.job = GLOBAL_OFNPC_DATA.jobData.citizen[math.random(#GLOBAL_OFNPC_DATA.jobData.citizen)].job
                 identity.type = "citizen"  -- 默认类型
                 if string.find(identity.model, "group01") then
                     identity.type = "citizen"
@@ -57,7 +57,7 @@ if SERVER then
             local jobSpecializations = {}
 
             -- 加载职业细分
-            for _, job in ipairs(GLOBAL_OFNPC_DATA.citizenJobs) do
+            for _, job in ipairs(GLOBAL_OFNPC_DATA.jobData.citizen) do
                 local jobName = job.job
                 jobSpecializations[jobName] = job.specializations
             end
@@ -69,29 +69,29 @@ if SERVER then
 
             -- 根据性别分配名字
             if identity.gender == "female" then
-                identity.name = GLOBAL_OFNPC_DATA.femaleNames[math.random(#GLOBAL_OFNPC_DATA.femaleNames)]
+                identity.name = GLOBAL_OFNPC_DATA.names.female[math.random(#GLOBAL_OFNPC_DATA.names.female)]
             else
-                identity.name = GLOBAL_OFNPC_DATA.maleNames[math.random(#GLOBAL_OFNPC_DATA.maleNames)]
+                identity.name = GLOBAL_OFNPC_DATA.names.male[math.random(#GLOBAL_OFNPC_DATA.names.male)]
             end
         elseif npcInfo == "npc_metropolice" then
             identity.type = "metropolice"
             identity.rank = math.random(1, 39)
-            identity.job = GLOBAL_OFNPC_DATA.citizenJobs[math.random(#GLOBAL_OFNPC_DATA.citizenJobs)].job
+            identity.job = GLOBAL_OFNPC_DATA.jobData.citizen[math.random(#GLOBAL_OFNPC_DATA.jobData.citizen)].job
             identity.exp = 0
             identity.exp_per_rank = CalculateExpNeeded(identity.rank)
-            identity.name = GLOBAL_OFNPC_DATA.maleNames[math.random(#GLOBAL_OFNPC_DATA.maleNames)]
+            identity.name = GLOBAL_OFNPC_DATA.names.male[math.random(#GLOBAL_OFNPC_DATA.names.male)]
             identity.color = Color(135, 223, 214)
         elseif npcInfo == "npc_combine_s" then
             identity.type = "combine"
             identity.rank = math.random(1, 39)
-            identity.job = GLOBAL_OFNPC_DATA.citizenJobs[math.random(#GLOBAL_OFNPC_DATA.citizenJobs)].job
+            identity.job = GLOBAL_OFNPC_DATA.jobData.citizen[math.random(#GLOBAL_OFNPC_DATA.jobData.citizen)].job
             identity.exp = 0
             identity.exp_per_rank = CalculateExpNeeded(identity.rank)
-            identity.name = GLOBAL_OFNPC_DATA.maleNames[math.random(#GLOBAL_OFNPC_DATA.maleNames)]
+            identity.name = GLOBAL_OFNPC_DATA.names.male[math.random(#GLOBAL_OFNPC_DATA.names.male)]
             identity.color = Color(0, 149, 223)
         else
             identity.type = "other"
-            identity.name = GLOBAL_OFNPC_DATA.maleNames[math.random(#GLOBAL_OFNPC_DATA.maleNames)]
+            identity.name = GLOBAL_OFNPC_DATA.names.male[math.random(#GLOBAL_OFNPC_DATA.names.male)]
         end
 
         -- 在分配完基本信息后添加tag分配

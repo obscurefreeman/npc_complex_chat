@@ -6,7 +6,7 @@ net.Receive("OFNPCRankUp", function()
     local rankimage = ""
 
 
-    local rank = GLOBAL_OFNPC_DATA.rankData["i" .. identity.rank]
+    local rank = GLOBAL_OFNPC_DATA.rankData.ranks["i" .. identity.rank]
     rankimage = "ofnpcp/rankicons/rank_".. identity.rank .. ".tga"
     rankname = L(rank)
 

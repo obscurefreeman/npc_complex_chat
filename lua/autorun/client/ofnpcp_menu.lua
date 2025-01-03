@@ -23,7 +23,7 @@ local function RefreshNPCButtons(left_panel, right_panel)
 		-- 设置描述文字
 		local description = ""
 		if npcData.rank then
-			local rank = GLOBAL_OFNPC_DATA.rankData["i" .. npcData.rank]
+			local rank = GLOBAL_OFNPC_DATA.rankData.ranks["i" .. npcData.rank]
 			button:SetBadge("ofnpcp/rankicons/rank_".. npcData.rank .. ".tga")
 			description = L(rank)
 		elseif npcData.job then
