@@ -56,8 +56,6 @@
     
     <div class="buttons">
         <button onclick="importFiles()">导入现有文件</button>
-        <button onclick="addMaleName()">添加男性名字</button>
-        <button onclick="addFemaleName()">添加女性名字</button>
         <button onclick="exportFiles()">导出文件</button>
         <input type="file" multiple onchange="manualImport(this.files)" accept=".json" />
     </div>
@@ -66,11 +64,19 @@
         <div class="name-list">
             <h2>男性名字</h2>
             <div id="maleNames"></div>
+            <button onclick="addMaleName()">添加男性名字</button>
         </div>
         
         <div class="name-list">
             <h2>女性名字</h2>
             <div id="femaleNames"></div>
+            <button onclick="addFemaleName()">添加女性名字</button>
+        </div>
+
+        <div class="name-list">
+            <h2>昵称</h2>
+            <div id="nicknamesNames"></div>
+            <button onclick="addNickname()">添加昵称</button>
         </div>
     </div>
 
@@ -79,7 +85,8 @@
     <script>
         let nameData = {
             male: [],
-            female: []
+            female: [],
+            nicknames: []
         };
 
         function createNameEntry(gender, name = { en: '', zh: '' }) {
@@ -133,6 +140,11 @@
             createNameEntry('female');
         }
 
+        function addNickname() {
+            nameData.nicknames.push({ en: '', zh: '' });
+            createNameEntry('nicknames');
+        }
+
         async function importFiles() {
             try {
                 const nameResponse = await fetch('../data/of_npcp/name.json');
@@ -144,9 +156,10 @@
                 const enJson = await enResponse.json();
 
                 // 清空现有数据
-                nameData = { male: [], female: [] };
+                nameData = { male: [], female: [], nicknames: [] };
                 document.getElementById('maleNames').innerHTML = '';
                 document.getElementById('femaleNames').innerHTML = '';
+                document.getElementById('nicknamesNames').innerHTML = '';
 
                 // 导入数据
                 nameJson.male.forEach(key => {
@@ -169,6 +182,16 @@
                     createNameEntry('female', entry);
                 });
 
+                nameJson.nicknames.forEach(key => {
+                    const name = key.replace('nickname.', '');
+                    const entry = {
+                        en: enJson.nickname[name],
+                        zh: zhJson.nickname[name]
+                    };
+                    nameData.nicknames.push(entry);
+                    createNameEntry('nicknames', entry);
+                });
+
             } catch (error) {
                 alert('导入文件失败：' + error.message);
             }
@@ -178,12 +201,13 @@
             // 生成 name.json
             const nameJson = {
                 male: nameData.male.map(n => `name.male.${n.en}`),
-                female: nameData.female.map(n => `name.female.${n.en}`)
+                female: nameData.female.map(n => `name.female.${n.en}`),
+                nicknames: nameData.nicknames.map(n => `nickname.${formatNickname(n.en)}`)
             };
 
             // 生成本地化文件
-            const zhJson = { name: { male: {}, female: {} } };
-            const enJson = { name: { male: {}, female: {} } };
+            const zhJson = { name: { male: {}, female: {} }, nickname: {} };
+            const enJson = { name: { male: {}, female: {} }, nickname: {} };
 
             nameData.male.forEach(name => {
                 zhJson.name.male[name.en] = name.zh;
@@ -195,6 +219,12 @@
                 enJson.name.female[name.en] = name.en;
             });
 
+            nameData.nicknames.forEach(name => {
+                const formattedKey = formatNickname(name.en);
+                zhJson.nickname[formattedKey] = name.zh;
+                enJson.nickname[formattedKey] = name.en;
+            });
+
             // 显示导出结果
             const exportData = {
                 'name.json': nameJson,
@@ -204,6 +234,13 @@
 
             document.getElementById('exportArea').value = 
                 JSON.stringify(exportData, null, 2);
+        }
+
+        // 添加格式化昵称的辅助函数
+        function formatNickname(nickname) {
+            return nickname
+                .toLowerCase()
+                .replace(/\s+/g, '_');
         }
 
         async function manualImport(files) {
@@ -228,9 +265,10 @@
                 });
 
                 // 清空现有数据
-                nameData = { male: [], female: [] };
+                nameData = { male: [], female: [], nicknames: [] };
                 document.getElementById('maleNames').innerHTML = '';
                 document.getElementById('femaleNames').innerHTML = '';
+                document.getElementById('nicknamesNames').innerHTML = '';
 
                 // 导入数据
                 nameJson.male.forEach(key => {
@@ -251,6 +289,16 @@
                     };
                     nameData.female.push(entry);
                     createNameEntry('female', entry);
+                });
+
+                nameJson.nicknames.forEach(key => {
+                    const name = key.replace('nickname.', '');
+                    const entry = {
+                        en: enJson.nickname[name],
+                        zh: zhJson.nickname[name]
+                    };
+                    nameData.nicknames.push(entry);
+                    createNameEntry('nicknames', entry);
                 });
 
             } catch (error) {
