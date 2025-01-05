@@ -46,8 +46,35 @@
         }
         #exportArea {
             width: 100%;
-            height: 200px;
+            height: 400px;
             margin-top: 20px;
+        }
+        .file-list {
+            margin: 20px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .file-list ul {
+            list-style: none;
+            padding: 0;
+        }
+        .file-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 10px;
+            margin: 5px 0;
+            background: #f5f5f5;
+            border-radius: 3px;
+        }
+        .file-list .remove-btn {
+            background: #ff4444;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            padding: 2px 8px;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -55,9 +82,14 @@
     <h1>NPC 名字管理器</h1>
     
     <div class="buttons">
-        <button onclick="importFiles()">导入现有文件</button>
+        <input type="file" id="fileInput" multiple onchange="addToFileList(this.files)" accept=".json" />
+        <button onclick="startImport()">开始导入</button>
         <button onclick="exportFiles()">导出文件</button>
-        <input type="file" multiple onchange="manualImport(this.files)" accept=".json" />
+    </div>
+
+    <div id="fileList" class="file-list">
+        <h3>待导入文件列表：</h3>
+        <ul id="selectedFiles"></ul>
     </div>
 
     <div class="container">
@@ -145,108 +177,56 @@
             createNameEntry('nicknames');
         }
 
-        async function importFiles() {
-            try {
-                const nameResponse = await fetch('../data/of_npcp/name.json');
-                const zhResponse = await fetch('../data/of_npcp/lang/zh.json');
-                const enResponse = await fetch('../data/of_npcp/lang/en.json');
-                
-                const nameJson = await nameResponse.json();
-                const zhJson = await zhResponse.json();
-                const enJson = await enResponse.json();
+        let selectedFiles = [];
 
-                // 清空现有数据
-                nameData = { male: [], female: [], nicknames: [] };
-                document.getElementById('maleNames').innerHTML = '';
-                document.getElementById('femaleNames').innerHTML = '';
-                document.getElementById('nicknamesNames').innerHTML = '';
+        function addToFileList(files) {
+            const fileList = document.getElementById('selectedFiles');
+            
+            Array.from(files).forEach(file => {
+                // 检查文件是否已经在列表中
+                if (!selectedFiles.some(f => f.name === file.name)) {
+                    selectedFiles.push(file);
+                    
+                    const li = document.createElement('li');
+                    li.innerHTML = `
+                        ${file.name}
+                        <button class="remove-btn" onclick="removeFile('${file.name}')">×</button>
+                    `;
+                    fileList.appendChild(li);
+                }
+            });
+            
+            // 清空input，允许重复选择同一文件
+            document.getElementById('fileInput').value = '';
+        }
 
-                // 导入数据
-                nameJson.male.forEach(key => {
-                    const name = key.replace('name.male.', '');
-                    const entry = {
-                        en: enJson.name.male[name],
-                        zh: zhJson.name.male[name]
-                    };
-                    nameData.male.push(entry);
-                    createNameEntry('male', entry);
-                });
+        function removeFile(fileName) {
+            selectedFiles = selectedFiles.filter(file => file.name !== fileName);
+            updateFileList();
+        }
 
-                nameJson.female.forEach(key => {
-                    const name = key.replace('name.female.', '');
-                    const entry = {
-                        en: enJson.name.female[name],
-                        zh: zhJson.name.female[name]
-                    };
-                    nameData.female.push(entry);
-                    createNameEntry('female', entry);
-                });
+        function updateFileList() {
+            const fileList = document.getElementById('selectedFiles');
+            fileList.innerHTML = '';
+            selectedFiles.forEach(file => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    ${file.name}
+                    <button class="remove-btn" onclick="removeFile('${file.name}')">×</button>
+                `;
+                fileList.appendChild(li);
+            });
+        }
 
-                nameJson.nicknames.forEach(key => {
-                    const name = key.replace('nickname.', '');
-                    const entry = {
-                        en: enJson.nickname[name],
-                        zh: zhJson.nickname[name]
-                    };
-                    nameData.nicknames.push(entry);
-                    createNameEntry('nicknames', entry);
-                });
-
-            } catch (error) {
-                alert('导入文件失败：' + error.message);
+        async function startImport() {
+            if (selectedFiles.length === 0) {
+                alert('请先选择要导入的文件！');
+                return;
             }
-        }
 
-        function exportFiles() {
-            // 生成 name.json
-            const nameJson = {
-                male: nameData.male.map(n => `name.male.${n.en}`),
-                female: nameData.female.map(n => `name.female.${n.en}`),
-                nicknames: nameData.nicknames.map(n => `nickname.${formatNickname(n.en)}`)
-            };
-
-            // 生成本地化文件
-            const zhJson = { name: { male: {}, female: {} }, nickname: {} };
-            const enJson = { name: { male: {}, female: {} }, nickname: {} };
-
-            nameData.male.forEach(name => {
-                zhJson.name.male[name.en] = name.zh;
-                enJson.name.male[name.en] = name.en;
-            });
-
-            nameData.female.forEach(name => {
-                zhJson.name.female[name.en] = name.zh;
-                enJson.name.female[name.en] = name.en;
-            });
-
-            nameData.nicknames.forEach(name => {
-                const formattedKey = formatNickname(name.en);
-                zhJson.nickname[formattedKey] = name.zh;
-                enJson.nickname[formattedKey] = name.en;
-            });
-
-            // 显示导出结果
-            const exportData = {
-                'name.json': nameJson,
-                'zh.json': zhJson,
-                'en.json': enJson
-            };
-
-            document.getElementById('exportArea').value = 
-                JSON.stringify(exportData, null, 2);
-        }
-
-        // 添加格式化昵称的辅助函数
-        function formatNickname(nickname) {
-            return nickname
-                .toLowerCase()
-                .replace(/\s+/g, '_');
-        }
-
-        async function manualImport(files) {
             try {
                 const fileContents = await Promise.all(
-                    Array.from(files).map(file => file.text())
+                    selectedFiles.map(file => file.text())
                 );
                 
                 const filesData = fileContents.map(content => JSON.parse(content));
@@ -264,6 +244,10 @@
                     }
                 });
 
+                if (!nameJson || !zhJson || !enJson) {
+                    throw new Error('缺少必要的文件，请确保选择了name.json、zh.json和en.json');
+                }
+
                 // 清空现有数据
                 nameData = { male: [], female: [], nicknames: [] };
                 document.getElementById('maleNames').innerHTML = '';
@@ -301,9 +285,62 @@
                     createNameEntry('nicknames', entry);
                 });
 
+                // 清空文件列表
+                selectedFiles = [];
+                updateFileList();
+                alert('导入成功！');
+
             } catch (error) {
                 alert('导入文件失败：' + error.message);
             }
+        }
+
+        function exportFiles() {
+            // 生成 name.json
+            const nameJson = {
+                male: nameData.male.map(n => `name.male.${formatName(n.en)}`),
+                female: nameData.female.map(n => `name.female.${formatName(n.en)}`),
+                nicknames: nameData.nicknames.map(n => `nickname.${formatName(n.en)}`)
+            };
+
+            // 生成本地化文件
+            const zhJson = { name: { male: {}, female: {} }, nickname: {} };
+            const enJson = { name: { male: {}, female: {} }, nickname: {} };
+
+            nameData.male.forEach(name => {
+                const formattedKey = formatName(name.en);
+                zhJson.name.male[formattedKey] = name.zh;
+                enJson.name.male[formattedKey] = name.en;
+            });
+
+            nameData.female.forEach(name => {
+                const formattedKey = formatName(name.en);
+                zhJson.name.female[formattedKey] = name.zh;
+                enJson.name.female[formattedKey] = name.en;
+            });
+
+            nameData.nicknames.forEach(name => {
+                const formattedKey = formatName(name.en);
+                zhJson.nickname[formattedKey] = name.zh;
+                enJson.nickname[formattedKey] = name.en;
+            });
+
+            // 显示导出结果
+            const exportData = {
+                'name.json': nameJson,
+                'zh.json': zhJson,
+                'en.json': enJson
+            };
+
+            document.getElementById('exportArea').value = 
+                JSON.stringify(exportData, null, 2);
+        }
+
+        // 统一的名称格式化函数
+        function formatName(name) {
+            return name
+                .toLowerCase()
+                .replace(/\s+/g, '_');
         }
     </script>
 </body>
