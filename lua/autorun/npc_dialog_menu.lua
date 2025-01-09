@@ -21,15 +21,46 @@ if CLIENT then
             end
         end
 
-        -- 创建菜单
+        -- 创建全屏菜单
         local frame = vgui.Create("OFFrame")
-        frame:SetSize(800 * OFGUI.ScreenScale, 300 * OFGUI.ScreenScale)
-        frame:SetPos(ScrW() / 2 - 400 * OFGUI.ScreenScale, ScrH() - 400 * OFGUI.ScreenScale)
-        -- frame:SetDraggable(false)
+        frame:SetSize(ScrW(), ScrH())
+        frame:SetPos(0, 0)
 
-        -- 创建ScrollPanel
+        -- 创建布局面板
+        local leftPanel = vgui.Create("DPanel", frame)
+        leftPanel:Dock(LEFT)
+        leftPanel:SetWidth(400 * OFGUI.ScreenScale)
+        leftPanel.Paint = function(self, w, h)
+            surface.SetDrawColor(0, 0, 0, 0)
+            surface.DrawRect(0, 0, w, h)
+        end
+        local rightPanel = vgui.Create("DPanel", frame)
+        rightPanel:Dock(RIGHT)
+        rightPanel:SetWidth(400 * OFGUI.ScreenScale)
+        rightPanel.Paint = function(self, w, h)
+            surface.SetDrawColor(0, 0, 0, 0)
+            surface.DrawRect(0, 0, w, h)
+        end
+
+        -- 左上角显示玩家模型上半身
+        local playerModelPanel = vgui.Create("DModelPanel", leftPanel)
+        playerModelPanel:SetModel(LocalPlayer():GetModel())
+        playerModelPanel:Dock(TOP)
+        playerModelPanel:SetHeight(400 * OFGUI.ScreenScale)
+        function playerModelPanel:LayoutEntity( Entity ) return end
+
+        -- 右上角显示NPC模型上半身
+        local npcModelPanel = vgui.Create("DModelPanel", rightPanel)
+        npcModelPanel:SetModel(npc:GetModel())
+        npcModelPanel:Dock(TOP)
+        npcModelPanel:SetHeight(400 * OFGUI.ScreenScale)
+        function npcModelPanel:LayoutEntity( Entity ) return end
+
+
+        -- 下方中间区域存放对话选项
         local scrollPanel = vgui.Create("OFScrollPanel", frame)
-        scrollPanel:Dock(FILL)
+        scrollPanel:SetHeight(400 * OFGUI.ScreenScale)
+        scrollPanel:Dock(BOTTOM)
 
         for _, option in ipairs(playerTalkOptions) do
             local npcs = GetAllNPCsList()
@@ -56,11 +87,4 @@ if CLIENT then
             end
         end
     end)
-
-    -- -- 处理服务器发送的对话选项
-    -- net.Receive("NPCDialogOptionSelected", function()
-    --     local npc = net.ReadEntity()
-    --     local selectedOption = net.ReadString()
-    --     -- 这里可以添加代码来处理选定的对话选项
-    -- end)
 end 
