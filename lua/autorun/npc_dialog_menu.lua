@@ -72,7 +72,17 @@ if CLIENT then
     
             mdl:SetAnimSpeed( 1 ) -- 虽然说后头还是用SetPlaybackRate调的好像不是很需要
             ent:SetAngles( Angle( 0, i == 1 and 15 or -15, 0 ) ) -- 左边朝右30度,右边朝左30度
-            ent:ResetSequence( i == 1 and "idle_all_01" or "idle_subtle" ) -- 左边右边两个动作,按需求调
+            local animation = "idle_all_01" -- 默认动画
+            if i == 2 then
+                if npcIdentity.info == "npc_citizen" then
+                    animation = "idle_subtle"
+                elseif npcIdentity.info == "npc_metropolice" then
+                    animation = "baton_idle1"
+                elseif npcIdentity.info == "npc_combine_s" then
+                    animation = "idle1"
+                end
+            end
+            ent:ResetSequence(animation) -- 左边右边两个动作,按需求调
             ent:SetEyeTarget( i == 1 and cpos + move + Vector( 0, 10, 0 ) or cpos + move + Vector( 0, -10, 0 ) )
     
             if i == 1 then local col = ply:GetPlayerColor() -- 如果是玩家模型可以添上玩家的一些个性化
