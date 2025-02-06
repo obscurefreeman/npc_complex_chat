@@ -49,11 +49,9 @@ if CLIENT then
         playerModelPanel:SetModel(LocalPlayer():GetModel())
         playerModelPanel:Dock(TOP)
         playerModelPanel:SetHeight(400 * OFGUI.ScreenScale)
-        -- local mins, maxs = playerModelPanel.Entity:GetRenderBounds()
+        playerModelPanel:SetMouseInputEnabled( false )
         playerModelPanel:SetFOV(40)
-        -- playerModelPanel:SetLookAt( (mins + maxs) / 2 + Vector ( 0, 0, 2 ) )
         playerModelPanel.Entity:ResetSequence( "pose_standing_02" )
-        -- playerModelPanel.Entity:SetAngles( Angle( 0, 45, 0) )
         playerModelPanel:SetCamPos( Vector ( 60, 0, 55 ) )
         playerModelPanel:SetLookAng( Angle( 0, 180, 0) )
         function playerModelPanel:LayoutEntity( Entity ) return end
@@ -62,18 +60,17 @@ if CLIENT then
         npcModelPanel:SetModel(npc:GetModel())
         npcModelPanel:Dock(TOP)
         npcModelPanel:SetHeight(400 * OFGUI.ScreenScale)
+        npcModelPanel:SetMouseInputEnabled( false )
         npcModelPanel:SetFOV(40)
         if npcIdentity.npcInfo == "npc_citizen" then
-            npcModelPanel.Entity:ResetSequence("idle_subtle")
+            npcModelPanel:ResetSequence("idle_subtle")
         elseif npcIdentity.npcInfo == "npc_metropolice" then
-            npcModelPanel.Entity:ResetSequence("baton_idle1")
+            npcModelPanel:ResetSequence("baton_idle1")
         elseif npcIdentity.npcInfo == "npc_combine_s" then
-            npcModelPanel.Entity:ResetSequence("idle1")
+            npcModelPanel:ResetSequence("idle1")
         end
         npcModelPanel:SetCamPos( Vector ( 60, 0, 55 ) )
         npcModelPanel:SetLookAng( Angle( 0, 180, 0) )
-        npcModelPanel.Entity:SetPlaybackRate( 1 )
-        -- npcModelPanel.Entity:SetAngles(Angle(0, 45, 0))
         function npcModelPanel:LayoutEntity(Entity) return end
 
         -- 下方中间区域存放对话选项
