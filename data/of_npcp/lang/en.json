@@ -516,25 +516,35 @@
     },
     "playerchat": {
         "makefriend": {
-            "1": "Hello, /name/! Nice to meet you!",
-            "2": "/name/, can we be friends?",
-            "3": "I like you, /name/!",
-            "4": "What do you like, /name/?",
-            "5": "Let's go on an adventure together, /name/!"
+            "1": "Hello, /name/!",
+            "2": "How's your day going?",
+            "3": "Nice to meet you!",
+            "4": "What have you been busy with lately, /name/?",
+            "5": "You seem to be in a good mood, /name/."
         },
         "trade": {
-            "1": "Do you want to trade?",
-            "2": "Your goods are very nice, /name/!",
-            "3": "Are there any goods for sale, /name/?",
+            "1": "What good stuff do you have here?",
+            "2": "Your goods are beautiful, /name/!",
+            "3": "Do you have anything for sale, /name/?",
             "4": "I need to buy your stuff, /name/.",
-            "5": "Trade is a win-win, /name/!"
+            "5": "I heard you have good items that others don't?",
+            "6": "I want to take a look at your goods.",
+            "7": "Hi, /name/, do you have any good stuff for sale today?",
+            "8": "I'm very interested in your goods.",
+            "9": "Can you introduce your products to me?",
+            "10": "I hope to find something special.",
+            "11": "Do you think today's trade will go smoothly?"
         },
         "leave": {
-            "1": "Goodbye, /name/! Hope to see you soon!",
-            "2": "Good luck to you, /name/!",
-            "3": "See you next time, /name/!",
+            "1": "Let's chat here for today.",
+            "2": "Good luck, /name/!",
+            "3": "See you later, /name/!",
             "4": "Take care, /name/!",
-            "5": "Looking forward to your return, /name/!"
+            "5": "Goodbye, /name/!",
+            "6": "I'll talk to you later.",
+            "7": "See you in a bit.",
+            "8": "We'll continue our chat later.",
+            "9": "I'll treat you to a drink in a few days."
         }
     }
 } 
