@@ -3,13 +3,149 @@ AddCSLuaFile()
 local frame  -- 添加一个变量来跟踪打开的菜单
 
 local function RefreshNPCButtons(left_panel, right_panel)
-
 	-- 清除现有按钮
 	left_panel:Clear()
 	
 	-- 获取所有NPC数据
 	local npcs = GetAllNPCsList()
 	
+	-- 创建一个本地函数来处理右侧面板的刷新
+	local function RefreshRightPanel(npcData, entIndex)
+		right_panel:Clear()
+		
+		-- 创建名称输入和提交按钮
+		local nameEntry = vgui.Create("OFTextEntry", right_panel)
+		nameEntry:Dock(TOP)
+		nameEntry:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+		nameEntry:SetTall(32 * OFGUI.ScreenScale)
+		nameEntry:SetValue(L(npcData.name) or "")
+		
+		local submitButton = vgui.Create("OFButton", right_panel)
+		submitButton:Dock(TOP)
+		submitButton:SetTall(32 * OFGUI.ScreenScale)
+		submitButton:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+		submitButton:SetText("确认修改")
+		submitButton.DoClick = function()
+			local newName = nameEntry:GetValue()
+			if newName and newName ~= "" then
+				-- 发送更新请求到服务器
+				net.Start("UpdateNPCName")
+					net.WriteInt(entIndex, 32)
+					net.WriteString(newName)
+				net.SendToServer()
+			end
+		end
+		
+		-- 添加分隔线
+		local divider = vgui.Create("DPanel", right_panel)
+		divider:Dock(TOP)
+		divider:DockMargin(4 * OFGUI.ScreenScale, 8 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 8 * OFGUI.ScreenScale)
+		divider:SetTall(2 * OFGUI.ScreenScale)
+		divider.Paint = function(self, w, h)
+			surface.SetDrawColor(100, 100, 100, 255)
+			surface.DrawRect(0, 0, w, h)
+		end
+
+		local function CreateSkillButton(parent, tag, tagDesc, iconPath, hoveredColor)
+			if tag then
+				local button = vgui.Create("OFSkillButton", parent)
+				button:Dock(TOP)
+				button:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+				button:SetTall(80 * OFGUI.ScreenScale)
+				button:SetIcon("ofnpcp/" .. string.gsub(iconPath, "%.", "/") .. ".png")
+				button:SetTitle(L(tag))
+				button:SetDescription(L(tagDesc))
+				button:SetHoveredColor(hoveredColor)
+			end
+		end
+		-- 优化技能按钮创建
+		local skillButtons = {
+			{tag = npcData.tag_ability, desc = npcData.tag_ability_desc, icon = npcData.tag_ability, color = Color(100, 255, 100)},
+			{tag = npcData.tag_trade, desc = npcData.tag_trade_desc, icon = npcData.tag_trade, color = Color(255, 200, 100)},
+			{tag = npcData.tag_social, desc = npcData.tag_social_desc, icon = npcData.tag_social, color = Color(100, 200, 255)}
+		}
+		
+		for _, buttonData in ipairs(skillButtons) do
+			CreateSkillButton(right_panel, buttonData.tag, buttonData.desc, buttonData.icon, buttonData.color)
+		end
+
+		if npcData.comments then
+            for _, commentData in ipairs(npcData.comments) do
+                local commentLabel = vgui.Create("OFNPCButton", right_panel)
+                commentLabel:Dock(TOP)
+                commentLabel:SetTall(80 * OFGUI.ScreenScale)
+                commentLabel:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+                commentLabel:SetModel(commentData.model or "models/error.mdl")
+                commentLabel:SetTitle(commentData.player)
+                commentLabel:SetDescription(commentData.comment)
+            end
+        end
+
+		-- 添加评论输入框
+		local commentEntry = vgui.Create("OFTextEntry", right_panel)
+		commentEntry:Dock(TOP)
+		commentEntry:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+		commentEntry:SetTall(32 * OFGUI.ScreenScale)
+		commentEntry:SetPlaceholderText("在此输入评论...")
+
+		-- 添加提交评论按钮
+		local submitCommentButton = vgui.Create("OFButton", right_panel)
+		submitCommentButton:Dock(TOP)
+		submitCommentButton:SetTall(32 * OFGUI.ScreenScale)
+		submitCommentButton:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+		submitCommentButton:SetText("提交评论")
+		submitCommentButton.DoClick = function()
+			local comment = commentEntry:GetValue()
+			if comment and comment ~= "" then
+				-- 发送评论到服务器
+				net.Start("SubmitNPCComment")
+					net.WriteInt(entIndex, 32)
+					net.WriteString(comment)
+				net.SendToServer()
+
+				-- 仅刷新当前NPC的右侧面板
+				timer.Simple(0.1, function()
+					RefreshRightPanel(npcData, entIndex)
+				end)
+
+				-- 清空评论输入框
+				commentEntry:SetValue("")
+			end
+		end
+	end
+	
+	-- 优化右键菜单选项
+	local function CreateContextMenu(entIndex)
+		local menu = vgui.Create("OFMenu")
+		local actions = {
+			{name = "治疗 NPC", cmd = "heal"},
+			{name = "杀死 NPC", cmd = "kill"},
+			{name = "删除 NPC", cmd = "remove"},
+			{name = "治疗所有 NPC", cmd = "healall", global = true},
+			{name = "杀死所有 NPC", cmd = "killall", global = true},
+			{name = "删除所有 NPC", cmd = "removeall", global = true}
+		}
+		
+		for _, action in ipairs(actions) do
+			menu:AddOption(action.name, function()
+				net.Start("NPCAction")
+					net.WriteInt(action.global and -1 or entIndex, 32)
+					net.WriteString(action.cmd)
+				net.SendToServer()
+				
+				timer.Simple(0.1, function()
+					RefreshNPCButtons(left_panel, right_panel)
+				end)
+			end)
+		end
+		
+		menu:AddOption("刷新列表", function()
+			RefreshNPCButtons(left_panel, right_panel)
+		end)
+		
+		return menu
+	end
+
 	-- 为每个NPC创建按钮
 	for entIndex, npcData in pairs(npcs) do
 		-- 创建新的NPC按钮
@@ -38,156 +174,11 @@ local function RefreshNPCButtons(left_panel, right_panel)
 		
 		-- 按钮点击事件
 		button.DoClick = function()
-			right_panel:Clear()
-			
-			local nameEntry = vgui.Create("OFTextEntry", right_panel)
-			nameEntry:Dock(TOP)
-			nameEntry:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
-			nameEntry:SetTall(32 * OFGUI.ScreenScale)
-			nameEntry:SetValue(L(npcData.name) or "")
-			
-			local submitButton = vgui.Create("OFButton", right_panel)
-			submitButton:Dock(TOP)
-			submitButton:SetTall(32 * OFGUI.ScreenScale)
-			submitButton:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
-			submitButton:SetText("确认修改")
-			submitButton.DoClick = function()
-				local newName = nameEntry:GetValue()
-				if newName and newName ~= "" then
-					-- 发送更新请求到服务器
-					net.Start("UpdateNPCName")
-						net.WriteInt(entIndex, 32)
-						net.WriteString(newName)
-					net.SendToServer()
-				end
-			end
-			
-			-- 添加分隔线
-			local divider = vgui.Create("DPanel", right_panel)
-			divider:Dock(TOP)
-			divider:DockMargin(4 * OFGUI.ScreenScale, 8 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 8 * OFGUI.ScreenScale)
-			divider:SetTall(2 * OFGUI.ScreenScale)
-			divider.Paint = function(self, w, h)
-				surface.SetDrawColor(100, 100, 100, 255)
-				surface.DrawRect(0, 0, w, h)
-			end
-
-			local function CreateSkillButton(parent, tag, tagDesc, iconPath, hoveredColor)
-				if tag then
-					local button = vgui.Create("OFSkillButton", parent)
-					button:Dock(TOP)
-					button:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
-					button:SetTall(80 * OFGUI.ScreenScale)
-					button:SetIcon("ofnpcp/" .. string.gsub(iconPath, "%.", "/") .. ".png")
-					button:SetTitle(L(tag))
-					button:SetDescription(L(tagDesc))
-					button:SetHoveredColor(hoveredColor)
-				end
-			end
-	
-			CreateSkillButton(right_panel, npcData.tag_ability, npcData.tag_ability_desc, npcData.tag_ability, Color(100, 255, 100))
-			CreateSkillButton(right_panel, npcData.tag_trade, npcData.tag_trade_desc, npcData.tag_trade, Color(255, 200, 100))
-			CreateSkillButton(right_panel, npcData.tag_social, npcData.tag_social_desc, npcData.tag_social, Color(100, 200, 255))
-
-			-- 添加评论输入框
-			local commentEntry = vgui.Create("OFTextEntry", right_panel)
-			commentEntry:Dock(TOP)
-			commentEntry:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
-			commentEntry:SetTall(32 * OFGUI.ScreenScale)
-			commentEntry:SetPlaceholderText("在此输入评论...")
-
-			-- 添加提交评论按钮
-			local submitCommentButton = vgui.Create("OFButton", right_panel)
-			submitCommentButton:Dock(TOP)
-			submitCommentButton:SetTall(32 * OFGUI.ScreenScale)
-			submitCommentButton:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
-			submitCommentButton:SetText("提交评论")
-			submitCommentButton.DoClick = function()
-				local comment = commentEntry:GetValue()
-				if comment and comment ~= "" then
-					-- 发送评论到服务器
-					net.Start("SubmitNPCComment")
-						net.WriteInt(entIndex, 32)
-						net.WriteString(comment)
-					net.SendToServer()
-
-					-- 刷新右侧栏
-					RefreshNPCButtons(left_panel, right_panel)  -- 刷新右侧栏以显示最新评论
-
-					-- 清空评论输入框
-					commentEntry:SetValue("")  -- 清空聊天框
-				end
-			end
+			RefreshRightPanel(npcData, entIndex)
 		end
 
 		button.DoRightClick = function()
-			local menu = vgui.Create("OFMenu")
-			menu:AddOption("治疗 NPC", function()
-				net.Start("NPCAction")
-					net.WriteInt(entIndex, 32)
-					net.WriteString("heal")
-				net.SendToServer()
-			end)
-			
-			menu:AddOption("杀死 NPC", function()
-				net.Start("NPCAction")
-					net.WriteInt(entIndex, 32)
-					net.WriteString("kill")
-				net.SendToServer()
-				
-				timer.Simple(0.1, function()
-					RefreshNPCButtons(left_panel, right_panel)
-				end)
-			end)
-			
-			menu:AddOption("删除 NPC", function()
-				net.Start("NPCAction")
-					net.WriteInt(entIndex, 32)
-					net.WriteString("remove")
-				net.SendToServer()
-				timer.Simple(0.1, function()
-					RefreshNPCButtons(left_panel, right_panel)
-				end)
-			end)
-						
-			menu:AddOption("治疗所有 NPC", function()
-				net.Start("NPCAction")
-					net.WriteInt(-1, 32)
-					net.WriteString("healall")
-				net.SendToServer()
-				
-				timer.Simple(0.1, function()
-					RefreshNPCButtons(left_panel, right_panel)
-				end)
-			end)
-			
-			menu:AddOption("杀死所有 NPC", function()
-				net.Start("NPCAction")
-					net.WriteInt(-1, 32)
-					net.WriteString("killall")
-				net.SendToServer()
-				
-				timer.Simple(0.1, function()
-					RefreshNPCButtons(left_panel, right_panel)
-				end)
-			end)
-			
-			menu:AddOption("删除所有 NPC", function()
-				net.Start("NPCAction")
-					net.WriteInt(-1, 32)
-					net.WriteString("removeall")
-				net.SendToServer()
-				
-				timer.Simple(0.1, function()
-					RefreshNPCButtons(left_panel, right_panel)
-				end)
-			end)
-			
-			menu:AddOption("刷新列表", function()
-				RefreshNPCButtons(left_panel, right_panel)
-			end)
-			
-			menu:Open()
+			CreateContextMenu(entIndex):Open()
 		end
 	end
 end
