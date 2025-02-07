@@ -95,6 +95,18 @@ if CLIENT then
                 function ent:GetPlayerColor() -- 玩家颜色
                     return col
                 end
+            else -- NPC模型设置
+                -- 同步皮肤
+                if npc:GetSkin() != nil then 
+                    ent:SetSkin(npc:GetSkin()) 
+                end
+                
+                -- 同步bodygroups
+                if npc:GetNumBodyGroups() != nil then
+                    for i = 0, npc:GetNumBodyGroups() - 1 do 
+                        ent:SetBodygroup(i, npc:GetBodygroup(i)) 
+                    end
+                end
             end
     
             function mdl:LayoutEntity( ent )
