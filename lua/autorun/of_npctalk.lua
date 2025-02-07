@@ -55,7 +55,18 @@ if SERVER then
         net.WriteString(dialogtype)
         local ent = IsValid( target ) and target or Entity( 0 )
         net.WriteEntity(ent)
+        -- 添加是否在聊天的状态
+        net.WriteBool(self:IsNPCChating(npc))
+        if self:IsNPCChating(npc) then
+            net.WriteEntity(self:GetChattingPlayer(npc))
+        end
         net.Send(player.GetAll())
+    end
+    
+    -- 获取正在与NPC对话的玩家
+    function NPCTalkManager:GetChattingPlayer(npc)
+        local entIndex = npc:EntIndex()
+        return self.ChattingNPCs[entIndex]
     end
 end
 
@@ -91,6 +102,8 @@ if CLIENT then
         local dialogKey = net.ReadString()
         local dialogtype = net.ReadString()
         local target = net.ReadEntity()
+        local isChating = net.ReadBool()
+        local chattingPlayer = isChating and net.ReadEntity() or nil
         
         if IsValid(npc) then
 
@@ -150,6 +163,11 @@ if CLIENT then
             table.insert(activeDialogs, dialog)
 
             CreateNPCDialogSubtitles(npc, translatedText)
+
+            -- 如果NPC正在聊天且聊天对象是本地玩家，触发CreateNPCDialogMessages
+            if isChating and chattingPlayer == LocalPlayer() then
+                CreateDialogMessages(npc, translatedText)
+            end
 
         end
     end)
@@ -220,4 +238,10 @@ if CLIENT then
             cam.End3D2D()
         end
     end)
+    
+    -- 在客户端创建相同的函数以保持一致性
+    NPCTalkManager = NPCTalkManager or {}
+    function NPCTalkManager:GetChattingPlayer(npc)
+        return LocalPlayer()
+    end
 end

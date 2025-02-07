@@ -173,12 +173,24 @@ if CLIENT then
         local messagelPanel = vgui.Create("OFScrollPanel", frame)
         messagelPanel:Dock(FILL)
 
-        local message = vgui.Create("OFMessage", messagelPanel)
-        message:SetHeight(80 * OFGUI.ScreenScale)
-        message:Dock(TOP)
-        message:DockMargin(4, 4, 4, 4)
-        message:SetName(L(npcIdentity.name))
-        message:SetText("Lorem ipsum dolor sit amet, ius ferri mucius cu, vel fugit nobis prompta ei. His possit urbanitas moderatius ea, duo an exerci mandamus definitionem. Nec novum facilisi intellegat ut, legere aeterno gloriatur an est. Vim eu doming alterum, mel minim aliquando mediocritatem at. Vix et novum molestiae, movet reformidans quo an, ex vis tamquam sadipscing. Dolor tamquam id pro, no nusquam philosophia eos.His posse salutandi id. Equidem saperet accusamus eum an, eu his solet utroque deseruisse, nostro inimicus mea cu. An quodsi perpetua rationibus qui, usu omittam offendit ex. Eu amet ponderum temporibus duo, ea apeirian mandamus per.Sed ex eleifend sadipscing. Usu at novum partem officiis, quo rebum nulla cu. In nihil essent intellegebat quo. Quot tota reprimique qui ne.Est ullum etiam libris ne. Est amet minimum an. Ipsum docendi adversarium pro ne, reprimique philosophia an qui. Qui ad tale ferri. Cu eum nihil recteque eloquentiam. Dolorum omnesque te has.Te ubique posidonium pro, id nec case vide veritus. Ad periculis reprehendunt cum, ad ius probo signiferumque. Id vocent fuisset duo. Duo ex purto labitur disputationi. In vel unum appetere mnesarchum, ut vix sententiae consectetuer, ea usu sumo veritus.")
+        -- local message = vgui.Create("OFMessage", messagelPanel)
+        -- message:SetHeight(80 * OFGUI.ScreenScale)
+        -- message:Dock(TOP)
+        -- message:DockMargin(4, 4, 4, 4)
+        -- message:SetName(L(npcIdentity.name))
+        -- message:SetText("Lorem ipsum dolor sit amet, ius ferri mucius cu, vel fugit nobis prompta ei. His possit urbanitas moderatius ea, duo an exerci mandamus definitionem. Nec novum facilisi intellegat ut, legere aeterno gloriatur an est. Vim eu doming alterum, mel minim aliquando mediocritatem at. Vix et novum molestiae, movet reformidans quo an, ex vis tamquam sadipscing. Dolor tamquam id pro, no nusquam philosophia eos.His posse salutandi id. Equidem saperet accusamus eum an, eu his solet utroque deseruisse, nostro inimicus mea cu. An quodsi perpetua rationibus qui, usu omittam offendit ex. Eu amet ponderum temporibus duo, ea apeirian mandamus per.Sed ex eleifend sadipscing. Usu at novum partem officiis, quo rebum nulla cu. In nihil essent intellegebat quo. Quot tota reprimique qui ne.Est ullum etiam libris ne. Est amet minimum an. Ipsum docendi adversarium pro ne, reprimique philosophia an qui. Qui ad tale ferri. Cu eum nihil recteque eloquentiam. Dolorum omnesque te has.Te ubique posidonium pro, id nec case vide veritus. Ad periculis reprehendunt cum, ad ius probo signiferumque. Id vocent fuisset duo. Duo ex purto labitur disputationi. In vel unum appetere mnesarchum, ut vix sententiae consectetuer, ea usu sumo veritus.")
+
+        function CreateDialogMessages(npc, text)
+            -- 创建新的消息
+            local message = vgui.Create("OFMessage", messagelPanel)
+            message:SetHeight(80 * OFGUI.ScreenScale)
+            message:Dock(TOP)
+            message:DockMargin(4, 4, 4, 4)
+            
+            -- 设置NPC的名字和对话内容
+            message:SetName(L(npcIdentity.name))
+            message:SetText(text)
+        end 
 
         local npccardPanel = vgui.Create("OFScrollPanel", rightPanel)
         npccardPanel:Dock(FILL)
