@@ -17,15 +17,15 @@ if SERVER then
     end
     
     -- 开始新对话
-    function NPCTalkManager:StartDialog(npc, dialogKey, dialogtype, target)
+    function NPCTalkManager:StartDialog(npc, dialogKey, dialogtype, target, forceDialog)
         if not IsValid(npc) or not dialogKey or not dialogtype then 
             return 
         end
         
         local entIndex = npc:EntIndex()
         
-        -- 检查是否已经在对话中
-        if self:IsNPCTalking(npc) then
+        -- 检查是否已经在对话中，如果是强制对话则忽略此检查
+        if not forceDialog and self:IsNPCTalking(npc) then
             return
         end
         
@@ -113,10 +113,10 @@ if CLIENT then
             translatedText = translatedText:gsub("/map/", game.GetMap())
             translatedText = translatedText:gsub("/time/", os.date("%H:%M"))
             
-            -- 检查是否已存在相同NPC的对话
-            for i, dialog in ipairs(activeDialogs) do
-                if dialog.npc == npc then
-                    return
+            -- 如果是强制对话，清除当前NPC的所有对话
+            for i = #activeDialogs, 1, -1 do
+                if activeDialogs[i].npc == npc then
+                    table.remove(activeDialogs, i)
                 end
             end
             

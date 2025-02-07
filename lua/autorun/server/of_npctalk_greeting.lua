@@ -14,11 +14,7 @@ hook.Add("PlayerUse", "NPCTalkGreeting", function(ply, ent)
     
     if not (IsValid(ent) and ent:IsNPC()) then return end
     
-    -- 检查NPC是否在对话中
     local npcIndex = ent:EntIndex()
-    if NPCTalkManager:IsNPCTalking(ent) then
-        return
-    end
     
     -- 更新玩家冷却时间
     playerCooldowns[steamID] = CurTime()
@@ -33,7 +29,7 @@ hook.Add("PlayerUse", "NPCTalkGreeting", function(ply, ent)
     -- 如果成功获取问候语，随机选择一个
     if greetings and #greetings > 0 then
         local randomGreeting = greetings[math.random(#greetings)]
-        NPCTalkManager:StartDialog(ent, randomGreeting, "greeting", ply)
+        NPCTalkManager:StartDialog(ent, randomGreeting, "greeting", ply, true)
     end
     
     net.Start("OpenNPCDialogMenu")
