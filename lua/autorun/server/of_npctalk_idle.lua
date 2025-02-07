@@ -23,8 +23,8 @@ timer.Create("NPCIdleTalkCheck", IDLE_CHECK_INTERVAL, 0, function()
     
     for _, npc in ipairs(validNPCs) do
         
-        -- 检查是否正在对话
-        if NPCTalkManager:IsNPCTalking(npc) then continue end
+        -- 检查是否正在对话或与玩家聊天
+        if NPCTalkManager:IsNPCTalking(npc) or NPCTalkManager:IsNPCChating(npc) then continue end
         
         -- 检查是否有玩家在范围内且能看到这个NPC
         local hasNearbyPlayer = false

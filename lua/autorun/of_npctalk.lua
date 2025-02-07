@@ -8,12 +8,29 @@ if SERVER then
     -- 对话管理器
     NPCTalkManager = NPCTalkManager or {}
     NPCTalkManager.ActiveDialogs = {}
+    NPCTalkManager.ChattingNPCs = {} -- 新增：记录正在对话的NPC
     
     -- 检查NPC是否正在对话
     function NPCTalkManager:IsNPCTalking(npc)
         local entIndex = npc:EntIndex()
         return self.ActiveDialogs[entIndex] and 
                CurTime() - self.ActiveDialogs[entIndex] < DIALOG_DURATION
+    end
+    
+    -- 检查NPC是否正在和玩家聊天（打开对话菜单）
+    function NPCTalkManager:IsNPCChating(npc)
+        local entIndex = npc:EntIndex()
+        return self.ChattingNPCs[entIndex] ~= nil
+    end
+    
+    -- 设置NPC的对话状态
+    function NPCTalkManager:SetNPCChating(npc, player, isChating)
+        local entIndex = npc:EntIndex()
+        if isChating then
+            self.ChattingNPCs[entIndex] = player
+        else
+            self.ChattingNPCs[entIndex] = nil
+        end
     end
     
     -- 开始新对话

@@ -2,6 +2,7 @@
 local function ShowDeathDialog(npc)
     if not IsValid(npc) then return end
 
+    if NPCTalkManager:IsNPCTalking(npc) or NPCTalkManager:IsNPCChating(npc) then continue end
     local identity = OFNPCS[npc:EntIndex()]
     if not identity then return end
 

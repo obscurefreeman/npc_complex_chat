@@ -2,6 +2,7 @@
 hook.Add("Think", "NPCTalkAttack", function()
     for _, npc in pairs(ents.FindByClass("npc_*")) do
         if IsValid(npc) and npc:IsNPC() then
+            if NPCTalkManager:IsNPCTalking(npc) or NPCTalkManager:IsNPCChating(npc) then continue end
             local target = npc:GetEnemy()  -- 获取当前攻击目标
             if target and not npc.lastTarget then
                 -- 如果目标从无到有，触发对话
@@ -13,6 +14,7 @@ hook.Add("Think", "NPCTalkAttack", function()
                         if math.random() <= 0.3 then
                             timer.Simple(math.random() * 1.5, function()  -- 随机延迟0到1.5秒
                                 if not IsValid(target) then return end  -- 检查目标是否有效且存活
+                                if not IsValid(npc) or NPCTalkManager:IsNPCTalking(npc) or NPCTalkManager:IsNPCChating(npc) then return end
                                 local randomAttackPhrase = attackPhrases[math.random(#attackPhrases)]
                                 NPCTalkManager:StartDialog(npc, randomAttackPhrase, "attack", target)
                             end)

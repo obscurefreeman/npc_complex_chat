@@ -3,6 +3,12 @@ if CLIENT then
     -- 显示对话选项菜单
     net.Receive("OpenNPCDialogMenu", function()
         local npc = net.ReadEntity()
+        
+        -- 通知服务器对话开始
+        net.Start("NPCDialogMenuOpened")
+        net.WriteEntity(npc)
+        net.SendToServer()
+        
         local dialogOptions = {
             "makefriend",
             "trade",
@@ -227,6 +233,13 @@ if CLIENT then
                 net.SendToServer()
                 frame:Close()
             end
+        end
+
+        -- 在关闭菜单时通知服务器对话结束
+        frame.OnClose = function()
+            net.Start("NPCDialogMenuClosed")
+            net.WriteEntity(npc)
+            net.SendToServer()
         end
     end)
 end 
