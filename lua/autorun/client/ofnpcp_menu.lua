@@ -183,6 +183,44 @@ local function RefreshNPCButtons(left_panel, right_panel)
 	end
 end
 
+local function RefreshCardButtons(left_panel, right_panel)
+    -- 清除现有按钮
+    left_panel:Clear()
+    right_panel:Clear()
+
+    -- 从全局数据中获取牌组信息
+    local cardGroups = GLOBAL_OFNPC_DATA.cards.info
+
+    -- 创建左侧牌组选择按钮
+    for groupKey, groupData in pairs(cardGroups) do
+        local groupButton = vgui.Create("OFSkillButton", left_panel)
+        groupButton:Dock(TOP)
+        groupButton:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+        groupButton:SetTall(80 * OFGUI.ScreenScale)
+        groupButton:SetTitle(groupData.name)
+        groupButton:SetDescription(groupData.desc)
+
+        -- 按钮点击事件
+        groupButton.DoClick = function()
+            -- 清除右侧面板
+            right_panel:Clear()
+
+            -- 获取该牌组的卡牌
+            local cards = GLOBAL_OFNPC_DATA.cards[groupKey]
+
+            -- 列出该牌组的所有卡牌
+            for cardKey, cardData in pairs(cards) do
+                local cardButton = vgui.Create("OFSkillButton", right_panel)
+                cardButton:Dock(TOP)
+                cardButton:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+                cardButton:SetTall(80 * OFGUI.ScreenScale)
+                cardButton:SetTitle(cardData.name)
+                cardButton:SetDescription(cardData.d[math.random(#cardData.d)])
+            end
+        end
+    end
+end
+
 local function AddOFFrame()
 	if IsValid(frame) then  -- 检查是否已经有一个打开的菜单
 		frame:Close()  -- 关闭已打开的菜单
@@ -199,7 +237,7 @@ local function AddOFFrame()
 	sheet:AddSheet("图鉴", pan1)
 
 	local pan2 = vgui.Create("EditablePanel", sheet)
-	sheet:AddSheet("空白标签页", pan2)
+	sheet:AddSheet("卡牌", pan2)
 
 	-- 创建一个水平分割面板
 	local horizontalDivider = vgui.Create("DHorizontalDivider", pan1)
@@ -214,8 +252,21 @@ local function AddOFFrame()
 	local right_panel = vgui.Create("OFScrollPanel")
 	horizontalDivider:SetRight(right_panel)
 
+	local horizontalDividerCards = vgui.Create("DHorizontalDivider", pan2)
+	horizontalDividerCards:Dock(FILL)
+	horizontalDividerCards:DockMargin(6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale)
+	horizontalDividerCards:SetLeftWidth(ScrW()/ 3) -- 设置左侧面板的初始宽度
+	horizontalDividerCards:SetDividerWidth(8 * OFGUI.ScreenScale) -- 设置分割线宽度
+
+	local left_panel_cards = vgui.Create("OFScrollPanel")
+	horizontalDividerCards:SetLeft(left_panel_cards)
+
+	local right_panel_cards = vgui.Create("OFScrollPanel")
+	horizontalDividerCards:SetRight(right_panel_cards)
+
 	-- 初始加载NPC列表
 	RefreshNPCButtons(left_panel, right_panel)
+	RefreshCardButtons(left_panel_cards, right_panel_cards)
 	
 	-- 添加更新钩子
 	hook.Add("RefreshNPCMenu", "UpdateNPCButtonList", function()

@@ -4,7 +4,8 @@ GLOBAL_OFNPC_DATA = {
     tagData = {},
     rankData = {},
     playerTalks = {},
-    npcTalks = {}
+    npcTalks = {},
+    cards = {}
 }
 
 -- 加载JSON文件的通用函数
@@ -30,6 +31,7 @@ local function LoadNPCData()
     LoadJsonData("data/of_npcp/combine_ranks.json", "rankData")
     LoadJsonData("data/of_npcp/player_talk.json", "playerTalks")
     LoadJsonData("data/of_npcp/citizen_talk.json", "npcTalks")
+    LoadJsonData("data/of_npcp/cards.json", "cards")
 
     -- 在加载数据后添加调试信息
     -- print("【自由调试】:", util.TableToJSON(GLOBAL_OFNPC_DATA.rankData.ranks, true))
