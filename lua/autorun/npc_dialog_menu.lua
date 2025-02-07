@@ -1,6 +1,7 @@
 if SERVER then
     -- 添加服务器端处理玩家对话选择的逻辑
     net.Receive("PlayerDialog", function(len, ply)
+        local npc = net.ReadEntity()
         local translatedOption = net.ReadString()
         
         if IsValid(npc) and IsValid(ply) then
