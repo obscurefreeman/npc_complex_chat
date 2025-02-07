@@ -72,55 +72,22 @@ local function RefreshNPCButtons(left_panel, right_panel)
 				surface.DrawRect(0, 0, w, h)
 			end
 
-			-- 添加tag显示
-			if npcData.tag_ability then
-				local abilityButton = vgui.Create("OFSkillButton", right_panel)
-				abilityButton:Dock(TOP)
-				abilityButton:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
-				abilityButton:SetTall(80 * OFGUI.ScreenScale)
-				local abilityIconPath = string.gsub(npcData.tag_ability, "%.", "/")
-				abilityButton:SetIcon("ofnpcp/" .. abilityIconPath .. ".png")
-				abilityButton:SetTitle(L(npcData.tag_ability))
-				abilityButton:SetDescription(L(npcData.tag_ability_desc))
-				abilityButton:SetHoveredColor(Color(100, 255, 100))
-			end
-			
-			if npcData.tag_trade then
-				local tradeButton = vgui.Create("OFSkillButton", right_panel)
-				tradeButton:Dock(TOP)
-				tradeButton:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
-				tradeButton:SetTall(80 * OFGUI.ScreenScale)
-				local tradeIconPath = string.gsub(npcData.tag_trade, "%.", "/")
-				tradeButton:SetIcon("ofnpcp/" .. tradeIconPath .. ".png")
-				tradeButton:SetTitle(L(npcData.tag_trade))
-				tradeButton:SetDescription(L(npcData.tag_trade_desc))
-				tradeButton:SetHoveredColor(Color(255, 200, 100))
-			end
-			
-			if npcData.tag_social then
-				local socialButton = vgui.Create("OFSkillButton", right_panel)
-				socialButton:Dock(TOP)
-				socialButton:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
-				socialButton:SetTall(80 * OFGUI.ScreenScale)
-				local socialIconPath = string.gsub(npcData.tag_social, "%.", "/")
-				socialButton:SetIcon("ofnpcp/" .. socialIconPath .. ".png")
-				socialButton:SetTitle(L(npcData.tag_social))
-				socialButton:SetDescription(L(npcData.tag_social_desc))
-				socialButton:SetHoveredColor(Color(100, 200, 255))
-			end
-
-			-- 显示评论
-			if npcData.comments then
-				for _, commentData in ipairs(npcData.comments) do
-					local commentLabel = vgui.Create("OFNPCButton", right_panel)
-					commentLabel:Dock(TOP)
-					commentLabel:SetTall(80 * OFGUI.ScreenScale)
-					commentLabel:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
-					commentLabel:SetModel(commentData.model or "models/error.mdl")
-					commentLabel:SetTitle(commentData.player)
-					commentLabel:SetDescription(commentData.comment)
+			local function CreateSkillButton(parent, tag, tagDesc, iconPath, hoveredColor)
+				if tag then
+					local button = vgui.Create("OFSkillButton", parent)
+					button:Dock(TOP)
+					button:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+					button:SetTall(80 * OFGUI.ScreenScale)
+					button:SetIcon("ofnpcp/" .. string.gsub(iconPath, "%.", "/") .. ".png")
+					button:SetTitle(L(tag))
+					button:SetDescription(L(tagDesc))
+					button:SetHoveredColor(hoveredColor)
 				end
 			end
+	
+			CreateSkillButton(right_panel, npcData.tag_ability, npcData.tag_ability_desc, npcData.tag_ability, Color(100, 255, 100))
+			CreateSkillButton(right_panel, npcData.tag_trade, npcData.tag_trade_desc, npcData.tag_trade, Color(255, 200, 100))
+			CreateSkillButton(right_panel, npcData.tag_social, npcData.tag_social_desc, npcData.tag_social, Color(100, 200, 255))
 
 			-- 添加评论输入框
 			local commentEntry = vgui.Create("OFTextEntry", right_panel)
