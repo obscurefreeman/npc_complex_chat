@@ -188,8 +188,9 @@ if CLIENT then
             message:DockMargin(4, 4, 4, 4)
             
             -- 设置NPC的名字和对话内容
-            message:SetName(L(npcIdentity.name))
+            message:SetName(L(npcIdentity.name) .. " “" .. L(npcIdentity.nickname) .. "”")
             message:SetText(text)
+            message:SetColor(npcIdentity.color)
         end 
 
         local npccardPanel = vgui.Create("OFScrollPanel", rightPanel)
