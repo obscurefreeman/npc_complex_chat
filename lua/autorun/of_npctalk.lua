@@ -47,7 +47,7 @@ if SERVER then
         self.ActiveDialogs[entIndex] = CurTime()
         
         -- 向客户端发送对话请求
-        net.Start("NPCTalkStart")
+        net.Start("TalkStart")
         net.WriteEntity(speaker)
         net.WriteString(dialogKey)
         net.WriteString(dialogtype)
@@ -95,7 +95,7 @@ if CLIENT then
     end
     
     -- 接收服务器的对话请求
-    net.Receive("NPCTalkStart", function()
+    net.Receive("TalkStart", function()
         local npc = net.ReadEntity()
         local dialogKey = net.ReadString()
         local dialogtype = net.ReadString()
@@ -170,6 +170,8 @@ if CLIENT then
             -- 如果NPC正在聊天且聊天对象是本地玩家，触发CreateNPCDialogMessages
             if isChating and chattingPlayer == LocalPlayer() then
                 CreateDialogMessages(npc, translatedText)
+            elseif dialogtype == "player" then
+                CreateDialogMessages(LocalPlayer(), translatedText)
             end
 
         end

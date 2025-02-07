@@ -264,9 +264,6 @@ if CLIENT then
                 net.WriteString(translatedOption)
                 net.SendToServer()
                 
-                -- 创建本地对话消息
-                CreateDialogMessages(LocalPlayer(), translatedOption)
-                
                 -- 检查选项类型是否为leave
                 if optionTypes[option] == "leave" then
                     frame:Close()

@@ -9,7 +9,7 @@ if SERVER then
     util.AddNetworkString("SubmitNPCComment")
     util.AddNetworkString("OFNPCRankUp")
 
-    util.AddNetworkString("NPCTalkStart")
+    util.AddNetworkString("TalkStart")
     util.AddNetworkString("OpenNPCDialogMenu")
     util.AddNetworkString("PlayerDialog")
     util.AddNetworkString("NPCDialogMenuOpened")
