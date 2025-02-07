@@ -9,7 +9,11 @@ if SERVER then
     util.AddNetworkString("SubmitNPCComment")
     util.AddNetworkString("OFNPCRankUp")
 
-
+    util.AddNetworkString("NPCTalkStart")
+    util.AddNetworkString("OpenNPCDialogMenu")
+    util.AddNetworkString("PlayerDialog")
+    util.AddNetworkString("NPCDialogMenuOpened")
+    util.AddNetworkString("NPCDialogMenuClosed")
 
     -- 修改AssignNPCIdentity函数，添加绰号分配
     function AssignNPCIdentity(ent, npcInfo)

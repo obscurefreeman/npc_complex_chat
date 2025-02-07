@@ -3,8 +3,6 @@ local DIALOG_DURATION = 4  -- 对话持续时间
 local CHAR_DELAY = 0.05   -- 每个字符的延迟
 
 if SERVER then
-    util.AddNetworkString("NPCTalkStart")
-    
     -- 对话管理器
     NPCTalkManager = NPCTalkManager or {}
     NPCTalkManager.ActiveDialogs = {}
@@ -34,15 +32,15 @@ if SERVER then
     end
     
     -- 开始新对话
-    function NPCTalkManager:StartDialog(npc, dialogKey, dialogtype, target, forceDialog)
-        if not IsValid(npc) or not dialogKey or not dialogtype then 
+    function NPCTalkManager:StartDialog(speaker, dialogKey, dialogtype, target, forceDialog)
+        if not IsValid(speaker) or not dialogKey or not dialogtype then 
             return 
         end
         
-        local entIndex = npc:EntIndex()
+        local entIndex = speaker:EntIndex()
         
         -- 检查是否已经在对话中，如果是强制对话则忽略此检查
-        if not forceDialog and self:IsNPCTalking(npc) then
+        if not forceDialog and self:IsNPCTalking(speaker) then
             return
         end
         
@@ -50,15 +48,15 @@ if SERVER then
         
         -- 向客户端发送对话请求
         net.Start("NPCTalkStart")
-        net.WriteEntity(npc)
+        net.WriteEntity(speaker)
         net.WriteString(dialogKey)
         net.WriteString(dialogtype)
-        local ent = IsValid( target ) and target or Entity( 0 )
+        local ent = IsValid(target) and target or Entity(0)
         net.WriteEntity(ent)
         -- 添加是否在聊天的状态
-        net.WriteBool(self:IsNPCChating(npc))
-        if self:IsNPCChating(npc) then
-            net.WriteEntity(self:GetChattingPlayer(npc))
+        net.WriteBool(speaker:IsNPC() and self:IsNPCChating(speaker) or false)
+        if speaker:IsNPC() and self:IsNPCChating(speaker) then
+            net.WriteEntity(self:GetChattingPlayer(speaker))
         end
         net.Send(player.GetAll())
     end
@@ -138,6 +136,11 @@ if CLIENT then
                 if playerNick then
                     translatedText = translatedText:gsub("/player/", playerNick)
                 end
+            elseif dialogtype == "player" and IsValid(target) then
+                local playerNick = npc:Nick()
+                if playerNick then
+                    translatedText = translatedText:gsub("/player/", playerNick)
+                end
             end
 
             translatedText = translatedText:gsub("/map/", game.GetMap())
@@ -179,7 +182,7 @@ if CLIENT then
         for i = #activeDialogs, 1, -1 do
             local dialog = activeDialogs[i]
             
-            -- 检查NPC是否有效
+            -- 检查说话者是否有效
             if not IsValid(dialog.npc) then
                 table.remove(activeDialogs, i)
                 continue
@@ -200,18 +203,19 @@ if CLIENT then
                 dialog.npc:EmitSound("ofnpcp/type/type" .. math.random(1, 32) .. ".wav")
             end
             
-            -- 获取NPC的位置和角度
-            local npcPos = dialog.npc:GetPos()
-            local npcAngles = LocalPlayer():EyeAngles()
-            npcAngles:RotateAroundAxis(npcAngles:Up(), -90)
-            npcAngles:RotateAroundAxis(npcAngles:Forward(), 90)
-            
+            -- 获取说话者的位置和角度
+            local speakerPos = dialog.npc:GetPos()
+            local speakerAngles = LocalPlayer():EyeAngles()
+            speakerAngles:RotateAroundAxis(speakerAngles:Up(), -90)
+            speakerAngles:RotateAroundAxis(speakerAngles:Forward(), 90)
+
             local headBoneIndex = dialog.npc:LookupBone("ValveBiped.Bip01_Head1")
             local headPos = dialog.npc:GetBonePosition(headBoneIndex)
-            local pos = Vector(npcPos.x, npcPos.y, headPos.z + 13)
+            
+            local finalPos = Vector(speakerPos.x, speakerPos.y, headPos.z + 13)
             
             -- 开始3D2D渲染
-            cam.Start3D2D(pos, npcAngles, 0.1)
+            cam.Start3D2D(finalPos, speakerAngles, 0.1)
                 local screenScale = ScrH() / 1080
                 -- 计算文本尺寸
                 surface.SetFont("ofgui_eva")

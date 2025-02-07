@@ -2,11 +2,6 @@ local playerCooldowns = {}
 local PLAYER_COOLDOWN = 0.5
 local npcCooldowns = {}
 
-util.AddNetworkString("OpenNPCDialogMenu")
-util.AddNetworkString("NPCDialogOptionSelected")
-util.AddNetworkString("NPCDialogMenuOpened")
-util.AddNetworkString("NPCDialogMenuClosed")
-
 -- 处理对话菜单打开事件
 net.Receive("NPCDialogMenuOpened", function(len, ply)
     local npc = net.ReadEntity()

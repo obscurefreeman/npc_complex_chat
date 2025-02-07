@@ -1,3 +1,15 @@
+if SERVER then
+    -- 添加服务器端处理玩家对话选择的逻辑
+    net.Receive("PlayerDialog", function(len, ply)
+        local translatedOption = net.ReadString()
+        
+        if IsValid(npc) and IsValid(ply) then
+            -- 先让玩家说话
+            NPCTalkManager:StartDialog(ply, translatedOption, "player", npc, true)
+        end
+    end)
+end
+
 if CLIENT then
 
     -- 显示对话选项菜单
@@ -20,12 +32,14 @@ if CLIENT then
 
         -- 从全局变量获取对话文本
         local playerTalkOptions = {}
+        local optionTypes = {} -- 存储每个选项对应的类型
         if GLOBAL_OFNPC_DATA.playerTalks then
-            for _, option in ipairs(dialogOptions) do
-                local phrases = GLOBAL_OFNPC_DATA.playerTalks[option]
+            for i, optionType in ipairs(dialogOptions) do
+                local phrases = GLOBAL_OFNPC_DATA.playerTalks[optionType]
                 if phrases then
                     local randomPhrase = phrases[math.random(#phrases)]
                     table.insert(playerTalkOptions, randomPhrase)
+                    optionTypes[randomPhrase] = optionType -- 记录每个短语对应的选项类型
                 end
             end
         end
@@ -177,17 +191,24 @@ if CLIENT then
         local messagelPanel = vgui.Create("OFScrollPanel", frame)
         messagelPanel:Dock(FILL)
 
-        function CreateDialogMessages(npc, text)
+        function CreateDialogMessages(speaker, text)
             -- 创建新的消息
             local message = vgui.Create("OFMessage", messagelPanel)
             message:SetHeight(80 * OFGUI.ScreenScale)
             message:Dock(TOP)
             message:DockMargin(4, 4, 4, 4)
             
-            -- 设置NPC的名字和对话内容
-            message:SetName(L(npcIdentity.name) .. " “" .. L(npcIdentity.nickname) .. "”")
+            -- 根据说话者类型设置不同的名字和颜色
+            if speaker:IsPlayer() then
+                message:SetName(speaker:Nick())  -- 使用玩家的昵称
+                message:SetColor(Color(100, 255, 100))  -- 绿色
+            else
+                -- NPC保持原有的设置
+                message:SetName(L(npcIdentity.name) .. " “" .. L(npcIdentity.nickname) .. "”")
+                message:SetColor(npcIdentity.color)
+            end
+            
             message:SetText(text)
-            message:SetColor(npcIdentity.color)
         end 
 
         local npccardPanel = vgui.Create("OFScrollPanel", rightPanel)
@@ -237,11 +258,18 @@ if CLIENT then
             -- 处理按钮点击事件
             button.DoClick = function()
                 -- 发送选定的对话选项到服务器
-                net.Start("NPCDialogOptionSelected")
+                net.Start("PlayerDialog")
                 net.WriteEntity(npc)
-                net.WriteString(option)
+                net.WriteString(translatedOption)
                 net.SendToServer()
-                frame:Close()
+                
+                -- 创建本地对话消息
+                CreateDialogMessages(LocalPlayer(), translatedOption)
+                
+                -- 检查选项类型是否为leave
+                if optionTypes[option] == "leave" then
+                    frame:Close()
+                end
             end
         end
 
@@ -252,4 +280,4 @@ if CLIENT then
             net.SendToServer()
         end
     end)
-end 
+end
