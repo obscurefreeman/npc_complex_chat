@@ -77,7 +77,7 @@ if CLIENT then
                 if npcIdentity.info == "npc_citizen" then
                     animation = "idle_subtle"
                 elseif npcIdentity.info == "npc_metropolice" then
-                    animation = "baton_idle1"
+                    animation = "pistolidle1"
                 elseif npcIdentity.info == "npc_combine_s" then
                     animation = "idle1"
                 end
@@ -121,6 +121,29 @@ if CLIENT then
                     end
                 end
                 -- 要嘴巴阿巴阿巴的话也是SetFlexWeight，但是市民好说玩家模型的张嘴表情号不一样就不好弄了，反正跟上面这段思路是差不多的
+                
+                -- 视线移动控制
+                if !ent.NextEyeMove or ent.NextEyeMove <= CurTime() then
+                    if ent.NextEyeMove then
+                        -- 设置新的目标位置
+                        local randomOffset = Vector(
+                            math.Rand(-10, 10),
+                            i == 1 and math.Rand(5, 15) or math.Rand(-15, -5),
+                            0  -- 固定Z轴为0，保持视线高度不变
+                        )
+                        ent.CurrentEyeTarget = cpos + move + randomOffset
+                    end
+                    ent.NextEyeMove = CurTime() + math.Rand(2, 4)
+                end
+
+                -- 设置眼睛目标
+                if ent.CurrentEyeTarget then
+                    ent:SetEyeTarget(ent.CurrentEyeTarget)
+                else
+                    -- 初始化眼睛目标
+                    ent.CurrentEyeTarget = cpos + move + Vector(0, i == 1 and 10 or -10, 0)
+                    ent:SetEyeTarget(ent.CurrentEyeTarget)
+                end
             end
         end
 
