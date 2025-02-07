@@ -1,23 +1,33 @@
 {
-    "makefriend": [
-        "playerchat.makefriend.1",
-        "playerchat.makefriend.2",
-        "playerchat.makefriend.3",
-        "playerchat.makefriend.4",
-        "playerchat.makefriend.5"
+    "greeting": [
+        "playerchat.greeting.1",
+        "playerchat.greeting.2",
+        "playerchat.greeting.3",
+        "playerchat.greeting.4",
+        "playerchat.greeting.5"
     ],
     "trade": [
         "playerchat.trade.1",
         "playerchat.trade.2",
         "playerchat.trade.3",
         "playerchat.trade.4",
-        "playerchat.trade.5"
+        "playerchat.trade.5",
+        "playerchat.trade.6",
+        "playerchat.trade.7",
+        "playerchat.trade.8",
+        "playerchat.trade.9",
+        "playerchat.trade.10",
+        "playerchat.trade.11"
     ],
     "leave": [
         "playerchat.leave.1",
         "playerchat.leave.2",
         "playerchat.leave.3",
         "playerchat.leave.4",
-        "playerchat.leave.5"
+        "playerchat.leave.5",
+        "playerchat.leave.6",
+        "playerchat.leave.7",
+        "playerchat.leave.8",
+        "playerchat.leave.9"
     ]
 } 

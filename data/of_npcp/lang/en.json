@@ -515,7 +515,7 @@
         }
     },
     "playerchat": {
-        "makefriend": {
+        "greeting": {
             "1": "Hello, /name/!",
             "2": "How's your day going?",
             "3": "Nice to meet you!",

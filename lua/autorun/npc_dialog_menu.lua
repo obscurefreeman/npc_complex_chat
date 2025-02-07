@@ -10,7 +10,7 @@ if CLIENT then
         net.SendToServer()
         
         local dialogOptions = {
-            "makefriend",
+            "greeting",
             "trade",
             "leave"
         }
