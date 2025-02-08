@@ -2,7 +2,7 @@
 hook.Add("Think", "NPCTalkAttack", function()
     for _, npc in pairs(ents.FindByClass("npc_*")) do
         if IsValid(npc) and npc:IsNPC() then
-            if NPCTalkManager:IsNPCTalking(npc) or NPCTalkManager:IsNPCChating(npc) then continue end
+            if NPCTalkManager:IsNPCTalking(npc) or NPCTalkManager:IsNPCChating(npc) then return end
             local target = npc:GetEnemy()  -- 获取当前攻击目标
             if target and not npc.lastTarget then
                 -- 如果目标从无到有，触发对话

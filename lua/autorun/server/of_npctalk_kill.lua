@@ -3,7 +3,7 @@ hook.Add("OnNPCKilled", "NPCTalkKill", function(victim, attacker, inflictor)
     if not (IsValid(attacker) and attacker:IsNPC()) then return end
     
     -- 检查是否正在对话
-    if NPCTalkManager:IsNPCTalking(npc) or NPCTalkManager:IsNPCChating(npc) then continue end
+    if NPCTalkManager:IsNPCTalking(npc) or NPCTalkManager:IsNPCChating(npc) then return end
     
     -- 获取NPC身份信息
     local identity = OFNPCS and OFNPCS[attacker:EntIndex()]
