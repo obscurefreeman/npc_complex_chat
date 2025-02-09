@@ -208,14 +208,28 @@ local function RefreshCardButtons(left_panel, right_panel)
             -- 获取该牌组的卡牌
             local cards = GLOBAL_OFNPC_DATA.cards[groupKey]
 
-            -- 列出该牌组的所有卡牌
+            -- 获取所有的general卡牌
+            local generalCards = GLOBAL_OFNPC_DATA.cards.general
+
+            -- 对卡牌进行排序
+            local sortedCards = {}
             for cardKey, cardData in pairs(cards) do
+                table.insert(sortedCards, cardData)
+            end
+            for cardKey, cardData in pairs(generalCards) do
+                table.insert(sortedCards, cardData)  -- 添加general卡牌
+            end
+            table.sort(sortedCards, function(a, b) return a.cost < b.cost end)
+
+            -- 列出该牌组的所有卡牌
+            for _, cardData in ipairs(sortedCards) do
                 local cardButton = vgui.Create("OFSkillButton", right_panel)
                 cardButton:Dock(TOP)
                 cardButton:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
                 cardButton:SetTall(80 * OFGUI.ScreenScale)
                 cardButton:SetTitle(cardData.name)
                 cardButton:SetDescription(cardData.d[math.random(#cardData.d)])
+                -- cardButton:SetIcon("ofnpcp/cards/preview/" .. groupKey .. "/" .. cardData.key .. ".png")
             end
         end
     end
