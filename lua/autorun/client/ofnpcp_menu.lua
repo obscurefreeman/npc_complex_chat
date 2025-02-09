@@ -205,21 +205,20 @@ local function RefreshCardButtons(left_panel, right_panel)
             -- 清除右侧面板
             right_panel:Clear()
 
-            -- 获取该牌组的卡牌
-            local cards = GLOBAL_OFNPC_DATA.cards[groupKey]
-
-            -- 获取所有的general卡牌
-            local generalCards = GLOBAL_OFNPC_DATA.cards.general
+            -- 获取该牌组的卡牌和所有的general卡牌
+            local cards = GLOBAL_OFNPC_DATA.cards[groupKey] or {}
+            local generalCards = GLOBAL_OFNPC_DATA.cards.general or {}
 
             -- 对卡牌进行排序
             local sortedCards = {}
-            for cardKey, cardData in pairs(cards) do
-                table.insert(sortedCards, {key = cardKey, data = cardData, type = cardKey})  -- 记录 cardKey
+            local function addCards(cardTable, cardType)
+                for cardKey, cardData in pairs(cardTable) do
+                    table.insert(sortedCards, {key = cardKey, data = cardData, type = cardType})
+                end
             end
-            for cardKey, cardData in pairs(generalCards) do
-                table.insert(sortedCards, {key = cardKey, data = cardData, type = "general"})  -- 记录 cardKey
-            end
-            table.sort(sortedCards, function(a, b) return a.data.cost < b.data.cost end)  -- 使用 data 进行排序
+            addCards(cards, groupKey)
+            addCards(generalCards, "general")
+            table.sort(sortedCards, function(a, b) return a.data.cost < b.data.cost end)
 
             -- 列出该牌组的所有卡牌
             for _, cardInfo in ipairs(sortedCards) do
@@ -229,7 +228,8 @@ local function RefreshCardButtons(left_panel, right_panel)
                 cardButton:SetTall(80 * OFGUI.ScreenScale)
                 cardButton:SetTitle(cardInfo.data.name)
                 cardButton:SetDescription(cardInfo.data.d[math.random(#cardInfo.data.d)])
-                cardButton:SetIcon("ofnpcp/cards/preview/" .. cardInfo.type .. "/" .. cardInfo.key .. ".png")  -- 使用 cardKey
+                cardButton:SetIcon("ofnpcp/cards/preview/" .. cardInfo.type .. "/" .. cardInfo.key .. ".png")
+				cardButton:SetCardIcon("ofnpcp/cards/large/" .. cardInfo.type .. "/" .. cardInfo.key .. ".png")
             end
         end
     end
