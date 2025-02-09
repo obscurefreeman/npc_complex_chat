@@ -214,10 +214,10 @@ local function RefreshCardButtons(left_panel, right_panel)
             -- 对卡牌进行排序
             local sortedCards = {}
             for cardKey, cardData in pairs(cards) do
-                table.insert(sortedCards, {key = cardKey, data = cardData})  -- 记录 cardKey
+                table.insert(sortedCards, {key = cardKey, data = cardData, type = cardKey})  -- 记录 cardKey
             end
             for cardKey, cardData in pairs(generalCards) do
-                table.insert(sortedCards, {key = cardKey, data = cardData})  -- 记录 cardKey
+                table.insert(sortedCards, {key = cardKey, data = cardData, type = "general"})  -- 记录 cardKey
             end
             table.sort(sortedCards, function(a, b) return a.data.cost < b.data.cost end)  -- 使用 data 进行排序
 
@@ -229,7 +229,7 @@ local function RefreshCardButtons(left_panel, right_panel)
                 cardButton:SetTall(80 * OFGUI.ScreenScale)
                 cardButton:SetTitle(cardInfo.data.name)
                 cardButton:SetDescription(cardInfo.data.d[math.random(#cardInfo.data.d)])
-                cardButton:SetIcon("ofnpcp/cards/preview/" .. groupKey .. "/" .. cardInfo.key .. ".png")  -- 使用 cardKey
+                cardButton:SetIcon("ofnpcp/cards/preview/" .. cardInfo.type .. "/" .. cardInfo.key .. ".png")  -- 使用 cardKey
             end
         end
     end
