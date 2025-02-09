@@ -214,22 +214,22 @@ local function RefreshCardButtons(left_panel, right_panel)
             -- 对卡牌进行排序
             local sortedCards = {}
             for cardKey, cardData in pairs(cards) do
-                table.insert(sortedCards, cardData)
+                table.insert(sortedCards, {key = cardKey, data = cardData})  -- 记录 cardKey
             end
             for cardKey, cardData in pairs(generalCards) do
-                table.insert(sortedCards, cardData)  -- 添加general卡牌
+                table.insert(sortedCards, {key = cardKey, data = cardData})  -- 记录 cardKey
             end
-            table.sort(sortedCards, function(a, b) return a.cost < b.cost end)
+            table.sort(sortedCards, function(a, b) return a.data.cost < b.data.cost end)  -- 使用 data 进行排序
 
             -- 列出该牌组的所有卡牌
-            for _, cardData in ipairs(sortedCards) do
+            for _, cardInfo in ipairs(sortedCards) do
                 local cardButton = vgui.Create("OFSkillButton", right_panel)
                 cardButton:Dock(TOP)
                 cardButton:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
                 cardButton:SetTall(80 * OFGUI.ScreenScale)
-                cardButton:SetTitle(cardData.name)
-                cardButton:SetDescription(cardData.d[math.random(#cardData.d)])
-                -- cardButton:SetIcon("ofnpcp/cards/preview/" .. groupKey .. "/" .. cardData.key .. ".png")
+                cardButton:SetTitle(cardInfo.data.name)
+                cardButton:SetDescription(cardInfo.data.d[math.random(#cardInfo.data.d)])
+                cardButton:SetIcon("ofnpcp/cards/preview/" .. groupKey .. "/" .. cardInfo.key .. ".png")  -- 使用 cardKey
             end
         end
     end
