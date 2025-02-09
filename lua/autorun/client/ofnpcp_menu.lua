@@ -213,7 +213,7 @@ local function RefreshCardButtons(left_panel, right_panel)
             local sortedCards = {}
             local function addCards(cardTable, cardType)
                 for cardKey, cardData in pairs(cardTable) do
-                    table.insert(sortedCards, {key = cardKey, data = cardData, type = cardType})
+                    table.insert(sortedCards, {key = cardKey, data = cardData})
                 end
             end
             addCards(cards, groupKey)
@@ -228,8 +228,8 @@ local function RefreshCardButtons(left_panel, right_panel)
                 cardButton:SetTall(80 * OFGUI.ScreenScale)
                 cardButton:SetTitle(cardInfo.data.name)
                 cardButton:SetDescription(cardInfo.data.d[math.random(#cardInfo.data.d)])
-                cardButton:SetIcon("ofnpcp/cards/preview/" .. cardInfo.type .. "/" .. cardInfo.key .. ".png")
-				cardButton:SetCardIcon("ofnpcp/cards/large/" .. cardInfo.type .. "/" .. cardInfo.key .. ".png")
+                cardButton:SetIcon("ofnpcp/cards/preview/" .. cardInfo.key .. ".png")
+				cardButton:SetCardIcon("ofnpcp/cards/large/" .. cardInfo.key .. ".png")
             end
         end
     end
