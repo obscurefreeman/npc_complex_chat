@@ -3,6 +3,7 @@ import json
 import tkinter as tk
 from tkinter import ttk, messagebox, filedialog
 from PIL import Image, ImageTk
+import re
 
 class CardEditor:
     def __init__(self, root):
@@ -36,10 +37,19 @@ class CardEditor:
         middle_panel = ttk.Frame(main_panel)
         main_panel.add(middle_panel)
         
-        self.card_tree = ttk.Treeview(middle_panel, columns=('name', 'type', 'cost'), show='headings')
-        self.card_tree.heading('name', text='名称')
-        self.card_tree.heading('type', text='类型')
+        self.card_tree = ttk.Treeview(middle_panel, columns=('index', 'cost', 'type', 'key', 'name', 'tag'), show='headings')
+        self.card_tree.heading('index', text='序号')
         self.card_tree.heading('cost', text='消耗')
+        self.card_tree.heading('type', text='类型')
+        self.card_tree.heading('key', text='索引')
+        self.card_tree.heading('name', text='名称')
+        self.card_tree.heading('tag', text='标签')
+        self.card_tree.column('index', width=50, anchor='center')
+        self.card_tree.column('cost', width=50, anchor='center')
+        self.card_tree.column('type', width=100, anchor='center')
+        self.card_tree.column('key', width=150, anchor='w')
+        self.card_tree.column('name', width=200, anchor='w')
+        self.card_tree.column('tag', width=150, anchor='w')
         self.card_tree.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
         self.card_tree.bind('<<TreeviewSelect>>', self.on_card_select)
         
@@ -64,7 +74,7 @@ class CardEditor:
         self.detail_frame.grid_columnconfigure(1, weight=1)
 
         # 详情编辑控件
-        ttk.Label(self.detail_frame, text="索引名称:").grid(row=0, column=0, sticky=tk.W)
+        ttk.Label(self.detail_frame, text="索引:").grid(row=0, column=0, sticky=tk.W)
         self.key_entry = ttk.Entry(self.detail_frame)
         self.key_entry.grid(row=0, column=1, sticky=tk.EW, padx=5, pady=2)
         
@@ -88,9 +98,13 @@ class CardEditor:
         self.response_text = tk.Text(self.detail_frame, height=4, width=30)
         self.response_text.grid(row=5, column=1, sticky=tk.EW, padx=5, pady=2)
         
+        ttk.Label(self.detail_frame, text="标签:").grid(row=6, column=0, sticky=tk.W)
+        self.tag_entry = ttk.Entry(self.detail_frame)
+        self.tag_entry.grid(row=6, column=1, sticky=tk.EW, padx=5, pady=2)
+        
         # 保存按钮
         self.save_btn = ttk.Button(self.detail_frame, text="保存修改", command=self.save_card)
-        self.save_btn.grid(row=6, column=1, sticky=tk.E, pady=5)
+        self.save_btn.grid(row=7, column=1, sticky=tk.E, pady=5)
 
     def load_file(self, file_path):
         try:
@@ -115,19 +129,27 @@ class CardEditor:
     def populate_cards(self):
         self.card_tree.delete(*self.card_tree.get_children())
         if self.current_group in self.data:
+            # 合并通用卡牌和当前阵营卡牌
+            all_cards = {**self.data.get('general', {}), **self.data.get(self.current_group, {})}
             # 按消耗排序
-            sorted_cards = sorted(self.data[self.current_group].items(), 
-                                key=lambda x: int(x[1]['cost']))
-            for card_id, card_data in sorted_cards:
+            sorted_cards = sorted(all_cards.items(), key=lambda x: int(x[1]['cost']))
+            for index, (card_id, card_data) in enumerate(sorted_cards, start=1):
                 self.card_tree.insert('', 'end', 
-                                    values=(card_data['name'], card_data['type'], card_data['cost']), 
-                                    iid=card_id)
+                                   values=(index, 
+                                         card_data['cost'], 
+                                         card_data['type'], 
+                                         card_id, 
+                                         card_data['name'], 
+                                         ", ".join(card_data.get('tag', []))), 
+                                   iid=card_id)
 
     def on_card_select(self, event):
         selected = self.card_tree.selection()
         if selected:
             self.current_card_key = selected[0]
-            self.current_card = self.data[self.current_group].get(self.current_card_key, {})
+            # 先检查当前阵营，再检查通用卡牌
+            self.current_card = self.data[self.current_group].get(self.current_card_key) or \
+                               self.data['general'].get(self.current_card_key, {})
             self.show_card_details()
 
     def show_card_details(self):
@@ -166,6 +188,9 @@ class CardEditor:
         
         self.response_text.delete(1.0, tk.END)
         self.response_text.insert(1.0, "\n".join(self.current_card.get('a', [])))
+        
+        self.tag_entry.delete(0, tk.END)
+        self.tag_entry.insert(0, ", ".join(self.current_card.get('tag', [])))
 
     def save_card(self):
         if not self.current_card:
@@ -177,7 +202,10 @@ class CardEditor:
         # 如果索引名称改变了
         if new_key != self.current_card_key:
             # 删除旧的卡牌数据
-            del self.data[self.current_group][self.current_card_key]
+            if self.current_card_key in self.data[self.current_group]:
+                del self.data[self.current_group][self.current_card_key]
+            elif self.current_card_key in self.data['general']:
+                del self.data['general'][self.current_card_key]
             # 更新当前卡牌键
             self.current_card_key = new_key
         
@@ -187,14 +215,17 @@ class CardEditor:
         self.current_card['cost'] = self.cost_entry.get()
         self.current_card['d'] = self.desc_text.get(1.0, tk.END).strip().split("\n")
         self.current_card['a'] = self.response_text.get(1.0, tk.END).strip().split("\n")
+        # 处理中英文逗号分隔的标签
+        self.current_card['tag'] = [t.strip() for t in re.split(r'[，,]', self.tag_entry.get()) if t.strip()]
         
         # 保存到数据中
-        self.data[self.current_group][self.current_card_key] = self.current_card
+        if self.current_card_key in self.data['general']:
+            self.data['general'][self.current_card_key] = self.current_card
+        else:
+            self.data[self.current_group][self.current_card_key] = self.current_card
         
         # 更新树状视图
-        selected = self.card_tree.selection()
-        if selected:
-            self.card_tree.item(selected[0], values=(self.current_card['name'], self.current_card['type'], self.current_card['cost']))
+        self.populate_cards()
         
         # 保存到文件
         self.save_to_file()
