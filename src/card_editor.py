@@ -201,13 +201,25 @@ class CardEditor:
         
         # 如果索引名称改变了
         if new_key != self.current_card_key:
+            # 获取旧图片路径
+            old_image_path = os.path.join(self.image_dir, f"{self.current_card_key}.png")
+            
             # 删除旧的卡牌数据
             if self.current_card_key in self.data[self.current_group]:
                 del self.data[self.current_group][self.current_card_key]
             elif self.current_card_key in self.data['general']:
                 del self.data['general'][self.current_card_key]
+            
             # 更新当前卡牌键
             self.current_card_key = new_key
+            
+            # 重命名图片文件
+            if os.path.exists(old_image_path):
+                new_image_path = os.path.join(self.image_dir, f"{new_key}.png")
+                try:
+                    os.rename(old_image_path, new_image_path)
+                except Exception as e:
+                    messagebox.showerror("错误", f"重命名图片时出错: {str(e)}")
         
         # 更新卡牌数据
         self.current_card['name'] = self.name_entry.get()
