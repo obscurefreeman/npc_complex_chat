@@ -205,6 +205,13 @@ local function RefreshCardButtons(left_panel, right_panel)
             -- 清除右侧面板
             right_panel:Clear()
 
+            local right_card_panel = vgui.Create("OFScrollPanel",right_panel)
+            right_card_panel:Dock(RIGHT)
+			right_card_panel:SetWidth(ScrW()/ 5)
+
+            local left_card_panel = vgui.Create("OFScrollPanel",right_panel)
+            left_card_panel:Dock(FILL)
+
             -- 获取该牌组的卡牌和所有的general卡牌
             local cards = GLOBAL_OFNPC_DATA.cards[groupKey] or {}
             local generalCards = GLOBAL_OFNPC_DATA.cards.general or {}
@@ -222,14 +229,23 @@ local function RefreshCardButtons(left_panel, right_panel)
 
             -- 列出该牌组的所有卡牌
             for _, cardInfo in ipairs(sortedCards) do
-                local cardButton = vgui.Create("OFSkillButton", right_panel)
+                -- 左侧使用 OFCard
+                local card = vgui.Create("OFCard", left_card_panel)
+                card:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+                card:SetSize(213 * OFGUI.ScreenScale, 296 * OFGUI.ScreenScale)
+                card:SetTitle(cardInfo.data.name)
+                card:SetDescription(cardInfo.data.d[math.random(#cardInfo.data.d)])
+                card:SetIcon("ofnpcp/cards/preview/" .. cardInfo.key .. ".png")
+
+                -- 右侧使用 OFSkillButton
+                local cardButton = vgui.Create("OFSkillButton", right_card_panel)
                 cardButton:Dock(TOP)
                 cardButton:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
                 cardButton:SetTall(80 * OFGUI.ScreenScale)
                 cardButton:SetTitle(cardInfo.data.name)
                 cardButton:SetDescription(cardInfo.data.d[math.random(#cardInfo.data.d)])
                 cardButton:SetIcon("ofnpcp/cards/preview/" .. cardInfo.key .. ".png")
-				cardButton:SetCardIcon("ofnpcp/cards/large/" .. cardInfo.key .. ".png")
+                cardButton:SetCardIcon("ofnpcp/cards/large/" .. cardInfo.key .. ".png")
             end
         end
     end
@@ -266,17 +282,16 @@ local function AddOFFrame()
 	local right_panel = vgui.Create("OFScrollPanel")
 	horizontalDivider:SetRight(right_panel)
 
-	local horizontalDividerCards = vgui.Create("DHorizontalDivider", pan2)
-	horizontalDividerCards:Dock(FILL)
-	horizontalDividerCards:DockMargin(6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale)
-	horizontalDividerCards:SetLeftWidth(ScrW()/ 3) -- 设置左侧面板的初始宽度
-	horizontalDividerCards:SetDividerWidth(8 * OFGUI.ScreenScale) -- 设置分割线宽度
+	local left_panel_cards = vgui.Create("OFScrollPanel", pan2)
+	left_panel_cards:Dock(LEFT)
+	left_panel_cards:SetWidth(ScrW()/ 4)
 
-	local left_panel_cards = vgui.Create("OFScrollPanel")
-	horizontalDividerCards:SetLeft(left_panel_cards)
-
-	local right_panel_cards = vgui.Create("OFScrollPanel")
-	horizontalDividerCards:SetRight(right_panel_cards)
+	local right_panel_cards = vgui.Create("DPanel", pan2)  -- 创建一个透明不可见的元素作为容器
+	right_panel_cards.Paint = function(self, w, h)
+		surface.SetDrawColor(0, 0, 0, 0)
+		surface.DrawRect(0, 0, w, h)
+	end
+	right_panel_cards:Dock(FILL)
 
 	-- 初始加载NPC列表
 	RefreshNPCButtons(left_panel, right_panel)
