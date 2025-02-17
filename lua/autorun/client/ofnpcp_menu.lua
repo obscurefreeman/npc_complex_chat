@@ -227,15 +227,21 @@ local function RefreshCardButtons(left_panel, right_panel)
             addCards(generalCards, "general")
             table.sort(sortedCards, function(a, b) return a.data.cost < b.data.cost end)
 
+            -- 使用DIconLayout实现自动换行布局
+            local cardLayout = vgui.Create("OFIconLayout", left_card_panel)
+            cardLayout:Dock(FILL)
+            cardLayout:SetSpaceX(8 * OFGUI.ScreenScale)
+            cardLayout:SetSpaceY(8 * OFGUI.ScreenScale)
+			cardLayout:SetStretchWidth(true)
+            
             -- 列出该牌组的所有卡牌
             for _, cardInfo in ipairs(sortedCards) do
                 -- 左侧使用 OFCard
-                local card = vgui.Create("OFCard", left_card_panel)
-                card:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+                local card = cardLayout:Add("OFCard")
                 card:SetSize(213 * OFGUI.ScreenScale, 296 * OFGUI.ScreenScale)
                 card:SetTitle(cardInfo.data.name)
                 card:SetDescription(cardInfo.data.d[math.random(#cardInfo.data.d)])
-                card:SetIcon("ofnpcp/cards/preview/" .. cardInfo.key .. ".png")
+                card:SetIcon("ofnpcp/cards/large/" .. cardInfo.key .. ".png")
 
                 -- 右侧使用 OFSkillButton
                 local cardButton = vgui.Create("OFSkillButton", right_card_panel)
