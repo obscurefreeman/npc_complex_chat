@@ -322,9 +322,29 @@
             "3": "When can I go home?"
         },
         "rebel": {
-            "1": "We will definitely win.",
-            "2": "The days of freedom will come.",
-            "3": "We cannot give up."
+            "1": "I'm running low on ammo, need to use it sparingly... I hope the supplies arrive on time.",
+            "2": "This damn gun jammed! Do you have spare parts?",
+            "3": "Hey, have you seen my gas mask?",
+            "4": "Don't let your guard down, the Combine could strike back at any time.",
+            "5": "I'm tired of eating canned food, I really want to taste fresh vegetables.",
+            "6": "Do you have matches? I want to relax with a smoke.",
+            "7": "Who's on guard duty tonight? I need a good night's sleep.",
+            "8": "This damn radio can only pick up the Combine's political propaganda, I really want to hear the news from outside.",
+            "9": "Hey, have you played the old arcade machine at Black Mesa Base? That's a classic!",
+            "10": "I miss my cat.",
+            "11": "This damn weather is so cold, if only I had a thick coat.",
+            "12": "Do you have a deck of cards? Let's play a couple of games to pass the time.",
+            "13": "This coffee is really bad, but it's better than nothing.",
+            "14": "Hey, have you heard? They say there's a bar in the underground of City 17.",
+            "15": "One day, we'll make the Combine pay for their blood debt!",
+            "16": "We're not alone in this fight, the whole world is supporting us!",
+            "17": "This damn map is so hard to understand, where the hell are we?",
+            "18": "This damn place is so quiet, it's so quiet it's scary.",
+            "19": "I think I heard a strange sound, did you guys hear it?",
+            "20": "This damn boot is soaked again.",
+            "21": "Do you know what time it is?",
+            "22": "Be careful! Don't touch my weapon, it's my lifeline!",
+            "23": "Do you have a razor? My beard has grown out."
         },
         "medic": {
             "1": "I need more medical supplies.",
@@ -337,9 +357,13 @@
             "3": "Continue monitoring."
         },
         "combine": {
-            "1": "Patrol area is normal.",
-            "2": "Stay alert.",
-            "3": "Continue monitoring."
+            "1": "Stay alert, the rebels could be lurking in any corner.",
+            "2": "Any breach of discipline will be severely punished.",
+            "3": "Maintain formation, don't fall behind!",
+            "4": "This damn place is so boring, I really want to go back to base and rest.",
+            "5": "Do you have military gum? I'm a little tired.",
+            "6": "This patrol route is really long, when will it end...",
+            "7": "I slept on the broken floor last night and my back hurts."
         }
     },
     "attack": {
@@ -425,7 +449,9 @@
             "4": "Your resistance is futile, /victim/!",
             "5": "Run, run!",
             "6": "The Combine salutes you.",
-            "7": "Is this all you've got, /victim/?"
+            "7": "Is this all you've got, /victim/?",
+            "8": "Your weapons are like toys, vulnerable.",
+            "9": "Why not surrender earlier，/victim/？"
         }
     },
     "death": {

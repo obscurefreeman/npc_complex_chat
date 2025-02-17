@@ -57,7 +57,27 @@
         "rebel": [
             "idle.rebel.1",
             "idle.rebel.2",
-            "idle.rebel.3"
+            "idle.rebel.3",
+            "idle.rebel.4",
+            "idle.rebel.5",
+            "idle.rebel.6",
+            "idle.rebel.7",
+            "idle.rebel.8",
+            "idle.rebel.9",
+            "idle.rebel.10",
+            "idle.rebel.11",
+            "idle.rebel.12",
+            "idle.rebel.13",
+            "idle.rebel.14",
+            "idle.rebel.15",
+            "idle.rebel.16",
+            "idle.rebel.17",
+            "idle.rebel.18",
+            "idle.rebel.19",
+            "idle.rebel.20",
+            "idle.rebel.21",
+            "idle.rebel.22",
+            "idle.rebel.23"
         ],
         "medic": [
             "idle.medic.1",
@@ -72,7 +92,11 @@
         "combine": [
             "idle.combine.1",
             "idle.combine.2",
-            "idle.combine.3"
+            "idle.combine.3",
+            "idle.combine.4",
+            "idle.combine.5",
+            "idle.combine.6",
+            "idle.combine.7"
         ]
     },
     "kill": {
@@ -114,7 +138,9 @@
             "kill.combine.4",
             "kill.combine.5",
             "kill.combine.6",
-            "kill.combine.7"
+            "kill.combine.7",
+            "kill.combine.8",
+            "kill.combine.9"
         ]
     },
     "death": {
