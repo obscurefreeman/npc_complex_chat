@@ -574,9 +574,11 @@
         }
     },
     "ui": {
+        "title": "卡牌编辑器",
         "group_list": "阵营列表",
         "card_list": "卡牌列表",
         "card_detail": "卡牌详情",
+        "index": "序号",
         "key": "索引",
         "name": "名称",
         "type": "类型",
@@ -586,6 +588,14 @@
         "tags": "标签",
         "save": "保存修改",
         "add_card": "添加卡牌",
-        "add_group": "添加阵营"
+        "add_group": "添加阵营",
+        "success": "成功",
+        "save_success": "保存成功！",
+        "error": "错误",
+        "save_error": "保存失败",
+        "confirm": "确定",
+        "cancel": "取消",
+        "group_name": "阵营名称",
+        "card_key": "卡牌索引"
     }
 } 

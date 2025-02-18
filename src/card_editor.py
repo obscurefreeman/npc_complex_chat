@@ -1,7 +1,7 @@
 import os
 import json
 import tkinter as tk
-from tkinter import ttk, messagebox, filedialog
+from tkinter import ttk, messagebox, filedialog, simpledialog
 from PIL import Image, ImageTk
 import re
 
@@ -16,12 +16,18 @@ class CardEditor:
         self.current_group = None
         self.current_card = None
         self.image_dir = os.path.join(os.getcwd(), "materials", "ofnpcp", "cards", "large")
+        self.lang = {}
+        self.current_lang = "zh"
+        self.load_language()
         
         # 创建主界面布局
         self.create_widgets()
         
         # 自动加载cards.json
         self.load_file(os.path.join("data", "of_npcp", "cards.json"))
+
+        # 在创建控件后添加语言切换菜单
+        self.create_language_menu()
 
     def configure_styles(self):
         self.style.configure('TFrame', background='#F5F5F5')
@@ -63,16 +69,27 @@ class CardEditor:
         left_panel = ttk.Frame(main_panel, width=200)
         main_panel.add(left_panel, weight=1)
         
-        ttk.Label(left_panel, text="阵营列表", font=('微软雅黑', 11, 'bold')).pack(pady=5)
+        self.group_list_label = ttk.Label(left_panel, text=self.lang["group_list"], font=('微软雅黑', 11, 'bold'))
+        self.group_list_label.pack(pady=5)
+        
         self.group_listbox = tk.Listbox(left_panel, font=('微软雅黑', 10))
         self.group_listbox.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
         self.group_listbox.bind('<<ListboxSelect>>', self.on_group_select)
+
+        # 在左侧面板添加阵营操作按钮
+        group_btn_frame = ttk.Frame(left_panel)
+        group_btn_frame.pack(pady=5)
+        self.add_group_btn = ttk.Button(group_btn_frame, text=self.lang["add_group"], 
+                  command=self.add_group)
+        self.add_group_btn.pack(side=tk.LEFT, padx=2)
 
         # 中间面板 - 卡牌列表
         middle_panel = ttk.Frame(main_panel, width=400)
         main_panel.add(middle_panel, weight=2)
         
-        ttk.Label(middle_panel, text="卡牌列表", font=('微软雅黑', 11, 'bold')).pack(pady=5)
+        self.card_list_label = ttk.Label(middle_panel, text=self.lang["card_list"], font=('微软雅黑', 11, 'bold'))
+        self.card_list_label.pack(pady=5)
+        
         self.card_tree = ttk.Treeview(middle_panel, columns=('index', 'cost', 'type', 'key', 'name', 'tag'), show='headings')
         self.card_tree.heading('index', text='序号')
         self.card_tree.heading('cost', text='消耗')
@@ -88,6 +105,13 @@ class CardEditor:
         self.card_tree.column('tag', width=150, anchor='w')
         self.card_tree.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
         self.card_tree.bind('<<TreeviewSelect>>', self.on_card_select)
+
+        # 在中间面板添加卡牌操作按钮
+        card_btn_frame = ttk.Frame(middle_panel)
+        card_btn_frame.pack(pady=5)
+        self.add_card_btn = ttk.Button(card_btn_frame, text=self.lang["add_card"], 
+                 command=self.add_card)
+        self.add_card_btn.pack(side=tk.LEFT, padx=2)
 
         # 右侧面板 - 卡牌详情
         right_panel = ttk.Frame(main_panel, width=400)
@@ -349,7 +373,7 @@ class CardEditor:
         # 保存到文件
         self.save_to_file()
         
-        messagebox.showinfo("成功", "卡牌信息已更新")
+        messagebox.showinfo(self.lang["success"], self.lang["save_success"])
 
     def save_to_file(self):
         file_path = os.path.join("data", "of_npcp", "cards.json")
@@ -366,7 +390,88 @@ class CardEditor:
             with open(file_path, 'w', encoding='utf-8') as f:
                 json.dump(sorted_data, f, ensure_ascii=False, indent=4)
         except Exception as e:
-            messagebox.showerror("错误", f"保存文件时出错: {str(e)}")
+            messagebox.showerror(self.lang["error"], 
+                                f"{self.lang['save_error']}: {str(e)}")
+
+    def load_language(self):
+        lang_file = os.path.join("data", "of_npcp", "lang", f"{self.current_lang}.json")
+        try:
+            with open(lang_file, "r", encoding="utf-8") as f:
+                self.lang = json.load(f)["ui"]
+        except Exception as e:
+            messagebox.showerror("Error", f"无法加载语言文件: {str(e)}")
+
+    def create_language_menu(self):
+        menu_bar = tk.Menu(self.root)
+        lang_menu = tk.Menu(menu_bar, tearoff=0)
+        lang_menu.add_command(label="中文", command=lambda: self.set_language("zh"))
+        lang_menu.add_command(label="English", command=lambda: self.set_language("en"))
+        menu_bar.add_cascade(label="Language", menu=lang_menu)
+        self.root.config(menu=menu_bar)
+
+    def set_language(self, lang):
+        self.current_lang = lang
+        self.load_language()
+        self.update_ui_text()
+
+    def update_ui_text(self):
+        """更新所有界面文字"""
+        try:
+            # 更新标签
+            self.root.title(self.lang.get("title", "卡牌编辑器"))
+            self.group_list_label.config(text=self.lang["group_list"])
+            self.card_list_label.config(text=self.lang["card_list"])
+            
+            # 更新树状图列标题
+            columns = {
+                'index': self.lang["index"],
+                'cost': self.lang["cost"], 
+                'type': self.lang["type"],
+                'key': self.lang["key"],
+                'name': self.lang["name"],
+                'tag': self.lang["tags"]
+            }
+            for col, text in columns.items():
+                self.card_tree.heading(col, text=text)
+            
+            # 更新详情标签
+            self.detail_frame.config(text=self.lang["card_detail"])
+            for row, text in enumerate(["key", "name", "type", "cost", "desc", "response", "tags"]):
+                self.detail_frame.grid_slaves(row=row, column=0)[0].config(text=self.lang[text]+":")
+            
+            # 更新按钮文字
+            self.save_btn.config(text=self.lang["save"])
+            self.add_group_btn.config(text=self.lang["add_group"])
+            self.add_card_btn.config(text=self.lang["add_card"])
+            
+        except KeyError as e:
+            messagebox.showerror("语言错误", f"缺失语言键: {str(e)}")
+
+    # 新增添加卡牌方法
+    def add_card(self):
+        new_key = simpledialog.askstring(self.lang["add_card"], self.lang["key"]+":")
+        if new_key:
+            new_card = {
+                "name": "New Card",
+                "type": "Basic",
+                "cost": "1",
+                "d": [],
+                "a": [],
+                "tag": []
+            }
+            self.data[self.current_group][new_key] = new_card
+            self.populate_cards()
+            self.save_to_file()
+
+    # 新增添加阵营方法  
+    def add_group(self):
+        group_name = simpledialog.askstring(self.lang["add_group"], self.lang["name"]+":")
+        if group_name:
+            group_key = "group_" + str(len(self.data["info"]) + 1)
+            self.data["info"][group_key] = {"name": group_name}
+            self.data[group_key] = {}
+            self.populate_groups()
+            self.save_to_file()
 
 if __name__ == "__main__":
     root = tk.Tk()
