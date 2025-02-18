@@ -97,6 +97,8 @@ class CardEditor:
         self.group_tree.column('name', width=180, anchor='w')
         self.group_tree.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
         self.group_tree.bind('<<TreeviewSelect>>', self.on_group_select)
+        # 添加鼠标滚轮事件绑定
+        self.group_tree.bind("<MouseWheel>", self.on_group_wheel)
 
         # 中间面板 - 卡牌列表
         middle_panel = ttk.Frame(main_panel, width=400)
@@ -125,6 +127,8 @@ class CardEditor:
         self.card_tree.column('tag', width=150, anchor='w')
         self.card_tree.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
         self.card_tree.bind('<<TreeviewSelect>>', self.on_card_select)
+        # 添加鼠标滚轮事件绑定
+        self.card_tree.bind("<MouseWheel>", self.on_card_wheel)
 
         # 右侧面板 - 卡牌详情
         right_panel = ttk.Frame(main_panel, width=400)
@@ -486,6 +490,35 @@ class CardEditor:
                 dialog.destroy()
         
         ttk.Button(dialog, text=self.lang["confirm"], command=save_group).grid(row=3, columnspan=2, pady=5)
+
+    # 新增滚轮切换方法
+    def on_group_wheel(self, event):
+        """处理阵营列表滚轮事件"""
+        children = self.group_tree.get_children()
+        if not children:
+            return
+        
+        current = self.group_tree.selection()
+        if current:
+            index = children.index(current[0])
+            delta = -1 if event.delta > 0 else 1  # Windows和Mac的delta值方向相反
+            new_index = max(0, min(len(children)-1, index + delta))
+            self.group_tree.selection_set(children[new_index])
+            self.on_group_select(None)
+
+    def on_card_wheel(self, event):
+        """处理卡牌列表滚轮事件"""
+        children = self.card_tree.get_children()
+        if not children:
+            return
+        
+        current = self.card_tree.selection()
+        if current:
+            index = children.index(current[0])
+            delta = -1 if event.delta > 0 else 1  # Windows和Mac的delta值方向相反
+            new_index = max(0, min(len(children)-1, index + delta))
+            self.card_tree.selection_set(children[new_index])
+            self.on_card_select(None)
 
 if __name__ == "__main__":
     root = tk.Tk()
