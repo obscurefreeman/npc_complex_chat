@@ -48,13 +48,13 @@ class CardEditor:
             relief='flat',
             padding=5)
         
-        self.style.configure('TScrollbar', 
+        self.style.configure('Vertical.TScrollbar', 
             gripcount=0,
             arrowsize=14,
             troughcolor='#F0F0F0',
             background='#C0C0C0')
         
-        self.style.map('TScrollbar',
+        self.style.map('Vertical.TScrollbar',
             background=[('active', '#A0A0A0'), ('!disabled', '#C0C0C0')])
         
         self.style.configure('TLabelframe.Label', 
@@ -189,17 +189,13 @@ class CardEditor:
         self.save_btn = ttk.Button(self.detail_frame, text="保存修改", command=self.save_card)
         self.save_btn.grid(row=9, column=1, sticky=tk.E, pady=5)
 
-        # 替换原有的滚动条创建函数
+        # 修改滚动条事件绑定（完全移除悬停样式配置）
         def add_scrollbar(text_widget, row):
-            scrollbar = ttk.Scrollbar(self.detail_frame, command=text_widget.yview)
+            scrollbar = ttk.Scrollbar(self.detail_frame, 
+                                    command=text_widget.yview,
+                                    style='Vertical.TScrollbar')
             scrollbar.grid(row=row, column=2, sticky='ns', pady=5)
             text_widget.config(yscrollcommand=scrollbar.set)
-            # 添加鼠标悬停效果
-            scrollbar.bind('<Enter>', lambda e: scrollbar.config(style='Hover.TScrollbar'))
-            scrollbar.bind('<Leave>', lambda e: scrollbar.config(style='TScrollbar'))
-
-        # 在样式配置中添加悬停样式
-        self.style.configure('Hover.TScrollbar', background='#909090')
 
         # 修改滚动条调用方式
         add_scrollbar(self.desc_text, 4)
