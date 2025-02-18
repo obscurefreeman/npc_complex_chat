@@ -83,27 +83,32 @@ class CardEditor:
         left_panel = ttk.Frame(main_panel, width=200)
         main_panel.add(left_panel, weight=1)
         
-        self.group_list_label = ttk.Label(left_panel, text=self.lang["group_list"], font=('微软雅黑', 11, 'bold'))
-        self.group_list_label.pack(pady=5)
-        
-        self.group_listbox = tk.Listbox(left_panel, font=('微软雅黑', 10))
-        self.group_listbox.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
-        self.group_listbox.bind('<<ListboxSelect>>', self.on_group_select)
-
-        # 左侧面板 - 添加阵营按钮优化
+        # 修改后的阵营列表头部（与卡牌列表风格一致）
         group_header = ttk.Frame(left_panel)
         group_header.pack(fill=tk.X, pady=(0,5))
         ttk.Label(group_header, text=self.lang["group_list"], font=('微软雅黑', 11, 'bold')).pack(side=tk.LEFT)
         ttk.Button(group_header, text="+", 
                   command=self.add_group, 
                   style='Small.TButton').pack(side=tk.RIGHT, padx=2)
+        
+        # 将Listbox替换为Treeview
+        self.group_tree = ttk.Treeview(left_panel, columns=('name',), show='headings', height=10)
+        self.group_tree.heading('name', text='阵营名称')
+        self.group_tree.column('name', width=180, anchor='w')
+        self.group_tree.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
+        self.group_tree.bind('<<TreeviewSelect>>', self.on_group_select)
 
         # 中间面板 - 卡牌列表
         middle_panel = ttk.Frame(main_panel, width=400)
         main_panel.add(middle_panel, weight=2)
         
-        self.card_list_label = ttk.Label(middle_panel, text=self.lang["card_list"], font=('微软雅黑', 11, 'bold'))
-        self.card_list_label.pack(pady=5)
+        # 中间面板头部（与阵营列表风格一致）
+        card_header = ttk.Frame(middle_panel)
+        card_header.pack(fill=tk.X, pady=(0,5))
+        ttk.Label(card_header, text=self.lang["card_list"], font=('微软雅黑', 11, 'bold')).pack(side=tk.LEFT)
+        ttk.Button(card_header, text="+", 
+                 command=self.add_card, 
+                 style='Small.TButton').pack(side=tk.RIGHT, padx=2)
         
         self.card_tree = ttk.Treeview(middle_panel, columns=('index', 'cost', 'type', 'key', 'name', 'tag'), show='headings')
         self.card_tree.heading('index', text='序号')
@@ -120,14 +125,6 @@ class CardEditor:
         self.card_tree.column('tag', width=150, anchor='w')
         self.card_tree.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
         self.card_tree.bind('<<TreeviewSelect>>', self.on_card_select)
-
-        # 中间面板 - 添加卡牌按钮优化
-        card_header = ttk.Frame(middle_panel)
-        card_header.pack(fill=tk.X, pady=(0,5))
-        ttk.Label(card_header, text=self.lang["card_list"], font=('微软雅黑', 11, 'bold')).pack(side=tk.LEFT)
-        ttk.Button(card_header, text="+", 
-                 command=self.add_card, 
-                 style='Small.TButton').pack(side=tk.RIGHT, padx=2)
 
         # 右侧面板 - 卡牌详情
         right_panel = ttk.Frame(main_panel, width=400)
@@ -215,17 +212,6 @@ class CardEditor:
                 pady=8
             )
 
-        # 在卡牌图片区域添加现代风格边框
-        self.card_image.config(
-            background='white',
-            relief='flat',
-            highlightthickness=1,
-            highlightcolor='#E0E0E0',
-            highlightbackground='#E0E0E0',
-            padx=10,
-            pady=10
-        )
-
         # 修改输入框样式
         for entry in [self.key_entry, self.name_entry, self.type_entry, self.cost_entry, self.tag_entry]:
             entry.config(font=('微软雅黑', 10), background='#FFFFFF')
@@ -253,15 +239,16 @@ class CardEditor:
             messagebox.showerror("错误", f"无法加载文件: {str(e)}")
 
     def populate_groups(self):
-        self.group_listbox.delete(0, tk.END)
+        self.group_tree.delete(*self.group_tree.get_children())
         for group in self.data['info']:
-            self.group_listbox.insert(tk.END, self.data['info'][group]['name'])
+            self.group_tree.insert('', 'end', 
+                                 values=(self.data['info'][group]['name'],), 
+                                 iid=group)
 
     def on_group_select(self, event):
-        selection = self.group_listbox.curselection()
+        selection = self.group_tree.selection()
         if selection:
-            group_name = self.group_listbox.get(selection[0])
-            self.current_group = [k for k, v in self.data['info'].items() if v['name'] == group_name][0]
+            self.current_group = selection[0]
             self.populate_cards()
 
     def populate_cards(self):
@@ -466,13 +453,39 @@ class CardEditor:
 
     # 新增添加阵营方法  
     def add_group(self):
-        group_name = simpledialog.askstring(self.lang["add_group"], self.lang["name"]+":")
-        if group_name:
-            group_key = "group_" + str(len(self.data["info"]) + 1)
-            self.data["info"][group_key] = {"name": group_name}
-            self.data[group_key] = {}
-            self.populate_groups()
-            self.save_to_file()
+        dialog = tk.Toplevel(self.root)
+        dialog.title(self.lang["add_group"])
+        
+        ttk.Label(dialog, text=self.lang["key"]+":").grid(row=0, column=0, padx=5, pady=2)
+        key_entry = ttk.Entry(dialog)
+        key_entry.grid(row=0, column=1, padx=5, pady=2)
+        
+        ttk.Label(dialog, text=self.lang["name"]+":").grid(row=1, column=0, padx=5, pady=2)
+        name_entry = ttk.Entry(dialog)
+        name_entry.grid(row=1, column=1, padx=5, pady=2)
+        
+        ttk.Label(dialog, text=self.lang["desc"]+":").grid(row=2, column=0, padx=5, pady=2)
+        desc_entry = ttk.Entry(dialog)
+        desc_entry.grid(row=2, column=1, padx=5, pady=2)
+        
+        def save_group():
+            group_key = key_entry.get()
+            group_name = name_entry.get()
+            group_desc = desc_entry.get()
+            if group_key and group_name and group_desc:
+                if group_key in self.data["info"]:
+                    messagebox.showerror(self.lang["error"], "阵营索引已存在！")
+                    return
+                self.data["info"][group_key] = {
+                    "name": group_name,
+                    "desc": group_desc
+                }
+                self.data[group_key] = {}
+                self.populate_groups()
+                self.save_to_file()
+                dialog.destroy()
+        
+        ttk.Button(dialog, text=self.lang["confirm"], command=save_group).grid(row=3, columnspan=2, pady=5)
 
 if __name__ == "__main__":
     root = tk.Tk()
