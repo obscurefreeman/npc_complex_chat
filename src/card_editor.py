@@ -9,6 +9,9 @@ class CardEditor:
     def __init__(self, root):
         self.root = root
         self.root.title("卡牌编辑器")
+        self.style = ttk.Style()
+        self.style.theme_use('clam')  # 使用现代主题
+        self.configure_styles()  # 添加样式配置方法
         self.data = None
         self.current_group = None
         self.current_card = None
@@ -20,23 +23,36 @@ class CardEditor:
         # 自动加载cards.json
         self.load_file(os.path.join("data", "of_npcp", "cards.json"))
 
+    def configure_styles(self):
+        self.style.configure('TFrame', background='#F5F5F5')
+        self.style.configure('TLabel', background='#F5F5F5', font=('微软雅黑', 10))
+        self.style.configure('TButton', font=('微软雅黑', 10), relief='flat')
+        self.style.map('TButton',
+            background=[('active', '#4CAF50'), ('!disabled', '#2196F3')],
+            foreground=[('active', 'white'), ('!disabled', 'white')])
+        self.style.configure('Treeview.Heading', font=('微软雅黑', 10, 'bold'))
+        self.style.configure('Treeview', rowheight=25)
+        self.style.configure('TLabelframe', borderwidth=2, relief='groove')
+
     def create_widgets(self):
-        # 主布局
+        # 主布局使用PanedWindow实现可调节布局
         main_panel = ttk.PanedWindow(self.root, orient=tk.HORIZONTAL)
         main_panel.pack(fill=tk.BOTH, expand=True)
 
-        # 左侧面板 - 阵营选择
+        # 左侧面板 - 阵营管理
         left_panel = ttk.Frame(main_panel, width=200)
-        main_panel.add(left_panel)
+        main_panel.add(left_panel, weight=1)
         
-        self.group_listbox = tk.Listbox(left_panel)
+        ttk.Label(left_panel, text="阵营列表", font=('微软雅黑', 11, 'bold')).pack(pady=5)
+        self.group_listbox = tk.Listbox(left_panel, font=('微软雅黑', 10))
         self.group_listbox.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
         self.group_listbox.bind('<<ListboxSelect>>', self.on_group_select)
-        
+
         # 中间面板 - 卡牌列表
-        middle_panel = ttk.Frame(main_panel)
-        main_panel.add(middle_panel)
+        middle_panel = ttk.Frame(main_panel, width=400)
+        main_panel.add(middle_panel, weight=2)
         
+        ttk.Label(middle_panel, text="卡牌列表", font=('微软雅黑', 11, 'bold')).pack(pady=5)
         self.card_tree = ttk.Treeview(middle_panel, columns=('index', 'cost', 'type', 'key', 'name', 'tag'), show='headings')
         self.card_tree.heading('index', text='序号')
         self.card_tree.heading('cost', text='消耗')
@@ -52,11 +68,11 @@ class CardEditor:
         self.card_tree.column('tag', width=150, anchor='w')
         self.card_tree.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
         self.card_tree.bind('<<TreeviewSelect>>', self.on_card_select)
-        
-        # 右侧面板 - 卡牌详情
-        right_panel = ttk.Frame(main_panel)
-        main_panel.add(right_panel)
 
+        # 右侧面板 - 卡牌详情
+        right_panel = ttk.Frame(main_panel, width=400)
+        main_panel.add(right_panel, weight=2)
+        
         # 使用网格布局管理器
         right_panel.grid_columnconfigure(0, weight=1)
         right_panel.grid_rowconfigure(0, weight=1)  # 图片区域
@@ -64,7 +80,7 @@ class CardEditor:
 
         # 卡牌图片
         self.card_image = tk.Label(right_panel)
-        self.card_image.grid(row=0, column=0, pady=10, sticky='ns')  # 修改为上下居中
+        self.card_image.grid(row=0, column=0, pady=10, sticky='ns', padx=10)
 
         # 卡牌详情框架
         self.detail_frame = ttk.LabelFrame(right_panel, text="卡牌详情")
@@ -91,20 +107,47 @@ class CardEditor:
         self.cost_entry.grid(row=3, column=1, sticky=tk.EW, padx=5, pady=2)
         
         ttk.Label(self.detail_frame, text="描述:").grid(row=4, column=0, sticky=tk.W)
-        self.desc_text = tk.Text(self.detail_frame, height=4, width=30)
+        self.desc_text = tk.Text(self.detail_frame, height=4, width=30, wrap=tk.WORD, font=('微软雅黑', 10), 
+                            borderwidth=1, relief='solid', padx=5, pady=5)
         self.desc_text.grid(row=4, column=1, sticky=tk.EW, padx=5, pady=2)
         
-        ttk.Label(self.detail_frame, text="回应:").grid(row=5, column=0, sticky=tk.W)
-        self.response_text = tk.Text(self.detail_frame, height=4, width=30)
-        self.response_text.grid(row=5, column=1, sticky=tk.EW, padx=5, pady=2)
+        ttk.Separator(self.detail_frame, orient='horizontal').grid(row=5, column=0, columnspan=2, sticky='ew', pady=5)
         
-        ttk.Label(self.detail_frame, text="标签:").grid(row=6, column=0, sticky=tk.W)
+        ttk.Label(self.detail_frame, text="回应:").grid(row=6, column=0, sticky=tk.W)
+        self.response_text = tk.Text(self.detail_frame, height=4, width=30, wrap=tk.WORD, font=('微软雅黑', 10),
+                            borderwidth=1, relief='solid', padx=5, pady=5)
+        self.response_text.grid(row=6, column=1, sticky=tk.EW, padx=5, pady=2)
+        
+        ttk.Separator(self.detail_frame, orient='horizontal').grid(row=7, column=0, columnspan=2, sticky='ew', pady=5)
+        
+        ttk.Label(self.detail_frame, text="标签:").grid(row=8, column=0, sticky=tk.W)
         self.tag_entry = ttk.Entry(self.detail_frame)
-        self.tag_entry.grid(row=6, column=1, sticky=tk.EW, padx=5, pady=2)
+        self.tag_entry.grid(row=8, column=1, sticky=tk.EW, padx=5, pady=2)
         
         # 保存按钮
         self.save_btn = ttk.Button(self.detail_frame, text="保存修改", command=self.save_card)
-        self.save_btn.grid(row=7, column=1, sticky=tk.E, pady=5)
+        self.save_btn.grid(row=9, column=1, sticky=tk.E, pady=5)
+
+        # 添加滚动条
+        def add_scrollbar(text_widget):
+            scrollbar = ttk.Scrollbar(self.detail_frame, command=text_widget.yview)
+            scrollbar.grid(row=4, column=2, sticky='ns')
+            text_widget.config(yscrollcommand=scrollbar.set)
+
+        add_scrollbar(self.desc_text)
+        add_scrollbar(self.response_text)
+
+        # 修改输入框样式
+        for entry in [self.key_entry, self.name_entry, self.type_entry, self.cost_entry, self.tag_entry]:
+            entry.config(font=('微软雅黑', 10), background='#FFFFFF')
+
+        # 修改保存按钮样式
+        self.save_btn.config(style='Accent.TButton')
+        self.style.configure('Accent.TButton', 
+            background='#4CAF50', 
+            foreground='white',
+            font=('微软雅黑', 11, 'bold'),
+            padding=6)
 
     def load_file(self, file_path):
         try:
@@ -220,6 +263,15 @@ class CardEditor:
                     os.rename(old_image_path, new_image_path)
                 except Exception as e:
                     messagebox.showerror("错误", f"重命名图片时出错: {str(e)}")
+            
+            # 处理预览图片的重命名
+            old_preview_image_path = os.path.join(self.image_dir.replace("large", "preview"), f"{self.current_card_key}.png")
+            if os.path.exists(old_preview_image_path):
+                new_preview_image_path = os.path.join(self.image_dir.replace("large", "preview"), f"{new_key}.png")
+                try:
+                    os.rename(old_preview_image_path, new_preview_image_path)
+                except Exception as e:
+                    messagebox.showerror("错误", f"重命名预览图片时出错: {str(e)}")
         
         # 更新卡牌数据
         self.current_card['name'] = self.name_entry.get()
