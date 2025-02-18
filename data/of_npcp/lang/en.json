@@ -572,5 +572,20 @@
             "8": "We'll continue our chat later.",
             "9": "I'll treat you to a drink in a few days."
         }
+    },
+    "ui": {
+        "group_list": "Factions",
+        "card_list": "Cards",
+        "card_detail": "Card Details",
+        "key": "Key",
+        "name": "Name",
+        "type": "Type",
+        "cost": "Cost",
+        "desc": "Description",
+        "response": "Response",
+        "tags": "Tags",
+        "save": "Save",
+        "add_card": "Add Card",
+        "add_group": "Add Faction"
     }
 } 

@@ -33,6 +33,26 @@ class CardEditor:
         self.style.configure('Treeview.Heading', font=('微软雅黑', 10, 'bold'))
         self.style.configure('Treeview', rowheight=25)
         self.style.configure('TLabelframe', borderwidth=2, relief='groove')
+        self.style.configure('TEntry', 
+            fieldbackground='#FFFFFF',
+            bordercolor='#E0E0E0',
+            lightcolor='#E0E0E0',
+            darkcolor='#E0E0E0',
+            relief='flat',
+            padding=5)
+        
+        self.style.configure('TScrollbar', 
+            gripcount=0,
+            arrowsize=14,
+            troughcolor='#F0F0F0',
+            background='#C0C0C0')
+        
+        self.style.map('TScrollbar',
+            background=[('active', '#A0A0A0'), ('!disabled', '#C0C0C0')])
+        
+        self.style.configure('TLabelframe.Label', 
+            font=('微软雅黑', 10, 'bold'),
+            foreground='#404040')
 
     def create_widgets(self):
         # 主布局使用PanedWindow实现可调节布局
@@ -128,14 +148,43 @@ class CardEditor:
         self.save_btn = ttk.Button(self.detail_frame, text="保存修改", command=self.save_card)
         self.save_btn.grid(row=9, column=1, sticky=tk.E, pady=5)
 
-        # 添加滚动条
-        def add_scrollbar(text_widget):
+        # 替换原有的滚动条创建函数
+        def add_scrollbar(text_widget, row):
             scrollbar = ttk.Scrollbar(self.detail_frame, command=text_widget.yview)
-            scrollbar.grid(row=4, column=2, sticky='ns')
+            scrollbar.grid(row=row, column=2, sticky='ns', pady=5)
             text_widget.config(yscrollcommand=scrollbar.set)
+            # 添加鼠标悬停效果
+            scrollbar.bind('<Enter>', lambda e: scrollbar.config(style='Hover.TScrollbar'))
+            scrollbar.bind('<Leave>', lambda e: scrollbar.config(style='TScrollbar'))
 
-        add_scrollbar(self.desc_text)
-        add_scrollbar(self.response_text)
+        # 在样式配置中添加悬停样式
+        self.style.configure('Hover.TScrollbar', background='#909090')
+
+        # 修改滚动条调用方式
+        add_scrollbar(self.desc_text, 4)
+        add_scrollbar(self.response_text, 6)
+
+        # 优化文本区域配置（添加边框圆角）
+        for text_widget in [self.desc_text, self.response_text]:
+            text_widget.config(
+                relief='flat',
+                highlightthickness=1,
+                highlightcolor='#E0E0E0',
+                highlightbackground='#E0E0E0',
+                padx=8,
+                pady=8
+            )
+
+        # 在卡牌图片区域添加现代风格边框
+        self.card_image.config(
+            background='white',
+            relief='flat',
+            highlightthickness=1,
+            highlightcolor='#E0E0E0',
+            highlightbackground='#E0E0E0',
+            padx=10,
+            pady=10
+        )
 
         # 修改输入框样式
         for entry in [self.key_entry, self.name_entry, self.type_entry, self.cost_entry, self.tag_entry]:
@@ -148,6 +197,12 @@ class CardEditor:
             foreground='white',
             font=('微软雅黑', 11, 'bold'),
             padding=6)
+
+        # 增加控件间距（统一修改所有padx/pady参数）
+        for panel in [left_panel, middle_panel, right_panel]:
+            for child in panel.winfo_children():
+                if isinstance(child, (ttk.Label, ttk.Button)):
+                    child.config(padding=5)
 
     def load_file(self, file_path):
         try:
