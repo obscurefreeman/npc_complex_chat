@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import os
 import json
 import tkinter as tk
@@ -16,7 +17,7 @@ class CardEditor:
         self.current_group = None
         self.current_card = None
         self.image_dir = os.path.join(os.getcwd(), "materials", "ofnpcp", "cards", "large")
-        self.lang = {}
+        self.lang_dir = "data/of_npcp/lang"
         self.current_lang = "zh"
         self.load_language()
         
@@ -60,6 +61,19 @@ class CardEditor:
             font=('微软雅黑', 10, 'bold'),
             foreground='#404040')
 
+        self.style.configure('Accent.TButton', 
+            background='#4CAF50', 
+            foreground='white',
+            font=('微软雅黑', 11, 'bold'),
+            padding=6)
+        
+        self.style.configure('Small.TButton',
+            font=('微软雅黑', 9),
+            padding=4)
+        
+        self.style.configure('Flag.TMenu',
+            font=('Segoe UI Emoji', 12))
+
     def create_widgets(self):
         # 主布局使用PanedWindow实现可调节布局
         main_panel = ttk.PanedWindow(self.root, orient=tk.HORIZONTAL)
@@ -76,12 +90,13 @@ class CardEditor:
         self.group_listbox.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
         self.group_listbox.bind('<<ListboxSelect>>', self.on_group_select)
 
-        # 在左侧面板添加阵营操作按钮
-        group_btn_frame = ttk.Frame(left_panel)
-        group_btn_frame.pack(pady=5)
-        self.add_group_btn = ttk.Button(group_btn_frame, text=self.lang["add_group"], 
-                  command=self.add_group)
-        self.add_group_btn.pack(side=tk.LEFT, padx=2)
+        # 左侧面板 - 添加阵营按钮优化
+        group_header = ttk.Frame(left_panel)
+        group_header.pack(fill=tk.X, pady=(0,5))
+        ttk.Label(group_header, text=self.lang["group_list"], font=('微软雅黑', 11, 'bold')).pack(side=tk.LEFT)
+        ttk.Button(group_header, text="+", 
+                  command=self.add_group, 
+                  style='Small.TButton').pack(side=tk.RIGHT, padx=2)
 
         # 中间面板 - 卡牌列表
         middle_panel = ttk.Frame(main_panel, width=400)
@@ -106,12 +121,13 @@ class CardEditor:
         self.card_tree.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
         self.card_tree.bind('<<TreeviewSelect>>', self.on_card_select)
 
-        # 在中间面板添加卡牌操作按钮
-        card_btn_frame = ttk.Frame(middle_panel)
-        card_btn_frame.pack(pady=5)
-        self.add_card_btn = ttk.Button(card_btn_frame, text=self.lang["add_card"], 
-                 command=self.add_card)
-        self.add_card_btn.pack(side=tk.LEFT, padx=2)
+        # 中间面板 - 添加卡牌按钮优化
+        card_header = ttk.Frame(middle_panel)
+        card_header.pack(fill=tk.X, pady=(0,5))
+        ttk.Label(card_header, text=self.lang["card_list"], font=('微软雅黑', 11, 'bold')).pack(side=tk.LEFT)
+        ttk.Button(card_header, text="+", 
+                 command=self.add_card, 
+                 style='Small.TButton').pack(side=tk.RIGHT, padx=2)
 
         # 右侧面板 - 卡牌详情
         right_panel = ttk.Frame(main_panel, width=400)
@@ -394,12 +410,13 @@ class CardEditor:
                                 f"{self.lang['save_error']}: {str(e)}")
 
     def load_language(self):
-        lang_file = os.path.join("data", "of_npcp", "lang", f"{self.current_lang}.json")
         try:
+            lang_file = os.path.join(self.lang_dir, f"{self.current_lang}.json")
             with open(lang_file, "r", encoding="utf-8") as f:
-                self.lang = json.load(f)["ui"]
+                self.lang = json.load(f).get("ui", {})
         except Exception as e:
-            messagebox.showerror("Error", f"无法加载语言文件: {str(e)}")
+            messagebox.showerror("语言错误", f"加载语言文件失败: {str(e)}")
+            self.lang = {}
 
     def create_language_menu(self):
         menu_bar = tk.Menu(self.root)
@@ -408,6 +425,8 @@ class CardEditor:
         lang_menu.add_command(label="English", command=lambda: self.set_language("en"))
         menu_bar.add_cascade(label="Language", menu=lang_menu)
         self.root.config(menu=menu_bar)
+        # 设置全局菜单字体
+        self.root.option_add('*Menu*Font', 'Segoe UI Emoji 12')
 
     def set_language(self, lang):
         self.current_lang = lang
@@ -415,37 +434,19 @@ class CardEditor:
         self.update_ui_text()
 
     def update_ui_text(self):
-        """更新所有界面文字"""
         try:
-            # 更新标签
-            self.root.title(self.lang.get("title", "卡牌编辑器"))
-            self.group_list_label.config(text=self.lang["group_list"])
-            self.card_list_label.config(text=self.lang["card_list"])
-            
-            # 更新树状图列标题
-            columns = {
-                'index': self.lang["index"],
-                'cost': self.lang["cost"], 
-                'type': self.lang["type"],
-                'key': self.lang["key"],
-                'name': self.lang["name"],
-                'tag': self.lang["tags"]
+            # 修复标签更新方式
+            labels = {
+                0: "key", 1: "name", 2: "type", 3: "cost",
+                4: "desc", 6: "response", 8: "tags"
             }
-            for col, text in columns.items():
-                self.card_tree.heading(col, text=text)
+            for row, text_key in labels.items():
+                label = self.detail_frame.grid_slaves(row=row, column=0)[0]
+                label.config(text=f"{self.lang[text_key]}:")
             
-            # 更新详情标签
-            self.detail_frame.config(text=self.lang["card_detail"])
-            for row, text in enumerate(["key", "name", "type", "cost", "desc", "response", "tags"]):
-                self.detail_frame.grid_slaves(row=row, column=0)[0].config(text=self.lang[text]+":")
-            
-            # 更新按钮文字
-            self.save_btn.config(text=self.lang["save"])
-            self.add_group_btn.config(text=self.lang["add_group"])
-            self.add_card_btn.config(text=self.lang["add_card"])
-            
-        except KeyError as e:
-            messagebox.showerror("语言错误", f"缺失语言键: {str(e)}")
+            # 更新其他文本元素...
+        except Exception as e:
+            messagebox.showerror("UI错误", f"更新界面失败: {str(e)}")
 
     # 新增添加卡牌方法
     def add_card(self):
