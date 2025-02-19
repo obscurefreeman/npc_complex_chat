@@ -199,6 +199,8 @@ local function RefreshCardButtons(left_panel, right_panel)
         groupButton:SetTall(80 * OFGUI.ScreenScale)
         groupButton:SetTitle(groupData.name)
         groupButton:SetDescription(groupData.desc)
+		groupButton:SetIcon("ofnpcp/camps/preview/" .. groupKey .. ".png")
+		groupButton:SetCardIcon("ofnpcp/camps/large/" .. groupKey .. ".png")
 
         -- 按钮点击事件
         groupButton.DoClick = function()
