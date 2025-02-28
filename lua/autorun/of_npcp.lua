@@ -1,6 +1,7 @@
 if SERVER then
     -- 将 OFNPCS 设置为全局变量
     OFNPCS = {}
+    OFPLAYERS = {}
 
     -- 添加网络字符串
     util.AddNetworkString("NPCIdentityUpdate")
@@ -14,6 +15,12 @@ if SERVER then
     util.AddNetworkString("PlayerDialog")
     util.AddNetworkString("NPCDialogMenuOpened")
     util.AddNetworkString("NPCDialogMenuClosed")
+
+    -- 添加接收牌组选择的网络消息
+    util.AddNetworkString("SelectPlayerDeck")
+
+    -- 添加网络消息
+    util.AddNetworkString("UpdatePlayerDeck")
 
     -- 修改AssignNPCIdentity函数，添加绰号分配
     function AssignNPCIdentity(ent, npcInfo)
@@ -235,9 +242,25 @@ if SERVER then
             net.Broadcast()
         end
     end)
+
+    -- 处理玩家牌组选择
+    net.Receive("SelectPlayerDeck", function(len, ply)
+        local deck = net.ReadString()
+        if not OFPLAYERS[ply:SteamID()] then
+            OFPLAYERS[ply:SteamID()] = {}
+        end
+        OFPLAYERS[ply:SteamID()].deck = deck
+
+        -- 广播给所有客户端
+        net.Start("UpdatePlayerDeck")
+            net.WriteString(ply:SteamID())
+            net.WriteString(deck)
+        net.Broadcast()
+    end)
 end
 
 if CLIENT then
+    OFPLAYERS = OFPLAYERS or {}
     -- 只定义一次clientNPCs
     local clientNPCs = {}
     
@@ -259,6 +282,15 @@ if CLIENT then
             -- 触发NPC列表更新事件
             hook.Run("NPCListUpdated")
         end
+    end)
+
+    net.Receive("UpdatePlayerDeck", function()
+        local steamID = net.ReadString()
+        local deck = net.ReadString()
+        if not OFPLAYERS[steamID] then
+            OFPLAYERS[steamID] = {}
+        end
+        OFPLAYERS[steamID].deck = deck
     end)
 
     -- 客户端没有清理已移除NPC的数据

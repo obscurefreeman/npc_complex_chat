@@ -207,9 +207,22 @@ local function RefreshCardButtons(left_panel, right_panel)
             -- 清除右侧面板
             right_panel:Clear()
 
-            local right_card_panel = vgui.Create("OFScrollPanel",right_panel)
-            right_card_panel:Dock(RIGHT)
-			right_card_panel:SetWidth(ScrW()/ 5)
+			local card_preview_panel = vgui.Create("DPanel", right_panel)
+			card_preview_panel.Paint = function(self, w, h)
+				surface.SetDrawColor(0, 0, 0, 0)
+				surface.DrawRect(0, 0, w, h)
+			end
+			card_preview_panel:Dock(RIGHT)
+			card_preview_panel:SetWidth(350 * OFGUI.ScreenScale)
+
+			local deckbutton = vgui.Create("OFButton",card_preview_panel)
+            deckbutton:Dock(BOTTOM)
+			deckbutton:SetHeight(80 * OFGUI.ScreenScale)
+			deckbutton:SetText("选择牌组")
+			deckbutton:DockMargin(0, 4 * OFGUI.ScreenScale, 0, 0)
+
+			local right_card_panel = vgui.Create("OFScrollPanel",card_preview_panel)
+            right_card_panel:Dock(FILL)
 
             local left_card_panel = vgui.Create("OFScrollPanel",right_panel)
             left_card_panel:Dock(FILL)
@@ -255,6 +268,16 @@ local function RefreshCardButtons(left_panel, right_panel)
                 cardButton:SetIcon("ofnpcp/cards/preview/" .. cardInfo.key .. ".png")
                 cardButton:SetCardIcon("ofnpcp/cards/large/" .. cardInfo.key .. ".png")
             end
+
+            deckbutton.DoClick = function()
+                -- 获取当前选择的牌组
+                local selectedDeck = groupKey
+                
+                -- 发送牌组选择到服务器
+                net.Start("SelectPlayerDeck")
+                    net.WriteString(selectedDeck)
+                net.SendToServer()
+            end
         end
     end
 end
@@ -292,7 +315,7 @@ local function AddOFFrame()
 
 	local left_panel_cards = vgui.Create("OFScrollPanel", pan2)
 	left_panel_cards:Dock(LEFT)
-	left_panel_cards:SetWidth(ScrW()/ 4)
+	left_panel_cards:SetWidth(450 * OFGUI.ScreenScale)
 
 	local right_panel_cards = vgui.Create("DPanel", pan2)  -- 创建一个透明不可见的元素作为容器
 	right_panel_cards.Paint = function(self, w, h)

@@ -211,6 +211,43 @@ if CLIENT then
             
             message:SetText(text)
         end 
+        end
+
+        local playercardPanel = vgui.Create("OFScrollPanel", leftPanel)
+        playercardPanel:Dock(FILL)
+
+        -- 在 playercardPanel 中显示玩家卡组
+        local playerDeck = OFPLAYERS[LocalPlayer():SteamID()] and OFPLAYERS[LocalPlayer():SteamID()].deck
+        if playerDeck then
+            if not GLOBAL_OFNPC_DATA.cards.info[playerDeck] then return end
+
+            -- 获取该牌组的卡牌
+            local cards = GLOBAL_OFNPC_DATA.cards[playerDeck] or {}
+            local generalCards = GLOBAL_OFNPC_DATA.cards.general or {}
+
+            -- 对卡牌进行排序
+            local sortedCards = {}
+            local function addCards(cardTable, cardType)
+                for cardKey, cardData in pairs(cardTable) do
+                    table.insert(sortedCards, {key = cardKey, data = cardData})
+                end
+            end
+            addCards(cards, playerDeck)
+            addCards(generalCards, "general")
+            table.sort(sortedCards, function(a, b) return a.data.cost < b.data.cost end)
+
+            -- 列出该牌组的所有卡牌
+            for _, cardInfo in ipairs(sortedCards) do
+                local cardButton = vgui.Create("OFSkillButton", playercardPanel)
+                cardButton:Dock(TOP)
+                cardButton:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+                cardButton:SetTall(80 * OFGUI.ScreenScale)
+                cardButton:SetTitle(cardInfo.data.name)
+                cardButton:SetDescription(cardInfo.data.d[math.random(#cardInfo.data.d)])
+                cardButton:SetIcon("ofnpcp/cards/preview/" .. cardInfo.key .. ".png")
+                cardButton:SetCardIcon("ofnpcp/cards/large/" .. cardInfo.key .. ".png")
+            end
+        end
 
         local npccardPanel = vgui.Create("OFScrollPanel", rightPanel)
         npccardPanel:Dock(FILL)
