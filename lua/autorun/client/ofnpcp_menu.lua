@@ -219,7 +219,7 @@ local function RefreshCardButtons(left_panel, right_panel)
             deckbutton:Dock(BOTTOM)
 			deckbutton:SetHeight(80 * OFGUI.ScreenScale)
 			deckbutton:SetText("选择牌组")
-			deckbutton:DockMargin(0, 4 * OFGUI.ScreenScale, 0, 0)
+			deckbutton:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
 
 			local right_card_panel = vgui.Create("OFScrollPanel",card_preview_panel)
             right_card_panel:Dock(FILL)

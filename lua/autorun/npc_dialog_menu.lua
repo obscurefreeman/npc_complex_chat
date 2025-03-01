@@ -210,14 +210,14 @@ if CLIENT then
             end
             
             message:SetText(text)
-        end 
         end
 
         local playercardPanel = vgui.Create("OFScrollPanel", leftPanel)
         playercardPanel:Dock(FILL)
+        playercardPanel:DockMargin(8 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 0, 4 * OFGUI.ScreenScale)
 
         -- 在 playercardPanel 中显示玩家卡组
-        local playerDeck = OFPLAYERS[LocalPlayer():SteamID()] and OFPLAYERS[LocalPlayer():SteamID()].deck
+        local playerDeck = OFPLAYERS[LocalPlayer():SteamID()] and OFPLAYERS[LocalPlayer():SteamID()].deck or "resistance"
         if playerDeck then
             if not GLOBAL_OFNPC_DATA.cards.info[playerDeck] then return end
 
@@ -251,6 +251,7 @@ if CLIENT then
 
         local npccardPanel = vgui.Create("OFScrollPanel", rightPanel)
         npccardPanel:Dock(FILL)
+        npccardPanel:DockMargin(0, 4 * OFGUI.ScreenScale, 8 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
 
         local function CreateSkillButton(parent, tag, tagDesc, iconPath, hoveredColor)
             if tag then

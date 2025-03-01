@@ -257,6 +257,48 @@ if SERVER then
             net.WriteString(deck)
         net.Broadcast()
     end)
+
+    -- 添加保存玩家数据的函数
+    local function SavePlayerData()
+        file.CreateDir("of_npcp")
+        local playerData = {}
+        for steamID, data in pairs(OFPLAYERS) do
+            playerData[steamID] = {
+                nickname = player.GetBySteamID(steamID) and player.GetBySteamID(steamID):Nick() or "Unknown",
+                deck = data.deck
+            }
+        end
+        file.Write("of_npcp/playerdata.txt", util.TableToJSON(playerData))
+    end
+
+    -- 添加加载玩家数据的函数
+    local function LoadPlayerData(ply)
+        local data = file.Read("of_npcp/playerdata.txt", "DATA")
+        if data then
+            local playerData = util.JSONToTable(data)
+            local steamID = ply:SteamID()
+            if playerData[steamID] then
+                OFPLAYERS[steamID] = {deck = playerData[steamID].deck}
+            else
+                -- 默认牌组为反抗军
+                OFPLAYERS[steamID] = {deck = "resistance"}
+            end
+        else
+            -- 如果文件不存在，使用默认牌组
+            OFPLAYERS[ply:SteamID()] = {deck = "resistance"}
+        end
+    end
+
+    -- 玩家加入时加载数据
+    hook.Add("PlayerInitialSpawn", "LoadPlayerDeck", function(ply)
+        LoadPlayerData(ply)
+    end)
+
+    -- 服务器关闭时保存数据
+    hook.Add("ShutDown", "SavePlayerDataOnShutdown", SavePlayerData)
+    -- 定期保存数据
+    timer.Create("AutoSavePlayerData", 300, 0, SavePlayerData)
+
 end
 
 if CLIENT then
