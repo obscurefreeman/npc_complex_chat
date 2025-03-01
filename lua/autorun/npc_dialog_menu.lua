@@ -189,28 +189,66 @@ if CLIENT then
         scrollPanel:SetHeight(400 * OFGUI.ScreenScale)
         scrollPanel:Dock(BOTTOM)
 
-        local messagelPanel = vgui.Create("OFScrollPanel", frame)
-        messagelPanel:Dock(FILL)
-
-        function CreateDialogMessages(speaker, text)
-            -- 创建新的消息
-            local message = vgui.Create("OFMessage", messagelPanel)
-            message:SetHeight(80 * OFGUI.ScreenScale)
-            message:Dock(TOP)
-            message:DockMargin(4, 4, 4, 4)
-            
-            -- 根据说话者类型设置不同的名字和颜色
-            if speaker:IsPlayer() then
-                message:SetName(speaker:Nick())  -- 使用玩家的昵称
-                message:SetColor(Color(100, 255, 100))  -- 绿色
-            else
-                -- NPC保持原有的设置
-                message:SetName(L(npcIdentity.name) .. " “" .. L(npcIdentity.nickname) .. "”")
-                message:SetColor(npcIdentity.color)
+        local messagePanel = vgui.Create("OFScrollPanel", frame)
+        messagePanel:Dock(FILL)
+        
+        if npcIdentity.dialogHistory and #npcIdentity.dialogHistory > 0 then
+            for _, dialog in ipairs(npcIdentity.dialogHistory) do
+                local message = vgui.Create("OFMessage", messagePanel)
+                message:SetHeight(80 * OFGUI.ScreenScale)
+                message:Dock(TOP)
+                message:DockMargin(4, 4, 4, 4)
+                
+                -- 解析说话者信息
+                local speakerName
+                if dialog.speakerType == "npc" then
+                    local npcData = GetAllNPCsList()[dialog.speaker]
+                    speakerName = npcData and (L(npcData.name) .. " “" .. L(npcData.nickname) .. "”") or "NPC"
+                    message:SetColor(npcIdentity.color)
+                else
+                    speakerName = dialog.speaker
+                    message:SetColor(Color(100, 255, 100))
+                end
+                
+                message:SetName(speakerName)
+                translatedText = L(dialog.text)
+                translatedText = translatedText:gsub("/name/", L(npcIdentity.name))
+                message:SetText(translatedText)
             end
-            
-            message:SetText(text)
+            PrintTable(npcIdentity)
         end
+
+        -- 添加对话历史更新监听
+        local function UpdateDialogHistory(ent, updatedData)
+            if ent == npc then
+                npcIdentity = updatedData
+                -- 重新生成消息面板
+                messagePanel:Clear()
+                for _, dialog in ipairs(updatedData.dialogHistory) do
+                    local message = vgui.Create("OFMessage", messagePanel)
+                    message:SetHeight(80 * OFGUI.ScreenScale)
+                    message:Dock(TOP)
+                    message:DockMargin(4, 4, 4, 4)
+                    
+                    -- 解析说话者信息
+                    local speakerName
+                    if dialog.speakerType == "npc" then
+                        local npcData = GetAllNPCsList()[dialog.speaker]
+                        speakerName = npcData and (L(npcData.name) .. " “" .. L(npcData.nickname) .. "”") or "NPC"
+                        message:SetColor(npcIdentity.color)
+                    else
+                        speakerName = dialog.speaker
+                        message:SetColor(Color(100, 255, 100))
+                    end
+                    
+                    message:SetName(speakerName)
+                    translatedText = L(dialog.text)
+                    translatedText = translatedText:gsub("/name/", L(npcIdentity.name))
+                    message:SetText(translatedText)
+                end
+            end
+        end
+        hook.Add("NPCIdentityUpdate", "UpdateDialogHistory_"..npc:EntIndex(), UpdateDialogHistory)
 
         local playercardPanel = vgui.Create("OFScrollPanel", leftPanel)
         playercardPanel:Dock(FILL)
@@ -299,7 +337,7 @@ if CLIENT then
                 -- 发送选定的对话选项到服务器
                 net.Start("PlayerDialog")
                 net.WriteEntity(npc)
-                net.WriteString(translatedOption)
+                net.WriteString(option)
                 net.SendToServer()
                 
                 -- 检查选项类型是否为leave
@@ -314,6 +352,8 @@ if CLIENT then
             net.Start("NPCDialogMenuClosed")
             net.WriteEntity(npc)
             net.SendToServer()
+            -- 移除对话历史更新钩子
+            hook.Remove("NPCIdentityUpdate", "UpdateDialogHistory_"..npc:EntIndex())
         end
     end)
 end

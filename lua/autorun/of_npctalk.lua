@@ -45,7 +45,25 @@ if SERVER then
         end
         
         self.ActiveDialogs[entIndex] = CurTime()
-        
+
+        if forceDialog then
+            local npcData = OFNPCS[speaker:IsNPC() and speaker:EntIndex() or IsValid(target) and target:IsNPC() and target:EntIndex()]
+
+            if npcData then
+                npcData.dialogHistory = npcData.dialogHistory or {}
+                local speakerInfo = {
+                    speaker = speaker:IsPlayer() and speaker:Nick() or speaker:EntIndex(),
+                    speakerType = speaker:IsPlayer() and "player" or "npc",
+                    text = dialogKey,
+                    time = os.date("%H:%M")
+                }
+                table.insert(npcData.dialogHistory, speakerInfo)
+                net.Start("NPCIdentityUpdate")
+                net.WriteEntity(speaker:IsNPC() and speaker or target)
+                net.WriteTable(npcData)
+                net.Broadcast()
+            end
+        end
         -- 向客户端发送对话请求
         net.Start("TalkStart")
         net.WriteEntity(speaker)
@@ -166,14 +184,6 @@ if CLIENT then
             table.insert(activeDialogs, dialog)
 
             CreateNPCDialogSubtitles(npc, translatedText)
-
-            -- 如果NPC正在聊天且聊天对象是本地玩家，触发CreateNPCDialogMessages
-            if isChating and chattingPlayer == LocalPlayer() then
-                CreateDialogMessages(npc, translatedText)
-            elseif dialogtype == "player" then
-                CreateDialogMessages(LocalPlayer(), translatedText)
-            end
-
         end
     end)
     

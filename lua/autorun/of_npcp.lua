@@ -29,6 +29,7 @@ if SERVER then
         identity.info = npcInfo
         identity.model = ent:GetModel()
         identity.nickname = GLOBAL_OFNPC_DATA.names.nicknames[math.random(#GLOBAL_OFNPC_DATA.names.nicknames)]
+        identity.dialogHistory = {}
         
         local gamename = list.Get( "NPC" )[identity.info] and list.Get( "NPC" )[identity.info].Name
         if gamename then
@@ -138,15 +139,15 @@ if SERVER then
         net.Broadcast()
 
         -- 在控制台打印NPC信息
-        print("\n=== 新NPC生成 ===")
-        for key, value in pairs(identity) do
-            if type(value) == "string" then
-                print(key .. ": " .. value)
-            else
-                print(key .. ": " .. tostring(value))  -- 确保将非字符串值转换为字符串
-            end
-        end
-        print("================")
+        -- print("\n=== 新NPC生成 ===")
+        -- for key, value in pairs(identity) do
+        --     if type(value) == "string" then
+        --         print(key .. ": " .. value)
+        --     else
+        --         print(key .. ": " .. tostring(value))  -- 确保将非字符串值转换为字符串
+        --     end
+        -- end
+        -- print("================")
     end
     
     hook.Add("OnEntityCreated", "NPCPersonality", function(ent)
@@ -298,6 +299,22 @@ if SERVER then
     hook.Add("ShutDown", "SavePlayerDataOnShutdown", SavePlayerData)
     -- 定期保存数据
     timer.Create("AutoSavePlayerData", 300, 0, SavePlayerData)
+
+    -- 添加调试命令
+    concommand.Add("of_debug_dumpnpcs", function(ply)
+        if IsValid(ply) and not ply:IsSuperAdmin() then return end
+        
+        print("\n=== 当前所有NPC数据 ===")
+        if not next(OFNPCS) then
+            print("没有已生成的NPC")
+            return
+        end
+        
+        for entIndex, npcData in pairs(OFNPCS) do
+            PrintTable(npcData)
+            print("----------------------")
+        end
+    end)
 
 end
 
