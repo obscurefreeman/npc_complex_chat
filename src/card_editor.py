@@ -328,6 +328,7 @@ class CardEditor:
         if new_key != self.current_card_key:
             # 获取旧图片路径
             old_image_path = os.path.join(self.image_dir, f"{self.current_card_key}.png")
+            old_preview_path = os.path.join(self.image_dir.replace("large", "preview"), f"{self.current_card_key}.png")
             
             # 删除旧的卡牌数据
             if self.current_card_key in self.data[self.current_group]:
@@ -338,22 +339,21 @@ class CardEditor:
             # 更新当前卡牌键
             self.current_card_key = new_key
             
-            # 重命名图片文件
+            # 重命名大图文件
             if os.path.exists(old_image_path):
                 new_image_path = os.path.join(self.image_dir, f"{new_key}.png")
                 try:
                     os.rename(old_image_path, new_image_path)
                 except Exception as e:
-                    messagebox.showerror("错误", f"重命名图片时出错: {str(e)}")
+                    messagebox.showerror("错误", f"重命名大图时出错: {str(e)}")
             
-            # 处理预览图片的重命名
-            old_preview_image_path = os.path.join(self.image_dir.replace("large", "preview"), f"{self.current_card_key}.png")
-            if os.path.exists(old_preview_image_path):
-                new_preview_image_path = os.path.join(self.image_dir.replace("large", "preview"), f"{new_key}.png")
+            # 重命名预览图文件
+            if os.path.exists(old_preview_path):
+                new_preview_path = os.path.join(self.image_dir.replace("large", "preview"), f"{new_key}.png")
                 try:
-                    os.rename(old_preview_image_path, new_preview_image_path)
+                    os.rename(old_preview_path, new_preview_path)
                 except Exception as e:
-                    messagebox.showerror("错误", f"重命名预览图片时出错: {str(e)}")
+                    messagebox.showerror("错误", f"重命名预览图时出错: {str(e)}")
         
         # 更新卡牌数据
         self.current_card['name'] = self.name_entry.get()
