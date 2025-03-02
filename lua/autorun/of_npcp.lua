@@ -338,7 +338,8 @@ if CLIENT then
         local identity = net.ReadTable()
         if IsValid(ent) then
             clientNPCs[ent:EntIndex()] = identity
-            -- 触发NPC列表更新事件
+            -- 添加hook触发
+            hook.Run("OnNPCIdentityUpdated", ent, identity)
             hook.Run("NPCListUpdated")
         end
     end)

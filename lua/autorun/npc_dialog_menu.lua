@@ -191,32 +191,6 @@ if CLIENT then
 
         local messagePanel = vgui.Create("OFScrollPanel", frame)
         messagePanel:Dock(FILL)
-        
-        if npcIdentity.dialogHistory and #npcIdentity.dialogHistory > 0 then
-            for _, dialog in ipairs(npcIdentity.dialogHistory) do
-                local message = vgui.Create("OFMessage", messagePanel)
-                message:SetHeight(80 * OFGUI.ScreenScale)
-                message:Dock(TOP)
-                message:DockMargin(4, 4, 4, 4)
-                
-                -- 解析说话者信息
-                local speakerName
-                if dialog.speakerType == "npc" then
-                    local npcData = GetAllNPCsList()[dialog.speaker]
-                    speakerName = npcData and (L(npcData.name) .. " “" .. L(npcData.nickname) .. "”") or "NPC"
-                    message:SetColor(npcIdentity.color)
-                else
-                    speakerName = dialog.speaker
-                    message:SetColor(Color(100, 255, 100))
-                end
-                
-                message:SetName(speakerName)
-                translatedText = L(dialog.text)
-                translatedText = translatedText:gsub("/name/", L(npcIdentity.name))
-                message:SetText(translatedText)
-            end
-            PrintTable(npcIdentity)
-        end
 
         -- 添加对话历史更新监听
         local function UpdateDialogHistory(ent, updatedData)
@@ -248,7 +222,8 @@ if CLIENT then
                 end
             end
         end
-        hook.Add("NPCIdentityUpdate", "UpdateDialogHistory_"..npc:EntIndex(), UpdateDialogHistory)
+
+        hook.Add("OnNPCIdentityUpdated", "UpdateDialogHistory_"..npc:EntIndex(), UpdateDialogHistory)
 
         local playercardPanel = vgui.Create("OFScrollPanel", leftPanel)
         playercardPanel:Dock(FILL)
@@ -352,8 +327,7 @@ if CLIENT then
             net.Start("NPCDialogMenuClosed")
             net.WriteEntity(npc)
             net.SendToServer()
-            -- 移除对话历史更新钩子
-            hook.Remove("NPCIdentityUpdate", "UpdateDialogHistory_"..npc:EntIndex())
+            hook.Remove("OnNPCIdentityUpdated", "UpdateDialogHistory_"..npc:EntIndex())
         end
     end)
 end
