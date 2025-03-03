@@ -201,6 +201,7 @@ local function RefreshCardButtons(left_panel, right_panel)
         groupButton:SetDescription(groupData.desc)
 		groupButton:SetIcon("ofnpcp/camps/preview/" .. groupKey .. ".png")
 		groupButton:SetCardIcon("ofnpcp/camps/large/" .. groupKey .. ".png")
+		groupButton:SetHoveredColor(GLOBAL_OFNPC_DATA.cards.info[groupKey].color)
 
         -- 按钮点击事件
         groupButton.DoClick = function()

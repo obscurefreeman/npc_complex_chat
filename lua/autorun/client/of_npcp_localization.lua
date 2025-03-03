@@ -3,19 +3,23 @@ LANG.CurrentLanguage = "en"
 LANG.LanguageData = {}
 
 -- 加载语言文件
-function LANG:LoadLanguageFile(lang)
-    local langData = file.Read("data/of_npcp/lang/" .. lang .. ".json", "GAME")
-    if langData then
-        self.LanguageData[lang] = util.JSONToTable(langData)
-        return true
+function LANG:LoadLanguageFolder(lang)
+    local files = file.Find("data/of_npcp/lang/" .. lang .. "/*.json", "GAME")
+    self.LanguageData[lang] = {}
+    for _, filename in ipairs(files) do
+        local langData = file.Read("data/of_npcp/lang/" .. lang .. "/" .. filename, "GAME")
+        if langData then
+            local data = util.JSONToTable(langData)
+            table.Merge(self.LanguageData[lang], data)
+        end
     end
-    return false
+    return next(self.LanguageData[lang]) ~= nil
 end
 
 -- 设置当前语言
 function LANG:SetLanguage(lang)
     if not self.LanguageData[lang] then
-        if not self:LoadLanguageFile(lang) then
+        if not self:LoadLanguageFolder(lang) then
             return false
         end
     end
@@ -73,19 +77,12 @@ end)
 
 -- 初始化语言系统
 hook.Add("Initialize", "LoadLanguageSystem", function()
-    -- 预加载所有支持的语言
-    LANG:LoadLanguageFile("en")
-    LANG:LoadLanguageFile("zh")
-    
-    -- 获取用户设置的语言
+    LANG:LoadLanguageFolder("en")
+    LANG:LoadLanguageFolder("zh")
     local userLang = GetConVar("ofnpcp_language"):GetString()
-    
-    -- 如果用户没有设置特定语言（值为空），则使用系统语言
     if userLang == "" then
         userLang = LANG:GetSystemLanguage()
     end
-    
-    -- 设置初始语言
     LANG:SetLanguage(userLang)
 end)
 
