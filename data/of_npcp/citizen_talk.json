@@ -218,5 +218,35 @@
             "attack.combine.4",
             "attack.combine.5"
         ]
+    },
+    "response": {
+        "greeting": [
+            "response.greeting.1",
+            "response.greeting.2",
+            "response.greeting.3",
+            "response.greeting.4",
+            "response.greeting.5"
+        ],
+        "negotiate": [
+            "response.negotiate.1",
+            "response.negotiate.2",
+            "response.negotiate.3",
+            "response.negotiate.4",
+            "response.negotiate.5"
+        ],
+        "trade": [
+            "response.trade.1",
+            "response.trade.2",
+            "response.trade.3",
+            "response.trade.4",
+            "response.trade.5"
+        ],
+        "leave": [
+            "response.leave.1",
+            "response.leave.2",
+            "response.leave.3",
+            "response.leave.4",
+            "response.leave.5"
+        ]
     }
 } 

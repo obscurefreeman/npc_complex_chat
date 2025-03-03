@@ -87,7 +87,7 @@ hook.Add("PlayerUse", "NPCTalkGreeting", function(ply, ent)
     if greetings and #greetings > 0 then
         local randomGreeting = greetings[math.random(#greetings)]
         timer.Simple(0.1, function()
-            NPCTalkManager:StartDialog(ent, randomGreeting, "greeting", ply, true)
+            NPCTalkManager:StartDialog(ent, randomGreeting, "dialogue", ply, true)
         end)
     end
     net.Start("OpenNPCDialogMenu")

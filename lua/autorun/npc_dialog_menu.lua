@@ -3,11 +3,22 @@ if SERVER then
     net.Receive("PlayerDialog", function(len, ply)
         local npc = net.ReadEntity()
         local translatedOption = net.ReadString()
+        local optionType = net.ReadString()
         
         if IsValid(npc) and IsValid(ply) then
             -- 先让玩家说话
             NPCTalkManager:StartDialog(ply, translatedOption, "player", npc, true)
         end
+        timer.Simple(0.5, function()
+            local npcIdentity = OFNPCS[npc:EntIndex()]
+            if npcIdentity then
+                local responsePhrases = GLOBAL_OFNPC_DATA.npcTalks.response[optionType]
+                if responsePhrases and #responsePhrases > 0 then
+                    local randomResponse = responsePhrases[math.random(#responsePhrases)]
+                    NPCTalkManager:StartDialog(npc, randomResponse, "dialogue", ply, true)
+                end
+            end
+        end)
     end)
 end
 
@@ -24,6 +35,7 @@ if CLIENT then
         
         local dialogOptions = {
             "greeting",
+            "negotiate",
             "trade",
             "leave"
         }
@@ -317,6 +329,7 @@ if CLIENT then
                 net.Start("PlayerDialog")
                 net.WriteEntity(npc)
                 net.WriteString(option)
+                net.WriteString(optionTypes[option])
                 net.SendToServer()
                 
                 -- 检查选项类型是否为leave

@@ -149,7 +149,7 @@ if CLIENT then
                         return
                     end
                 end
-            elseif dialogtype == "greeting" and IsValid(target) then
+            elseif dialogtype == "dialogue" and IsValid(target) then
                 local playerNick = target:Nick()
                 if playerNick then
                     translatedText = translatedText:gsub("/player/", playerNick)

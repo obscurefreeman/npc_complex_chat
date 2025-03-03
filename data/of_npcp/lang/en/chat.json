@@ -221,35 +221,75 @@
     },
     "playerchat": {
         "greeting": {
-            "1": "Hello, /name/!",
-            "2": "How's your day going?",
-            "3": "Nice to meet you!",
-            "4": "What have you been busy with lately, /name/?",
+            "1": "Hi, /name/, how have you been?",
+            "2": "How's your day going, /name/?",
+            "3": "So glad to meet you!",
+            "4": "What have you been up to lately, /name/?",
             "5": "You seem to be in a good mood, /name/."
         },
+        "negotiate": {
+            "1": "About the border issue last time, can we compromise?",
+            "2": "I have a proposal that might benefit both of us, /name/.",
+            "3": "Things would go much smoother if we agree on resource allocation.",
+            "4": "I understand your position, but maybe we can find a middle ground?",
+            "5": "About that dispute, why don't we set aside our differences and focus on our common goals?",
+            "6": "As long as we agree on basic principles, the details will be easier to handle.",
+            "7": "If we make concessions on some details, we can reach an overall agreement.",
+            "8": "I have an idea that might break our current deadlock."
+        },
         "trade": {
-            "1": "What good stuff do you have here?",
-            "2": "Your goods are beautiful, /name/!",
-            "3": "Do you have anything for sale, /name/?",
-            "4": "I need to buy your stuff, /name/.",
-            "5": "I heard you have good items that others don't?",
-            "6": "I want to take a look at your goods.",
-            "7": "Hi, /name/, do you have any good stuff for sale today?",
-            "8": "I'm very interested in your goods.",
-            "9": "Can you introduce your products to me?",
-            "10": "I hope to find something special.",
-            "11": "Do you think today's trade will go smoothly?"
+            "1": "Do you have anything special here?",
+            "2": "Your goods are great, /name/!",
+            "3": "Got any good stuff for sale, /name/?",
+            "4": "I'd like to buy some of your things, /name/.",
+            "5": "Heard you've got some unique items here?",
+            "6": "Can I take a look at your goods?",
+            "7": "Hi, /name/, any recommendations for today?",
+            "8": "I'm quite interested in your products.",
+            "9": "Could you tell me more about your goods?",
+            "10": "I'm looking for something unique.",
+            "11": "Do you think today's deal will go well?"
         },
         "leave": {
-            "1": "Let's chat here for today.",
+            "1": "Let's call it a day for now.",
             "2": "Good luck, /name/!",
-            "3": "See you later, /name/!",
+            "3": "See you around, /name/!",
             "4": "Take care, /name/!",
-            "5": "Goodbye, /name/!",
-            "6": "I'll talk to you later.",
-            "7": "See you in a bit.",
-            "8": "We'll continue our chat later.",
-            "9": "I'll treat you to a drink in a few days."
+            "5": "Until we meet again, /name/!",
+            "6": "I'll catch up with you later.",
+            "7": "See you later",
+            "8": "Let's continue this later",
+            "9": "I'll buy you a drink next time"
+        }
+    },
+    "response": {
+        "greeting": {
+            "1": "Ah, /player/, long time no see!",
+            "2": "Nice weather today, isn't it? I was just about to visit City 17.",
+            "3": "Hey, /player/! Didn't expect to see you in /map/.",
+            "4": "Great to see you, /player/! I was just looking for someone to chat about recent events.",
+            "5": "/player/! Perfect timing, I was just talking about you with a friend."
+        },
+        "negotiate": {
+            "1": "I suggest we first define the boundaries, what do you think?",
+            "2": "Why don't we list out the key issues one by one for clarity?",
+            "3": "I completely understand your concerns, maybe we should assess the situation first.",
+            "4": "I was just about to ask for more details myself.",
+            "5": "Let's prioritize solving the most pressing issue first, other matters can be discussed later."
+        },
+        "trade": {
+            "1": "Of course! I bet you'll be interested in this.",
+            "2": "You came at the right time, /player/, check this out.",
+            "3": "Speaking of goods, I've got some weapons here you might like.",
+            "4": "I'm just organizing new arrivals, want to see if there's anything you need?",
+            "5": "/player/, you always find the good stuff! How about checking out this new batch of weapons?"
+        },
+        "leave": {
+            "1": "Alright, /player/, feel free to drop by anytime, you're always welcome here.",
+            "2": "Take care, /player/! If you run into any trouble, just come find me.",
+            "3": "Let's catch up another time, I've got some things to take care of.",
+            "4": "Goodbye, /player/! Hope to hear good news from you next time we meet.",
+            "5": "Alright, /player/, let's talk again some other time."
         }
     }
 } 

@@ -6,6 +6,16 @@
         "playerchat.greeting.4",
         "playerchat.greeting.5"
     ],
+    "negotiate": [
+        "playerchat.negotiate.1",
+        "playerchat.negotiate.2",
+        "playerchat.negotiate.3",
+        "playerchat.negotiate.4",
+        "playerchat.negotiate.5",
+        "playerchat.negotiate.6",
+        "playerchat.negotiate.7",
+        "playerchat.negotiate.8"
+    ],
     "trade": [
         "playerchat.trade.1",
         "playerchat.trade.2",
