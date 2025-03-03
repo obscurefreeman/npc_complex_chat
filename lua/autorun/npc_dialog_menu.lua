@@ -222,6 +222,7 @@ if CLIENT then
                     message:SetName(speakerName)
                     translatedText = L(dialog.text)
                     translatedText = translatedText:gsub("/name/", L(npcIdentity.name))
+                    translatedText = translatedText:gsub("/nickname/", L(npcIdentity.nickname))
                     message:SetText(translatedText)
                 end
             end

@@ -156,8 +156,11 @@ if CLIENT then
                 end
             elseif dialogtype == "player" and IsValid(target) then
                 local playerNick = npc:Nick()
-                if playerNick then
+                local targetIdentity = npcs[target:EntIndex()]
+                if playerNick and targetIdentity then
                     translatedText = translatedText:gsub("/player/", playerNick)
+                    translatedText = translatedText:gsub("/name/", L(targetIdentity.name))
+                    translatedText = translatedText:gsub("/nickname/", L(targetIdentity.nickname))
                 end
             end
 
