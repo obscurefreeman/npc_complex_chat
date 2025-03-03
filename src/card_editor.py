@@ -398,7 +398,7 @@ class CardEditor:
 
     def load_language(self):
         try:
-            lang_file = os.path.join(self.lang_dir, f"{self.current_lang}.json")
+            lang_file = os.path.join(self.lang_dir, f"{self.current_lang}", "ui.json")
             with open(lang_file, "r", encoding="utf-8") as f:
                 self.lang = json.load(f).get("ui", {})
         except Exception as e:
