@@ -126,7 +126,7 @@
             "2": "Keep your distance!",
             "3": "Do something!",
             "4": "Do you want to get a few more holes, /victim/?",
-            "5": "I've been wanting to kill you on /map/ for a long time, /victim/."
+            "5": "I didn't expect to kill you on /map/, /victim/."
         },
         "metrocop": {
             "1": "Catch /victim/!",
@@ -257,9 +257,9 @@
             "4": "Take care, /name/!",
             "5": "Until we meet again, /name/!",
             "6": "I'll catch up with you later.",
-            "7": "See you later",
-            "8": "Let's continue this later",
-            "9": "I'll buy you a drink next time"
+            "7": "See you later.",
+            "8": "Let's continue this later.",
+            "9": "I'll buy you a drink next time."
         }
     },
     "response": {
