@@ -38,7 +38,6 @@ if SERVER then
 
         if npcInfo == "npc_citizen" then
             identity.camp = "resistance"
-            identity.color = Color(255, 141, 23)
             if string.find(identity.model, "group03m") then
                 identity.job = "citizen.job.medic"
                 identity.type = "medic"
@@ -91,7 +90,6 @@ if SERVER then
             identity.exp = 0
             identity.exp_per_rank = CalculateExpNeeded(identity.rank)
             identity.name = GLOBAL_OFNPC_DATA.names.male[math.random(#GLOBAL_OFNPC_DATA.names.male)]
-            identity.color = Color(0, 149, 223)
         elseif npcInfo == "npc_combine_s" then
             identity.camp = "combine"
             identity.type = "combine"
@@ -100,12 +98,10 @@ if SERVER then
             identity.exp = 0
             identity.exp_per_rank = CalculateExpNeeded(identity.rank)
             identity.name = GLOBAL_OFNPC_DATA.names.male[math.random(#GLOBAL_OFNPC_DATA.names.male)]
-            identity.color = Color(0, 149, 223)
         else
             identity.camp = "other"
             identity.type = "other"
             identity.name = GLOBAL_OFNPC_DATA.names.male[math.random(#GLOBAL_OFNPC_DATA.names.male)]
-            identity.color = Color(135, 223, 214)
         end
 
         -- 在分配完基本信息后添加tag分配

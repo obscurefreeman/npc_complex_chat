@@ -6,17 +6,20 @@ function CreateNPCDialogSubtitles(npc, text)
 	local npcIdentity = npcs[npc:EntIndex()]
 
 	-- 这里不知道为什么npcIdentity报错，加个限制
-	if not npcIdentity then return end
-
-	local npcname = L(npcIdentity.name)
-	local npcnickname = L(npcIdentity.nickname)
+	local npcColor, name
+	if npcIdentity then
+		npcColor = GLOBAL_OFNPC_DATA.cards.info[npcIdentity.camp].color
+		name = L(npcIdentity.name) .. " “" .. L(npcIdentity.nickname) .. "” " .. ": "
+	elseif npc:IsPlayer() then
+		npcColor = GLOBAL_OFNPC_DATA.cards.info[OFPLAYERS[LocalPlayer():SteamID()] and OFPLAYERS[LocalPlayer():SteamID()].deck or "resistance"].color
+		name = npc:Nick() .. " : "
+	end
 
 	-- 创建新的对话
 	local dialog = {
-		npcname = npcname,
-		npcnickname = npcnickname,
+		name = name,
 		text = text,
-		color = npcIdentity.color
+		color = npcColor
 	}
 
 	for _, v in pairs(activeSubtitles) do
@@ -48,7 +51,7 @@ hook.Add("HUDPaint", "DrawNPCDialogSubtitles", function()
 	
 	-- 修改为从上到下绘制字幕
 	for k, tbl in ipairs(activeSubtitles) do
-		local subtitleName = tostring(tbl.npcname) .. " “" .. tostring(tbl.npcnickname) .. "” " .. ": "
+		local subtitleName = tostring(tbl.name)
 		local subtitleText = tostring(tbl.text)
 		local textheight = 35
 		local newline = ""

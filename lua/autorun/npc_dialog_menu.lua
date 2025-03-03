@@ -195,6 +195,7 @@ if CLIENT then
         -- 添加对话历史更新监听
         local playerDeck = OFPLAYERS[LocalPlayer():SteamID()] and OFPLAYERS[LocalPlayer():SteamID()].deck or "resistance"
         local deckColor = GLOBAL_OFNPC_DATA.cards.info[playerDeck].color
+        local npcColor = GLOBAL_OFNPC_DATA.cards.info[npcIdentity.camp].color
 
         local function UpdateDialogHistory(ent, updatedData)
             if ent == npc then
@@ -212,7 +213,7 @@ if CLIENT then
                     if dialog.speakerType == "npc" then
                         local npcData = GetAllNPCsList()[dialog.speaker]
                         speakerName = npcData and (L(npcData.name) .. " “" .. L(npcData.nickname) .. "”") or "NPC"
-                        message:SetColor(npcIdentity.color)
+                        message:SetColor(npcColor)
                     else
                         speakerName = dialog.speaker
                         message:SetColor(deckColor)
