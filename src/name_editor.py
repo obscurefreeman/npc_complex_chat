@@ -7,6 +7,10 @@ class NameEditor:
     def __init__(self, root):
         self.root = root
         self.root.title("NPC 名字编辑器")
+        self.style = ttk.Style()
+        self.style.theme_use('clam')  # 使用现代主题
+        self.configure_styles()  # 添加样式配置方法
+        
         self.names_data = {
             "male": {},
             "female": {},
@@ -17,6 +21,34 @@ class NameEditor:
         self.original_data = {}
         self.load_names()
         self.create_widgets()
+
+    def configure_styles(self):
+        self.style.configure('TFrame', background='#F5F5F5')
+        self.style.configure('TLabel', background='#F5F5F5', font=('微软雅黑', 10))
+        self.style.configure('TButton', font=('微软雅黑', 10), relief='flat')
+        self.style.map('TButton',
+            background=[('active', '#4CAF50'), ('!disabled', '#2196F3')],
+            foreground=[('active', 'white'), ('!disabled', 'white')])
+        self.style.configure('Treeview.Heading', font=('微软雅黑', 10, 'bold'))
+        self.style.configure('Treeview', rowheight=25)
+        self.style.configure('TLabelframe', borderwidth=2, relief='groove')
+        self.style.configure('TEntry', 
+            fieldbackground='#FFFFFF',
+            bordercolor='#E0E0E0',
+            lightcolor='#E0E0E0',
+            darkcolor='#E0E0E0',
+            relief='flat',
+            padding=5)
+        
+        self.style.configure('Accent.TButton', 
+            background='#4CAF50', 
+            foreground='white',
+            font=('微软雅黑', 11, 'bold'),
+            padding=6)
+        
+        self.style.configure('Small.TButton',
+            font=('微软雅黑', 9),
+            padding=4)
 
     def load_names(self):
         try:
@@ -30,7 +62,6 @@ class NameEditor:
             # 加载英文文件
             with open('data/of_npcp/lang/en/role.json', 'r', encoding='utf-8') as f:
                 self.original_en_data = json.load(f)
-                # 确保英文昵称数据存在
                 if 'nickname' not in self.original_en_data:
                     self.original_en_data['nickname'] = {}
         except Exception as e:
@@ -42,7 +73,7 @@ class NameEditor:
 
         # 创建选项卡
         self.notebook = ttk.Notebook(main_frame)
-        self.notebook.pack(fill=tk.BOTH, expand=True)
+        self.notebook.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
 
         # 男性名字标签页
         male_frame = ttk.Frame(self.notebook)
@@ -61,15 +92,15 @@ class NameEditor:
 
         # 保存按钮
         button_frame = ttk.Frame(main_frame)
-        button_frame.pack(fill=tk.X, pady=5)
+        button_frame.pack(fill=tk.X, pady=10, padx=10)
 
-        save_button = ttk.Button(button_frame, text="保存", command=self.save_names)
+        save_button = ttk.Button(button_frame, text="保存", command=self.save_names, style='Accent.TButton')
         save_button.pack(side=tk.RIGHT, padx=5)
 
     def create_name_tab(self, parent, gender):
         # 创建Treeview
         tree_frame = ttk.Frame(parent)
-        tree_frame.pack(fill=tk.BOTH, expand=True)
+        tree_frame.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
 
         # 为每个选项卡创建独立的Treeview实例
         tree = ttk.Treeview(tree_frame, columns=('key', 'en', 'zh'), show='headings')
@@ -88,23 +119,25 @@ class NameEditor:
 
         # 操作按钮
         button_frame = ttk.Frame(parent)
-        button_frame.pack(fill=tk.X, pady=5)
+        button_frame.pack(fill=tk.X, pady=5, padx=10)
 
         add_button = ttk.Button(button_frame, text="添加", 
-                              command=lambda: self.add_name(gender, tree))
+                              command=lambda: self.add_name(gender, tree),
+                              style='Small.TButton')
         add_button.pack(side=tk.LEFT, padx=5)
 
         edit_button = ttk.Button(button_frame, text="编辑", 
-                               command=lambda: self.edit_name(gender, tree))
+                               command=lambda: self.edit_name(gender, tree),
+                               style='Small.TButton')
         edit_button.pack(side=tk.LEFT, padx=5)
 
         delete_button = ttk.Button(button_frame, text="删除", 
-                                command=lambda: self.delete_name(gender, tree))
+                                command=lambda: self.delete_name(gender, tree),
+                                style='Small.TButton')
         delete_button.pack(side=tk.LEFT, padx=5)
 
     def populate_tree(self, gender, tree):
         tree.delete(*tree.get_children())
-        # 按键名首字母排序
         sorted_names = sorted(self.names_data[gender].items(), key=lambda x: x[0].lower())
         for key, zh_name in sorted_names:
             if gender == 'nicknames':
@@ -114,31 +147,29 @@ class NameEditor:
             tree.insert('', 'end', values=(key, en_name, zh_name))
 
     def add_name(self, gender, tree):
-        # 创建自定义对话框
         dialog = tk.Toplevel(self.root)
         dialog.title("添加名字")
+        dialog.geometry("300x200")
         
         # 创建输入框
-        tk.Label(dialog, text="索引名称:").grid(row=0, column=0, padx=5, pady=5)
-        key_entry = tk.Entry(dialog)
-        key_entry.grid(row=0, column=1, padx=5, pady=5)
+        ttk.Label(dialog, text="索引名称:").grid(row=0, column=0, padx=10, pady=5)
+        key_entry = ttk.Entry(dialog)
+        key_entry.grid(row=0, column=1, padx=10, pady=5)
         
-        tk.Label(dialog, text="英文名:").grid(row=1, column=0, padx=5, pady=5)
-        en_entry = tk.Entry(dialog)
-        en_entry.grid(row=1, column=1, padx=5, pady=5)
+        ttk.Label(dialog, text="英文名:").grid(row=1, column=0, padx=10, pady=5)
+        en_entry = ttk.Entry(dialog)
+        en_entry.grid(row=1, column=1, padx=10, pady=5)
         
-        tk.Label(dialog, text="中文名:").grid(row=2, column=0, padx=5, pady=5)
-        zh_entry = tk.Entry(dialog)
-        zh_entry.grid(row=2, column=1, padx=5, pady=5)
+        ttk.Label(dialog, text="中文名:").grid(row=2, column=0, padx=10, pady=5)
+        zh_entry = ttk.Entry(dialog)
+        zh_entry.grid(row=2, column=1, padx=10, pady=5)
         
-        # 确认按钮
         def confirm():
             key = key_entry.get().lower().replace(" ", "_")
             en_name = en_entry.get()
             zh_name = zh_entry.get()
             if key and en_name and zh_name:
                 self.names_data[gender][key] = zh_name
-                # 更新英文数据
                 if gender == 'nicknames':
                     if 'nickname' not in self.original_en_data:
                         self.original_en_data['nickname'] = {}
@@ -152,7 +183,7 @@ class NameEditor:
                 self.populate_tree(gender, tree)
                 dialog.destroy()
         
-        tk.Button(dialog, text="确定", command=confirm).grid(row=3, column=0, columnspan=2, pady=5)
+        ttk.Button(dialog, text="确定", command=confirm, style='Small.TButton').grid(row=3, column=0, columnspan=2, pady=10)
 
     def edit_name(self, gender, tree):
         selected = tree.selection()
@@ -237,5 +268,5 @@ class NameEditor:
 if __name__ == "__main__":
     root = tk.Tk()
     app = NameEditor(root)
-    root.geometry("600x400")
+    root.geometry("1920x1080")
     root.mainloop()

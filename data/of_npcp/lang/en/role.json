@@ -233,6 +233,7 @@
     "nickname": {
         "adventurer": "Adventurer",
         "armadillo": "Armadillo",
+        "canned_food": "Canned Food",
         "coriander": "Coriander",
         "cormorant": "Cormorant",
         "echidna": "Echidna",
@@ -242,6 +243,7 @@
         "fox": "Fox",
         "fox_hunter": "Fox Hunter",
         "gazelle": "Gazelle",
+        "grave": "The Grave",
         "heron": "Heron",
         "hunter": "Hunter",
         "informer": "Informer",

@@ -77,6 +77,8 @@
         "nickname.adventurer",
         "nickname.judge",
         "nickname.hunter",
-        "nickname.informer"
+        "nickname.informer",
+        "nickname.canned_food",
+        "nickname.grave"
     ]
 } 
