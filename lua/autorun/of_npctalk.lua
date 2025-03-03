@@ -54,6 +54,7 @@ if SERVER then
                 local speakerInfo = {
                     speaker = speaker:IsPlayer() and speaker:Nick() or speaker:EntIndex(),
                     speakerType = speaker:IsPlayer() and "player" or "npc",
+                    target = speaker:IsPlayer() and target:EntIndex() or target:Nick(),
                     text = dialogKey,
                     time = os.date("%H:%M")
                 }

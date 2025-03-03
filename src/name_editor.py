@@ -8,8 +8,8 @@ class NameEditor:
         self.root = root
         self.root.title("NPC 名字编辑器")
         self.style = ttk.Style()
-        self.style.theme_use('clam')  # 使用现代主题
-        self.configure_styles()  # 添加样式配置方法
+        self.style.theme_use('clam')
+        self.configure_styles()
         
         self.names_data = {
             "male": {},
@@ -18,7 +18,7 @@ class NameEditor:
         }
         self.original_zh_data = {}
         self.original_en_data = {}
-        self.original_data = {}
+        self.name_json_data = {}
         self.load_names()
         self.create_widgets()
 
@@ -52,12 +52,23 @@ class NameEditor:
 
     def load_names(self):
         try:
+            # 加载name.json
+            with open('data/of_npcp/name.json', 'r', encoding='utf-8') as f:
+                self.name_json_data = json.load(f)
+                # 将name.json中的名字转换为字典格式
+                self.names_data['male'] = {name.split('.')[-1]: '' for name in self.name_json_data['male']}
+                self.names_data['female'] = {name.split('.')[-1]: '' for name in self.name_json_data['female']}
+                self.names_data['nicknames'] = {name.split('.')[-1]: '' for name in self.name_json_data['nicknames']}
+            
             # 加载中文文件
             with open('data/of_npcp/lang/zh/role.json', 'r', encoding='utf-8') as f:
                 self.original_zh_data = json.load(f)
-                self.names_data['male'] = self.original_zh_data.get('name', {}).get('male', {})
-                self.names_data['female'] = self.original_zh_data.get('name', {}).get('female', {})
-                self.names_data['nicknames'] = self.original_zh_data.get('nickname', {})
+                # 合并中文翻译
+                for gender in ['male', 'female']:
+                    for key in self.names_data[gender]:
+                        self.names_data[gender][key] = self.original_zh_data.get('name', {}).get(gender, {}).get(key, '')
+                for key in self.names_data['nicknames']:
+                    self.names_data['nicknames'][key] = self.original_zh_data.get('nickname', {}).get(key, '')
             
             # 加载英文文件
             with open('data/of_npcp/lang/en/role.json', 'r', encoding='utf-8') as f:
@@ -71,26 +82,21 @@ class NameEditor:
         main_frame = ttk.Frame(self.root)
         main_frame.pack(fill=tk.BOTH, expand=True)
 
-        # 创建选项卡
         self.notebook = ttk.Notebook(main_frame)
         self.notebook.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
 
-        # 男性名字标签页
         male_frame = ttk.Frame(self.notebook)
         self.create_name_tab(male_frame, 'male')
         self.notebook.add(male_frame, text="男性名字")
 
-        # 女性名字标签页
         female_frame = ttk.Frame(self.notebook)
         self.create_name_tab(female_frame, 'female')
         self.notebook.add(female_frame, text="女性名字")
 
-        # 昵称标签页
         nickname_frame = ttk.Frame(self.notebook)
         self.create_name_tab(nickname_frame, 'nicknames')
         self.notebook.add(nickname_frame, text="昵称")
 
-        # 保存按钮
         button_frame = ttk.Frame(main_frame)
         button_frame.pack(fill=tk.X, pady=10, padx=10)
 
@@ -98,26 +104,21 @@ class NameEditor:
         save_button.pack(side=tk.RIGHT, padx=5)
 
     def create_name_tab(self, parent, gender):
-        # 创建Treeview
         tree_frame = ttk.Frame(parent)
         tree_frame.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
 
-        # 为每个选项卡创建独立的Treeview实例
         tree = ttk.Treeview(tree_frame, columns=('key', 'en', 'zh'), show='headings')
         tree.heading('key', text='索引名称')
         tree.heading('en', text='英文名')
         tree.heading('zh', text='中文名')
         tree.pack(fill=tk.BOTH, expand=True)
 
-        # 添加滚动条
         scrollbar = ttk.Scrollbar(tree_frame, orient=tk.VERTICAL, command=tree.yview)
         tree.configure(yscroll=scrollbar.set)
         scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
 
-        # 填充数据
         self.populate_tree(gender, tree)
 
-        # 操作按钮
         button_frame = ttk.Frame(parent)
         button_frame.pack(fill=tk.X, pady=5, padx=10)
 
@@ -151,7 +152,6 @@ class NameEditor:
         dialog.title("添加名字")
         dialog.geometry("300x200")
         
-        # 创建输入框
         ttk.Label(dialog, text="索引名称:").grid(row=0, column=0, padx=10, pady=5)
         key_entry = ttk.Entry(dialog)
         key_entry.grid(row=0, column=1, padx=10, pady=5)
@@ -169,7 +169,10 @@ class NameEditor:
             en_name = en_entry.get()
             zh_name = zh_entry.get()
             if key and en_name and zh_name:
+                # 更新所有三个文件的数据
                 self.names_data[gender][key] = zh_name
+                self.name_json_data[gender].append(f"name.{gender}.{key}")
+                
                 if gender == 'nicknames':
                     if 'nickname' not in self.original_en_data:
                         self.original_en_data['nickname'] = {}

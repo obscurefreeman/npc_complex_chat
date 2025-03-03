@@ -226,13 +226,18 @@ if CLIENT then
                         local npcData = GetAllNPCsList()[dialog.speaker]
                         speakerName = npcData and (L(npcData.name) .. " “" .. L(npcData.nickname) .. "”") or "NPC"
                         message:SetColor(npcColor)
+                        playername = dialog.target
                     else
                         speakerName = dialog.speaker
                         message:SetColor(deckColor)
                     end
                     
                     message:SetName(speakerName)
-                    translatedText = L(dialog.text)
+                    local translatedText = L(dialog.text)
+                    if playername then
+                        translatedText = translatedText:gsub("/player/", playername)
+                    end
+                    translatedText = translatedText:gsub("/map/", game.GetMap())
                     translatedText = translatedText:gsub("/name/", L(npcIdentity.name))
                     translatedText = translatedText:gsub("/nickname/", L(npcIdentity.nickname))
                     message:SetText(translatedText)
