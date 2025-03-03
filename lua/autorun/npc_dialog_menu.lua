@@ -193,6 +193,9 @@ if CLIENT then
         messagePanel:Dock(FILL)
 
         -- 添加对话历史更新监听
+        local playerDeck = OFPLAYERS[LocalPlayer():SteamID()] and OFPLAYERS[LocalPlayer():SteamID()].deck or "resistance"
+        local deckColor = GLOBAL_OFNPC_DATA.cards.info[playerDeck].color
+
         local function UpdateDialogHistory(ent, updatedData)
             if ent == npc then
                 npcIdentity = updatedData
@@ -212,7 +215,7 @@ if CLIENT then
                         message:SetColor(npcIdentity.color)
                     else
                         speakerName = dialog.speaker
-                        message:SetColor(Color(100, 255, 100))
+                        message:SetColor(deckColor)
                     end
                     
                     message:SetName(speakerName)
@@ -230,7 +233,6 @@ if CLIENT then
         playercardPanel:DockMargin(8 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 0, 4 * OFGUI.ScreenScale)
 
         -- 在 playercardPanel 中显示玩家卡组
-        local playerDeck = OFPLAYERS[LocalPlayer():SteamID()] and OFPLAYERS[LocalPlayer():SteamID()].deck or "resistance"
         if playerDeck then
             if not GLOBAL_OFNPC_DATA.cards.info[playerDeck] then return end
 

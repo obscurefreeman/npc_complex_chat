@@ -37,22 +37,20 @@ if SERVER then
         end
 
         if npcInfo == "npc_citizen" then
+            identity.camp = "resistance"
+            identity.color = Color(255, 141, 23)
             if string.find(identity.model, "group03m") then
                 identity.job = "citizen.job.medic"
                 identity.type = "medic"
-                identity.color = Color(245, 78, 162)
             else
                 identity.job = GLOBAL_OFNPC_DATA.jobData.citizen[math.random(#GLOBAL_OFNPC_DATA.jobData.citizen)].job
                 identity.type = "citizen"  -- 默认类型
                 if string.find(identity.model, "group01") then
                     identity.type = "citizen"
-                    identity.color = Color(1, 205, 200)
                 elseif string.find(identity.model, "group02") then
                     identity.type = "refugee"
-                    identity.color = Color(255, 204, 0)
                 elseif string.find(identity.model, "group03") then
                     identity.type = "rebel"
-                    identity.color = Color(255, 141, 23)
                 end
             end
 
@@ -86,14 +84,16 @@ if SERVER then
                 identity.name = GLOBAL_OFNPC_DATA.names.male[math.random(#GLOBAL_OFNPC_DATA.names.male)]
             end
         elseif npcInfo == "npc_metropolice" then
+            identity.camp = "combine"
             identity.type = "metropolice"
             identity.rank = math.random(1, 39)
             identity.job = GLOBAL_OFNPC_DATA.jobData.citizen[math.random(#GLOBAL_OFNPC_DATA.jobData.citizen)].job
             identity.exp = 0
             identity.exp_per_rank = CalculateExpNeeded(identity.rank)
             identity.name = GLOBAL_OFNPC_DATA.names.male[math.random(#GLOBAL_OFNPC_DATA.names.male)]
-            identity.color = Color(135, 223, 214)
+            identity.color = Color(0, 149, 223)
         elseif npcInfo == "npc_combine_s" then
+            identity.camp = "combine"
             identity.type = "combine"
             identity.rank = math.random(1, 39)
             identity.job = GLOBAL_OFNPC_DATA.jobData.citizen[math.random(#GLOBAL_OFNPC_DATA.jobData.citizen)].job
@@ -102,8 +102,10 @@ if SERVER then
             identity.name = GLOBAL_OFNPC_DATA.names.male[math.random(#GLOBAL_OFNPC_DATA.names.male)]
             identity.color = Color(0, 149, 223)
         else
+            identity.camp = "other"
             identity.type = "other"
             identity.name = GLOBAL_OFNPC_DATA.names.male[math.random(#GLOBAL_OFNPC_DATA.names.male)]
+            identity.color = Color(135, 223, 214)
         end
 
         -- 在分配完基本信息后添加tag分配
