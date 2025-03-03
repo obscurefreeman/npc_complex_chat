@@ -30,6 +30,9 @@ class NameEditor:
             # 加载英文文件
             with open('data/of_npcp/lang/en/role.json', 'r', encoding='utf-8') as f:
                 self.original_en_data = json.load(f)
+                # 确保英文昵称数据存在
+                if 'nickname' not in self.original_en_data:
+                    self.original_en_data['nickname'] = {}
         except Exception as e:
             messagebox.showerror("错误", f"无法加载名称文件: {str(e)}")
 
@@ -68,45 +71,49 @@ class NameEditor:
         tree_frame = ttk.Frame(parent)
         tree_frame.pack(fill=tk.BOTH, expand=True)
 
-        self.tree = ttk.Treeview(tree_frame, columns=('key', 'en', 'zh'), show='headings')
-        self.tree.heading('key', text='索引名称')
-        self.tree.heading('en', text='英文名')
-        self.tree.heading('zh', text='中文名')
-        self.tree.pack(fill=tk.BOTH, expand=True)
+        # 为每个选项卡创建独立的Treeview实例
+        tree = ttk.Treeview(tree_frame, columns=('key', 'en', 'zh'), show='headings')
+        tree.heading('key', text='索引名称')
+        tree.heading('en', text='英文名')
+        tree.heading('zh', text='中文名')
+        tree.pack(fill=tk.BOTH, expand=True)
 
         # 添加滚动条
-        scrollbar = ttk.Scrollbar(tree_frame, orient=tk.VERTICAL, command=self.tree.yview)
-        self.tree.configure(yscroll=scrollbar.set)
+        scrollbar = ttk.Scrollbar(tree_frame, orient=tk.VERTICAL, command=tree.yview)
+        tree.configure(yscroll=scrollbar.set)
         scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
 
         # 填充数据
-        self.populate_tree(gender)
+        self.populate_tree(gender, tree)
 
         # 操作按钮
         button_frame = ttk.Frame(parent)
         button_frame.pack(fill=tk.X, pady=5)
 
         add_button = ttk.Button(button_frame, text="添加", 
-                              command=lambda: self.add_name(gender))
+                              command=lambda: self.add_name(gender, tree))
         add_button.pack(side=tk.LEFT, padx=5)
 
         edit_button = ttk.Button(button_frame, text="编辑", 
-                               command=lambda: self.edit_name(gender))
+                               command=lambda: self.edit_name(gender, tree))
         edit_button.pack(side=tk.LEFT, padx=5)
 
         delete_button = ttk.Button(button_frame, text="删除", 
-                                command=lambda: self.delete_name(gender))
+                                command=lambda: self.delete_name(gender, tree))
         delete_button.pack(side=tk.LEFT, padx=5)
 
-    def populate_tree(self, gender):
-        self.tree.delete(*self.tree.get_children())
-        # 按键名排序
-        sorted_names = sorted(self.names_data[gender].items(), key=lambda x: x[0].lower().replace(" ", "_"))
+    def populate_tree(self, gender, tree):
+        tree.delete(*tree.get_children())
+        # 按键名首字母排序
+        sorted_names = sorted(self.names_data[gender].items(), key=lambda x: x[0].lower())
         for key, zh_name in sorted_names:
-            en_name = self.original_en_data.get('name', {}).get(gender, {}).get(key, '')
-            self.tree.insert('', 'end', values=(key, en_name, zh_name))
+            if gender == 'nicknames':
+                en_name = self.original_en_data.get('nickname', {}).get(key, '')
+            else:
+                en_name = self.original_en_data.get('name', {}).get(gender, {}).get(key, '')
+            tree.insert('', 'end', values=(key, en_name, zh_name))
 
-    def add_name(self, gender):
+    def add_name(self, gender, tree):
         # 创建自定义对话框
         dialog = tk.Toplevel(self.root)
         dialog.title("添加名字")
@@ -132,23 +139,28 @@ class NameEditor:
             if key and en_name and zh_name:
                 self.names_data[gender][key] = zh_name
                 # 更新英文数据
-                if 'name' not in self.original_en_data:
-                    self.original_en_data['name'] = {}
-                if gender not in self.original_en_data['name']:
-                    self.original_en_data['name'][gender] = {}
-                self.original_en_data['name'][gender][key] = en_name
-                self.populate_tree(gender)
+                if gender == 'nicknames':
+                    if 'nickname' not in self.original_en_data:
+                        self.original_en_data['nickname'] = {}
+                    self.original_en_data['nickname'][key] = en_name
+                else:
+                    if 'name' not in self.original_en_data:
+                        self.original_en_data['name'] = {}
+                    if gender not in self.original_en_data['name']:
+                        self.original_en_data['name'][gender] = {}
+                    self.original_en_data['name'][gender][key] = en_name
+                self.populate_tree(gender, tree)
                 dialog.destroy()
         
         tk.Button(dialog, text="确定", command=confirm).grid(row=3, column=0, columnspan=2, pady=5)
 
-    def edit_name(self, gender):
-        selected = self.tree.selection()
+    def edit_name(self, gender, tree):
+        selected = tree.selection()
         if not selected:
             messagebox.showwarning("警告", "请先选择一个名字")
             return
         
-        item = self.tree.item(selected[0])
+        item = tree.item(selected[0])
         key, en_name, zh_name = item['values']
         
         # 创建编辑对话框
@@ -179,44 +191,41 @@ class NameEditor:
             if new_key and new_en and new_zh:
                 # 删除旧数据
                 del self.names_data[gender][key]
+                if gender == 'nicknames':
+                    del self.original_en_data['nickname'][key]
                 del self.original_en_data['name'][gender][key]
                 # 添加新数据
                 self.names_data[gender][new_key] = new_zh
                 self.original_en_data['name'][gender][new_key] = new_en
-                self.populate_tree(gender)
+                self.populate_tree(gender, tree)
                 dialog.destroy()
         
         tk.Button(dialog, text="确定", command=confirm).grid(row=3, column=0, columnspan=2, pady=5)
 
-    def delete_name(self, gender):
-        selected = self.tree.selection()
+    def delete_name(self, gender, tree):
+        selected = tree.selection()
         if not selected:
             messagebox.showwarning("警告", "请先选择一个名字")
             return
         
-        item = self.tree.item(selected[0])
+        item = tree.item(selected[0])
         en_name = item['values'][0]
         del self.names_data[gender][en_name]
-        self.populate_tree(gender)
+        self.populate_tree(gender, tree)
 
     def save_names(self):
         try:
-            # 保留原始数据中与名称无关的部分
-            self.original_zh_data['name'] = {
-                'male': self.names_data['male'],
-                'female': self.names_data['female']
-            }
-            self.original_zh_data['nickname'] = self.names_data['nicknames']
-            
+            # 按索引名称的首字母顺序整理数据
+            self.original_zh_data['name']['male'] = dict(sorted(self.names_data['male'].items()))
+            self.original_zh_data['name']['female'] = dict(sorted(self.names_data['female'].items()))
+            self.original_zh_data['nickname'] = dict(sorted(self.names_data['nicknames'].items()))
+
+            self.original_en_data['name']['male'] = dict(sorted({key: self.original_en_data['name']['male'].get(key, '') for key in self.names_data['male']}.items()))
+            self.original_en_data['name']['female'] = dict(sorted({key: self.original_en_data['name']['female'].get(key, '') for key in self.names_data['female']}.items()))
+            self.original_en_data['nickname'] = dict(sorted({key: self.original_en_data['nickname'].get(key, '') for key in self.names_data['nicknames']}.items()))
+
             with open('data/of_npcp/lang/zh/role.json', 'w', encoding='utf-8') as f:
                 json.dump(self.original_zh_data, f, ensure_ascii=False, indent=4)
-
-            # 更新英文数据
-            self.original_en_data['name'] = {
-                'male': {key: self.original_en_data['name']['male'].get(key, '') for key in self.names_data['male']},
-                'female': {key: self.original_en_data['name']['female'].get(key, '') for key in self.names_data['female']}
-            }
-            self.original_en_data['nickname'] = {key: self.original_en_data['nickname'].get(key, '') for key in self.names_data['nicknames']}
 
             with open('data/of_npcp/lang/en/role.json', 'w', encoding='utf-8') as f:
                 json.dump(self.original_en_data, f, ensure_ascii=False, indent=4)
