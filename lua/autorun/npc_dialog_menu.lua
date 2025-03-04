@@ -27,33 +27,42 @@ if SERVER then
         
         if not IsValid(npc) or not IsValid(ply) then return end
         NPCTalkManager:StartDialog(ply, playerDialog, "player", npc, true)
+
+        local function correctFloatToInt(jsonString)
+            return string.gsub(jsonString, '(%d+)%.0', '%1')
+        end
+    
+        local requestBody = {
+            model = 'deepseek-chat',
+            messages = aiDialogs,
+            max_tokens = 500,
+            temperature = 0.7
+        }
         
         -- 调用AI处理对话
-        http.Post("https://spark-api-open.xf-yun.com/v1/chat/completions",
-            {
-                api_key = "222222222222222222222",
-                messages = util.TableToJSON(aiDialogs)
+        HTTP({
+            url = "https://api.deepseek.com/chat/completions",
+            type = "application/json",
+            method = "post",
+            headers = {
+                ["Content-Type"] = "application/json",
+                ["Authorization"] = "Bearer aaaaaaaaaaaa"
             },
-            function(body)
-                print("AI服务器返回的数据: ", body)  -- 添加这行来查看返回的数据
-                if body then
-                    local response = util.JSONToTable(body)
-                    if response and response.content then
-                        if IsValid(npc) then
-                            NPCTalkManager:StartDialog(npc, response.content, "dialogue", ply, true)
-                            print("回复: " .. response.content)
-                        end
-                    else
-                        NPCTalkManager:StartDialog(npc, "AI服务器返回的数据格式不正确。", "dialogue", ply, true)
-                    end
-                else
-                    NPCTalkManager:StartDialog(npc, "AI服务器返回的数据为空。", "dialogue", ply, true)
-                end
+            body = correctFloatToInt(util.TableToJSON(requestBody)), -- tableToJSON changes integers to float
+    
+            success = function(code, body, headers)
+                local response = util.JSONToTable(body)
+                -- 重要debug代码
+                -- PrintTable(aiDialogs)
+                -- PrintTable(response)
+                local responseContent = response.choices[1].message.content
+                NPCTalkManager:StartDialog(npc, responseContent, "dialogue", ply, true)
             end,
-            function(err)
-                NPCTalkManager:StartDialog(npc, "AI服务器请求失败:" .. err, "dialogue", ply, true)
+
+            failed = function(err)
+                NPCTalkManager:StartDialog(npc, "HTTP Error: " .. err, "dialogue", ply, true)
             end
-        )
+        })
     end)
 end
 
@@ -250,7 +259,13 @@ if CLIENT then
 
                 local translatedDialogs = {}
                 local speakerName
-                local aiDialogs = { { role = "system", content = "你是一位“半条命”世界观里的角色，用户将提供一系列问题，你的回答应当接地气。" } }
+                local promptcontent = L("prompt")
+                promptcontent = promptcontent:gsub("/name/", L(npcIdentity.name))
+                promptcontent = promptcontent:gsub("/nickname/", L(npcIdentity.nickname))
+                promptcontent = promptcontent:gsub("/job/", L(npcIdentity.job))
+                promptcontent = promptcontent:gsub("/camp/", L(npcIdentity.camp))
+                promptcontent = promptcontent:gsub("/map/", game.GetMap())
+                local aiDialogs = { { role = "system", content = promptcontent } }
                 for _, dialog in ipairs(updatedData.dialogHistory) do
                     local translatedText = L(dialog.text)
                     if dialog.speakerType == "npc" then
@@ -274,7 +289,7 @@ if CLIENT then
 
                     table.insert(aiDialogs, {
                         role = dialog.speakerType == "npc" and "assistant" or "user",
-                        content = dialog.text
+                        content = translatedText
                     })
                 end
                 if ai then

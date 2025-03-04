@@ -1,4 +1,13 @@
 {
+    "camp": {
+        "combine": "Combine",
+        "resistance": "Resistance",
+        "union": "Union",
+        "warlord": "Warlord",
+        "church": "Church",
+        "bandit": "Bandit",
+        "other": "Rogue"
+    },
     "citizen": {
         "job": {
             "worker": "Worker",
@@ -322,5 +331,5 @@
             "mightydesc": "If your level is higher than theirs, they receive double the effect, and vice versa."
         }
     },
-    "prompt":  "You are a character in the Half-Life worldview. Your name is /name/, your camp is /camp/, your profession is /job/, the current map of the game is /map/, and the user will communicate with you. Please use the user's language to answer, and the answer should be down-to-earth and rich in details."
+    "prompt":  "You are a character in the Half-Life worldview. Your name is /name/, your nickname is /nickname/, your camp is /camp/, your profession is /job/, the current map of the game is /map/, and the user will communicate with you. Please use the user's language to answer, and the answer should be down-to-earth and rich in details."
 }
