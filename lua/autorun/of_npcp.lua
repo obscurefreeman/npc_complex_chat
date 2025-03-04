@@ -9,6 +9,7 @@ if SERVER then
     util.AddNetworkString("NPCAction")
     util.AddNetworkString("SubmitNPCComment")
     util.AddNetworkString("OFNPCRankUp")
+    util.AddNetworkString("PlayerAIDialog")  -- 新增AI对话网络消息
 
     util.AddNetworkString("TalkStart")
     util.AddNetworkString("OpenNPCDialogMenu")

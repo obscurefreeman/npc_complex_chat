@@ -20,6 +20,41 @@ if SERVER then
             end
         end)
     end)
+    net.Receive("PlayerAIDialog", function(len, ply)
+        local npc = net.ReadEntity()
+        local aiDialogs = net.ReadTable()
+        local playerDialog = net.ReadString()
+        
+        if not IsValid(npc) or not IsValid(ply) then return end
+        NPCTalkManager:StartDialog(ply, playerDialog, "player", npc, true)
+        
+        -- 调用AI处理对话
+        http.Post("https://spark-api-open.xf-yun.com/v1/chat/completions",
+            {
+                api_key = "222222222222222222222",
+                messages = util.TableToJSON(aiDialogs)
+            },
+            function(body)
+                print("AI服务器返回的数据: ", body)  -- 添加这行来查看返回的数据
+                if body then
+                    local response = util.JSONToTable(body)
+                    if response and response.content then
+                        if IsValid(npc) then
+                            NPCTalkManager:StartDialog(npc, response.content, "dialogue", ply, true)
+                            print("回复: " .. response.content)
+                        end
+                    else
+                        NPCTalkManager:StartDialog(npc, "AI服务器返回的数据格式不正确。", "dialogue", ply, true)
+                    end
+                else
+                    NPCTalkManager:StartDialog(npc, "AI服务器返回的数据为空。", "dialogue", ply, true)
+                end
+            end,
+            function(err)
+                NPCTalkManager:StartDialog(npc, "AI服务器请求失败:" .. err, "dialogue", ply, true)
+            end
+        )
+    end)
 end
 
 if CLIENT then
@@ -209,13 +244,10 @@ if CLIENT then
         local deckColor = GLOBAL_OFNPC_DATA.cards.info[playerDeck].color
         local npcColor = GLOBAL_OFNPC_DATA.cards.info[npcIdentity.camp].color
 
-        local function UpdateDialogHistory(ent, updatedData)
+        local function TranslateDialogHistory(ent, updatedData, ai)
             if ent == npc then
                 npcIdentity = updatedData
-                -- 重新生成消息面板
-                messagePanel:Clear()
-                
-                -- 先翻译所有对话
+
                 local translatedDialogs = {}
                 local speakerName
                 local aiDialogs = { { role = "system", content = "你是一位“半条命”世界观里的角色，用户将提供一系列问题，你的回答应当接地气。" } }
@@ -245,6 +277,20 @@ if CLIENT then
                         content = dialog.text
                     })
                 end
+                if ai then
+                    return aiDialogs
+                else
+                    return translatedDialogs
+                end
+            end
+        end
+
+        local function UpdateDialogHistory(ent, updatedData)
+            if ent == npc then
+                messagePanel:Clear()
+                
+                -- 调用TranslateDialogHistory函数
+                local translatedDialogs = TranslateDialogHistory(ent, updatedData, false)
                 
                 -- 显示翻译后的对话
                 for _, dialog in ipairs(translatedDialogs) do
@@ -352,17 +398,47 @@ if CLIENT then
 
             -- 处理按钮点击事件
             button.DoClick = function()
-                -- 发送选定的对话选项到服务器
+                if optionTypes[option] == "greeting" then
+                    -- 清空scrollPanel
+                    scrollPanel:Clear()
+                    
+                    -- 创建文本输入框
+                    local textEntry = vgui.Create("OFTextEntry", scrollPanel)
+                    textEntry:Dock(TOP)
+                    textEntry:SetTall(32 * OFGUI.ScreenScale)
+                    
+                    -- 处理回车事件
+                    textEntry.OnEnter = function(self)
+                        local inputText = self:GetValue()
+                        if inputText and inputText ~= "" then
+
+                            local aiDialogs = TranslateDialogHistory(npc, npcIdentity, true)
+
+                            table.insert(aiDialogs, {
+                                role = "user",
+                                content = inputText
+                            })
+                            
+                            -- 发送到服务器
+                            net.Start("PlayerAIDialog")
+                            net.WriteEntity(npc)
+                            net.WriteTable(aiDialogs)
+                            net.WriteString(inputText)
+                            net.SendToServer()
+                            
+                            -- 清空输入框
+                            self:SetValue("")
+                        end
+                    end
+                elseif optionTypes[option] == "leave" then
+                    frame:Close()
+                end
+
                 net.Start("PlayerDialog")
                 net.WriteEntity(npc)
                 net.WriteString(option)
                 net.WriteString(optionTypes[option])
                 net.SendToServer()
-                
-                -- 检查选项类型是否为leave
-                if optionTypes[option] == "leave" then
-                    frame:Close()
-                end
             end
         end
 
