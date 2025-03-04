@@ -1,7 +1,7 @@
 if SERVER then
     -- 将 OFNPCS 设置为全局变量
     OFNPCS = {}
-    OFPLAYERS = {}
+    OFPLAYERS = OFPLAYERS or {}  -- 确保OFPLAYERS被初始化
 
     -- 添加网络字符串
     util.AddNetworkString("NPCIdentityUpdate")
@@ -242,6 +242,18 @@ if SERVER then
         end
     end)
 
+    -- 添加保存玩家数据的函数
+    local function SavePlayerData()
+        file.CreateDir("of_npcp")
+        local playerData = {}
+        for steamID, data in pairs(OFPLAYERS) do
+            playerData[steamID] = {
+                deck = data.deck
+            }
+        end
+        file.Write("of_npcp/playerdata.txt", util.TableToJSON(playerData))
+    end
+
     -- 处理玩家牌组选择
     net.Receive("SelectPlayerDeck", function(len, ply)
         local deck = net.ReadString()
@@ -250,25 +262,14 @@ if SERVER then
         end
         OFPLAYERS[ply:SteamID()].deck = deck
 
+        SavePlayerData()
+        
         -- 广播给所有客户端
         net.Start("UpdatePlayerDeck")
             net.WriteString(ply:SteamID())
             net.WriteString(deck)
         net.Broadcast()
     end)
-
-    -- 添加保存玩家数据的函数
-    local function SavePlayerData()
-        file.CreateDir("of_npcp")
-        local playerData = {}
-        for steamID, data in pairs(OFPLAYERS) do
-            playerData[steamID] = {
-                nickname = player.GetBySteamID(steamID) and player.GetBySteamID(steamID):Nick() or "Unknown",
-                deck = data.deck
-            }
-        end
-        file.Write("of_npcp/playerdata.txt", util.TableToJSON(playerData))
-    end
 
     -- 添加加载玩家数据的函数
     local function LoadPlayerData(ply)
@@ -293,11 +294,6 @@ if SERVER then
         LoadPlayerData(ply)
     end)
 
-    -- 服务器关闭时保存数据
-    hook.Add("ShutDown", "SavePlayerDataOnShutdown", SavePlayerData)
-    -- 定期保存数据
-    timer.Create("AutoSavePlayerData", 300, 0, SavePlayerData)
-
     -- 添加调试命令
     concommand.Add("of_debug_dumpnpcs", function(ply)
         if IsValid(ply) and not ply:IsSuperAdmin() then return end
@@ -310,6 +306,17 @@ if SERVER then
         
         for entIndex, npcData in pairs(OFNPCS) do
             PrintTable(npcData)
+            print("----------------------")
+        end
+
+        print("\n=== 当前所有玩家数据 ===")
+        if not next(OFPLAYERS) then
+            print("没有玩家数据")
+            return
+        end
+        
+        for entIndex, playerData in pairs(OFPLAYERS) do
+            PrintTable(playerData)
             print("----------------------")
         end
     end)

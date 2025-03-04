@@ -214,33 +214,55 @@ if CLIENT then
                 npcIdentity = updatedData
                 -- 重新生成消息面板
                 messagePanel:Clear()
+                
+                -- 先翻译所有对话
+                local translatedDialogs = {}
+                local speakerName
+                local aiDialogs = { { role = "system", content = "你是一位“半条命”世界观里的角色，用户将提供一系列问题，你的回答应当接地气。" } }
                 for _, dialog in ipairs(updatedData.dialogHistory) do
+                    local translatedText = L(dialog.text)
+                    if dialog.speakerType == "npc" then
+                        local npcData = GetAllNPCsList()[dialog.speaker]
+                        speakerName = npcData and (L(npcData.name) .. " “" .. L(npcData.nickname) .. "”") or "NPC"
+                        translatedText = translatedText:gsub("/player/", dialog.target)
+                    else
+                        speakerName = dialog.speaker
+                    end
+                    translatedText = translatedText:gsub("/map/", game.GetMap())
+                    translatedText = translatedText:gsub("/name/", L(npcIdentity.name))
+                    translatedText = translatedText:gsub("/nickname/", L(npcIdentity.nickname))
+                    
+                    table.insert(translatedDialogs, {
+                        speaker = speakerName,
+                        speakerType = dialog.speakerType,
+                        target = dialog.target,
+                        text = translatedText,
+                        time = dialog.time
+                    })
+
+                    table.insert(aiDialogs, {
+                        role = dialog.speakerType == "npc" and "assistant" or "user",
+                        content = dialog.text
+                    })
+                end
+                
+                -- 显示翻译后的对话
+                for _, dialog in ipairs(translatedDialogs) do
                     local message = vgui.Create("OFMessage", messagePanel)
                     message:SetHeight(80 * OFGUI.ScreenScale)
                     message:Dock(TOP)
                     message:DockMargin(4, 4, 4, 4)
                     
                     -- 解析说话者信息
-                    local speakerName
+
                     if dialog.speakerType == "npc" then
-                        local npcData = GetAllNPCsList()[dialog.speaker]
-                        speakerName = npcData and (L(npcData.name) .. " “" .. L(npcData.nickname) .. "”") or "NPC"
                         message:SetColor(npcColor)
-                        playername = dialog.target
                     else
-                        speakerName = dialog.speaker
                         message:SetColor(deckColor)
                     end
                     
-                    message:SetName(speakerName)
-                    local translatedText = L(dialog.text)
-                    if playername then
-                        translatedText = translatedText:gsub("/player/", playername)
-                    end
-                    translatedText = translatedText:gsub("/map/", game.GetMap())
-                    translatedText = translatedText:gsub("/name/", L(npcIdentity.name))
-                    translatedText = translatedText:gsub("/nickname/", L(npcIdentity.nickname))
-                    message:SetText(translatedText)
+                    message:SetName(dialog.speaker or "Unknown")
+                    message:SetText(dialog.text or "")
                 end
             end
         end
