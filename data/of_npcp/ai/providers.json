@@ -1,0 +1,364 @@
+{
+    "openai": {
+        "name": "ChatGPT",
+        "url": "https://api.openai.com/v1/chat/completions",
+        "model": [
+            "gpt-3.5-turbo",
+            "gpt-4",
+            "gpt-4-turbo-2024-04-09",
+            "gpt-4.5-preview",
+            "gpt-40",
+            "gpt-4o-mini",
+            "o1-preview",
+            "o3-mini"
+        ]
+    },
+    "deepseek": {
+        "name": "DeepSeek",
+        "url": "https://api.deepseek.com/chat/completions",
+        "model": [
+            "deepseek-chat",
+            "deepseek-reasoner"
+        ]
+    },
+    "gemini": {
+        "name": "Gemini",
+        "url": "https://generativelanguage.googleapis.com/v1beta/models",
+        "model": [
+            "gemini-1.5-flash",
+            "gemini-1.5-flash-8b",
+            "gemini-1.5-pro",
+            "gemini-2.0-flash"
+        ]
+    },
+    "grok": {
+        "name": "Grok",
+        "url": "https://api.x.ai/v1/chat/completions",
+        "model": [
+            "grok-2-latest"
+        ]
+    },
+    "anthropic": {
+        "name": "Anthropic",
+        "url": "https://api.anthropic.com/v1/complete",
+        "model": [
+            "claude-3-7-sonnet-20250219",
+            "claude-3-5-sonnet-20241022",
+            "claude-3-5-haiku-20241022",
+            "claude-3-5-sonnet-20240620",
+            "claude-3-opus-20240229",
+            "claude-3-haiku-20240307"
+        ]
+    },
+    "ollama": {
+        "name": "Ollama",
+        "url": "",
+        "model": [
+            "deepseek-r1:8b",
+            "llama3:latest"
+        ]
+    },
+    "groq": {
+        "name": "Groq",
+        "url": "https://api.groq.com/openai/v1/chat/completions",
+        "model": [
+            "gemma2-9b-it",
+            "llama-3.3-70b-versatile",
+            "llama-3.1-8b-instant",
+            "llama3-70b-8192",
+            "llama3-8b-8192",
+            "mixtral-8x7b-32768"
+        ]
+    },
+    "openrouter": {
+        "name": "OpenRouter",
+        "url": "https://openrouter.ai/api/v1/chat/completions",
+        "model": [
+            "huggingfaceh4/zephyr-7b-beta:free"
+        ]
+    },
+    "gitHub": {
+        "name": "GitHub Models",
+        "url": "https://models.inference.ai.azure.com/chat/completions",
+        "model": [
+            "gpt-4o"
+        ]
+    },
+    "gitee-ai": {
+        "name": "Gitee AI",
+        "url": "https://ai.gitee.com/v1/chat/completions",
+        "model": [
+          "DeepSeek-R1-Distill-Qwen-32B",
+          "DeepSeek-R1-Distill-Qwen-1.5B",
+          "DeepSeek-R1-Distill-Qwen-14B",
+          "DeepSeek-R1-Distill-Qwen-7B",
+          "DeepSeek-V3",
+          "DeepSeek-R1",
+          "deepseek-coder-33B-instruct",
+          "Qwen2.5-72B-Instruct",
+          "Qwen2.5-14B-Instruct",
+          "Qwen2-7B-Instruct",
+          "Qwen2.5-32B-Instruct",
+          "Qwen2-72B-Instruct",
+          "Qwen2-VL-72B",
+          "QwQ-32B-Preview",
+          "Yi-34B-Chat",
+          "glm-4-9b-chat",
+          "codegeex4-all-9b",
+          "InternVL2-8B",
+          "InternVL2.5-26B",
+          "InternVL2.5-78B",
+          "bge-large-zh-v1.5",
+          "bge-small-zh-v1.5",
+          "bge-m3",
+          "bce-embedding-base_v1"
+        ]
+    },
+    "lingyiwanwu": {
+        "name": "零一万物",
+        "url": "https://api.lingyiwanwu.com/v1/chat/completions",
+        "model": [
+            "yi-large",
+            "yi-lightning",
+            "yi-medium",
+            "yi-vision"
+        ]
+    },
+    "zhipu": {
+        "name": "智谱AI",
+        "url": "https://open.bigmodel.cn/api/paas/v4/chat/completions",
+        "model": [
+            "glm-zero-preview",
+            "glm-4-0520",
+            "glm-4-long",
+            "glm-4-plus",
+            "glm-4-air",
+            "glm-4-airx",
+            "glm-4-flash",
+            "glm-4-flashx",
+            "glm-4v",
+            "glm-4v-plus",
+            "glm-4-alltools",
+            "embedding-3"
+        ]
+    },
+    "moonshot": {
+        "name": "月之暗面",
+        "url": "https://api.moonshot.cn/v1/chat/completions",
+        "model": [
+            "moonshot-v1-auto"
+        ]
+    },
+    "baichuan": {
+        "name": "百川",
+        "url": "https://api.baichuan-ai.com/v1/chat/completions",
+        "model": [
+            "Baichuan4",
+            "Baichuan3-Turbo",
+            "Baichuan3-Turbo-128k"
+        ]
+    },
+    "bailian": {
+        "name": "阿里云百炼",
+        "url": "https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions",
+        "model": [
+            "qwen-coder-plus",
+            "qwen-turbo",
+            "qwen-plus",
+            "qwen-max",
+            "qwen-max-0428",
+            "qwen-max-0403",
+            "qwen-max-0107",
+            "qwen-max-longcontext",
+            "qwen-1.8b",
+            "qwen-7b",
+            "qwen-14b",
+            "qwen-72b",
+            "qwen-audio",
+            "qwen-vl",
+            "qwen-vl-plus",
+            "qwen-vl-max"
+        ]
+    },
+    "stepfun": {
+        "name": "阶跃星辰",
+        "url": "https://api.stepfun.com/v1/chat/completions",
+        "model": [
+            "step-1-8k",
+            "step-1-flash"
+        ]
+    },
+    "minimax": {
+        "name": "Minimax",
+        "url": "https://api.minimax.chat/v1/chat/completions",
+        "model": [
+            "abab6.5s-chat",
+            "abab6.5g-chat",
+            "abab6.5t-chat",
+            "abab5.5s-chat",
+            "minimax-text-01"
+        ]
+    },
+    "hyperbolic": {
+        "name": "Hyperbolic",
+        "url": "",
+        "model": [
+            "Qwen/Qwen2-VL-72B-Instruct",
+            "Qwen/Qwen2-VL-7B-Instruct",
+            "mistralai/Pixtral-12B-2409",
+            "meta-llama/Meta-Llama-3.1-405B"
+        ]
+    },
+    "mistral": {
+        "name": "Mistral",
+        "url": "",
+        "model": [
+            "pixtral-12b-2409",
+            "pixtral-large-latest",
+            "ministral-3b-latest",
+            "ministral-8b-latest",
+            "codestral-latest",
+            "mistral-large-latest",
+            "mistral-small-latest",
+            "open-mistral-nemo",
+            "mistral-embed"
+        ]
+    },
+    "jina": {
+        "name": "Jina",
+        "url": "",
+        "model": [
+            "jina-clip-v1",
+            "jina-clip-v2",
+            "jina-embeddings-v2-base-en",
+            "jina-embeddings-v2-base-es",
+            "jina-embeddings-v2-base-de",
+            "jina-embeddings-v2-base-zh",
+            "jina-embeddings-v2-base-code",
+            "jina-embeddings-v3"
+        ]
+    },
+    "fireworks": {
+        "name": "Fireworks",
+        "url": "https://api.fireworks.ai/inference/v1/chat/completions",
+        "model": [
+            "accounts/fireworks/models/mythomax-l2-13b",
+            "accounts/fireworks/models/llama-v3-70b-instruct"
+        ]
+    },
+    "zhinao": {
+        "name": "Zhinao",
+        "url": "https://api.360.cn/v1/chat/completions",
+        "model": [
+            "360gpt-pro",
+            "360gpt-turbo"
+        ]
+    },
+    "hunyuan": {
+        "name": "Hunyuan",
+        "url": "https://api.hunyuan.cloud.tencent.com/v1/chat/completions",
+        "model": [
+            "hunyuan-pro",
+            "hunyuan-standard",
+            "hunyuan-lite",
+            "hunyuan-standard-256k",
+            "hunyuan-vision",
+            "hunyuan-code",
+            "hunyuan-role",
+            "hunyuan-turbo",
+            "hunyuan-turbos-latest",
+            "hunyuan-embedding"
+        ]
+    },
+    "nvidia": {
+        "name": "NVIDIA",
+        "url": "https://integrate.api.nvidia.com/v1/chat/completions",
+        "model": [
+            "01-ai/yi-large",
+            "meta/llama-3.1-405b-instruct"
+        ]
+    },
+    "baidu-cloud": {
+        "name": "Baidu Cloud",
+        "url": "",
+        "model": [
+            "deepseek-r1",
+            "deepseek-v3",
+            "ernie-4.0-8k-latest",
+            "ernie-4.0-turbo-8k-latest",
+            "ernie-speed-8k",
+            "ernie-lite-8k",
+            "bge-large-zh",
+            "bge-large-en"
+        ]
+    },
+    "dmxapi": {
+        "name": "DMXAPI",
+        "url": "https://www.dmxapi.cn/v1/chat/completions",
+        "model": [
+            "Qwen/Qwen2.5-7B-Instruct",
+            "ERNIE-Speed-128K",
+            "THUDM/glm-4-9b-chat",
+            "glm-4-flash",
+            "hunyuan-lite",
+            "gpt-4o",
+            "gpt-4o-mini",
+            "DMXAPI-DeepSeek-R1",
+            "DMXAPI-DeepSeek-V3",
+            "claude-3-5-sonnet-20241022",
+            "gemini-2.0-flash"
+        ]
+    },
+    "perplexity": {
+        "name": "Perplexity",
+        "url": "https://api.perplexity.ai/chat/completions",
+        "model": [
+            "sonar-reasoning-pro",
+            "sonar-reasoning",
+            "sonar-pro",
+            "sonar"
+        ]
+    },
+    "infini": {
+        "name": "无问芯穹",
+        "url": "https://cloud.infini-ai.com/maas/v1/chat/completions",
+        "model": [
+            "deepseek-r1",
+            "deepseek-r1-distill-qwen-32b",
+            "deepseek-v3",
+            "qwen2.5-72b-instruct",
+            "qwen2.5-32b-instruct",
+            "qwen2.5-14b-instruct",
+            "qwen2.5-7b-instruct",
+            "qwen2-72b-instruct",
+            "qwq-32b-preview",
+            "qwen2.5-coder-32b-instruct",
+            "llama-3.3-70b-instruct",
+            "bge-m3",
+            "gemma-2-27b-it",
+            "jina-embeddings-v2-base-zh",
+            "jina-embeddings-v2-base-code"
+        ]
+    },
+    "tencent-cloud-ti": {
+        "name": "Tencent Cloud TI",
+        "url": "",
+        "model": [
+            "deepseek-r1",
+            "deepseek-v3"
+        ]
+    },
+    "modelscope": {
+        "name": "无问芯穹",
+        "url": "https://cloud.infini-ai.com/maas/v1/chat/completions",
+        "model": [
+            "deepseek-r1",
+            "deepseek-v3",
+            "qwen2.5-72b-instruct",
+            "qwen2.5-32b-instruct",
+            "qwen2.5-14b-instruct",
+            "qwen2.5-7b-instruct",
+            "qwen2-72b-instruct"
+        ]
+    }
+}
