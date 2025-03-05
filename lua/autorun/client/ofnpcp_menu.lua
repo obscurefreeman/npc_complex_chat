@@ -381,7 +381,7 @@ local function AddOFFrame()
 
 		local apiKeyEntry = CreateControl(aiRightPanel, "OFTextEntry", {
 			SetValue = settings.key or "",
-			SetPlaceholderText = "API密钥"
+			SetPlaceholderText = provider.name .. " API"
 		})
 
 		local modelComboBox = CreateControl(aiRightPanel, "OFComboBox", {
@@ -394,7 +394,7 @@ local function AddOFFrame()
 			modelComboBox:SetValue(settings.model)
 		end
 
-		local tempSlider = CreateControl(aiRightPanel, "DNumSlider", {
+		local tempSlider = CreateControl(aiRightPanel, "OFNumSlider", {
 			SetText = "温度",
 			SetMin = 0,
 			SetMax = 1,
@@ -402,7 +402,7 @@ local function AddOFFrame()
 			SetValue = settings.temperature
 		})
 
-		local maxTokensSlider = CreateControl(aiRightPanel, "DNumSlider", {
+		local maxTokensSlider = CreateControl(aiRightPanel, "OFNumSlider", {
 			SetText = "最大字符消耗",
 			SetMin = 100,
 			SetMax = 2000,
