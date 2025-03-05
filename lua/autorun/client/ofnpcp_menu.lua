@@ -341,64 +341,110 @@ local function AddOFFrame()
 	local aiRightPanel = vgui.Create("OFScrollPanel")
 	aiHorizontalDivider:SetRight(aiRightPanel)
 
-	-- 加载AI提供商列表
-	for providerKey, providerData in pairs(GLOBAL_OFNPC_DATA.aiProviders) do
-		local button = vgui.Create("OFSkillButton", aiLeftPanel)
-		button:Dock(TOP)
-		button:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
-		button:SetTall(80 * OFGUI.ScreenScale)
-		button:SetTitle(providerData.name)
-		button:SetDescription(providerData.url)
-		button:SetIcon("ofnpcp/ai/providers/" .. providerKey .. ".png")
-		button:SetShowHoverCard(false)
-		button.DoClick = function()
-			aiRightPanel:Clear()
+	-- 读取AI设置文件
+	local aiSettings = file.Read("of_npcp/ai_settings.txt", "DATA")
+	if aiSettings then
+		aiSettings = util.JSONToTable(aiSettings)
+	end
 
-			-- 创建API URL输入框
-			local apiUrlEntry = vgui.Create("OFTextEntry", aiRightPanel)
-			apiUrlEntry:Dock(TOP)
-			apiUrlEntry:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
-			apiUrlEntry:SetTall(32 * OFGUI.ScreenScale)
-			apiUrlEntry:SetValue(providerData.url)
-			apiUrlEntry:SetPlaceholderText("API URL")
-
-			-- 创建API密钥输入框
-			local apiKeyEntry = vgui.Create("OFTextEntry", aiRightPanel)
-			apiKeyEntry:Dock(TOP)
-			apiKeyEntry:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
-			apiKeyEntry:SetTall(32 * OFGUI.ScreenScale)
-			apiKeyEntry:SetPlaceholderText("API密钥")
-
-			-- 创建模型选择下拉菜单
-			local modelComboBox = vgui.Create("OFComboBox", aiRightPanel)
-			modelComboBox:Dock(TOP)
-			modelComboBox:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
-			modelComboBox:SetTall(32 * OFGUI.ScreenScale)
-			modelComboBox:SetValue("选择模型")
-			
-			-- 添加模型选项
-			for _, model in ipairs(providerData.model) do
-				modelComboBox:AddChoice(model)
-			end
-
-			-- 创建保存按钮
-			local saveButton = vgui.Create("OFButton", aiRightPanel)
-			saveButton:Dock(TOP)
-			saveButton:SetTall(32 * OFGUI.ScreenScale)
-			saveButton:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
-			saveButton:SetText("保存设置")
-			saveButton.DoClick = function()
-				-- 保存设置逻辑
-				local aiSettings = {
-					provider = providerKey,
-					url = apiUrlEntry:GetValue(),
-					key = apiKeyEntry:GetValue(),
-					model = modelComboBox:GetSelected() -- 保存选择的模型
-				}
-				file.Write("of_npcp/ai_settings.txt", util.TableToJSON(aiSettings))
-				notification.AddLegacy("AI设置已保存到本地", NOTIFY_GENERIC, 5)
+	-- 创建控件辅助函数
+	local function CreateControl(parent, controlType, options)
+		local control = vgui.Create(controlType, parent)
+		control:Dock(TOP)
+		control:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+		control:SetTall(32 * OFGUI.ScreenScale)
+		if options then
+			for k, v in pairs(options) do
+				control[k](control, v)
 			end
 		end
+		return control
+	end
+
+	-- 加载AI设置面板
+	local function LoadAISettings(providerKey, aiRightPanel)
+		aiRightPanel:Clear()
+
+		-- 获取当前提供商的默认设置
+		local provider = GLOBAL_OFNPC_DATA.aiProviders[providerKey]
+		local settings = aiSettings and aiSettings.provider == providerKey and aiSettings or {
+			url = provider.url,
+			temperature = 0.7,
+			max_tokens = 500
+		}
+
+		-- 创建设置控件
+		local apiUrlEntry = CreateControl(aiRightPanel, "OFTextEntry", {
+			SetValue = settings.url,
+			SetPlaceholderText = "API URL"
+		})
+
+		local apiKeyEntry = CreateControl(aiRightPanel, "OFTextEntry", {
+			SetValue = settings.key or "",
+			SetPlaceholderText = "API密钥"
+		})
+
+		local modelComboBox = CreateControl(aiRightPanel, "OFComboBox", {
+			SetValue = settings.model or "选择模型"
+		})
+		for _, model in ipairs(provider.model) do
+			modelComboBox:AddChoice(model)
+		end
+		if settings.model then
+			modelComboBox:SetValue(settings.model)
+		end
+
+		local tempSlider = CreateControl(aiRightPanel, "DNumSlider", {
+			SetText = "温度",
+			SetMin = 0,
+			SetMax = 1,
+			SetDecimals = 1,
+			SetValue = settings.temperature
+		})
+
+		local maxTokensSlider = CreateControl(aiRightPanel, "DNumSlider", {
+			SetText = "最大字符消耗",
+			SetMin = 100,
+			SetMax = 2000,
+			SetDecimals = 0,
+			SetValue = settings.max_tokens
+		})
+
+		-- 保存按钮
+		local saveButton = CreateControl(aiRightPanel, "OFButton", {
+			SetText = "保存设置"
+		})
+		saveButton.DoClick = function()
+			local newSettings = {
+				provider = providerKey,
+				url = apiUrlEntry:GetValue(),
+				key = apiKeyEntry:GetValue(),
+				model = modelComboBox:GetSelected(),
+				temperature = tonumber(tempSlider:GetValue()) or 0.7,
+				max_tokens = tonumber(maxTokensSlider:GetValue()) or 500
+			}
+			file.Write("of_npcp/ai_settings.txt", util.TableToJSON(newSettings))
+			notification.AddLegacy("AI设置已保存到本地", NOTIFY_GENERIC, 5)
+		end
+	end
+
+	-- 加载AI提供商列表
+	for providerKey, providerData in pairs(GLOBAL_OFNPC_DATA.aiProviders) do
+		local button = CreateControl(aiLeftPanel, "OFSkillButton", {
+			SetTall = 80 * OFGUI.ScreenScale,
+			SetTitle = providerData.name,
+			SetDescription = providerData.url,
+			SetIcon = "ofnpcp/ai/providers/" .. providerKey .. ".png",
+			SetShowHoverCard = false
+		})
+		button.DoClick = function()
+			LoadAISettings(providerKey, aiRightPanel)
+		end
+	end
+
+	-- 加载默认设置
+	if aiSettings then
+		LoadAISettings(aiSettings.provider, aiRightPanel)
 	end
 
 	-- 初始加载NPC列表

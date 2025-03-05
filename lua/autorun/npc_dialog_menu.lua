@@ -449,8 +449,8 @@ if CLIENT then
             local requestBody = {
                 model = aiSettings.model,
                 messages = aiDialogs,
-                max_tokens = 500,
-                temperature = 0.7
+                max_tokens = aiSettings.max_tokens or 500,
+                temperature = aiSettings.temperature or 0.7
             }
             
             HTTP({
