@@ -8,61 +8,27 @@ if SERVER then
         if IsValid(npc) and IsValid(ply) then
             -- 先让玩家说话
             NPCTalkManager:StartDialog(ply, translatedOption, "player", npc, true)
-        end
-        timer.Simple(0.5, function()
-            local npcIdentity = OFNPCS[npc:EntIndex()]
-            if npcIdentity then
-                local responsePhrases = GLOBAL_OFNPC_DATA.npcTalks.response[optionType]
-                if responsePhrases and #responsePhrases > 0 then
-                    local randomResponse = responsePhrases[math.random(#responsePhrases)]
-                    NPCTalkManager:StartDialog(npc, randomResponse, "dialogue", ply, true)
-                end
+            
+            if optionType and optionType ~= "" then
+                timer.Simple(0.5, function()
+                    local npcIdentity = OFNPCS[npc:EntIndex()]
+                    if npcIdentity then
+                        local responsePhrases = GLOBAL_OFNPC_DATA.npcTalks.response[optionType]
+                        if responsePhrases and #responsePhrases > 0 then
+                            local randomResponse = responsePhrases[math.random(#responsePhrases)]
+                            NPCTalkManager:StartDialog(npc, randomResponse, "dialogue", ply, true)
+                        end
+                    end
+                end)
             end
-        end)
+        end
     end)
     net.Receive("PlayerAIDialog", function(len, ply)
         local npc = net.ReadEntity()
-        local aiDialogs = net.ReadTable()
-        local playerDialog = net.ReadString()
-        
+        local responseContent = net.ReadString()
         if not IsValid(npc) or not IsValid(ply) then return end
-        NPCTalkManager:StartDialog(ply, playerDialog, "player", npc, true)
 
-        local function correctFloatToInt(jsonString)
-            return string.gsub(jsonString, '(%d+)%.0', '%1')
-        end
-    
-        local requestBody = {
-            model = 'deepseek-chat',
-            messages = aiDialogs,
-            max_tokens = 500,
-            temperature = 0.7
-        }
-        
-        -- 调用AI处理对话
-        HTTP({
-            url = "https://api.deepseek.com/chat/completions",
-            type = "application/json",
-            method = "post",
-            headers = {
-                ["Content-Type"] = "application/json",
-                ["Authorization"] = "Bearer aaaaaaaaaaaa"
-            },
-            body = correctFloatToInt(util.TableToJSON(requestBody)), -- tableToJSON changes integers to float
-    
-            success = function(code, body, headers)
-                local response = util.JSONToTable(body)
-                -- 重要debug代码
-                -- PrintTable(aiDialogs)
-                -- PrintTable(response)
-                local responseContent = response.choices[1].message.content
-                NPCTalkManager:StartDialog(npc, responseContent, "dialogue", ply, true)
-            end,
-
-            failed = function(err)
-                NPCTalkManager:StartDialog(npc, "HTTP Error: " .. err, "dialogue", ply, true)
-            end
-        })
+        NPCTalkManager:StartDialog(npc, responseContent, "dialogue", ply, true)
     end)
 end
 
@@ -242,7 +208,7 @@ if CLIENT then
 
         -- 下方中间区域存放对话选项
         local scrollPanel = vgui.Create("OFScrollPanel", frame)
-        scrollPanel:SetHeight(400 * OFGUI.ScreenScale)
+        scrollPanel:SetHeight(300 * OFGUI.ScreenScale)
         scrollPanel:Dock(BOTTOM)
 
         local messagePanel = vgui.Create("OFScrollPanel", frame)
@@ -270,7 +236,7 @@ if CLIENT then
                     local translatedText = L(dialog.text)
                     if dialog.speakerType == "npc" then
                         local npcData = GetAllNPCsList()[dialog.speaker]
-                        speakerName = npcData and (L(npcData.name) .. " “" .. L(npcData.nickname) .. "”") or "NPC"
+                        speakerName = npcData and (L(npcData.name) .. " " .. L(npcData.nickname)) or "NPC"
                         translatedText = translatedText:gsub("/player/", dialog.target)
                     else
                         speakerName = dialog.speaker
@@ -420,8 +386,10 @@ if CLIENT then
                     -- 创建文本输入框
                     local textEntry = vgui.Create("OFTextEntry", scrollPanel)
                     textEntry:Dock(TOP)
-                    textEntry:SetTall(32 * OFGUI.ScreenScale)
-                    
+                    textEntry:DockMargin(4, 4, 4, 4)
+                    textEntry:SetFont("ofgui_huge")
+                    textEntry:SetTall(100 * OFGUI.ScreenScale)
+
                     -- 处理回车事件
                     textEntry.OnEnter = function(self)
                         local inputText = self:GetValue()
@@ -433,13 +401,14 @@ if CLIENT then
                                 role = "user",
                                 content = inputText
                             })
-                            
-                            -- 发送到服务器
-                            net.Start("PlayerAIDialog")
+
+                            net.Start("PlayerDialog")
                             net.WriteEntity(npc)
-                            net.WriteTable(aiDialogs)
                             net.WriteString(inputText)
                             net.SendToServer()
+                            
+                            -- 调用新的函数处理AI对话请求
+                            SendAIDialogRequest(npc, aiDialogs)
                             
                             -- 清空输入框
                             self:SetValue("")
@@ -465,4 +434,72 @@ if CLIENT then
             hook.Remove("OnNPCIdentityUpdated", "UpdateDialogHistory_"..npc:EntIndex())
         end
     end)
+
+    function SendAIDialogRequest(npc, aiDialogs)
+        -- 读取本地AI设置
+        local aiSettings = file.Read("of_npcp/ai_settings.txt", "DATA")
+        if aiSettings then
+            aiSettings = util.JSONToTable(aiSettings)
+
+            local function correctFloatToInt(jsonString)
+                return string.gsub(jsonString, '(%d+)%.0', '%1')
+            end
+            
+            -- 在客户端处理HTTP请求
+            local requestBody = {
+                model = aiSettings.model,
+                messages = aiDialogs,
+                max_tokens = 500,
+                temperature = 0.7
+            }
+            
+            HTTP({
+                url = aiSettings.url,
+                type = "application/json",
+                method = "post",
+                headers = {
+                    ["Content-Type"] = "application/json",
+                    ["Authorization"] = "Bearer " .. aiSettings.key
+                },
+                body = correctFloatToInt(util.TableToJSON(requestBody)),
+                
+                success = function(code, body, headers)
+                    local response = util.JSONToTable(body)
+                    -- 重要debug代码
+                    PrintTable(aiDialogs)
+                    PrintTable(response)
+                    
+                    if response and response.choices and #response.choices > 0 and response.choices[1].message then
+                        local responseContent = response.choices[1].message.content
+                        
+                        -- 将AI回复发送到服务器
+                        net.Start("PlayerAIDialog")
+                        net.WriteEntity(npc)
+                        net.WriteString(responseContent)
+                        net.SendToServer()
+                    else
+                        -- 处理无效的响应
+                        net.Start("PlayerAIDialog")
+                        net.WriteEntity(npc)
+                        net.WriteString("Invalid AI response: Missing required fields.")
+                        net.SendToServer()
+                    end
+                end,
+                
+                failed = function(err)
+                    -- 处理错误
+                    net.Start("PlayerAIDialog")
+                    net.WriteEntity(npc)
+                    net.WriteString("HTTP Error: " .. (err or "Unknown Error"))
+                    net.SendToServer()
+                end
+            })
+        else
+            -- 如果没有找到AI设置文件
+            net.Start("PlayerAIDialog")
+            net.WriteEntity(npc)
+            net.WriteString("未找到AI设置，请先在AI设置面板中配置")
+            net.SendToServer()
+        end
+    end
 end

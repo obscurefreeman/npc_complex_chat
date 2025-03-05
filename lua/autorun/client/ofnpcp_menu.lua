@@ -301,6 +301,10 @@ local function AddOFFrame()
 	local pan2 = vgui.Create("EditablePanel", sheet)
 	sheet:AddSheet("卡牌", pan2)
 
+	-- 新增AI设置面板
+	local pan3 = vgui.Create("EditablePanel", sheet)
+	sheet:AddSheet("AI设置", pan3)
+
 	-- 创建一个水平分割面板
 	local horizontalDivider = vgui.Create("DHorizontalDivider", pan1)
 	horizontalDivider:Dock(FILL)
@@ -324,6 +328,78 @@ local function AddOFFrame()
 		surface.DrawRect(0, 0, w, h)
 	end
 	right_panel_cards:Dock(FILL)
+
+	-- 创建AI设置面板布局
+	local aiHorizontalDivider = vgui.Create("DHorizontalDivider", pan3)
+	aiHorizontalDivider:Dock(FILL)
+	aiHorizontalDivider:DockMargin(6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale)
+	aiHorizontalDivider:SetLeftWidth(ScrW() / 4)
+
+	local aiLeftPanel = vgui.Create("OFScrollPanel")
+	aiHorizontalDivider:SetLeft(aiLeftPanel)
+
+	local aiRightPanel = vgui.Create("OFScrollPanel")
+	aiHorizontalDivider:SetRight(aiRightPanel)
+
+	-- 加载AI提供商列表
+	for providerKey, providerData in pairs(GLOBAL_OFNPC_DATA.aiProviders) do
+		local button = vgui.Create("OFSkillButton", aiLeftPanel)
+		button:Dock(TOP)
+		button:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+		button:SetTall(80 * OFGUI.ScreenScale)
+		button:SetTitle(providerData.name)
+		button:SetDescription(providerData.url)
+		button:SetIcon("ofnpcp/ai/providers/" .. providerKey .. ".png")
+		button:SetShowHoverCard(false)
+		button.DoClick = function()
+			aiRightPanel:Clear()
+
+			-- 创建API URL输入框
+			local apiUrlEntry = vgui.Create("OFTextEntry", aiRightPanel)
+			apiUrlEntry:Dock(TOP)
+			apiUrlEntry:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+			apiUrlEntry:SetTall(32 * OFGUI.ScreenScale)
+			apiUrlEntry:SetValue(providerData.url)
+			apiUrlEntry:SetPlaceholderText("API URL")
+
+			-- 创建API密钥输入框
+			local apiKeyEntry = vgui.Create("OFTextEntry", aiRightPanel)
+			apiKeyEntry:Dock(TOP)
+			apiKeyEntry:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+			apiKeyEntry:SetTall(32 * OFGUI.ScreenScale)
+			apiKeyEntry:SetPlaceholderText("API密钥")
+
+			-- 创建模型选择下拉菜单
+			local modelComboBox = vgui.Create("OFComboBox", aiRightPanel)
+			modelComboBox:Dock(TOP)
+			modelComboBox:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+			modelComboBox:SetTall(32 * OFGUI.ScreenScale)
+			modelComboBox:SetValue("选择模型")
+			
+			-- 添加模型选项
+			for _, model in ipairs(providerData.model) do
+				modelComboBox:AddChoice(model)
+			end
+
+			-- 创建保存按钮
+			local saveButton = vgui.Create("OFButton", aiRightPanel)
+			saveButton:Dock(TOP)
+			saveButton:SetTall(32 * OFGUI.ScreenScale)
+			saveButton:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+			saveButton:SetText("保存设置")
+			saveButton.DoClick = function()
+				-- 保存设置逻辑
+				local aiSettings = {
+					provider = providerKey,
+					url = apiUrlEntry:GetValue(),
+					key = apiKeyEntry:GetValue(),
+					model = modelComboBox:GetSelected() -- 保存选择的模型
+				}
+				file.Write("of_npcp/ai_settings.txt", util.TableToJSON(aiSettings))
+				notification.AddLegacy("AI设置已保存到本地", NOTIFY_GENERIC, 5)
+			end
+		end
+	end
 
 	-- 初始加载NPC列表
 	RefreshNPCButtons(left_panel, right_panel)
