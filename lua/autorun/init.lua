@@ -32,6 +32,7 @@ local function LoadNPCData()
     LoadJsonData("data/of_npcp/player_talk.json", "playerTalks")
     LoadJsonData("data/of_npcp/citizen_talk.json", "npcTalks")
     LoadJsonData("data/of_npcp/cards.json", "cards")
+    LoadJsonData("data/of_npcp/ai/providers.json", "aiProviders")
 
     -- 在加载数据后添加调试信息
     -- print("【自由调试】:", util.TableToJSON(GLOBAL_OFNPC_DATA.rankData.ranks, true))
