@@ -229,7 +229,7 @@ if CLIENT then
                 promptcontent = promptcontent:gsub("/name/", L(npcIdentity.name))
                 promptcontent = promptcontent:gsub("/nickname/", L(npcIdentity.nickname))
                 promptcontent = promptcontent:gsub("/job/", L(npcIdentity.job))
-                promptcontent = promptcontent:gsub("/camp/", L(npcIdentity.camp))
+                promptcontent = promptcontent:gsub("/camp/", L("camp."..tostring(npcIdentity.camp)))
                 promptcontent = promptcontent:gsub("/map/", game.GetMap())
                 local aiDialogs = { { role = "system", content = promptcontent } }
                 for _, dialog in ipairs(updatedData.dialogHistory) do
@@ -394,6 +394,8 @@ if CLIENT then
                     textEntry.OnEnter = function(self)
                         local inputText = self:GetValue()
                         if inputText and inputText ~= "" then
+                            -- 先清空输入框
+                            self:SetValue("")
 
                             local aiDialogs = TranslateDialogHistory(npc, npcIdentity, true)
 
@@ -409,9 +411,6 @@ if CLIENT then
                             
                             -- 调用新的函数处理AI对话请求
                             SendAIDialogRequest(npc, aiDialogs)
-                            
-                            -- 清空输入框
-                            self:SetValue("")
                         end
                     end
                 elseif optionTypes[option] == "leave" then
