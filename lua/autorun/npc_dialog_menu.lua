@@ -4,31 +4,36 @@ if SERVER then
         local npc = net.ReadEntity()
         local translatedOption = net.ReadString()
         local optionType = net.ReadString()
+        local aidetail = net.ReadTable()
         
-        if IsValid(npc) and IsValid(ply) then
-            -- 先让玩家说话
+        if not (IsValid(npc) and IsValid(ply)) then return end
+        
+        if aidetail and next(aidetail) ~= nil then
+            NPCTalkManager:StartDialog(ply, translatedOption, "player", npc, true, aidetail)
+        else
             NPCTalkManager:StartDialog(ply, translatedOption, "player", npc, true)
-            
-            if optionType and optionType ~= "" then
-                timer.Simple(0.5, function()
-                    local npcIdentity = OFNPCS[npc:EntIndex()]
-                    if npcIdentity then
-                        local responsePhrases = GLOBAL_OFNPC_DATA.npcTalks.response[optionType]
-                        if responsePhrases and #responsePhrases > 0 then
-                            local randomResponse = responsePhrases[math.random(#responsePhrases)]
-                            NPCTalkManager:StartDialog(npc, randomResponse, "dialogue", ply, true)
-                        end
+        end
+
+        if optionType and optionType ~= "ai" then
+            timer.Simple(0.5, function()
+                local npcIdentity = OFNPCS[npc:EntIndex()]
+                if npcIdentity then
+                    local responsePhrases = GLOBAL_OFNPC_DATA.npcTalks.response[optionType]
+                    if responsePhrases and #responsePhrases > 0 then
+                        local randomResponse = responsePhrases[math.random(#responsePhrases)]
+                        NPCTalkManager:StartDialog(npc, randomResponse, "dialogue", ply, true)
                     end
-                end)
-            end
+                end
+            end)
         end
     end)
-    net.Receive("PlayerAIDialog", function(len, ply)
+    net.Receive("NPCAIDialog", function(len, ply)
         local npc = net.ReadEntity()
         local responseContent = net.ReadString()
+        local aidetail = net.ReadTable()
         if not IsValid(npc) or not IsValid(ply) then return end
 
-        NPCTalkManager:StartDialog(npc, responseContent, "dialogue", ply, true)
+        NPCTalkManager:StartDialog(npc, responseContent, "dialogue", ply, true, aidetail)
     end)
 end
 
@@ -250,7 +255,8 @@ if CLIENT then
                         speakerType = dialog.speakerType,
                         target = dialog.target,
                         text = translatedText,
-                        time = dialog.time
+                        time = dialog.time,
+                        aidetail = dialog.aidetail
                     })
 
                     table.insert(aiDialogs, {
@@ -280,12 +286,42 @@ if CLIENT then
                     message:Dock(TOP)
                     message:DockMargin(4, 4, 4, 4)
                     
-                    -- 解析说话者信息
+                    -- 设置消息颜色
+                    local messageColor = dialog.speakerType == "npc" and npcColor or deckColor
+                    message:SetColor(messageColor)
 
-                    if dialog.speakerType == "npc" then
-                        message:SetColor(npcColor)
-                    else
-                        message:SetColor(deckColor)
+                    -- 定义对话类型与提示信息的映射表
+                    local dialogFootnotes = {
+                        ["playerchat.greeting"] = "正在开启AI对话。",
+                        ["response.greeting"] = "AI对话已开启。", 
+                        ["playerchat.trade"] = "正在开启交易。",
+                        ["response.trade"] = "交易功能正在开发中，敬请期待。"
+                    }
+
+                    -- 遍历映射表设置对应的脚注
+                    if dialog.text then
+                        for pattern, footnote in pairs(dialogFootnotes) do
+                            if string.find(dialog.text, pattern) then
+                                message:SetFootnote(footnote)
+                                break
+                            end
+                        end
+                    end
+                    
+                    -- 修复脚注显示问题
+                    if dialog.aidetail and istable(dialog.aidetail) then
+                        local footnoteText
+                        if dialog.speakerType == "npc" then
+                            footnoteText = string.format("模型：%s | 响应时间：%s | 消耗tokens：%d",
+                                dialog.aidetail.model or "Unknown",
+                                dialog.aidetail.created or "Unknown",
+                                dialog.aidetail.usage and dialog.aidetail.usage.total_tokens or 0)
+                        else
+                            footnoteText = string.format("模型：%s | 服务平台：%s",
+                            dialog.aidetail.model or "Unknown",
+                            dialog.aidetail.provider or "Unknown")
+                        end
+                        message:SetFootnote(footnoteText)
                     end
                     
                     message:SetName(dialog.speaker or "Unknown")
@@ -404,9 +440,17 @@ if CLIENT then
                                 content = inputText
                             })
 
+                            local aiSettings = util.JSONToTable(file.Read("of_npcp/ai_settings.txt", "DATA") or "{}")
+                            local aidetail = aiSettings and {
+                                model = aiSettings.model,
+                                provider = aiSettings.provider
+                            } or {}
+
                             net.Start("PlayerDialog")
                             net.WriteEntity(npc)
                             net.WriteString(inputText)
+                            net.WriteString("ai")
+                            net.WriteTable(aidetail)
                             net.SendToServer()
                             
                             -- 调用新的函数处理AI对话请求
@@ -472,13 +516,14 @@ if CLIENT then
                         local responseContent = response.choices[1].message.content
                         
                         -- 将AI回复发送到服务器
-                        net.Start("PlayerAIDialog")
+                        net.Start("NPCAIDialog")
                         net.WriteEntity(npc)
                         net.WriteString(responseContent)
+                        net.WriteTable(response)
                         net.SendToServer()
                     else
                         -- 处理无效的响应
-                        net.Start("PlayerAIDialog")
+                        net.Start("NPCAIDialog")
                         net.WriteEntity(npc)
                         net.WriteString("Invalid AI response: Missing required fields.")
                         net.SendToServer()
@@ -487,7 +532,7 @@ if CLIENT then
                 
                 failed = function(err)
                     -- 处理错误
-                    net.Start("PlayerAIDialog")
+                    net.Start("NPCAIDialog")
                     net.WriteEntity(npc)
                     net.WriteString("HTTP Error: " .. (err or "Unknown Error"))
                     net.SendToServer()
@@ -495,7 +540,7 @@ if CLIENT then
             })
         else
             -- 如果没有找到AI设置文件
-            net.Start("PlayerAIDialog")
+            net.Start("NPCAIDialog")
             net.WriteEntity(npc)
             net.WriteString("未找到AI设置，请先在AI设置面板中配置")
             net.SendToServer()

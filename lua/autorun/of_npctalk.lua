@@ -32,7 +32,7 @@ if SERVER then
     end
     
     -- 开始新对话
-    function NPCTalkManager:StartDialog(speaker, dialogKey, dialogtype, target, forceDialog)
+    function NPCTalkManager:StartDialog(speaker, dialogKey, dialogtype, target, forceDialog, aidetail)
         if not IsValid(speaker) or not dialogKey or not dialogtype then 
             return 
         end
@@ -58,6 +58,10 @@ if SERVER then
                     text = dialogKey,
                     time = os.date("%H:%M")
                 }
+                -- 仅在aidetail存在时添加
+                if aidetail and istable(aidetail) then
+                    speakerInfo.aidetail = aidetail
+                end
                 table.insert(npcData.dialogHistory, speakerInfo)
                 net.Start("NPCIdentityUpdate")
                 net.WriteEntity(speaker:IsNPC() and speaker or target)
