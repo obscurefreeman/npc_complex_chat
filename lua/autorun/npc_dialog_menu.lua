@@ -249,20 +249,64 @@ if CLIENT then
                     translatedText = translatedText:gsub("/map/", game.GetMap())
                     translatedText = translatedText:gsub("/name/", L(npcIdentity.name))
                     translatedText = translatedText:gsub("/nickname/", L(npcIdentity.nickname))
-                    
-                    table.insert(translatedDialogs, {
+
+                    -- 定义对话类型与提示信息的映射表
+                    local dialogFootnotes = {
+                        ["playerchat.greeting"] = "正在开启AI聊天。请注意，每个NPC都具有独特的身份背景和性格特征，并能访问部分游戏数据。在多人游戏中，当多名玩家同时与同一NPC互动时，系统将自动隔离对话上下文，确保每位玩家获得独立的交互体验，从而优化资源利用。",
+                        ["response.greeting"] = "AI聊天已开启。在多人游戏环境中，每位玩家需独立配置API密钥，相关数据将安全存储于本地设备，不会上传至服务器。为保障数据安全，建议避免在不可信的服务器环境中使用此功能，以防API密钥泄露风险。", 
+                        ["playerchat.negotiate"] = "正在开启协商。",
+                        ["response.negotiate"] = "协商模式正在开发中，敬请期待。",
+                        ["playerchat.trade"] = "正在开启交易。",
+                        ["response.trade"] = "交易功能正在开发中，敬请期待。"
+                    }
+
+                    -- 初始化脚注文本
+                    local footnoteText
+
+                    -- 遍历映射表设置对应的脚注
+                    if dialog.text then
+                        for pattern, footnote in pairs(dialogFootnotes) do
+                            if string.find(dialog.text, pattern) then
+                                footnoteText = footnote
+                                break
+                            end
+                        end
+                    end
+
+                    if dialog.aidetail and istable(dialog.aidetail) then
+                        if dialog.speakerType == "npc" then
+                            footnoteText = string.format("模型：%s | 响应时间：%s | 消耗tokens：%d",
+                                dialog.aidetail.model or "Unknown",
+                                dialog.aidetail.created or "Unknown",
+                                dialog.aidetail.usage and dialog.aidetail.usage.total_tokens or 0)
+                        else
+                            footnoteText = string.format("模型：%s | 服务平台：%s",
+                            dialog.aidetail.model or "Unknown",
+                            dialog.aidetail.provider or "Unknown")
+                        end
+                    end
+
+                    local translatedDialogsInfo = {
                         speaker = speakerName,
                         speakerType = dialog.speakerType,
                         target = dialog.target,
                         text = translatedText,
-                        time = dialog.time,
-                        aidetail = dialog.aidetail
-                    })
+                        time = dialog.time
+                    }
 
-                    table.insert(aiDialogs, {
-                        role = dialog.speakerType == "npc" and "assistant" or "user",
-                        content = translatedText
-                    })
+                    if footnoteText then
+                        translatedDialogsInfo.footnoteText = footnoteText
+                    end
+
+                    table.insert(translatedDialogs, translatedDialogsInfo)
+
+                    -- 只有在dialog.aidetail存在时才放入aiDialogs
+                    if dialog.aidetail then
+                        table.insert(aiDialogs, {
+                            role = dialog.speakerType == "npc" and "assistant" or "user",
+                            content = translatedText
+                        })
+                    end
                 end
                 if ai then
                     return aiDialogs
@@ -290,40 +334,9 @@ if CLIENT then
                     local messageColor = dialog.speakerType == "npc" and npcColor or deckColor
                     message:SetColor(messageColor)
 
-                    -- 定义对话类型与提示信息的映射表
-                    local dialogFootnotes = {
-                        ["playerchat.greeting"] = "正在开启AI对话。",
-                        ["response.greeting"] = "AI对话已开启。", 
-                        ["playerchat.trade"] = "正在开启交易。",
-                        ["response.trade"] = "交易功能正在开发中，敬请期待。"
-                    }
-
-                    -- 遍历映射表设置对应的脚注
-                    if dialog.text then
-                        for pattern, footnote in pairs(dialogFootnotes) do
-                            if string.find(dialog.text, pattern) then
-                                message:SetFootnote(footnote)
-                                break
-                            end
-                        end
+                    if dialog.footnoteText then
+                        message:SetFootnote(dialog.footnoteText)
                     end
-                    
-                    -- 修复脚注显示问题
-                    if dialog.aidetail and istable(dialog.aidetail) then
-                        local footnoteText
-                        if dialog.speakerType == "npc" then
-                            footnoteText = string.format("模型：%s | 响应时间：%s | 消耗tokens：%d",
-                                dialog.aidetail.model or "Unknown",
-                                dialog.aidetail.created or "Unknown",
-                                dialog.aidetail.usage and dialog.aidetail.usage.total_tokens or 0)
-                        else
-                            footnoteText = string.format("模型：%s | 服务平台：%s",
-                            dialog.aidetail.model or "Unknown",
-                            dialog.aidetail.provider or "Unknown")
-                        end
-                        message:SetFootnote(footnoteText)
-                    end
-                    
                     message:SetName(dialog.speaker or "Unknown")
                     message:SetText(dialog.text or "")
                 end
