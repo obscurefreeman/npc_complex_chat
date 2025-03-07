@@ -38,14 +38,28 @@ end)
 
 -- 钩子：NPC击杀事件
 hook.Add("OnNPCKilled", "NPCTalkKill", function(victim, attacker, inflictor)
-    if not (IsValid(attacker) and attacker:IsNPC()) then return end
-    if NPCTalkManager:IsNPCTalking(attacker) or NPCTalkManager:IsNPCChating(attacker) then return end
-    local identity = OFNPCS and OFNPCS[attacker:EntIndex()]
-    if not identity then return end
-    local killPhrases = GLOBAL_OFNPC_DATA.npcTalks.kill[identity.camp]
-    if killPhrases and #killPhrases > 0 then
-        local randomKillPhrase = killPhrases[math.random(#killPhrases)]
-        NPCTalkManager:StartDialog(attacker, randomKillPhrase, "kill", victim)
+    -- 检查击杀者是否是玩家或NPC
+    if IsValid(attacker) and (attacker:IsNPC() or attacker:IsPlayer()) then
+        -- 如果是玩家，查找附近的NPC来触发对话
+        if attacker:IsPlayer() then
+            -- if NPCTalkManager:IsNPCTalking(attacker) then return end
+            local identity = OFPLAYERS and OFPLAYERS[attacker:SteamID()]
+            local killPhrases = GLOBAL_OFNPC_DATA.npcTalks.kill[identity.deck]
+            if killPhrases and #killPhrases > 0 then
+                local randomKillPhrase = killPhrases[math.random(#killPhrases)]
+                NPCTalkManager:StartDialog(attacker, randomKillPhrase, "kill", victim)
+            end
+        -- 如果是NPC，保持原有逻辑
+        elseif attacker:IsNPC() then
+            if NPCTalkManager:IsNPCTalking(attacker) or NPCTalkManager:IsNPCChating(attacker) then return end
+            local identity = OFNPCS and OFNPCS[attacker:EntIndex()]
+            if not identity then return end
+            local killPhrases = GLOBAL_OFNPC_DATA.npcTalks.kill[identity.camp]
+            if killPhrases and #killPhrases > 0 then
+                local randomKillPhrase = killPhrases[math.random(#killPhrases)]
+                NPCTalkManager:StartDialog(attacker, randomKillPhrase, "kill", victim)
+            end
+        end
     end
 end)
 

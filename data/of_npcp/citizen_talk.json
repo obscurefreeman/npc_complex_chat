@@ -202,6 +202,16 @@
             "kill.bandit.3",
             "kill.bandit.4",
             "kill.bandit.5"
+        ],
+        "other": [
+            "kill.other.1",
+            "kill.other.2",
+            "kill.other.3",
+            "kill.other.4",
+            "kill.other.5",
+            "kill.other.6",
+            "kill.other.7",
+            "kill.other.8"
         ]
     },
     "attack": {
@@ -262,6 +272,16 @@
             "attack.bandit.3",
             "attack.bandit.4",
             "attack.bandit.5"
+        ],
+        "other": [
+            "attack.other.1",
+            "attack.other.2",
+            "attack.other.3",
+            "attack.other.4",
+            "attack.other.5",
+            "attack.other.6",
+            "attack.other.7",
+            "attack.other.8"
         ]
     },
     "response": {

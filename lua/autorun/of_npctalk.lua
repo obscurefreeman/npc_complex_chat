@@ -130,13 +130,15 @@ if CLIENT then
 
             local npcs = GetAllNPCsList()
 
-            if not npcs[npc:EntIndex()] then
+            -- 检查NPC是否有效且未注册身份信息
+            if not npc:IsPlayer() and not npcs[npc:EntIndex()] then
+                -- 向服务器请求更新NPC身份信息
                 net.Start("NPCIdentityUpdate")
-                net.WriteEntity(npc)
+                    net.WriteEntity(npc)
                 net.SendToServer()
                 return
             end
-
+            
             -- 获取翻译后的文本
             local translatedText = L(dialogKey)
             if not translatedText then 
@@ -152,7 +154,11 @@ if CLIENT then
                 else
                     local victimIdentity = npcs[target:EntIndex()]
                     if victimIdentity and victimIdentity.name then
-                        translatedText = translatedText:gsub("/victim/", L(victimIdentity.name))
+                        local npcName = L(victimIdentity.name)
+                        if victimIdentity.name == victimIdentity.gamename then
+                            npcName = language.GetPhrase(victimIdentity.gamename)
+                        end
+                        translatedText = translatedText:gsub("/victim/", npcName)
                     elseif list.Get("NPC")[target:GetClass()] and list.Get("NPC")[target:GetClass()].Name then
                         local victimgamename = language. GetPhrase(list.Get("NPC")[target:GetClass()].Name)
 
@@ -169,9 +175,13 @@ if CLIENT then
             elseif dialogtype == "player" and IsValid(target) then
                 local playerNick = npc:Nick()
                 local targetIdentity = npcs[target:EntIndex()]
+                local npcName = L(targetIdentity.name)
+                if targetIdentity.name == targetIdentity.gamename then
+                    npcName = language.GetPhrase(targetIdentity.gamename)
+                end
                 if playerNick and targetIdentity then
                     translatedText = translatedText:gsub("/player/", playerNick)
-                    translatedText = translatedText:gsub("/name/", L(targetIdentity.name))
+                    translatedText = translatedText:gsub("/name/", npcName)
                     translatedText = translatedText:gsub("/nickname/", L(targetIdentity.nickname))
                 end
             end

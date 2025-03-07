@@ -206,6 +206,16 @@
             "4": "We'll be rich after this job!",
             "5": "Don't let them get away, chase them!",
             "6": "You can't hide for long, /victim/!"
+        },
+        "other": {
+            "1": "Don't push me, /victim/!",
+            "2": "Looks like someone's gonna bleed today!",
+            "3": "Guess I need to stretch my muscles today!",
+            "4": "You're messing with the wrong person, /victim/!",
+            "5": "If you insist on fighting, bring it on!",
+            "6": "I didn't want trouble, but you asked for it!",
+            "7": "Don't think I'm an easy target, /victim/!",
+            "8": "Looks like I need to teach you some manners today!"
         }
     },
     "kill": {
@@ -264,6 +274,16 @@
             "3": "Anyone else wanna be like /victim/?",
             "4": "Got you, /victim/",
             "5": "Don't let them escape, after them!"
+        },
+        "other": {
+            "1": "Maybe you'll learn some respect in your next life, /victim/.",
+            "2": "Go to hell, /victim/.",
+            "3": "You brought this upon yourself, /victim/.",
+            "4": "This is what I'm protecting, /victim/.",
+            "5": "Things are going smoothly.",
+            "6": "Hope this is the last one.",
+            "7": "Who wants some bacon?",
+            "8": "May your soul rest in peace, /victim/."
         }
     },
     "playerchat": {
