@@ -133,13 +133,7 @@ if CLIENT then
             ent:SetAngles( Angle( 0, i == 1 and 15 or -15, 0 ) ) -- 左边朝右30度,右边朝左30度
             local animation = "idle_all_01" -- 默认动画
             if i == 2 then
-                if npcIdentity.info == "npc_citizen" then
-                    animation = "idle_subtle"
-                elseif npcIdentity.info == "npc_metropolice" then
-                    animation = "pistolidle1"
-                elseif npcIdentity.info == "npc_combine_s" then
-                    animation = "idle1"
-                end
+                animation = npcIdentity.anim
             end
             ent:ResetSequence(animation) -- 左边右边两个动作,按需求调
             ent:SetEyeTarget( i == 1 and cpos + move + Vector( 0, 10, 0 ) or cpos + move + Vector( 0, -10, 0 ) )

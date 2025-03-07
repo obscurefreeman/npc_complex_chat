@@ -1,0 +1,46 @@
+{
+    "npc_alyx": {
+        "camp": "resistance",
+        "anim": "sexyidle"
+    },
+    "npc_barney": {
+        "camp": "resistance",
+        "anim": "lineidle03"
+    },
+    "npc_breen": {
+        "camp": "combine",
+        "anim": "lineidle03"
+    },
+    "npc_eli": {
+        "camp": "resistance",
+        "anim": "lineidle03"
+    },
+    "npc_magnusson": {
+        "camp": "resistance",
+        "anim": "lineidle03"
+    },
+    "npc_gman": {
+        "camp": "other",
+        "anim": "idle_subtle"
+    },
+    "npc_kleiner": {
+        "camp": "resistance",
+        "anim": "idle_subtle"
+    },
+    "npc_mossman": {
+        "camp": "resistance",
+        "anim": "lineidle02"
+    },
+    "npc_combine_s": {
+        "camp": "combine",
+        "anim": "idle1"
+    },
+    "npc_metropolice": {
+        "camp": "combine",
+        "anim": "pistolidle1"
+    },
+    "npc_citizen": {
+        "camp": "resistance",
+        "anim": "idle_subtle"
+    }
+}
