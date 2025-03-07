@@ -252,7 +252,7 @@ if CLIENT then
 
                     -- 定义对话类型与提示信息的映射表
                     local dialogFootnotes = {
-                        ["playerchat.greeting"] = "正在开启AI聊天。请注意，每个NPC都具有独特的身份背景和性格特征，并能访问部分游戏数据。在多人游戏中，当多名玩家同时与同一NPC互动时，系统将自动隔离对话上下文，确保每位玩家获得独立的交互体验，从而优化资源利用。",
+                        ["playerchat.greeting"] = "正在开启AI聊天。请注意，每个NPC都具有独特的身份背景和性格特征，并能访问部分游戏数据。在多人游戏中，当多名玩家同时与同一NPC互动时，系统将自动隔离对话上下文，确保每位玩家获得独立的交互体验，从而优化资源利用。程序性对话不会被AI读取，当您再次与该NPC互动时，可以继续之前的对话内容",
                         ["response.greeting"] = "AI聊天已开启。在多人游戏环境中，每位玩家需独立配置API密钥，相关数据将安全存储于本地设备，不会上传至服务器。为保障数据安全，建议避免在不可信的服务器环境中使用此功能，以防API密钥泄露风险。", 
                         ["playerchat.negotiate"] = "正在开启协商。",
                         ["response.negotiate"] = "协商模式正在开发中，敬请期待。",
@@ -443,8 +443,6 @@ if CLIENT then
                     textEntry.OnEnter = function(self)
                         local inputText = self:GetValue()
                         if inputText and inputText ~= "" then
-                            -- 先清空输入框
-                            self:SetValue("")
 
                             local aiDialogs = TranslateDialogHistory(npc, npcIdentity, true)
 
@@ -468,6 +466,18 @@ if CLIENT then
                             
                             -- 调用新的函数处理AI对话请求
                             SendAIDialogRequest(npc, aiDialogs)
+
+                            -- 重置父级面板
+                            local parent = self:GetParent()
+                            parent:Clear()
+
+                            -- 重新创建文本输入框
+                            local newTextEntry = vgui.Create("OFTextEntry", parent)
+                            newTextEntry:Dock(TOP)
+                            newTextEntry:DockMargin(4, 4, 4, 4)
+                            newTextEntry:SetFont("ofgui_huge")
+                            newTextEntry:SetTall(100 * OFGUI.ScreenScale)
+                            newTextEntry.OnEnter = self.OnEnter  -- 保持相同的事件处理
                         end
                     end
                 elseif optionTypes[option] == "leave" then
