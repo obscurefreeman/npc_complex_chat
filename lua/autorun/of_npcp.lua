@@ -52,7 +52,15 @@ if SERVER then
         end
 
         if npcInfo == "npc_citizen" then
-            identity.camp = "resistance"
+            local camps = {
+                "resistance", 
+                "union",
+                "warlord",
+                "church",
+                "bandit",
+                "other"
+            }
+            identity.camp = camps[math.random(#camps)]
             if string.find(identity.model, "group03m") then
                 identity.job = "citizen.job.medic"
                 identity.type = "medic"

@@ -5,26 +5,6 @@ local npcCooldowns = {}
 local IDLE_CHECK_INTERVAL = math.random(5, 15)
 local TALK_DISTANCE = 500
 
--- 函数：显示死亡对话
-local function ShowDeathDialog(npc)
-    if not IsValid(npc) then return end
-    if NPCTalkManager:IsNPCTalking(npc) or NPCTalkManager:IsNPCChating(npc) then return end
-    local identity = OFNPCS[npc:EntIndex()]
-    if not identity then return end
-    local deathPhrases = GLOBAL_OFNPC_DATA.npcTalks.death[identity.type]
-    if deathPhrases and #deathPhrases > 0 then
-        local randomDeathPhrase = deathPhrases[math.random(#deathPhrases)]
-        NPCTalkManager:StartDialog(npc, randomDeathPhrase)
-    end
-end
-
--- 钩子：NPC死亡事件
-hook.Add("EntityRemoved", "NPCDeathDialog", function(ent)
-    if IsValid(ent) and ent:IsNPC() then
-        ShowDeathDialog(ent)
-    end
-end)
-
 -- 钩子：NPC攻击事件
 hook.Add("Think", "NPCTalkAttack", function()
     for _, npc in pairs(ents.FindByClass("npc_*")) do
@@ -34,7 +14,7 @@ hook.Add("Think", "NPCTalkAttack", function()
             if target and not npc.lastTarget then
                 local identity = OFNPCS and OFNPCS[npc:EntIndex()]
                 if identity then
-                    local attackPhrases = GLOBAL_OFNPC_DATA.npcTalks.attack[identity.type]
+                    local attackPhrases = GLOBAL_OFNPC_DATA.npcTalks.attack[identity.camp]
                     if attackPhrases and #attackPhrases > 0 and math.random() <= 0.3 then
                         timer.Simple(math.random() * 1.5, function()
                             if not IsValid(target) then return end
@@ -62,7 +42,7 @@ hook.Add("OnNPCKilled", "NPCTalkKill", function(victim, attacker, inflictor)
     if NPCTalkManager:IsNPCTalking(attacker) or NPCTalkManager:IsNPCChating(attacker) then return end
     local identity = OFNPCS and OFNPCS[attacker:EntIndex()]
     if not identity then return end
-    local killPhrases = GLOBAL_OFNPC_DATA.npcTalks.kill[identity.type]
+    local killPhrases = GLOBAL_OFNPC_DATA.npcTalks.kill[identity.camp]
     if killPhrases and #killPhrases > 0 then
         local randomKillPhrase = killPhrases[math.random(#killPhrases)]
         NPCTalkManager:StartDialog(attacker, randomKillPhrase, "kill", victim)
@@ -140,7 +120,7 @@ timer.Create("NPCIdleTalkCheck", IDLE_CHECK_INTERVAL, 0, function()
         end
         if not hasNearbyPlayer then continue end
         local identity = OFNPCS[npc:EntIndex()]
-        local idlePhrases = GLOBAL_OFNPC_DATA.npcTalks.idle[identity.type]
+        local idlePhrases = GLOBAL_OFNPC_DATA.npcTalks.idle[identity.camp]
         if idlePhrases and #idlePhrases > 0 then
             local randomIdlePhrase = idlePhrases[math.random(#idlePhrases)]
             NPCTalkManager:StartDialog(npc, randomIdlePhrase, "idle", ply)

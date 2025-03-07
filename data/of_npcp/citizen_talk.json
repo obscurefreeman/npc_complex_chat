@@ -51,51 +51,6 @@
         ]
     },
     "idle": {
-        "citizen": [
-            "idle.citizen.1",
-            "idle.citizen.2",
-            "idle.citizen.3"
-        ],
-        "refugee": [
-            "idle.refugee.1",
-            "idle.refugee.2",
-            "idle.refugee.3"
-        ],
-        "rebel": [
-            "idle.rebel.1",
-            "idle.rebel.2",
-            "idle.rebel.3",
-            "idle.rebel.4",
-            "idle.rebel.5",
-            "idle.rebel.6",
-            "idle.rebel.7",
-            "idle.rebel.8",
-            "idle.rebel.9",
-            "idle.rebel.10",
-            "idle.rebel.11",
-            "idle.rebel.12",
-            "idle.rebel.13",
-            "idle.rebel.14",
-            "idle.rebel.15",
-            "idle.rebel.16",
-            "idle.rebel.17",
-            "idle.rebel.18",
-            "idle.rebel.19",
-            "idle.rebel.20",
-            "idle.rebel.21",
-            "idle.rebel.22",
-            "idle.rebel.23"
-        ],
-        "medic": [
-            "idle.medic.1",
-            "idle.medic.2",
-            "idle.medic.3"
-        ],
-        "metropolice": [
-            "idle.metrocop.1",
-            "idle.metrocop.2",
-            "idle.metrocop.3"
-        ],
         "combine": [
             "idle.combine.1",
             "idle.combine.2",
@@ -104,40 +59,94 @@
             "idle.combine.5",
             "idle.combine.6",
             "idle.combine.7"
+        ],
+        "resistance": [
+            "idle.resistance.1",
+            "idle.resistance.2",
+            "idle.resistance.3",
+            "idle.resistance.4",
+            "idle.resistance.5",
+            "idle.resistance.6",
+            "idle.resistance.7",
+            "idle.resistance.8",
+            "idle.resistance.9",
+            "idle.resistance.10",
+            "idle.resistance.11",
+            "idle.resistance.12",
+            "idle.resistance.13",
+            "idle.resistance.14",
+            "idle.resistance.15",
+            "idle.resistance.16",
+            "idle.resistance.17",
+            "idle.resistance.18",
+            "idle.resistance.19",
+            "idle.resistance.20",
+            "idle.resistance.21",
+            "idle.resistance.22",
+            "idle.resistance.23"
+        ],
+        "union": [
+            "idle.union.1",
+            "idle.union.2",
+            "idle.union.3",
+            "idle.union.4",
+            "idle.union.5",
+            "idle.union.6",
+            "idle.union.7",
+            "idle.union.8",
+            "idle.union.9",
+            "idle.union.10"
+        ],
+        "warlord": [
+            "idle.warlord.1",
+            "idle.warlord.2",
+            "idle.warlord.3",
+            "idle.warlord.4",
+            "idle.warlord.5",
+            "idle.warlord.6",
+            "idle.warlord.7",
+            "idle.warlord.8",
+            "idle.warlord.9",
+            "idle.warlord.10"
+        ],
+        "church": [
+            "idle.church.1",
+            "idle.church.2",
+            "idle.church.3",
+            "idle.church.4",
+            "idle.church.5",
+            "idle.church.6",
+            "idle.church.7",
+            "idle.church.8",
+            "idle.church.9",
+            "idle.church.10"
+        ],
+        "bandit": [
+            "idle.bandit.1",
+            "idle.bandit.2",
+            "idle.bandit.3",
+            "idle.bandit.4",
+            "idle.bandit.5",
+            "idle.bandit.6",
+            "idle.bandit.7",
+            "idle.bandit.8",
+            "idle.bandit.9",
+            "idle.bandit.10"
+        ],
+        "other": [
+            "idle.other.1",
+            "idle.other.2",
+            "idle.other.3",
+            "idle.other.4",
+            "idle.other.5",
+            "idle.other.6",
+            "idle.other.7",
+            "idle.other.8",
+            "idle.other.9",
+            "idle.other.10"
         ]
     },
     "kill": {
-        "citizen": [
-            "kill.citizen.1",
-            "kill.citizen.2",
-            "kill.citizen.3",
-            "kill.citizen.4",
-            "kill.citizen.5"
-        ],
-        "refugee": [
-            "kill.refugee.1",
-            "kill.refugee.2",
-            "kill.refugee.3"
-        ],
-        "rebel": [
-            "kill.rebel.1",
-            "kill.rebel.2",
-            "kill.rebel.3"
-        ],
-        "medic": [
-            "kill.medic.1",
-            "kill.medic.2",
-            "kill.medic.3"
-        ],
-        "metropolice": [
-            "kill.metrocop.1",
-            "kill.metrocop.2",
-            "kill.metrocop.3",
-            "kill.metrocop.4",
-            "kill.metrocop.5",
-            "kill.metrocop.6",
-            "kill.metrocop.7"
-        ],
         "combine": [
             "kill.combine.1",
             "kill.combine.2",
@@ -147,83 +156,113 @@
             "kill.combine.6",
             "kill.combine.7",
             "kill.combine.8",
-            "kill.combine.9"
-        ]
-    },
-    "death": {
-        "citizen": [
-            "death.citizen.1",
-            "death.citizen.2",
-            "death.citizen.3"
+            "kill.combine.9",
+            "kill.combine.10",
+            "kill.combine.11",
+            "kill.combine.12",
+            "kill.combine.13",
+            "kill.combine.14",
+            "kill.combine.15",
+            "kill.combine.16"
         ],
-        "refugee": [
-            "death.refugee.1",
-            "death.refugee.2",
-            "death.refugee.3"
+        "resistance": [
+            "kill.resistance.1",
+            "kill.resistance.2",
+            "kill.resistance.3",
+            "kill.resistance.4",
+            "kill.resistance.5",
+            "kill.resistance.6",
+            "kill.resistance.7",
+            "kill.resistance.8"
         ],
-        "rebel": [
-            "death.rebel.1",
-            "death.rebel.2",
-            "death.rebel.3"
+        "union": [
+            "kill.union.1",
+            "kill.union.2",
+            "kill.union.3",
+            "kill.union.4",
+            "kill.union.5"
         ],
-        "medic": [
-            "death.medic.1",
-            "death.medic.2",
-            "death.medic.3"
+        "warlord": [
+            "kill.warlord.1",
+            "kill.warlord.2",
+            "kill.warlord.3",
+            "kill.warlord.4",
+            "kill.warlord.5"
         ],
-        "metropolice": [
-            "death.metrocop.1",
-            "death.metrocop.2",
-            "death.metrocop.3"
+        "church": [
+            "kill.church.1",
+            "kill.church.2",
+            "kill.church.3",
+            "kill.church.4",
+            "kill.church.5"
         ],
-        "combine": [
-            "death.combine.1",
-            "death.combine.2",
-            "death.combine.3"
+        "bandit": [
+            "kill.bandit.1",
+            "kill.bandit.2",
+            "kill.bandit.3",
+            "kill.bandit.4",
+            "kill.bandit.5",
+            "kill.bandit.6"
         ]
     },
     "attack": {
-        "citizen": [
-            "attack.citizen.1",
-            "attack.citizen.2",
-            "attack.citizen.3",
-            "attack.citizen.4",
-            "attack.citizen.5"
-        ],
-        "refugee": [
-            "attack.refugee.1",
-            "attack.refugee.2",
-            "attack.refugee.3",
-            "attack.refugee.4",
-            "attack.refugee.5"
-        ],
-        "rebel": [
-            "attack.rebel.1",
-            "attack.rebel.2",
-            "attack.rebel.3",
-            "attack.rebel.4",
-            "attack.rebel.5"
-        ],
-        "medic": [
-            "attack.medic.1",
-            "attack.medic.2",
-            "attack.medic.3",
-            "attack.medic.4",
-            "attack.medic.5"
-        ],
-        "metropolice": [
-            "attack.metrocop.1",
-            "attack.metrocop.2",
-            "attack.metrocop.3",
-            "attack.metrocop.4",
-            "attack.metrocop.5"
-        ],
         "combine": [
             "attack.combine.1",
             "attack.combine.2",
             "attack.combine.3",
             "attack.combine.4",
-            "attack.combine.5"
+            "attack.combine.5",
+            "attack.combine.6",
+            "attack.combine.7",
+            "attack.combine.8",
+            "attack.combine.9",
+            "attack.combine.10"
+        ],
+        "resistance": [
+            "attack.resistance.1",
+            "attack.resistance.2",
+            "attack.resistance.3",
+            "attack.resistance.4",
+            "attack.resistance.5",
+            "attack.resistance.6",
+            "attack.resistance.7",
+            "attack.resistance.8",
+            "attack.resistance.9",
+            "attack.resistance.10",
+            "attack.resistance.11",
+            "attack.resistance.12"
+        ],
+        "union": [
+            "attack.union.1",
+            "attack.union.2",
+            "attack.union.3",
+            "attack.union.4",
+            "attack.union.5",
+            "attack.union.6",
+            "attack.union.7",
+            "attack.union.8"
+        ],
+        "warlord": [
+            "attack.warlord.1",
+            "attack.warlord.2",
+            "attack.warlord.3",
+            "attack.warlord.4",
+            "attack.warlord.5",
+            "attack.warlord.6"
+        ],
+        "church": [
+            "attack.church.1",
+            "attack.church.2",
+            "attack.church.3",
+            "attack.church.4",
+            "attack.church.5"
+        ],
+        "bandit": [
+            "attack.bandit.1",
+            "attack.bandit.2",
+            "attack.bandit.3",
+            "attack.bandit.4",
+            "attack.bandit.5"
         ]
     },
     "response": {
@@ -256,4 +295,4 @@
             "response.leave.5"
         ]
     }
-} 
+}
