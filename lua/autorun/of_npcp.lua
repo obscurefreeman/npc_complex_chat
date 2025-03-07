@@ -13,6 +13,8 @@ if SERVER then
 
     util.AddNetworkString("TalkStart")
     util.AddNetworkString("OpenNPCDialogMenu")
+    util.AddNetworkString("RequestClientNPCData")
+    util.AddNetworkString("SendClientNPCData")
     util.AddNetworkString("PlayerDialog")
     util.AddNetworkString("NPCDialogMenuOpened")
     util.AddNetworkString("NPCDialogMenuClosed")
@@ -320,8 +322,27 @@ if SERVER then
             PrintTable(playerData)
             print("----------------------")
         end
+
+        -- 请求客户端数据
+        net.Start("RequestClientNPCData")
+        net.Send(ply)
     end)
 
+    -- 接收客户端数据
+    net.Receive("SendClientNPCData", function(len, ply)
+        local clientNPCs = net.ReadTable()
+        
+        print("\n=== 客户端NPC数据 ===")
+        if not next(clientNPCs) then
+            print("没有客户端NPC数据")
+            return
+        end
+        
+        for entIndex, npcData in pairs(clientNPCs) do
+            PrintTable(npcData)
+            print("----------------------")
+        end
+    end)
 end
 
 if CLIENT then
@@ -364,5 +385,12 @@ if CLIENT then
         if IsValid(ent) and ent:IsNPC() then
             clientNPCs[ent:EntIndex()] = nil
         end
+    end)
+
+    -- 接收服务器请求客户端数据的消息
+    net.Receive("RequestClientNPCData", function()
+        net.Start("SendClientNPCData")
+        net.WriteTable(clientNPCs)
+        net.SendToServer()
     end)
 end

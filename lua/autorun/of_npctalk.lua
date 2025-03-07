@@ -130,6 +130,13 @@ if CLIENT then
 
             local npcs = GetAllNPCsList()
 
+            if not npcs[npc:EntIndex()] then
+                net.Start("NPCIdentityUpdate")
+                net.WriteEntity(npc)
+                net.SendToServer()
+                return
+            end
+
             -- 获取翻译后的文本
             local translatedText = L(dialogKey)
             if not translatedText then 

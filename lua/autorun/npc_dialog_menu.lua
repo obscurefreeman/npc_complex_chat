@@ -42,6 +42,16 @@ if CLIENT then
     -- 显示对话选项菜单
     net.Receive("OpenNPCDialogMenu", function()
         local npc = net.ReadEntity()
+
+        local npcs = GetAllNPCsList()
+        local npcIdentity = npcs[npc:EntIndex()]
+
+        if not npcIdentity then
+            net.Start("NPCIdentityUpdate")
+            net.WriteEntity(npc)
+            net.SendToServer()
+            return
+        end
         
         -- 通知服务器对话开始
         net.Start("NPCDialogMenuOpened")
@@ -54,9 +64,6 @@ if CLIENT then
             "trade",
             "leave"
         }
-
-        local npcs = GetAllNPCsList()
-        local npcIdentity = npcs[npc:EntIndex()]
 
         -- 从全局变量获取对话文本
         local playerTalkOptions = {}
