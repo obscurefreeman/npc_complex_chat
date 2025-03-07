@@ -83,7 +83,7 @@ hook.Add("PlayerUse", "NPCTalkGreeting", function(ply, ent)
     playerCooldowns[steamID] = CurTime()
     local identity = OFNPCS and OFNPCS[npcIndex]
     if not identity then return end
-    local greetings = GLOBAL_OFNPC_DATA.npcTalks.greetings[identity.type]
+    local greetings = GLOBAL_OFNPC_DATA.npcTalks.greetings[identity.camp]
     if greetings and #greetings > 0 then
         local randomGreeting = greetings[math.random(#greetings)]
         timer.Simple(0.1, function()

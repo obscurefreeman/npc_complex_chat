@@ -12,13 +12,18 @@ local function RefreshNPCButtons(left_panel, right_panel)
 	-- 创建一个本地函数来处理右侧面板的刷新
 	local function RefreshRightPanel(npcData, entIndex)
 		right_panel:Clear()
+
+		local npcName = L(npcData.name)
+		if npcData.name == npcData.gamename then
+			npcName = language.GetPhrase(npcData.gamename)
+		end
 		
 		-- 创建名称输入和提交按钮
 		local nameEntry = vgui.Create("OFTextEntry", right_panel)
 		nameEntry:Dock(TOP)
 		nameEntry:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
 		nameEntry:SetTall(32 * OFGUI.ScreenScale)
-		nameEntry:SetValue(L(npcData.name) or "")
+		nameEntry:SetValue(npcName or "")
 		
 		local submitButton = vgui.Create("OFButton", right_panel)
 		submitButton:Dock(TOP)
@@ -148,13 +153,18 @@ local function RefreshNPCButtons(left_panel, right_panel)
 
 	-- 为每个NPC创建按钮
 	for entIndex, npcData in pairs(npcs) do
+		local npcName = L(npcData.name)
+		if npcData.name == npcData.gamename then
+			npcName = language.GetPhrase(npcData.gamename)
+		end
+
 		-- 创建新的NPC按钮
 		local button = vgui.Create("OFNPCButton", left_panel)
 		button:Dock(TOP)
 		button:DockMargin(0, 0, 0, 2)
 		button:SetTall(80 * OFGUI.ScreenScale)
 		button:SetModel(npcData.model or "models/error.mdl")
-		button:SetTitle(L(npcData.name) .. " “" .. L(npcData.nickname) .. "”")
+		button:SetTitle(npcName .. " “" .. L(npcData.nickname) .. "”")
 		
 		-- 设置描述文字
 		local description = ""

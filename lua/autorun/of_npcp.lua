@@ -25,6 +25,18 @@ if SERVER then
     -- 添加网络消息
     util.AddNetworkString("UpdatePlayerDeck")
 
+    local mainCharacters = {
+        ["npc_alyx"] = "resistance",
+        ["npc_barney"] = "resistance",
+        ["npc_breen"] = "combine",
+        ["npc_dog"] = "resistance",
+        ["npc_eli"] = "resistance",
+        ["npc_gman"] = "other",
+        ["npc_kleiner"] = "resistance",
+        ["npc_mossman"] = "resistance",
+        ["npc_vortigaunt"] = "resistance"
+    }
+
     -- 修改AssignNPCIdentity函数，添加绰号分配
     function AssignNPCIdentity(ent, npcInfo)
         local identity = {}
@@ -101,6 +113,14 @@ if SERVER then
             identity.exp = 0
             identity.exp_per_rank = CalculateExpNeeded(identity.rank)
             identity.name = GLOBAL_OFNPC_DATA.names.male[math.random(#GLOBAL_OFNPC_DATA.names.male)]
+        elseif mainCharacters[npcInfo] then
+            identity.camp = mainCharacters[npcInfo]
+            identity.type = "maincharacter"
+            identity.rank = math.random(1, 39)
+            identity.job = GLOBAL_OFNPC_DATA.jobData.citizen[math.random(#GLOBAL_OFNPC_DATA.jobData.citizen)].job
+            identity.exp = 0
+            identity.exp_per_rank = CalculateExpNeeded(identity.rank)
+            identity.name = gamename
         else
             identity.camp = "other"
             identity.type = "other"
@@ -157,7 +177,7 @@ if SERVER then
             
             local class = ent:GetClass()
 
-            if class == "npc_citizen" or class == "npc_metropolice" or class == "npc_combine_s" then
+            if class == "npc_citizen" or class == "npc_metropolice" or class == "npc_combine_s" or mainCharacters[class] then
                 AssignNPCIdentity(ent, class)
             end
         end)

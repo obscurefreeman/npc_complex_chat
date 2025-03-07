@@ -1,46 +1,53 @@
 {
     "greetings": {
-        "citizen": [
-            "greeting.citizen.1",
-            "greeting.citizen.2",
-            "greeting.citizen.3",
-            "greeting.citizen.4",
-            "greeting.citizen.5"
-        ],
-        "refugee": [
-            "greeting.refugee.1",
-            "greeting.refugee.2",
-            "greeting.refugee.3",
-            "greeting.refugee.4",
-            "greeting.refugee.5"
-        ],
-        "rebel": [
-            "greeting.rebel.1",
-            "greeting.rebel.2",
-            "greeting.rebel.3",
-            "greeting.rebel.4",
-            "greeting.rebel.5"
-        ],
-        "medic": [
-            "greeting.medic.1",
-            "greeting.medic.2",
-            "greeting.medic.3",
-            "greeting.medic.4",
-            "greeting.medic.5"
-        ],
-        "metropolice": [
-            "greeting.metrocop.1",
-            "greeting.metrocop.2",
-            "greeting.metrocop.3",
-            "greeting.metrocop.4",
-            "greeting.metrocop.5"
-        ],
         "combine": [
             "greeting.combine.1",
             "greeting.combine.2",
             "greeting.combine.3",
             "greeting.combine.4",
             "greeting.combine.5"
+        ],
+        "resistance": [
+            "greeting.resistance.1",
+            "greeting.resistance.2",
+            "greeting.resistance.3",
+            "greeting.resistance.4",
+            "greeting.resistance.5"
+        ],
+        "union": [
+            "greeting.union.1",
+            "greeting.union.2",
+            "greeting.union.3",
+            "greeting.union.4",
+            "greeting.union.5"
+        ],
+        "warlord": [
+            "greeting.warlord.1",
+            "greeting.warlord.2",
+            "greeting.warlord.3",
+            "greeting.warlord.4",
+            "greeting.warlord.5"
+        ],
+        "church": [
+            "greeting.church.1",
+            "greeting.church.2",
+            "greeting.church.3",
+            "greeting.church.4",
+            "greeting.church.5"
+        ],
+        "bandit": [
+            "greeting.bandit.1",
+            "greeting.bandit.2",
+            "greeting.bandit.3",
+            "greeting.bandit.4",
+            "greeting.bandit.5"
+        ],
+        "other": [
+            "greeting.other.1",
+            "greeting.other.2",
+            "greeting.other.3",
+            "greeting.other.4",
+            "greeting.other.5"
         ]
     },
     "idle": {

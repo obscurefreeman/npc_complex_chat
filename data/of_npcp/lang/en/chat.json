@@ -1,46 +1,53 @@
 {
     "greeting": {
-        "citizen": {
-            "1": "Hello, /player/. How are you doing today?",
-            "2": "/player/? What brings you here?",
-            "3": "/player/, is your work going well recently?",
-            "4": "/player/, do you know how to gain experience? I'm a newbie.",
-            "5": "Hey, /player/, it's time to have some fun!"
-        },
-        "refugee": {
-            "1": "Hello, /player/. How are you doing today?",
-            "2": "/player/? What brings you here?",
-            "3": "/player/, is your work going well recently?",
-            "4": "/player/, do you know how to gain experience? I'm a newbie.",
-            "5": "Hey, /player/, it's time to have some fun!"
-        },
-        "rebel": {
-            "1": "Hello, /player/. How are you doing today?",
-            "2": "/player/? What brings you here?",
-            "3": "/player/, is your work going well recently?",
-            "4": "/player/, do you know how to gain experience? I'm a newbie.",
-            "5": "Hey, /player/, it's time to have some fun!"
-        },
-        "medic": {
-            "1": "Hello, /player/. How are you doing today?",
-            "2": "/player/? What brings you here?",
-            "3": "/player/, is your work going well recently?",
-            "4": "/player/, do you know how to gain experience? I'm a newbie.",
-            "5": "Hey, /player/, it's time to have some fun!"
-        },
-        "metrocop": {
-            "1": "Keep going, /player/.",
-            "2": "Hello, /player/.",
-            "3": "Nothing to see here, /player/.",
-            "4": "To obey is to survive.",
-            "5": "/player/, don't stop."
-        },
         "combine": {
-            "1": "Keep going, /player/.",
-            "2": "Hello, /player/.",
-            "3": "Nothing to see here, /player/.",
-            "4": "To obey is to survive.",
-            "5": "/player/, don't stop."
+            "1": "Get out of here, /player/. This area isn't safe.",
+            "2": "Identify yourself and state your purpose, /player/.",
+            "3": "Keep your eyes open, /player/. Resistance could be nearby.",
+            "4": "Follow orders, no questions, /player/.",
+            "5": "Your gear needs inspection, /player/."
+        },
+        "resistance": {
+            "1": "Hey /player/, any news lately?",
+            "2": "Watch your back, /player/. Combine patrol just passed by.",
+            "3": "/player/, we need to figure out how to get more supplies.",
+            "4": "How's it going on your end, /player/?",
+            "5": "Hi /player/. How's your day going?"
+        },
+        "union": {
+            "1": "Hey /player/, how's the workload today?",
+            "2": "The capitalists are squeezing us dry again, /player/.",
+            "3": "United we stand, /player/.",
+            "4": "They're late with our pay again, /player/. Got any ideas?",
+            "5": "What brings you here, /player/?"
+        },
+        "warlord": {
+            "1": "/player/, how's my crew been performing?",
+            "2": "This territory belongs to us, /player/.",
+            "3": "Got any loot recently, /player/?",
+            "4": "Stay sharp, /player/. Someone's eyeing our turf.",
+            "5": "We need more manpower, /player/."
+        },
+        "church": {
+            "1": "May Gary the Rat bless you, /player/.",
+            "2": "Have you felt the Lord's guidance lately, /player/?",
+            "3": "Come join our service, /player/.",
+            "4": "This world needs faith, /player/.",
+            "5": "Let us pray together, /player/."
+        },
+        "bandit": {
+            "1": "Hey /player/, any good deals lately?",
+            "2": "Be careful, /player/. The cops are cracking down hard.",
+            "3": "We need to find a new hideout, /player/.",
+            "4": "I'm a bit short on cash, /player/. Know any good money-making schemes?",
+            "5": "Don't trust anyone, /player/. Not even me."
+        },
+        "other": {
+            "1": "How's it going, /player/?",
+            "2": "This area isn't safe, /player/. Watch yourself.",
+            "3": "Got any interesting news, /player/?",
+            "4": "Didn't expect to see you in /map/, /player/.",
+            "5": "Don't let the rules tie you down, /player/."
         }
     },
     "idle": {

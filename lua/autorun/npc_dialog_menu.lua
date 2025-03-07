@@ -237,8 +237,12 @@ if CLIENT then
 
                 local translatedDialogs = {}
                 local speakerName
-                local promptcontent = L("prompt")
-                promptcontent = promptcontent:gsub("/name/", L(npcIdentity.name))
+                local promptcontent = L("prompt." .. tostring(npcIdentity.camp))
+                local npcName = L(npcIdentity.name)
+                if npcIdentity.name == npcIdentity.gamename then
+                    npcName = language.GetPhrase(npcIdentity.gamename)
+                end
+                promptcontent = promptcontent:gsub("/name/", npcName)
                 promptcontent = promptcontent:gsub("/nickname/", L(npcIdentity.nickname))
                 promptcontent = promptcontent:gsub("/job/", L(npcIdentity.job))
                 promptcontent = promptcontent:gsub("/camp/", L("camp."..tostring(npcIdentity.camp)))
@@ -248,13 +252,17 @@ if CLIENT then
                     local translatedText = L(dialog.text)
                     if dialog.speakerType == "npc" then
                         local npcData = GetAllNPCsList()[dialog.speaker]
-                        speakerName = npcData and (L(npcData.name) .. " " .. L(npcData.nickname)) or "NPC"
+                        local npcName = L(npcData.name)
+                        if npcData.name == npcData.gamename then
+                            npcName = language.GetPhrase(npcData.gamename)
+                        end
+                        speakerName = npcData and (npcName .. " " .. L(npcData.nickname)) or "NPC"
                         translatedText = translatedText:gsub("/player/", dialog.target)
                     else
                         speakerName = dialog.speaker
                     end
                     translatedText = translatedText:gsub("/map/", game.GetMap())
-                    translatedText = translatedText:gsub("/name/", L(npcIdentity.name))
+                    translatedText = translatedText:gsub("/name/", npcName)
                     translatedText = translatedText:gsub("/nickname/", L(npcIdentity.nickname))
 
                     -- 定义对话类型与提示信息的映射表
@@ -422,7 +430,11 @@ if CLIENT then
         end
 
         for _, option in ipairs(playerTalkOptions) do
-            local translatedOption = L(option):gsub("/name/", L(npcIdentity.name))
+            local npcName = L(npcIdentity.name)
+            if npcIdentity.name == npcIdentity.gamename then
+                npcName = language.GetPhrase(npcIdentity.gamename)
+            end
+            local translatedOption = L(option):gsub("/name/", npcName)
 
             -- 创建按钮并添加到ScrollPanel
             local button = vgui.Create("OFChatButton", scrollPanel)
