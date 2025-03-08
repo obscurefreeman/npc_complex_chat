@@ -232,6 +232,9 @@ if CLIENT then
                 local translatedDialogs = {}
                 local speakerName
                 local promptcontent = L("prompt." .. tostring(npcIdentity.camp))
+                if npcIdentity.type == "maincharacter" then
+                    promptcontent = L("prompt.maincharacter")
+                end
                 local npcName = L(npcIdentity.name)
                 if npcIdentity.name == npcIdentity.gamename then
                     npcName = language.GetPhrase(npcIdentity.gamename)
@@ -246,11 +249,13 @@ if CLIENT then
                     local translatedText = L(dialog.text)
                     if dialog.speakerType == "npc" then
                         local npcData = GetAllNPCsList()[dialog.speaker]
-                        local npcName = L(npcData.name)
+                        local npcName
                         if npcData.name == npcData.gamename then
                             npcName = language.GetPhrase(npcData.gamename)
+                        else
+                            npcName = L(npcData.name) .. " “" .. L(npcData.nickname) .. "”"
                         end
-                        speakerName = npcData and (npcName .. " " .. L(npcData.nickname)) or "NPC"
+                        speakerName = npcData and (npcName) or "NPC"
                         translatedText = translatedText:gsub("/player/", dialog.target)
                     else
                         speakerName = dialog.speaker

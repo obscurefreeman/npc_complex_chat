@@ -9,11 +9,13 @@ function CreateNPCDialogSubtitles(npc, text)
 	local npcColor, name
 	if npcIdentity then
 		npcColor = GLOBAL_OFNPC_DATA.cards.info[npcIdentity.camp].color
-		local npcName = L(npcIdentity.name)
+		local npcName
 		if npcIdentity.name == npcIdentity.gamename then
 			npcName = language.GetPhrase(npcIdentity.gamename)
+		else
+			npcName = L(npcIdentity.name) .. " “" .. L(npcIdentity.nickname) .. "” " .. ": "
 		end
-		name = npcName .. " “" .. L(npcIdentity.nickname) .. "” " .. ": "
+		name = npcName
 	elseif npc:IsPlayer() then
 		npcColor = GLOBAL_OFNPC_DATA.cards.info[OFPLAYERS[LocalPlayer():SteamID()] and OFPLAYERS[LocalPlayer():SteamID()].deck or "resistance"].color
 		name = npc:Nick() .. " : "

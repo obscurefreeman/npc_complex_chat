@@ -153,9 +153,11 @@ local function RefreshNPCButtons(left_panel, right_panel)
 
 	-- 为每个NPC创建按钮
 	for entIndex, npcData in pairs(npcs) do
-		local npcName = L(npcData.name)
+		local npcName
 		if npcData.name == npcData.gamename then
 			npcName = language.GetPhrase(npcData.gamename)
+		else
+			npcName = L(npcData.name) .. " “" .. L(npcData.nickname) .. "”"
 		end
 
 		-- 创建新的NPC按钮
@@ -164,7 +166,7 @@ local function RefreshNPCButtons(left_panel, right_panel)
 		button:DockMargin(0, 0, 0, 2)
 		button:SetTall(80 * OFGUI.ScreenScale)
 		button:SetModel(npcData.model or "models/error.mdl")
-		button:SetTitle(npcName .. " “" .. L(npcData.nickname) .. "”")
+		button:SetTitle(npcName)
 		
 		-- 设置描述文字
 		local description = ""
@@ -435,6 +437,20 @@ local function AddOFFrame()
 			}
 			file.Write("of_npcp/ai_settings.txt", util.TableToJSON(newSettings))
 			notification.AddLegacy("AI设置已保存到本地", NOTIFY_GENERIC, 5)
+		end
+		-- 添加阵营提示词内容
+		local camps = {
+			"combine", "resistance", "union", "warlord", "church", "bandit", "other"
+		}
+
+		for _, camp in ipairs(camps) do
+			local campButton = vgui.Create("OFMessage", aiRightPanel)
+			campButton:SetHeight(80 * OFGUI.ScreenScale)
+			campButton:Dock(TOP)
+			campButton:DockMargin(4, 4, 4, 4)
+			campButton:SetName("系统提示词：" .. L("camp."..camp))
+			campButton:SetText(L("prompt."..camp))
+			campButton:SetColor(GLOBAL_OFNPC_DATA.cards.info[camp] and GLOBAL_OFNPC_DATA.cards.info[camp].color or color_white)
 		end
 	end
 
