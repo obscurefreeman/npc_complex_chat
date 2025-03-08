@@ -29,7 +29,7 @@ local function RefreshNPCButtons(left_panel, right_panel)
 		submitButton:Dock(TOP)
 		submitButton:SetTall(32 * OFGUI.ScreenScale)
 		submitButton:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
-		submitButton:SetText("确认修改")
+		submitButton:SetText(L("ui.npclist.confirm_edit"))
 		submitButton.DoClick = function()
 			local newName = nameEntry:GetValue()
 			if newName and newName ~= "" then
@@ -53,7 +53,7 @@ local function RefreshNPCButtons(left_panel, right_panel)
 
 		local function CreateSkillButton(parent, tag, tagDesc, iconPath, hoveredColor)
 			if tag then
-				local button = vgui.Create("OFSkillButton", parent)
+				local button = vgui.Create("OFAdvancedButton", parent)
 				button:Dock(TOP)
 				button:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
 				button:SetTall(80 * OFGUI.ScreenScale)
@@ -91,14 +91,14 @@ local function RefreshNPCButtons(left_panel, right_panel)
 		commentEntry:Dock(TOP)
 		commentEntry:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
 		commentEntry:SetTall(32 * OFGUI.ScreenScale)
-		commentEntry:SetPlaceholderText("在此输入评论...")
+		commentEntry:SetPlaceholderText(L("ui.npclist.comment_placeholder"))
 
 		-- 添加提交评论按钮
 		local submitCommentButton = vgui.Create("OFButton", right_panel)
 		submitCommentButton:Dock(TOP)
 		submitCommentButton:SetTall(32 * OFGUI.ScreenScale)
 		submitCommentButton:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
-		submitCommentButton:SetText("提交评论")
+		submitCommentButton:SetText(L("ui.npclist.submit_comment"))
 		submitCommentButton.DoClick = function()
 			local comment = commentEntry:GetValue()
 			if comment and comment ~= "" then
@@ -123,12 +123,12 @@ local function RefreshNPCButtons(left_panel, right_panel)
 	local function CreateContextMenu(entIndex)
 		local menu = vgui.Create("OFMenu")
 		local actions = {
-			{name = "治疗 NPC", cmd = "heal"},
-			{name = "杀死 NPC", cmd = "kill"},
-			{name = "删除 NPC", cmd = "remove"},
-			{name = "治疗所有 NPC", cmd = "healall", global = true},
-			{name = "杀死所有 NPC", cmd = "killall", global = true},
-			{name = "删除所有 NPC", cmd = "removeall", global = true}
+			{name = L("ui.npclist.heal_npc"), cmd = "heal"},
+			{name = L("ui.npclist.kill_npc"), cmd = "kill"},
+			{name = L("ui.npclist.remove_npc"), cmd = "remove"},
+			{name = L("ui.npclist.heal_all"), cmd = "healall", global = true},
+			{name = L("ui.npclist.kill_all"), cmd = "killall", global = true},
+			{name = L("ui.npclist.remove_all"), cmd = "removeall", global = true}
 		}
 		
 		for _, action in ipairs(actions) do
@@ -144,7 +144,7 @@ local function RefreshNPCButtons(left_panel, right_panel)
 			end)
 		end
 		
-		menu:AddOption("刷新列表", function()
+		menu:AddOption(L("ui.npclist.refresh_list"), function()
 			RefreshNPCButtons(left_panel, right_panel)
 		end)
 		
@@ -205,7 +205,7 @@ local function RefreshCardButtons(left_panel, right_panel)
 
     -- 创建左侧牌组选择按钮
     for groupKey, groupData in pairs(cardGroups) do
-        local groupButton = vgui.Create("OFSkillButton", left_panel)
+        local groupButton = vgui.Create("OFAdvancedButton", left_panel)
         groupButton:Dock(TOP)
         groupButton:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
         groupButton:SetTall(80 * OFGUI.ScreenScale)
@@ -231,7 +231,7 @@ local function RefreshCardButtons(left_panel, right_panel)
 			local deckbutton = vgui.Create("OFButton",card_preview_panel)
             deckbutton:Dock(BOTTOM)
 			deckbutton:SetHeight(80 * OFGUI.ScreenScale)
-			deckbutton:SetText("选择牌组")
+			deckbutton:SetText(L("ui.deck_system.select_deck"))
 			deckbutton:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
 
 			local right_card_panel = vgui.Create("OFScrollPanel",card_preview_panel)
@@ -271,8 +271,8 @@ local function RefreshCardButtons(left_panel, right_panel)
                 card:SetDescription(cardInfo.data.d[math.random(#cardInfo.data.d)])
                 card:SetIcon("ofnpcp/cards/large/" .. cardInfo.key .. ".png")
 
-                -- 右侧使用 OFSkillButton
-                local cardButton = vgui.Create("OFSkillButton", right_card_panel)
+                -- 右侧使用 OFAdvancedButton
+                local cardButton = vgui.Create("OFAdvancedButton", right_card_panel)
                 cardButton:Dock(TOP)
                 cardButton:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
                 cardButton:SetTall(80 * OFGUI.ScreenScale)
@@ -301,7 +301,7 @@ local function AddOFFrame()
 	end
 
 	frame = vgui.Create("OFFrame")  -- 创建新的菜单
-	frame:SetTitle("NPC性格控制")
+	frame:SetTitle(L("ui.title"))
 
 	local sheet = vgui.Create("OFPropertySheet", frame)
 	sheet:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
@@ -393,11 +393,11 @@ local function AddOFFrame()
 
 		local apiKeyEntry = CreateControl(aiRightPanel, "OFTextEntry", {
 			SetValue = settings.key or "",
-			SetPlaceholderText = provider.name .. " API"
+			SetPlaceholderText = L(provider.name) .. " API"
 		})
 
 		local modelComboBox = CreateControl(aiRightPanel, "OFComboBox", {
-			SetValue = settings.model or "选择模型"
+			SetValue = settings.model or L("ui.ai_system.model_select")
 		})
 		for _, model in ipairs(provider.model) do
 			modelComboBox:AddChoice(model)
@@ -407,7 +407,7 @@ local function AddOFFrame()
 		end
 
 		local tempSlider = CreateControl(aiRightPanel, "OFNumSlider", {
-			SetText = "温度",
+			SetText = L("ui.ai_system.temperature"),
 			SetMin = 0,
 			SetMax = 1,
 			SetDecimals = 1,
@@ -415,7 +415,7 @@ local function AddOFFrame()
 		})
 
 		local maxTokensSlider = CreateControl(aiRightPanel, "OFNumSlider", {
-			SetText = "最大字符消耗",
+			SetText = L("ui.ai_system.max_tokens"),
 			SetMin = 100,
 			SetMax = 2000,
 			SetDecimals = 0,
@@ -424,7 +424,7 @@ local function AddOFFrame()
 
 		-- 保存按钮
 		local saveButton = CreateControl(aiRightPanel, "OFButton", {
-			SetText = "保存设置"
+			SetText = L("ui.ai_system.save_settings")
 		})
 		saveButton.DoClick = function()
 			local newSettings = {
@@ -436,7 +436,7 @@ local function AddOFFrame()
 				max_tokens = tonumber(maxTokensSlider:GetValue()) or 500
 			}
 			file.Write("of_npcp/ai_settings.txt", util.TableToJSON(newSettings))
-			notification.AddLegacy("AI设置已保存到本地", NOTIFY_GENERIC, 5)
+			notification.AddLegacy(L("ui.ai_system.save_success"), NOTIFY_GENERIC, 5)
 		end
 		-- 添加阵营提示词内容
 		local camps = {
@@ -448,7 +448,7 @@ local function AddOFFrame()
 			campButton:SetHeight(80 * OFGUI.ScreenScale)
 			campButton:Dock(TOP)
 			campButton:DockMargin(4, 4, 4, 4)
-			campButton:SetName("系统提示词：" .. L("camp."..camp))
+			campButton:SetName(L("ui.ai_system.system_prompt") .. L("camp."..camp))
 			campButton:SetText(L("prompt."..camp))
 			campButton:SetColor(GLOBAL_OFNPC_DATA.cards.info[camp] and GLOBAL_OFNPC_DATA.cards.info[camp].color or color_white)
 		end
@@ -456,7 +456,7 @@ local function AddOFFrame()
 
 	-- 加载AI提供商列表
 	for providerKey, providerData in pairs(GLOBAL_OFNPC_DATA.aiProviders) do
-		local button = CreateControl(aiLeftPanel, "OFSkillButton", {
+		local button = CreateControl(aiLeftPanel, "OFAdvancedButton", {
 			SetTall = 80 * OFGUI.ScreenScale,
 			SetTitle = L(providerData.name),
 			SetDescription = L(providerData.description),
@@ -491,7 +491,7 @@ local function AddOFFrame()
 end
 
 list.Set("DesktopWindows", "ofnpcp", {
-    title = "Gmod Legend",
+    title = "GarryLord",
     icon = "oftoollogo/ofnpcplogo.png",
     init = function()
         AddOFFrame()

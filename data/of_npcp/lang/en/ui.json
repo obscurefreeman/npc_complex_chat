@@ -1,9 +1,36 @@
 {
     "ui": {
+        "title": "GarryLords",
         "tab": {
             "npclist": "Active NPC",
             "deck_system": "Deck Setting",
             "ai_system": "AI Setting"
+        },
+        "npclist": {
+            "confirm_edit": "Confirm Edit",
+            "submit_comment": "Submit Comment",
+            "comment_placeholder": "Enter comment here...",
+            "heal_npc": "Heal NPC",
+            "kill_npc": "Kill NPC",
+            "remove_npc": "Remove NPC",
+            "heal_all": "Heal All NPCs",
+            "kill_all": "Kill All NPCs",
+            "remove_all": "Remove All NPCs",
+            "refresh_list": "Refresh List"
+        },
+        "deck_system": {
+            "select_deck": "Select Deck",
+            "card_preview": "Card Preview",
+            "card_list": "Card List",
+            "card_detail": "Card Details"
+        },
+        "ai_system": {
+            "model_select": "Select Model",
+            "temperature": "Temperature",
+            "max_tokens": "Max Tokens",
+            "save_settings": "Save Settings",
+            "save_success": "AI settings saved locally.",
+            "system_prompt": "System Prompt: "
         },
         "card_editor": {
             "title": "Card Editor",

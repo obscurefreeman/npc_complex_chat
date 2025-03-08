@@ -384,7 +384,7 @@ if CLIENT then
 
             -- 列出该牌组的所有卡牌
             for _, cardInfo in ipairs(sortedCards) do
-                local cardButton = vgui.Create("OFSkillButton", playercardPanel)
+                local cardButton = vgui.Create("OFAdvancedButton", playercardPanel)
                 cardButton:Dock(TOP)
                 cardButton:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
                 cardButton:SetTall(80 * OFGUI.ScreenScale)
@@ -401,7 +401,7 @@ if CLIENT then
 
         local function CreateSkillButton(parent, tag, tagDesc, iconPath, hoveredColor)
             if tag then
-                local button = vgui.Create("OFSkillButton", parent)
+                local button = vgui.Create("OFAdvancedButton", parent)
                 button:Dock(TOP)
                 button:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
                 button:SetTall(80 * OFGUI.ScreenScale)

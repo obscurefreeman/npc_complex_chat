@@ -1,9 +1,36 @@
 {
     "ui": {
+        "title": "盖瑞霸业",
         "tab": {
             "npclist": "NPC列表",
             "deck_system": "卡组设置",
             "ai_system": "AI配置"
+        },
+        "npclist": {
+            "confirm_edit": "确认修改",
+            "submit_comment": "提交评论",
+            "comment_placeholder": "在此输入评论...",
+            "heal_npc": "治疗 NPC",
+            "kill_npc": "杀死 NPC",
+            "remove_npc": "删除 NPC",
+            "heal_all": "治疗所有 NPC",
+            "kill_all": "杀死所有 NPC",
+            "remove_all": "删除所有 NPC",
+            "refresh_list": "刷新列表"
+        },
+        "deck_system": {
+            "select_deck": "选择牌组",
+            "card_preview": "卡牌预览",
+            "card_list": "卡牌列表",
+            "card_detail": "卡牌详情"
+        },
+        "ai_system": {
+            "model_select": "选择模型",
+            "temperature": "温度",
+            "max_tokens": "最大字符消耗",
+            "save_settings": "保存设置",
+            "save_success": "AI设置已保存到本地。",
+            "system_prompt": "系统提示词："
         },
         "card_editor": {
             "title": "卡牌编辑器",
