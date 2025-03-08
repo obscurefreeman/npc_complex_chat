@@ -86,7 +86,7 @@ class CardEditor:
         # 修改后的阵营列表头部（与卡牌列表风格一致）
         group_header = ttk.Frame(left_panel)
         group_header.pack(fill=tk.X, pady=(0,5))
-        ttk.Label(group_header, text=self.lang["group_list"], font=('微软雅黑', 11, 'bold')).pack(side=tk.LEFT)
+        ttk.Label(group_header, text=self.lang['card_editor']["group_list"], font=('微软雅黑', 11, 'bold')).pack(side=tk.LEFT)
         ttk.Button(group_header, text="+", 
                   command=self.add_group, 
                   style='Small.TButton').pack(side=tk.RIGHT, padx=2)
@@ -107,7 +107,7 @@ class CardEditor:
         # 中间面板头部（与阵营列表风格一致）
         card_header = ttk.Frame(middle_panel)
         card_header.pack(fill=tk.X, pady=(0,5))
-        ttk.Label(card_header, text=self.lang["card_list"], font=('微软雅黑', 11, 'bold')).pack(side=tk.LEFT)
+        ttk.Label(card_header, text=self.lang['card_editor']["card_list"], font=('微软雅黑', 11, 'bold')).pack(side=tk.LEFT)
         ttk.Button(card_header, text="+", 
                  command=self.add_card, 
                  style='Small.TButton').pack(side=tk.RIGHT, padx=2)
@@ -376,7 +376,7 @@ class CardEditor:
         # 保存到文件
         self.save_to_file()
         
-        messagebox.showinfo(self.lang["success"], self.lang["save_success"])
+        messagebox.showinfo(self.lang['card_editor']["success"], self.lang['card_editor']["save_success"])
 
     def save_to_file(self):
         file_path = os.path.join("data", "of_npcp", "cards.json")
@@ -393,8 +393,8 @@ class CardEditor:
             with open(file_path, 'w', encoding='utf-8') as f:
                 json.dump(sorted_data, f, ensure_ascii=False, indent=4)
         except Exception as e:
-            messagebox.showerror(self.lang["error"], 
-                                f"{self.lang['save_error']}: {str(e)}")
+            messagebox.showerror(self.lang['card_editor']["error"], 
+                                f"{self.lang['card_editor']['save_error']}: {str(e)}")
 
     def load_language(self):
         try:
@@ -429,7 +429,7 @@ class CardEditor:
             }
             for row, text_key in labels.items():
                 label = self.detail_frame.grid_slaves(row=row, column=0)[0]
-                label.config(text=f"{self.lang[text_key]}:")
+                label.config(text=f"{self.lang['card_editor'][text_key]}:")
             
             # 更新其他文本元素...
         except Exception as e:
@@ -437,7 +437,7 @@ class CardEditor:
 
     # 新增添加卡牌方法
     def add_card(self):
-        new_key = simpledialog.askstring(self.lang["add_card"], self.lang["key"]+":")
+        new_key = simpledialog.askstring(self.lang['card_editor']["add_card"], self.lang['card_editor']["key"]+":")
         if new_key:
             new_card = {
                 "name": "New Card",
@@ -454,17 +454,17 @@ class CardEditor:
     # 新增添加阵营方法  
     def add_group(self):
         dialog = tk.Toplevel(self.root)
-        dialog.title(self.lang["add_group"])
+        dialog.title(self.lang['card_editor']["add_group"])
         
-        ttk.Label(dialog, text=self.lang["key"]+":").grid(row=0, column=0, padx=5, pady=2)
+        ttk.Label(dialog, text=self.lang['card_editor']["key"]+":").grid(row=0, column=0, padx=5, pady=2)
         key_entry = ttk.Entry(dialog)
         key_entry.grid(row=0, column=1, padx=5, pady=2)
         
-        ttk.Label(dialog, text=self.lang["name"]+":").grid(row=1, column=0, padx=5, pady=2)
+        ttk.Label(dialog, text=self.lang['card_editor']["name"]+":").grid(row=1, column=0, padx=5, pady=2)
         name_entry = ttk.Entry(dialog)
         name_entry.grid(row=1, column=1, padx=5, pady=2)
         
-        ttk.Label(dialog, text=self.lang["desc"]+":").grid(row=2, column=0, padx=5, pady=2)
+        ttk.Label(dialog, text=self.lang['card_editor']["desc"]+":").grid(row=2, column=0, padx=5, pady=2)
         desc_entry = ttk.Entry(dialog)
         desc_entry.grid(row=2, column=1, padx=5, pady=2)
         
@@ -474,7 +474,7 @@ class CardEditor:
             group_desc = desc_entry.get()
             if group_key and group_name and group_desc:
                 if group_key in self.data["info"]:
-                    messagebox.showerror(self.lang["error"], "阵营索引已存在！")
+                    messagebox.showerror(self.lang['card_editor']["error"], "阵营索引已存在！")
                     return
                 self.data["info"][group_key] = {
                     "name": group_name,
@@ -485,7 +485,7 @@ class CardEditor:
                 self.save_to_file()
                 dialog.destroy()
         
-        ttk.Button(dialog, text=self.lang["confirm"], command=save_group).grid(row=3, columnspan=2, pady=5)
+        ttk.Button(dialog, text=self.lang['card_editor']["confirm"], command=save_group).grid(row=3, columnspan=2, pady=5)
 
     # 新增滚轮切换方法
     def on_group_wheel(self, event):

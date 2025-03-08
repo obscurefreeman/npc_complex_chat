@@ -1,0 +1,146 @@
+{
+    "ai": {
+        "providor": {
+            "openai": {
+                "name": "ChatGPT",
+                "description": "A leading AI language model developed by OpenAI, providing powerful natural language processing capabilities."
+            },
+            "deepseek": {
+                "name": "DeepSeek",
+                "description": "An AI model developed by DeepSeek, providing powerful natural language processing capabilities."
+            },
+            "gemini": {
+                "name": "Gemini",
+                "description": "A multimodal AI model developed by Google, created in response to the rise of chatbots."
+            },
+            "grok": {
+                "name": "Grok",
+                "description": "Grok originates from the 1961 science fiction novel 'Stranger in a Strange Land' by American author Robert A. Heinlein."
+            },
+            "o3": {
+                "name": "O3",
+                "description": "A platform integrating multiple AI models, offering diverse model choices."
+            },
+            "anthropic": {
+                "name": "Anthropic",
+                "description": "Founded by former OpenAI members, its products are represented by the Claude series."
+            },
+            "ollama": {
+                "name": "Ollama Local Deployment",
+                "description": "Locally deployed open-source models."
+            },
+            "groq": {
+                "name": "Groq",
+                "description": "A platform providing various AI model services."
+            },
+            "openrouter": {
+                "name": "OpenRouter",
+                "description": "A platform providing various AI model services."
+            },
+            "gitHub": {
+                "name": "GitHub Models",
+                "description": "AI services provided by GitHub, primarily targeting the developer community."
+            },
+            "gitee-ai": {
+                "name": "Gitee AI",
+                "description": "AI services provided by Gitee platform, primarily targeting the developer community."
+            },
+            "lingyiwanwu": {
+                "name": "01.AI",
+                "description": "An AI platform focusing on Chinese natural language processing, supporting multiple models."
+            },
+            "zhipu": {
+                "name": "Zhipu AI",
+                "description": "An AI company with Tsinghua University background, providing high-quality dialogue and generation models."
+            },
+            "moonshot": {
+                "name": "Moonshot AI",
+                "description": "Kimi Chat Assistant is the representative product of Moonshot AI."
+            },
+            "baichuan": {
+                "name": "Baichuan",
+                "description": "Baichuan Intelligence announced the release of the large language model Baichuan 3."
+            },
+            "bailian": {
+                "name": "Alibaba Cloud Bailian",
+                "description": "An AI service platform provided by Alibaba Cloud, supporting multiple models."
+            },
+            "stepfun": {
+                "name": "StepFun",
+                "description": "An emerging AI platform supporting multiple models."
+            },
+            "minimax": {
+                "name": "Minimax",
+                "description": "An AI platform focusing on dialogue and generation models, supporting multiple models."
+            },
+            "hyperbolic": {
+                "name": "Hyperbolic",
+                "description": "An AI platform supporting multiple open-source models."
+            },
+            "mistral": {
+                "name": "Mistral",
+                "description": "A leading European AI company headquartered in Paris, supported by Microsoft and NVIDIA."
+            },
+            "jina": {
+                "name": "Jina",
+                "description": "A platform providing various AI model services."
+            },
+            "fireworks": {
+                "name": "Fireworks",
+                "description": "A platform providing various AI model services."
+            },
+            "zhinao": {
+                "name": "360 ZhiNao",
+                "description": "An AI service platform provided by 360 company, supporting multiple models."
+            },
+            "hunyuan": {
+                "name": "Tencent Hunyuan",
+                "description": "An AI service platform provided by Tencent, supporting multiple models."
+            },
+            "nvidia": {
+                "name": "NVIDIA",
+                "description": "An AI service platform provided by NVIDIA, supporting multiple models."
+            },
+            "baidu-cloud": {
+                "name": "Baidu Cloud Qianfan",
+                "description": "An AI service platform provided by Baidu Cloud, supporting multiple models."
+            },
+            "dmxapi": {
+                "name": "DMXAPI",
+                "description": "A platform providing various AI model services."
+            },
+            "perplexity": {
+                "name": "Perplexity",
+                "description": "A platform providing various AI model services."
+            },
+            "infini": {
+                "name": "InfiniAI",
+                "description": "A platform providing various AI model services."
+            },
+            "modelscope": {
+                "name": "ModelScope",
+                "description": "An AI model service platform provided by Alibaba, supporting multiple models."
+            },
+            "ppio": {
+                "name": "PPIO",
+                "description": "A platform providing various AI model services."
+            },
+            "together": {
+                "name": "Together",
+                "description": "A platform providing various AI model services."
+            },
+            "ocoolai": {
+                "name": "ocoolAI",
+                "description": "A platform providing various AI model services."
+            },
+            "aihubmix": {
+                "name": "AiHubMix",
+                "description": "A platform providing various AI model services."
+            },
+            "silicon": {
+                "name": "Silicon Flow",
+                "description": "A platform providing various AI model services."
+            }
+        }
+    }
+}

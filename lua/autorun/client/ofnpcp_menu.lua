@@ -306,14 +306,14 @@ local function AddOFFrame()
 	sheet:Dock(FILL)
 
 	local pan1 = vgui.Create("EditablePanel", sheet)
-	sheet:AddSheet("图鉴", pan1)
+	sheet:AddSheet(L("ui.tab.npclist"), pan1, "icon16/group.png")
 
 	local pan2 = vgui.Create("EditablePanel", sheet)
-	sheet:AddSheet("卡牌", pan2)
+	sheet:AddSheet(L("ui.tab.deck_system"), pan2, "icon16/creditcards.png")
 
 	-- 新增AI设置面板
 	local pan3 = vgui.Create("EditablePanel", sheet)
-	sheet:AddSheet("AI设置", pan3)
+	sheet:AddSheet(L("ui.tab.ai_system"), pan3, "icon16/computer.png")
 
 	-- 创建一个水平分割面板
 	local horizontalDivider = vgui.Create("DHorizontalDivider", pan1)
@@ -442,8 +442,8 @@ local function AddOFFrame()
 	for providerKey, providerData in pairs(GLOBAL_OFNPC_DATA.aiProviders) do
 		local button = CreateControl(aiLeftPanel, "OFSkillButton", {
 			SetTall = 80 * OFGUI.ScreenScale,
-			SetTitle = providerData.name,
-			SetDescription = providerData.url,
+			SetTitle = L(providerData.name),
+			SetDescription = L(providerData.description),
 			SetIcon = "ofnpcp/ai/providers/" .. providerKey .. ".png",
 			SetShowHoverCard = false
 		})

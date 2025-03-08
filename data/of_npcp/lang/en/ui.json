@@ -1,27 +1,34 @@
 {
     "ui": {
-        "title": "Card Editor",
-        "group_list": "Factions",
-        "card_list": "Cards",
-        "card_detail": "Card Details",
-        "index": "Index",
-        "key": "Key",
-        "name": "Name",
-        "type": "Type",
-        "cost": "Cost",
-        "desc": "Description",
-        "response": "Response",
-        "tags": "Tags",
-        "save": "Save",
-        "add_card": "Add Card",
-        "add_group": "Add Faction",
-        "success": "Success",
-        "save_success": "Save successful!",
-        "error": "Error",
-        "save_error": "Save failed",
-        "confirm": "Confirm",
-        "cancel": "Cancel",
-        "group_name": "Faction Name",
-        "card_key": "Card Key"
+        "tab": {
+            "npclist": "Active NPC",
+            "deck_system": "Deck Setting",
+            "ai_system": "AI Setting"
+        },
+        "card_editor": {
+            "title": "Card Editor",
+            "group_list": "Factions",
+            "card_list": "Cards",
+            "card_detail": "Card Details",
+            "index": "Index",
+            "key": "Key",
+            "name": "Name",
+            "type": "Type",
+            "cost": "Cost",
+            "desc": "Description",
+            "response": "Response",
+            "tags": "Tags",
+            "save": "Save",
+            "add_card": "Add Card",
+            "add_group": "Add Faction",
+            "success": "Success",
+            "save_success": "Save successful!",
+            "error": "Error",
+            "save_error": "Save failed",
+            "confirm": "Confirm",
+            "cancel": "Cancel",
+            "group_name": "Faction Name",
+            "card_key": "Card Key"
+        }
     }
 } 

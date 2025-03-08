@@ -1,27 +1,34 @@
 {
     "ui": {
-        "title": "卡牌编辑器",
-        "group_list": "阵营列表",
-        "card_list": "卡牌列表",
-        "card_detail": "卡牌详情",
-        "index": "序号",
-        "key": "索引",
-        "name": "名称",
-        "type": "类型",
-        "cost": "消耗",
-        "desc": "描述",
-        "response": "回应",
-        "tags": "标签",
-        "save": "保存修改",
-        "add_card": "添加卡牌",
-        "add_group": "添加阵营",
-        "success": "成功",
-        "save_success": "保存成功！",
-        "error": "错误",
-        "save_error": "保存失败",
-        "confirm": "确定",
-        "cancel": "取消",
-        "group_name": "阵营名称",
-        "card_key": "卡牌索引"
+        "tab": {
+            "npclist": "NPC列表",
+            "deck_system": "卡组设置",
+            "ai_system": "AI配置"
+        },
+        "card_editor": {
+            "title": "卡牌编辑器",
+            "group_list": "阵营列表",
+            "card_list": "卡牌列表",
+            "card_detail": "卡牌详情",
+            "index": "序号",
+            "key": "索引",
+            "name": "名称",
+            "type": "类型",
+            "cost": "消耗",
+            "desc": "描述",
+            "response": "回应",
+            "tags": "标签",
+            "save": "保存修改",
+            "add_card": "添加卡牌",
+            "add_group": "添加阵营",
+            "success": "成功",
+            "save_success": "保存成功！",
+            "error": "错误",
+            "save_error": "保存失败",
+            "confirm": "确定",
+            "cancel": "取消",
+            "group_name": "阵营名称",
+            "card_key": "卡牌索引"
+        }
     }
 } 

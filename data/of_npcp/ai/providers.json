@@ -1,6 +1,7 @@
 {
     "openai": {
-        "name": "ChatGPT",
+        "name": "ai.providor.openai.name",
+        "description": "ai.providor.openai.description",
         "url": "https://api.openai.com/v1/chat/completions",
         "model": [
             "gpt-3.5-turbo",
@@ -14,7 +15,8 @@
         ]
     },
     "deepseek": {
-        "name": "DeepSeek",
+        "name": "ai.providor.deepseek.name",
+        "description": "ai.providor.deepseek.description",
         "url": "https://api.deepseek.com/chat/completions",
         "model": [
             "deepseek-chat",
@@ -22,7 +24,8 @@
         ]
     },
     "gemini": {
-        "name": "Gemini",
+        "name": "ai.providor.gemini.name",
+        "description": "ai.providor.gemini.description",
         "url": "https://generativelanguage.googleapis.com/v1beta/models",
         "model": [
             "gemini-1.5-flash",
@@ -32,14 +35,16 @@
         ]
     },
     "grok": {
-        "name": "Grok",
+        "name": "ai.providor.grok.name",
+        "description": "ai.providor.grok.description",
         "url": "https://api.x.ai/v1/chat/completions",
         "model": [
             "grok-2-latest"
         ]
     },
     "o3": {
-        "name": "O3",
+        "name": "ai.providor.o3.name",
+        "description": "ai.providor.o3.description",
         "url": "https://api.o3.fan/v1/chat/completions",
         "model": [
         "gpt-4o",
@@ -65,7 +70,8 @@
         ]
     },
     "anthropic": {
-        "name": "Anthropic",
+        "name": "ai.providor.anthropic.name",
+        "description": "ai.providor.anthropic.description",
         "url": "https://api.anthropic.com/v1/complete",
         "model": [
             "claude-3-7-sonnet-20250219",
@@ -77,7 +83,8 @@
         ]
     },
     "ollama": {
-        "name": "Ollama (Local AI)",
+        "name": "ai.providor.ollama.name",
+        "description": "ai.providor.ollama.description",
         "url": "http://localhost:11434/v1/chat/completions",
         "model": [
             "deepseek-r1:8b",
@@ -85,7 +92,8 @@
         ]
     },
     "groq": {
-        "name": "Groq",
+        "name": "ai.providor.groq.name",
+        "description": "ai.providor.groq.description",
         "url": "https://api.groq.com/openai/v1/chat/completions",
         "model": [
             "gemma2-9b-it",
@@ -97,21 +105,24 @@
         ]
     },
     "openrouter": {
-        "name": "OpenRouter",
+        "name": "ai.providor.openrouter.name",
+        "description": "ai.providor.openrouter.description",
         "url": "https://openrouter.ai/api/v1/chat/completions",
         "model": [
             "huggingfaceh4/zephyr-7b-beta:free"
         ]
     },
     "gitHub": {
-        "name": "GitHub Models",
+        "name": "ai.providor.gitHub.name",
+        "description": "ai.providor.gitHub.description",
         "url": "https://models.inference.ai.azure.com/chat/completions",
         "model": [
             "gpt-4o"
         ]
     },
     "gitee-ai": {
-        "name": "Gitee AI",
+        "name": "ai.providor.gitee-ai.name",
+        "description": "ai.providor.gitee-ai.description",
         "url": "https://ai.gitee.com/v1/chat/completions",
         "model": [
           "DeepSeek-R1-Distill-Qwen-32B",
@@ -141,7 +152,8 @@
         ]
     },
     "lingyiwanwu": {
-        "name": "零一万物",
+        "name": "ai.providor.lingyiwanwu.name",
+        "description": "ai.providor.lingyiwanwu.description",
         "url": "https://api.lingyiwanwu.com/v1/chat/completions",
         "model": [
             "yi-large",
@@ -151,8 +163,9 @@
         ]
     },
     "zhipu": {
-        "name": "智谱AI",
-        "url": "https://open.bigmodel.cn/api/paas/v4/chat/completions",
+        "name": "ai.providor.zhipu.name",
+        "description": "ai.providor.zhipu.description",
+        "url": "https://open.bigmodel.cn/api/paas.v4/chat/completions",
         "model": [
             "glm-zero-preview",
             "glm-4-0520",
@@ -169,14 +182,16 @@
         ]
     },
     "moonshot": {
-        "name": "月之暗面",
+        "name": "ai.providor.moonshot.name",
+        "description": "ai.providor.moonsshot.description",
         "url": "https://api.moonshot.cn/v1/chat/completions",
         "model": [
             "moonshot-v1-auto"
         ]
     },
     "baichuan": {
-        "name": "百川",
+        "name": "ai.providor.baichuan.name",
+        "description": "ai.providor.baichuan.description",
         "url": "https://api.baichuan-ai.com/v1/chat/completions",
         "model": [
             "Baichuan4",
@@ -185,7 +200,8 @@
         ]
     },
     "bailian": {
-        "name": "阿里云百炼",
+        "name": "ai.providor.bailian.name",
+        "description": "ai.providor.bailian.description",
         "url": "https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions",
         "model": [
             "qwen-coder-plus",
@@ -207,7 +223,8 @@
         ]
     },
     "stepfun": {
-        "name": "阶跃星辰",
+        "name": "ai.providor.stepfun.name",
+        "description": "ai.providor.stepfun.description",
         "url": "https://api.stepfun.com/v1/chat/completions",
         "model": [
             "step-1-8k",
@@ -215,7 +232,8 @@
         ]
     },
     "minimax": {
-        "name": "Minimax",
+        "name": "ai.providor.minimax.name",
+        "description": "ai.providor.minimax.description",
         "url": "https://api.minimax.chat/v1/chat/completions",
         "model": [
             "abab6.5s-chat",
@@ -226,7 +244,8 @@
         ]
     },
     "hyperbolic": {
-        "name": "Hyperbolic",
+        "name": "ai.providor.hyperbolic.name",
+        "description": "ai.providor.hyperbolic.description",
         "url": "https://api.hyperbolic.xyz/v1/chat/completions",
         "model": [
             "Qwen/Qwen2-VL-72B-Instruct",
@@ -236,7 +255,8 @@
         ]
     },
     "mistral": {
-        "name": "Mistral",
+        "name": "ai.providor.mistral.name",
+        "description": "ai.providor.mistral.description",
         "url": "https://api.mistral.ai/v1/chat/completions",
         "model": [
             "pixtral-12b-2409",
@@ -251,21 +271,23 @@
         ]
     },
     "jina": {
-        "name": "Jina",
+        "name": "ai.providor.jina.name",
+        "description": "ai.providor.jina.description",
         "url": "https://api.jina.ai/v1/chat/completions",
         "model": [
             "jina-clip-v1",
             "jina-clip-v2",
             "jina-embeddings-v2-base-en",
             "jina-embeddings-v2-base-es",
-            "jina-embeddings-v2-base-de",
+            "jina-embeddings.v2-base-de",
             "jina-embeddings-v2-base-zh",
             "jina-embeddings-v2-base-code",
             "jina-embeddings-v3"
         ]
     },
     "fireworks": {
-        "name": "Fireworks",
+        "name": "ai.providor.fireworks.name",
+        "description": "ai.providor.fireworks.description",
         "url": "https://api.fireworks.ai/inference/v1/chat/completions",
         "model": [
             "accounts/fireworks/models/mythomax-l2-13b",
@@ -273,7 +295,8 @@
         ]
     },
     "zhinao": {
-        "name": "360智脑",
+        "name": "ai.providor.zhinao.name",
+        "description": "ai.providor.zhinao.description",
         "url": "https://api.360.cn/v1/chat/completions",
         "model": [
             "360gpt-pro",
@@ -281,7 +304,8 @@
         ]
     },
     "hunyuan": {
-        "name": "腾讯混元",
+        "name": "ai.providor.hunyuan.name",
+        "description": "ai.providor.hunyuan.description",
         "url": "https://api.hunyuan.cloud.tencent.com/v1/chat/completions",
         "model": [
             "hunyuan-pro",
@@ -297,7 +321,8 @@
         ]
     },
     "nvidia": {
-        "name": "NVIDIA",
+        "name": "ai.providor.nvidia.name",
+        "description": "ai.providor.nvidia.description",
         "url": "https://integrate.api.nvidia.com/v1/chat/completions",
         "model": [
             "01-ai/yi-large",
@@ -305,7 +330,8 @@
         ]
     },
     "baidu-cloud": {
-        "name": "百度云千帆",
+        "name": "ai.providor.baidu-cloud.name",
+        "description": "ai.providor.baidu-cloud.description",
         "url": "https://qianfan.baidubce.com/v2/chat/completions",
         "model": [
             "deepseek-r1",
@@ -319,7 +345,8 @@
         ]
     },
     "dmxapi": {
-        "name": "DMXAPI",
+        "name": "ai.providor.dmxapi.name",
+        "description": "ai.providor.dmxapi.description",
         "url": "https://www.dmxapi.cn/v1/chat/completions",
         "model": [
             "Qwen/Qwen2.5-7B-Instruct",
@@ -336,7 +363,8 @@
         ]
     },
     "perplexity": {
-        "name": "Perplexity",
+        "name": "ai.providor.perplexity.name",
+        "description": "ai.providor.perplexity.description",
         "url": "https://api.perplexity.ai/chat/completions",
         "model": [
             "sonar-reasoning-pro",
@@ -346,8 +374,9 @@
         ]
     },
     "infini": {
-        "name": "无问芯穹",
-        "url": "https://cloud.infini-ai.com/maas/v1/chat/completions",
+        "name": "ai.providor.infini.name",
+        "description": "ai.providor.infini.description",
+        "url": "https://cloud.infini-ai.com/maas.v1/chat/completions",
         "model": [
             "deepseek-r1",
             "deepseek-r1-distill-qwen-32b",
@@ -367,8 +396,9 @@
         ]
     },
     "modelscope": {
-        "name": "ModelScope 魔塔",
-        "url": "https://cloud.infini-ai.com/maas/v1/chat/completions",
+        "name": "ai.providor.modelscope.name",
+        "description": "ai.providor.modelscope.description",
+        "url": "https://cloud.infini-ai.com/maas.v1/chat/completions",
         "model": [
             "Qwen/Qwen2.5-72B-Instruct",
             "Qwen/Qwen2.5-VL-72B-Instruct",
@@ -378,7 +408,8 @@
         ]
     },
     "ppio": {
-        "name": "PPIO 派欧云",
+        "name": "ai.providor.ppio.name",
+        "description": "ai.providor.ppio.description",
         "url": "https://api.ppinfra.com/v3/openai/v1/chat/completions",
         "model": [
           "deepseek/deepseek-r1/community",
@@ -394,7 +425,8 @@
         ]
     },
     "together": {
-        "name": "Together",
+        "name": "ai.providor.together.name",
+        "description": "ai.providor.together.description",
         "url": "https://api.together.xyz/v1/chat/completions",
         "model": [
           "meta-llama/Llama-3.2-11B-Vision-Instruct-Turbo",
@@ -404,7 +436,8 @@
         ]
     },
     "ocoolai": {
-        "name": "ocoolAI",
+        "name": "ai.providor.ocoolai.name",
+        "description": "ai.providor.ocoolai.description",
         "url": "https://api.ocoolai.com/v1/chat/completions",
         "model": [
           "deepseek-chat",
@@ -435,7 +468,8 @@
         ]
     },
     "aihubmix": {
-        "name": "AiHubMix",
+        "name": "ai.providor.aihubmix.name",
+        "description": "ai.providor.aihubmix.description",
         "url": "https://aihubmix.com/v1/chat/completions",
         "model": [
         "gpt-4o",
@@ -447,7 +481,8 @@
         ]
     },
     "silicon": {
-        "name": "硅基流动",
+        "name": "ai.providor.silicon.name",
+        "description": "ai.providor.silicon.description",
         "url": "https://api.siliconflow.cn/v1/chat/completions",
         "model": [
           "deepseek-ai/DeepSeek-R1",

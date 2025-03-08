@@ -1,0 +1,146 @@
+{
+    "ai": {
+        "providor": {
+            "openai": {
+                "name": "ChatGPT",
+                "description": "OpenAI开发的领先AI语言模型，提供强大的自然语言处理能力。"
+            },
+            "deepseek": {
+                "name": "深度求索（推荐）",
+                "description": "深度求索公司开发的AI模型，专注于中文理解和推理能力。"
+            },
+            "gemini": {
+                "name": "Gemini",
+                "description": "谷歌开发的多模态AI模型，是应对聊天机器人的崛起而开发的。"
+            },
+            "grok": {
+                "name": "Grok",
+                "description": "Grok源于美国作家罗伯特·A·海因莱于1961年发表的科幻小说《异乡异客》。"
+            },
+            "o3": {
+                "name": "O3",
+                "description": "综合多种AI模型的平台，提供多样化的模型选择。"
+            },
+            "anthropic": {
+                "name": "Anthropic",
+                "description": "由OpenAI的前成员创立，其产品以Claude系列为代表。"
+            },
+            "ollama": {
+                "name": "Ollama 本地部署",
+                "description": "本地部署开源模型。"
+            },
+            "groq": {
+                "name": "Groq",
+                "description": "提供多种AI模型服务的平台。"
+            },
+            "openrouter": {
+                "name": "OpenRouter",
+                "description": "提供多种AI模型服务的平台。"
+            },
+            "gitHub": {
+                "name": "GitHub Models",
+                "description": "GitHub提供的AI服务，主要面向开发者社区。"
+            },
+            "gitee-ai": {
+                "name": "Gitee AI",
+                "description": "Gitee平台提供的AI服务，主要面向开发者社区。"
+            },
+            "lingyiwanwu": {
+                "name": "零一万物",
+                "description": "专注于中文自然语言处理的AI平台，支持多种模型。"
+            },
+            "zhipu": {
+                "name": "智谱AI",
+                "description": "清华大学背景的AI公司，提供高质量的对话和生成模型。"
+            },
+            "moonshot": {
+                "name": "月之暗面",
+                "description": "Kimi智能助手是月之暗面的代表产品。"
+            },
+            "baichuan": {
+                "name": "百川",
+                "description": "百川智能宣布发布了大语言模型Baichuan 3。"
+            },
+            "bailian": {
+                "name": "阿里云百炼",
+                "description": "阿里云提供的AI服务平台，支持多种模型。"
+            },
+            "stepfun": {
+                "name": "阶跃星辰",
+                "description": "新兴的AI平台，支持多种模型。"
+            },
+            "minimax": {
+                "name": "Minimax",
+                "description": "专注于对话和生成模型的AI平台，支持多种模型。"
+            },
+            "hyperbolic": {
+                "name": "Hyperbolic",
+                "description": "支持多种开源模型的AI平台，支持多种模型。"
+            },
+            "mistral": {
+                "name": "Mistral",
+                "description": "欧洲领先的AI公司，总部位于巴黎，该公司由微软、英伟达提供支持。"
+            },
+            "jina": {
+                "name": "Jina",
+                "description": "提供多种AI模型服务的平台。"
+            },
+            "fireworks": {
+                "name": "Fireworks",
+                "description": "提供多种AI模型服务的平台。"
+            },
+            "zhinao": {
+                "name": "360智脑",
+                "description": "360公司提供的AI服务平台，支持多种模型。"
+            },
+            "hunyuan": {
+                "name": "腾讯混元",
+                "description": "腾讯公司提供的AI服务平台，支持多种模型。"
+            },
+            "nvidia": {
+                "name": "英伟达",
+                "description": "英伟达提供的AI服务平台，支持多种模型。"
+            },
+            "baidu-cloud": {
+                "name": "百度云千帆",
+                "description": "百度云提供的AI服务平台，支持多种模型。"
+            },
+            "dmxapi": {
+                "name": "DMXAPI",
+                "description": "提供多种AI模型服务的平台。"
+            },
+            "perplexity": {
+                "name": "Perplexity",
+                "description": "提供多种AI模型服务的平台。"
+            },
+            "infini": {
+                "name": "无问芯穹",
+                "description": "提供多种AI模型服务的平台。"
+            },
+            "modelscope": {
+                "name": "ModelScope 魔塔",
+                "description": "阿里巴巴提供的AI模型服务平台，支持多种模型。"
+            },
+            "ppio": {
+                "name": "PPIO 派欧云",
+                "description": "提供多种AI模型服务的平台。"
+            },
+            "together": {
+                "name": "Together",
+                "description": "提供多种AI模型服务的平台。"
+            },
+            "ocoolai": {
+                "name": "ocoolAI",
+                "description": "提供多种AI模型服务的平台。"
+            },
+            "aihubmix": {
+                "name": "AiHubMix",
+                "description": "提供多种AI模型服务的平台。"
+            },
+            "silicon": {
+                "name": "硅基流动",
+                "description": "提供多种AI模型服务的平台。"
+            }
+        }
+    }
+}
