@@ -266,12 +266,12 @@ if CLIENT then
 
                     -- 定义对话类型与提示信息的映射表
                     local dialogFootnotes = {
-                        ["playerchat.greeting"] = "正在开启AI聊天。请注意，每个NPC都具有独特的身份背景和性格特征，并能访问部分游戏数据。在多人游戏中，当多名玩家同时与同一NPC互动时，系统将自动隔离对话上下文，确保每位玩家获得独立的交互体验，从而优化资源利用。程序性对话不会被AI读取，当您再次与该NPC互动时，可以继续之前的对话内容",
-                        ["response.greeting"] = "AI聊天已开启。在多人游戏环境中，每位玩家需独立配置API密钥，相关数据将安全存储于本地设备，不会上传至服务器。为保障数据安全，建议避免在不可信的服务器环境中使用此功能，以防API密钥泄露风险。", 
-                        ["playerchat.negotiate"] = "正在开启协商。",
-                        ["response.negotiate"] = "协商模式正在开发中，敬请期待。",
-                        ["playerchat.trade"] = "正在开启交易。",
-                        ["response.trade"] = "交易功能正在开发中，敬请期待。"
+                        ["playerchat.greeting"] = L("ui.dialog.ai_chat_notice"),
+                        ["response.greeting"] = L("ui.dialog.ai_chat_warning"), 
+                        ["playerchat.negotiate"] = L("ui.dialog.negotiate_notice"),
+                        ["response.negotiate"] = L("ui.dialog.negotiate_warning"),
+                        ["playerchat.trade"] = L("ui.dialog.trade_notice"),
+                        ["response.trade"] = L("ui.dialog.trade_warning")
                     }
 
                     -- 初始化脚注文本
@@ -289,14 +289,14 @@ if CLIENT then
 
                     if dialog.aidetail and istable(dialog.aidetail) then
                         if dialog.speakerType == "npc" then
-                            footnoteText = string.format("模型：%s | 响应时间：%s | 消耗tokens：%d",
-                                dialog.aidetail.model or "Unknown",
-                                dialog.aidetail.created or "Unknown",
-                                dialog.aidetail.usage and dialog.aidetail.usage.total_tokens or 0)
+                            footnoteText = string.format(L("ui.dialog.footnote_npc"),
+                            dialog.aidetail.model or L("ui.dialog.unknown"),
+                            dialog.aidetail.created or L("ui.dialog.unknown"),
+                            dialog.aidetail.usage and dialog.aidetail.usage.total_tokens or 0)
                         else
-                            footnoteText = string.format("模型：%s | 服务平台：%s",
-                            dialog.aidetail.model or "Unknown",
-                            dialog.aidetail.provider or "Unknown")
+                            footnoteText = string.format(L("ui.dialog.footnote_player"),
+                            dialog.aidetail.model or L("ui.dialog.unknown"),
+                            dialog.aidetail.provider or L("ui.dialog.unknown"))
                         end
                     end
 
@@ -351,7 +351,7 @@ if CLIENT then
                     if dialog.footnoteText then
                         message:SetFootnote(dialog.footnoteText)
                     end
-                    message:SetName(dialog.speaker or "Unknown")
+                    message:SetName(dialog.speaker or L("ui.dialog.unknown"))
                     message:SetText(dialog.text or "")
                 end
             end
@@ -550,8 +550,10 @@ if CLIENT then
                 success = function(code, body, headers)
                     local response = util.JSONToTable(body)
                     -- 重要debug代码
-                    PrintTable(aiDialogs)
-                    PrintTable(response)
+                    if aiDialogs and response then
+                        PrintTable(aiDialogs)
+                        PrintTable(response)
+                    end
                     
                     if response and response.choices and #response.choices > 0 and response.choices[1].message then
                         local responseContent = response.choices[1].message.content
@@ -566,7 +568,7 @@ if CLIENT then
                         -- 处理无效的响应
                         net.Start("NPCAIDialog")
                         net.WriteEntity(npc)
-                        net.WriteString("Invalid AI response: Missing required fields.")
+                        net.WriteString(L("ui.dialog.invalid_response"))
                         net.SendToServer()
                     end
                 end,
@@ -575,7 +577,7 @@ if CLIENT then
                     -- 处理错误
                     net.Start("NPCAIDialog")
                     net.WriteEntity(npc)
-                    net.WriteString("HTTP Error: " .. (err or "Unknown Error"))
+                    net.WriteString(L("ui.dialog.http_error") .. (err or L("ui.dialog.unknown")))
                     net.SendToServer()
                 end
             })
@@ -583,7 +585,7 @@ if CLIENT then
             -- 如果没有找到AI设置文件
             net.Start("NPCAIDialog")
             net.WriteEntity(npc)
-            net.WriteString("未找到AI设置，请先在AI设置面板中配置")
+            net.WriteString(L("ui.dialog.no_ai_settings"))
             net.SendToServer()
         end
     end

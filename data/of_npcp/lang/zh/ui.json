@@ -32,6 +32,24 @@
             "save_success": "AI设置已保存到本地。",
             "system_prompt": "系统提示词："
         },
+        "dialog": {
+            "greeting": "AI聊天模式",
+            "negotiate": "协商模式",
+            "trade": "交易模式",
+            "leave": "离开对话",
+            "ai_chat_notice": "正在开启AI聊天。请注意，每个NPC都具有独特的身份背景和性格特征，并能访问部分游戏数据。在多人游戏中，当多名玩家同时与同一NPC互动时，系统将自动隔离对话上下文，确保每位玩家获得独立的交互体验，从而优化资源利用。程序性对话不会被AI读取，当您再次与该NPC互动时，可以继续之前的对话内容",
+            "ai_chat_warning": "AI聊天已开启。在多人游戏环境中，每位玩家需独立配置API密钥，相关数据将安全存储于本地设备，不会上传至服务器。为保障数据安全，建议避免在不可信的服务器环境中使用此功能，以防API密钥泄露风险。",
+            "negotiate_notice": "正在开启协商。",
+            "negotiate_warning": "协商模式正在开发中，敬请期待。",
+            "trade_notice": "正在开启交易。",
+            "trade_warning": "交易功能正在开发中，敬请期待。",
+            "footnote_npc": "模型：%s | 响应时间：%s | 消耗tokens：%d",
+            "footnote_player": "模型：%s | 服务平台：%s",
+            "invalid_response": "无效的AI响应：关键字段缺失，请检查控制台以获取API输出。",
+            "http_error": "网络通信异常：",
+            "no_ai_settings": "未检测到有效AI配置，请前往AI设置面板进行初始化。",
+            "unknown": "未知"
+        },
         "card_editor": {
             "title": "卡牌编辑器",
             "group_list": "阵营列表",

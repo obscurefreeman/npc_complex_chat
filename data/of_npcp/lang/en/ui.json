@@ -32,6 +32,24 @@
             "save_success": "AI settings saved locally.",
             "system_prompt": "System Prompt: "
         },
+        "dialog": {
+            "greeting": "AI Chat Mode",
+            "negotiate": "Negotiation Mode", 
+            "trade": "Trade Mode",
+            "leave": "Leave Dialog",
+            "ai_chat_notice": "AI chat is being activated. Please note that each NPC has a unique background and personality traits, and can access some game data. In multiplayer games, when multiple players interact with the same NPC simultaneously, the system will automatically isolate the conversation context to ensure each player gets an independent interaction experience, thus optimizing resource usage. Procedural dialogues will not be read by the AI, and you can continue previous conversations when interacting with the NPC again.",
+            "ai_chat_warning": "AI chat is activated. In multiplayer environments, each player needs to configure their API key independently, and related data will be securely stored on local devices and not uploaded to the server. For data security, it is recommended to avoid using this feature in untrusted server environments to prevent API key leakage risks.",
+            "negotiate_notice": "Negotiation is being activated.",
+            "negotiate_warning": "Negotiation mode is under development, stay tuned.",
+            "trade_notice": "Trade is being activated.",
+            "trade_warning": "Trade feature is under development, stay tuned.",
+            "footnote_npc": "Model: %s | Response Time: %s | Tokens Used: %d",
+            "footnote_player": "Model: %s | Service Platform: %s",
+            "invalid_response": "Invalid AI response: key fields missing, please check the console for API output.",
+            "http_error": "Network communication error: ",
+            "no_ai_settings": "No valid AI configuration detected, please go to the AI settings panel to initialize.",
+            "unknown": "Unknown"
+        },
         "card_editor": {
             "title": "Card Editor",
             "group_list": "Factions",
