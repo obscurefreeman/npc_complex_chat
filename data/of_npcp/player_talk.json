@@ -1,4 +1,22 @@
 {
+    "option": {
+        "greeting": {
+            "color": {"r": 0, "g": 149, "b": 223},
+            "index": 1
+        },
+        "negotiate": {
+            "color": {"r": 255, "g": 141, "b": 23},
+            "index": 2
+        },
+        "trade": {
+            "color": {"r": 227, "g": 132, "b": 164},
+            "index": 3
+        },
+        "leave": {
+            "color": {"r": 252, "g": 33, "b": 9},
+            "index": 4
+        }
+    },
     "greeting": [
         "playerchat.greeting.1",
         "playerchat.greeting.2",

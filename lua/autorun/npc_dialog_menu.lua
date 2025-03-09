@@ -58,23 +58,29 @@ if CLIENT then
         net.WriteEntity(npc)
         net.SendToServer()
         
-        local dialogOptions = {
-            "greeting",
-            "negotiate",
-            "trade",
-            "leave"
-        }
+        -- 从player_talk.json中获取对话选项
+        local dialogOptions = GLOBAL_OFNPC_DATA.playerTalks.option
 
         -- 从全局变量获取对话文本
         local playerTalkOptions = {}
         local optionTypes = {} -- 存储每个选项对应的类型
         if GLOBAL_OFNPC_DATA.playerTalks then
-            for i, optionType in ipairs(dialogOptions) do
-                local phrases = GLOBAL_OFNPC_DATA.playerTalks[optionType]
+            -- 创建一个包含选项类型和顺序的表
+            local sortedOptions = {}
+            for optionType, data in pairs(dialogOptions) do
+                table.insert(sortedOptions, {type = optionType, index = data.index})
+            end
+            
+            -- 按index字段排序
+            table.sort(sortedOptions, function(a, b) return a.index < b.index end)
+            
+            -- 按排序后的顺序获取短语
+            for _, option in ipairs(sortedOptions) do
+                local phrases = GLOBAL_OFNPC_DATA.playerTalks[option.type]
                 if phrases then
                     local randomPhrase = phrases[math.random(#phrases)]
                     table.insert(playerTalkOptions, randomPhrase)
-                    optionTypes[randomPhrase] = optionType -- 记录每个短语对应的选项类型
+                    optionTypes[randomPhrase] = option.type -- 记录每个短语对应的选项类型
                 end
             end
         end
@@ -438,11 +444,16 @@ if CLIENT then
             -- 创建按钮并添加到ScrollPanel
             local button = vgui.Create("OFChatButton", scrollPanel)
             button:SetChatText(translatedOption)
+            button:SetTitle(L("ui.dialog." .. optionTypes[option]))
             button:Dock(TOP)
             button:DockMargin(4, 4, 4, 4)
-            button:SetIcon("ofnpcp/chaticons/chat.png")
-            button:SetHoveredColor(Color(100, 255, 100))
-            button:SetTall(50 * OFGUI.ScreenScale) -- 设置按钮的高度
+            button:SetIcon("ofnpcp/chaticons/preview/" .. optionTypes[option] .. ".png")
+            button:SetCardIcon("ofnpcp/chaticons/large/" .. optionTypes[option] .. ".png")
+            button:SetTall(50 * OFGUI.ScreenScale)
+
+            -- 获取选项类型对应的颜色
+            local optionColor = dialogOptions[optionTypes[option]].color
+            button:SetHoveredColor(Color(optionColor.r, optionColor.g, optionColor.b))
 
             -- 处理按钮点击事件
             button.DoClick = function()
@@ -516,7 +527,15 @@ if CLIENT then
             net.WriteEntity(npc)
             net.SendToServer()
             hook.Remove("OnNPCIdentityUpdated", "UpdateDialogHistory_"..npc:EntIndex())
+            hook.Remove("EntityRemoved", "CloseDialogOnNPCDeath_"..npc:EntIndex())  -- 移除hook
         end
+
+        -- 添加NPC死亡检测hook
+        hook.Add("EntityRemoved", "CloseDialogOnNPCDeath_"..npc:EntIndex(), function(ent)
+            if ent == npc then
+                frame:Close()
+            end
+        end)
     end)
 
     function SendAIDialogRequest(npc, aiDialogs)
