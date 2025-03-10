@@ -1,3 +1,5 @@
+local levelUpEffects = {}
+
 net.Receive("OFNPCRankUp", function()
 
     local ent = net.ReadEntity()
@@ -5,6 +7,8 @@ net.Receive("OFNPCRankUp", function()
     local rankname = ""
     local rankimage = ""
 
+    -- 播放晋级音效
+    ent:EmitSound("ofnpcp/rankup.ogg")
 
     local rank = GLOBAL_OFNPC_DATA.rankData.ranks["i" .. identity.rank]
     rankimage = "ofnpcp/rankicons/rank_".. identity.rank .. ".tga"
@@ -33,10 +37,16 @@ net.Receive("OFNPCRankUp", function()
         local rankImagePath = rankimage  -- 使用等级图片路径
         surface.SetMaterial(Material(rankImagePath))  -- 设置图片材质
         surface.SetDrawColor(255, 255, 255, alpha)  -- 设置图片透明度
-        surface.DrawTexturedRect(screenPos.x - textHeight * 44 / 63 / 2 - textWidth / 2, screenPos.y - textHeight / 2, textHeight * 44 / 63, textHeight)  -- 绘制图片
+        
+        -- 计算整体宽度（图片宽度 + 文字宽度）
+        local imageWidth = textHeight * 44 / 63
+        local totalWidth = imageWidth + textWidth
+        
+        -- 绘制图片（在文字左侧）
+        surface.DrawTexturedRect(screenPos.x - totalWidth / 2, screenPos.y - textHeight / 2, imageWidth, textHeight)
 
-        -- 绘制文本
-        draw.SimpleText(levelUpText, "ofgui_big", screenPos.x + textHeight * 44 / 63 / 2, screenPos.y, Color(255, 255, 255, alpha), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+        -- 绘制文本（在图片右侧）
+        draw.SimpleText(levelUpText, "ofgui_big", screenPos.x - totalWidth / 2 + imageWidth, screenPos.y, Color(255, 255, 255, alpha), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
     end
 
     -- 在HUD中绘制文本
@@ -47,4 +57,38 @@ net.Receive("OFNPCRankUp", function()
             hook.Remove("HUDPaint", "DrawLevelUpText")
         end
     end)
+
+    -- 添加升级特效
+    levelUpEffects[ent] = {
+        startTime = CurTime(),
+        color = GLOBAL_OFNPC_DATA.cards.info[identity.camp].color,
+        duration = 1
+    }
+end)
+
+-- 添加3D渲染特效
+hook.Add("PostDrawOpaqueRenderables", "RenderNPCLevelUpEffect", function()
+    for npc, effectData in pairs(levelUpEffects) do
+        if IsValid(npc) then
+            local timeElapsed = CurTime() - effectData.startTime
+            if timeElapsed <= effectData.duration then
+                local alpha = 255 * (1 - timeElapsed / effectData.duration)
+                
+                cam.Start3D()
+                    render.SetColorModulation(effectData.color.r/255, effectData.color.g/255, effectData.color.b/255)
+                    render.SuppressEngineLighting(true)
+                    render.MaterialOverride(Material("models/debug/debugwhite"))
+                    render.SetBlend(alpha/255)
+                    npc:DrawModel()
+                    render.MaterialOverride()
+                    render.SuppressEngineLighting(false)
+                    render.SetBlend(1)
+                cam.End3D()
+            else
+                levelUpEffects[npc] = nil
+            end
+        else
+            levelUpEffects[npc] = nil
+        end
+    end
 end)

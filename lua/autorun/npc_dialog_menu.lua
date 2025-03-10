@@ -22,6 +22,8 @@ if SERVER then
                     if responsePhrases and #responsePhrases > 0 then
                         local randomResponse = responsePhrases[math.random(#responsePhrases)]
                         NPCTalkManager:StartDialog(npc, randomResponse, "dialogue", ply, true)
+                    else
+                        NPCTalkManager:StartDialog(npc, optionType, "dialogue", ply, true)
                     end
                 end
             end)
@@ -440,6 +442,10 @@ if CLIENT then
                 npcName = language.GetPhrase(npcIdentity.gamename)
             end
             local translatedOption = L(option):gsub("/name/", npcName)
+            translatedOption = translatedOption:gsub("/nickname/", L(npcIdentity.nickname))
+            translatedOption = translatedOption:gsub("/job/", L(npcIdentity.job))
+            translatedOption = translatedOption:gsub("/camp/", L("camp."..tostring(npcIdentity.camp)))
+            translatedOption = translatedOption:gsub("/map/", game.GetMap())
 
             -- 创建按钮并添加到ScrollPanel
             local button = vgui.Create("OFChatButton", scrollPanel)
@@ -505,9 +511,90 @@ if CLIENT then
                             newTextEntry:Dock(TOP)
                             newTextEntry:DockMargin(4, 4, 4, 4)
                             newTextEntry:SetFont("ofgui_huge")
+                            newTextEntry:SetMultiline( true )
                             newTextEntry:SetTall(100 * OFGUI.ScreenScale)
                             newTextEntry.OnEnter = self.OnEnter  -- 保持相同的事件处理
                         end
+                    end
+                elseif optionTypes[option] == "negotiate" then
+                    -- 清空scrollPanel
+                    scrollPanel:Clear()
+                    
+                    -- 获取玩家阵营对应的卡组
+                    local playerDeck = OFPLAYERS[LocalPlayer():SteamID()] and OFPLAYERS[LocalPlayer():SteamID()].deck or "resistance"
+                    local cards = GLOBAL_OFNPC_DATA.cards[playerDeck] or {}
+                    local generalCards = GLOBAL_OFNPC_DATA.cards.general or {}
+
+                    -- 合并卡组
+                    local allCards = {}
+                    for cardKey, cardData in pairs(cards) do
+                        table.insert(allCards, {key = cardKey, data = cardData})
+                    end
+                    for cardKey, cardData in pairs(generalCards) do
+                        table.insert(allCards, {key = cardKey, data = cardData})
+                    end
+
+                    -- 随机选择3个不同的卡牌
+                    local selectedCards = {}
+                    while #selectedCards < 3 and #allCards > 0 do
+                        local randomIndex = math.random(#allCards)
+                        local card = table.remove(allCards, randomIndex)
+                        table.insert(selectedCards, card)
+                    end
+
+                    -- 创建卡牌按钮
+                    local function CreateNegotiateButton(cardInfo)
+                        local playerNegotiate = cardInfo.data.d[math.random(#cardInfo.data.d)]
+                        local npcNegotiate = cardInfo.data.a[math.random(#cardInfo.data.a)]
+                        local button = vgui.Create("OFChatButton", scrollPanel)
+                        button:SetChatText(playerNegotiate)
+                        button:SetTitle(cardInfo.data.name)
+                        button:Dock(TOP)
+                        button:DockMargin(4, 4, 4, 4)
+                        button:SetIcon("ofnpcp/cards/preview/" .. cardInfo.key .. ".png")
+                        button:SetCardIcon("ofnpcp/cards/large/" .. cardInfo.key .. ".png")
+                        button:SetHoveredColor(GLOBAL_OFNPC_DATA.cards.info[playerDeck].color)
+                        button:SetTall(50 * OFGUI.ScreenScale)
+
+                        -- 处理按钮点击事件
+                        button.DoClick = function()
+                            -- 发送对话请求
+                            net.Start("PlayerDialog")
+                            net.WriteEntity(npc)
+                            net.WriteString(playerNegotiate)
+                            net.WriteString(npcNegotiate)
+                            net.SendToServer()
+
+                            -- 清空当前选项
+                            scrollPanel:Clear()
+
+                            -- 重新获取所有卡牌
+                            local allCards = {}
+                            for cardKey, cardData in pairs(cards) do
+                                table.insert(allCards, {key = cardKey, data = cardData})
+                            end
+                            for cardKey, cardData in pairs(generalCards) do
+                                table.insert(allCards, {key = cardKey, data = cardData})
+                            end
+
+                            -- 重新选择3个随机卡牌
+                            local newSelectedCards = {}
+                            while #newSelectedCards < 3 and #allCards > 0 do
+                                local randomIndex = math.random(#allCards)
+                                local card = table.remove(allCards, randomIndex)
+                                table.insert(newSelectedCards, card)
+                            end
+
+                            -- 重新创建卡牌按钮
+                            for _, newCardInfo in ipairs(newSelectedCards) do
+                                CreateNegotiateButton(newCardInfo)
+                            end
+                        end
+                    end
+
+                    -- 添加3个卡牌按钮
+                    for _, cardInfo in ipairs(selectedCards) do
+                        CreateNegotiateButton(cardInfo)
                     end
                 elseif optionTypes[option] == "leave" then
                     frame:Close()

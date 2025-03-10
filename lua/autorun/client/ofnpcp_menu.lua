@@ -117,6 +117,13 @@ local function RefreshNPCButtons(left_panel, right_panel)
 				commentEntry:SetValue("")
 			end
 		end
+		local campButton = vgui.Create("OFMessage", right_panel)
+		campButton:SetHeight(80 * OFGUI.ScreenScale)
+		campButton:Dock(TOP)
+		campButton:DockMargin(4, 4, 4, 4)
+		campButton:SetName(L("ui.ai_system.system_prompt") .. L("camp."..npcData.camp))
+		campButton:SetText(L("prompt."..npcData.camp))
+		campButton:SetColor(GLOBAL_OFNPC_DATA.cards.info[npcData.camp] and GLOBAL_OFNPC_DATA.cards.info[npcData.camp].color or color_white)
 	end
 	
 	-- 优化右键菜单选项
@@ -308,17 +315,16 @@ local function AddOFFrame()
 	sheet:Dock(FILL)
 
 	local pan1 = vgui.Create("EditablePanel", sheet)
-	sheet:AddSheet(L("ui.tab.npclist"), pan1, "icon16/group.png")
+	sheet:AddSheet(L("ui.tab.ai_system"), pan1, "icon16/computer.png")
 
 	local pan2 = vgui.Create("EditablePanel", sheet)
 	sheet:AddSheet(L("ui.tab.deck_system"), pan2, "icon16/creditcards.png")
 
-	-- 新增AI设置面板
 	local pan3 = vgui.Create("EditablePanel", sheet)
-	sheet:AddSheet(L("ui.tab.ai_system"), pan3, "icon16/computer.png")
+	sheet:AddSheet(L("ui.tab.npclist"), pan3, "icon16/group.png")
 
 	-- 创建一个水平分割面板
-	local horizontalDivider = vgui.Create("DHorizontalDivider", pan1)
+	local horizontalDivider = vgui.Create("DHorizontalDivider", pan3)
 	horizontalDivider:Dock(FILL)
 	horizontalDivider:DockMargin(6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale)
 	horizontalDivider:SetLeftWidth(ScrW()/ 3) -- 设置左侧面板的初始宽度
@@ -342,7 +348,7 @@ local function AddOFFrame()
 	right_panel_cards:Dock(FILL)
 
 	-- 创建AI设置面板布局
-	local aiHorizontalDivider = vgui.Create("DHorizontalDivider", pan3)
+	local aiHorizontalDivider = vgui.Create("DHorizontalDivider", pan1)
 	aiHorizontalDivider:Dock(FILL)
 	aiHorizontalDivider:DockMargin(6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale)
 	aiHorizontalDivider:SetLeftWidth(ScrW() / 4)
@@ -455,16 +461,22 @@ local function AddOFFrame()
 	end
 
 	-- 加载AI提供商列表
+	local sortedProviders = {}
 	for providerKey, providerData in pairs(GLOBAL_OFNPC_DATA.aiProviders) do
+		table.insert(sortedProviders, {key = providerKey, data = providerData})
+	end
+	table.sort(sortedProviders, function(a, b) return a.data.index < b.data.index end)
+
+	for _, provider in ipairs(sortedProviders) do
 		local button = CreateControl(aiLeftPanel, "OFAdvancedButton", {
 			SetTall = 80 * OFGUI.ScreenScale,
-			SetTitle = L(providerData.name),
-			SetDescription = L(providerData.description),
-			SetIcon = "ofnpcp/ai/providers/" .. providerKey .. ".png",
+			SetTitle = L(provider.data.name),
+			SetDescription = L(provider.data.description),
+			SetIcon = "ofnpcp/ai/providers/" .. provider.key .. ".png",
 			SetShowHoverCard = false
 		})
 		button.DoClick = function()
-			LoadAISettings(providerKey, aiRightPanel)
+			LoadAISettings(provider.key, aiRightPanel)
 		end
 	end
 

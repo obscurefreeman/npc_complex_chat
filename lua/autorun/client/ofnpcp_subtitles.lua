@@ -11,7 +11,7 @@ function CreateNPCDialogSubtitles(npc, text)
 		npcColor = GLOBAL_OFNPC_DATA.cards.info[npcIdentity.camp].color
 		local npcName
 		if npcIdentity.name == npcIdentity.gamename then
-			npcName = language.GetPhrase(npcIdentity.gamename)
+			npcName = language.GetPhrase(npcIdentity.gamename) .. ": "
 		else
 			npcName = L(npcIdentity.name) .. " “" .. L(npcIdentity.nickname) .. "” " .. ": "
 		end

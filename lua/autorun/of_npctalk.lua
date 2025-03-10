@@ -249,27 +249,41 @@ if CLIENT then
             local headBoneIndex = dialog.npc:LookupBone("ValveBiped.Bip01_Head1")
             local headPos = dialog.npc:GetBonePosition(headBoneIndex)
             
-            local finalPos = Vector(speakerPos.x, speakerPos.y, headPos.z + 13)
+            local finalPos = Vector(speakerPos.x, speakerPos.y, headPos.z + 7)
             
             -- 开始3D2D渲染
             cam.Start3D2D(finalPos, speakerAngles, 0.1)
                 local screenScale = ScrH() / 1080
                 -- 计算文本尺寸
                 surface.SetFont("ofgui_eva")
-                local textWidth, textHeight = surface.GetTextSize(dialog.currentText)
+                
+                -- 添加换行处理
+                local maxCharsPerLine = 35
+                local wrappedText = ""
+                local charCount = 0
+                for _, char in utf8.codes(dialog.currentText) do
+                    wrappedText = wrappedText .. utf8.char(char)
+                    charCount = charCount + 1
+                    if charCount >= maxCharsPerLine then
+                        wrappedText = wrappedText .. "\n"
+                        charCount = 0
+                    end
+                end
+                
+                local textWidth, textHeight = surface.GetTextSize(wrappedText)
                 
                 -- 绘制背景
                 local padding = 15 * screenScale
                 local boxWidth = textWidth + padding * 2
                 local boxHeight = textHeight + padding * 2
                 local boxX = -boxWidth/2
-                local boxY = -boxHeight/2
+                local boxY = -boxHeight
                 
                 draw.RoundedBox(8, boxX, boxY, boxWidth, boxHeight, Color(0, 0, 0, 200))
                 
                 -- 绘制文本
                 draw.DrawText(
-                    dialog.currentText,
+                    wrappedText,
                     "ofgui_eva",
                     0,
                     boxY + padding,
