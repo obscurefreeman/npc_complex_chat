@@ -117,20 +117,31 @@ local function RefreshNPCButtons(left_panel, right_panel)
 				commentEntry:SetValue("")
 			end
 		end
-		local promptcontent = L("prompt."..npcData.camp)
+		local promptcontent = L(npcData.prompt)
 		promptcontent = ReplacePlaceholders(promptcontent, npcData)
-		local campTextEntry = vgui.Create("OFMessage", right_panel)
-		campTextEntry:SetHeight(80 * OFGUI.ScreenScale)
+		local campTextEntry = vgui.Create("OFTextEntry", right_panel)
+		campTextEntry:SetHeight(120 * OFGUI.ScreenScale)
 		campTextEntry:Dock(TOP)
-		campTextEntry:DockMargin(4, 4, 4, 4)
-		campTextEntry:SetName(L("ui.ai_system.system_prompt") .. L("camp."..npcData.camp))
-		campTextEntry:SetText(promptcontent)
-		campTextEntry:SetColor(GLOBAL_OFNPC_DATA.cards.info[npcData.camp] and GLOBAL_OFNPC_DATA.cards.info[npcData.camp].color or color_white)
-		-- 改成输入框
-		-- campTextEntry:SetValue(L("ui.ai_system.system_prompt") .. L("camp."..npcData.camp))
-		-- campTextEntry:SetMultiline( true )
-		-- campTextEntry:SetText(promptcontent)
-		-- campTextEntry:SetTextColor(GLOBAL_OFNPC_DATA.cards.info[npcData.camp] and GLOBAL_OFNPC_DATA.cards.info[npcData.camp].color or color_white)
+		campTextEntry:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+		campTextEntry:SetValue(promptcontent)
+		campTextEntry:SetMultiline( true )
+
+		-- 添加更新提示词按钮
+		local updatePromptButton = vgui.Create("OFButton", right_panel)
+		updatePromptButton:Dock(TOP)
+		updatePromptButton:SetTall(32 * OFGUI.ScreenScale)
+		updatePromptButton:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+		updatePromptButton:SetText(L("ui.ai_system.update_prompt"))
+		updatePromptButton.DoClick = function()
+			local newPrompt = campTextEntry:GetValue()
+			if newPrompt and newPrompt ~= "" then
+				-- 发送更新请求到服务器
+				net.Start("UpdateNPCPrompt")
+					net.WriteInt(entIndex, 32)
+					net.WriteString(newPrompt)
+				net.SendToServer()
+			end
+		end
 	end
 	
 	-- 优化右键菜单选项

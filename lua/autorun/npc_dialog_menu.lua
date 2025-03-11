@@ -239,10 +239,7 @@ if CLIENT then
 
                 local translatedDialogs = {}
                 local speakerName
-                local promptcontent = L("prompt." .. tostring(npcIdentity.camp))
-                if npcIdentity.type == "maincharacter" then
-                    promptcontent = L("prompt.maincharacter")
-                end
+                local promptcontent = L(npcIdentity.prompt)
                 promptcontent = ReplacePlaceholders(promptcontent, npcIdentity)
                 local aiDialogs = { { role = "system", content = promptcontent } }
                 for _, dialog in ipairs(updatedData.dialogHistory) do

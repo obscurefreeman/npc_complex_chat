@@ -30,7 +30,8 @@
             "max_tokens": "最大字符消耗",
             "save_settings": "保存设置",
             "save_success": "AI设置已保存到本地。",
-            "system_prompt": "系统提示词："
+            "system_prompt": "系统提示词：",
+            "update_prompt": "更新提示词"
         },
         "dialog": {
             "greeting": "AI聊天模式",

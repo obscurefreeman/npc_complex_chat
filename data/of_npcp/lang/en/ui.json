@@ -30,7 +30,8 @@
             "max_tokens": "Max Tokens",
             "save_settings": "Save Settings",
             "save_success": "AI settings saved locally.",
-            "system_prompt": "System Prompt: "
+            "system_prompt": "System Prompt: ",
+            "update_prompt": "Update Prompt"
         },
         "dialog": {
             "greeting": "AI Chat Mode",

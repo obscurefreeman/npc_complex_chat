@@ -19,11 +19,9 @@ if SERVER then
     util.AddNetworkString("NPCDialogMenuOpened")
     util.AddNetworkString("NPCDialogMenuClosed")
 
-    -- 添加接收牌组选择的网络消息
     util.AddNetworkString("SelectPlayerDeck")
-
-    -- 添加网络消息
     util.AddNetworkString("UpdatePlayerDeck")
+    util.AddNetworkString("UpdateNPCPrompt")
 
     -- 修改AssignNPCIdentity函数，添加绰号分配
     function AssignNPCIdentity(ent, npcInfo)
@@ -118,6 +116,11 @@ if SERVER then
             identity.exp = 0
             identity.exp_per_rank = CalculateExpNeeded(identity.rank)
             identity.name = gamename
+        end
+
+        identity.prompt = "prompt." .. tostring(identity.camp)
+        if identity.type == "maincharacter" then
+            identity.prompt = "prompt.maincharacter"
         end
 
         -- 在分配完基本信息后添加tag分配
@@ -354,6 +357,22 @@ if SERVER then
         for entIndex, npcData in pairs(clientNPCs) do
             PrintTable(npcData)
             print("----------------------")
+        end
+    end)
+
+    -- 接收客户端请求更新NPC提示词的处理函数
+    net.Receive("UpdateNPCPrompt", function(len, ply)
+        local entIndex = net.ReadInt(32)
+        local newPrompt = net.ReadString()
+        
+        if OFNPCS[entIndex] then
+            OFNPCS[entIndex].prompt = newPrompt
+            
+            -- 广播更新后的身份信息给所有客户端
+            net.Start("NPCIdentityUpdate")
+                net.WriteEntity(Entity(entIndex))
+                net.WriteTable(OFNPCS[entIndex])
+            net.Broadcast()
         end
     end)
 end
