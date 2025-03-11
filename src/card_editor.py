@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import os
 import json
 import tkinter as tk
@@ -11,8 +10,8 @@ class CardEditor:
         self.root = root
         self.root.title("卡牌编辑器")
         self.style = ttk.Style()
-        self.style.theme_use('clam')  # 使用现代主题
-        self.configure_styles()  # 添加样式配置方法
+        self.style.theme_use('clam')
+        self.configure_styles()
         self.data = None
         self.current_group = None
         self.current_card = None
@@ -21,13 +20,10 @@ class CardEditor:
         self.current_lang = "zh"
         self.load_language()
         
-        # 创建主界面布局
         self.create_widgets()
         
-        # 自动加载cards.json
         self.load_file(os.path.join("data", "of_npcp", "cards.json"))
 
-        # 在创建控件后添加语言切换菜单
         self.create_language_menu()
 
     def configure_styles(self):
@@ -75,15 +71,12 @@ class CardEditor:
             font=('Segoe UI Emoji', 12))
 
     def create_widgets(self):
-        # 主布局使用PanedWindow实现可调节布局
         main_panel = ttk.PanedWindow(self.root, orient=tk.HORIZONTAL)
         main_panel.pack(fill=tk.BOTH, expand=True)
 
-        # 左侧面板 - 阵营管理
         left_panel = ttk.Frame(main_panel, width=200)
         main_panel.add(left_panel, weight=1)
         
-        # 修改后的阵营列表头部（与卡牌列表风格一致）
         group_header = ttk.Frame(left_panel)
         group_header.pack(fill=tk.X, pady=(0,5))
         ttk.Label(group_header, text=self.lang['card_editor']["group_list"], font=('微软雅黑', 11, 'bold')).pack(side=tk.LEFT)
@@ -91,20 +84,16 @@ class CardEditor:
                   command=self.add_group, 
                   style='Small.TButton').pack(side=tk.RIGHT, padx=2)
         
-        # 将Listbox替换为Treeview
         self.group_tree = ttk.Treeview(left_panel, columns=('name',), show='headings', height=10)
         self.group_tree.heading('name', text='阵营名称')
         self.group_tree.column('name', width=180, anchor='w')
         self.group_tree.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
         self.group_tree.bind('<<TreeviewSelect>>', self.on_group_select)
-        # 添加鼠标滚轮事件绑定
         self.group_tree.bind("<MouseWheel>", self.on_group_wheel)
 
-        # 中间面板 - 卡牌列表
         middle_panel = ttk.Frame(main_panel, width=400)
         main_panel.add(middle_panel, weight=2)
         
-        # 中间面板头部（与阵营列表风格一致）
         card_header = ttk.Frame(middle_panel)
         card_header.pack(fill=tk.X, pady=(0,5))
         ttk.Label(card_header, text=self.lang['card_editor']["card_list"], font=('微软雅黑', 11, 'bold')).pack(side=tk.LEFT)
@@ -127,30 +116,23 @@ class CardEditor:
         self.card_tree.column('tag', width=150, anchor='w')
         self.card_tree.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
         self.card_tree.bind('<<TreeviewSelect>>', self.on_card_select)
-        # 添加鼠标滚轮事件绑定
         self.card_tree.bind("<MouseWheel>", self.on_card_wheel)
 
-        # 右侧面板 - 卡牌详情
         right_panel = ttk.Frame(main_panel, width=400)
         main_panel.add(right_panel, weight=2)
         
-        # 使用网格布局管理器
         right_panel.grid_columnconfigure(0, weight=1)
-        right_panel.grid_rowconfigure(0, weight=1)  # 图片区域
-        right_panel.grid_rowconfigure(1, weight=2)  # 详情区域
+        right_panel.grid_rowconfigure(0, weight=1)
+        right_panel.grid_rowconfigure(1, weight=2)
 
-        # 卡牌图片
         self.card_image = tk.Label(right_panel)
         self.card_image.grid(row=0, column=0, pady=10, sticky='ns', padx=10)
 
-        # 卡牌详情框架
         self.detail_frame = ttk.LabelFrame(right_panel, text="卡牌详情")
         self.detail_frame.grid(row=1, column=0, sticky='nsew', padx=5, pady=5)
 
-        # 使用网格布局管理器
         self.detail_frame.grid_columnconfigure(1, weight=1)
 
-        # 详情编辑控件
         ttk.Label(self.detail_frame, text="索引:").grid(row=0, column=0, sticky=tk.W)
         self.key_entry = ttk.Entry(self.detail_frame)
         self.key_entry.grid(row=0, column=1, sticky=tk.EW, padx=5, pady=2)
@@ -185,11 +167,9 @@ class CardEditor:
         self.tag_entry = ttk.Entry(self.detail_frame)
         self.tag_entry.grid(row=8, column=1, sticky=tk.EW, padx=5, pady=2)
         
-        # 保存按钮
         self.save_btn = ttk.Button(self.detail_frame, text="保存修改", command=self.save_card)
         self.save_btn.grid(row=9, column=1, sticky=tk.E, pady=5)
 
-        # 修改滚动条事件绑定（完全移除悬停样式配置）
         def add_scrollbar(text_widget, row):
             scrollbar = ttk.Scrollbar(self.detail_frame, 
                                     command=text_widget.yview,
@@ -197,11 +177,9 @@ class CardEditor:
             scrollbar.grid(row=row, column=2, sticky='ns', pady=5)
             text_widget.config(yscrollcommand=scrollbar.set)
 
-        # 修改滚动条调用方式
         add_scrollbar(self.desc_text, 4)
         add_scrollbar(self.response_text, 6)
 
-        # 优化文本区域配置（添加边框圆角）
         for text_widget in [self.desc_text, self.response_text]:
             text_widget.config(
                 relief='flat',
@@ -212,11 +190,9 @@ class CardEditor:
                 pady=8
             )
 
-        # 修改输入框样式
         for entry in [self.key_entry, self.name_entry, self.type_entry, self.cost_entry, self.tag_entry]:
             entry.config(font=('微软雅黑', 10), background='#FFFFFF')
 
-        # 修改保存按钮样式
         self.save_btn.config(style='Accent.TButton')
         self.style.configure('Accent.TButton', 
             background='#4CAF50', 
@@ -224,7 +200,6 @@ class CardEditor:
             font=('微软雅黑', 11, 'bold'),
             padding=6)
 
-        # 增加控件间距（统一修改所有padx/pady参数）
         for panel in [left_panel, middle_panel, right_panel]:
             for child in panel.winfo_children():
                 if isinstance(child, (ttk.Label, ttk.Button)):
@@ -254,9 +229,7 @@ class CardEditor:
     def populate_cards(self):
         self.card_tree.delete(*self.card_tree.get_children())
         if self.current_group in self.data:
-            # 合并通用卡牌和当前阵营卡牌
             all_cards = {**self.data.get('general', {}), **self.data.get(self.current_group, {})}
-            # 按消耗排序
             sorted_cards = sorted(all_cards.items(), key=lambda x: int(x[1]['cost']))
             for index, (card_id, card_data) in enumerate(sorted_cards, start=1):
                 self.card_tree.insert('', 'end', 
@@ -272,7 +245,6 @@ class CardEditor:
         selected = self.card_tree.selection()
         if selected:
             self.current_card_key = selected[0]
-            # 先检查当前阵营，再检查通用卡牌
             self.current_card = self.data[self.current_group].get(self.current_card_key) or \
                                self.data['general'].get(self.current_card_key, {})
             self.show_card_details()
@@ -281,7 +253,6 @@ class CardEditor:
         if not self.current_card or not self.current_card_key:
             return
         
-        # 显示卡牌图片
         image_path = os.path.join(self.image_dir, f"{self.current_card_key}.png")
         if os.path.exists(image_path):
             try:
@@ -295,7 +266,6 @@ class CardEditor:
         else:
             self.card_image.config(image='')
         
-        # 填充编辑框
         self.key_entry.delete(0, tk.END)
         self.key_entry.insert(0, self.current_card_key)
         
@@ -321,25 +291,19 @@ class CardEditor:
         if not self.current_card:
             return
         
-        # 获取新的索引名称
         new_key = self.key_entry.get()
         
-        # 如果索引名称改变了
         if new_key != self.current_card_key:
-            # 获取旧图片路径
             old_image_path = os.path.join(self.image_dir, f"{self.current_card_key}.png")
             old_preview_path = os.path.join(self.image_dir.replace("large", "preview"), f"{self.current_card_key}.png")
             
-            # 删除旧的卡牌数据
             if self.current_card_key in self.data[self.current_group]:
                 del self.data[self.current_group][self.current_card_key]
             elif self.current_card_key in self.data['general']:
                 del self.data['general'][self.current_card_key]
             
-            # 更新当前卡牌键
             self.current_card_key = new_key
             
-            # 重命名大图文件
             if os.path.exists(old_image_path):
                 new_image_path = os.path.join(self.image_dir, f"{new_key}.png")
                 try:
@@ -347,7 +311,6 @@ class CardEditor:
                 except Exception as e:
                     messagebox.showerror("错误", f"重命名大图时出错: {str(e)}")
             
-            # 重命名预览图文件
             if os.path.exists(old_preview_path):
                 new_preview_path = os.path.join(self.image_dir.replace("large", "preview"), f"{new_key}.png")
                 try:
@@ -355,25 +318,20 @@ class CardEditor:
                 except Exception as e:
                     messagebox.showerror("错误", f"重命名预览图时出错: {str(e)}")
         
-        # 更新卡牌数据
         self.current_card['name'] = self.name_entry.get()
         self.current_card['type'] = self.type_entry.get()
         self.current_card['cost'] = self.cost_entry.get()
         self.current_card['d'] = self.desc_text.get(1.0, tk.END).strip().split("\n")
         self.current_card['a'] = self.response_text.get(1.0, tk.END).strip().split("\n")
-        # 处理中英文逗号分隔的标签
         self.current_card['tag'] = [t.strip() for t in re.split(r'[，,]', self.tag_entry.get()) if t.strip()]
         
-        # 保存到数据中
         if self.current_card_key in self.data['general']:
             self.data['general'][self.current_card_key] = self.current_card
         else:
             self.data[self.current_group][self.current_card_key] = self.current_card
         
-        # 更新树状视图
         self.populate_cards()
         
-        # 保存到文件
         self.save_to_file()
         
         messagebox.showinfo(self.lang['card_editor']["success"], self.lang['card_editor']["save_success"])
@@ -381,7 +339,6 @@ class CardEditor:
     def save_to_file(self):
         file_path = os.path.join("data", "of_npcp", "cards.json")
         try:
-            # 对每个阵营的卡牌按消耗排序
             sorted_data = {}
             for group, cards in self.data.items():
                 if group == 'info':
@@ -412,7 +369,6 @@ class CardEditor:
         lang_menu.add_command(label="English", command=lambda: self.set_language("en"))
         menu_bar.add_cascade(label="Language", menu=lang_menu)
         self.root.config(menu=menu_bar)
-        # 设置全局菜单字体
         self.root.option_add('*Menu*Font', 'Segoe UI Emoji 12')
 
     def set_language(self, lang):
@@ -422,7 +378,6 @@ class CardEditor:
 
     def update_ui_text(self):
         try:
-            # 修复标签更新方式
             labels = {
                 0: "key", 1: "name", 2: "type", 3: "cost",
                 4: "desc", 6: "response", 8: "tags"
@@ -430,12 +385,9 @@ class CardEditor:
             for row, text_key in labels.items():
                 label = self.detail_frame.grid_slaves(row=row, column=0)[0]
                 label.config(text=f"{self.lang['card_editor'][text_key]}:")
-            
-            # 更新其他文本元素...
         except Exception as e:
             messagebox.showerror("UI错误", f"更新界面失败: {str(e)}")
 
-    # 新增添加卡牌方法
     def add_card(self):
         new_key = simpledialog.askstring(self.lang['card_editor']["add_card"], self.lang['card_editor']["key"]+":")
         if new_key:
@@ -451,7 +403,6 @@ class CardEditor:
             self.populate_cards()
             self.save_to_file()
 
-    # 新增添加阵营方法  
     def add_group(self):
         dialog = tk.Toplevel(self.root)
         dialog.title(self.lang['card_editor']["add_group"])
@@ -487,9 +438,7 @@ class CardEditor:
         
         ttk.Button(dialog, text=self.lang['card_editor']["confirm"], command=save_group).grid(row=3, columnspan=2, pady=5)
 
-    # 新增滚轮切换方法
     def on_group_wheel(self, event):
-        """处理阵营列表滚轮事件"""
         children = self.group_tree.get_children()
         if not children:
             return
@@ -497,13 +446,12 @@ class CardEditor:
         current = self.group_tree.selection()
         if current:
             index = children.index(current[0])
-            delta = -1 if event.delta > 0 else 1  # Windows和Mac的delta值方向相反
+            delta = -1 if event.delta > 0 else 1
             new_index = max(0, min(len(children)-1, index + delta))
             self.group_tree.selection_set(children[new_index])
             self.on_group_select(None)
 
     def on_card_wheel(self, event):
-        """处理卡牌列表滚轮事件"""
         children = self.card_tree.get_children()
         if not children:
             return
@@ -511,7 +459,7 @@ class CardEditor:
         current = self.card_tree.selection()
         if current:
             index = children.index(current[0])
-            delta = -1 if event.delta > 0 else 1  # Windows和Mac的delta值方向相反
+            delta = -1 if event.delta > 0 else 1
             new_index = max(0, min(len(children)-1, index + delta))
             self.card_tree.selection_set(children[new_index])
             self.on_card_select(None)
@@ -519,4 +467,4 @@ class CardEditor:
 if __name__ == "__main__":
     root = tk.Tk()
     app = CardEditor(root)
-    root.mainloop() 
+    root.mainloop()

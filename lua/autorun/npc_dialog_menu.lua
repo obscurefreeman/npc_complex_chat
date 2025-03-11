@@ -243,15 +243,7 @@ if CLIENT then
                 if npcIdentity.type == "maincharacter" then
                     promptcontent = L("prompt.maincharacter")
                 end
-                local npcName = L(npcIdentity.name)
-                if npcIdentity.name == npcIdentity.gamename then
-                    npcName = language.GetPhrase(npcIdentity.gamename)
-                end
-                promptcontent = promptcontent:gsub("/name/", npcName)
-                promptcontent = promptcontent:gsub("/nickname/", L(npcIdentity.nickname))
-                promptcontent = promptcontent:gsub("/job/", L(npcIdentity.job))
-                promptcontent = promptcontent:gsub("/camp/", L("camp."..tostring(npcIdentity.camp)))
-                promptcontent = promptcontent:gsub("/map/", game.GetMap())
+                promptcontent = ReplacePlaceholders(promptcontent, npcIdentity)
                 local aiDialogs = { { role = "system", content = promptcontent } }
                 for _, dialog in ipairs(updatedData.dialogHistory) do
                     local translatedText = L(dialog.text)
@@ -268,9 +260,7 @@ if CLIENT then
                     else
                         speakerName = dialog.speaker
                     end
-                    translatedText = translatedText:gsub("/map/", game.GetMap())
-                    translatedText = translatedText:gsub("/name/", npcName)
-                    translatedText = translatedText:gsub("/nickname/", L(npcIdentity.nickname))
+                    translatedText = ReplacePlaceholders(translatedText, npcIdentity)
 
                     -- 定义对话类型与提示信息的映射表
                     local dialogFootnotes = {
@@ -437,15 +427,7 @@ if CLIENT then
         end
 
         for _, option in ipairs(playerTalkOptions) do
-            local npcName = L(npcIdentity.name)
-            if npcIdentity.name == npcIdentity.gamename then
-                npcName = language.GetPhrase(npcIdentity.gamename)
-            end
-            local translatedOption = L(option):gsub("/name/", npcName)
-            translatedOption = translatedOption:gsub("/nickname/", L(npcIdentity.nickname))
-            translatedOption = translatedOption:gsub("/job/", L(npcIdentity.job))
-            translatedOption = translatedOption:gsub("/camp/", L("camp."..tostring(npcIdentity.camp)))
-            translatedOption = translatedOption:gsub("/map/", game.GetMap())
+            local translatedOption = ReplacePlaceholders(L(option), npcIdentity)  -- 使用新函数替换
 
             -- 创建按钮并添加到ScrollPanel
             local button = vgui.Create("OFChatButton", scrollPanel)
@@ -511,7 +493,6 @@ if CLIENT then
                             newTextEntry:Dock(TOP)
                             newTextEntry:DockMargin(4, 4, 4, 4)
                             newTextEntry:SetFont("ofgui_huge")
-                            newTextEntry:SetMultiline( true )
                             newTextEntry:SetTall(100 * OFGUI.ScreenScale)
                             newTextEntry.OnEnter = self.OnEnter  -- 保持相同的事件处理
                         end
@@ -545,6 +526,7 @@ if CLIENT then
                     -- 创建卡牌按钮
                     local function CreateNegotiateButton(cardInfo)
                         local playerNegotiate = cardInfo.data.d[math.random(#cardInfo.data.d)]
+                        playerNegotiate = ReplacePlaceholders(playerNegotiate, npcIdentity)
                         local npcNegotiate = cardInfo.data.a[math.random(#cardInfo.data.a)]
                         local button = vgui.Create("OFChatButton", scrollPanel)
                         button:SetChatText(playerNegotiate)

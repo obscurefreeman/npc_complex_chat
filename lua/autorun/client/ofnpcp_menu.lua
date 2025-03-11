@@ -117,13 +117,20 @@ local function RefreshNPCButtons(left_panel, right_panel)
 				commentEntry:SetValue("")
 			end
 		end
-		local campButton = vgui.Create("OFMessage", right_panel)
-		campButton:SetHeight(80 * OFGUI.ScreenScale)
-		campButton:Dock(TOP)
-		campButton:DockMargin(4, 4, 4, 4)
-		campButton:SetName(L("ui.ai_system.system_prompt") .. L("camp."..npcData.camp))
-		campButton:SetText(L("prompt."..npcData.camp))
-		campButton:SetColor(GLOBAL_OFNPC_DATA.cards.info[npcData.camp] and GLOBAL_OFNPC_DATA.cards.info[npcData.camp].color or color_white)
+		local promptcontent = L("prompt."..npcData.camp)
+		promptcontent = ReplacePlaceholders(promptcontent, npcData)
+		local campTextEntry = vgui.Create("OFMessage", right_panel)
+		campTextEntry:SetHeight(80 * OFGUI.ScreenScale)
+		campTextEntry:Dock(TOP)
+		campTextEntry:DockMargin(4, 4, 4, 4)
+		campTextEntry:SetName(L("ui.ai_system.system_prompt") .. L("camp."..npcData.camp))
+		campTextEntry:SetText(promptcontent)
+		campTextEntry:SetColor(GLOBAL_OFNPC_DATA.cards.info[npcData.camp] and GLOBAL_OFNPC_DATA.cards.info[npcData.camp].color or color_white)
+		-- 改成输入框
+		-- campTextEntry:SetValue(L("ui.ai_system.system_prompt") .. L("camp."..npcData.camp))
+		-- campTextEntry:SetMultiline( true )
+		-- campTextEntry:SetText(promptcontent)
+		-- campTextEntry:SetTextColor(GLOBAL_OFNPC_DATA.cards.info[npcData.camp] and GLOBAL_OFNPC_DATA.cards.info[npcData.camp].color or color_white)
 	end
 	
 	-- 优化右键菜单选项
