@@ -38,6 +38,24 @@ if SERVER then
             identity.gamename = gamename
         end
 
+        local femaleVoices = {}
+        local maleVoices = {}
+        
+        local serverLang = GetConVar("gmod_language"):GetString():match("^zh%-") and "zh" or "en"
+
+
+        for _, voice in ipairs(GLOBAL_OFNPC_DATA.voice.voices) do
+            if voice.language == serverLang then
+                for _, v in ipairs(voice.voices) do
+                    if v.gender == "female" then
+                        table.insert(femaleVoices, v.code)
+                    elseif v.gender == "male" then
+                        table.insert(maleVoices, v.code)
+                    end
+                end
+            end
+        end
+
         if npcInfo == "npc_citizen" then
             local camps = {
                 "resistance", 
@@ -69,8 +87,10 @@ if SERVER then
 
             if string.find(identity.model, "female") then
                 identity.gender = "female"
+                identity.voice = femaleVoices[math.random(#femaleVoices)]
             elseif string.find(identity.model, "male") then
                 identity.gender = "male"
+                identity.voice = maleVoices[math.random(#maleVoices)]
             end
 
             local jobSpecializations = {}
@@ -100,6 +120,7 @@ if SERVER then
             identity.exp = 0
             identity.exp_per_rank = CalculateExpNeeded(identity.rank)
             identity.name = GLOBAL_OFNPC_DATA.names.male[math.random(#GLOBAL_OFNPC_DATA.names.male)]
+            identity.voice = maleVoices[math.random(#maleVoices)]
         elseif npcInfo == "npc_combine_s" then
             identity.camp = "combine"
             identity.type = "combine"
@@ -108,6 +129,7 @@ if SERVER then
             identity.exp = 0
             identity.exp_per_rank = CalculateExpNeeded(identity.rank)
             identity.name = GLOBAL_OFNPC_DATA.names.male[math.random(#GLOBAL_OFNPC_DATA.names.male)]
+            identity.voice = maleVoices[math.random(#maleVoices)]
         else
             identity.camp = GLOBAL_OFNPC_DATA.anim[npcInfo].camp
             identity.type = "maincharacter"
@@ -116,6 +138,7 @@ if SERVER then
             identity.exp = 0
             identity.exp_per_rank = CalculateExpNeeded(identity.rank)
             identity.name = gamename
+            identity.voice = maleVoices[math.random(#maleVoices)]
         end
 
         identity.prompt = "prompt." .. tostring(identity.camp)
