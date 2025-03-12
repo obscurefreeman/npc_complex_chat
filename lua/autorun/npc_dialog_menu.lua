@@ -4,7 +4,7 @@ if SERVER then
         local npc = net.ReadEntity()
         local translatedOption = net.ReadString()
         local optionType = net.ReadString()
-        local aidetail = net.ReadTable()
+        local aidetail = net.BytesLeft() > 0 and net.ReadTable() or {}
         
         if not (IsValid(npc) and IsValid(ply)) then return end
         

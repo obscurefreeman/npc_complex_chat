@@ -209,6 +209,7 @@ if CLIENT then
             table.insert(activeDialogs, dialog)
 
             CreateNPCDialogSubtitles(npc, translatedText)
+            PlayNPCDialogVoice(npc, translatedText)
         end
     end)
     
