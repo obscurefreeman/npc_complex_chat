@@ -28,8 +28,20 @@ function PlayNPCDialogVoice(npc, text)
         voiceCode = npcIdentity.voice
     end
 
+    -- 读取本地保存的配音设置
+    local voiceSettings = file.Read("of_npcp/voice_settings.txt", "DATA")
+    if voiceSettings then
+        voiceSettings = util.JSONToTable(voiceSettings)
+    else
+        -- 默认设置
+        voiceSettings = {
+            volume = 5.0,
+            api_url = "https://freetv-mocha.vercel.app/api/aiyue"
+        }
+    end
+
     local encodedText = UrlEncode(text)
-    local url = "https://freetv-mocha.vercel.app//api/aiyue?text=" .. encodedText .. "&voiceName=" .. voiceCode ..
+    local url = voiceSettings.api_url .. "?text=" .. encodedText .. "&voiceName=" .. voiceCode ..
                 "&contentType=" .. UrlEncode("text/plain") ..
                 "&format=" .. UrlEncode("audio-24khz-48kbitrate-mono-mp3")
 
@@ -40,12 +52,18 @@ function PlayNPCDialogVoice(npc, text)
         if IsValid(station) then
             -- 调试信息：显示音频播放信息
             if IsValid(npc) then
-                print("[DEBUG] Playing audio at position:", npc:GetPos())
-                print("[DEBUG] Audio volume set to 5.0")
-
-                station:SetPos(npc:GetPos())
-                station:SetVolume(5.0)
+                station:SetVolume(voiceSettings.volume)  -- 使用保存的音量设置
                 station:Play()
+
+                hook.Add("Think", "FollowNPCSound", function()
+                    if IsValid(station) and IsValid(npc) then
+                        station:SetPos(npc:GetPos())
+                    end
+                end)
+
+                timer.Simple(station:GetLength(), function()
+                    hook.Remove("Think", "FollowNPCSound")
+                end)
             else
                 print("[ERROR] NPC entity is invalid, cannot play audio")
             end

@@ -142,6 +142,52 @@ local function RefreshNPCButtons(left_panel, right_panel)
 				net.SendToServer()
 			end
 		end
+		
+		local voiceComboBox = vgui.Create("OFComboBox", right_panel)
+		voiceComboBox:Dock(TOP)
+		voiceComboBox:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+		voiceComboBox:SetTall(32 * OFGUI.ScreenScale)
+		voiceComboBox:SetValue(L("ui.npclist.select_voice"))
+		
+		-- 获取所有可用的配音
+		local voices = {}
+		local voiceMap = {}  -- 新增哈希表
+		local clientLang = GetConVar("gmod_language"):GetString():match("^zh%-") and "zh" or "en"
+		for _, voiceGroup in ipairs(GLOBAL_OFNPC_DATA.voice.voices) do
+			if voiceGroup.language == clientLang then
+				for _, voice in ipairs(voiceGroup.voices) do
+					table.insert(voices, {name = voice.name, code = voice.code})
+					voiceMap[voice.name] = voice.code  -- 填充哈希表
+				end
+			end
+		end
+		
+		-- 添加配音选项
+		for _, voice in ipairs(voices) do
+			voiceComboBox:AddChoice(voice.name, voice.code)
+		end
+		
+		-- 设置当前配音
+		if npcData.voice then
+			for _, voice in ipairs(voices) do
+				if voice.code == npcData.voice then
+					voiceComboBox:SetValue(voice.name)
+					break
+				end
+			end
+		end
+		
+		-- 当选择改变时立即发送网络请求
+		voiceComboBox.OnSelect = function(panel, index, value, data)
+			local selectedVoiceCode = voiceMap[value]
+			if selectedVoiceCode then
+				-- 发送更新请求到服务器
+				net.Start("UpdateNPCVoice")
+					net.WriteInt(entIndex, 32)
+					net.WriteString(selectedVoiceCode)
+				net.SendToServer()
+			end
+		end
 	end
 	
 	-- 优化右键菜单选项
@@ -320,6 +366,81 @@ local function RefreshCardButtons(left_panel, right_panel)
     end
 end
 
+-- 创建控件辅助函数
+local function CreateControl(parent, controlType, options)
+    local control = vgui.Create(controlType, parent)
+    control:Dock(TOP)
+    control:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+    control:SetTall(32 * OFGUI.ScreenScale)
+    if options then
+        for k, v in pairs(options) do
+            control[k](control, v)
+        end
+    end
+    return control
+end
+
+local function LoadpersonalizationSettings(personalizationLeftPanel)
+    personalizationLeftPanel:Clear()
+
+    -- 读取本地保存的配音设置
+    local personalizationSettings = file.Read("of_npcp/personalization_settings.txt", "DATA")
+    if personalizationSettings then
+        personalizationSettings = util.JSONToTable(personalizationSettings)
+    else
+        -- 默认设置
+        personalizationSettings = {
+            volume = 5.0,
+            api_url = "https://freetv-mocha.vercel.app/api/aiyue"
+        }
+    end
+
+    -- 创建API URL输入框
+    local apiUrlEntry = CreateControl(personalizationLeftPanel, "OFTextEntry", {
+        SetValue = personalizationSettings.api_url,
+        SetPlaceholderText = "API URL"
+    })
+
+	-- 创建音量滑块
+	local volumeSlider = CreateControl(personalizationLeftPanel, "OFNumSlider", {
+		SetText = "音量设置",
+		SetMin = 0,
+		SetMax = 10,
+		SetDecimals = 1,
+		SetValue = personalizationSettings.volume
+	})
+
+    -- 保存按钮
+    local saveButton = CreateControl(personalizationLeftPanel, "OFButton", {
+        SetText = "保存设置"
+    })
+    saveButton.DoClick = function()
+        local newSettings = {
+            volume = tonumber(volumeSlider:GetValue()) or 1.0,
+            api_url = apiUrlEntry:GetValue()
+        }
+        file.Write("of_npcp/personalization_settings.txt", util.TableToJSON(newSettings))
+        notification.AddLegacy("配音设置已保存", NOTIFY_GENERIC, 5)
+    end
+
+    local jsonUrlEntry = CreateControl(personalizationLeftPanel, "OFTextEntry", {
+        SetPlaceholderText = "Discord JSON URL"
+    })
+
+    local saveButton2 = CreateControl(personalizationLeftPanel, "OFButton", {
+        SetText = "设置NPC名称池"
+    })
+    saveButton2.DoClick = function()
+        local newUrl = jsonUrlEntry:GetValue()
+        if newUrl and newUrl ~= "" then
+            net.Start("UpdateNPCNameAPI")
+                net.WriteString(newUrl)
+            net.SendToServer()
+        end
+        notification.AddLegacy("名称设置已发送至服务器", NOTIFY_GENERIC, 5)
+    end
+end
+
 local function AddOFFrame()
 	if IsValid(frame) then  -- 检查是否已经有一个打开的菜单
 		frame:Close()  -- 关闭已打开的菜单
@@ -381,20 +502,6 @@ local function AddOFFrame()
 	local aiSettings = file.Read("of_npcp/ai_settings.txt", "DATA")
 	if aiSettings then
 		aiSettings = util.JSONToTable(aiSettings)
-	end
-
-	-- 创建控件辅助函数
-	local function CreateControl(parent, controlType, options)
-		local control = vgui.Create(controlType, parent)
-		control:Dock(TOP)
-		control:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
-		control:SetTall(32 * OFGUI.ScreenScale)
-		if options then
-			for k, v in pairs(options) do
-				control[k](control, v)
-			end
-		end
-		return control
 	end
 
 	-- 加载AI设置面板
@@ -518,6 +625,25 @@ local function AddOFFrame()
 	frame.OnRemove = function()
 		hook.Remove("RefreshNPCMenu", "UpdateNPCButtonList")
 	end
+
+	-- 添加配音设置面板
+	local pan4 = vgui.Create("EditablePanel", sheet)
+	sheet:AddSheet("个性化", pan4, "icon16/sound.png")
+
+	-- 创建水平分割面板
+	local personalizationHorizontalDivider = vgui.Create("DHorizontalDivider", pan4)
+	personalizationHorizontalDivider:Dock(FILL)
+	personalizationHorizontalDivider:DockMargin(6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale)
+	personalizationHorizontalDivider:SetLeftWidth(ScrW() / 4)
+
+	local personalizationLeftPanel = vgui.Create("OFScrollPanel")
+	personalizationHorizontalDivider:SetLeft(personalizationLeftPanel)
+
+	local personalizationRightPanel = vgui.Create("OFScrollPanel")
+	personalizationHorizontalDivider:SetRight(personalizationRightPanel)
+
+	-- 加载默认配音设置
+	LoadpersonalizationSettings(personalizationLeftPanel)
 end
 
 list.Set("DesktopWindows", "ofnpcp", {

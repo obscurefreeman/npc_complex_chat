@@ -22,8 +22,92 @@ if SERVER then
     util.AddNetworkString("SelectPlayerDeck")
     util.AddNetworkString("UpdatePlayerDeck")
     util.AddNetworkString("UpdateNPCPrompt")
+    util.AddNetworkString("UpdateNPCVoice")
+    util.AddNetworkString("UpdateNPCNameAPI")
 
-    -- 修改AssignNPCIdentity函数，添加绰号分配
+    -- 新增全局变量存储名称池
+    OFNPC_NAMES = {
+        api_url = "",
+        names = {},
+        last_update = 0
+    }
+
+    -- 读取本地保存的API设置
+    local function LoadNameSettings()
+        local settings = file.Read("of_npcp/name_settings.txt", "DATA")
+        if settings then
+            OFNPC_NAMES = util.JSONToTable(settings)
+        end
+    end
+
+    -- 保存API设置到本地
+    local function SaveNameSettings()
+        file.Write("of_npcp/name_settings.txt", util.TableToJSON(OFNPC_NAMES))
+    end
+
+    -- 处理API URL更新
+    net.Receive("UpdateNPCNameAPI", function(len, ply)
+        if not ply:IsAdmin() then return end
+        
+        local newUrl = net.ReadString()
+        OFNPC_NAMES.api_url = newUrl
+        SaveNameSettings()
+        
+        UpdateNamePool()
+    end)
+
+    -- 从API获取名称
+    function UpdateNamePool()
+        if OFNPC_NAMES.api_url == "" then 
+            print("[DEBUG] API URL is empty, skipping name pool update")
+            return 
+        end
+        
+        print("[DEBUG] Starting name pool update from URL: " .. OFNPC_NAMES.api_url)
+        
+        http.Fetch(OFNPC_NAMES.api_url,
+            function(body)
+                print("[DEBUG] Received API response, length: " .. #body)
+                
+                local success, data = pcall(util.JSONToTable, body)
+                if not success then
+                    print("[ERROR] Failed to parse JSON: " .. data)
+                    return
+                end
+                
+                if data and data.members and #data.members > 0 then
+                    print("[DEBUG] Found " .. #data.members .. " members in response")
+                    
+                    OFNPC_NAMES.names = {}
+                    local validCount = 0
+                    
+                    for _, member in ipairs(data.members) do
+                        if member.username then
+                            table.insert(OFNPC_NAMES.names, member.username)
+                            validCount = validCount + 1
+                        end
+                    end
+                    
+                    OFNPC_NAMES.last_update = os.time()
+                    SaveNameSettings()
+                    
+                    print("[DEBUG] Successfully updated name pool with " .. validCount .. " valid names")
+                else
+                    print("[WARNING] No valid members data found in response")
+                end
+            end,
+            function(error)
+                print("[ERROR] Failed to fetch names: " .. error)
+            end
+        )
+    end
+
+    -- 定时更新名称池
+    timer.Create("OFNPCNameUpdate", 600, 0, function()
+        UpdateNamePool()
+    end)
+
+    -- 修改AssignNPCIdentity函数，使用API名称
     function AssignNPCIdentity(ent, npcInfo)
         local identity = {}
 
@@ -108,9 +192,9 @@ if SERVER then
 
             -- 根据性别分配名字
             if identity.gender == "female" then
-                identity.name = GLOBAL_OFNPC_DATA.names.female[math.random(#GLOBAL_OFNPC_DATA.names.female)]
+                identity.name = OFNPC_NAMES.names[math.random(#OFNPC_NAMES.names)] or GLOBAL_OFNPC_DATA.names.female[math.random(#GLOBAL_OFNPC_DATA.names.female)]
             else
-                identity.name = GLOBAL_OFNPC_DATA.names.male[math.random(#GLOBAL_OFNPC_DATA.names.male)]
+                identity.name = OFNPC_NAMES.names[math.random(#OFNPC_NAMES.names)] or GLOBAL_OFNPC_DATA.names.male[math.random(#GLOBAL_OFNPC_DATA.names.male)]
             end
         elseif npcInfo == "npc_metropolice" then
             identity.camp = "combine"
@@ -119,7 +203,7 @@ if SERVER then
             identity.job = GLOBAL_OFNPC_DATA.jobData.citizen[math.random(#GLOBAL_OFNPC_DATA.jobData.citizen)].job
             identity.exp = 0
             identity.exp_per_rank = CalculateExpNeeded(identity.rank)
-            identity.name = GLOBAL_OFNPC_DATA.names.male[math.random(#GLOBAL_OFNPC_DATA.names.male)]
+            identity.name = OFNPC_NAMES.names[math.random(#OFNPC_NAMES.names)] or GLOBAL_OFNPC_DATA.names.male[math.random(#GLOBAL_OFNPC_DATA.names.male)]
             identity.voice = maleVoices[math.random(#maleVoices)]
         elseif npcInfo == "npc_combine_s" then
             identity.camp = "combine"
@@ -128,7 +212,7 @@ if SERVER then
             identity.job = GLOBAL_OFNPC_DATA.jobData.citizen[math.random(#GLOBAL_OFNPC_DATA.jobData.citizen)].job
             identity.exp = 0
             identity.exp_per_rank = CalculateExpNeeded(identity.rank)
-            identity.name = GLOBAL_OFNPC_DATA.names.male[math.random(#GLOBAL_OFNPC_DATA.names.male)]
+            identity.name = OFNPC_NAMES.names[math.random(#OFNPC_NAMES.names)] or GLOBAL_OFNPC_DATA.names.male[math.random(#GLOBAL_OFNPC_DATA.names.male)]
             identity.voice = maleVoices[math.random(#maleVoices)]
         else
             identity.camp = GLOBAL_OFNPC_DATA.anim[npcInfo].camp
@@ -396,6 +480,31 @@ if SERVER then
                 net.WriteEntity(Entity(entIndex))
                 net.WriteTable(OFNPCS[entIndex])
             net.Broadcast()
+        end
+    end)
+
+    -- 在服务器端添加接收处理函数
+    net.Receive("UpdateNPCVoice", function(len, ply)
+        local entIndex = net.ReadInt(32)
+        local newVoice = net.ReadString()
+        
+        if OFNPCS[entIndex] then
+            OFNPCS[entIndex].voice = newVoice
+            
+            -- 广播更新后的身份信息给所有客户端
+            net.Start("NPCIdentityUpdate")
+                net.WriteEntity(Entity(entIndex))
+                net.WriteTable(OFNPCS[entIndex])
+            net.Broadcast()
+        end
+    end)
+
+    -- 游戏启动时加载设置
+    hook.Add("Initialize", "LoadNameSettings", function()
+        LoadNameSettings()
+        -- 如果超过1小时未更新，立即更新
+        if os.time() - OFNPC_NAMES.last_update > 3600 then
+            UpdateNamePool()
         end
     end)
 end

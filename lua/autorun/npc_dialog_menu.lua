@@ -443,138 +443,170 @@ if CLIENT then
             -- 处理按钮点击事件
             button.DoClick = function()
                 if optionTypes[option] == "greeting" then
-                    -- 清空scrollPanel
-                    scrollPanel:Clear()
-                    
-                    -- 创建文本输入框
-                    local textEntry = vgui.Create("OFTextEntry", scrollPanel)
-                    textEntry:Dock(TOP)
-                    textEntry:DockMargin(4, 4, 4, 4)
-                    textEntry:SetFont("ofgui_huge")
-                    textEntry:SetTall(100 * OFGUI.ScreenScale)
+                    -- 清空面板并创建新的文本输入框
+                    local function CreateChatInput()
+                        scrollPanel:Clear()
+                        
+                        local textEntry = vgui.Create("OFTextEntry", scrollPanel)
+                        textEntry:Dock(TOP)
+                        textEntry:DockMargin(4, 4, 4, 4)
+                        textEntry:SetFont("ofgui_huge")
+                        textEntry:SetTall(100 * OFGUI.ScreenScale)
 
-                    -- 处理回车事件
-                    textEntry.OnEnter = function(self)
-                        local inputText = self:GetValue()
-                        if inputText and inputText ~= "" then
+                        local randomLeave = GLOBAL_OFNPC_DATA.playerTalks.leave[math.random(#GLOBAL_OFNPC_DATA.playerTalks.leave)]
+                        local translatedOption = ReplacePlaceholders(L(randomLeave), npcIdentity)
 
-                            local aiDialogs = TranslateDialogHistory(npc, npcIdentity, true)
+                        local button = vgui.Create("OFChatButton", scrollPanel)
+                        button:SetChatText(translatedOption)
+                        button:SetTitle(L("ui.dialog.leave"))
+                        button:Dock(TOP)
+                        button:DockMargin(4, 4, 4, 4)
+                        button:SetIcon("ofnpcp/chaticons/preview/leave.png")
+                        button:SetCardIcon("ofnpcp/chaticons/large/leave.png")
+                        button:SetTall(50 * OFGUI.ScreenScale)
 
-                            table.insert(aiDialogs, {
-                                role = "user",
-                                content = inputText
-                            })
+                        local optionColor = dialogOptions["leave"].color
+                        button:SetHoveredColor(Color(optionColor.r, optionColor.g, optionColor.b))
 
-                            local aiSettings = util.JSONToTable(file.Read("of_npcp/ai_settings.txt", "DATA") or "{}")
-                            local aidetail = aiSettings and {
-                                model = aiSettings.model,
-                                provider = aiSettings.provider
-                            } or {}
+                        -- 添加点击事件关闭frame
+                        button.DoClick = function()
+                            if IsValid(frame) then
+                                frame:Close()
+                            end
+                        end
 
-                            net.Start("PlayerDialog")
-                            net.WriteEntity(npc)
-                            net.WriteString(inputText)
-                            net.WriteString("ai")
-                            net.WriteTable(aidetail)
-                            net.SendToServer()
-                            
-                            -- 调用新的函数处理AI对话请求
-                            SendAIDialogRequest(npc, aiDialogs)
+                        -- 处理用户输入
+                        textEntry.OnEnter = function(self)
+                            local inputText = self:GetValue()
+                            if inputText and inputText ~= "" then
+                                -- 准备AI对话数据
+                                local aiDialogs = TranslateDialogHistory(npc, npcIdentity, true)
+                                table.insert(aiDialogs, {
+                                    role = "user",
+                                    content = inputText
+                                })
 
-                            -- 重置父级面板
-                            local parent = self:GetParent()
-                            parent:Clear()
+                                -- 读取AI设置
+                                local aiSettings = util.JSONToTable(file.Read("of_npcp/ai_settings.txt", "DATA") or "{}")
+                                local aidetail = aiSettings and {
+                                    model = aiSettings.model,
+                                    provider = aiSettings.provider
+                                } or {}
 
-                            -- 重新创建文本输入框
-                            local newTextEntry = vgui.Create("OFTextEntry", parent)
-                            newTextEntry:Dock(TOP)
-                            newTextEntry:DockMargin(4, 4, 4, 4)
-                            newTextEntry:SetFont("ofgui_huge")
-                            newTextEntry:SetTall(100 * OFGUI.ScreenScale)
-                            newTextEntry.OnEnter = self.OnEnter  -- 保持相同的事件处理
+                                -- 发送网络消息
+                                net.Start("PlayerDialog")
+                                    net.WriteEntity(npc)
+                                    net.WriteString(inputText)
+                                    net.WriteString("ai")
+                                    net.WriteTable(aidetail)
+                                net.SendToServer()
+                                
+                                -- 处理AI对话请求
+                                SendAIDialogRequest(npc, aiDialogs)
+
+                                -- 重置输入框
+                                CreateChatInput()
+                            end
                         end
                     end
+
+                    -- 初始化聊天输入框
+                    CreateChatInput()
                 elseif optionTypes[option] == "negotiate" then
-                    -- 清空scrollPanel
+                    -- 清空面板
                     scrollPanel:Clear()
                     
-                    -- 获取玩家阵营对应的卡组
+                    -- 获取玩家卡组
                     local playerDeck = OFPLAYERS[LocalPlayer():SteamID()] and OFPLAYERS[LocalPlayer():SteamID()].deck or "resistance"
-                    local cards = GLOBAL_OFNPC_DATA.cards[playerDeck] or {}
-                    local generalCards = GLOBAL_OFNPC_DATA.cards.general or {}
-
-                    -- 合并卡组
-                    local allCards = {}
-                    for cardKey, cardData in pairs(cards) do
-                        table.insert(allCards, {key = cardKey, data = cardData})
+                    local deckColor = GLOBAL_OFNPC_DATA.cards.info[playerDeck].color
+                    
+                    -- 获取所有可用卡牌
+                    local function GetAllCards()
+                        local cards = {}
+                        -- 添加阵营专属卡牌
+                        for cardKey, cardData in pairs(GLOBAL_OFNPC_DATA.cards[playerDeck] or {}) do
+                            table.insert(cards, {key = cardKey, data = cardData})
+                        end
+                        -- 添加通用卡牌
+                        for cardKey, cardData in pairs(GLOBAL_OFNPC_DATA.cards.general or {}) do
+                            table.insert(cards, {key = cardKey, data = cardData})
+                        end
+                        return cards
                     end
-                    for cardKey, cardData in pairs(generalCards) do
-                        table.insert(allCards, {key = cardKey, data = cardData})
-                    end
 
-                    -- 随机选择3个不同的卡牌
-                    local selectedCards = {}
-                    while #selectedCards < 3 and #allCards > 0 do
-                        local randomIndex = math.random(#allCards)
-                        local card = table.remove(allCards, randomIndex)
-                        table.insert(selectedCards, card)
+                    -- 随机选择卡牌
+                    local function SelectRandomCards(cardList, count)
+                        local selected = {}
+                        while #selected < count and #cardList > 0 do
+                            table.insert(selected, table.remove(cardList, math.random(#cardList)))
+                        end
+                        return selected
                     end
 
                     -- 创建卡牌按钮
                     local function CreateNegotiateButton(cardInfo)
-                        local playerNegotiate = cardInfo.data.d[math.random(#cardInfo.data.d)]
-                        playerNegotiate = ReplacePlaceholders(playerNegotiate, npcIdentity)
-                        local npcNegotiate = cardInfo.data.a[math.random(#cardInfo.data.a)]
+                        -- 随机选择对话内容
+                        local playerText = ReplacePlaceholders(cardInfo.data.d[math.random(#cardInfo.data.d)], npcIdentity)
+                        local npcText = cardInfo.data.a[math.random(#cardInfo.data.a)]
+                        
+                        -- 创建按钮
                         local button = vgui.Create("OFChatButton", scrollPanel)
-                        button:SetChatText(playerNegotiate)
+                        button:SetChatText(playerText)
                         button:SetTitle(cardInfo.data.name)
                         button:Dock(TOP)
                         button:DockMargin(4, 4, 4, 4)
                         button:SetIcon("ofnpcp/cards/preview/" .. cardInfo.key .. ".png")
                         button:SetCardIcon("ofnpcp/cards/large/" .. cardInfo.key .. ".png")
-                        button:SetHoveredColor(GLOBAL_OFNPC_DATA.cards.info[playerDeck].color)
+                        button:SetHoveredColor(deckColor)
                         button:SetTall(50 * OFGUI.ScreenScale)
 
-                        -- 处理按钮点击事件
+                        -- 处理点击事件
                         button.DoClick = function()
                             -- 发送对话请求
                             net.Start("PlayerDialog")
-                            net.WriteEntity(npc)
-                            net.WriteString(playerNegotiate)
-                            net.WriteString(npcNegotiate)
+                                net.WriteEntity(npc)
+                                net.WriteString(playerText)
+                                net.WriteString(npcText)
                             net.SendToServer()
 
-                            -- 清空当前选项
-                            scrollPanel:Clear()
+                            -- 刷新卡牌
+                            ShowRandomCards()
+                        end
+                    end
 
-                            -- 重新获取所有卡牌
-                            local allCards = {}
-                            for cardKey, cardData in pairs(cards) do
-                                table.insert(allCards, {key = cardKey, data = cardData})
-                            end
-                            for cardKey, cardData in pairs(generalCards) do
-                                table.insert(allCards, {key = cardKey, data = cardData})
-                            end
+                    -- 显示随机卡牌
+                    function ShowRandomCards()
+                        scrollPanel:Clear()
+                        local cards = SelectRandomCards(GetAllCards(), 3)
+                        for _, card in ipairs(cards) do
+                            CreateNegotiateButton(card)
+                        end
 
-                            -- 重新选择3个随机卡牌
-                            local newSelectedCards = {}
-                            while #newSelectedCards < 3 and #allCards > 0 do
-                                local randomIndex = math.random(#allCards)
-                                local card = table.remove(allCards, randomIndex)
-                                table.insert(newSelectedCards, card)
-                            end
+                        local randomLeave = GLOBAL_OFNPC_DATA.playerTalks.leave[math.random(#GLOBAL_OFNPC_DATA.playerTalks.leave)]
+                        local translatedOption = ReplacePlaceholders(L(randomLeave), npcIdentity)
 
-                            -- 重新创建卡牌按钮
-                            for _, newCardInfo in ipairs(newSelectedCards) do
-                                CreateNegotiateButton(newCardInfo)
+                        local leavebutton = vgui.Create("OFChatButton", scrollPanel)
+                        leavebutton:SetChatText(translatedOption)
+                        leavebutton:SetTitle(L("ui.dialog.leave"))
+                        leavebutton:Dock(TOP)
+                        leavebutton:DockMargin(4, 4, 4, 4)
+                        leavebutton:SetIcon("ofnpcp/chaticons/preview/leave.png")
+                        leavebutton:SetCardIcon("ofnpcp/chaticons/large/leave.png")
+                        leavebutton:SetTall(50 * OFGUI.ScreenScale)
+
+                        local optionColor = dialogOptions["leave"].color
+                        leavebutton:SetHoveredColor(Color(optionColor.r, optionColor.g, optionColor.b))
+
+                        -- 添加点击事件关闭frame
+                        leavebutton.DoClick = function()
+                            if IsValid(frame) then
+                                frame:Close()
                             end
                         end
                     end
 
-                    -- 添加3个卡牌按钮
-                    for _, cardInfo in ipairs(selectedCards) do
-                        CreateNegotiateButton(cardInfo)
-                    end
+                    -- 初始化显示3张随机卡牌
+                    ShowRandomCards()
                 elseif optionTypes[option] == "leave" then
                     frame:Close()
                 end
