@@ -410,34 +410,47 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
 		SetValue = personalizationSettings.volume
 	})
 
-    -- 保存按钮
-    local saveButton = CreateControl(personalizationLeftPanel, "OFButton", {
-        SetText = "保存设置"
-    })
+	local voiceComboBox = CreateControl(personalizationLeftPanel, "OFComboBox", {
+		SetValue = L("ui.npclist.select_voice")
+	})
+
+	local voices = {}
+	local voiceMap = {}  -- 新增哈希表
+	local clientLang = GetConVar("gmod_language"):GetString():match("^zh%-") and "zh" or "en"
+	for _, voiceGroup in ipairs(GLOBAL_OFNPC_DATA.voice.voices) do
+		if voiceGroup.language == clientLang then
+			for _, voice in ipairs(voiceGroup.voices) do
+				table.insert(voices, {name = voice.name, code = voice.code})
+				voiceMap[voice.name] = voice.code  -- 填充哈希表
+			end
+		end
+	end
+	
+	for _, voice in ipairs(voices) do
+		voiceComboBox:AddChoice(voice.name, voice.code)
+	end
+	
+	if personalizationSettings.voice then
+		for _, voice in ipairs(voices) do
+			if voice.code == personalizationSettings.voice then
+				voiceComboBox:SetValue(voice.name)
+				break
+			end
+		end
+	end
+
+	local saveButton = CreateControl(personalizationLeftPanel, "OFButton", {
+		SetText = "保存设置"
+	})
+
     saveButton.DoClick = function()
         local newSettings = {
             volume = tonumber(volumeSlider:GetValue()) or 1.0,
-            api_url = apiUrlEntry:GetValue()
+            api_url = apiUrlEntry:GetValue(),
+			voice = voiceMap[voiceComboBox:GetSelected()]
         }
         file.Write("of_npcp/personalization_settings.txt", util.TableToJSON(newSettings))
         notification.AddLegacy("配音设置已保存", NOTIFY_GENERIC, 5)
-    end
-
-    local jsonUrlEntry = CreateControl(personalizationLeftPanel, "OFTextEntry", {
-        SetPlaceholderText = "Discord JSON URL"
-    })
-
-    local saveButton2 = CreateControl(personalizationLeftPanel, "OFButton", {
-        SetText = "设置NPC名称池"
-    })
-    saveButton2.DoClick = function()
-        local newUrl = jsonUrlEntry:GetValue()
-        if newUrl and newUrl ~= "" then
-            net.Start("UpdateNPCNameAPI")
-                net.WriteString(newUrl)
-            net.SendToServer()
-        end
-        notification.AddLegacy("名称设置已发送至服务器", NOTIFY_GENERIC, 5)
     end
 end
 

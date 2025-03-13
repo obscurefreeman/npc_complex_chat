@@ -14,9 +14,6 @@ function PlayNPCDialogVoice(npc, text)
     -- 首先检查NPC是否有效
     if not IsValid(npc) then return end
 
-    -- 调试信息：显示NPC和文本信息
-    print("[DEBUG] Playing voice for NPC:", npc)
-    print("[DEBUG] Text content:", text)
 
     -- 获取NPC列表并检查NPC身份信息是否存在
     local npcs = GetAllNPCsList()
@@ -29,15 +26,19 @@ function PlayNPCDialogVoice(npc, text)
     end
 
     -- 读取本地保存的配音设置
-    local voiceSettings = file.Read("of_npcp/voice_settings.txt", "DATA")
+    local voiceSettings = file.Read("of_npcp/personalization_settings.txt", "DATA")
     if voiceSettings then
         voiceSettings = util.JSONToTable(voiceSettings)
     else
-        -- 默认设置
         voiceSettings = {
             volume = 5.0,
-            api_url = "https://freetv-mocha.vercel.app/api/aiyue"
+            api_url = "https://freetv-mocha.vercel.app/api/aiyue",
+            voice = "zh-CN-XiaoyiNeural"
         }
+    end
+
+    if npc:IsPlayer() then
+        voiceCode = voiceSettings.voice
     end
 
     local encodedText = UrlEncode(text)
@@ -45,8 +46,6 @@ function PlayNPCDialogVoice(npc, text)
                 "&contentType=" .. UrlEncode("text/plain") ..
                 "&format=" .. UrlEncode("audio-24khz-48kbitrate-mono-mp3")
 
-    -- 调试信息：显示请求URL
-    print("[DEBUG] Request URL:", url)
 
     sound.PlayURL(url, "3d", function(station, err, errName)
         if IsValid(station) then

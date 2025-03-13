@@ -16,7 +16,8 @@
             "heal_all": "治疗所有 NPC",
             "kill_all": "杀死所有 NPC",
             "remove_all": "删除所有 NPC",
-            "refresh_list": "刷新列表"
+            "refresh_list": "刷新列表",
+            "select_voice": "选择配音"
         },
         "deck_system": {
             "select_deck": "选择牌组",

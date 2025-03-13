@@ -16,7 +16,8 @@
             "heal_all": "Heal All NPCs",
             "kill_all": "Kill All NPCs",
             "remove_all": "Remove All NPCs",
-            "refresh_list": "Refresh List"
+            "refresh_list": "Refresh List",
+            "select_voice": "Select Voice"
         },
         "deck_system": {
             "select_deck": "Select Deck",
