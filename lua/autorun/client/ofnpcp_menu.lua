@@ -494,9 +494,15 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
         local newSettings = {
             volume = tonumber(volumeSlider:GetValue()) or 1.0,
             api_url = apiUrlEntry:GetValue(),
-			voice = voiceMap[voiceComboBox:GetSelected()]
+            voice = voiceMap[voiceComboBox:GetValue()] or personalizationSettings.voice
         }
         file.Write("of_npcp/personalization_settings.txt", util.TableToJSON(newSettings))
+        
+        -- 发送配音设置到服务器
+        net.Start("UpdatePlayerVoice")
+            net.WriteString(newSettings.voice)
+        net.SendToServer()
+        
         notification.AddLegacy("配音设置已保存", NOTIFY_GENERIC, 5)
     end
 end

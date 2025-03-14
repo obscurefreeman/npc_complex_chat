@@ -22,6 +22,9 @@ if SERVER then
     util.AddNetworkString("SelectPlayerDeck")
     util.AddNetworkString("UpdatePlayerDeck")
     util.AddNetworkString("UpdateNPCPrompt")
+    util.AddNetworkString("UpdatePlayerVoice")
+    util.AddNetworkString("RequestPlayerDataSync")
+    util.AddNetworkString("UpdateAllPlayerData")
 
     function AssignNPCIdentity(ent, npcInfo)
         local identity = {}
@@ -289,16 +292,54 @@ if SERVER then
         end
     end)
 
-    -- 添加保存玩家数据的函数
+    -- 添加加载玩家数据的函数
+    local function LoadPlayerData(ply)
+        local data = file.Read("of_npcp/playerdata.txt", "DATA")
+        if data then
+            local playerData = util.JSONToTable(data)
+            local steamID = ply:SteamID()
+            if playerData[steamID] then
+                OFPLAYERS[steamID] = {
+                    deck = playerData[steamID].deck,
+                    voice = playerData[steamID].voice or "zh-CN-XiaoyiNeural"  -- 加载配音设置，默认值为"zh-CN-XiaoyiNeural"
+                }
+            else
+                -- 默认牌组为反抗军，默认配音为"zh-CN-XiaoyiNeural"
+                OFPLAYERS[steamID] = {
+                    deck = "resistance",
+                    voice = "zh-CN-XiaoyiNeural"
+                }
+            end
+        else
+            -- 如果文件不存在，使用默认牌组和配音
+            OFPLAYERS[ply:SteamID()] = {
+                deck = "resistance",
+                voice = "zh-CN-XiaoyiNeural"
+            }
+        end
+    end
+
+    -- 玩家加入时加载数据
+    hook.Add("PlayerInitialSpawn", "LoadPlayerDeck", function(ply)
+        LoadPlayerData(ply)
+    end)
+
+    -- 修改保存玩家数据的函数
     local function SavePlayerData()
         file.CreateDir("of_npcp")
         local playerData = {}
         for steamID, data in pairs(OFPLAYERS) do
             playerData[steamID] = {
-                deck = data.deck
+                deck = data.deck,
+                voice = data.voice  -- 保存配音设置
             }
         end
         file.Write("of_npcp/playerdata.txt", util.TableToJSON(playerData))
+        
+        -- 广播更新后的玩家数据给所有客户端
+        net.Start("UpdateAllPlayerData")
+            net.WriteTable(playerData)
+        net.Broadcast()
     end
 
     -- 处理玩家牌组选择
@@ -316,29 +357,6 @@ if SERVER then
             net.WriteString(ply:SteamID())
             net.WriteString(deck)
         net.Broadcast()
-    end)
-
-    -- 添加加载玩家数据的函数
-    local function LoadPlayerData(ply)
-        local data = file.Read("of_npcp/playerdata.txt", "DATA")
-        if data then
-            local playerData = util.JSONToTable(data)
-            local steamID = ply:SteamID()
-            if playerData[steamID] then
-                OFPLAYERS[steamID] = {deck = playerData[steamID].deck}
-            else
-                -- 默认牌组为反抗军
-                OFPLAYERS[steamID] = {deck = "resistance"}
-            end
-        else
-            -- 如果文件不存在，使用默认牌组
-            OFPLAYERS[ply:SteamID()] = {deck = "resistance"}
-        end
-    end
-
-    -- 玩家加入时加载数据
-    hook.Add("PlayerInitialSpawn", "LoadPlayerDeck", function(ply)
-        LoadPlayerData(ply)
     end)
 
     -- 添加调试命令
@@ -419,6 +437,37 @@ if SERVER then
             net.Broadcast()
         end
     end)
+
+    -- 添加接收玩家配音设置的处理函数
+    net.Receive("UpdatePlayerVoice", function(len, ply)
+        local voiceCode = net.ReadString()
+        if not OFPLAYERS[ply:SteamID()] then
+            OFPLAYERS[ply:SteamID()] = {}
+        end
+        OFPLAYERS[ply:SteamID()].voice = voiceCode
+        
+        -- 保存玩家数据
+        SavePlayerData()
+    end)
+
+    -- 添加接收所有玩家数据的处理函数
+    net.Receive("UpdateAllPlayerData", function()
+        local playerData = net.ReadTable()
+        OFPLAYERS = playerData
+    end)
+
+    -- 在客户端初始化时主动请求数据
+    hook.Add("InitPostEntity", "RequestPlayerData", function()
+        net.Start("RequestPlayerDataSync")
+        net.SendToServer()
+    end)
+
+    -- 添加接收客户端请求数据的处理函数
+    net.Receive("RequestPlayerDataSync", function(len, ply)
+        net.Start("UpdateAllPlayerData")
+            net.WriteTable(OFPLAYERS)
+        net.Send(ply)
+    end)
 end
 
 if CLIENT then
@@ -467,6 +516,18 @@ if CLIENT then
     net.Receive("RequestClientNPCData", function()
         net.Start("SendClientNPCData")
         net.WriteTable(clientNPCs)
+        net.SendToServer()
+    end)
+
+    -- 添加接收所有玩家数据的处理函数
+    net.Receive("UpdateAllPlayerData", function()
+        local playerData = net.ReadTable()
+        OFPLAYERS = playerData
+    end)
+
+    -- 在客户端初始化时主动请求数据
+    hook.Add("InitPostEntity", "RequestPlayerData", function()
+        net.Start("RequestPlayerDataSync")
         net.SendToServer()
     end)
 end

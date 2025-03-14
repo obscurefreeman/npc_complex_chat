@@ -21,7 +21,14 @@ function PlayNPCDialogVoice(npc, text)
 
     -- 使用默认语音编码作为后备
     local voiceCode = "zh-CN-XiaoyiNeural"
-    if npcIdentity and npcIdentity.voice then
+    
+    -- 如果是玩家，使用玩家的配音设置
+    if npc:IsPlayer() then
+        local playerVoice = OFPLAYERS[npc:SteamID()] and OFPLAYERS[npc:SteamID()].voice
+        if playerVoice then
+            voiceCode = playerVoice
+        end
+    elseif npcIdentity and npcIdentity.voice then
         voiceCode = npcIdentity.voice
     end
 
@@ -32,13 +39,8 @@ function PlayNPCDialogVoice(npc, text)
     else
         voiceSettings = {
             volume = 5.0,
-            api_url = "https://freetv-mocha.vercel.app/api/aiyue",
-            voice = "zh-CN-XiaoyiNeural"
+            api_url = "https://freetv-mocha.vercel.app/api/aiyue"
         }
-    end
-
-    if npc:IsPlayer() then
-        voiceCode = voiceSettings.voice
     end
 
     local encodedText = UrlEncode(text)
