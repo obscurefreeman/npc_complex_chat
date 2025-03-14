@@ -470,16 +470,6 @@ local function AddOFFrame()
 	local pan1 = vgui.Create("EditablePanel", sheet)
 	sheet:AddSheet("首页", pan1, "icon16/star.png")
 
-	local pan2 = vgui.Create("EditablePanel", sheet)
-	sheet:AddSheet(L("ui.tab.ai_system"), pan2, "icon16/computer.png")
-
-	local pan3 = vgui.Create("EditablePanel", sheet)
-	sheet:AddSheet(L("ui.tab.deck_system"), pan3, "icon16/creditcards.png")
-
-	local pan4 = vgui.Create("EditablePanel", sheet)
-	sheet:AddSheet(L("ui.tab.npclist"), pan4, "icon16/group.png")
-
-	-- 创建水平分割面板
 	local pan1HorizontalDivider = vgui.Create("DHorizontalDivider", pan1)
 	pan1HorizontalDivider:Dock(FILL)
 	pan1HorizontalDivider:DockMargin(6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale)
@@ -491,29 +481,107 @@ local function AddOFFrame()
 	local pan1RightPanel = vgui.Create("OFScrollPanel")
 	pan1HorizontalDivider:SetRight(pan1RightPanel)
 
-	-- 创建一个水平分割面板
-	local horizontalDivider = vgui.Create("DHorizontalDivider", pan4)
-	horizontalDivider:Dock(FILL)
-	horizontalDivider:DockMargin(6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale)
-	horizontalDivider:SetLeftWidth(ScrW()/ 3) -- 设置左侧面板的初始宽度
-	horizontalDivider:SetDividerWidth(8 * OFGUI.ScreenScale) -- 设置分割线宽度
+	-- 添加赞助者按钮
+	if GLOBAL_OFNPC_DATA.sponsors then
+		-- 先按order排序，再按名称排序
+		table.sort(GLOBAL_OFNPC_DATA.sponsors, function(a, b)
+			if a.order == b.order then
+				return a.name < b.name
+			else
+				return a.order < b.order
+			end
+		end)
+		
+		for _, sponsor in ipairs(GLOBAL_OFNPC_DATA.sponsors) do
+			local button = vgui.Create("OFAdvancedButton", pan1LeftPanel)
+			button:Dock(TOP)
+			button:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+			button:SetTall(80 * OFGUI.ScreenScale)
+			button:SetTitle(sponsor.name)
+			button:SetDescription(sponsor.description)
+			button:SetIcon("ofnpcp/sponsors/" .. sponsor.image .. ".png")
+			button:SetHoveredColor(Color(unpack(sponsor.color)))
+			button:SetShowHoverCard(false)
+		end
+	end
 
-	local left_panel = vgui.Create("OFScrollPanel")
-	horizontalDivider:SetLeft(left_panel)
+	-- 添加日志文章
+	if GLOBAL_OFNPC_DATA.log then
+		-- 按order字段降序排列
+		table.sort(GLOBAL_OFNPC_DATA.log, function(a, b) return a.order > b.order end)
+		
+		for _, logEntry in ipairs(GLOBAL_OFNPC_DATA.log) do
+			local article = vgui.Create("OFArticle", pan1RightPanel)
+			article:Dock(TOP)
+			article:DockMargin(8 * OFGUI.ScreenScale, 8 * OFGUI.ScreenScale, 8 * OFGUI.ScreenScale, 8 * OFGUI.ScreenScale)
+			article:SetName(logEntry.title)
+			article:SetText(logEntry.content)
+			if logEntry.image then
+				article:SetImage(logEntry.image)
+			else end
+		end
+	end
 
-	local right_panel = vgui.Create("OFScrollPanel")
-	horizontalDivider:SetRight(right_panel)
+	-- AI系统面板 (pan2)
+	local pan2 = vgui.Create("EditablePanel", sheet)
+	sheet:AddSheet(L("ui.tab.ai_system"), pan2, "icon16/computer.png")
 
-	local left_panel_cards = vgui.Create("OFScrollPanel", pan3)
-	left_panel_cards:Dock(LEFT)
-	left_panel_cards:SetWidth(450 * OFGUI.ScreenScale)
+	local pan2HorizontalDivider = vgui.Create("DHorizontalDivider", pan2)
+	pan2HorizontalDivider:Dock(FILL)
+	pan2HorizontalDivider:DockMargin(6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale)
+	pan2HorizontalDivider:SetLeftWidth(ScrW() / 4)
 
-	local right_panel_cards = vgui.Create("DPanel", pan3)  -- 创建一个透明不可见的元素作为容器
-	right_panel_cards.Paint = function(self, w, h)
+	local pan2LeftPanel = vgui.Create("OFScrollPanel")
+	pan2HorizontalDivider:SetLeft(pan2LeftPanel)
+
+	local pan2RightPanel = vgui.Create("OFScrollPanel")
+	pan2HorizontalDivider:SetRight(pan2RightPanel)
+
+	-- 牌组系统面板 (pan3)
+	local pan3 = vgui.Create("EditablePanel", sheet)
+	sheet:AddSheet(L("ui.tab.deck_system"), pan3, "icon16/creditcards.png")
+
+	local pan3LeftPanel = vgui.Create("OFScrollPanel", pan3)
+	pan3LeftPanel:Dock(LEFT)
+	pan3LeftPanel:SetWidth(450 * OFGUI.ScreenScale)
+
+	local pan3RightPanel = vgui.Create("DPanel", pan3)
+	pan3RightPanel.Paint = function(self, w, h)
 		surface.SetDrawColor(0, 0, 0, 0)
 		surface.DrawRect(0, 0, w, h)
 	end
-	right_panel_cards:Dock(FILL)
+	pan3RightPanel:Dock(FILL)
+
+	-- NPC列表面板 (pan4)
+	local pan4 = vgui.Create("EditablePanel", sheet)
+	sheet:AddSheet(L("ui.tab.npclist"), pan4, "icon16/group.png")
+
+	local pan4HorizontalDivider = vgui.Create("DHorizontalDivider", pan4)
+	pan4HorizontalDivider:Dock(FILL)
+	pan4HorizontalDivider:DockMargin(6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale)
+	pan4HorizontalDivider:SetLeftWidth(ScrW()/ 3)
+	pan4HorizontalDivider:SetDividerWidth(8 * OFGUI.ScreenScale)
+
+	local pan4LeftPanel = vgui.Create("OFScrollPanel")
+	pan4HorizontalDivider:SetLeft(pan4LeftPanel)
+
+	local pan4RightPanel = vgui.Create("OFScrollPanel")
+	pan4HorizontalDivider:SetRight(pan4RightPanel)
+
+	-- 个性化设置面板 (pan5)
+	local pan5 = vgui.Create("EditablePanel", sheet)
+	sheet:AddSheet("个性化", pan5, "icon16/sound.png")
+
+	local pan5HorizontalDivider = vgui.Create("DHorizontalDivider", pan5)
+	pan5HorizontalDivider:Dock(FILL)
+	pan5HorizontalDivider:DockMargin(6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale)
+	pan5HorizontalDivider:SetLeftWidth(ScrW() / 4)
+
+	local pan5LeftPanel = vgui.Create("OFScrollPanel")
+	pan5HorizontalDivider:SetLeft(pan5LeftPanel)
+
+	local pan5RightPanel = vgui.Create("OFScrollPanel")
+	pan5HorizontalDivider:SetRight(pan5RightPanel)
 
 	-- 创建AI设置面板布局
 	local aiHorizontalDivider = vgui.Create("DHorizontalDivider", pan2)
@@ -640,13 +708,13 @@ local function AddOFFrame()
 	end
 
 	-- 初始加载NPC列表
-	RefreshNPCButtons(left_panel, right_panel)
-	RefreshCardButtons(left_panel_cards, right_panel_cards)
+	RefreshNPCButtons(pan4LeftPanel, pan4RightPanel)
+	RefreshCardButtons(pan3LeftPanel, pan3RightPanel)
 	
 	-- 添加更新钩子
 	hook.Add("RefreshNPCMenu", "UpdateNPCButtonList", function()
-		if IsValid(left_panel) then
-			RefreshNPCButtons(left_panel, right_panel)
+		if IsValid(pan4LeftPanel) then
+			RefreshNPCButtons(pan4LeftPanel, pan4RightPanel)
 		end
 	end)
 	
@@ -655,27 +723,11 @@ local function AddOFFrame()
 		hook.Remove("RefreshNPCMenu", "UpdateNPCButtonList")
 	end
 
-	-- 添加配音设置面板
-	local pan4 = vgui.Create("EditablePanel", sheet)
-	sheet:AddSheet("个性化", pan4, "icon16/sound.png")
-
-	-- 创建水平分割面板
-	local personalizationHorizontalDivider = vgui.Create("DHorizontalDivider", pan4)
-	personalizationHorizontalDivider:Dock(FILL)
-	personalizationHorizontalDivider:DockMargin(6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale)
-	personalizationHorizontalDivider:SetLeftWidth(ScrW() / 4)
-
-	local personalizationLeftPanel = vgui.Create("OFScrollPanel")
-	personalizationHorizontalDivider:SetLeft(personalizationLeftPanel)
-
-	local personalizationRightPanel = vgui.Create("OFScrollPanel")
-	personalizationHorizontalDivider:SetRight(personalizationRightPanel)
-
 	-- 加载默认配音设置
-	LoadpersonalizationSettings(personalizationLeftPanel)
+	LoadpersonalizationSettings(pan5LeftPanel)
 
 	-- 在右侧面板添加OFArticle
-	local article = vgui.Create("OFArticle", personalizationRightPanel)
+	local article = vgui.Create("OFArticle", pan5RightPanel)
 	article:Dock(TOP)
 	article:DockMargin(8 * OFGUI.ScreenScale, 8 * OFGUI.ScreenScale, 8 * OFGUI.ScreenScale, 8 * OFGUI.ScreenScale)
 	article:SetName("个性化设置说明")

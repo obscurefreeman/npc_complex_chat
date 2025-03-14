@@ -5,7 +5,15 @@ GLOBAL_OFNPC_DATA = {
     rankData = {},
     playerTalks = {},
     npcTalks = {},
-    cards = {}
+    cards = {},
+    anim = {},
+    log = {},
+    aiProviders = {},
+    voice = {},
+    cards = {
+        info = {},
+        general = {}
+    }
 }
 
 -- 加载JSON文件的通用函数
@@ -32,8 +40,10 @@ local function LoadNPCData()
     LoadJsonData("data/of_npcp/player_talk.json", "playerTalks")
     LoadJsonData("data/of_npcp/citizen_talk.json", "npcTalks")
     LoadJsonData("data/of_npcp/cards.json", "cards")
-    LoadJsonData("data/of_npcp/ai/providers.json", "aiProviders")
     LoadJsonData("data/of_npcp/anim.json", "anim")
+    LoadJsonData("data/of_npcp/log.json", "log")
+    LoadJsonData("data/of_npcp/sponsors.json", "sponsors")
+    LoadJsonData("data/of_npcp/ai/providers.json", "aiProviders")
     LoadJsonData("data/of_npcp/ai/voice.json", "voice")
 
     -- 在加载数据后添加调试信息

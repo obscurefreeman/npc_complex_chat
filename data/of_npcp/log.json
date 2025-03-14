@@ -1,0 +1,14 @@
+[
+    {
+        "title": "更新日志 1.0.0",
+        "content": "初始版本发布",
+        "image": "ofnpcp/article/poster.png",
+        "order": 1
+    },
+    {
+        "title": "更新日志 1.1.0",
+        "content": "新增NPC对话系统",
+        "image": "ofnpcp/article/poster.png",
+        "order": 2
+    }
+]
