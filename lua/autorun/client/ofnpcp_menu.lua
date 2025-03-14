@@ -466,17 +466,33 @@ local function AddOFFrame()
 	sheet:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
 	sheet:Dock(FILL)
 
+	-- 新增pan1
 	local pan1 = vgui.Create("EditablePanel", sheet)
-	sheet:AddSheet(L("ui.tab.ai_system"), pan1, "icon16/computer.png")
+	sheet:AddSheet("首页", pan1, "icon16/star.png")
 
 	local pan2 = vgui.Create("EditablePanel", sheet)
-	sheet:AddSheet(L("ui.tab.deck_system"), pan2, "icon16/creditcards.png")
+	sheet:AddSheet(L("ui.tab.ai_system"), pan2, "icon16/computer.png")
 
 	local pan3 = vgui.Create("EditablePanel", sheet)
-	sheet:AddSheet(L("ui.tab.npclist"), pan3, "icon16/group.png")
+	sheet:AddSheet(L("ui.tab.deck_system"), pan3, "icon16/creditcards.png")
+
+	local pan4 = vgui.Create("EditablePanel", sheet)
+	sheet:AddSheet(L("ui.tab.npclist"), pan4, "icon16/group.png")
+
+	-- 创建水平分割面板
+	local pan1HorizontalDivider = vgui.Create("DHorizontalDivider", pan1)
+	pan1HorizontalDivider:Dock(FILL)
+	pan1HorizontalDivider:DockMargin(6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale)
+	pan1HorizontalDivider:SetLeftWidth(ScrW() / 4)
+
+	local pan1LeftPanel = vgui.Create("OFScrollPanel")
+	pan1HorizontalDivider:SetLeft(pan1LeftPanel)
+
+	local pan1RightPanel = vgui.Create("OFScrollPanel")
+	pan1HorizontalDivider:SetRight(pan1RightPanel)
 
 	-- 创建一个水平分割面板
-	local horizontalDivider = vgui.Create("DHorizontalDivider", pan3)
+	local horizontalDivider = vgui.Create("DHorizontalDivider", pan4)
 	horizontalDivider:Dock(FILL)
 	horizontalDivider:DockMargin(6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale)
 	horizontalDivider:SetLeftWidth(ScrW()/ 3) -- 设置左侧面板的初始宽度
@@ -488,11 +504,11 @@ local function AddOFFrame()
 	local right_panel = vgui.Create("OFScrollPanel")
 	horizontalDivider:SetRight(right_panel)
 
-	local left_panel_cards = vgui.Create("OFScrollPanel", pan2)
+	local left_panel_cards = vgui.Create("OFScrollPanel", pan3)
 	left_panel_cards:Dock(LEFT)
 	left_panel_cards:SetWidth(450 * OFGUI.ScreenScale)
 
-	local right_panel_cards = vgui.Create("DPanel", pan2)  -- 创建一个透明不可见的元素作为容器
+	local right_panel_cards = vgui.Create("DPanel", pan3)  -- 创建一个透明不可见的元素作为容器
 	right_panel_cards.Paint = function(self, w, h)
 		surface.SetDrawColor(0, 0, 0, 0)
 		surface.DrawRect(0, 0, w, h)
@@ -500,7 +516,7 @@ local function AddOFFrame()
 	right_panel_cards:Dock(FILL)
 
 	-- 创建AI设置面板布局
-	local aiHorizontalDivider = vgui.Create("DHorizontalDivider", pan1)
+	local aiHorizontalDivider = vgui.Create("DHorizontalDivider", pan2)
 	aiHorizontalDivider:Dock(FILL)
 	aiHorizontalDivider:DockMargin(6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale)
 	aiHorizontalDivider:SetLeftWidth(ScrW() / 4)
@@ -657,6 +673,14 @@ local function AddOFFrame()
 
 	-- 加载默认配音设置
 	LoadpersonalizationSettings(personalizationLeftPanel)
+
+	-- 在右侧面板添加OFArticle
+	local article = vgui.Create("OFArticle", personalizationRightPanel)
+	article:Dock(TOP)
+	article:DockMargin(8 * OFGUI.ScreenScale, 8 * OFGUI.ScreenScale, 8 * OFGUI.ScreenScale, 8 * OFGUI.ScreenScale)
+	article:SetName("个性化设置说明")
+	article:SetText("在这里您可以调整配音、音量等个性化设置。\n所有更改将自动保存到本地配置文件。")
+	article:SetImage("ofnpcp/article/poster.png")
 end
 
 list.Set("DesktopWindows", "ofnpcp", {
