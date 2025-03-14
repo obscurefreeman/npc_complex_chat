@@ -1,14 +1,8 @@
 [
     {
-        "title": "更新日志 1.0.0",
-        "content": "初始版本发布",
+        "title": "提前试玩现已开启",
+        "content": "NPC对话模组现已开放测试！感谢所有赞助者的支持与参与。\n测试期间欢迎反馈意见，帮助我不断改进模组体验。",
         "image": "ofnpcp/article/poster.png",
         "order": 1
-    },
-    {
-        "title": "更新日志 1.1.0",
-        "content": "新增NPC对话系统",
-        "image": "ofnpcp/article/poster.png",
-        "order": 2
     }
 ]

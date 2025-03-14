@@ -1,37 +1,51 @@
 [
     {
-        "name": "漫游者_Xhc",
-        "description": "资深游戏开发者，热衷于创造沉浸式游戏体验",
-        "color": [255, 100, 100],
-        "image": "xhc",
+        "name": "晦涩弗里曼",
+        "description": "模组制作者",
+        "color": [100, 100, 255],
+        "image": "of",
         "order": 1
     },
     {
         "name": "萧福叠",
-        "description": "AI技术专家，专注于自然语言处理与对话系统",
-        "color": [100, 255, 100],
+        "description": "高级模组赞助者，参与了早期测试",
+        "color": [0, 155, 119],
         "image": "xfd",
-        "order": 2
+        "order": 4
+    },
+    {
+        "name": "漫游者_Xhc",
+        "description": "模组赞助者，参与了早期测试",
+        "color": [127, 0, 32],
+        "image": "xhc",
+        "order": 5
     },
     {
         "name": "工-具-人-0-2-3-号",
-        "description": "资深脚本工程师，擅长游戏系统优化与自动化",
-        "color": [100, 255, 100],
+        "description": "模组赞助者，参与了早期测试",
+        "color": [17, 118, 208],
         "image": "gjr",
-        "order": 2
+        "order": 5
     },
     {
         "name": "博丽守黑",
-        "description": "游戏设计师，专注于角色塑造与世界观构建",
-        "color": [100, 255, 100],
+        "description": "模组赞助者，参与了早期测试",
+        "color": [180, 100, 255],
         "image": "blsh",
-        "order": 2
+        "order": 5
     },
     {
         "name": "Сталкер",
-        "description": "资深游戏测试员，致力于提升游戏品质与用户体验",
-        "color": [100, 255, 100],
+        "description": "模组赞助者，参与了早期测试",
+        "color": [173, 216, 230],
         "image": "cta",
-        "order": 2
+        "order": 5
+    },
+    {
+        "name": "Pathfinder_FUFU",
+        "description": "模组赞助者，参与了早期测试",
+        "color": [215, 86, 112],
+        "image": "fufu",
+        "order": 5
     }
 ]

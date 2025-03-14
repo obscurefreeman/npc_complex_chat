@@ -17,6 +17,11 @@ local function RefreshNPCButtons(left_panel, right_panel)
 		if npcData.name == npcData.gamename then
 			npcName = language.GetPhrase(npcData.gamename)
 		end
+
+		local nicknameLabel = vgui.Create("OFTextLabel", right_panel)
+		nicknameLabel:Dock(TOP)
+		nicknameLabel:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+		nicknameLabel:SetText("NPC名称")
 		
 		-- 创建名称输入和提交按钮
 		local nameEntry = vgui.Create("OFTextEntry", right_panel)
@@ -25,6 +30,12 @@ local function RefreshNPCButtons(left_panel, right_panel)
 		nameEntry:SetTall(32 * OFGUI.ScreenScale)
 		nameEntry:SetValue(npcName or "")
 		
+		local nicknameEntry = vgui.Create("OFTextEntry", right_panel)
+		nicknameEntry:Dock(TOP)
+		nicknameEntry:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+		nicknameEntry:SetTall(32 * OFGUI.ScreenScale)
+		nicknameEntry:SetValue(L(npcData.nickname) or "")
+		
 		local submitButton = vgui.Create("OFButton", right_panel)
 		submitButton:Dock(TOP)
 		submitButton:SetTall(32 * OFGUI.ScreenScale)
@@ -32,11 +43,13 @@ local function RefreshNPCButtons(left_panel, right_panel)
 		submitButton:SetText(L("ui.npclist.confirm_edit"))
 		submitButton.DoClick = function()
 			local newName = nameEntry:GetValue()
-			if newName and newName ~= "" then
+			local newNickname = nicknameEntry:GetValue()
+			if newName and newName ~= "" and newNickname and newNickname ~= "" then
 				-- 发送更新请求到服务器
 				net.Start("UpdateNPCName")
 					net.WriteInt(entIndex, 32)
 					net.WriteString(newName)
+					net.WriteString(newNickname)
 				net.SendToServer()
 			end
 		end
@@ -73,6 +86,11 @@ local function RefreshNPCButtons(left_panel, right_panel)
 		for _, buttonData in ipairs(skillButtons) do
 			CreateSkillButton(right_panel, buttonData.tag, buttonData.desc, buttonData.icon, buttonData.color)
 		end
+
+		local commentLabel = vgui.Create("OFTextLabel", right_panel)
+		commentLabel:Dock(TOP)
+		commentLabel:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+		commentLabel:SetText("评论")
 
 		if npcData.comments then
             for _, commentData in ipairs(npcData.comments) do
@@ -117,6 +135,12 @@ local function RefreshNPCButtons(left_panel, right_panel)
 				commentEntry:SetValue("")
 			end
 		end
+
+		local promptLabel = vgui.Create("OFTextLabel", right_panel)
+		promptLabel:Dock(TOP)
+		promptLabel:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+		promptLabel:SetText("AI 提示词")
+
 		local promptcontent = L(npcData.prompt)
 		promptcontent = ReplacePlaceholders(promptcontent, npcData)
 		local campTextEntry = vgui.Create("OFTextEntry", right_panel)
@@ -142,6 +166,11 @@ local function RefreshNPCButtons(left_panel, right_panel)
 				net.SendToServer()
 			end
 		end
+
+		local voiceLabel = vgui.Create("OFTextLabel", right_panel)
+		voiceLabel:Dock(TOP)
+		voiceLabel:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+		voiceLabel:SetText("音色")
 		
 		local voiceComboBox = vgui.Create("OFComboBox", right_panel)
 		voiceComboBox:Dock(TOP)
@@ -223,6 +252,7 @@ local function RefreshNPCButtons(left_panel, right_panel)
 	end
 
 	-- 为每个NPC创建按钮
+	local firstNPC = nil
 	for entIndex, npcData in pairs(npcs) do
 		local npcName
 		if npcData.name == npcData.gamename then
@@ -263,6 +293,16 @@ local function RefreshNPCButtons(left_panel, right_panel)
 		button.DoRightClick = function()
 			CreateContextMenu(entIndex):Open()
 		end
+
+		-- 记录第一个NPC
+		if not firstNPC then
+			firstNPC = {npcData = npcData, entIndex = entIndex}
+		end
+	end
+
+	-- 如果有NPC，默认打开第一个
+	if firstNPC then
+		RefreshRightPanel(firstNPC.npcData, firstNPC.entIndex)
 	end
 end
 
@@ -273,6 +313,9 @@ local function RefreshCardButtons(left_panel, right_panel)
 
     -- 从全局数据中获取牌组信息
     local cardGroups = GLOBAL_OFNPC_DATA.cards.info
+
+    -- 获取玩家当前阵营
+    local playerCamp = OFPLAYERS[LocalPlayer():SteamID()] and OFPLAYERS[LocalPlayer():SteamID()].deck or "resistance"
 
     -- 创建左侧牌组选择按钮
     for groupKey, groupData in pairs(cardGroups) do
@@ -363,6 +406,11 @@ local function RefreshCardButtons(left_panel, right_panel)
                 net.SendToServer()
             end
         end
+
+        -- 如果这是玩家当前阵营，自动打开
+        if groupKey == playerCamp then
+            groupButton:DoClick()
+        end
     end
 end
 
@@ -394,6 +442,10 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
             api_url = "https://freetv-mocha.vercel.app/api/aiyue"
         }
     end
+
+	local voicelabel = CreateControl(personalizationLeftPanel, "OFTextLabel", {
+        SetText = "语音服务"
+    })
 
     -- 创建API URL输入框
     local apiUrlEntry = CreateControl(personalizationLeftPanel, "OFTextEntry", {

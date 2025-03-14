@@ -211,9 +211,11 @@ if SERVER then
     net.Receive("UpdateNPCName", function(len, ply)
         local entIndex = net.ReadInt(32)
         local newName = net.ReadString()
+        local newNickname = net.ReadString()
         
         if OFNPCS[entIndex] then
             OFNPCS[entIndex].name = newName
+            OFNPCS[entIndex].nickname = newNickname
             
             -- 广播更新后的身份信息给所有客户端
             net.Start("NPCIdentityUpdate")
