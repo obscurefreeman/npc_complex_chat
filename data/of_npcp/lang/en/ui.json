@@ -85,6 +85,7 @@
             "title": "Personalization",
             "voice_service": "Voice Service",
             "volume_setting": "Volume Setting",
+            "enable_voice": "Enable Voice Services",
             "save_settings": "Save Settings",
             "guide": "Personalization Guide",
             "text": "Here you can adjust voice, volume and other personalization settings.\nAll changes will be automatically saved to local configuration file."

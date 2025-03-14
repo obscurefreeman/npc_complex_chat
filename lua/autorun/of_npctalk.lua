@@ -250,7 +250,7 @@ if CLIENT then
             local headBoneIndex = dialog.npc:LookupBone("ValveBiped.Bip01_Head1")
             local headPos = dialog.npc:GetBonePosition(headBoneIndex)
             
-            local finalPos = Vector(speakerPos.x, speakerPos.y, headPos.z + 7)
+            local finalPos = Vector(speakerPos.x, speakerPos.y, headPos.z + 10)
             
             -- 开始3D2D渲染
             cam.Start3D2D(finalPos, speakerAngles, 0.1)

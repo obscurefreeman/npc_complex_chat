@@ -360,7 +360,7 @@ if SERVER then
     end)
 
     -- 添加调试命令
-    concommand.Add("of_debug_dumpnpcs", function(ply)
+    concommand.Add("of_garrylord_debug", function(ply)
         if IsValid(ply) and not ply:IsSuperAdmin() then return end
         
         print("\n=== 当前所有NPC数据 ===")

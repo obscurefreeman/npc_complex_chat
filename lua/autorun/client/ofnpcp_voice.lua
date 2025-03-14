@@ -10,10 +10,11 @@ local function UrlEncode(str)
     return str
 end
 
-function PlayNPCDialogVoice(npc, text)
-    -- 首先检查NPC是否有效
-    if not IsValid(npc) then return end
+-- 添加客户端ConVar
+CreateClientConVar("of_garrylord_voice", "0", true, true, "", 0, 1)
 
+function PlayNPCDialogVoice(npc, text)
+    if not IsValid(npc) or GetConVar("of_garrylord_voice"):GetInt() == 0 then return end
 
     -- 获取NPC列表并检查NPC身份信息是否存在
     local npcs = GetAllNPCsList()

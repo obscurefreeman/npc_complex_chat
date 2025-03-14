@@ -442,6 +442,26 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
         SetText = L("ui.personalization.voice_service")
     })
 
+	local voiceCheckPanel = vgui.Create("EditablePanel", personalizationLeftPanel)
+	voiceCheckPanel:Dock(TOP)
+	voiceCheckPanel:SetTall(24 * OFGUI.ScreenScale)
+	voiceCheckPanel:DockMargin(4, 4, 4, 4)
+
+	local voiceCheckBox = vgui.Create("OFCheckBox", voiceCheckPanel)
+	voiceCheckBox:Dock(LEFT)
+	voiceCheckBox:SetSize(24 * OFGUI.ScreenScale, 24 * OFGUI.ScreenScale)
+	voiceCheckBox:DockMargin(0, 0, 8 * OFGUI.ScreenScale, 0)
+	voiceCheckBox:SetValue(GetConVar("of_garrylord_voice"):GetInt() == 1)
+
+	local voiceCheckLabel = vgui.Create("DLabel", voiceCheckPanel)
+	voiceCheckLabel:SetFont("ofgui_medium")
+	voiceCheckLabel:Dock(FILL)
+	voiceCheckLabel:SetText(L("ui.personalization.enable_voice"))
+
+	voiceCheckBox.OnChange = function(panel, value)
+		RunConsoleCommand("of_garrylord_voice", value and "1" or "0")
+	end
+
     -- 创建API URL输入框
     local apiUrlEntry = CreateControl(personalizationLeftPanel, "OFTextEntry", {
         SetValue = personalizationSettings.api_url,
