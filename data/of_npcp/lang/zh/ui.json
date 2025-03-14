@@ -17,7 +17,11 @@
             "kill_all": "杀死所有 NPC",
             "remove_all": "删除所有 NPC",
             "refresh_list": "刷新列表",
-            "select_voice": "选择配音"
+            "select_voice": "选择配音",
+            "npc_name": "NPC名称",
+            "comment": "评论",
+            "ai_prompt": "AI 提示词",
+            "voice": "音色"
         },
         "deck_system": {
             "select_deck": "选择牌组",
@@ -76,6 +80,14 @@
             "cancel": "取消",
             "group_name": "阵营名称",
             "card_key": "卡牌索引"
+        },
+        "personalization": {
+            "title": "个性化",
+            "voice_service": "语音服务",
+            "volume_setting": "音量设置",
+            "save_settings": "保存设置",
+            "guide": "个性化设置说明",
+            "text": "在这里您可以调整配音、音量等个性化设置。\n所有更改将自动保存到本地配置文件。"
         }
     }
 } 

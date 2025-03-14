@@ -411,15 +411,19 @@ if CLIENT then
         CreateSkillButton(npccardPanel, npcIdentity.tag_trade, npcIdentity.tag_trade_desc, npcIdentity.tag_trade, Color(255, 200, 100))
         CreateSkillButton(npccardPanel, npcIdentity.tag_social, npcIdentity.tag_social_desc, npcIdentity.tag_social, Color(100, 200, 255))
 
-        if npcIdentity.comments then
+		if npcIdentity.comments then
+            local commentLabel = vgui.Create("OFTextLabel", npccardPanel)
+            commentLabel:Dock(TOP)
+            commentLabel:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+            commentLabel:SetText(L("ui.npclist.comment"))
             for _, commentData in ipairs(npcIdentity.comments) do
-                local commentLabel = vgui.Create("OFNPCButton", npccardPanel)
-                commentLabel:Dock(TOP)
-                commentLabel:SetTall(80 * OFGUI.ScreenScale)
-                commentLabel:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
-                commentLabel:SetModel(commentData.model or "models/error.mdl")
-                commentLabel:SetTitle(commentData.player)
-                commentLabel:SetDescription(commentData.comment)
+                local commentMessage = vgui.Create("OFMessage", npccardPanel)
+                commentMessage:Dock(TOP)
+                commentMessage:SetHeight(80 * OFGUI.ScreenScale)
+                commentMessage:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+                commentMessage:SetName(commentData.player)
+                commentMessage:SetText(commentData.comment)
+				commentMessage:SetColor(commentData.color)
             end
         end
 

@@ -21,7 +21,7 @@ local function RefreshNPCButtons(left_panel, right_panel)
 		local nicknameLabel = vgui.Create("OFTextLabel", right_panel)
 		nicknameLabel:Dock(TOP)
 		nicknameLabel:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
-		nicknameLabel:SetText("NPC名称")
+		nicknameLabel:SetText(L("ui.npclist.npc_name"))
 		
 		-- 创建名称输入和提交按钮
 		local nameEntry = vgui.Create("OFTextEntry", right_panel)
@@ -90,17 +90,17 @@ local function RefreshNPCButtons(left_panel, right_panel)
 		local commentLabel = vgui.Create("OFTextLabel", right_panel)
 		commentLabel:Dock(TOP)
 		commentLabel:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
-		commentLabel:SetText("评论")
+		commentLabel:SetText(L("ui.npclist.comment"))
 
 		if npcData.comments then
             for _, commentData in ipairs(npcData.comments) do
-                local commentLabel = vgui.Create("OFNPCButton", right_panel)
-                commentLabel:Dock(TOP)
-                commentLabel:SetTall(80 * OFGUI.ScreenScale)
-                commentLabel:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
-                commentLabel:SetModel(commentData.model or "models/error.mdl")
-                commentLabel:SetTitle(commentData.player)
-                commentLabel:SetDescription(commentData.comment)
+                local commentMessage = vgui.Create("OFMessage", right_panel)
+                commentMessage:Dock(TOP)
+                commentMessage:SetHeight(80 * OFGUI.ScreenScale)
+                commentMessage:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+                commentMessage:SetName(commentData.player)
+                commentMessage:SetText(commentData.comment)
+				commentMessage:SetColor(commentData.color)
             end
         end
 
@@ -126,11 +126,6 @@ local function RefreshNPCButtons(left_panel, right_panel)
 					net.WriteString(comment)
 				net.SendToServer()
 
-				-- 仅刷新当前NPC的右侧面板
-				timer.Simple(0.1, function()
-					RefreshRightPanel(npcData, entIndex)
-				end)
-
 				-- 清空评论输入框
 				commentEntry:SetValue("")
 			end
@@ -139,7 +134,7 @@ local function RefreshNPCButtons(left_panel, right_panel)
 		local promptLabel = vgui.Create("OFTextLabel", right_panel)
 		promptLabel:Dock(TOP)
 		promptLabel:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
-		promptLabel:SetText("AI 提示词")
+		promptLabel:SetText(L("ui.npclist.ai_prompt"))
 
 		local promptcontent = L(npcData.prompt)
 		promptcontent = ReplacePlaceholders(promptcontent, npcData)
@@ -170,7 +165,7 @@ local function RefreshNPCButtons(left_panel, right_panel)
 		local voiceLabel = vgui.Create("OFTextLabel", right_panel)
 		voiceLabel:Dock(TOP)
 		voiceLabel:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
-		voiceLabel:SetText("音色")
+		voiceLabel:SetText(L("ui.npclist.voice"))
 		
 		local voiceComboBox = vgui.Create("OFComboBox", right_panel)
 		voiceComboBox:Dock(TOP)
@@ -444,7 +439,7 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
     end
 
 	local voicelabel = CreateControl(personalizationLeftPanel, "OFTextLabel", {
-        SetText = "语音服务"
+        SetText = L("ui.personalization.voice_service")
     })
 
     -- 创建API URL输入框
@@ -455,7 +450,7 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
 
 	-- 创建音量滑块
 	local volumeSlider = CreateControl(personalizationLeftPanel, "OFNumSlider", {
-		SetText = "音量设置",
+		SetText = L("ui.personalization.volume_setting"),
 		SetMin = 0,
 		SetMax = 10,
 		SetDecimals = 1,
@@ -492,7 +487,7 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
 	end
 
 	local saveButton = CreateControl(personalizationLeftPanel, "OFButton", {
-		SetText = "保存设置"
+		SetText = L("ui.personalization.save_settings")
 	})
 
     saveButton.DoClick = function()
@@ -622,7 +617,7 @@ local function AddOFFrame()
 
 	-- 个性化设置面板 (pan5)
 	local pan5 = vgui.Create("EditablePanel", sheet)
-	sheet:AddSheet("个性化", pan5, "icon16/sound.png")
+	sheet:AddSheet(L("ui.personalization.title"), pan5, "icon16/sound.png")
 
 	local pan5HorizontalDivider = vgui.Create("DHorizontalDivider", pan5)
 	pan5HorizontalDivider:Dock(FILL)
@@ -782,8 +777,8 @@ local function AddOFFrame()
 	local article = vgui.Create("OFArticle", pan5RightPanel)
 	article:Dock(TOP)
 	article:DockMargin(8 * OFGUI.ScreenScale, 8 * OFGUI.ScreenScale, 8 * OFGUI.ScreenScale, 8 * OFGUI.ScreenScale)
-	article:SetName("个性化设置说明")
-	article:SetText("在这里您可以调整配音、音量等个性化设置。\n所有更改将自动保存到本地配置文件。")
+	article:SetName(L("ui.personalization.guide"))
+	article:SetText(L("ui.personalization.text"))
 	article:SetImage("ofnpcp/article/poster.png")
 end
 

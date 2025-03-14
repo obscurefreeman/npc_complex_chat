@@ -270,11 +270,15 @@ if SERVER then
                 OFNPCS[entIndex].comments = {}
             end
 
+            local playerDeck = OFPLAYERS[ply:SteamID()] and OFPLAYERS[ply:SteamID()].deck or "resistance"
+            local deckColor = GLOBAL_OFNPC_DATA.cards.info[playerDeck].color
+
             -- 添加评论
             table.insert(OFNPCS[entIndex].comments, {
                 player = ply:Nick(),
                 model = ply:GetModel(),
-                comment = comment
+                comment = comment,
+                color = deckColor
             })
 
             -- 广播更新后的身份信息给所有客户端
