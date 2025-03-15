@@ -86,6 +86,7 @@
             "voice_service": "语音服务",
             "volume_setting": "音量设置",
             "enable_voice": "启用语音服务",
+            "voice_player": "你的声音",
             "save_settings": "保存设置",
             "guide": "语音服务（测试功能）",
             "text": "只需几步，即可在 GarryLord 中开启语音服务。\n\n1，登录 Github，搜索并找到 garrylord-voice-service 项目。\n2，点击项目页里的 Deploy 按钮，将服务部署到 Vercel 平台。\n3，等待 Vercel 部署成功后，访问生成的页面，复制主页提供的 API 地址。\n4，回到 Gmod ，将复制的 API 地址粘贴到相应设置中。\n\n现在，你就可以在 Gmod 中随心所欲地使用语音服务了，享受每月 100G 的充足带宽！"

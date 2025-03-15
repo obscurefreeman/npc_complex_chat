@@ -37,12 +37,7 @@ function PlayNPCDialogVoice(npc, text)
     local voiceSettings = file.Read("of_npcp/personalization_settings.txt", "DATA")
     if voiceSettings then
         voiceSettings = util.JSONToTable(voiceSettings)
-    else
-        voiceSettings = {
-            volume = 5.0,
-            api_url = "https://freetv-mocha.vercel.app/api/aiyue"
-        }
-    end
+    else return end
 
     local encodedText = UrlEncode(text)
     local url = voiceSettings.api_url .. "?text=" .. encodedText .. "&voiceName=" .. voiceCode ..

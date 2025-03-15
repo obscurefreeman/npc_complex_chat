@@ -431,7 +431,7 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
         -- 默认设置
         personalizationSettings = {
             volume = 5.0,
-            api_url = "https://freetv-mocha.vercel.app/api/aiyue"
+            api_url = ""
         }
     end
 
@@ -441,17 +441,17 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
 
 	local voiceCheckPanel = vgui.Create("EditablePanel", personalizationLeftPanel)
 	voiceCheckPanel:Dock(TOP)
-	voiceCheckPanel:SetTall(24 * OFGUI.ScreenScale)
-	voiceCheckPanel:DockMargin(4, 4, 4, 4)
+	voiceCheckPanel:SetTall(21 * OFGUI.ScreenScale)
+	voiceCheckPanel:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
 
 	local voiceCheckBox = vgui.Create("OFCheckBox", voiceCheckPanel)
 	voiceCheckBox:Dock(LEFT)
-	voiceCheckBox:SetSize(24 * OFGUI.ScreenScale, 24 * OFGUI.ScreenScale)
+	voiceCheckBox:SetSize(21 * OFGUI.ScreenScale, 21 * OFGUI.ScreenScale)
 	voiceCheckBox:DockMargin(0, 0, 8 * OFGUI.ScreenScale, 0)
 	voiceCheckBox:SetValue(GetConVar("of_garrylord_voice"):GetInt() == 1)
 
-	local voiceCheckLabel = vgui.Create("DLabel", voiceCheckPanel)
-	voiceCheckLabel:SetFont("ofgui_medium")
+	local voiceCheckLabel = vgui.Create("OFTextLabel", voiceCheckPanel)
+	voiceCheckLabel:SetFont("ofgui_small")
 	voiceCheckLabel:Dock(FILL)
 	voiceCheckLabel:SetText(L("ui.personalization.enable_voice"))
 
@@ -473,6 +473,10 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
 		SetDecimals = 1,
 		SetValue = personalizationSettings.volume
 	})
+
+	local voicelabel = CreateControl(personalizationLeftPanel, "OFTextLabel", {
+        SetText = L("ui.personalization.voice_player")
+    })
 
 	local voiceComboBox = CreateControl(personalizationLeftPanel, "OFComboBox", {
 		SetValue = L("ui.npclist.select_voice")
