@@ -95,19 +95,6 @@ if SERVER then
                 identity.voice = maleVoices[math.random(#maleVoices)]
             end
 
-            local jobSpecializations = {}
-
-            -- 加载职业细分
-            for _, job in ipairs(GLOBAL_OFNPC_DATA.jobData.citizen) do
-                local jobName = job.job
-                jobSpecializations[jobName] = job.specializations
-            end
-            
-            if jobSpecializations[identity.job] then
-                local specs = jobSpecializations[identity.job]
-                identity.specialization = specs[math.random(#specs)]
-            end
-
             -- 根据性别分配名字
             if identity.gender == "female" then
                 identity.name = GLOBAL_OFNPC_DATA.names.female[math.random(#GLOBAL_OFNPC_DATA.names.female)]
@@ -141,6 +128,19 @@ if SERVER then
             identity.exp_per_rank = CalculateExpNeeded(identity.rank)
             identity.name = gamename
             identity.voice = maleVoices[math.random(#maleVoices)]
+        end
+
+        local jobSpecializations = {}
+
+        -- 加载职业细分
+        for _, job in ipairs(GLOBAL_OFNPC_DATA.jobData.citizen) do
+            local jobName = job.job
+            jobSpecializations[jobName] = job.specializations
+        end
+        
+        if jobSpecializations[identity.job] then
+            local specs = jobSpecializations[identity.job]
+            identity.specialization = specs[math.random(#specs)]
         end
 
         identity.prompt = "prompt." .. tostring(identity.camp)
@@ -454,12 +454,6 @@ if SERVER then
     net.Receive("UpdateAllPlayerData", function()
         local playerData = net.ReadTable()
         OFPLAYERS = playerData
-    end)
-
-    -- 在客户端初始化时主动请求数据
-    hook.Add("InitPostEntity", "RequestPlayerData", function()
-        net.Start("RequestPlayerDataSync")
-        net.SendToServer()
     end)
 
     -- 添加接收客户端请求数据的处理函数

@@ -394,6 +394,33 @@ if CLIENT then
         npccardPanel:Dock(FILL)
         npccardPanel:DockMargin(0, 4 * OFGUI.ScreenScale, 8 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
 
+        -- 增加了npc按钮
+
+        local npcName
+		if npcIdentity.name == npcIdentity.gamename then
+			npcName = language.GetPhrase(npcIdentity.gamename)
+		else
+			npcName = L(npcIdentity.name) .. " “" .. L(npcIdentity.nickname) .. "”"
+		end
+
+        local npcButton = vgui.Create("OFNPCButton", npccardPanel)
+		npcButton:Dock(TOP)
+		npcButton:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+		npcButton:SetTall(80 * OFGUI.ScreenScale)
+		npcButton:SetModel(npcIdentity.model or "models/error.mdl")
+		npcButton:SetTitle(npcName)
+
+        local description = ""
+		if npcIdentity.rank and npcIdentity.job and npcIdentity.specialization and npcIdentity.camp then
+			local rank = GLOBAL_OFNPC_DATA.rankData.ranks["i" .. npcIdentity.rank]
+			npcButton:SetBadge("ofnpcp/rankicons/rank_".. npcIdentity.rank .. ".tga")
+			description =  L("camp."..tostring(npcIdentity.camp)) .. " " .. L(rank) .. " - " .. L(npcIdentity.specialization)
+            npcButton:SetHoveredColor(GLOBAL_OFNPC_DATA.cards.info[npcIdentity.camp].color)
+		elseif npcIdentity.gamename then
+			description = npcIdentity.gamename
+		end
+		npcButton:SetDescription(description)
+
         local function CreateSkillButton(parent, tag, tagDesc, iconPath, hoveredColor)
             if tag then
                 local button = vgui.Create("OFAdvancedButton", parent)
@@ -404,6 +431,7 @@ if CLIENT then
                 button:SetTitle(L(tag))
                 button:SetDescription(L(tagDesc))
                 button:SetHoveredColor(hoveredColor)
+                button:SetShowHoverCard(false)
             end
         end
 

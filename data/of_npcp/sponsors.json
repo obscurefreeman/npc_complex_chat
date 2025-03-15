@@ -30,7 +30,7 @@
     {
         "name": "博丽守黑",
         "description": "模组赞助者勋章",
-        "color": [180, 100, 255],
+        "color": [147, 51, 89],
         "image": "blsh",
         "order": 5
     },

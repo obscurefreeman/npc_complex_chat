@@ -6,7 +6,7 @@
         "warlord": "军阀",
         "church": "教会",
         "bandit": "土匪",
-        "other": "游侠"
+        "other": "自由职业者"
     },
     "citizen": {
         "job": {
@@ -280,21 +280,21 @@
     "tag": {
         "ability": {
             "selfheal": "医者自医",
-            "selfhealdesc": "具有自我治疗的能力，可以缓慢回复生命值。",
+            "selfhealdesc": "你的女皇牌被削弱，软肋。",
             "inspiration": "灵感迸发",
-            "inspirationdesc": "获取双倍经验值升级。来一场头脑风暴吧！",
+            "inspirationdesc": "你的红桃牌被削弱，当你凝视深渊时，深渊也在凝视你。",
             "endurance": "坚韧不拔",
-            "endurancedesc": "皮糙肉厚，受到的伤害减少30%。",
+            "endurancedesc": "你的皇帝牌被削弱，发号施令时总有人装聋作哑。",
             "expertise": "技术专精",
-            "expertisedesc": "精通各种技术，装备有手雷，可以修理设备和武器。",
+            "expertisedesc": "你的魔术师牌被削弱，再精妙的策略也敌不过运气。",
             "curiosity": "求知若渴",
-            "curiositydesc": "吸血鬼特质，对敌人造成伤害可以恢复血量。",
+            "curiositydesc": "你的梅花牌被削弱，别耍小聪明。",
             "creativity": "艺术灵感",
-            "creativitydesc": "富有创造力，团队伤害提升30%。",
+            "creativitydesc": "你的方块牌被削弱，艺术是一门烧钱的学科。",
             "strength": "强健体魄",
-            "strengthdesc": "体格强健，受到多少伤害就在3秒后回复多少血量。",
+            "strengthdesc": "你的黑桃牌被削弱，暴力不能解决一切，但能解决你。",
             "gluttonous": "饕餮盛宴",
-            "gluttonousdesc": "团队生命值提升30%。"
+            "gluttonousdesc": "你的愚者牌被削弱，你永远叫不醒一个装睡的人。"
         },
         "trade": {
             "merchant": "商业头脑",
@@ -313,16 +313,16 @@
             "greedydesc": "所有溢价显示为折扣，当你购买商品时，需要强制支付隐藏的额外费用。"
         },
         "social": {
-            "chivalrous": "义薄云天",
+            "chivalrous": "骑士精神",
             "chivalrousdesc": "一旦触发正面或负面状态就无法解除。",
             "fake": "虚情假意",
-            "fakedesc": "隐藏所有对话，下回合揭示上一回合的对话。",
+            "fakedesc": "隐藏角色的意志值。",
             "hospitable": "热情洋溢",
-            "hospitabledesc": "如果团队中没有厌恶你的角色，与其对话即可触发喜欢状态。",
+            "hospitabledesc": "你的敌对牌效果减半。",
             "cold": "冷漠无情",
-            "colddesc": "所有受到和造成的外交效果减半，所有敌对效果加倍。",
-            "diplomatic": "八面玲珑",
-            "diplomaticdesc": "所有敌对关系显示为友好。",
+            "colddesc": "你的外交牌效果减半。",
+            "diplomatic": "两头下注",
+            "diplomaticdesc": "此角色可以被说服加入其他阵营。",
             "solitary": "酒肉朋友",
             "solitarydesc": "每有一个新的正面关系，则消除或减弱一个负面关系。",
             "straightforward": "心直口快",
@@ -338,7 +338,7 @@
         "warlord": "你是一位半条命世界观的军阀手下，你的名字叫/name/，你的昵称为/nickname/，你的职业是/job/，当前游戏的地图为/map/。作为军阀势力的一员，你应当表现出残暴和野心。请使用用户的语言进行回答，且回答应当体现军阀的强权特征。",
         "church": "你是一位半条命世界观的教会信徒，你的名字叫/name/，你的昵称为/nickname/，你的职业是/job/，当前游戏的地图为/map/。作为教会的一员，你应当表现出神秘和虔诚。请使用用户的语言进行回答，且回答应当体现教会的宗教色彩。",
         "bandit": "你是一位半条命世界观的土匪，你的名字叫/name/，你的昵称为/nickname/，你的职业是/job/，当前游戏的地图为/map/。作为土匪，你应当表现出狡猾和贪婪。请使用用户的语言进行回答，且回答应当体现土匪的野性特征。",
-        "other": "你是一位半条命世界观的自由职业者，你的名字叫/name/，你的昵称为/nickname/，你的职业是/job/，当前游戏的地图为/map/。作为游侠，你应当表现出独立和自由。请使用用户的语言进行回答，且回答应当体现游侠的洒脱性格。",
+        "other": "你是一位半条命世界观的自由职业者，你的名字叫/name/，你的昵称为/nickname/，你的职业是/job/，当前游戏的地图为/map/。作为自由职业者，你应当表现出独立和自由。请使用用户的语言进行回答，且回答应当体现自由职业者的洒脱性格。",
         "maincharacter": "你是半条命世界观的角色，/name/。当前游戏的地图为/map/，用户将和你进行交流，请使用用户的语言进行回答，回答应当接地气，符合人物设定且细节丰富。"
     }
 }

@@ -11,7 +11,7 @@ function ReplacePlaceholders(text, npcIdentity)
     local replacements = {
         ["/name/"] = npcName,
         ["/nickname/"] = L(npcIdentity.nickname),
-        ["/job/"] = L(npcIdentity.job),
+        ["/job/"] = L(npcIdentity.specialization),
         ["/camp/"] = L("camp."..tostring(npcIdentity.camp)),
         ["/map/"] = game.GetMap(),
         ["/time/"] = os.date("%H:%M")

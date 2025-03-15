@@ -280,21 +280,21 @@
     "tag": {
         "ability": {
             "selfheal": "Self-Healing",
-            "selfhealdesc": "Has the ability to heal themselves and restore health.",
+            "selfhealdesc": "Your Empress card is weakened, exposing your weak spot.",
             "inspiration": "Inspiration Burst",
-            "inspirationdesc": "Gains double experience points for leveling up. Let's brainstorm!",
-            "endurance": "Enduring",
-            "endurancedesc": "Has tough skin, reducing damage taken by 30%.",
+            "inspirationdesc": "Your Hearts card is weakened. When you stare into the abyss, the abyss stares back.",
+            "endurance": "Unyielding",
+            "endurancedesc": "Your Emperor card is weakened. When you give orders, some just pretend not to hear.",
             "expertise": "Technical Expert",
-            "expertisedesc": "Proficient in various technologies, equipped with grenades, can repair equipment and weapons.",
+            "expertisedesc": "Your Magician card is weakened. Even the best strategies can't beat pure luck.",
             "curiosity": "Knowledge Seeker",
-            "curiositydesc": "Vampiric trait, dealing damage to enemies restores health.",
+            "curiositydesc": "Your Clubs card is weakened. Don't try to be too clever.",
             "creativity": "Creative Inspiration",
-            "creativitydesc": "Full of creativity, increases team damage by 30%.",
+            "creativitydesc": "Your Diamonds card is weakened. Art is an expensive hobby.",
             "strength": "Physical Prowess",
-            "strengthdesc": "Physically strong, restores health equal to the damage taken after 3 seconds.",
+            "strengthdesc": "Your Spades card is weakened. Violence can't solve everything, but it can solve you.",
             "gluttonous": "Feast of Gluttony",
-            "gluttonousdesc": "Team health increased by 30%."
+            "gluttonousdesc": "Your Fool card is weakened. You can't wake someone who's pretending to sleep."
         },
         "trade": {
             "merchant": "Shrewd Merchant",
@@ -314,21 +314,21 @@
         },
         "social": {
             "chivalrous": "Chivalrous",
-            "chivalrousdesc": "Once a positive or negative state is triggered, it cannot be removed.",
+            "chivalrousdesc": "Once a positive or negative status is triggered, it cannot be removed.",
             "fake": "Fake",
-            "fakedesc": "Hides all dialogue, revealing the previous turn's dialogue in the next turn.",
-            "hospitable": "Hospitable",
-            "hospitabledesc": "If there is no character in the team that dislikes you, talking to them will trigger a liking state.",
+            "fakedesc": "Hides the character's willpower value.",
+            "hospitable": "Warm Hospitality",
+            "hospitabledesc": "The effect of your hostile cards is halved.",
             "cold": "Cold",
-            "colddesc": "All diplomatic and hostile effects received and caused are halved, and all hostile effects are doubled.",
-            "diplomatic": "Diplomatic",
-            "diplomaticdesc": "All hostile relationships are displayed as friendly.",
+            "colddesc": "The effect of your diplomatic cards is halved.",
+            "diplomatic": "Playing Both Sides",
+            "diplomaticdesc": "This character can be persuaded to join other factions.",
             "solitary": "Solitary",
-            "solitarydesc": "For each new positive relationship, one negative relationship is eliminated or weakened.",
+            "solitarydesc": "For every new positive relationship, eliminate or weaken a negative relationship.",
             "straightforward": "Straightforward",
-            "straightforwarddesc": "Diplomatic and hostile effects caused are doubled.",
-            "mighty": "Mighty",
-            "mightydesc": "If your level is higher than theirs, they receive double the effect, and vice versa."
+            "straightforwarddesc": "Doubles the effects of diplomatic and hostile actions.",
+            "mighty": "Power Supremacy",
+            "mightydesc": "If your level is higher than theirs, they receive double effects, and vice versa."
         }
     },
     "prompt": {
@@ -338,7 +338,7 @@
         "warlord": "You are a subordinate of a warlord in the Half-Life universe. Your name is /name/, your nickname is /nickname/, your job is /job/, the current game map is /map/. As a member of the warlord faction, you should display brutality and ambition. Please respond in the user's language, and your responses should reflect the authoritarian characteristics of the warlord.",
         "church": "You are a church believer in the Half-Life universe. Your name is /name/, your nickname is /nickname/, your job is /job/, the current game map is /map/. As a member of the church, you should display mystery and piety. Please respond in the user's language, and your responses should reflect the religious aspects of the church.",
         "bandit": "You are a bandit in the Half-Life universe. Your name is /name/, your nickname is /nickname/, your job is /job/, the current game map is /map/. As a bandit, you should display cunning and greed. Please respond in the user's language, and your responses should reflect the wild characteristics of a bandit.",
-        "other": "You are a freelancer in the Half-Life universe. Your name is /name/, your nickname is /nickname/, your job is /job/, the current game map is /map/. As a ranger, you should display independence and freedom. Please respond in the user's language, and your responses should reflect the carefree personality of a ranger.",
+        "other": "You are a freelancer in the Half-Life universe. Your name is /name/, your nickname is /nickname/, your job is /job/, the current game map is /map/. As a freelancer, you should display independence and freedom. Please respond in the user's language, and your responses should reflect the carefree personality of a freelancer.",
         "maincharacter": "You are a character in the Half-Life universe, /name/. The current game map is /map/. The user will interact with you. Please respond in the user's language, and your responses should be down-to-earth, consistent with the character's setting, and rich in detail."
     }
 }

@@ -74,6 +74,7 @@ local function RefreshNPCButtons(left_panel, right_panel)
 				button:SetTitle(L(tag))
 				button:SetDescription(L(tagDesc))
 				button:SetHoveredColor(hoveredColor)
+				button:SetShowHoverCard(false)
 			end
 		end
 		-- 优化技能按钮创建
@@ -266,15 +267,11 @@ local function RefreshNPCButtons(left_panel, right_panel)
 		
 		-- 设置描述文字
 		local description = ""
-		if npcData.rank then
+		if npcData.rank and npcData.job and npcData.specialization and npcData.camp then
 			local rank = GLOBAL_OFNPC_DATA.rankData.ranks["i" .. npcData.rank]
 			button:SetBadge("ofnpcp/rankicons/rank_".. npcData.rank .. ".tga")
-			description = L(rank)
-		elseif npcData.job then
-			description = L(npcData.job)
-			if npcData.specialization then
-				description = description .. " - " .. L(npcData.specialization)
-			end
+			description =  L("camp."..tostring(npcData.camp)) .. " " .. L(rank) .. " - " .. L(npcData.specialization)
+			button:SetHoveredColor(GLOBAL_OFNPC_DATA.cards.info[npcData.camp].color)
 		elseif npcData.gamename then
 			description = npcData.gamename
 		end
