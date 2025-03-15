@@ -16,7 +16,7 @@
         },
         "union": {
             "1": "Hey /player/, how's the workload today?",
-            "2": "The capitalists are squeezing us dry again, /player/.",
+            "2": "Past experience doesn't apply anymore, /player/.",
             "3": "United we stand, /player/.",
             "4": "They're late with our pay again, /player/. Got any ideas?",
             "5": "What brings you here, /player/?"
@@ -29,11 +29,11 @@
             "5": "We need more manpower, /player/."
         },
         "church": {
-            "1": "May Gary the Rat bless you, /player/.",
-            "2": "Have you felt the Lord's guidance lately, /player/?",
-            "3": "Come join our service, /player/.",
-            "4": "This world needs faith, /player/.",
-            "5": "Let us pray together, /player/."
+            "1": "This world needs faith, /player/.",
+            "2": "Have you... heard the voices from below recently?",
+            "3": "There's a light at the end of the alley. Come find us, /player/.",
+            "4": "Shh... someone's watching us.",
+            "5": "Come join our service, /player/."
         },
         "bandit": {
             "1": "Hey /player/, any good deals lately?",
@@ -47,7 +47,7 @@
             "2": "This area isn't safe, /player/. Watch yourself.",
             "3": "Got any interesting news, /player/?",
             "4": "Didn't expect to see you in /map/, /player/.",
-            "5": "Don't let the rules tie you down, /player/."
+            "5": "If I were you, I wouldn't come to this place, /player/."
         }
     },
     "idle": {
@@ -61,65 +61,65 @@
             "7": "That damn floor last night left my back aching."
         },
         "resistance": {
-            "1": "Running low on ammo, gotta conserve... Hope supplies arrive soon.",
-            "2": "This damn gun jammed! Anyone got spare parts?",
-            "3": "Hey, seen my gas mask anywhere?",
-            "4": "Stay sharp, the Combine could counterattack any moment.",
+            "1": "Running low on ammo... hope supplies arrive soon.",
+            "2": "This damn gun's acting up again, anyone got tools to fix it?",
+            "3": "My gas mask's gone missing again, what the hell!",
+            "4": "Don't let your guard down, the Union could strike any moment.",
             "5": "I'm so sick of these canned rations, I'd kill for some fresh veggies.",
-            "6": "Anyone got a light? I need a smoke to relax.",
+            "6": "I need a smoke to relax, anyone got a light?",
             "7": "Who's on watch tonight? I need some proper sleep.",
-            "8": "This crappy radio only picks up Combine propaganda, I wish we could hear real news.",
-            "9": "Hey, you ever play those old arcade machines at Black Mesa? Now that was classic!",
-            "10": "I miss my cat.",
-            "11": "This damn weather is freezing, I could use a thick coat.",
+            "8": "This damn radio only picks up Union propaganda, I want real news.",
+            "9": "Hey, you ever play the old arcade machines at Black Mesa? Those were the days!",
+            "10": "Wonder how my cat's doing back home... she loved my fish stew.",
+            "11": "This damn weather's freezing, I could use a thick coat.",
             "12": "Anyone got cards? Let's play a few hands to kill time.",
-            "13": "This coffee tastes awful, but it's better than nothing.",
-            "14": "Hey, you hear? There's a new bar opening underground in City 17.",
-            "15": "One day, we'll make the Combine pay for their crimes!",
-            "16": "We're not alone in this fight, the whole world supports us!",
-            "17": "This damn map is so confusing, where the hell are we?",
-            "18": "This place is too quiet, it's creeping me out.",
+            "13": "This coffee tastes like crap, but it's better than nothing.",
+            "14": "Hey, you hear? There's a bar opening underground in City 17.",
+            "15": "Just wait, the Union will pay for what they've done to us!",
+            "16": "We're not alone in this fight, the whole world's behind us!",
+            "17": "This damn map's confusing, where the hell are we?",
+            "18": "This place is too quiet... it's creepy.",
             "19": "I think I heard something strange, you guys hear that?",
-            "20": "These damn boots are leaking again",
+            "20": "My boots are leaking again, my feet are gonna rot at this rate.",
             "21": "Anyone know what time it is?",
-            "22": "Careful! Don't touch my weapon, it's my lifeline!",
-            "23": "Anyone got a razor? My beard's getting out of control."
+            "22": "Hands off my weapon, it's my lifeline!",
+            "23": "Patrolling in the dark around here is no joke."
         },
         "union": {
-            "1": "The noise in this factory is giving me a headache.",
-            "2": "My back's acting up again, they should pay me double for this.",
-            "3": "This damn machine broke again, need to get it fixed.",
+            "1": "The noise in this factory is killing me.",
+            "2": "My back's acting up again, they should pay me double.",
+            "3": "This damn machine's broken again, need to call maintenance.",
             "4": "Did we meet today's production quota?",
-            "5": "These work clothes are falling apart, when are we getting new ones?",
+            "5": "These work clothes are falling apart, they won't even replace them.",
             "6": "God, I'm so tired.",
-            "7": "The food in this cafeteria is terrible.",
-            "8": "Heard the factory next door went on strike, should we do the same?",
+            "7": "The food in this cafeteria is disgusting.",
+            "8": "Heard the factory next door went on strike, maybe we should show the boss what's what.",
             "9": "The pay's too low, can't even support my family.",
-            "10": "Those capitalists keep exploiting us, we'll show them one day!"
+            "10": "Those capitalists just keep exploiting us, we'll make them pay!"
         },
         "warlord": {
-            "1": "This territory is perfect for a base.",
-            "2": "Anyone got some booze? I need a drink.",
-            "3": "This gun needs maintenance, anyone got gun oil?",
-            "4": "Things are heating up lately, everyone stay alert.",
-            "5": "You see that?.",
+            "1": "This territory's perfect for a base.",
+            "2": "Need to get some good booze tonight to treat the boys.",
+            "3": "Damn, this gun needs maintenance.",
+            "4": "Things are heating up lately, everyone stay sharp.",
+            "5": "You see that? Something's moving over there.",
             "6": "We need to plan our next move carefully.",
             "7": "You hear that rumbling? The railway must be nearby.",
-            "8": "Heard some big shot's coming here",
+            "8": "Make way, some big shot's coming through.",
             "9": "Only reason I came to this backwater was for the pretty girls.",
-            "10": "Fricis is the real boss of /map/, you're all dead meat!"
+            "10": "Freeside runs /map/, and you're all dead meat!"
         },
         "church": {
-            "1": "May Gary the Rat bless us.",
-            "2": "This holy water is miraculous, cures all ills.",
+            "1": "Donations are down lately, need to figure out how to bring in more.",
+            "2": "They say this holy water can cure anything.",
             "3": "Bring the candles, it's time for the ritual.",
-            "4": "This scripture is so profound, needs careful study.",
-            "5": "May the Lord's light shine upon this land.",
-            "6": "The hymns of Gary the Rat bring peace to the soul.",
+            "4": "The church renovations are going to cost a fortune, need to raise funds.",
+            "5": "Remember, some secrets are only shared in the basement.",
+            "6": "Gary's hymns really calm the soul.",
             "7": "Gear up, we need to purify this area.",
             "8": "This church needs repairs.",
-            "9": "May Gary the Rat forgive our sins.",
-            "10": "Judgment Day is near, Gary the Rat will descend upon the world."
+            "9": "Last night's ritual went well, but we need more offerings.",
+            "10": "Heard the church next door made a killing, we need to step up our game."
         },
         "bandit": {
             "1": "This spot's perfect for an ambush.",
@@ -128,10 +128,10 @@
             "4": "Things are getting messy in /map/, bad for business.",
             "5": "This loot's good, should fetch a nice price.",
             "6": "We need to plan our route, who's got the map?",
-            "7": "This damn heat's killing me, need to cool off.",
-            "8": "Heard there's a merchant caravan nearby, let's hit it!",
-            "9": "Damn, these boots are killing my feet.",
-            "10": "Stay alert, enemies could show up any minute."
+            "7": "This heat's killing me, need to find some shade.",
+            "8": "Heard there's a merchant caravan coming through, let's hit it!",
+            "9": "Damn curfew again tonight, we need to find a way out.",
+            "10": "Stay sharp, enemies could attack any moment."
         },
         "other": {
             "1": "This place is so quiet, too bad I'm no philosopher.",
@@ -162,8 +162,8 @@
         "resistance": {
             "1": "Take this, /victim/!",
             "2": "Open fire!",
-            "3": "You want some extra holes, /victim/?",
-            "4": "I see them, get ready to fight!",
+            "3": "I see them, get ready to fight!",
+            "4": "Want some extra holes in your body, /victim/?",
             "5": "We've got hostiles!",
             "6": "Take cover!",
             "7": "Suppress them!",
@@ -193,11 +193,11 @@
         },
         "church": {
             "1": "Heretics, face judgment!",
-            "2": "For the glory of Gary the Rat, destroy them!",
-            "3": "Purge these unclean ones!",
-            "4": "Let the Lord's wrath fall upon them!",
-            "5": "We've found a traitor!",
-            "6": "/victim/, take this!"
+            "2": "For the glory of Gary the Rat, eliminate them!",
+            "3": "Purify these unclean ones!",
+            "4": "You've seen what you shouldn't have!",
+            "5": "Traitor spotted!",
+            "6": "/victim/, you'll need to buy double indulgences!"
         },
         "bandit": {
             "1": "Brothers, attack!",
@@ -262,9 +262,9 @@
             "5": "Another enemy down, our territory grows!"
         },
         "church": {
-            "1": "/victim/ is in hell now!",
-            "2": "This is what happens to all heretics!",
-            "3": "Lord, I offer /victim/ as sacrifice to you!",
+            "1": "Your soul will wander underground forever.",
+            "2": "This is the fate of all heretics!",
+            "3": "Another sacrifice for tonight.",
             "4": "Hahahaha!",
             "5": "Keep going, wipe them all out."
         },
@@ -292,17 +292,17 @@
             "2": "How's your day going, /name/?",
             "3": "So glad to meet you!",
             "4": "What have you been up to lately, /name/?",
-            "5": "You seem to be in a good mood, /name/."
+            "5": "You seem in good spirits, /name/."
         },
         "negotiate": {
-            "1": "About the border issue last time, can we compromise?",
-            "2": "I have a proposal that might benefit both of us, /name/.",
-            "3": "Things would go much smoother if we agree on resource allocation.",
-            "4": "I understand your position, but maybe we can find a middle ground?",
-            "5": "About that dispute, why don't we set aside our differences and focus on our common goals?",
-            "6": "As long as we agree on basic principles, the details will be easier to handle.",
-            "7": "If we make concessions on some details, we can reach an overall agreement.",
-            "8": "I have an idea that might break our current deadlock."
+            "1": "I'm here to negotiate!",
+            "2": "I have an idea that might benefit us both, /name/.",
+            "3": "If we can reach an agreement, things will be much easier.",
+            "4": "I understand your difficulties, but we need to compromise.",
+            "5": "/name/, there's something I need to discuss with you.",
+            "6": "This is important, we need to talk it over.",
+            "7": "How about this, let's both make some concessions?",
+            "8": "I need to talk to you."
         },
         "trade": {
             "1": "Do you have anything special here?",
@@ -338,11 +338,11 @@
             "5": "/player/! Perfect timing, I was just talking about you with a friend."
         },
         "negotiate": {
-            "1": "I suggest we first define the boundaries, what do you think?",
-            "2": "Why don't we list out the key issues one by one for clarity?",
-            "3": "I completely understand your concerns, maybe we should assess the situation first.",
-            "4": "I was just about to ask for more details myself.",
-            "5": "Let's prioritize solving the most pressing issue first, other matters can be discussed later."
+            "1": "What's going on?",
+            "2": "I was just about to discuss this with you, /player/.",
+            "3": "You're right, we really need to talk this over.",
+            "4": "I was just about to ask for the details.",
+            "5": "Speak up, my time is precious."
         },
         "trade": {
             "1": "Of course! I bet you'll be interested in this.",
