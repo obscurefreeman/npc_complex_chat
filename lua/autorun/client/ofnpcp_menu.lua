@@ -587,7 +587,7 @@ local function AddOFFrame()
 			article:SetName(logEntry.title)
 			article:SetText(logEntry.content)
 			if logEntry.image then
-				article:SetImage(logEntry.image)
+				article:SetImage("ofnpcp/article/" .. logEntry.image .. ".png")
 			else end
 		end
 	end
@@ -802,7 +802,7 @@ local function AddOFFrame()
 	article:DockMargin(8 * OFGUI.ScreenScale, 8 * OFGUI.ScreenScale, 8 * OFGUI.ScreenScale, 8 * OFGUI.ScreenScale)
 	article:SetName(L("ui.personalization.guide"))
 	article:SetText(L("ui.personalization.text"))
-	article:SetImage("ofnpcp/article/poster.png")
+	article:SetImage("ofnpcp/article/tts.png")
 end
 
 list.Set("DesktopWindows", "ofnpcp", {
