@@ -301,17 +301,15 @@ if SERVER then
             if playerData[steamID] then
                 OFPLAYERS[steamID] = {
                     deck = playerData[steamID].deck,
-                    voice = playerData[steamID].voice or "zh-CN-XiaoyiNeural"  -- 加载配音设置，默认值为"zh-CN-XiaoyiNeural"
+                    voice = playerData[steamID].voice or "zh-CN-XiaoyiNeural"
                 }
             else
-                -- 默认牌组为反抗军，默认配音为"zh-CN-XiaoyiNeural"
                 OFPLAYERS[steamID] = {
                     deck = "resistance",
                     voice = "zh-CN-XiaoyiNeural"
                 }
             end
         else
-            -- 如果文件不存在，使用默认牌组和配音
             OFPLAYERS[ply:SteamID()] = {
                 deck = "resistance",
                 voice = "zh-CN-XiaoyiNeural"

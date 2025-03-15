@@ -228,11 +228,6 @@ if CLIENT then
         local messagePanel = vgui.Create("OFScrollPanel", frame)
         messagePanel:Dock(FILL)
 
-        -- 添加对话历史更新监听
-        local playerDeck = OFPLAYERS[LocalPlayer():SteamID()] and OFPLAYERS[LocalPlayer():SteamID()].deck or "resistance"
-        local deckColor = GLOBAL_OFNPC_DATA.cards.info[playerDeck].color
-        local npcColor = GLOBAL_OFNPC_DATA.cards.info[npcIdentity.camp].color
-
         local function TranslateDialogHistory(ent, updatedData, ai)
             if ent == npc then
                 npcIdentity = updatedData
@@ -300,7 +295,8 @@ if CLIENT then
                         speakerType = dialog.speakerType,
                         target = dialog.target,
                         text = translatedText,
-                        time = dialog.time
+                        time = dialog.time,
+                        color = dialog.color
                     }
 
                     if footnoteText then
@@ -340,7 +336,7 @@ if CLIENT then
                     message:DockMargin(4, 4, 4, 4)
                     
                     -- 设置消息颜色
-                    local messageColor = dialog.speakerType == "npc" and npcColor or deckColor
+                    local messageColor = dialog.color
                     message:SetColor(messageColor)
 
                     if dialog.footnoteText then

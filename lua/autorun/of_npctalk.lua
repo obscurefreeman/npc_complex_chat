@@ -56,7 +56,8 @@ if SERVER then
                     speakerType = speaker:IsPlayer() and "player" or "npc",
                     target = speaker:IsPlayer() and target:EntIndex() or target:Nick(),
                     text = dialogKey,
-                    time = os.date("%H:%M")
+                    time = os.date("%H:%M"),
+                    color = speaker:IsPlayer() and OFPLAYERS[speaker:SteamID()] and OFPLAYERS[speaker:SteamID()].deck and GLOBAL_OFNPC_DATA.cards.info[OFPLAYERS[speaker:SteamID()].deck] and GLOBAL_OFNPC_DATA.cards.info[OFPLAYERS[speaker:SteamID()].deck].color or GLOBAL_OFNPC_DATA.cards.info[npcData.camp] and GLOBAL_OFNPC_DATA.cards.info[npcData.camp].color or color_white,
                 }
                 -- 仅在aidetail存在时添加
                 if aidetail and istable(aidetail) then
