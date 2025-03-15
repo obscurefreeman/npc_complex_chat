@@ -110,12 +110,12 @@
             "10": "Freeside runs /map/, and you're all dead meat!"
         },
         "church": {
-            "1": "Donations are down lately, need to figure out how to bring in more.",
-            "2": "They say this holy water can cure anything.",
+            "1": "Donations have been pretty slim lately, we need to step up our fundraising game.",
+            "2": "Heard this holy water can cure anything, want to give it a try?",
             "3": "Bring the candles, it's time for the ritual.",
             "4": "The church renovations are going to cost a fortune, need to raise funds.",
-            "5": "Remember, some secrets are only shared in the basement.",
-            "6": "Gary's hymns really calm the soul.",
+            "5": "You know, some secrets are only meant to be shared in the basement.",
+            "6": "The hymns echo through the dome, cleansing the souls of the faithful.",
             "7": "Gear up, we need to purify this area.",
             "8": "This church needs repairs.",
             "9": "Last night's ritual went well, but we need more offerings.",
@@ -193,7 +193,7 @@
         },
         "church": {
             "1": "Heretics, face judgment!",
-            "2": "For the glory of Gary the Rat, eliminate them!",
+            "2": "For the glory of the church, destroy them!",
             "3": "Purify these unclean ones!",
             "4": "You've seen what you shouldn't have!",
             "5": "Traitor spotted!",
@@ -262,7 +262,7 @@
             "5": "Another enemy down, our territory grows!"
         },
         "church": {
-            "1": "Your soul will wander underground forever.",
+            "1": "Judgment Day is upon us, /victim/!",
             "2": "This is the fate of all heretics!",
             "3": "Another sacrifice for tonight.",
             "4": "Hahahaha!",
