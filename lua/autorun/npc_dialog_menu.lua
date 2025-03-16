@@ -62,6 +62,9 @@ if CLIENT then
         
         -- 从player_talk.json中获取对话选项
         local dialogOptions = GLOBAL_OFNPC_DATA.playerTalks.option
+        -- 获取玩家卡组
+        local playerDeck = OFPLAYERS[LocalPlayer():SteamID()] and OFPLAYERS[LocalPlayer():SteamID()].deck or "resistance"
+        local deckColor = GLOBAL_OFNPC_DATA.cards.info[playerDeck].color
 
         -- 从全局变量获取对话文本
         local playerTalkOptions = {}
@@ -543,10 +546,6 @@ if CLIENT then
                 elseif optionTypes[option] == "negotiate" then
                     -- 清空面板
                     scrollPanel:Clear()
-                    
-                    -- 获取玩家卡组
-                    local playerDeck = OFPLAYERS[LocalPlayer():SteamID()] and OFPLAYERS[LocalPlayer():SteamID()].deck or "resistance"
-                    local deckColor = GLOBAL_OFNPC_DATA.cards.info[playerDeck].color
                     
                     -- 获取所有可用卡牌
                     local function GetAllCards()

@@ -534,7 +534,7 @@ local function AddOFFrame()
 	end
 
 	frame = vgui.Create("OFFrame")  -- 创建新的菜单
-	frame:SetTitle(L("ui.title"))
+	frame:SetTitle(L("ui.title"):gsub("/name/", LocalPlayer():Nick()))
 
 	local sheet = vgui.Create("OFPropertySheet", frame)
 	sheet:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
