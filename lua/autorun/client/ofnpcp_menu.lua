@@ -581,18 +581,40 @@ local function AddOFFrame()
 
 	-- 添加日志文章
 	if GLOBAL_OFNPC_DATA.log then
-		-- 按order字段降序排列
-		table.sort(GLOBAL_OFNPC_DATA.log, function(a, b) return a.order > b.order end)
+		table.sort(GLOBAL_OFNPC_DATA.log, function(a, b) 
+			return (a.timestamp or 0) > (b.timestamp or 0)
+		end)
 		
 		for _, logEntry in ipairs(GLOBAL_OFNPC_DATA.log) do
 			local article = vgui.Create("OFArticle", pan1RightPanel)
 			article:Dock(TOP)
 			article:DockMargin(8 * OFGUI.ScreenScale, 8 * OFGUI.ScreenScale, 8 * OFGUI.ScreenScale, 8 * OFGUI.ScreenScale)
 			article:SetName(logEntry.title)
+			
+			-- 计算发布时间
+			local timeDiff = os.time() - (logEntry.timestamp or os.time())
+			local timeStr
+			if timeDiff < 60 then
+				timeStr = "刚刚发布"
+			elseif timeDiff < 3600 then
+				timeStr = math.floor(timeDiff / 60) .. "分钟前"
+			elseif timeDiff < 86400 then
+				timeStr = math.floor(timeDiff / 3600) .. "小时前"
+			elseif timeDiff < 604800 then
+				timeStr = math.floor(timeDiff / 86400) .. "天前"
+			elseif timeDiff < 2592000 then
+				timeStr = math.floor(timeDiff / 604800) .. "周前"
+			elseif timeDiff < 31536000 then
+				timeStr = math.floor(timeDiff / 2592000) .. "月前"
+			else
+				timeStr = math.floor(timeDiff / 31536000) .. "年前"
+			end
+			
+			article:SetSubtitle("发布于 " .. timeStr)
 			article:SetText(logEntry.content)
 			if logEntry.image then
 				article:SetImage("ofnpcp/article/" .. logEntry.image .. ".png")
-			else end
+			end
 		end
 	end
 
