@@ -1,100 +1,33 @@
 {
-    "tag_ability": {
-        "citizen.job.medic": {
-            "id": "tag.ability.selfheal",
-            "desc": "tag.ability.selfhealdesc"
+    "tag": {
+        "ability": {
+            "citizen.job.medic": "tag.ability.selfheal",
+            "citizen.job.scholar": "tag.ability.inspiration",
+            "citizen.job.worker": "tag.ability.endurance",
+            "citizen.job.technician": "tag.ability.expertise",
+            "citizen.job.researcher": "tag.ability.curiosity",
+            "citizen.job.artist": "tag.ability.creativity",
+            "citizen.job.athlete": "tag.ability.strength",
+            "citizen.job.foodie": "tag.ability.gluttonous"
         },
-        "citizen.job.scholar": {
-            "id": "tag.ability.inspiration", 
-            "desc": "tag.ability.inspirationdesc"
-        },
-        "citizen.job.worker": {
-            "id": "tag.ability.endurance",
-            "desc": "tag.ability.endurancedesc"
-        },
-        "citizen.job.technician": {
-            "id": "tag.ability.expertise",
-            "desc": "tag.ability.expertisedesc"
-        },
-        "citizen.job.researcher": {
-            "id": "tag.ability.curiosity",
-            "desc": "tag.ability.curiositydesc"
-        },
-        "citizen.job.artist": {
-            "id": "tag.ability.creativity",
-            "desc": "tag.ability.creativitydesc"
-        },
-        "citizen.job.athlete": {
-            "id": "tag.ability.strength",
-            "desc": "tag.ability.strengthdesc"
-        },
-        "citizen.job.foodie": {
-            "id": "tag.ability.gluttonous",
-            "desc": "tag.ability.gluttonousdesc"
-        }
-    },
-    "tag_trade": [
-        {
-            "id": "tag.trade.merchant",
-            "desc": "tag.trade.merchantdesc"
-        },
-        {
-            "id": "tag.trade.honest",
-            "desc": "tag.trade.honestdesc"
-        },
-        {
-            "id": "tag.trade.deceiver",
-            "desc": "tag.trade.deceiverdesc"
-        },
-        {
-            "id": "tag.trade.quality",
-            "desc": "tag.trade.qualitydesc"
-        },
-        {
-            "id": "tag.trade.bargainer",
-            "desc": "tag.trade.bargainerdesc"
-        },
-        {
-            "id": "tag.trade.affordable",
-            "desc": "tag.trade.affordabledesc"
-        },
-        {
-            "id": "tag.trade.greedy",
-            "desc": "tag.trade.greedydesc"
-        }
-    ],
-    "tag_social": [
-        {
-            "id": "tag.social.chivalrous",
-            "desc": "tag.social.chivalrousdesc"
-        },
-        {
-            "id": "tag.social.fake",
-            "desc": "tag.social.fakedesc"
-        },
-        {
-            "id": "tag.social.hospitable",
-            "desc": "tag.social.hospitabledesc"
-        },
-        {
-            "id": "tag.social.cold",
-            "desc": "tag.social.colddesc"
-        },
-        {
-            "id": "tag.social.diplomatic",
-            "desc": "tag.social.diplomaticdesc"
-        },
-        {
-            "id": "tag.social.solitary",
-            "desc": "tag.social.solitarydesc"
-        },
-        {
-            "id": "tag.social.straightforward",
-            "desc": "tag.social.straightforwarddesc"
-        },
-        {
-            "id": "tag.social.mighty",
-            "desc": "tag.social.mightydesc"
-        }
-    ]
+        "trade": [
+            "tag.trade.merchant",
+            "tag.trade.honest",
+            "tag.trade.deceiver",
+            "tag.trade.quality",
+            "tag.trade.bargainer",
+            "tag.trade.affordable",
+            "tag.trade.greedy"
+        ],
+        "social": [
+            "tag.social.chivalrous",
+            "tag.social.fake",
+            "tag.social.hospitable",
+            "tag.social.cold",
+            "tag.social.diplomatic",
+            "tag.social.solitary",
+            "tag.social.straightforward",
+            "tag.social.mighty"
+        ]
+    }
 } 

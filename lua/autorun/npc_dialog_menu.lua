@@ -420,23 +420,23 @@ if CLIENT then
 		end
 		npcButton:SetDescription(description)
 
-        local function CreateSkillButton(parent, tag, tagDesc, iconPath, hoveredColor)
+        local function CreateSkillButton(parent, tag, hoveredColor)
             if tag then
                 local button = vgui.Create("OFAdvancedButton", parent)
                 button:Dock(TOP)
                 button:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
                 button:SetTall(80 * OFGUI.ScreenScale)
-                button:SetIcon("ofnpcp/" .. string.gsub(iconPath, "%.", "/") .. ".png")
+                button:SetIcon("ofnpcp/" .. string.gsub(tag, "%.", "/") .. ".png")
                 button:SetTitle(L(tag))
-                button:SetDescription(L(tagDesc))
+                button:SetDescription(L(tag .. "desc"))
                 button:SetHoveredColor(hoveredColor)
                 button:SetShowHoverCard(false)
             end
         end
 
-        CreateSkillButton(npccardPanel, npcIdentity.tag_ability, npcIdentity.tag_ability_desc, npcIdentity.tag_ability, Color(100, 255, 100))
-        CreateSkillButton(npccardPanel, npcIdentity.tag_trade, npcIdentity.tag_trade_desc, npcIdentity.tag_trade, Color(255, 200, 100))
-        CreateSkillButton(npccardPanel, npcIdentity.tag_social, npcIdentity.tag_social_desc, npcIdentity.tag_social, Color(100, 200, 255))
+        CreateSkillButton(npccardPanel, npcIdentity.tag_ability, Color(100, 255, 100))
+        CreateSkillButton(npccardPanel, npcIdentity.tag_trade, Color(255, 200, 100))
+        CreateSkillButton(npccardPanel, npcIdentity.tag_social, Color(100, 200, 255))
 
 		if npcIdentity.comments then
             local commentLabel = vgui.Create("OFTextLabel", npccardPanel)

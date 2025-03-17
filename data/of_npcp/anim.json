@@ -46,5 +46,9 @@
     "npc_monk": {
         "camp": "other",
         "anim": "lineidle01"
+    },
+    "npc_fisherman_all": {
+        "camp": "other",
+        "anim": "idle01_nh"
     }
 }

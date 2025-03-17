@@ -64,29 +64,23 @@ local function RefreshNPCButtons(left_panel, right_panel)
 			surface.DrawRect(0, 0, w, h)
 		end
 
-		local function CreateSkillButton(parent, tag, tagDesc, iconPath, hoveredColor)
-			if tag then
-				local button = vgui.Create("OFAdvancedButton", parent)
-				button:Dock(TOP)
-				button:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
-				button:SetTall(80 * OFGUI.ScreenScale)
-				button:SetIcon("ofnpcp/" .. string.gsub(iconPath, "%.", "/") .. ".png")
-				button:SetTitle(L(tag))
-				button:SetDescription(L(tagDesc))
-				button:SetHoveredColor(hoveredColor)
-				button:SetShowHoverCard(false)
-			end
-		end
-		-- 优化技能按钮创建
-		local skillButtons = {
-			{tag = npcData.tag_ability, desc = npcData.tag_ability_desc, icon = npcData.tag_ability, color = Color(100, 255, 100)},
-			{tag = npcData.tag_trade, desc = npcData.tag_trade_desc, icon = npcData.tag_trade, color = Color(255, 200, 100)},
-			{tag = npcData.tag_social, desc = npcData.tag_social_desc, icon = npcData.tag_social, color = Color(100, 200, 255)}
-		}
-		
-		for _, buttonData in ipairs(skillButtons) do
-			CreateSkillButton(right_panel, buttonData.tag, buttonData.desc, buttonData.icon, buttonData.color)
-		end
+        local function CreateSkillButton(parent, tag, hoveredColor)
+            if tag then
+                local button = vgui.Create("OFAdvancedButton", parent)
+                button:Dock(TOP)
+                button:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+                button:SetTall(80 * OFGUI.ScreenScale)
+                button:SetIcon("ofnpcp/" .. string.gsub(tag, "%.", "/") .. ".png")
+                button:SetTitle(L(tag))
+                button:SetDescription(L(tag .. "desc"))
+                button:SetHoveredColor(hoveredColor)
+                button:SetShowHoverCard(false)
+            end
+        end
+
+        CreateSkillButton(right_panel, npcData.tag_ability, Color(100, 255, 100))
+        CreateSkillButton(right_panel, npcData.tag_trade, Color(255, 200, 100))
+        CreateSkillButton(right_panel, npcData.tag_social, Color(100, 200, 255))
 
 		local commentLabel = vgui.Create("OFTextLabel", right_panel)
 		commentLabel:Dock(TOP)

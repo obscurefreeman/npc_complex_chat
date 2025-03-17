@@ -148,29 +148,28 @@ if SERVER then
             identity.prompt = "prompt.maincharacter"
         end
 
-        -- 在分配完基本信息后添加tag分配
-        if identity.job then
-            -- 分配能力tag
-            if GLOBAL_OFNPC_DATA.tagData.tag_ability[identity.job] then
-                local abilityTag = GLOBAL_OFNPC_DATA.tagData.tag_ability[identity.job]
-                identity.tag_ability = abilityTag.id
-                identity.tag_ability_desc = abilityTag.desc
+        -- 优化后的tag分配逻辑
+        local function AssignTag(category, specific)
+            if specific then
+                -- 分配特定tag
+                local tagID = GLOBAL_OFNPC_DATA.tagData.tag[category][specific]
+                if tagID then
+                    identity["tag_"..category] = tagID
+                end
+            else
+                -- 随机分配tag
+                local tags = GLOBAL_OFNPC_DATA.tagData.tag[category]
+                if tags and #tags > 0 then
+                    local tag = tags[math.random(#tags)]
+                    identity["tag_"..category] = tag
+                end
             end
         end
-        
-        -- 分配交易和社交tag
-        if GLOBAL_OFNPC_DATA.tagData.tag_trade and #GLOBAL_OFNPC_DATA.tagData.tag_trade > 0 then
-            local tradeTag = GLOBAL_OFNPC_DATA.tagData.tag_trade[math.random(#GLOBAL_OFNPC_DATA.tagData.tag_trade)]
-            identity.tag_trade = tradeTag.id
-            identity.tag_trade_desc = tradeTag.desc
-        end
-        
-        if GLOBAL_OFNPC_DATA.tagData.tag_social and #GLOBAL_OFNPC_DATA.tagData.tag_social > 0 then
-            local socialTag = GLOBAL_OFNPC_DATA.tagData.tag_social[math.random(#GLOBAL_OFNPC_DATA.tagData.tag_social)]
-            identity.tag_social = socialTag.id
-            identity.tag_social_desc = socialTag.desc
-        end
-        
+
+        AssignTag("ability", identity.job)
+        AssignTag("trade")
+        AssignTag("social")
+
         -- 存储NPC身份信息
         OFNPCS[ent:EntIndex()] = identity
         
