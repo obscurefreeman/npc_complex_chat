@@ -104,6 +104,7 @@
         },
         "sponsor": {
             "mod_creator": "Mod Creator",
+            "technical_support": "Technical Support",
             "senior_sponsor": "Senior Sponsor Badge",
             "sponsor": "Sponsor Badge"
         }

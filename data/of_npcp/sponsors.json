@@ -7,6 +7,20 @@
         "order": 1
     },
     {
+        "name": "LemonCola3424",
+        "badges": ["ui.sponsor.technical_support"],
+        "color": [78, 153, 42],
+        "image": "lemoncola3424",
+        "order": 2
+    },
+    {
+        "name": "crester",
+        "badges": ["ui.sponsor.technical_support"],
+        "color": [215, 86, 112],
+        "image": "crester",
+        "order": 3
+    },
+    {
         "name": "萧福叠",
         "badges": ["ui.sponsor.senior_sponsor"],
         "color": [0, 155, 119],

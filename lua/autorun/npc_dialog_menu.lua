@@ -693,7 +693,7 @@ if CLIENT then
                 
                 success = function(code, body, headers)
                     local response = util.JSONToTable(body)
-                    -- 重要debug代码
+                    -- 重要debug代码，如果获得了回应，就会立即将上下文和回复打在控制台里
                     if aiDialogs and response then
                         PrintTable(aiDialogs)
                         PrintTable(response)
@@ -709,7 +709,7 @@ if CLIENT then
                         net.WriteTable(response)
                         net.SendToServer()
                     else
-                        -- 处理无效的响应
+                        -- 成功了，但是回答格式是错误的，有可能余额不足
                         net.Start("NPCAIDialog")
                         net.WriteEntity(npc)
                         net.WriteString(L("ui.dialog.invalid_response"))
@@ -718,7 +718,7 @@ if CLIENT then
                 end,
                 
                 failed = function(err)
-                    -- 处理错误
+                    -- 没有成功，有可能api填错了，也有可能没连上网
                     net.Start("NPCAIDialog")
                     net.WriteEntity(npc)
                     net.WriteString(L("ui.dialog.http_error") .. (err or L("ui.dialog.unknown")))
