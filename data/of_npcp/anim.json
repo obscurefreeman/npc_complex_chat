@@ -42,5 +42,9 @@
     "npc_citizen": {
         "camp": "resistance",
         "anim": "idle_subtle"
+    },
+    "npc_monk": {
+        "camp": "other",
+        "anim": "lineidle01"
     }
 }
