@@ -2,6 +2,7 @@
     "ui": {
         "title": "Welcome back, /name/!",
         "tab": {
+            "home": "Home",
             "npclist": "Active NPC",
             "deck_system": "Deck Setting",
             "ai_system": "AI Setting"
@@ -90,6 +91,21 @@
             "save_settings": "Save Settings",
             "guide": "Voice Service (Beta Feature)",
             "text": "Just a few steps to enable voice service in GarryLord.\n\n1. Log in to Github, search and find the garrylord-voice-service project.\n2. Click the Deploy button on the project page to deploy the service to Vercel platform.\n3. After Vercel deployment is successful, visit the generated page and copy the API address provided on the homepage.\n4. Return to Gmod and paste the copied API address into the corresponding settings.\n\nNow you can freely use voice service in Gmod, enjoying a generous 100G monthly bandwidth!"
+        },
+        "time": {
+            "just_now": "Just now",
+            "minutes_ago": "%d minutes ago",
+            "hours_ago": "%d hours ago",
+            "days_ago": "%d days ago",
+            "weeks_ago": "%d weeks ago",
+            "months_ago": "%d months ago",
+            "years_ago": "%d years ago",
+            "published_at": "Published at %s"
+        },
+        "sponsor": {
+            "mod_creator": "Mod Creator",
+            "senior_sponsor": "Senior Sponsor Badge",
+            "sponsor": "Sponsor Badge"
         }
     }
 } 

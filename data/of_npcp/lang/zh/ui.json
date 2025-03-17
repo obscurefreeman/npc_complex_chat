@@ -2,6 +2,7 @@
     "ui": {
         "title": "欢迎回来，/name/！",
         "tab": {
+            "home": "首页",
             "npclist": "NPC列表",
             "deck_system": "卡组设置",
             "ai_system": "AI配置"
@@ -89,7 +90,22 @@
             "voice_player": "你的声音",
             "save_settings": "保存设置",
             "guide": "语音服务（测试功能）",
-            "text": "只需几步，即可在 GarryLord 中开启语音服务。\n\n1，登录 Github，搜索并找到 garrylord-voice-service 项目。\n2，点击项目页里的 Deploy 按钮，将服务部署到 Vercel 平台。\n3，等待 Vercel 部署成功后，访问生成的页面，复制主页提供的 API 地址。\n4，回到 Gmod ，将复制的 API 地址粘贴到相应设置中。\n\n现在，你就可以在 Gmod 中随心所欲地使用语音服务了，享受每月 100G 的充足带宽！"
+            "text": "只需几步，即可在盖瑞霸业中开启语音服务。\n\n1，登录 Github，搜索并找到 garrylord-voice-service 项目。\n2，点击项目页里的 Deploy 按钮，将服务部署到 Vercel 平台。\n3，等待 Vercel 部署成功后，访问生成的页面，复制主页提供的 API 地址。\n4，回到 Gmod ，将复制的 API 地址粘贴到相应设置中。\n\n现在，你就可以在 Gmod 中随心所欲地使用语音服务了，享受每月 100G 的充足带宽！"
+        },
+        "time": {
+            "just_now": "刚刚",
+            "minutes_ago": "%d 分钟前",
+            "hours_ago": "%d 小时前",
+            "days_ago": "%d 天前",
+            "weeks_ago": "%d 周前",
+            "months_ago": "%d 月前",
+            "years_ago": "%d 年前",
+            "published_at": "发布于 %s"
+        },
+        "sponsor": {
+            "mod_creator": "模组制作者",
+            "senior_sponsor": "高级赞助者勋章",
+            "sponsor": "赞助者勋章"
         }
     }
 } 

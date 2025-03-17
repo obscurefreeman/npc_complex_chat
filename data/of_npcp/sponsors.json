@@ -1,51 +1,58 @@
 [
     {
         "name": "晦涩弗里曼",
-        "description": "模组制作者",
+        "badges": ["ui.sponsor.mod_creator"],
         "color": [100, 100, 255],
         "image": "of",
         "order": 1
     },
     {
         "name": "萧福叠",
-        "description": "高级模组赞助者勋章",
+        "badges": ["ui.sponsor.senior_sponsor"],
         "color": [0, 155, 119],
         "image": "xfd",
         "order": 4
     },
     {
         "name": "漫游者_Xhc",
-        "description": "模组赞助者勋章",
+        "badges": ["ui.sponsor.sponsor"],
         "color": [127, 0, 32],
         "image": "xhc",
         "order": 5
     },
     {
         "name": "工-具-人-0-2-3-号",
-        "description": "模组赞助者勋章",
+        "badges": ["ui.sponsor.sponsor"],
         "color": [17, 118, 208],
         "image": "gjr",
         "order": 5
     },
     {
         "name": "博丽守黑",
-        "description": "模组赞助者勋章",
+        "badges": ["ui.sponsor.sponsor"],
         "color": [147, 51, 89],
         "image": "blsh",
         "order": 5
     },
     {
         "name": "Сталкер",
-        "description": "模组赞助者勋章",
+        "badges": ["ui.sponsor.sponsor"],
         "color": [173, 216, 230],
         "image": "cta",
         "order": 5
     },
     {
         "name": "Pathfinder_FUFU",
-        "description": "模组赞助者勋章",
+        "badges": ["ui.sponsor.sponsor"],
         "color": [215, 86, 112],
         "image": "fufu",
+        "order": 5
+    },
+    {
+        "name": "SCP:SL大佬",
+        "badges": ["ui.sponsor.sponsor"],
+        "color": [78, 153, 42],
+        "image": "scp",
         "order": 5
     }
 ]

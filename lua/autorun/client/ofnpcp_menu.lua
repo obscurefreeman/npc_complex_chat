@@ -254,7 +254,7 @@ local function RefreshNPCButtons(left_panel, right_panel)
 		if npcData.name == npcData.gamename then
 			npcName = language.GetPhrase(npcData.gamename)
 		else
-			npcName = L(npcData.name) .. " “" .. L(npcData.nickname) .. "”"
+			npcName = L(npcData.name) .. " " .. L(npcData.nickname) .. ""
 		end
 
 		-- 创建新的NPC按钮
@@ -542,7 +542,7 @@ local function AddOFFrame()
 
 	-- 新增pan1
 	local pan1 = vgui.Create("EditablePanel", sheet)
-	sheet:AddSheet("首页", pan1, "icon16/star.png")
+	sheet:AddSheet(L("ui.tab.home"), pan1, "icon16/house.png")
 
 	local pan1HorizontalDivider = vgui.Create("DHorizontalDivider", pan1)
 	pan1HorizontalDivider:Dock(FILL)
@@ -572,7 +572,17 @@ local function AddOFFrame()
 			button:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
 			button:SetTall(80 * OFGUI.ScreenScale)
 			button:SetTitle(sponsor.name)
-			button:SetDescription(sponsor.description)
+			-- 将description改为显示徽章列表
+			local badges = ""
+			if sponsor.badges then
+				for i, badge in ipairs(sponsor.badges) do
+					if i > 1 then  -- 从第二个徽章开始添加分隔符
+						badges = badges .. " "
+					end
+					badges = badges .. L(badge)
+				end
+			end
+			button:SetDescription(badges)
 			button:SetIcon("ofnpcp/sponsors/" .. sponsor.image .. ".png")
 			button:SetHoveredColor(Color(unpack(sponsor.color)))
 			button:SetShowHoverCard(false)
@@ -595,22 +605,22 @@ local function AddOFFrame()
 			local timeDiff = os.time() - (logEntry.timestamp or os.time())
 			local timeStr
 			if timeDiff < 60 then
-				timeStr = "刚刚发布"
+				timeStr = L("ui.time.just_now")
 			elseif timeDiff < 3600 then
-				timeStr = math.floor(timeDiff / 60) .. "分钟前"
+				timeStr = string.format(L("ui.time.minutes_ago"), math.floor(timeDiff / 60))
 			elseif timeDiff < 86400 then
-				timeStr = math.floor(timeDiff / 3600) .. "小时前"
+				timeStr = string.format(L("ui.time.hours_ago"), math.floor(timeDiff / 3600))
 			elseif timeDiff < 604800 then
-				timeStr = math.floor(timeDiff / 86400) .. "天前"
+				timeStr = string.format(L("ui.time.days_ago"), math.floor(timeDiff / 86400))
 			elseif timeDiff < 2592000 then
-				timeStr = math.floor(timeDiff / 604800) .. "周前"
+				timeStr = string.format(L("ui.time.weeks_ago"), math.floor(timeDiff / 604800))
 			elseif timeDiff < 31536000 then
-				timeStr = math.floor(timeDiff / 2592000) .. "月前"
+				timeStr = string.format(L("ui.time.months_ago"), math.floor(timeDiff / 2592000))
 			else
-				timeStr = math.floor(timeDiff / 31536000) .. "年前"
+				timeStr = string.format(L("ui.time.years_ago"), math.floor(timeDiff / 31536000))
 			end
 			
-			article:SetSubtitle("发布于 " .. timeStr)
+			article:SetSubtitle(string.format(L("ui.time.published_at"), timeStr))
 			article:SetText(logEntry.content)
 			if logEntry.image then
 				article:SetImage("ofnpcp/article/" .. logEntry.image .. ".png")
@@ -666,7 +676,7 @@ local function AddOFFrame()
 
 	-- 个性化设置面板 (pan5)
 	local pan5 = vgui.Create("EditablePanel", sheet)
-	sheet:AddSheet(L("ui.personalization.title"), pan5, "icon16/sound.png")
+	sheet:AddSheet(L("ui.personalization.title"), pan5, "icon16/user.png")
 
 	local pan5HorizontalDivider = vgui.Create("DHorizontalDivider", pan5)
 	pan5HorizontalDivider:Dock(FILL)

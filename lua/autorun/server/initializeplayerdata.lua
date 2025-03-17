@@ -9,7 +9,6 @@ local function LoadAllPlayerData()
     end
 end
 
--- 添加同步函数
 local function SyncPlayerDeckToClient(ply)
     if OFPLAYERS[ply:SteamID()] then
         net.Start("UpdatePlayerDeck")
@@ -25,9 +24,8 @@ end
 
 hook.Add("Initialize", "LoadAllPlayerData", LoadAllPlayerData)
 
--- 当玩家初始连接时同步数据
 hook.Add("PlayerInitialSpawn", "SyncPlayerDeck", function(ply)
-    timer.Simple(1, function()  -- 给予一点延迟确保客户端准备就绪
+    timer.Simple(1, function()
         if IsValid(ply) then
             SyncPlayerDeckToClient(ply)
         end

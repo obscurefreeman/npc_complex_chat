@@ -45,9 +45,6 @@ local function LoadNPCData()
     LoadJsonData("data/of_npcp/sponsors.json", "sponsors")
     LoadJsonData("data/of_npcp/ai/providers.json", "aiProviders")
     LoadJsonData("data/of_npcp/ai/voice.json", "voice")
-
-    -- 在加载数据后添加调试信息
-    -- print("【自由调试】:", util.TableToJSON(GLOBAL_OFNPC_DATA.rankData.ranks, true))
 end
 
 -- 在服务器启动时加载数据
