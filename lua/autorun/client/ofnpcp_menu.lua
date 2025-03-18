@@ -263,7 +263,7 @@ local function RefreshNPCButtons(left_panel, right_panel)
 		local description = ""
 		if npcData.rank and npcData.job and npcData.specialization and npcData.camp then
 			local rank = GLOBAL_OFNPC_DATA.rankData.ranks["i" .. npcData.rank]
-			button:SetBadge("ofnpcp/rankicons/rank_".. npcData.rank .. ".tga")
+			button:SetBadge("ofnpcp/usrankicons/rank_".. npcData.rank .. ".tga")
 			description =  L("camp."..tostring(npcData.camp)) .. " " .. L(rank) .. " - " .. L(npcData.specialization)
 			button:SetHoveredColor(GLOBAL_OFNPC_DATA.cards.info[npcData.camp].color)
 		elseif npcData.gamename then

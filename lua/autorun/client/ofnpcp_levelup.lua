@@ -11,7 +11,7 @@ net.Receive("OFNPCRankUp", function()
     ent:EmitSound("ofnpcp/rankup.ogg")
 
     local rank = GLOBAL_OFNPC_DATA.rankData.ranks["i" .. identity.rank]
-    rankimage = "ofnpcp/rankicons/rank_".. identity.rank .. ".tga"
+    rankimage = "ofnpcp/usrankicons/rank_".. identity.rank .. ".tga"
     rankname = L(rank)
 
     -- 创建一个文本标签来显示晋级信息
@@ -39,7 +39,7 @@ net.Receive("OFNPCRankUp", function()
         surface.SetDrawColor(255, 255, 255, alpha)  -- 设置图片透明度
         
         -- 计算整体宽度（图片宽度 + 文字宽度）
-        local imageWidth = textHeight * 44 / 63
+        local imageWidth = textHeight  -- 高度与字体大小相同
         local totalWidth = imageWidth + textWidth
         
         -- 绘制图片（在文字左侧）

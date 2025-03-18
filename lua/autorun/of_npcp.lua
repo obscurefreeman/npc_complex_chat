@@ -33,6 +33,7 @@ if SERVER then
         identity.model = ent:GetModel()
         identity.nickname = GLOBAL_OFNPC_DATA.names.nicknames[math.random(#GLOBAL_OFNPC_DATA.names.nicknames)]
         identity.anim = GLOBAL_OFNPC_DATA.anim[npcInfo].anim
+        identity.rank = math.random(1, 27)
         identity.dialogHistory = {}
         
         local gamename = list.Get( "NPC" )[identity.info] and list.Get( "NPC" )[identity.info].Name
@@ -83,7 +84,6 @@ if SERVER then
                 end
             end
 
-            identity.rank = math.random(1, 39)
             identity.exp = 0
             identity.exp_per_rank = CalculateExpNeeded(identity.rank)
 
@@ -104,7 +104,6 @@ if SERVER then
         elseif npcInfo == "npc_metropolice" then
             identity.camp = "combine"
             identity.type = "metropolice"
-            identity.rank = math.random(1, 39)
             identity.job = GLOBAL_OFNPC_DATA.jobData.citizen[math.random(#GLOBAL_OFNPC_DATA.jobData.citizen)].job
             identity.exp = 0
             identity.exp_per_rank = CalculateExpNeeded(identity.rank)
@@ -113,7 +112,6 @@ if SERVER then
         elseif npcInfo == "npc_combine_s" then
             identity.camp = "combine"
             identity.type = "combine"
-            identity.rank = math.random(1, 39)
             identity.job = GLOBAL_OFNPC_DATA.jobData.citizen[math.random(#GLOBAL_OFNPC_DATA.jobData.citizen)].job
             identity.exp = 0
             identity.exp_per_rank = CalculateExpNeeded(identity.rank)
@@ -122,7 +120,6 @@ if SERVER then
         else
             identity.camp = GLOBAL_OFNPC_DATA.anim[npcInfo].camp
             identity.type = "maincharacter"
-            identity.rank = math.random(1, 39)
             identity.job = GLOBAL_OFNPC_DATA.jobData.citizen[math.random(#GLOBAL_OFNPC_DATA.jobData.citizen)].job
             identity.exp = 0
             identity.exp_per_rank = CalculateExpNeeded(identity.rank)

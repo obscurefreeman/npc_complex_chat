@@ -6,7 +6,7 @@ hook.Add("OnNPCKilled", "NPCRankUp", function(victim, attacker, inflictor)
     if identity.rank and identity.exp and identity.exp_per_rank ~= 0 then
         local leveledUp = false  -- 新增变量来跟踪是否升级
 
-        if identity.rank < 39 then
+        if identity.rank < 27 then
             identity.exp = identity.exp + 1000
             local nextLevelExp = CalculateExpNeeded(identity.rank)
 
@@ -14,6 +14,8 @@ hook.Add("OnNPCKilled", "NPCRankUp", function(victim, attacker, inflictor)
                 identity.rank = identity.rank + 1
                 identity.exp = identity.exp - nextLevelExp
                 leveledUp = true  -- 标记为升级
+
+                attacker:SetHealth(attacker:GetMaxHealth())
                 
                 -- 广播更新后的身份信息给所有客户端
                 net.Start("NPCIdentityUpdate")
