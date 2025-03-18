@@ -6,7 +6,7 @@ hook.Add("OnNPCKilled", "NPCRankUp", function(victim, attacker, inflictor)
     if identity.rank and identity.exp and identity.exp_per_rank ~= 0 then
         local leveledUp = false  -- 新增变量来跟踪是否升级
 
-        if identity.rank < 27 then
+        if identity.rank < 34 then
             identity.exp = identity.exp + 1000
             local nextLevelExp = CalculateExpNeeded(identity.rank)
 

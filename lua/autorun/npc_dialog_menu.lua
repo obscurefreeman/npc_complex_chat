@@ -411,9 +411,8 @@ if CLIENT then
 
         local description = ""
 		if npcIdentity.rank and npcIdentity.job and npcIdentity.specialization and npcIdentity.camp then
-			local rank = GLOBAL_OFNPC_DATA.rankData.ranks["i" .. npcIdentity.rank]
 			npcButton:SetBadge("ofnpcp/rankicons/rank_".. npcIdentity.rank .. ".tga")
-			description =  L("camp."..tostring(npcIdentity.camp)) .. " " .. L(rank) .. " - " .. L(npcIdentity.specialization)
+			description =  L("camp."..tostring(npcIdentity.camp)) .. " " .. L("rank.".. npcData.rank) .. " - " .. L(npcIdentity.specialization)
             npcButton:SetHoveredColor(GLOBAL_OFNPC_DATA.cards.info[npcIdentity.camp].color)
 		elseif npcIdentity.gamename then
 			description = npcIdentity.gamename

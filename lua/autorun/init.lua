@@ -2,7 +2,6 @@ GLOBAL_OFNPC_DATA = {
     jobData = {},
     names = {},
     tagData = {},
-    rankData = {},
     playerTalks = {},
     npcTalks = {},
     cards = {},
@@ -36,7 +35,6 @@ local function LoadNPCData()
     LoadJsonData("data/of_npcp/jobs.json", "jobData")
     LoadJsonData("data/of_npcp/name.json", "names")
     LoadJsonData("data/of_npcp/tags.json", "tagData")
-    LoadJsonData("data/of_npcp/combine_ranks.json", "rankData")
     LoadJsonData("data/of_npcp/player_talk.json", "playerTalks")
     LoadJsonData("data/of_npcp/citizen_talk.json", "npcTalks")
     LoadJsonData("data/of_npcp/cards.json", "cards")

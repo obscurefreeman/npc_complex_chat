@@ -10,9 +10,8 @@ net.Receive("OFNPCRankUp", function()
     -- 播放晋级音效
     ent:EmitSound("ofnpcp/rankup.ogg")
 
-    local rank = GLOBAL_OFNPC_DATA.rankData.ranks["i" .. identity.rank]
     rankimage = "ofnpcp/usrankicons/rank_".. identity.rank .. ".tga"
-    rankname = L(rank)
+    rankname = L("rank.".. identity.rank)
 
     -- 创建一个文本标签来显示晋级信息
     local levelUpText = rankname

@@ -33,7 +33,7 @@ if SERVER then
         identity.model = ent:GetModel()
         identity.nickname = GLOBAL_OFNPC_DATA.names.nicknames[math.random(#GLOBAL_OFNPC_DATA.names.nicknames)]
         identity.anim = GLOBAL_OFNPC_DATA.anim[npcInfo].anim
-        identity.rank = math.random(1, 27)
+        identity.rank = math.random(1, 34)
         identity.dialogHistory = {}
         
         local gamename = list.Get( "NPC" )[identity.info] and list.Get( "NPC" )[identity.info].Name
