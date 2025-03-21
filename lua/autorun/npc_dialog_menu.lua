@@ -32,7 +32,7 @@ if SERVER then
     net.Receive("NPCAIDialog", function(len, ply)
         local npc = net.ReadEntity()
         local responseContent = net.ReadString()
-        local aidetail = net.ReadTable()
+        local aidetail = net.BytesLeft() > 0 and net.ReadTable() or {}
         if not IsValid(npc) or not IsValid(ply) then return end
 
         NPCTalkManager:StartDialog(npc, responseContent, "dialogue", ply, true, aidetail)
