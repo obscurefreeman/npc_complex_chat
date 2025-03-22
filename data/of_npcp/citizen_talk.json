@@ -58,7 +58,14 @@
             "idle.combine.4",
             "idle.combine.5",
             "idle.combine.6",
-            "idle.combine.7"
+            "idle.combine.7",
+            "idle.combine.8",
+            "idle.combine.9",
+            "idle.combine.10",
+            "idle.combine.11",
+            "idle.combine.12",
+            "idle.combine.13",
+            "idle.combine.14"
         ],
         "resistance": [
             "idle.resistance.1",
@@ -95,7 +102,12 @@
             "idle.union.7",
             "idle.union.8",
             "idle.union.9",
-            "idle.union.10"
+            "idle.union.10",
+            "idle.union.11",
+            "idle.union.12",
+            "idle.union.13",
+            "idle.union.14",
+            "idle.union.15"
         ],
         "warlord": [
             "idle.warlord.1",
@@ -107,7 +119,16 @@
             "idle.warlord.7",
             "idle.warlord.8",
             "idle.warlord.9",
-            "idle.warlord.10"
+            "idle.warlord.10",
+            "idle.warlord.11",
+            "idle.warlord.12",
+            "idle.warlord.13",
+            "idle.warlord.14",
+            "idle.warlord.15",
+            "idle.warlord.16",
+            "idle.warlord.17",
+            "idle.warlord.18",
+            "idle.warlord.19"
         ],
         "church": [
             "idle.church.1",
@@ -119,7 +140,13 @@
             "idle.church.7",
             "idle.church.8",
             "idle.church.9",
-            "idle.church.10"
+            "idle.church.10",
+            "idle.church.11",
+            "idle.church.12",
+            "idle.church.13",
+            "idle.church.14",
+            "idle.church.15",
+            "idle.church.16"
         ],
         "bandit": [
             "idle.bandit.1",
@@ -131,7 +158,12 @@
             "idle.bandit.7",
             "idle.bandit.8",
             "idle.bandit.9",
-            "idle.bandit.10"
+            "idle.bandit.10",
+            "idle.bandit.11",
+            "idle.bandit.12",
+            "idle.bandit.13",
+            "idle.bandit.14",
+            "idle.bandit.15"
         ],
         "other": [
             "idle.other.1",
@@ -143,7 +175,14 @@
             "idle.other.7",
             "idle.other.8",
             "idle.other.9",
-            "idle.other.10"
+            "idle.other.10",
+            "idle.other.11",
+            "idle.other.12",
+            "idle.other.13",
+            "idle.other.14",
+            "idle.other.15",
+            "idle.other.16",
+            "idle.other.17"
         ]
     },
     "kill": {
@@ -249,7 +288,11 @@
             "attack.union.5",
             "attack.union.6",
             "attack.union.7",
-            "attack.union.8"
+            "attack.union.8",
+            "attack.union.9",
+            "attack.union.10",
+            "attack.union.11",
+            "attack.union.12"
         ],
         "warlord": [
             "attack.warlord.1",
@@ -257,14 +300,24 @@
             "attack.warlord.3",
             "attack.warlord.4",
             "attack.warlord.5",
-            "attack.warlord.6"
+            "attack.warlord.6",
+            "attack.warlord.7",
+            "attack.warlord.8",
+            "attack.warlord.9",
+            "attack.warlord.10",
+            "attack.warlord.11",
+            "attack.warlord.12",
+            "attack.warlord.13"
         ],
         "church": [
             "attack.church.1",
             "attack.church.2",
             "attack.church.3",
             "attack.church.4",
-            "attack.church.5"
+            "attack.church.5",
+            "attack.church.6",
+            "attack.church.7",
+            "attack.church.8"
         ],
         "bandit": [
             "attack.bandit.1",

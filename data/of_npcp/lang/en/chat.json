@@ -3,7 +3,7 @@
         "combine": {
             "1": "Get out of here, /player/. This area isn't safe.",
             "2": "Identify yourself and state your purpose, /player/.",
-            "3": "Keep your eyes open, /player/. Resistance could be nearby.",
+            "3": "Seen any suspicious people around lately, /player/?",
             "4": "Follow orders, no questions, /player/.",
             "5": "Your gear needs inspection, /player/."
         },
@@ -17,8 +17,8 @@
         "union": {
             "1": "Hey /player/, how's the workload today?",
             "2": "Past experience doesn't apply anymore, /player/.",
-            "3": "United we stand, /player/.",
-            "4": "They're late with our pay again, /player/. Got any ideas?",
+            "3": "Our enemies are about to face tough times, /player/.",
+            "4": "My wages got delayed again, /player/. Got any ideas?",
             "5": "What brings you here, /player/?"
         },
         "warlord": {
@@ -58,7 +58,14 @@
             "4": "This place is so boring, I can't wait to get back to base.",
             "5": "Anyone got some military gum? I'm feeling sleepy.",
             "6": "This patrol route is so long, when will it end...",
-            "7": "That damn floor last night left my back aching."
+            "7": "That damn floor last night left my back aching.",
+            "8": "Found Lambda graffiti, looks like the Resistance's supply point is here.",
+            "9": "Civilians are undergoing thought correction, maintain 50-meter security radius.",
+            "10": "Radio signals are being jammed, probably Resistance's electronic warfare equipment.",
+            "11": "Outpost 17's auto-turrets need recalibration of firing parameters.",
+            "12": "Suppression protocol updated to version 1.14, all units sync tactical data.",
+            "13": "If I find out who used my gas mask as an ashtray, they're dead meat.",
+            "14": "Suspicious activity in the subway tunnels, take two houndeyes to check it out."
         },
         "resistance": {
             "1": "Running low on ammo... hope supplies arrive soon.",
@@ -66,20 +73,20 @@
             "3": "My gas mask's gone missing again, what the hell!",
             "4": "Don't let your guard down, the combine could strike any moment.",
             "5": "I'm so sick of these canned rations, I'd kill for some fresh veggies.",
-            "6": "I need a smoke to relax, anyone got a light?",
-            "7": "Who's on watch tonight? I need some proper sleep.",
+            "6": "This damn place is so humid, my clothes are sticking to my skin.",
+            "7": "Mosquitoes were buzzing in my ear all night, couldn't sleep a wink.",
             "8": "This damn radio only picks up combine propaganda, I want real news.",
             "9": "Hey, you ever play the old arcade machines at Black Mesa? Those were the days!",
             "10": "Wonder how my cat's doing back home... she loved my fish stew.",
             "11": "This damn weather's freezing, I could use a thick coat.",
-            "12": "Anyone got cards? Let's play a few hands to kill time.",
-            "13": "This coffee tastes like crap, but it's better than nothing.",
+            "12": "Hey guys, anyone got a deck of cards? Let's play some Texas Hold'em.",
+            "13": "This coffee tastes like mud, and I was counting on it to wake me up.",
             "14": "Hey, you hear? There's a bar opening underground in City 17.",
-            "15": "Just wait, the combine will pay for what they've done to us!",
-            "16": "We're not alone in this fight, the whole world's behind us!",
-            "17": "This damn map's confusing, where the hell are we?",
-            "18": "This place is too quiet... it's creepy.",
-            "19": "I think I heard something strange, you guys hear that?",
+            "15": "The Combine owes us big time, and we'll make them pay with interest!",
+            "16": "We're not alone in this fight, the people of /map/ are fully supporting us!",
+            "17": "This map's all wrinkled, the edges are worn out and the routes are blurry.",
+            "18": "It's so quiet here you could hear a pin drop, I can even hear my own heartbeat, creepy.",
+            "19": "You hear that rustling sound? Like something's crawling in the pipes...",
             "20": "My boots are leaking again, my feet are gonna rot at this rate.",
             "21": "Anyone know what time it is?",
             "22": "Hands off my weapon, it's my lifeline!",
@@ -91,11 +98,16 @@
             "3": "This damn machine's broken again, need to call maintenance.",
             "4": "Did we meet today's production quota?",
             "5": "These work clothes are falling apart, they won't even replace them.",
-            "6": "God, I'm so tired.",
-            "7": "The food in this cafeteria is disgusting.",
+            "6": "I can barely keep my eyes open... thanks to last night's overtime shift.",
+            "7": "The cafeteria food tastes like reheated leftovers from yesterday.",
             "8": "Heard the factory next door went on strike, maybe we should show the boss what's what.",
             "9": "The pay's too low, can't even support my family.",
-            "10": "Those capitalists just keep exploiting us, we'll make them pay!"
+            "10": "Those capitalists just keep exploiting us, we'll make them pay!",
+            "11": "Another batch of parts went missing from the assembly line, probably stolen for the black market.",
+            "12": "The new guy almost got his fingers caught in the conveyor belt!",
+            "13": "The safety supervisor's shoes are so shiny you can see your reflection, while we can't even get new gloves.",
+            "14": "Quality control keeps mixing defective products, and we'll have to redo them at month-end.",
+            "15": "The ventilation system's been broken for three days, the lead fumes are making my eyes water."
         },
         "warlord": {
             "1": "This territory's perfect for a base.",
@@ -107,7 +119,16 @@
             "7": "You hear that rumbling? The railway must be nearby.",
             "8": "Make way, some big shot's coming through.",
             "9": "Only reason I came to this backwater was for the pretty girls.",
-            "10": "Freeside runs /map/, and you're all dead meat!"
+            "10": "Frisys runs /map/, and you're all dead meat!",
+            "11": "Drag that traitor to the acid pool, let everyone see the price of betrayal.",
+            "12": "These bulletproof vests are falling apart, did logistics cut corners again?",
+            "13": "Damn, we're running out of diesel, if we don't get fuel soon, the boss will skin me alive.",
+            "14": "The med station's out of painkillers? Send the boys to raid a clinic!",
+            "15": "Anyone caught hoarding supplies will be nailed to the barbed wire for the crows.",
+            "16": "The recon team sent to Nova Mine hasn't reported in for three days, probably got ambushed by barnacles.",
+            "17": "Those church fanatics are at it again with their human experiments. We should blow their lab sky high one of these days.",
+            "18": "The smuggling route from /map/ to City 17 is overrun with antlions. Send the demolition team to clear a path.",
+            "19": "Those new recruits actually thought about joining the Combine. They're now part of the concrete foundation."
         },
         "church": {
             "1": "Donations have been pretty slim lately, we need to step up our fundraising game.",
@@ -119,10 +140,16 @@
             "7": "Gear up, we need to purify this area.",
             "8": "This church needs repairs.",
             "9": "Last night's ritual went well, but we need more offerings.",
-            "10": "Heard the church next door made a killing, we need to step up our game."
+            "10": "Heard the church next door made a killing, we need to step up our game.",
+            "11": "That new believer looks loaded. Let's figure out how to squeeze more donations out of him.",
+            "12": "We need to soundproof the confession booth better. That widow's sobbing last time gave me a headache.",
+            "13": "The statue's right eye stopped weeping blood. We need to replace the tomato juice tube in its socket.",
+            "14": "Turn on the ventilation system during midnight mass. Too much of that hallucinogenic incense could be deadly.",
+            "15": "If anyone asks about the screams from the basement at night, just say it's demons being punished.",
+            "16": "Let's buy some cheap antibiotics from the black market and mix them with holy water. We can mark it up by 30%."
         },
         "bandit": {
-            "1": "This spot's perfect for an ambush.",
+            "1": "/map/ has high ground on both ends and low ground in the middle - perfect for an ambush.",
             "2": "Buddy, got a light?",
             "3": "This piece of junk needs replacing.",
             "4": "Things are getting messy in /map/, bad for business.",
@@ -131,10 +158,15 @@
             "7": "This heat's killing me, need to find some shade.",
             "8": "Heard there's a merchant caravan coming through, let's hit it!",
             "9": "Damn curfew again tonight, we need to find a way out.",
-            "10": "Stay sharp, enemies could attack any moment."
+            "10": "That shopkeeper looked at us like we were thieves last night. I bet he added a couple extra zeros to the bill!",
+            "11": "The jewelry store on 17th is getting new stock the day after tomorrow. Their windows are still single-pane.",
+            "12": "The transport convoy passes through /map/ every Wednesday. Remember to bring grenades to say hello.",
+            "13": "The black market got a shipment of modified shotguns that can pierce riot shields. Let's grab a couple to test them out.",
+            "14": "The union security has a 15-minute gap during shift change. Plenty of time to strip the copper coils from their transformers.",
+            "15": "Heard the church is rolling in cash these days. Let's just swipe those golden candlesticks from their altar."
         },
         "other": {
-            "1": "This place is so quiet, too bad I'm no philosopher.",
+            "1": "Time flies. It's almost the end of the month and I still haven't figured out how to pay the rent.",
             "2": "Nowhere's safe these days.",
             "3": "My passport got stolen at the hotel!",
             "4": "No, actually, I think the opposite, nothing new lately.",
@@ -143,7 +175,14 @@
             "7": "You seen my friend around /map/?.",
             "8": "Heard there's a market nearby, I'm gonna check it out!",
             "9": "I can sleep anywhere, even with just a blanket.",
-            "10": "Be careful, there's lots of wildlife near /map/."
+            "10": "Be careful, there's lots of wildlife near /map/.",
+            "11": "I wonder what's on the other side of /map/.",
+            "12": "I'm thinking of writing a book. How about calling it 'The Autobiography of /name/'?",
+            "13": "You know what? I took down a hunter bare-handed in the city.",
+            "14": "Spent last night under the bridge in /map/. Almost had my toes chewed off by rats.",
+            "15": "Found half of a 'Militia Training Manual' in the junkyard. It's not even good enough for toilet paper - the ink smudges.",
+            "16": "Heard there's a group east of City 17 trading homemade alcohol for bullets. That's a good deal.",
+            "17": "Helped the union transport some goods yesterday. Found a whole stash of unregistered pulse rifles hidden in the container's false bottom."
         }
     },
     "attack": {
@@ -181,23 +220,36 @@
             "5": "Someone's shooting!",
             "6": "The enemy's upon us.",
             "7": "Damn it.",
-            "8": "What are you waiting for? Take cover!"
+            "8": "What are you waiting for? Take cover!",
+            "9": "You bunch of scum!",
+            "10": "Grab your wrenches! Let's show them the might of the working class!",
+            "11": "The assembly line can stop, but the union's dignity must stand!",
+            "12": "Hear that? That's the alarm from the loading dock!"
         },
         "warlord": {
             "1": "Kill them all!",
             "2": "Let's show them what we're made of!",
-            "3": "This is our turf, who dares challenge us?",
-            "4": "The loot's right there, charge!",
-            "5": "For Fricis, kill them all!",
-            "6": "Dragons must coil, tigers must crouch."
+            "3": "Grab your weapons! Let these bastards know who runs /map/!",
+            "4": "Who's the fool daring to cause trouble in Lord Frisys's territory? Looking to die?",
+            "5": "For Lord Frisys, kill them all!",
+            "6": "Dragons must coil, tigers must crouch.",
+            "7": "You got some nerve, /victim/!",
+            "8": "I hope you've written your will, /victim/.",
+            "9": "The gallows are ready for you, /victim/!",
+            "10": "The last guy who looked at me like that, his fingers are still in formaldehyde!",
+            "11": "You think the water treatment plant's water is always red by coincidence?",
+            "12": "You're not even fit to be a roadblock, /victim/!",
+            "13": "Surrender? Too late now! I'll use your blood to teach others a lesson!"
         },
         "church": {
             "1": "Heretics, face judgment!",
             "2": "For the glory of the church, destroy them!",
             "3": "Purify these unclean ones!",
-            "4": "You've seen what you shouldn't have!",
+            "4": "You've seen what you shouldn't have, /victim/!",
             "5": "Traitor spotted!",
-            "6": "/victim/, you'll need to buy double indulgences!"
+            "6": "/victim/, you'll need to buy double indulgences!",
+            "7": "Repent, /victim/, this is your last chance!",
+            "8": "You shouldn't be here, /victim/!"
         },
         "bandit": {
             "1": "Brothers, attack!",
@@ -255,25 +307,30 @@
             "5": "Come to me, /victim/!"
         },
         "warlord": {
-            "1": "The boss will reward us for this.",
-            "2": "Loot secured, let's get out of here!",
+            "1": "The last guy who acted tough like you, the grass on his grave is two meters high now.",
+            "2": "Go tell those idiots in /map/ who's really in charge here!",
             "3": "I took out /victim/!",
             "4": "Anyone else wanna end up like /victim/?",
-            "5": "Another enemy down, our territory grows!"
+            "5": "Another enemy down, our territory just got bigger!",
+            "6": "Let's hang /victim/'s head on the street lamp!",
+            "7": "This neighborhood belongs to us now!"
         },
         "church": {
             "1": "Judgment Day is upon us, /victim/!",
             "2": "This is the fate of all heretics!",
             "3": "Another sacrifice for tonight.",
             "4": "Hahahaha!",
-            "5": "Keep going, wipe them all out."
+            "5": "Keep going, wipe them all out.",
+            "6": "The church bells will toll for you.",
+            "7": "Behold, another lost soul has returned to the Lord's embrace."
         },
         "bandit": {
             "1": "Haha, another big score!",
             "2": "Nice job, boys!",
             "3": "Anyone else wanna be like /victim/?",
             "4": "Got you, /victim/",
-            "5": "Don't let them escape, after them!"
+            "5": "Looks like /victim/'s luck has run out.",
+            "6": "Another problem solved: /victim/."
         },
         "other": {
             "1": "Maybe you'll learn some respect in your next life, /victim/.",
@@ -283,7 +340,7 @@
             "5": "Things are going smoothly.",
             "6": "Hope this is the last one.",
             "7": "Who wants some bacon?",
-            "8": "May your soul rest in peace, /victim/."
+            "8": "Those who don't plan to keep their promises don't consider the difficulties when making them."
         }
     },
     "playerchat": {
