@@ -68,5 +68,19 @@
         "color": [78, 153, 42],
         "image": "scp",
         "order": 5
+    },
+    {
+        "name": "我是一个普通人",
+        "badges": ["ui.sponsor.sponsor"],
+        "color": [128, 0, 128],
+        "image": "ptr",
+        "order": 5
+    },
+    {
+        "name": "爱发电用户_8987a",
+        "badges": ["ui.sponsor.sponsor"],
+        "color": [255, 165, 0],
+        "image": "ifdian",
+        "order": 5
     }
 ]

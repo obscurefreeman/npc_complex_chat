@@ -591,7 +591,7 @@ local function AddOFFrame()
 		for _, logEntry in ipairs(GLOBAL_OFNPC_DATA.log) do
 			local article = vgui.Create("OFArticle", pan1LeftPanel)
 			article:Dock(TOP)
-			article:DockMargin(8 * OFGUI.ScreenScale, 8 * OFGUI.ScreenScale, 8 * OFGUI.ScreenScale, 8 * OFGUI.ScreenScale)
+			article:DockMargin(8 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
 			article:SetName(logEntry.title)
 			
 			-- 计算发布时间
@@ -630,7 +630,7 @@ local function AddOFFrame()
 			for _, logEntry in ipairs(GLOBAL_OFNPC_DATA.log) do
 				local article = vgui.Create("OFArticle", pan1MainPanel)
 				article:Dock(TOP)
-				article:DockMargin(8 * OFGUI.ScreenScale, 8 * OFGUI.ScreenScale, 8 * OFGUI.ScreenScale, 8 * OFGUI.ScreenScale)
+				article:DockMargin(8 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
 				article:SetName(logEntry.title)
 				
 				-- 计算发布时间
@@ -867,7 +867,7 @@ local function AddOFFrame()
 	-- 在右侧面板添加OFArticle
 	local article = vgui.Create("OFArticle", pan5RightPanel)
 	article:Dock(TOP)
-	article:DockMargin(8 * OFGUI.ScreenScale, 8 * OFGUI.ScreenScale, 8 * OFGUI.ScreenScale, 8 * OFGUI.ScreenScale)
+	article:DockMargin(8 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
 	article:SetName(L("ui.personalization.guide"))
 	article:SetText(L("ui.personalization.text"))
 	article:SetImage("ofnpcp/article/tts.png")
