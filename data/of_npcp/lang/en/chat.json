@@ -172,7 +172,7 @@
             "4": "No, actually, I think the opposite, nothing new lately.",
             "5": "The view here's great, I took a photo.",
             "6": "I think I'm lost.",
-            "7": "You seen my friend around /map/?.",
+            "7": "You seen my friend around /map/?",
             "8": "Heard there's a market nearby, I'm gonna check it out!",
             "9": "I can sleep anywhere, even with just a blanket.",
             "10": "Be careful, there's lots of wildlife near /map/.",
@@ -328,7 +328,7 @@
             "1": "Haha, another big score!",
             "2": "Nice job, boys!",
             "3": "Anyone else wanna be like /victim/?",
-            "4": "Got you, /victim/",
+            "4": "Got you, /victim/.",
             "5": "Looks like /victim/'s luck has run out.",
             "6": "Another problem solved: /victim/."
         },

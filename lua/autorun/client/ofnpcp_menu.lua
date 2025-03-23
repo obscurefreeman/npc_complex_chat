@@ -583,12 +583,12 @@ local function AddOFFrame()
 	end
 
 	-- 添加日志文章
-	if GLOBAL_OFNPC_DATA.log then
-		table.sort(GLOBAL_OFNPC_DATA.log, function(a, b) 
+	if GLOBAL_OFNPC_DATA.article.log then
+		table.sort(GLOBAL_OFNPC_DATA.article.log, function(a, b) 
 			return (a.timestamp or 0) > (b.timestamp or 0)
 		end)
 		
-		for _, logEntry in ipairs(GLOBAL_OFNPC_DATA.log) do
+		for _, logEntry in ipairs(GLOBAL_OFNPC_DATA.article.log) do
 			local article = vgui.Create("OFArticle", pan1LeftPanel)
 			article:Dock(TOP)
 			article:DockMargin(8 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
@@ -621,44 +621,43 @@ local function AddOFFrame()
 		end
 	end
 
-		-- 添加日志文章
-		if GLOBAL_OFNPC_DATA.log then
-			table.sort(GLOBAL_OFNPC_DATA.log, function(a, b) 
-				return (a.timestamp or 0) > (b.timestamp or 0)
-			end)
+	if GLOBAL_OFNPC_DATA.article.event then
+		table.sort(GLOBAL_OFNPC_DATA.article.event, function(a, b) 
+			return (a.timestamp or 0) > (b.timestamp or 0)
+		end)
+		
+		for _, logEntry in ipairs(GLOBAL_OFNPC_DATA.article.event) do
+			local article = vgui.Create("OFArticle", pan1MainPanel)
+			article:Dock(TOP)
+			article:DockMargin(8 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+			article:SetName(logEntry.title)
 			
-			for _, logEntry in ipairs(GLOBAL_OFNPC_DATA.log) do
-				local article = vgui.Create("OFArticle", pan1MainPanel)
-				article:Dock(TOP)
-				article:DockMargin(8 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
-				article:SetName(logEntry.title)
-				
-				-- 计算发布时间
-				local timeDiff = os.time() - (logEntry.timestamp or os.time())
-				local timeStr
-				if timeDiff < 60 then
-					timeStr = L("ui.time.just_now")
-				elseif timeDiff < 3600 then
-					timeStr = string.format(L("ui.time.minutes_ago"), math.floor(timeDiff / 60))
-				elseif timeDiff < 86400 then
-					timeStr = string.format(L("ui.time.hours_ago"), math.floor(timeDiff / 3600))
-				elseif timeDiff < 604800 then
-					timeStr = string.format(L("ui.time.days_ago"), math.floor(timeDiff / 86400))
-				elseif timeDiff < 2592000 then
-					timeStr = string.format(L("ui.time.weeks_ago"), math.floor(timeDiff / 604800))
-				elseif timeDiff < 31536000 then
-					timeStr = string.format(L("ui.time.months_ago"), math.floor(timeDiff / 2592000))
-				else
-					timeStr = string.format(L("ui.time.years_ago"), math.floor(timeDiff / 31536000))
-				end
-				
-				article:SetSubtitle(string.format(L("ui.time.published_at"), timeStr))
-				article:SetText(logEntry.content)
-				if logEntry.image then
-					article:SetImage("ofnpcp/article/" .. logEntry.image .. ".png")
-				end
+			-- 计算发布时间
+			local timeDiff = os.time() - (logEntry.timestamp or os.time())
+			local timeStr
+			if timeDiff < 60 then
+				timeStr = L("ui.time.just_now")
+			elseif timeDiff < 3600 then
+				timeStr = string.format(L("ui.time.minutes_ago"), math.floor(timeDiff / 60))
+			elseif timeDiff < 86400 then
+				timeStr = string.format(L("ui.time.hours_ago"), math.floor(timeDiff / 3600))
+			elseif timeDiff < 604800 then
+				timeStr = string.format(L("ui.time.days_ago"), math.floor(timeDiff / 86400))
+			elseif timeDiff < 2592000 then
+				timeStr = string.format(L("ui.time.weeks_ago"), math.floor(timeDiff / 604800))
+			elseif timeDiff < 31536000 then
+				timeStr = string.format(L("ui.time.months_ago"), math.floor(timeDiff / 2592000))
+			else
+				timeStr = string.format(L("ui.time.years_ago"), math.floor(timeDiff / 31536000))
+			end
+			
+			article:SetSubtitle(string.format(L("ui.time.published_at"), timeStr))
+			article:SetText(logEntry.content)
+			if logEntry.image then
+				article:SetImage("ofnpcp/article/" .. logEntry.image .. ".png")
 			end
 		end
+	end
 
 	-- AI系统面板 (pan2)
 	local pan2 = vgui.Create("EditablePanel", sheet)
