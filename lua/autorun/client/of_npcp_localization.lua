@@ -63,11 +63,11 @@ end
 -- 获取系统语言并转换为支持的语言代码
 function LANG:GetSystemLanguage()
     local gmodLang = GetConVar("gmod_language"):GetString()
-    -- 如果是中文（简体或繁体），返回zh
-    if gmodLang:match("^zh%-") then
-        return "zh"
+    for langCode, _ in pairs(GLOBAL_OFNPC_DATA.lang.language) do
+        if gmodLang == langCode then
+            return langCode
+        end
     end
-    -- 其他语言默认使用英语
     return "en"
 end
 
@@ -86,8 +86,11 @@ end)
 
 -- 初始化语言系统
 hook.Add("Initialize", "LoadLanguageSystem", function()
-    LANG:LoadLanguageFolder("en")
-    LANG:LoadLanguageFolder("zh")
+
+    for langCode, _ in pairs(GLOBAL_OFNPC_DATA.lang.language) do
+        LANG:LoadLanguageFolder(langCode)
+    end
+    
     local userLang = GetConVar("of_garrylord_language"):GetString()
     if userLang == "" then
         userLang = LANG:GetSystemLanguage()

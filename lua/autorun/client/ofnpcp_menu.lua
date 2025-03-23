@@ -527,13 +527,19 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
         SetText = L("ui.personalization.language_setting")
     })
 
-    -- 定义支持的语言列表
+    -- 从language.json获取支持的语言列表
     local supportedLanguages = {
-        {name = L("ui.personalization.follow_system"), code = "", icon = "ofnpcp/lang/gm.png"},
-        {name = "English", code = "en", icon = "ofnpcp/lang/en.png"},
-        {name = "简体中文", code = "zh", icon = "ofnpcp/lang/zh-CN.png"}
-        -- 在此处添加更多语言
+        {name = L("ui.personalization.follow_system"), code = "", icon = "ofnpcp/lang/gm.png"}
     }
+    
+    -- 添加语言选项
+    for langCode, langData in pairs(GLOBAL_OFNPC_DATA.lang.language) do
+        table.insert(supportedLanguages, {
+            name = langData.name,
+            code = langCode,
+            icon = langData.icon
+        })
+    end
 
     -- 获取当前语言设置
     local currentLang = GetConVar("of_garrylord_language"):GetString()
