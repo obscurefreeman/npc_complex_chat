@@ -17,7 +17,7 @@ class CardEditor:
         self.current_card = None
         self.image_dir = os.path.join(os.getcwd(), "materials", "ofnpcp", "cards", "large")
         self.lang_dir = "data/of_npcp/lang"
-        self.current_lang = "zh"
+        self.current_lang = "zh-CN"
         self.load_language()
         
         self.create_widgets()
@@ -365,7 +365,7 @@ class CardEditor:
     def create_language_menu(self):
         menu_bar = tk.Menu(self.root)
         lang_menu = tk.Menu(menu_bar, tearoff=0)
-        lang_menu.add_command(label="中文", command=lambda: self.set_language("zh"))
+        lang_menu.add_command(label="中文", command=lambda: self.set_language("zh-CN"))
         lang_menu.add_command(label="English", command=lambda: self.set_language("en"))
         menu_bar.add_cascade(label="Language", menu=lang_menu)
         self.root.config(menu=menu_bar)

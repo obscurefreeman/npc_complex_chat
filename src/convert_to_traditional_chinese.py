@@ -31,8 +31,8 @@ def convert_file_to_traditional_chinese(file_path, output_path):
         print(f"转换文件 {file_path} 时出错: {str(e)}")
 
 def convert_all_files():
-    """转换data/of_npcp/lang/zh/目录下的所有文件"""
-    source_dir = 'data/of_npcp/lang/zh'
+    """转换data/of_npcp/lang/zh-CN/目录下的所有文件"""
+    source_dir = 'data/of_npcp/lang/zh-CN'
     target_dir = 'data/of_npcp/lang/zh-TW'
     
     if not os.path.exists(source_dir):
