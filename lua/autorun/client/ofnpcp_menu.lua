@@ -527,21 +527,51 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
         SetText = L("ui.personalization.language_setting")
     })
 
+    -- 定义支持的语言列表
+    local supportedLanguages = {
+        {name = L("ui.personalization.follow_system"), code = "", icon = "ofnpcp/lang/gm.png"},
+        {name = "English", code = "en", icon = "ofnpcp/lang/en.png"},
+        {name = "简体中文", code = "zh_CN", icon = "ofnpcp/lang/zh-CN.png"}
+        -- 在此处添加更多语言
+    }
+
+    -- 获取当前语言设置
+    local currentLang = GetConVar("of_garrylord_language"):GetString()
+    local currentValue = L("ui.personalization.follow_system")  -- 默认值
+
+    -- 根据currentLang查找对应的语言名称
+    for _, lang in ipairs(supportedLanguages) do
+        if lang.code == currentLang then
+            currentValue = lang.name
+            break
+        end
+    end
+
     local langComboBox = CreateControl(personalizationLeftPanel, "OFComboBox", {
-        SetValue = GetConVar("of_garrylord_language"):GetString() == "" and L("ui.personalization.follow_system") or (GetConVar("of_garrylord_language"):GetString() == "en" and "English" or "简体中文")
+        SetValue = currentValue
     })
 
-    langComboBox:AddChoice(L("ui.personalization.follow_system"), "", false, "ofnpcp/lang/gm.png")
-    langComboBox:AddChoice("English", "en", false, "ofnpcp/lang/en.png")
-    langComboBox:AddChoice("简体中文", "zh", false, "ofnpcp/lang/zh-CN.png")
+    -- 添加语言选项
+    for _, lang in ipairs(supportedLanguages) do
+        langComboBox:AddChoice(lang.name, lang.code, false, lang.icon)
+    end
 
     langComboBox.OnSelect = function(panel, index, value, data)
         RunConsoleCommand("of_garrylord_language", data)
         notification.AddLegacy(L("ui.personalization.language_changed"), NOTIFY_GENERIC, 5)
+        
+        -- 关闭当前菜单
+        if IsValid(frame) then
+            frame:Close()
+        end
+
+        timer.Simple(0.1, function()
+            AddOFFrame()
+        end)
     end
 end
 
-local function AddOFFrame()
+function AddOFFrame()
 	if IsValid(frame) then  -- 检查是否已经有一个打开的菜单
 		frame:Close()  -- 关闭已打开的菜单
 	end

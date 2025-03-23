@@ -95,7 +95,7 @@
             "player_voice_setting": "Voice Setting Saved.",
             "language_setting": "Language Setting",
             "follow_system": "Follow Game Language",
-            "language_changed": "Language changed, please reload the menu to apply"
+            "language_changed": "Language changed."
         },
         "time": {
             "just_now": "Just now",

@@ -95,7 +95,7 @@
             "player_voice_setting": "配音设置已保存。",
             "language_setting": "语言设置",
             "follow_system": "跟随游戏语言",
-            "language_changed": "语言已更改，请重启菜单以应用。"
+            "language_changed": "语言已更改。"
         },
         "time": {
             "just_now": "刚刚",
