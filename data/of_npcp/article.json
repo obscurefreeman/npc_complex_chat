@@ -2,25 +2,25 @@
     "log": [
         {
             "title": "March 2025 Update",
-            "content": "完成AI对话系统，可选择不同提供商，自定义提示词。\n新增支持服务器的TTS服务，NPC生成后会根据服务器语言随机分配音色。\n制作菜单主页，更新赞助者名单。\n修复若干BUG，为每个阵营增加了更有个性的对话。大幅改进本地化。\n添加NPC升级特效，增加字幕换行，人物对话冒号修复。\n补充和修复对话菜单里NPC角色的默认动画，增加AI对话时的脚注，优化了对话菜单的使用体验。\n修复地图里本来就存在NPC时模组会报错的问题。\n修复了服务器和客户端不同步的问题。",
+            "content": "Added AI dialogue system with TTS support. Improved localization and UI. \nIntroduced a new home tab in the main menu.\nResolved multiple critical issues, including subtitle line break errors, dialogue punctuation inconsistencies, NPC spawning conflicts in campaign maps, and server-client synchronization problems.",
             "image": "3_2025",
             "timestamp": 1742734800
         },
         {
             "title": "February 2025 Update",
-            "content": "新增200+卡牌，添加阵营系统，用于基于卡牌组的谈判机制。制作菜单的卡牌界面。",
+            "content": "Introduced a card-based negotiation system with over 200 unique cards.\nImplemented deck tab in menu for enhanced accessibility.",
             "image": "2_2025",
             "timestamp": 1740464400
         },
         {
             "title": "January 2025 Update",
-            "content": "制作NPC对话界面。\n优化字幕系统，添加对话时的打字音效，修改NPC对话机制，调整触发对话的概率和人数。\n制作开发工具。",
+            "content": "Added NPC dialogue menu.\nAdded typing sound when NPC is talking.\nModified NPC dialogue mechanics, adjusting trigger probabilities and participant numbers.\nIntroduced Python-based modding tools to enable community content creation.",
             "image": "1_2025",
             "timestamp": 1738285200
         },
         {
             "title": "December 2024 Update",
-            "content": "完成NPC身份系统，添加昵称系统和评论功能。\n制作游戏内菜单。\n完成NPC对话字幕系统。\n添加NPC军衔等级系统，增加晋升文字特效。\n完成NPC对话管理器。",
+            "content": "Completed the NPC identity system framework with a dedicated menu.\nAdded a subtitle system and an NPC rank system with promotion text effects.\nAdded NPC dialogue manager for efficient conversation handling.",
             "image": "12_2024",
             "timestamp": 1735664400
         }
