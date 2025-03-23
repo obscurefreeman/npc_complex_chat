@@ -539,7 +539,7 @@ local function AddOFFrame()
 
 	local pan1LeftPanel = vgui.Create("OFScrollPanel", pan1)
 	pan1LeftPanel:Dock(LEFT)
-	pan1LeftPanel:SetWidth(450 * OFGUI.ScreenScale)
+	pan1LeftPanel:SetWidth(400 * OFGUI.ScreenScale)
 
 	local pan1RightPanel = vgui.Create("OFScrollPanel", pan1)
 	pan1RightPanel:Dock(RIGHT)
@@ -592,7 +592,7 @@ local function AddOFFrame()
 			local article = vgui.Create("OFArticle", pan1LeftPanel)
 			article:Dock(TOP)
 			article:DockMargin(8 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
-			article:SetName(logEntry.title)
+			article:SetName(L(logEntry.title))
 			
 			-- 计算发布时间
 			local timeDiff = os.time() - (logEntry.timestamp or os.time())
@@ -614,7 +614,7 @@ local function AddOFFrame()
 			end
 			
 			article:SetSubtitle(string.format(L("ui.time.published_at"), timeStr))
-			article:SetText(logEntry.content)
+			article:SetText(L(logEntry.content))
 			if logEntry.image then
 				article:SetImage("ofnpcp/article/" .. logEntry.image .. ".png")
 			end
@@ -630,7 +630,7 @@ local function AddOFFrame()
 			local article = vgui.Create("OFArticle", pan1MainPanel)
 			article:Dock(TOP)
 			article:DockMargin(8 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
-			article:SetName(logEntry.title)
+			article:SetName(L(logEntry.title))
 			
 			-- 计算发布时间
 			local timeDiff = os.time() - (logEntry.timestamp or os.time())
@@ -652,7 +652,7 @@ local function AddOFFrame()
 			end
 			
 			article:SetSubtitle(string.format(L("ui.time.published_at"), timeStr))
-			article:SetText(logEntry.content)
+			article:SetText(L(logEntry.content))
 			if logEntry.image then
 				article:SetImage("ofnpcp/article/" .. logEntry.image .. ".png")
 			end

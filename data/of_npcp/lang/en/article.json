@@ -1,0 +1,22 @@
+{
+    "article": {
+        "event": {
+            "vote": {
+                "title": "Vote for features",
+                "content": "From now on, you can participate in voting to decide the direction of the next feature.\n\nCustom Name/Nickname Pool: Tired of the same old NPC names? Now you can create your own name pool. When a new NPC is spawned, a name will be randomly selected from your pool. You can even import names from your Discord group.\n\nVisual Novel Mode: Engage in pre-set dialogues with NPCs where different choices will determine the story's direction. You can freely create and share these stories.\n\nCome and vote to contribute your ideas for the future development of this mod!"
+            },
+            "opensource": {
+                "title": "Add Your Own Content to the Mod",
+                "content": "Whether it's fixing localization issues or developing new features, your contributions will make the mod even better.\n\nVisit the mod's GitHub repository and submit your first Pull Request!"
+            },
+            "localization": {
+                "title": "Localization Content Adjustment",
+                "content": "I've been focusing on fixing code errors and simplifying the code structure. At the same time, I'm adding more NPC dialogues to the mod, aiming to give each camp personalized dialogues that match their character backgrounds. I'm also testing and optimizing localization content, hoping to provide players in different languages with more authentic and natural text expressions.\nIf you have better suggestions for certain dialogues or texts, or are willing to help improve localization content, feel free to share with me anytime!"
+            },
+            "earlyaccess": {
+                "title": "Sponsor Early Access",
+                "content": "The NPC Dialogue Mod is now open for sponsor-exclusive testing!\n\nAfter a long development period, the official version of the NPC Dialogue Mod is about to be released, and the latest voice service feature has been completed.\n\nSome features of the mod are not yet implemented, including the camp system, skill system, deck system, and trading system. Therefore, NPCs from different camps will not be hostile to each other or change relationships, and playing cards during negotiations will not have any effect. These are not the features I've been working on recently. When will they be implemented? Maybe in the next major update, or maybe they'll be cut.\n\nAdditionally, before the official release, I will focus on fixing existing bugs and completing localization work, and will not add new features for now. Everyone is welcome to actively participate in testing, experience the mod in single-player or multiplayer modes, and report any issues encountered to help me continuously optimize the gaming experience.\n\nBecoming a sponsor or publishing mod reviews or recommendation videos on self-media platforms can earn you badges, and new badges will be added to the mod in the next update.\n\nThe mod is currently only available for sponsor testing before official release and is prohibited from being shared.\n\nThank you for your support, and happy hunting!"
+            }
+        }
+    }
+} 

@@ -63,10 +63,10 @@ function LANG:GetSystemLanguage()
 end
 
 -- 创建ConVar用于切换语言
-CreateConVar("ofnpcp_language", "", FCVAR_ARCHIVE, "设置NPC系统使用的语言 (en/zh)，留空则跟随系统语言")
+CreateConVar("of_garrylord_language", "", FCVAR_ARCHIVE, "设置NPC系统使用的语言 (en/zh)，留空则跟随系统语言")
 
 -- 监听语言变化
-cvars.AddChangeCallback("ofnpcp_language", function(name, old, new)
+cvars.AddChangeCallback("of_garrylord_language", function(name, old, new)
     -- 如果设置为空，使用系统语言
     if new == "" then
         LANG:SetLanguage(LANG:GetSystemLanguage())
@@ -79,7 +79,7 @@ end)
 hook.Add("Initialize", "LoadLanguageSystem", function()
     LANG:LoadLanguageFolder("en")
     LANG:LoadLanguageFolder("zh")
-    local userLang = GetConVar("ofnpcp_language"):GetString()
+    local userLang = GetConVar("of_garrylord_language"):GetString()
     if userLang == "" then
         userLang = LANG:GetSystemLanguage()
     end
