@@ -29,13 +29,22 @@ end
 
 -- 获取翻译文本
 function LANG:GetPhrase(key)
+    local result = self:GetPhraseInLanguage(self.CurrentLanguage, key)
     
-    if not self.LanguageData[self.CurrentLanguage] then
-        self:LoadLanguageFile(self.CurrentLanguage)
+    if self.CurrentLanguage ~= "en" and result == key then
+        result = self:GetPhraseInLanguage("en", key)
+    end
+    
+    return result
+end
+
+function LANG:GetPhraseInLanguage(lang, key)
+    if not self.LanguageData[lang] then
+        self:LoadLanguageFolder(lang)
     end
     
     local keys = string.Split(key, ".")
-    local current = self.LanguageData[self.CurrentLanguage]
+    local current = self.LanguageData[lang]
 
     for i, k in ipairs(keys) do
         if type(current) == "table" and current[k] then
@@ -63,7 +72,7 @@ function LANG:GetSystemLanguage()
 end
 
 -- 创建ConVar用于切换语言
-CreateConVar("of_garrylord_language", "", FCVAR_ARCHIVE, "设置NPC系统使用的语言 (en/zh)，留空则跟随系统语言")
+CreateConVar("of_garrylord_language", "", FCVAR_ARCHIVE, "Garrylord Language Setting")
 
 -- 监听语言变化
 cvars.AddChangeCallback("of_garrylord_language", function(name, old, new)

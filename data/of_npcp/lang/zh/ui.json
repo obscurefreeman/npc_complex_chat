@@ -28,7 +28,8 @@
             "select_deck": "选择牌组",
             "card_preview": "卡牌预览",
             "card_list": "卡牌列表",
-            "card_detail": "卡牌详情"
+            "card_detail": "卡牌详情",
+            "select_camp": "你的阵营已变更。"
         },
         "ai_system": {
             "model_select": "选择模型",
@@ -90,7 +91,11 @@
             "voice_player": "你的声音",
             "save_settings": "保存设置",
             "guide": "语音服务（测试功能）",
-            "text": "只需几步，即可在盖瑞霸业中开启语音服务。\n\n1，登录 Github，搜索并找到 garrylord-voice-service 项目。\n2，点击项目页里的 Deploy 按钮，将服务部署到 Vercel 平台。\n3，等待 Vercel 部署成功后，访问生成的页面，复制主页提供的 API 地址。\n4，回到 Gmod ，将复制的 API 地址粘贴到相应设置中。\n\n现在，你就可以在 Gmod 中随心所欲地使用语音服务了，享受每月 100G 的充足带宽！"
+            "text": "只需几步，即可在盖瑞霸业中开启语音服务。\n\n1，登录 Github，搜索并找到 garrylord-voice-service 项目。\n2，点击项目页里的 Deploy 按钮，将服务部署到 Vercel 平台。\n3，等待 Vercel 部署成功后，访问生成的页面，复制主页提供的 API 地址。\n4，回到 Gmod ，将复制的 API 地址粘贴到相应设置中。\n\n现在，你就可以在 Gmod 中随心所欲地使用语音服务了，享受每月 100G 的充足带宽！",
+            "player_voice_setting": "配音设置已保存。",
+            "language_setting": "语言设置",
+            "follow_system": "跟随游戏语言",
+            "language_changed": "语言已更改，请重启菜单以应用。"
         },
         "time": {
             "just_now": "刚刚",

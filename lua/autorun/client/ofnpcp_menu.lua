@@ -389,6 +389,8 @@ local function RefreshCardButtons(left_panel, right_panel)
                 net.Start("SelectPlayerDeck")
                     net.WriteString(selectedDeck)
                 net.SendToServer()
+
+				notification.AddLegacy(L("ui.deck_system.select_camp"), NOTIFY_GENERIC, 5)
             end
         end
 
@@ -517,7 +519,25 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
             net.WriteString(newSettings.voice)
         net.SendToServer()
         
-        notification.AddLegacy("配音设置已保存", NOTIFY_GENERIC, 5)
+        notification.AddLegacy(L("ui.personalization.player_voice_setting"), NOTIFY_GENERIC, 5)
+    end
+
+    -- 添加语言设置
+    local langLabel = CreateControl(personalizationLeftPanel, "OFTextLabel", {
+        SetText = L("ui.personalization.language_setting")
+    })
+
+    local langComboBox = CreateControl(personalizationLeftPanel, "OFComboBox", {
+        SetValue = GetConVar("of_garrylord_language"):GetString() == "" and L("ui.personalization.follow_system") or (GetConVar("of_garrylord_language"):GetString() == "en" and "English" or "简体中文")
+    })
+
+    langComboBox:AddChoice(L("ui.personalization.follow_system"), "", false, "ofnpcp/lang/gm.png")
+    langComboBox:AddChoice("English", "en", false, "ofnpcp/lang/en.png")
+    langComboBox:AddChoice("简体中文", "zh", false, "ofnpcp/lang/zh-CN.png")
+
+    langComboBox.OnSelect = function(panel, index, value, data)
+        RunConsoleCommand("of_garrylord_language", data)
+        notification.AddLegacy(L("ui.personalization.language_changed"), NOTIFY_GENERIC, 5)
     end
 end
 

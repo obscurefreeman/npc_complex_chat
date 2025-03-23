@@ -28,7 +28,8 @@
             "select_deck": "Select Deck",
             "card_preview": "Card Preview",
             "card_list": "Card List",
-            "card_detail": "Card Details"
+            "card_detail": "Card Details",
+            "select_camp": "Your camp has been changed."
         },
         "ai_system": {
             "model_select": "Select Model",
@@ -90,7 +91,11 @@
             "voice_player": "Your Voice",
             "save_settings": "Save Settings",
             "guide": "Voice Service (Beta Feature)",
-            "text": "Just a few steps to enable voice service in GarryLord.\n\n1. Log in to Github, search and find the garrylord-voice-service project.\n2. Click the Deploy button on the project page to deploy the service to Vercel platform.\n3. After Vercel deployment is successful, visit the generated page and copy the API address provided on the homepage.\n4. Return to Gmod and paste the copied API address into the corresponding settings.\n\nNow you can freely use voice service in Gmod, enjoying a generous 100G monthly bandwidth!"
+            "text": "Just a few steps to enable voice service in GarryLord.\n\n1. Log in to Github, search and find the garrylord-voice-service project.\n2. Click the Deploy button on the project page to deploy the service to Vercel platform.\n3. After Vercel deployment is successful, visit the generated page and copy the API address provided on the homepage.\n4. Return to Gmod and paste the copied API address into the corresponding settings.\n\nNow you can freely use voice service in Gmod, enjoying a generous 100G monthly bandwidth!",
+            "player_voice_setting": "Voice Setting Saved.",
+            "language_setting": "Language Setting",
+            "follow_system": "Follow Game Language",
+            "language_changed": "Language changed, please reload the menu to apply"
         },
         "time": {
             "just_now": "Just now",
