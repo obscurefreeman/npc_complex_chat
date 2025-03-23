@@ -531,7 +531,7 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
     local supportedLanguages = {
         {name = L("ui.personalization.follow_system"), code = "", icon = "ofnpcp/lang/gm.png"},
         {name = "English", code = "en", icon = "ofnpcp/lang/en.png"},
-        {name = "简体中文", code = "zh_CN", icon = "ofnpcp/lang/zh-CN.png"}
+        {name = "简体中文", code = "zh", icon = "ofnpcp/lang/zh-CN.png"}
         -- 在此处添加更多语言
     }
 

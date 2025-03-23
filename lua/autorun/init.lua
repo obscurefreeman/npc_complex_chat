@@ -43,6 +43,7 @@ local function LoadNPCData()
     LoadJsonData("data/of_npcp/sponsors.json", "sponsors")
     LoadJsonData("data/of_npcp/ai/providers.json", "aiProviders")
     LoadJsonData("data/of_npcp/ai/voice.json", "voice")
+    LoadJsonData("data/of_npcp/language.json", "lang")
 end
 
 -- 在服务器启动时加载数据

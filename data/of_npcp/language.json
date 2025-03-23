@@ -1,0 +1,17 @@
+{
+    "language": {
+        "en": {
+            "name": "English",
+            "icon": "ofnpcp/lang/en.png"
+        },
+        "zh": {
+            "name": "简体中文",
+            "icon": "ofnpcp/lang/zh-CN.png"
+        },
+        "zh-TW": {
+            "name": "繁體中文",
+            "icon": "ofnpcp/lang/zh-TW.png"
+        }
+    }
+}
+
