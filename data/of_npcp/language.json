@@ -15,6 +15,10 @@
         "en-PT": {
             "name": "Pirate",
             "icon": "ofnpcp/lang/en-PT.png"
+        },
+        "ru": {
+            "name": "Русский",
+            "icon": "ofnpcp/lang/ru.png"
         }
     }
 }
