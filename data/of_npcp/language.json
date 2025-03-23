@@ -11,6 +11,10 @@
         "zh-TW": {
             "name": "繁體中文",
             "icon": "ofnpcp/lang/zh-TW.png"
+        },
+        "en-PT": {
+            "name": "Pirate",
+            "icon": "ofnpcp/lang/en-PT.png"
         }
     }
 }

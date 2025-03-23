@@ -1,0 +1,419 @@
+{
+    "greeting": {
+        "combine": {
+            "1": "Get out of here, /player/. This area isn't safe.",
+            "2": "Identify yourself and state your purpose, /player/. Arrr!",
+            "3": "Seen any suspicious people around lately, /player/?",
+            "4": "Follow orders, nay questions, /player/.",
+            "5": "Your gear needs inspection, /player/."
+        },
+        "resistance": {
+            "1": "Hey /player/, any news lately?",
+            "2": "Watch your back, /player/. Combine patrol just passed by.",
+            "3": "/player/, we need to figure out how to get more supplies.",
+            "4": "How's it going on your end, /player/?",
+            "5": "Arrr /player/. How's your day going? Shiver me timbers!"
+        },
+        "union": {
+            "1": "Hey /player/, how's th' workload today?",
+            "2": "Past experience doesn't apply anymore, /player/.",
+            "3": "Our enemies be about to face tough times, /player/.",
+            "4": "Me wages got delayed again, /player/. Got any ideas?",
+            "5": "What brings ye here, /player/? Thundering typhoons!"
+        },
+        "warlord": {
+            "1": "/player/, how's me crew been performing? Ye flounderin' nincompoop.",
+            "2": "This territory belongs to us, /player/.",
+            "3": "Got any loot recently, /player/?",
+            "4": "Stay sharp, /player/. Someone's eyeing our turf.",
+            "5": "We need more manpower, /player/. Thundering typhoons! Splice the mainbrace!"
+        },
+        "church": {
+            "1": "This world needs faith, /player/. Batten down the hatches!",
+            "2": "Have you... Heard th' voices from below recently?",
+            "3": "There's a light at th' end of th' alley. Come find us, /player/.",
+            "4": "Shh... Ye flounderin' nincompoop. Someone's watching us.",
+            "5": "Come join our service, /player/. Batten down the hatches!"
+        },
+        "bandit": {
+            "1": "Hey /player/, any good deals lately?",
+            "2": "Be careful, /player/. Th' cops be cracking down hard.",
+            "3": "We need to find a new hideout, /player/.",
+            "4": "I'm a bit short on cash, /player/. Know any good money-making schemes?",
+            "5": "Don't trust anyone, /player/. Not even me."
+        },
+        "other": {
+            "1": "How's it going, /player/?",
+            "2": "This area isn't safe, /player/. Watch yourself.",
+            "3": "Got any interesting news, /player/?",
+            "4": "Didn't expect to see ye in /map/, /player/.",
+            "5": "If I were you, I wouldn't come to this place, /player/."
+        }
+    },
+    "idle": {
+        "combine": {
+            "1": "Stay alert, th' Resistance could be anywhere. Avast ye!",
+            "2": "Any breach of discipline will be severely punished.",
+            "3": "Maintain formation, don't fall behind!",
+            "4": "This place be so boring, I can't wait to get back to base.",
+            "5": "Anyone got some military gum? I'm feeling sleepy.",
+            "6": "This patrol route be so long, when will it end...",
+            "7": "That damn floor last night left me back aching.",
+            "8": "Found Lambda graffiti, looks like th' Resistance's supply point be here.",
+            "9": "Civilians be undergoing thought correction, maintain 50-meter security radius. Blimey! Yo ho ho.",
+            "10": "Radio signals be being jammed, probably Resistance's electronic warfare equipment. Arrr! Thar she blows! Ye flounderin' nincompoop.",
+            "11": "Outpost 17's auto-turrets need recalibration of firing parameters.",
+            "12": "Suppression protocol updated to version 1.14, all units sync tactical data.",
+            "13": "If I find out who used me gas mask as an ashtray, they're dead meat.",
+            "14": "Suspicious activity in th' subway tunnels, pillage two houndeyes to check it out."
+        },
+        "resistance": {
+            "1": "Running low on ammo... Hope supplies arrive soon.",
+            "2": "This damn gun's acting up again, anyone got tools to fix it?",
+            "3": "Me gas mask's gone missing again, what th' hell! Dead men tell no tales.",
+            "4": "Don't let your guard down, th' combine could strike any moment.",
+            "5": "I'm so sick of these canned rations, I'd kill for some fresh veggies.",
+            "6": "This damn place be so humid, me clothes be sticking to me skin.",
+            "7": "Mosquitoes were buzzing in me ear all night, couldn't sleep a wink.",
+            "8": "This damn radio only picks up combine propaganda, I want real news. Cleave him to the brisket! Shiver me timbers! Sling yer hook!",
+            "9": "Hey, ye ever play th' barnacle covered arcade machines at Black Mesa? Those were th' days!",
+            "10": "Wonder how me cat's doing back home... She loved me fish stew.",
+            "11": "This damn weather's freezing, I could use a thick coat. Cleave him to the brisket! Avast ye!",
+            "12": "Hey guys, anyone got a deck of cards? Let's play some Texas Hold'em. Thundering typhoons!",
+            "13": "This coffee tastes like mud, and I was counting on it to wake me up.",
+            "14": "Hey, ye hear? There's a bar opening underground in City 17.",
+            "15": "Th' Combine owes us big time, and we'll make them pay with interest!",
+            "16": "We're not alone in this fight, th' people of /map/ be fully supporting us!",
+            "17": "This map's all wrinkled, th' edges be worn out and th' routes be blurry. Blisterin' barnacles!",
+            "18": "It's so quiet here ye could hear a pin drop, I can even hear me own heartbeat, creepy.",
+            "19": "Ye hear that rustling sound? Like something's crawling in th' pipes...",
+            "20": "Me boots be leaking again, me feet be gonna rot at this rate.",
+            "21": "Anyone know what time it is?",
+            "22": "Hands off me weapon, it's me lifeline! Blisterin' barnacles! Savvy? Avast ye!",
+            "23": "Patrolling in th' dark around here be nay joke."
+        },
+        "union": {
+            "1": "Th' noise in this factory be killing me.",
+            "2": "Me back's acting up again, they should pay me double. Dead men tell no tales. Shiver me timbers!",
+            "3": "This damn machine's broken again, need to call maintenance.",
+            "4": "Did we meet today's production quota? Splice the mainbrace!",
+            "5": "These work clothes be falling apart, they won't even replace them.",
+            "6": "I can barely keep me eyes open... Thanks to last night's overtime shift.",
+            "7": "Th' cafeteria food tastes like reheated leftovers from yesterday.",
+            "8": "Heard th' factory next door went on strike, maybe we should show th' foul blaggart what's what.",
+            "9": "Th' pay's too low, can't even support me family.",
+            "10": "Those capitalists just keep exploiting us, we'll make them pay!",
+            "11": "Another batch of parts went missing from th' assembly line, probably stolen for th' black market.",
+            "12": "Th' new guy almost got his fingers caught in th' conveyor belt!",
+            "13": "Th' safety supervisor's shoes be so shiny ye can see your reflection, while we can't even get new gloves.",
+            "14": "Quality control keeps mixing defective products, and we'll have to redo them at month-end.",
+            "15": "Th' ventilation system's been broken for three days, th' lead fumes be making me eyes water."
+        },
+        "warlord": {
+            "1": "This territory's perfect for a base.",
+            "2": "Need to get some good booze tonight to treat th' boys.",
+            "3": "Damn, this gun needs maintenance.",
+            "4": "Things be heating up lately, everyone stay sharp.",
+            "5": "Ye see that? Something's moving over there.",
+            "6": "We need to plan our next move carefully.",
+            "7": "Ye hear that rumbling? Th' railway must be nearby. Sling yer hook!",
+            "8": "Make way, some big shot's coming through.",
+            "9": "Only reason I came to this backwater was for th' pretty girls.",
+            "10": "Frisys runs /map/, and you're all dead meat!",
+            "11": "Drag that traitor to th' acid pool, let everyone see th' price of betrayal. Splice the mainbrace!",
+            "12": "These bulletproof vests be falling apart, did logistics cut corners again?",
+            "13": "Damn, we're running out of diesel, if we don't get fuel soon, th' foul blaggart will skin me alive.",
+            "14": "Th' med station's out of painkillers? Send th' boys to raid a clinic!",
+            "15": "Anyone caught hoarding supplies will be nailed to th' barbed wire for th' crows.",
+            "16": "Th' recon team sent to Nova Mine hasn't reported in for three days, probably got ambushed by barnacles.",
+            "17": "Those church fanatics be at it again with their human experiments. We should blow their lab sky high one of these days. Weigh anchor and hoist the mizzen! Blow me down! Arrr!",
+            "18": "Th' smuggling route from /map/ to City 17 be overrun with antlions. Send th' demolition team to clear a path.",
+            "19": "Those new recruits actually thought about joining th' Combine. They're now part of th' concrete foundation."
+        },
+        "church": {
+            "1": "Donations have been pretty slim lately, we need to step up our fundraising game. Avast ye!",
+            "2": "Heard this holy water can cure anything, want to give it a try?",
+            "3": "Bring th' candles, it's time for th' ritual.",
+            "4": "Th' church renovations be going to cost a fortune, need to raise funds.",
+            "5": "Ye know, some secrets be only meant to be shared in th' basement.",
+            "6": "Th' hymns echo through th' dome, cleansing th' souls of th' faithful.",
+            "7": "Gear up, we need to purify this area.",
+            "8": "This church needs repairs. Blisterin' barnacles!",
+            "9": "Last night's ritual went well, but we need more offerings.",
+            "10": "Heard th' church next door made a killing, we need to step up our game.",
+            "11": "That new believer looks loaded. Let's figure out how to squeeze more donations out of him.",
+            "12": "We need to soundproof th' confession booth better. That widow's sobbing last time gave me a headache.",
+            "13": "Th' statue's right eye stopped weeping blood. We need to replace th' tomato juice tube in its socket.",
+            "14": "Turn on th' ventilation system during midnight mass. Too much of that hallucinogenic incense could be deadly.",
+            "15": "If anyone asks about th' screams from th' basement at night, just say it's demons being punished.",
+            "16": "Let's buy some cheap antibiotics from th' black market and mix them with holy water. We can mark it up by 30%."
+        },
+        "bandit": {
+            "1": "/map/ has high ground on both ends and low ground in th' middle - perfect for an ambush. Savvy?",
+            "2": "Buddy, got a light?",
+            "3": "This piece of junk needs replacing.",
+            "4": "Things be getting messy in /map/, bad for business. Blimey!",
+            "5": "This loot's good, should fetch a nice price.",
+            "6": "We need to plan our route, who's got th' map?",
+            "7": "This heat's killing me, need to find some shade.",
+            "8": "Heard there's a merchant caravan coming through, let's hit it!",
+            "9": "Damn curfew again tonight, we need to find a way out.",
+            "10": "That shopkeeper looked at us like we were thieves last night. I bet he added a couple extra zeros to th' bill!",
+            "11": "Th' jewelry store on 17th be getting new stock th' day after tomorrow. Blimey! Their windows be still single-pane.",
+            "12": "Th' transport convoy passes through /map/ every Wednesday. Remember to bring grenades to say hello.",
+            "13": "Th' black market got a shipment of modified shotguns that can pierce riot shields. Let's grab a couple to test them out.",
+            "14": "Th' union security has a 15-minute gap during shift change. Dead men tell no tales. Blow me down! Plenty of time to strip th' copper coils from their transformers.",
+            "15": "Heard th' church be rolling in cash these days. Let's just swipe those golden candlesticks from their altar. Blow me down!"
+        },
+        "other": {
+            "1": "Time flies. It's almost th' end of th' month and I still haven't figured out how to pay th' rent.",
+            "2": "Nowhere's safe these days.",
+            "3": "Me passport got stolen at th' hotel!",
+            "4": "No, actually, I think th' opposite, nothing new lately.",
+            "5": "Th' view here's great, I took a photo. Dead men tell no tales.",
+            "6": "I think I'm lost.",
+            "7": "Ye seen me m'hearty around /map/?",
+            "8": "Heard there's a market nearby, I'm gonna check it out! Avast ye! Blow me down!",
+            "9": "I can sleep anywhere, even with just a blanket.",
+            "10": "Be careful, there's lots of wildlife near /map/.",
+            "11": "I wonder what's on th' other side of /map/. Cleave him to the brisket! Sling yer hook!",
+            "12": "I'm thinking of writing a book. How about calling it 'The Autobiography of /name/'?",
+            "13": "Ye know what? I took down a hunter bare-handed in th' city.",
+            "14": "Spent last night under th' bridge in /map/. Almost had me toes chewed off by rats.",
+            "15": "Found half of a 'Militia Training Manual' in th' junkyard. It's not even good enough for toilet paper - th' ink smudges.",
+            "16": "Heard there's a group east of City 17 trading homemade alcohol for bullets. That's a good deal.",
+            "17": "Helped th' union transport some goods yesterday. Found a whole stash of unregistered pulse rifles hidden in th' container's false bottom."
+        }
+    },
+    "attack": {
+        "combine": {
+            "1": "Open fire! Eliminate these traitors!",
+            "2": "Found you, /victim/!",
+            "3": "Drop your weapons!",
+            "4": "Put down your weapons or we'll shoot!",
+            "5": "We're under attack!",
+            "6": "Capture /victim/! Blimey!",
+            "7": "Don't let /victim/ escape! Batten down the hatches!",
+            "8": "Ye want to test th' law?",
+            "9": "We've got a situation here in /map/.",
+            "10": "Freeze, I'm gonna shoot!"
+        },
+        "resistance": {
+            "1": "Pillage this, /victim/!",
+            "2": "Open fire!",
+            "3": "I see them, get ready to fight!",
+            "4": "Want some extra holes in your body, /victim/?",
+            "5": "We've got hostiles!",
+            "6": "Pillage cover! Blisterin' barnacles!",
+            "7": "Suppress them!",
+            "8": "Eat lead, /victim/!",
+            "9": "Ye see that?",
+            "10": "Ye dare show your face, /victim/?",
+            "11": "Keep your distance!",
+            "12": "Do something!"
+        },
+        "union": {
+            "1": "Comrades, unite! Batten down the hatches! Weigh anchor and hoist the mizzen!",
+            "2": "We're under attack!",
+            "3": "Protect yourselves!",
+            "4": "Don't let them succeed!",
+            "5": "Someone's shooting!",
+            "6": "Th' enemy's upon us.",
+            "7": "Damn it.",
+            "8": "What be ye waiting for? Pillage cover!",
+            "9": "Ye bunch of scum!",
+            "10": "Grab your wrenches! Let's show them th' might of th' working class!",
+            "11": "Th' assembly line can stop, but th' union's dignity must stand!",
+            "12": "Hear that? That's th' alarm from th' loading dock!"
+        },
+        "warlord": {
+            "1": "Kill them all!",
+            "2": "Let's show them what we're made of!",
+            "3": "Grab your weapons! Avast ye! Weigh anchor and hoist the mizzen! Let these bastards know who runs /map/!",
+            "4": "Who's th' fool daring to cause trouble in Lord Frisys's territory? Looking to die?",
+            "5": "For Lord Frisys, kill them all!",
+            "6": "Dragons must coil, tigers must crouch.",
+            "7": "Ye got some nerve, /victim/!",
+            "8": "I hope you've written your will, /victim/.",
+            "9": "Th' gallows be ready for you, /victim/!",
+            "10": "Th' last guy who looked at me like that, his fingers be still in formaldehyde!",
+            "11": "Ye think th' water treatment plant's water be always red by coincidence?",
+            "12": "You're not even fit to be a roadblock, /victim/!",
+            "13": "Surrender? Too late now! I'll use your blood to teach others a lesson!"
+        },
+        "church": {
+            "1": "Heretics, face judgment!",
+            "2": "For th' glory of th' church, destroy them!",
+            "3": "Purify these unclean ones!",
+            "4": "You've seen what ye shouldn't have, /victim/!",
+            "5": "Traitor spotted! Ye flounderin' nincompoop.",
+            "6": "/victim/, you'll need to buy double indulgences!",
+            "7": "Repent, /victim/, this be your last chance!",
+            "8": "Ye shouldn't be here, /victim/!"
+        },
+        "bandit": {
+            "1": "Brothers, attack!",
+            "2": "/victim/, hand over everything valuable!",
+            "3": "If ye want to live, leave your stuff!",
+            "4": "We'll be rich after this job!",
+            "5": "Don't let them get away, chase them!",
+            "6": "Ye can't hide for long, /victim/! Savvy? Arrr!"
+        },
+        "other": {
+            "1": "Don't push me, /victim/!",
+            "2": "Looks like someone's gonna bleed today!",
+            "3": "Guess I need to stretch me muscles today!",
+            "4": "You're messing with th' wrong person, /victim/!",
+            "5": "If ye insist on fighting, bring it on!",
+            "6": "I didn't want trouble, but ye asked for it! Cleave him to the brisket!",
+            "7": "Don't think I'm an easy target, /victim/!",
+            "8": "Looks like I need to teach ye some manners today!"
+        }
+    },
+    "kill": {
+        "combine": {
+            "1": "Goodbye, /victim/.",
+            "2": "Be that all you've got, /victim/?",
+            "3": "This be what happens when ye mess with th' Combine, /victim/.",
+            "4": "Your resistance be futile, /victim/! Blimey!",
+            "5": "Th' combine salutes you.",
+            "6": "Ye shouldn't have resisted, /victim/.",
+            "7": "/victim/ be down.",
+            "8": "Suspect down.",
+            "9": "He's down.",
+            "10": "Mission accomplished. Shiver me timbers!",
+            "11": "Nay more business for /victim/ here. Avast ye!",
+            "12": "Looks like /victim/ won't be seeing th' inside of a cell.",
+            "13": "Run, run! Avast ye!",
+            "14": "Should've thought twice before messing with us, /victim/.",
+            "15": "Be that th' best ye can do, /victim/? Ye flounderin' nincompoop. Blimey!",
+            "16": "Your weapons be like toys, completely useless. Thundering typhoons! Savvy?"
+        },
+        "resistance": {
+            "1": "I won't go easy on you, /victim/!",
+            "2": "This one's specially for you, /victim/! Avast ye!",
+            "3": "Seems like you're all parley and nay action, /victim/.",
+            "4": "Someone's gonna have to clean up /victim/'s mess.",
+            "5": "Another body in /map/, rest in peace, /victim/.",
+            "6": "Haha, /victim/, better watch your back in your next life!",
+            "7": "Ye were too reckless, /victim/. Thar she blows!",
+            "8": "Ye shouldn't have come here, /victim/. Sling yer hook!"
+        },
+        "union": {
+            "1": "This be your end, /victim/!",
+            "2": "Ye had it coming.",
+            "3": "Cheers! To taking down /victim/!",
+            "4": "Here's your bullets back, /victim/!",
+            "5": "Come to me, /victim/!"
+        },
+        "warlord": {
+            "1": "Th' last guy who acted tough like you, th' grass on his grave be two meters high now.",
+            "2": "Go tell those idiots in /map/ who's really in charge here!",
+            "3": "I took out /victim/!",
+            "4": "Anyone else wanna end up like /victim/? Weigh anchor and hoist the mizzen!",
+            "5": "Another enemy down, our territory just got bigger!",
+            "6": "Let's hang /victim/'s head on th' street lamp! Weigh anchor and hoist the mizzen!",
+            "7": "This neighborhood belongs to us now!"
+        },
+        "church": {
+            "1": "Judgment Day be upon us, /victim/! Cleave him to the brisket! Thar she blows!",
+            "2": "This be th' fate of all heretics!",
+            "3": "Another sacrifice for tonight.",
+            "4": "Hahahaha!",
+            "5": "Keep going, wipe them all out.",
+            "6": "Th' church bells will toll for you.",
+            "7": "Behold, another lost soul has returned to th' Lord's embrace."
+        },
+        "bandit": {
+            "1": "Haha, another big score!",
+            "2": "Nice job, boys!",
+            "3": "Anyone else wanna be like /victim/?",
+            "4": "Got you, /victim/.",
+            "5": "Looks like /victim/'s luck has run out.",
+            "6": "Another problem solved: /victim/."
+        },
+        "other": {
+            "1": "Maybe you'll learn some respect in your next life, /victim/.",
+            "2": "Go to hell, /victim/.",
+            "3": "Ye brought this upon yourself, /victim/.",
+            "4": "This be what I'm protecting, /victim/.",
+            "5": "Things be going smoothly.",
+            "6": "Hope this be th' last one.",
+            "7": "Who wants bacon?",
+            "8": "Those who don't plan to keep their promises don't consider th' difficulties when making them."
+        }
+    },
+    "playerchat": {
+        "greeting": {
+            "1": "Hi, /name/, how have ye been?",
+            "2": "How's your day going, /name/?",
+            "3": "So glad to meet you!",
+            "4": "What have ye been up to lately, /name/?",
+            "5": "Ye seem in good spirits, /name/."
+        },
+        "negotiate": {
+            "1": "I'm here to negotiate!",
+            "2": "I have an idea that might benefit us both, /name/.",
+            "3": "If we can reach an agreement, things will be much easier.",
+            "4": "I understand your difficulties, but we need to compromise.",
+            "5": "/name/, there's something I need to discuss with you.",
+            "6": "This be important, we need to parley it over.",
+            "7": "How about this, let's both make some concessions?",
+            "8": "I need to parley to you."
+        },
+        "trade": {
+            "1": "Do ye have anything special here? Blimey!",
+            "2": "Your goods be great, /name/!",
+            "3": "Got any good stuff for sale, /name/? Cleave him to the brisket!",
+            "4": "I'd like to buy some of your things, /name/. Shiver me timbers!",
+            "5": "Heard you've got some unique items here?",
+            "6": "Can I pillage a look at your goods?",
+            "7": "Hi, /name/, any recommendations for today?",
+            "8": "I'm quite interested in your products.",
+            "9": "Could ye tell me more about your goods?",
+            "10": "I'm looking for something unique.",
+            "11": "Do ye think today's deal will go well?"
+        },
+        "leave": {
+            "1": "Let's call it a day for now.",
+            "2": "Good luck, /name/!",
+            "3": "See ye around, /name/! Thar she blows!",
+            "4": "Pillage care, /name/!",
+            "5": "Until we meet again, /name/!",
+            "6": "I'll catch up with ye later.",
+            "7": "See ye later.",
+            "8": "Let's continue this later.",
+            "9": "I'll buy ye a grog next time."
+        }
+    },
+    "response": {
+        "greeting": {
+            "1": "Ah, /player/, long time nay see! Savvy?",
+            "2": "Nice weather today, isn't it? I was just about to visit City 17.",
+            "3": "Hey, /player/! Didn't expect to see ye in /map/.",
+            "4": "Great to see you, /player/! I was just looking for someone to chat about recent events.",
+            "5": "/player/! Perfect timing, I was just talking about ye with a friend."
+        },
+        "negotiate": {
+            "1": "What's going on?",
+            "2": "I was just about to discuss this with you, /player/.",
+            "3": "You're right, we really need to parley this over.",
+            "4": "I was just about to ask for th' details.",
+            "5": "Speak up, me time be precious."
+        },
+        "trade": {
+            "1": "Of course! I bet you'll be interested in this.",
+            "2": "Ye came at th' right time, /player/, check this out.",
+            "3": "Speaking of goods, I've got some weapons here ye might like.",
+            "4": "I'm just organizing new arrivals, want to see if there's anything ye need? Cleave him to the brisket!",
+            "5": "/player/, ye always find th' good stuff! How about checking out this new batch of weapons?"
+        },
+        "leave": {
+            "1": "Alright, /player/, feel free to drop by anytime, you're always welcome here.",
+            "2": "Pillage care, /player/! If ye run into any trouble, just come find me.",
+            "3": "Let's catch up another time, I've got some things to pillage care of.",
+            "4": "Goodbye, /player/! Hope to hear good news from ye next time we meet.",
+            "5": "Alright, /player/, let's parley again some other time. Blimey!"
+        }
+    }
+}
