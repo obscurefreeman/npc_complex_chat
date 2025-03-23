@@ -1,6 +1,20 @@
 local LANG = {}
 LANG.CurrentLanguage = "en"
 LANG.LanguageData = {}
+LANG.LanguageList = {}  -- 新增：用于存储语言列表
+
+-- 加载 language.json 文件
+function LANG:LoadLanguageList()
+    local langData = file.Read("data/of_npcp/language.json", "GAME")
+    if langData then
+        local success, data = pcall(util.JSONToTable, langData)
+        if success and data and data.language then
+            self.LanguageList = data.language
+            return true
+        end
+    end
+    return false
+end
 
 -- 加载语言文件
 function LANG:LoadLanguageFolder(lang)
@@ -63,7 +77,7 @@ end
 -- 获取系统语言并转换为支持的语言代码
 function LANG:GetSystemLanguage()
     local gmodLang = GetConVar("gmod_language"):GetString()
-    for langCode, _ in pairs(GLOBAL_OFNPC_DATA.lang.language) do
+    for langCode, _ in pairs(self.LanguageList) do
         if gmodLang == langCode then
             return langCode
         end
@@ -86,8 +100,12 @@ end)
 
 -- 初始化语言系统
 hook.Add("Initialize", "LoadLanguageSystem", function()
+    -- 加载语言列表
+    if not LANG:LoadLanguageList() then
+        return
+    end
 
-    for langCode, _ in pairs(GLOBAL_OFNPC_DATA.lang.language) do
+    for langCode, _ in pairs(LANG.LanguageList) do
         LANG:LoadLanguageFolder(langCode)
     end
     
