@@ -29,15 +29,15 @@
             "card_preview": "Card Preview",
             "card_list": "Card List",
             "card_detail": "Card Details",
-            "select_camp": "Your camp has been changed. Arrr!"
+            "select_camp": "Your camp has been changed."
         },
         "ai_system": {
             "model_select": "Select Model",
             "temperature": "Temperature",
             "max_tokens": "Max Tokens",
             "save_settings": "Save Settings",
-            "save_success": "AI settings saved locally. Blisterin' barnacles!",
-            "system_prompt": "System Prompt:",
+            "save_success": "AI settings saved locally.",
+            "system_prompt": "System Prompt: Arrr!",
             "update_prompt": "Update Prompt"
         },
         "dialog": {
@@ -46,15 +46,15 @@
             "trade": "Trade Mode",
             "leave": "Leave Dialog",
             "ai_chat_notice": "AI chat be being activated. Please note that each NPC has a unique background and personality traits, and can access some game data. In multiplayer games, when multiple players interact with th' same NPC simultaneously, th' system will automatically isolate th' conversation context to ensure each player gets an independent interaction experience, thus optimizing resource usage. Procedural dialogues will not be read by th' AI, and ye can continue previous conversations when interacting with th' NPC again.",
-            "ai_chat_warning": "AI chat be activated. In multiplayer environments, each player needs to configure their API key independently, and related data will be securely stored on local devices and not uploaded to th' server. Savvy? Blisterin' barnacles! For data security, it be recommended to avoid using this feature in untrusted server environments to prevent API key leakage risks.",
+            "ai_chat_warning": "AI chat be activated. Thar she blows! In multiplayer environments, each player needs to configure their API key independently, any related data will be securely stored on local devices and not uploaded to th' server. For data security, it be recommended to avoid using this feature in untrusted server environments to prevent API key leakage risks.",
             "negotiate_notice": "Negotiation be being activated.",
             "negotiate_warning": "Negotiation mode be under development, stay tuned.",
             "trade_notice": "Trade be being activated.",
-            "trade_warning": "Trade feature be under development, stay tuned. Weigh anchor and hoist the mizzen! Thar she blows! Batten down the hatches!",
-            "footnote_npc": "Model: %s | Response Time: %s | Tokens Used: Blimey! Savvy? %d",
+            "trade_warning": "Trade feature be under development, stay tuned.",
+            "footnote_npc": "Model: %s | Response Time: %s | Tokens Used: %d",
             "footnote_player": "Model: %s | Service Platform: %s",
-            "invalid_response": "Invalid AI response: Key fields missing, please check th' console for API output.",
-            "http_error": "Network communication error: Yo ho ho.",
+            "invalid_response": "Invalid AI response: Key fields missing, please check th' console for th' API output.",
+            "http_error": "Network communication error:",
             "no_ai_settings": "Nay valid AI configuration detected, please go to th' AI settings panel to initialize.",
             "unknown": "Unknown"
         },
@@ -91,7 +91,7 @@
             "voice_player": "Your Voice",
             "save_settings": "Save Settings",
             "guide": "Voice Service (Beta Feature)",
-            "text": "Just a few steps to enable voice service in GarryLord. Dead men tell no tales. Shiver me timbers! 1. Log in to Github, search and find th' garrylord-voice-service project. 2. Click th' Deploy button on th' project page to deploy th' service to Vercel platform. 3. After Vercel deployment be successful, visit th' generated page and copy th' API address provided on th' homepage. 4. Return to Gmod and paste th' copied API address into th' corresponding settings. Now ye can freely use voice service in Gmod, enjoying a generous 100G monthly bandwidth!",
+            "text": "Just a few steps to enable voice service in GarryLord. 1. Log into Github, search and find th' garrylord-voice-service project. 2. Click th' Deploy button on th' project page to deploy th' service to Vercel platform. 3. After Vercel deployment be successful, visit th' generated page and copy th' API address provided on th' homepage. Batten down the hatches! 4. Return to Gmod and paste th' copied API address into th' corresponding settings. Blow me down! Now ye can freely use th' voice service in Gmod, enjoying a generous 100G monthly bandwidth!",
             "player_voice_setting": "Voice Setting Saved.",
             "language_setting": "Language Setting",
             "follow_system": "Follow Game Language",

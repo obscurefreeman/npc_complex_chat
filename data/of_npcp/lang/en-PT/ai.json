@@ -15,7 +15,7 @@
             },
             "grok": {
                 "name": "Grok",
-                "description": "Grok originates from th' 1961 science fiction novel 'Stranger in a Strange Land' by American author Robert A. Heinlein."
+                "description": "Grok originates from th' 1961 science fiction novel 'Stranger in a Strange Land' by American author Robert A. Avast ye! Heinlein."
             },
             "o3": {
                 "name": "O3",
@@ -23,7 +23,7 @@
             },
             "anthropic": {
                 "name": "Anthropic",
-                "description": "Founded by former OpenAI members, its products be represented by th' Claude series."
+                "description": "Founded by former OpenAI members, its products be represented by th' Claude series. Blow me down!"
             },
             "ollama": {
                 "name": "Ollama Local Deployment",
@@ -31,11 +31,11 @@
             },
             "groq": {
                 "name": "Groq",
-                "description": "A platform providing various AI model services."
+                "description": "A platform providing various AI model services. Sling yer hook!"
             },
             "openrouter": {
                 "name": "OpenRouter",
-                "description": "A platform providing various AI model services. Blow me down! Blisterin' barnacles!"
+                "description": "A platform providing various AI model services."
             },
             "gitHub": {
                 "name": "GitHub Models",
@@ -91,7 +91,7 @@
             },
             "zhinao": {
                 "name": "360 ZhiNao",
-                "description": "An AI service platform provided by 360 company, supporting multiple models."
+                "description": "An AI service platform provided by 360 company, supporting multiple models. Thundering typhoons!"
             },
             "hunyuan": {
                 "name": "Tencent Hunyuan",
@@ -103,11 +103,11 @@
             },
             "baidu-cloud": {
                 "name": "Baidu Cloud Qianfan",
-                "description": "An AI service platform provided by Baidu Cloud, supporting multiple models. Sling yer hook!"
+                "description": "An AI service platform provided by Baidu Cloud, supporting multiple models."
             },
             "dmxapi": {
                 "name": "DMXAPI",
-                "description": "A platform providing various AI model services."
+                "description": "A platform providing various AI model services. Batten down the hatches! Sling yer hook!"
             },
             "perplexity": {
                 "name": "Perplexity",
@@ -119,7 +119,7 @@
             },
             "modelscope": {
                 "name": "ModelScope",
-                "description": "An AI model service platform provided by Alibaba, supporting multiple models."
+                "description": "An AI model service platform provided by Alibaba, supporting multiple models. Blow me down! Ye flounderin' nincompoop. Blow me down!"
             },
             "ppio": {
                 "name": "PPIO",
@@ -131,7 +131,7 @@
             },
             "ocoolai": {
                 "name": "OcoolAI",
-                "description": "A platform providing various AI model services."
+                "description": "A platform providing various AI model services. Yo ho ho. Cleave him to the brisket!"
             },
             "aihubmix": {
                 "name": "AiHubMix",

@@ -25,6 +25,7 @@ if SERVER then
     util.AddNetworkString("UpdatePlayerVoice")
     util.AddNetworkString("RequestPlayerDataSync")
     util.AddNetworkString("UpdateAllPlayerData")
+    util.AddNetworkString("UpdateNPCVoice")
 
     function AssignNPCIdentity(ent, npcInfo)
         local identity = {}

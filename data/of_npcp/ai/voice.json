@@ -196,6 +196,121 @@
       ]
     },
     {
+      "language": "en-PT",
+      "voices": [
+        {
+          "name": "Microsoft Ava Online (Natural)",
+          "code": "en-US-AvaNeural",
+          "gender": "female"
+        },
+        {
+          "name": "Microsoft Andrew Online (Natural)",
+          "code": "en-US-AndrewNeural",
+          "gender": "male"
+        },
+        {
+          "name": "Microsoft Emma Online (Natural)",
+          "code": "en-US-EmmaNeural",
+          "gender": "female"
+        },
+        {
+          "name": "Microsoft Brian Online (Natural)",
+          "code": "en-US-BrianNeural",
+          "gender": "male"
+        },
+        {
+          "name": "Microsoft Ana Online (Natural)",
+          "code": "en-US-AnaNeural",
+          "gender": "female"
+        },
+        {
+          "name": "Microsoft AndrewMultilingual Online (Natural)",
+          "code": "en-US-AndrewMultilingualNeural",
+          "gender": "male"
+        },
+        {
+          "name": "Microsoft Aria Online (Natural)",
+          "code": "en-US-AriaNeural",
+          "gender": "female"
+        },
+        {
+          "name": "Microsoft AvaMultilingual Online (Natural)",
+          "code": "en-US-AvaMultilingualNeural",
+          "gender": "female"
+        },
+        {
+          "name": "Microsoft BrianMultilingual Online (Natural)",
+          "code": "en-US-BrianMultilingualNeural",
+          "gender": "male"
+        },
+        {
+          "name": "Microsoft Christopher Online (Natural)",
+          "code": "en-US-ChristopherNeural",
+          "gender": "male"
+        },
+        {
+          "name": "Microsoft EmmaMultilingual Online (Natural)",
+          "code": "en-US-EmmaMultilingualNeural",
+          "gender": "female"
+        },
+        {
+          "name": "Microsoft Eric Online (Natural)",
+          "code": "en-US-EricNeural",
+          "gender": "male"
+        },
+        {
+          "name": "Microsoft Guy Online (Natural)",
+          "code": "en-US-GuyNeural",
+          "gender": "male"
+        },
+        {
+          "name": "Microsoft Jenny Online (Natural)",
+          "code": "en-US-JennyNeural",
+          "gender": "female"
+        },
+        {
+          "name": "Microsoft Michelle Online (Natural)",
+          "code": "en-US-MichelleNeural",
+          "gender": "female"
+        },
+        {
+          "name": "Microsoft Roger Online (Natural)",
+          "code": "en-US-RogerNeural",
+          "gender": "male"
+        },
+        {
+          "name": "Microsoft Steffan Online (Natural)",
+          "code": "en-US-SteffanNeural",
+          "gender": "male"
+        },
+        {
+          "name": "Microsoft Libby Online (Natural)",
+          "code": "en-GB-LibbyNeural",
+          "gender": "female"
+        },
+        {
+          "name": "Microsoft Maisie Online (Natural)",
+          "code": "en-GB-MaisieNeural",
+          "gender": "female"
+        },
+        {
+          "name": "Microsoft Ryan Online (Natural)",
+          "code": "en-GB-RyanNeural",
+          "gender": "male"
+        },
+        {
+          "name": "Microsoft Sonia Online (Natural)",
+          "code": "en-GB-SoniaNeural",
+          "gender": "female"
+        },
+        {
+          "name": "Microsoft Thomas Online (Natural)",
+          "code": "en-GB-ThomasNeural",
+          "gender": "male"
+        }
+      ]
+    },
+    {
       "language": "ru",
       "voices": [
         {
