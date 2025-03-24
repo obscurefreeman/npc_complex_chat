@@ -44,8 +44,11 @@ if SERVER then
         local femaleVoices = {}
         local maleVoices = {}
         
-        local serverLang = GetConVar("gmod_language"):GetString():match("^zh%-") and "zh" or "en"
+        local serverLang = GetConVar("gmod_language"):GetString()
 
+        if not GLOBAL_OFNPC_DATA.lang.language[clientLang] then
+            clientLang = "en"
+        end
 
         for _, voice in ipairs(GLOBAL_OFNPC_DATA.voice.voices) do
             if voice.language == serverLang then

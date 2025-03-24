@@ -171,7 +171,12 @@ local function RefreshNPCButtons(left_panel, right_panel)
 		-- 获取所有可用的配音
 		local voices = {}
 		local voiceMap = {}  -- 新增哈希表
-		local clientLang = GetConVar("gmod_language"):GetString():match("^zh%-") and "zh" or "en"
+        local clientLang = GetConVar("gmod_language"):GetString()
+
+        if not GLOBAL_OFNPC_DATA.lang.language[clientLang] then
+            clientLang = "en"
+        end
+
 		for _, voiceGroup in ipairs(GLOBAL_OFNPC_DATA.voice.voices) do
 			if voiceGroup.language == clientLang then
 				for _, voice in ipairs(voiceGroup.voices) do
@@ -478,8 +483,13 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
 	})
 
 	local voices = {}
-	local voiceMap = {}  -- 新增哈希表
-	local clientLang = GetConVar("gmod_language"):GetString():match("^zh%-") and "zh" or "en"
+	local voiceMap = {}
+	local clientLang = GetConVar("gmod_language"):GetString()
+
+	if not GLOBAL_OFNPC_DATA.lang.language[clientLang] then
+		clientLang = "en"
+	end
+	
 	for _, voiceGroup in ipairs(GLOBAL_OFNPC_DATA.voice.voices) do
 		if voiceGroup.language == clientLang then
 			for _, voice in ipairs(voiceGroup.voices) do
