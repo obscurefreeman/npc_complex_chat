@@ -1,16 +1,16 @@
 {
     "greeting": {
         "combine": {
-            "1": "Get out of here, /player/. This area isn't safe.",
+            "1": "Get out of here, /player/. This area is not safe.",
             "2": "Identify yourself and state your purpose, /player/.",
             "3": "Seen any suspicious people around lately, /player/?",
-            "4": "Follow orders, no questions, /player/.",
+            "4": "Follow the orders, no questions asked, /player/.",
             "5": "Your gear needs inspection, /player/."
         },
         "resistance": {
-            "1": "Hey /player/, any news lately?",
-            "2": "Watch your back, /player/. Combine patrol just passed by.",
-            "3": "/player/, we need to figure out how to get more supplies.",
+            "1": "Hey /player/, anything new lately?",
+            "2": "Watch your back, /player/. A Combine patrol just passed by.",
+            "3": "/player/, we got to figure out how we get more supplies.",
             "4": "How's it going on your end, /player/?",
             "5": "Hi /player/. How's your day going?"
         },
@@ -55,7 +55,7 @@
             "1": "Stay alert, the Resistance could be anywhere.",
             "2": "Any breach of discipline will be severely punished.",
             "3": "Maintain formation, don't fall behind!",
-            "4": "This place is so boring, I can't wait to get back to base.",
+            "4": "This place is so boring, I can't wait to get back to the base.",
             "5": "Anyone got some military gum? I'm feeling sleepy.",
             "6": "This patrol route is so long, when will it end...",
             "7": "That damn floor last night left my back aching.",
@@ -81,7 +81,7 @@
             "11": "This damn weather's freezing, I could use a thick coat.",
             "12": "Hey guys, anyone got a deck of cards? Let's play some Texas Hold'em.",
             "13": "This coffee tastes like mud, and I was counting on it to wake me up.",
-            "14": "Hey, you hear? There's a bar opening underground in City 17.",
+            "14": "Hey, you heard? There's a bar opening underground in City 17.",
             "15": "The Combine owes us big time, and we'll make them pay with interest!",
             "16": "We're not alone in this fight, the people of /map/ are fully supporting us!",
             "17": "This map's all wrinkled, the edges are worn out and the routes are blurry.",
@@ -124,7 +124,7 @@
             "12": "These bulletproof vests are falling apart, did logistics cut corners again?",
             "13": "Damn, we're running out of diesel, if we don't get fuel soon, the boss will skin me alive.",
             "14": "The med station's out of painkillers? Send the boys to raid a clinic!",
-            "15": "Anyone caught hoarding supplies will be nailed to the barbed wire for the crows.",
+            "15": "Anyone caught hoarding supplies will be nailed to barbed wire for the crows.",
             "16": "The recon team sent to Nova Mine hasn't reported in for three days, probably got ambushed by barnacles.",
             "17": "Those church fanatics are at it again with their human experiments. We should blow their lab sky high one of these days.",
             "18": "The smuggling route from /map/ to City 17 is overrun with antlions. Send the demolition team to clear a path.",
