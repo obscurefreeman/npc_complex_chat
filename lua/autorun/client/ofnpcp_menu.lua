@@ -172,6 +172,8 @@ local function RefreshNPCButtons(left_panel, right_panel)
 		local voices = {}
 		local voiceMap = {}  -- 新增哈希表
         local clientLang = GetConVar("gmod_language"):GetString()
+		local userLang = GetConVar("of_garrylord_language"):GetString()
+		clientLang = userLang ~= "" and userLang or clientLang
 
         if not GLOBAL_OFNPC_DATA.lang.language[clientLang] then
             clientLang = "en"
@@ -188,7 +190,7 @@ local function RefreshNPCButtons(left_panel, right_panel)
 		
 		-- 添加配音选项
 		for _, voice in ipairs(voices) do
-			voiceComboBox:AddChoice(voice.name, voice.code)
+			voiceComboBox:AddChoice(voice.name, voice.code, false, "ofnpcp/lang/" .. clientLang .. ".png")
 		end
 		
 		-- 设置当前配音
@@ -485,11 +487,13 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
 	local voices = {}
 	local voiceMap = {}
 	local clientLang = GetConVar("gmod_language"):GetString()
-
+	local userLang = GetConVar("of_garrylord_language"):GetString()
+	clientLang = userLang ~= "" and userLang or clientLang
+	
 	if not GLOBAL_OFNPC_DATA.lang.language[clientLang] then
 		clientLang = "en"
 	end
-	
+
 	for _, voiceGroup in ipairs(GLOBAL_OFNPC_DATA.voice.voices) do
 		if voiceGroup.language == clientLang then
 			for _, voice in ipairs(voiceGroup.voices) do
@@ -500,7 +504,7 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
 	end
 	
 	for _, voice in ipairs(voices) do
-		voiceComboBox:AddChoice(voice.name, voice.code)
+		voiceComboBox:AddChoice(voice.name, voice.code, false, "ofnpcp/lang/" .. clientLang .. ".png")
 	end
 	
 	if personalizationSettings.voice then

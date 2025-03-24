@@ -46,8 +46,8 @@ if SERVER then
         
         local serverLang = GetConVar("gmod_language"):GetString()
 
-        if not GLOBAL_OFNPC_DATA.lang.language[clientLang] then
-            clientLang = "en"
+        if not GLOBAL_OFNPC_DATA.lang.language[serverLang] then
+            serverLang = "en"
         end
 
         for _, voice in ipairs(GLOBAL_OFNPC_DATA.voice.voices) do

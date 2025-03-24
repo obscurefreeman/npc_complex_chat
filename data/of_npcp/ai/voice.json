@@ -46,6 +46,41 @@
       ]
     },
     {
+      "language": "zh-TW",
+      "voices": [
+        {
+          "name": "Microsoft HsiaoChen Online (Natural)",
+          "code": "zh-TW-HsiaoChenNeural",
+          "gender": "female"
+        },
+        {
+          "name": "Microsoft YunJhe Online (Natural)",
+          "code": "zh-TW-YunJheNeural",
+          "gender": "male"
+        },
+        {
+          "name": "Microsoft HsiaoYu Online (Natural)",
+          "code": "zh-TW-HsiaoYuNeural",
+          "gender": "female"
+        },
+        {
+          "name": "Microsoft HiuGaai Online (Natural)",
+          "code": "zh-HK-HiuGaaiNeural",
+          "gender": "female"
+        },
+        {
+          "name": "Microsoft HiuMaan Online (Natural)",
+          "code": "zh-HK-HiuMaanNeural",
+          "gender": "female"
+        },
+        {
+          "name": "Microsoft WanLung Online (Natural)",
+          "code": "zh-HK-WanLungNeural",
+          "gender": "male"
+        }
+      ]
+    },
+    {
       "language": "en",
       "voices": [
         {
