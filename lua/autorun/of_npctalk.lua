@@ -1,5 +1,4 @@
 -- 共享变量
-local DIALOG_DURATION = 4  -- 对话持续时间
 local CHAR_DELAY = 0.05   -- 每个字符的延迟
 
 if SERVER then
@@ -12,7 +11,7 @@ if SERVER then
     function NPCTalkManager:IsNPCTalking(npc)
         local entIndex = npc:EntIndex()
         return self.ActiveDialogs[entIndex] and 
-               CurTime() - self.ActiveDialogs[entIndex] < DIALOG_DURATION
+               CurTime() - self.ActiveDialogs[entIndex].startTime < self.ActiveDialogs[entIndex].duration
     end
     
     -- 检查NPC是否正在和玩家聊天（打开对话菜单）
@@ -44,7 +43,14 @@ if SERVER then
             return
         end
         
-        self.ActiveDialogs[entIndex] = CurTime()
+        -- 计算对话持续时间
+        local textLength = utf8.len(L(dialogKey))
+        local duration = (textLength * CHAR_DELAY) + 1  -- 显示完所有文字后再等一秒钟
+        
+        self.ActiveDialogs[entIndex] = {
+            startTime = CurTime(),
+            duration = duration
+        }
 
         if forceDialog then
             local npcData = OFNPCS[speaker:IsNPC() and speaker:EntIndex() or IsValid(target) and target:IsNPC() and target:EntIndex()]
@@ -128,8 +134,11 @@ if CLIENT then
         local chattingPlayer = isChating and net.ReadEntity() or nil
         
         if IsValid(npc) then
+            -- 计算对话持续时间
+            local textLength = utf8.len(L(dialogKey))
+            local duration = (textLength * CHAR_DELAY) + 1  -- 显示完所有文字后再等一秒钟
 
-            local npcs = GetAllNPCsList()
+            local npcs = GetAllNPCsList() or {}
 
             -- 检查NPC是否有效且未注册身份信息
             if not npc:IsPlayer() and not npcs[npc:EntIndex()] then
@@ -204,7 +213,8 @@ if CLIENT then
                 currentText = "",
                 startTime = CurTime(),
                 nextCharTime = CurTime(),
-                charIndex = 0
+                charIndex = 0,
+                duration = duration
             }
             
             table.insert(activeDialogs, dialog)
@@ -228,7 +238,7 @@ if CLIENT then
             end
             
             -- 检查对话是否已过期
-            if currentTime - dialog.startTime > DIALOG_DURATION then
+            if currentTime - dialog.startTime > dialog.duration then
                 table.remove(activeDialogs, i)
                 continue
             end
