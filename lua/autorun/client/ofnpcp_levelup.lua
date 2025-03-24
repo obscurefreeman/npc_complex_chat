@@ -49,11 +49,12 @@ net.Receive("OFNPCRankUp", function()
     end
 
     -- 在HUD中绘制文本
-    hook.Add("HUDPaint", "DrawLevelUpText", function()
+    local hookName = "DrawLevelUpText_" .. ent:EntIndex()  -- 使用实体索引创建唯一钩子名称
+    hook.Add("HUDPaint", hookName, function()
         DrawLevelUpText()
         -- 在持续时间后移除钩子
         if CurTime() - startTime >= textDuration then
-            hook.Remove("HUDPaint", "DrawLevelUpText")
+            hook.Remove("HUDPaint", hookName)
         end
     end)
 

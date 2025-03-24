@@ -45,7 +45,7 @@ if SERVER then
         
         -- 计算对话持续时间
         local textLength = utf8.len(L(dialogKey))
-        local duration = (textLength * CHAR_DELAY) + 1  -- 显示完所有文字后再等一秒钟
+        local duration = (textLength * CHAR_DELAY) + 2
         
         self.ActiveDialogs[entIndex] = {
             startTime = CurTime(),
@@ -136,7 +136,7 @@ if CLIENT then
         if IsValid(npc) then
             -- 计算对话持续时间
             local textLength = utf8.len(L(dialogKey))
-            local duration = (textLength * CHAR_DELAY) + 1  -- 显示完所有文字后再等一秒钟
+            local duration = (textLength * CHAR_DELAY) + 2
 
             local npcs = GetAllNPCsList() or {}
 
