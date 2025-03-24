@@ -82,5 +82,12 @@
         "color": [255, 165, 0],
         "image": "ifdian",
         "order": 5
+    },
+    {
+        "name": "爱发电用户_1d9b7",
+        "badges": ["ui.sponsor.sponsor"],
+        "color": [123, 45, 210],
+        "image": "ifdian",
+        "order": 5
     }
 ]
