@@ -38,6 +38,7 @@ end)
 
 -- 钩子：NPC击杀事件
 hook.Add("OnNPCKilled", "NPCTalkKill", function(victim, attacker, inflictor)
+    if victim == attacker then return end
     -- 检查击杀者是否是玩家或NPC
     if IsValid(attacker) and (attacker:IsNPC() or attacker:IsPlayer()) then
         -- 如果是玩家，查找附近的NPC来触发对话
@@ -65,6 +66,7 @@ end)
 
 -- 钩子：玩家被杀事件
 hook.Add("PlayerDeath", "NPCTalkPlayerDeath", function(victim, inflictor, attacker)
+    if victim == attacker then return end
     if IsValid(attacker) then
         if attacker:IsPlayer() then
             local identity = OFPLAYERS and OFPLAYERS[attacker:SteamID()]
