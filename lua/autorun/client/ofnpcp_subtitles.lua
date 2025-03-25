@@ -55,19 +55,19 @@ hook.Add("HUDPaint", "DrawNPCDialogSubtitles", function()
 	local derp = -80 * OFGUI.ScreenScale
 	local maxWidth = 1500 * OFGUI.ScreenScale
 	
-	for k, tbl in ipairs(activeSubtitles) do
+	for k, tbl in pairs(table.Reverse(activeSubtitles)) do
+ 		k = k - 1
 		local subtitleName = tostring(tbl.name)
 		local subtitleText = tostring(tbl.text)
-		
-		-- 创建markup对象
 		local color = tbl.color or Color(255, 255, 255)
+
 		local markup = markup.Parse("<color=" .. color.r .. "," .. color.g .. "," .. color.b .. ",255><font=ofgui_medium>" .. subtitleName .. "</font></color><font=ofgui_medium>" .. subtitleText .. "</font>", maxWidth)
 		
 		-- 计算总高度
 		local totalHeight = markup:GetHeight()
 		
 		-- 计算绘制位置
-		local yPos = h / 1.1 + derp + (k - 1) * (totalHeight + 10)
+		local yPos = h / 1.1 + derp - k * (totalHeight + 10)
 		
 		-- 绘制实际文本
 		markup:Draw(w / 2, yPos, TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP)
