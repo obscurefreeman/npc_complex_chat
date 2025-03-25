@@ -53,68 +53,23 @@ hook.Add("HUDPaint", "DrawNPCDialogSubtitles", function()
 	local h = ScrH()
 	
 	local derp = -80 * OFGUI.ScreenScale
-	local spacing
+	local maxWidth = 1500 * OFGUI.ScreenScale
 	
-	-- 修改为从上到下绘制字幕
 	for k, tbl in ipairs(activeSubtitles) do
 		local subtitleName = tostring(tbl.name)
 		local subtitleText = tostring(tbl.text)
-		local textheight = 35
-		local newline = ""
 		
-		if k == 1 then
-			spacing = 0
-		end
+		-- 创建markup对象
+		local color = tbl.color or Color(255, 255, 255)
+		local markup = markup.Parse("<color=" .. color.r .. "," .. color.g .. "," .. color.b .. ",255><font=ofgui_medium>" .. subtitleName .. "</font></color><font=ofgui_medium>" .. subtitleText .. "</font>", maxWidth)
 		
-		-- 支持换行
-		if subtitleText:find("\n") then
-			for k, v in pairs(string.Split(subtitleText, "\n")) do
-				if k == 1 then
-					subtitleText = v
-				elseif k == 2 then
-					newline = v
-					spacing = 1
-				end
-			end
-		end
-
-		if spacing ~= 0 then
-			textheight = 60
-		end
+		-- 计算总高度
+		local totalHeight = markup:GetHeight()
 		
-		-- 设置字体并获取文本宽度和高度
-		surface.SetFont("ofgui_medium")
-		local textw, texth = surface.GetTextSize(tostring(tbl.text))
-		local textw2, texth2 = surface.GetTextSize(subtitleName)
-
-		-- 绘制阴影效果
-		surface.SetTextColor(Color(0, 0, 0, 150)) -- 设置阴影颜色
-		surface.SetTextPos(w / 2 - (textw + textw2) / 2 + 1 * OFGUI.ScreenScale, h / 1.1 + derp + (k - 1) * textheight + 1 * OFGUI.ScreenScale) -- 调整位置
-		surface.DrawText(subtitleName)
+		-- 计算绘制位置
+		local yPos = h / 1.1 + derp + (k - 1) * (totalHeight + 10)
 		
-		surface.SetTextColor(Color(0, 0, 0, 150)) -- 设置阴影颜色
-		surface.SetTextPos(w / 2 - (textw + textw2) / 2 + textw2 + 1 * OFGUI.ScreenScale, h / 1.1 + derp + (k - 1) * textheight + 1 * OFGUI.ScreenScale) -- 调整位置
-		surface.DrawText(subtitleText)
-
 		-- 绘制实际文本
-		local textColor = tbl.color or Color(255, 255, 255)  -- 如果 tbl.color 无效，则使用白色
-		surface.SetTextColor(textColor)
-		surface.SetTextPos(w / 2 - (textw + textw2) / 2, h / 1.1 + derp + (k - 1) * textheight)
-		surface.DrawText(subtitleName)
-
-		surface.SetTextColor(Color(255, 255, 255, 255))
-		
-		surface.SetTextPos(w / 2 - (textw + textw2) / 2 + textw2, h / 1.1 + derp + (k - 1) * textheight)
-		surface.DrawText(subtitleText)
-
-		-- 处理换行
-		if newline then
-			surface.SetFont("ofgui_medium")
-			surface.SetTextColor(Color(255, 255, 255, 255))
-			surface.SetTextPos(w / 2 - (textw + textw2) / 2 + textw2, h / 1.1 + derp + (k - 1) * textheight + 25)
-			surface.DrawText(newline)
-		end
-
-		surface.SetDrawColor(255, 255, 255, 200)
+		markup:Draw(w / 2, yPos, TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP)
 	end
 end)
