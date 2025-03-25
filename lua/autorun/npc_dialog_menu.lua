@@ -593,6 +593,7 @@ if CLIENT then
                                 net.WriteEntity(npc)
                                 net.WriteString(playerText)
                                 net.WriteString(npcText)
+                                net.WriteTable({})
                             net.SendToServer()
 
                             -- 刷新卡牌
@@ -641,6 +642,7 @@ if CLIENT then
                 net.WriteEntity(npc)
                 net.WriteString(option)
                 net.WriteString(optionTypes[option])
+                net.WriteTable({})
                 net.SendToServer()
             end
         end
@@ -665,8 +667,27 @@ if CLIENT then
     function SendAIDialogRequest(npc, aiDialogs)
         -- 读取本地AI设置
         local aiSettings = file.Read("of_npcp/ai_settings.txt", "DATA")
+        aiSettings = util.JSONToTable(aiSettings)
         if aiSettings then
-            aiSettings = util.JSONToTable(aiSettings)
+
+            local requiredFields = {"max_tokens", "temperature", "provider", "model", "key", "url"}
+            local isValid = true
+            for _, field in ipairs(requiredFields) do
+                if not aiSettings[field] then
+                    isValid = false
+                    break
+                end
+            end
+            
+            if not isValid then
+                -- 如果缺少必要字段
+                net.Start("NPCAIDialog")
+                net.WriteEntity(npc)
+                net.WriteString(L("ui.dialog.no_ai_settings"))
+                net.WriteTable({})
+                net.SendToServer()
+                return
+            end
 
             local function correctFloatToInt(jsonString)
                 return string.gsub(jsonString, '(%d+)%.0', '%1')
@@ -705,13 +726,14 @@ if CLIENT then
                         net.Start("NPCAIDialog")
                         net.WriteEntity(npc)
                         net.WriteString(responseContent)
-                        net.WriteTable(response)
+                        net.WriteTable(response or {})
                         net.SendToServer()
                     else
                         -- 成功了，但是回答格式是错误的，有可能余额不足
                         net.Start("NPCAIDialog")
                         net.WriteEntity(npc)
                         net.WriteString(L("ui.dialog.invalid_response"))
+                        net.WriteTable({})
                         net.SendToServer()
                     end
                 end,
@@ -721,6 +743,7 @@ if CLIENT then
                     net.Start("NPCAIDialog")
                     net.WriteEntity(npc)
                     net.WriteString(L("ui.dialog.http_error") .. (err or L("ui.dialog.unknown")))
+                    net.WriteTable({})
                     net.SendToServer()
                 end
             })
@@ -729,6 +752,7 @@ if CLIENT then
             net.Start("NPCAIDialog")
             net.WriteEntity(npc)
             net.WriteString(L("ui.dialog.no_ai_settings"))
+            net.WriteTable({})
             net.SendToServer()
         end
     end
