@@ -112,7 +112,10 @@ hook.Add("Initialize", "LoadLanguageSystem", function()
         LANG:LoadLanguageFolder(langCode)
     end
     
-    local userLang = CLIENT and (GetConVar("of_garrylord_language"):GetString() or LANG:GetSystemLanguage()) or LANG:GetSystemLanguage()
+    local userLang = CLIENT and (GetConVar("of_garrylord_language"):GetString() or "") or ""
+    if userLang == "" then
+        userLang = LANG:GetSystemLanguage()
+    end
     LANG:SetLanguage(userLang)
 end)
 
