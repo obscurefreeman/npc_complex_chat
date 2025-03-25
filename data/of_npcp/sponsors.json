@@ -84,10 +84,10 @@
         "order": 5
     },
     {
-        "name": "爱发电用户_1d9b7",
+        "name": "ZMN",
         "badges": ["ui.sponsor.sponsor"],
         "color": [123, 45, 210],
-        "image": "ifdian",
+        "image": "zmn",
         "order": 5
     }
 ]

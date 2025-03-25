@@ -58,7 +58,17 @@ hook.Add("HUDPaint", "DrawNPCDialogSubtitles", function()
 	-- 初始化当前绘制高度
 	local currentY = h / 1.1 + derp
 	
+	-- 添加动效计时器
+	local animTime = 0.1
+	
 	for k, tbl in pairs(table.Reverse(activeSubtitles)) do
+		-- 初始化或更新目标位置
+		if not tbl.targetY then
+			tbl.targetY = currentY
+		else
+			tbl.targetY = Lerp(FrameTime() / animTime, tbl.targetY, currentY)
+		end
+		
 		local subtitleName = tostring(tbl.name)
 		local subtitleText = tostring(tbl.text)
 		local color = tbl.color or Color(255, 255, 255)
@@ -67,9 +77,8 @@ hook.Add("HUDPaint", "DrawNPCDialogSubtitles", function()
 		
 		-- 获取当前字幕高度
 		local totalHeight = markup:GetHeight()
-		
-		-- 计算绘制位置（基于前一个字幕的底部）
-		local yPos = currentY - totalHeight
+
+		local yPos = tbl.targetY - totalHeight
 		
 		-- 绘制实际文本
 		markup:Draw(w / 2, yPos, TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP)
