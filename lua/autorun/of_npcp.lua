@@ -194,7 +194,7 @@ if SERVER then
     
     hook.Add("OnEntityCreated", "NPCPersonality", function(ent)
         timer.Simple(0, function()
-            if not IsValid(ent) or not ent:IsNPC() then return end  -- 检查实体是否仍然有效
+            if not IsValid(ent) or not ent:IsNPC() or not ent:LookupBone("ValveBiped.Bip01_Head1") then return end
             
             local class = ent:GetClass()
 

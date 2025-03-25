@@ -268,7 +268,7 @@ if CLIENT then
                 local maxWidth = 1000 * OFGUI.ScreenScale
                 
                 -- 使用markup解析文本
-                local markup = markup.Parse("<font=ofgui_eva>" .. dialog.currentText .. "</font>", maxWidth)
+                local markup = markup.Parse("<font=ofgui_huge>" .. dialog.currentText .. "</font>", maxWidth)
                 
                 -- 获取文本尺寸
                 local textWidth, textHeight = markup:GetWidth(), markup:GetHeight()
