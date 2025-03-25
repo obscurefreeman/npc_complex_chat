@@ -265,27 +265,16 @@ if CLIENT then
             
             -- 开始3D2D渲染
             cam.Start3D2D(finalPos, speakerAngles, 0.1)
-                local screenScale = ScrH() / 1080
-                -- 计算文本尺寸
-                surface.SetFont("ofgui_eva")
+                local maxWidth = 1000 * OFGUI.ScreenScale
                 
-                -- 添加换行处理
-                local maxCharsPerLine = 35
-                local wrappedText = ""
-                local charCount = 0
-                for _, char in utf8.codes(dialog.currentText) do
-                    wrappedText = wrappedText .. utf8.char(char)
-                    charCount = charCount + 1
-                    if charCount >= maxCharsPerLine then
-                        wrappedText = wrappedText .. "\n"
-                        charCount = 0
-                    end
-                end
+                -- 使用markup解析文本
+                local markup = markup.Parse("<font=ofgui_eva>" .. dialog.currentText .. "</font>", maxWidth)
                 
-                local textWidth, textHeight = surface.GetTextSize(wrappedText)
+                -- 获取文本尺寸
+                local textWidth, textHeight = markup:GetWidth(), markup:GetHeight()
                 
                 -- 绘制背景
-                local padding = 15 * screenScale
+                local padding = 15 * OFGUI.ScreenScale
                 local boxWidth = textWidth + padding * 2
                 local boxHeight = textHeight + padding * 2
                 local boxX = -boxWidth/2
@@ -294,14 +283,7 @@ if CLIENT then
                 draw.RoundedBox(8, boxX, boxY, boxWidth, boxHeight, Color(0, 0, 0, 200))
                 
                 -- 绘制文本
-                draw.DrawText(
-                    wrappedText,
-                    "ofgui_eva",
-                    0,
-                    boxY + padding,
-                    Color(255, 255, 255, 255),
-                    TEXT_ALIGN_CENTER
-                )
+                markup:Draw(0, boxY + padding, TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, nil, TEXT_ALIGN_CENTER )
             cam.End3D2D()
         end
     end)

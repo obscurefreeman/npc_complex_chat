@@ -81,7 +81,7 @@ hook.Add("HUDPaint", "DrawNPCDialogSubtitles", function()
 		local yPos = tbl.targetY - totalHeight
 		
 		-- 绘制实际文本
-		markup:Draw(w / 2, yPos, TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP)
+		markup:Draw(w / 2, yPos, TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, nil, TEXT_ALIGN_CENTER )
 		
 		-- 更新当前绘制高度
 		currentY = yPos - 10  -- 10是字幕间距
