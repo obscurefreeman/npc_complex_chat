@@ -10,15 +10,14 @@ def generate_localized_files(cards_file):
     # 创建本地化路径文件
     localized_paths = {}
     # 创建本地化内容文件
-    localized_content = {}
+    localized_content = {"card": {}}
 
     localized_content = {"card": {}}
 
     # 处理info部分
     if 'info' in cards_data:
-
         localized_paths['info'] = {}
-        localized_content['info'] = {}
+        localized_content['card']['info'] = {}  # 将info移动到card下
         
         for group, group_info in cards_data['info'].items():
             localized_paths['info'][group] = {
@@ -26,7 +25,7 @@ def generate_localized_files(cards_file):
                 "desc": f"card.info.{group}.desc",
                 "color": group_info.get("color", {})
             }
-            localized_content['info'][group] = {
+            localized_content['card']['info'][group] = {  # 更新路径
                 "name": group_info.get("name", ""),
                 "desc": group_info.get("desc", ""),
             }
