@@ -382,8 +382,8 @@ if CLIENT then
                 cardButton:Dock(TOP)
                 cardButton:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
                 cardButton:SetTall(80 * OFGUI.ScreenScale)
-                cardButton:SetTitle(cardInfo.data.name)
-                cardButton:SetDescription(ReplacePlaceholders(cardInfo.data.d[math.random(#cardInfo.data.d)], npcIdentity))
+                cardButton:SetTitle(L(cardInfo.data.name))
+                cardButton:SetDescription(ReplacePlaceholders(L(cardInfo.data.d[math.random(#cardInfo.data.d)]), npcIdentity))
                 cardButton:SetIcon("ofnpcp/cards/preview/" .. cardInfo.key .. ".png")
                 cardButton:SetCardIcon("ofnpcp/cards/large/" .. cardInfo.key .. ".png")
             end
@@ -572,13 +572,13 @@ if CLIENT then
                     -- 创建卡牌按钮
                     local function CreateNegotiateButton(cardInfo)
                         -- 随机选择对话内容
-                        local playerText = ReplacePlaceholders(cardInfo.data.d[math.random(#cardInfo.data.d)], npcIdentity)
-                        local npcText = cardInfo.data.a[math.random(#cardInfo.data.a)]
+                        local playerText = ReplacePlaceholders(L(cardInfo.data.d[math.random(#cardInfo.data.d)]), npcIdentity)
+                        local npcText = L(cardInfo.data.a[math.random(#cardInfo.data.a)])
                         
                         -- 创建按钮
                         local button = vgui.Create("OFChatButton", scrollPanel)
                         button:SetChatText(playerText)
-                        button:SetTitle(cardInfo.data.name)
+                        button:SetTitle(L(cardInfo.data.name))
                         button:Dock(TOP)
                         button:DockMargin(4, 4, 4, 4)
                         button:SetIcon("ofnpcp/cards/preview/" .. cardInfo.key .. ".png")

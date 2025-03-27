@@ -1,12 +1,8 @@
 {
     "info": {
         "combine": {
-            "name": [
-                "card.info.combine.name"
-            ],
-            "desc": [
-                "card.info.combine.desc"
-            ],
+            "name": "card.info.combine.name",
+            "desc": "card.info.combine.desc",
             "color": {
                 "r": 0,
                 "g": 149,
@@ -14,12 +10,8 @@
             }
         },
         "resistance": {
-            "name": [
-                "card.info.resistance.name"
-            ],
-            "desc": [
-                "card.info.resistance.desc"
-            ],
+            "name": "card.info.resistance.name",
+            "desc": "card.info.resistance.desc",
             "color": {
                 "r": 255,
                 "g": 141,
@@ -27,12 +19,8 @@
             }
         },
         "union": {
-            "name": [
-                "card.info.union.name"
-            ],
-            "desc": [
-                "card.info.union.desc"
-            ],
+            "name": "card.info.union.name",
+            "desc": "card.info.union.desc",
             "color": {
                 "r": 227,
                 "g": 132,
@@ -40,12 +28,8 @@
             }
         },
         "warlord": {
-            "name": [
-                "card.info.warlord.name"
-            ],
-            "desc": [
-                "card.info.warlord.desc"
-            ],
+            "name": "card.info.warlord.name",
+            "desc": "card.info.warlord.desc",
             "color": {
                 "r": 252,
                 "g": 33,
@@ -53,12 +37,8 @@
             }
         },
         "church": {
-            "name": [
-                "card.info.church.name"
-            ],
-            "desc": [
-                "card.info.church.desc"
-            ],
+            "name": "card.info.church.name",
+            "desc": "card.info.church.desc",
             "color": {
                 "r": 126,
                 "g": 3,
@@ -66,12 +46,8 @@
             }
         },
         "bandit": {
-            "name": [
-                "card.info.bandit.name"
-            ],
-            "desc": [
-                "card.info.bandit.desc"
-            ],
+            "name": "card.info.bandit.name",
+            "desc": "card.info.bandit.desc",
             "color": {
                 "r": 255,
                 "g": 186,
@@ -79,12 +55,8 @@
             }
         },
         "other": {
-            "name": [
-                "card.info.other.name"
-            ],
-            "desc": [
-                "card.info.other.desc"
-            ],
+            "name": "card.info.other.name",
+            "desc": "card.info.other.desc",
             "color": {
                 "r": 135,
                 "g": 223,

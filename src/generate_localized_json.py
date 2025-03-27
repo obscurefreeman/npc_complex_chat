@@ -22,8 +22,8 @@ def generate_localized_files(cards_file):
         
         for group, group_info in cards_data['info'].items():
             localized_paths['info'][group] = {
-                "name": [f"card.info.{group}.name"],
-                "desc": [f"card.info.{group}.desc"],
+                "name": f"card.info.{group}.name",
+                "desc": f"card.info.{group}.desc",
                 "color": group_info.get("color", {})
             }
             localized_content['info'][group] = {
