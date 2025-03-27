@@ -383,7 +383,7 @@ if CLIENT then
                 cardButton:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
                 cardButton:SetTall(80 * OFGUI.ScreenScale)
                 cardButton:SetTitle(cardInfo.data.name)
-                cardButton:SetDescription(cardInfo.data.d[math.random(#cardInfo.data.d)])
+                cardButton:SetDescription(ReplacePlaceholders(cardInfo.data.d[math.random(#cardInfo.data.d)], npcIdentity))
                 cardButton:SetIcon("ofnpcp/cards/preview/" .. cardInfo.key .. ".png")
                 cardButton:SetCardIcon("ofnpcp/cards/large/" .. cardInfo.key .. ".png")
             end

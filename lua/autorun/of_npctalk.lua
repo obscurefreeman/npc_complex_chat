@@ -194,6 +194,15 @@ if CLIENT then
                     translatedText = translatedText:gsub("/name/", npcName)
                     translatedText = translatedText:gsub("/nickname/", L(targetIdentity.nickname))
                 end
+            elseif dialogtype == "idle" and npc:IsNPC() then
+                local npcIdentity = npcs[npc:EntIndex()]
+                if npcIdentity then
+                    local npcName = L(npcIdentity.name)
+                    if npcIdentity.name == npcIdentity.gamename then
+                        npcName = language.GetPhrase(npcIdentity.gamename)
+                    end
+                    translatedText = translatedText:gsub("/name/", npcName)
+                end
             end
 
             translatedText = translatedText:gsub("/map/", game.GetMap())

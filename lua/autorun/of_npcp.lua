@@ -128,7 +128,8 @@ if SERVER then
             identity.exp = 0
             identity.exp_per_rank = CalculateExpNeeded(identity.rank)
             identity.name = gamename
-            identity.voice = maleVoices[math.random(#maleVoices)]
+            identity.gender = GLOBAL_OFNPC_DATA.anim[npcInfo].gender
+            identity.voice = identity.gender == "female" and femaleVoices[math.random(#femaleVoices)] or maleVoices[math.random(#maleVoices)]
         end
 
         local jobSpecializations = {}
