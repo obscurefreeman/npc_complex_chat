@@ -14,6 +14,23 @@ def generate_localized_files(cards_file):
 
     localized_content = {"card": {}}
 
+    # 处理info部分
+    if 'info' in cards_data:
+
+        localized_paths['info'] = {}
+        localized_content['info'] = {}
+        
+        for group, group_info in cards_data['info'].items():
+            localized_paths['info'][group] = {
+                "name": [f"card.info.{group}.name"],
+                "desc": [f"card.info.{group}.desc"],
+                "color": group_info.get("color", {})
+            }
+            localized_content['info'][group] = {
+                "name": group_info.get("name", ""),
+                "desc": group_info.get("desc", ""),
+            }
+
     # 遍历cards.json中的阵营和卡牌
     for group, group_data in cards_data.items():
         if group == 'info':
