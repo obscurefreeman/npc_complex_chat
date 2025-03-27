@@ -1,54 +1,62 @@
 {
     "npc_alyx": {
         "camp": "resistance",
-        "anim": "sexyidle"
+        "anim": "sexyidle",
+        "gender": "female"
     },
     "npc_barney": {
         "camp": "resistance",
-        "anim": "lineidle03"
+        "anim": "lineidle03",
+        "gender": "male"
     },
     "npc_breen": {
         "camp": "combine",
-        "anim": "lineidle03"
+        "anim": "lineidle03",
+        "gender": "male"
     },
     "npc_eli": {
         "camp": "resistance",
-        "anim": "lineidle03"
+        "anim": "lineidle03",
+        "gender": "male"
     },
     "npc_magnusson": {
         "camp": "resistance",
-        "anim": "lineidle03"
+        "anim": "lineidle03",
+        "gender": "male"
     },
     "npc_gman": {
         "camp": "other",
-        "anim": "idle_subtle"
+        "anim": "idle_subtle",
+        "gender": "male"
     },
     "npc_kleiner": {
         "camp": "resistance",
-        "anim": "idle_subtle"
+        "anim": "idle_subtle",
+        "gender": "male"
     },
     "npc_mossman": {
         "camp": "resistance",
-        "anim": "lineidle02"
+        "anim": "lineidle02",
+        "gender": "female"
     },
     "npc_combine_s": {
         "camp": "combine",
-        "anim": "idle1"
+        "anim": "idle1",
+        "gender": "male"
     },
     "npc_metropolice": {
         "camp": "combine",
-        "anim": "pistolidle1"
+        "anim": "pistolidle1",
+        "gender": "male"
     },
     "npc_citizen": {
         "camp": "resistance",
-        "anim": "idle_subtle"
+        "anim": "idle_subtle",
+        "gender": "male"
     },
     "npc_monk": {
         "camp": "other",
-        "anim": "lineidle01"
-    },
-    "npc_fisherman_all": {
-        "camp": "other",
-        "anim": "idle01_nh"
+        "anim": "lineidle01",
+        "gender": "male"
     }
 }
