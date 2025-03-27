@@ -20,7 +20,7 @@ def generate_localized_files(cards_file):
             continue
         
         localized_paths[group] = {}
-        localized_content[group] = {}
+        localized_content["card"][group] = {}  # 初始化group字典
         
         for card_id, card_data in group_data.items():
             # 生成本地化路径
@@ -49,5 +49,7 @@ def generate_localized_files(cards_file):
         json.dump(localized_content, f, ensure_ascii=False, indent=4)
 
 if __name__ == "__main__":
-    cards_file = "data/of_npcp/cards.json"
+    # 更新路径，使用绝对路径
+    base_dir = Path(__file__).parent.parent  # 获取项目根目录
+    cards_file = base_dir / "data/of_npcp/cards.json"
     generate_localized_files(cards_file) 
