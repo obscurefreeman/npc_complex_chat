@@ -1,0 +1,2375 @@
+{
+    "info": {
+        "combine": {
+            "name": [
+                "card.info.combine.name"
+            ],
+            "desc": [
+                "card.info.combine.desc"
+            ],
+            "color": {
+                "r": 0,
+                "g": 149,
+                "b": 223
+            }
+        },
+        "resistance": {
+            "name": [
+                "card.info.resistance.name"
+            ],
+            "desc": [
+                "card.info.resistance.desc"
+            ],
+            "color": {
+                "r": 255,
+                "g": 141,
+                "b": 23
+            }
+        },
+        "union": {
+            "name": [
+                "card.info.union.name"
+            ],
+            "desc": [
+                "card.info.union.desc"
+            ],
+            "color": {
+                "r": 227,
+                "g": 132,
+                "b": 164
+            }
+        },
+        "warlord": {
+            "name": [
+                "card.info.warlord.name"
+            ],
+            "desc": [
+                "card.info.warlord.desc"
+            ],
+            "color": {
+                "r": 252,
+                "g": 33,
+                "b": 9
+            }
+        },
+        "church": {
+            "name": [
+                "card.info.church.name"
+            ],
+            "desc": [
+                "card.info.church.desc"
+            ],
+            "color": {
+                "r": 126,
+                "g": 3,
+                "b": 251
+            }
+        },
+        "bandit": {
+            "name": [
+                "card.info.bandit.name"
+            ],
+            "desc": [
+                "card.info.bandit.desc"
+            ],
+            "color": {
+                "r": 255,
+                "g": 186,
+                "b": 0
+            }
+        },
+        "other": {
+            "name": [
+                "card.info.other.name"
+            ],
+            "desc": [
+                "card.info.other.desc"
+            ],
+            "color": {
+                "r": 135,
+                "g": 223,
+                "b": 214
+            }
+        }
+    },
+    "general": {
+        "sightedness": {
+            "name": "card.general.sightedness.name",
+            "type": "外交牌",
+            "cost": "1",
+            "tag": [
+                "红桃",
+                "女皇"
+            ],
+            "d": [
+                "card.general.sightedness.d.1",
+                "card.general.sightedness.d.2",
+                "card.general.sightedness.d.3",
+                "card.general.sightedness.d.4",
+                "card.general.sightedness.d.5"
+            ],
+            "a": [
+                "card.general.sightedness.a.1",
+                "card.general.sightedness.a.2",
+                "card.general.sightedness.a.3",
+                "card.general.sightedness.a.4",
+                "card.general.sightedness.a.5",
+                "card.general.sightedness.a.6"
+            ]
+        },
+        "rebuttal": {
+            "name": "card.general.rebuttal.name",
+            "type": "敌对牌",
+            "cost": "1",
+            "tag": [
+                "梅花",
+                "魔术师"
+            ],
+            "d": [
+                "card.general.rebuttal.d.1",
+                "card.general.rebuttal.d.2",
+                "card.general.rebuttal.d.3",
+                "card.general.rebuttal.d.4",
+                "card.general.rebuttal.d.5",
+                "card.general.rebuttal.d.6"
+            ],
+            "a": [
+                "card.general.rebuttal.a.1",
+                "card.general.rebuttal.a.2",
+                "card.general.rebuttal.a.3",
+                "card.general.rebuttal.a.4",
+                "card.general.rebuttal.a.5",
+                "card.general.rebuttal.a.6"
+            ]
+        },
+        "hypothesis": {
+            "name": "card.general.hypothesis.name",
+            "type": "外交牌",
+            "cost": "1",
+            "tag": [
+                "梅花",
+                "魔术师"
+            ],
+            "d": [
+                "card.general.hypothesis.d.1",
+                "card.general.hypothesis.d.2",
+                "card.general.hypothesis.d.3",
+                "card.general.hypothesis.d.4",
+                "card.general.hypothesis.d.5",
+                "card.general.hypothesis.d.6"
+            ],
+            "a": [
+                "card.general.hypothesis.a.1",
+                "card.general.hypothesis.a.2"
+            ]
+        },
+        "ridicule": {
+            "name": "card.general.ridicule.name",
+            "type": "外交牌",
+            "cost": "1",
+            "tag": [
+                "梅花",
+                "魔术师"
+            ],
+            "d": [
+                "card.general.ridicule.d.1",
+                "card.general.ridicule.d.2",
+                "card.general.ridicule.d.3",
+                "card.general.ridicule.d.4",
+                "card.general.ridicule.d.5"
+            ],
+            "a": [
+                "card.general.ridicule.a.1",
+                "card.general.ridicule.a.2"
+            ]
+        },
+        "fame": {
+            "name": "card.general.fame.name",
+            "type": "外交牌",
+            "cost": "1",
+            "tag": [
+                "红桃",
+                "皇帝"
+            ],
+            "d": [
+                "card.general.fame.d.1",
+                "card.general.fame.d.2",
+                "card.general.fame.d.3",
+                "card.general.fame.d.4",
+                "card.general.fame.d.5",
+                "card.general.fame.d.6"
+            ],
+            "a": [
+                "card.general.fame.a.1",
+                "card.general.fame.a.2",
+                "card.general.fame.a.3"
+            ]
+        },
+        "informationexchange": {
+            "name": "card.general.informationexchange.name",
+            "type": "外交牌",
+            "cost": "1",
+            "tag": [
+                "方块",
+                "魔术师"
+            ],
+            "d": [
+                "card.general.informationexchange.d.1",
+                "card.general.informationexchange.d.2",
+                "card.general.informationexchange.d.3",
+                "card.general.informationexchange.d.4"
+            ],
+            "a": [
+                "card.general.informationexchange.a.1",
+                "card.general.informationexchange.a.2",
+                "card.general.informationexchange.a.3",
+                "card.general.informationexchange.a.4"
+            ]
+        },
+        "smalltalk": {
+            "name": "card.general.smalltalk.name",
+            "type": "外交牌",
+            "cost": "1",
+            "tag": [
+                "红桃",
+                "女皇"
+            ],
+            "d": [
+                "card.general.smalltalk.d.1",
+                "card.general.smalltalk.d.2",
+                "card.general.smalltalk.d.3",
+                "card.general.smalltalk.d.4",
+                "card.general.smalltalk.d.5",
+                "card.general.smalltalk.d.6"
+            ],
+            "a": [
+                "card.general.smalltalk.a.1",
+                "card.general.smalltalk.a.2",
+                "card.general.smalltalk.a.3",
+                "card.general.smalltalk.a.4"
+            ]
+        },
+        "negligence": {
+            "name": "card.general.negligence.name",
+            "type": "敌对牌",
+            "cost": "2",
+            "tag": [
+                "方块",
+                "愚者"
+            ],
+            "d": [
+                "card.general.negligence.d.1",
+                "card.general.negligence.d.2",
+                "card.general.negligence.d.3",
+                "card.general.negligence.d.4",
+                "card.general.negligence.d.5"
+            ],
+            "a": [
+                "card.general.negligence.a.1",
+                "card.general.negligence.a.2",
+                "card.general.negligence.a.3"
+            ]
+        },
+        "terrorface": {
+            "name": "card.general.terrorface.name",
+            "type": "敌对牌",
+            "cost": "2",
+            "tag": [
+                "黑桃",
+                "魔术师"
+            ],
+            "d": [
+                "card.general.terrorface.d.1",
+                "card.general.terrorface.d.2"
+            ],
+            "a": [
+                "card.general.terrorface.a.1",
+                "card.general.terrorface.a.2",
+                "card.general.terrorface.a.3"
+            ]
+        },
+        "hatsleight": {
+            "name": "card.general.hatsleight.name",
+            "type": "外交牌",
+            "cost": "2",
+            "tag": [
+                "梅花",
+                "魔术师"
+            ],
+            "d": [
+                "card.general.hatsleight.d.1",
+                "card.general.hatsleight.d.2"
+            ],
+            "a": [
+                "card.general.hatsleight.a.1",
+                "card.general.hatsleight.a.2",
+                "card.general.hatsleight.a.3"
+            ]
+        },
+        "dispute": {
+            "name": "card.general.dispute.name",
+            "type": "敌对牌",
+            "cost": "2",
+            "tag": [
+                "红桃",
+                "愚者"
+            ],
+            "d": [
+                "card.general.dispute.d.1",
+                "card.general.dispute.d.2",
+                "card.general.dispute.d.3"
+            ],
+            "a": [
+                "card.general.dispute.a.1",
+                "card.general.dispute.a.2"
+            ]
+        },
+        "warexperience": {
+            "name": "card.general.warexperience.name",
+            "type": "外交牌",
+            "cost": "3",
+            "tag": [
+                "黑桃",
+                "皇帝"
+            ],
+            "d": [
+                "card.general.warexperience.d.1",
+                "card.general.warexperience.d.2",
+                "card.general.warexperience.d.3",
+                "card.general.warexperience.d.4",
+                "card.general.warexperience.d.5"
+            ],
+            "a": [
+                "card.general.warexperience.a.1",
+                "card.general.warexperience.a.2"
+            ]
+        },
+        "psychologicalwar": {
+            "name": "card.general.psychologicalwar.name",
+            "type": "敌对牌",
+            "cost": "3",
+            "tag": [
+                "黑桃",
+                "皇帝"
+            ],
+            "d": [
+                "card.general.psychologicalwar.d.1",
+                "card.general.psychologicalwar.d.2",
+                "card.general.psychologicalwar.d.3",
+                "card.general.psychologicalwar.d.4",
+                "card.general.psychologicalwar.d.5",
+                "card.general.psychologicalwar.d.6"
+            ],
+            "a": [
+                "card.general.psychologicalwar.a.1",
+                "card.general.psychologicalwar.a.2",
+                "card.general.psychologicalwar.a.3",
+                "card.general.psychologicalwar.a.4"
+            ]
+        },
+        "espionage": {
+            "name": "card.general.espionage.name",
+            "type": "敌对牌",
+            "cost": "3",
+            "tag": [
+                "梅花",
+                "魔术师"
+            ],
+            "d": [
+                "card.general.espionage.d.1",
+                "card.general.espionage.d.2"
+            ],
+            "a": [
+                "card.general.espionage.a.1",
+                "card.general.espionage.a.2"
+            ]
+        }
+    },
+    "combine": {
+        "fortress": {
+            "name": "card.combine.fortress.name",
+            "type": "外交牌",
+            "cost": "1",
+            "tag": [
+                "黑桃",
+                "皇帝"
+            ],
+            "d": [
+                "card.combine.fortress.d.1",
+                "card.combine.fortress.d.2"
+            ],
+            "a": [
+                "card.combine.fortress.a.1",
+                "card.combine.fortress.a.2",
+                "card.combine.fortress.a.3",
+                "card.combine.fortress.a.4"
+            ]
+        },
+        "overwatch": {
+            "name": "card.combine.overwatch.name",
+            "type": "敌对牌",
+            "cost": "1",
+            "tag": [
+                "梅花",
+                "魔术师"
+            ],
+            "d": [
+                "card.combine.overwatch.d.1",
+                "card.combine.overwatch.d.2",
+                "card.combine.overwatch.d.3",
+                "card.combine.overwatch.d.4",
+                "card.combine.overwatch.d.5"
+            ],
+            "a": [
+                "card.combine.overwatch.a.1",
+                "card.combine.overwatch.a.2",
+                "card.combine.overwatch.a.3"
+            ]
+        },
+        "fishingremarks": {
+            "name": "card.combine.fishingremarks.name",
+            "type": "敌对牌",
+            "cost": "2",
+            "tag": [
+                "梅花",
+                "魔术师"
+            ],
+            "d": [
+                "card.combine.fishingremarks.d.1",
+                "card.combine.fishingremarks.d.2"
+            ],
+            "a": [
+                "card.combine.fishingremarks.a.1",
+                "card.combine.fishingremarks.a.2",
+                "card.combine.fishingremarks.a.3",
+                "card.combine.fishingremarks.a.4"
+            ]
+        },
+        "internalmessage": {
+            "name": "card.combine.internalmessage.name",
+            "type": "外交牌",
+            "cost": "2",
+            "tag": [
+                "方块",
+                "魔术师"
+            ],
+            "d": [
+                "card.combine.internalmessage.d.1",
+                "card.combine.internalmessage.d.2",
+                "card.combine.internalmessage.d.3",
+                "card.combine.internalmessage.d.4",
+                "card.combine.internalmessage.d.5"
+            ],
+            "a": [
+                "card.combine.internalmessage.a.1",
+                "card.combine.internalmessage.a.2",
+                "card.combine.internalmessage.a.3",
+                "card.combine.internalmessage.a.4"
+            ]
+        },
+        "keeneye": {
+            "name": "card.combine.keeneye.name",
+            "type": "外交牌",
+            "cost": "2",
+            "tag": [
+                "红桃",
+                "女皇"
+            ],
+            "d": [
+                "card.combine.keeneye.d.1",
+                "card.combine.keeneye.d.2",
+                "card.combine.keeneye.d.3",
+                "card.combine.keeneye.d.4"
+            ],
+            "a": [
+                "card.combine.keeneye.a.1",
+                "card.combine.keeneye.a.2",
+                "card.combine.keeneye.a.3"
+            ]
+        },
+        "viralpandemic": {
+            "name": "card.combine.viralpandemic.name",
+            "type": "外交牌",
+            "cost": "2",
+            "tag": [
+                "红桃",
+                "女皇"
+            ],
+            "d": [
+                "card.combine.viralpandemic.d.1",
+                "card.combine.viralpandemic.d.2",
+                "card.combine.viralpandemic.d.3"
+            ],
+            "a": [
+                "card.combine.viralpandemic.a.1",
+                "card.combine.viralpandemic.a.2"
+            ]
+        },
+        "businessasusual": {
+            "name": "card.combine.businessasusual.name",
+            "type": "外交牌",
+            "cost": "3",
+            "tag": [
+                "梅花",
+                "女皇"
+            ],
+            "d": [
+                "card.combine.businessasusual.d.1",
+                "card.combine.businessasusual.d.2",
+                "card.combine.businessasusual.d.3"
+            ],
+            "a": [
+                "card.combine.businessasusual.a.1",
+                "card.combine.businessasusual.a.2"
+            ]
+        },
+        "citybroadcast": {
+            "name": "card.combine.citybroadcast.name",
+            "type": "外交牌",
+            "cost": "3",
+            "tag": [
+                "红桃",
+                "女皇"
+            ],
+            "d": [
+                "card.combine.citybroadcast.d.1",
+                "card.combine.citybroadcast.d.2"
+            ],
+            "a": [
+                "card.combine.citybroadcast.a.1",
+                "card.combine.citybroadcast.a.2"
+            ]
+        },
+        "trojanhorse": {
+            "name": "card.combine.trojanhorse.name",
+            "type": "敌对牌",
+            "cost": "3",
+            "tag": [
+                "黑桃",
+                "魔术师"
+            ],
+            "d": [
+                "card.combine.trojanhorse.d.1",
+                "card.combine.trojanhorse.d.2"
+            ],
+            "a": [
+                "card.combine.trojanhorse.a.1",
+                "card.combine.trojanhorse.a.2"
+            ]
+        },
+        "arrest": {
+            "name": "card.combine.arrest.name",
+            "type": "敌对牌",
+            "cost": "3",
+            "tag": [
+                "黑桃",
+                "皇帝"
+            ],
+            "d": [
+                "card.combine.arrest.d.1",
+                "card.combine.arrest.d.2",
+                "card.combine.arrest.d.3"
+            ],
+            "a": [
+                "card.combine.arrest.a.1",
+                "card.combine.arrest.a.2",
+                "card.combine.arrest.a.3"
+            ]
+        },
+        "novamine": {
+            "name": "card.combine.novamine.name",
+            "type": "外交牌",
+            "cost": "3",
+            "tag": [
+                "黑桃",
+                "皇帝"
+            ],
+            "d": [
+                "card.combine.novamine.d.1",
+                "card.combine.novamine.d.2",
+                "card.combine.novamine.d.3"
+            ],
+            "a": [
+                "card.combine.novamine.a.1",
+                "card.combine.novamine.a.2"
+            ]
+        },
+        "imperialorder": {
+            "name": "card.combine.imperialorder.name",
+            "type": "敌对牌",
+            "cost": "4",
+            "tag": [
+                "红桃",
+                "皇帝"
+            ],
+            "d": [
+                "card.combine.imperialorder.d.1",
+                "card.combine.imperialorder.d.2"
+            ],
+            "a": [
+                "card.combine.imperialorder.a.1",
+                "card.combine.imperialorder.a.2"
+            ]
+        },
+        "ultimatum": {
+            "name": "card.combine.ultimatum.name",
+            "type": "敌对牌",
+            "cost": "4",
+            "tag": [
+                "红桃",
+                "皇帝"
+            ],
+            "d": [
+                "card.combine.ultimatum.d.1",
+                "card.combine.ultimatum.d.2",
+                "card.combine.ultimatum.d.3",
+                "card.combine.ultimatum.d.4"
+            ],
+            "a": [
+                "card.combine.ultimatum.a.1",
+                "card.combine.ultimatum.a.2"
+            ]
+        },
+        "sniperthreat": {
+            "name": "card.combine.sniperthreat.name",
+            "type": "敌对牌",
+            "cost": "4",
+            "tag": [
+                "黑桃",
+                "魔术师"
+            ],
+            "d": [
+                "card.combine.sniperthreat.d.1",
+                "card.combine.sniperthreat.d.2"
+            ],
+            "a": [
+                "card.combine.sniperthreat.a.1",
+                "card.combine.sniperthreat.a.2"
+            ]
+        },
+        "secretweapon": {
+            "name": "card.combine.secretweapon.name",
+            "type": "敌对牌",
+            "cost": "4",
+            "tag": [
+                "梅花",
+                "皇帝"
+            ],
+            "d": [
+                "card.combine.secretweapon.d.1",
+                "card.combine.secretweapon.d.2"
+            ],
+            "a": [
+                "card.combine.secretweapon.a.1",
+                "card.combine.secretweapon.a.2"
+            ]
+        },
+        "militarycourt": {
+            "name": "card.combine.militarycourt.name",
+            "type": "敌对牌",
+            "cost": "5",
+            "tag": [
+                "梅花",
+                "皇帝"
+            ],
+            "d": [
+                "card.combine.militarycourt.d.1",
+                "card.combine.militarycourt.d.2"
+            ],
+            "a": [
+                "card.combine.militarycourt.a.1",
+                "card.combine.militarycourt.a.2",
+                "card.combine.militarycourt.a.3"
+            ]
+        }
+    },
+    "resistance": {
+        "fate": {
+            "name": "card.resistance.fate.name",
+            "type": "外交牌",
+            "cost": "1",
+            "tag": [
+                "红桃",
+                "女皇"
+            ],
+            "d": [
+                "card.resistance.fate.d.1",
+                "card.resistance.fate.d.2"
+            ],
+            "a": [
+                "card.resistance.fate.a.1",
+                "card.resistance.fate.a.2"
+            ]
+        },
+        "undergroundnetwork": {
+            "name": "card.resistance.undergroundnetwork.name",
+            "type": "外交牌",
+            "cost": "1",
+            "tag": [
+                "梅花",
+                "魔术师"
+            ],
+            "d": [
+                "card.resistance.undergroundnetwork.d.1",
+                "card.resistance.undergroundnetwork.d.2"
+            ],
+            "a": [
+                "card.resistance.undergroundnetwork.a.1",
+                "card.resistance.undergroundnetwork.a.2"
+            ]
+        },
+        "treadingoneggs": {
+            "name": "card.resistance.treadingoneggs.name",
+            "type": "外交牌",
+            "cost": "1",
+            "tag": [
+                "梅花",
+                "魔术师"
+            ],
+            "d": [
+                "card.resistance.treadingoneggs.d.1",
+                "card.resistance.treadingoneggs.d.2",
+                "card.resistance.treadingoneggs.d.3",
+                "card.resistance.treadingoneggs.d.4"
+            ],
+            "a": [
+                "card.resistance.treadingoneggs.a.1",
+                "card.resistance.treadingoneggs.a.2"
+            ]
+        },
+        "rareoccasion": {
+            "name": "card.resistance.rareoccasion.name",
+            "type": "外交牌",
+            "cost": "1",
+            "tag": [
+                "梅花",
+                "魔术师"
+            ],
+            "d": [
+                "card.resistance.rareoccasion.d.1",
+                "card.resistance.rareoccasion.d.2",
+                "card.resistance.rareoccasion.d.3",
+                "card.resistance.rareoccasion.d.4"
+            ],
+            "a": [
+                "card.resistance.rareoccasion.a.1",
+                "card.resistance.rareoccasion.a.2",
+                "card.resistance.rareoccasion.a.3"
+            ]
+        },
+        "beyondreach": {
+            "name": "card.resistance.beyondreach.name",
+            "type": "外交牌",
+            "cost": "2",
+            "tag": [
+                "黑桃",
+                "愚者"
+            ],
+            "d": [
+                "card.resistance.beyondreach.d.1",
+                "card.resistance.beyondreach.d.2"
+            ],
+            "a": [
+                "card.resistance.beyondreach.a.1",
+                "card.resistance.beyondreach.a.2"
+            ]
+        },
+        "dangerzone": {
+            "name": "card.resistance.dangerzone.name",
+            "type": "外交牌",
+            "cost": "2",
+            "tag": [
+                "黑桃",
+                "魔术师"
+            ],
+            "d": [
+                "card.resistance.dangerzone.d.1",
+                "card.resistance.dangerzone.d.2"
+            ],
+            "a": [
+                "card.resistance.dangerzone.a.1",
+                "card.resistance.dangerzone.a.2"
+            ]
+        },
+        "van": {
+            "name": "card.resistance.van.name",
+            "type": "外交牌",
+            "cost": "2",
+            "tag": [
+                "黑桃",
+                "皇帝"
+            ],
+            "d": [
+                "card.resistance.van.d.1",
+                "card.resistance.van.d.2"
+            ],
+            "a": [
+                "card.resistance.van.a.1",
+                "card.resistance.van.a.2"
+            ]
+        },
+        "farewellcage": {
+            "name": "card.resistance.farewellcage.name",
+            "type": "外交牌",
+            "cost": "2",
+            "tag": [
+                "红桃",
+                "愚者"
+            ],
+            "d": [
+                "card.resistance.farewellcage.d.1",
+                "card.resistance.farewellcage.d.2",
+                "card.resistance.farewellcage.d.3"
+            ],
+            "a": [
+                "card.resistance.farewellcage.a.1",
+                "card.resistance.farewellcage.a.2"
+            ]
+        },
+        "publicsupport": {
+            "name": "card.resistance.publicsupport.name",
+            "type": "外交牌",
+            "cost": "3",
+            "tag": [
+                "红桃",
+                "女皇"
+            ],
+            "d": [
+                "card.resistance.publicsupport.d.1",
+                "card.resistance.publicsupport.d.2"
+            ],
+            "a": [
+                "card.resistance.publicsupport.a.1",
+                "card.resistance.publicsupport.a.2"
+            ]
+        },
+        "bravery": {
+            "name": "card.resistance.bravery.name",
+            "type": "敌对牌",
+            "cost": "3",
+            "tag": [
+                "黑桃",
+                "愚者"
+            ],
+            "d": [
+                "card.resistance.bravery.d.1",
+                "card.resistance.bravery.d.2"
+            ],
+            "a": [
+                "card.resistance.bravery.a.1",
+                "card.resistance.bravery.a.2"
+            ]
+        },
+        "preparedness": {
+            "name": "card.resistance.preparedness.name",
+            "type": "外交牌",
+            "cost": "3",
+            "tag": [
+                "方块",
+                "愚者"
+            ],
+            "d": [
+                "card.resistance.preparedness.d.1",
+                "card.resistance.preparedness.d.2"
+            ],
+            "a": [
+                "card.resistance.preparedness.a.1",
+                "card.resistance.preparedness.a.2"
+            ]
+        },
+        "firebase": {
+            "name": "card.resistance.firebase.name",
+            "type": "敌对牌",
+            "cost": "3",
+            "tag": [
+                "黑桃",
+                "皇帝"
+            ],
+            "d": [
+                "card.resistance.firebase.d.1",
+                "card.resistance.firebase.d.2"
+            ],
+            "a": [
+                "card.resistance.firebase.a.1",
+                "card.resistance.firebase.a.2"
+            ]
+        },
+        "rocketlaunch": {
+            "name": "card.resistance.rocketlaunch.name",
+            "type": "敌对牌",
+            "cost": "3",
+            "tag": [
+                "红桃",
+                "女皇"
+            ],
+            "d": [
+                "card.resistance.rocketlaunch.d.1",
+                "card.resistance.rocketlaunch.d.2"
+            ],
+            "a": [
+                "card.resistance.rocketlaunch.a.1",
+                "card.resistance.rocketlaunch.a.2"
+            ]
+        },
+        "familiarground": {
+            "name": "card.resistance.familiarground.name",
+            "type": "外交牌",
+            "cost": "4",
+            "tag": [
+                "方块",
+                "愚者"
+            ],
+            "d": [
+                "card.resistance.familiarground.d.1",
+                "card.resistance.familiarground.d.2",
+                "card.resistance.familiarground.d.3"
+            ],
+            "a": [
+                "card.resistance.familiarground.a.1",
+                "card.resistance.familiarground.a.2"
+            ]
+        },
+        "beliefofrebels": {
+            "name": "card.resistance.beliefofrebels.name",
+            "type": "外交牌",
+            "cost": "4",
+            "tag": [
+                "红桃",
+                "愚者"
+            ],
+            "d": [
+                "card.resistance.beliefofrebels.d.1",
+                "card.resistance.beliefofrebels.d.2"
+            ],
+            "a": [
+                "card.resistance.beliefofrebels.a.1",
+                "card.resistance.beliefofrebels.a.2"
+            ]
+        },
+        "ifwartomorrow": {
+            "name": "card.resistance.ifwartomorrow.name",
+            "type": "敌对牌",
+            "cost": "5",
+            "tag": [
+                "黑桃",
+                "皇帝"
+            ],
+            "d": [
+                "card.resistance.ifwartomorrow.d.1",
+                "card.resistance.ifwartomorrow.d.2"
+            ],
+            "a": [
+                "card.resistance.ifwartomorrow.a.1",
+                "card.resistance.ifwartomorrow.a.2"
+            ]
+        }
+    },
+    "union": {
+        "diligentefforts": {
+            "name": "card.union.diligentefforts.name",
+            "type": "外交牌",
+            "cost": "1",
+            "tag": [
+                "红桃",
+                "女皇"
+            ],
+            "d": [
+                "card.union.diligentefforts.d.1",
+                "card.union.diligentefforts.d.2"
+            ],
+            "a": [
+                "card.union.diligentefforts.a.1",
+                "card.union.diligentefforts.a.2"
+            ]
+        },
+        "inconsistentaction": {
+            "name": "card.union.inconsistentaction.name",
+            "type": "敌对牌",
+            "cost": "1",
+            "tag": [
+                "方块",
+                "愚者"
+            ],
+            "d": [
+                "card.union.inconsistentaction.d.1",
+                "card.union.inconsistentaction.d.2"
+            ],
+            "a": [
+                "card.union.inconsistentaction.a.1",
+                "card.union.inconsistentaction.a.2"
+            ]
+        },
+        "resourcedistribution": {
+            "name": "card.union.resourcedistribution.name",
+            "type": "外交牌",
+            "cost": "1",
+            "tag": [
+                "方块",
+                "皇帝"
+            ],
+            "d": [
+                "card.union.resourcedistribution.d.1",
+                "card.union.resourcedistribution.d.2"
+            ],
+            "a": [
+                "card.union.resourcedistribution.a.1",
+                "card.union.resourcedistribution.a.2"
+            ]
+        },
+        "labor": {
+            "name": "card.union.labor.name",
+            "type": "外交牌",
+            "cost": "1",
+            "tag": [
+                "方块",
+                "愚者"
+            ],
+            "d": [
+                "card.union.labor.d.1",
+                "card.union.labor.d.2"
+            ],
+            "a": [
+                "card.union.labor.a.1",
+                "card.union.labor.a.2"
+            ]
+        },
+        "tacticalreorganization": {
+            "name": "card.union.tacticalreorganization.name",
+            "type": "敌对牌",
+            "cost": "2",
+            "tag": [
+                "梅花",
+                "魔术师"
+            ],
+            "d": [
+                "card.union.tacticalreorganization.d.1",
+                "card.union.tacticalreorganization.d.2"
+            ],
+            "a": [
+                "card.union.tacticalreorganization.a.1",
+                "card.union.tacticalreorganization.a.2"
+            ]
+        },
+        "strikethreat": {
+            "name": "card.union.strikethreat.name",
+            "type": "敌对牌",
+            "cost": "2",
+            "tag": [
+                "黑桃",
+                "愚者"
+            ],
+            "d": [
+                "card.union.strikethreat.d.1",
+                "card.union.strikethreat.d.2"
+            ],
+            "a": [
+                "card.union.strikethreat.a.1",
+                "card.union.strikethreat.a.2"
+            ]
+        },
+        "safetyproduction": {
+            "name": "card.union.safetyproduction.name",
+            "type": "外交牌",
+            "cost": "2",
+            "tag": [
+                "梅花",
+                "女皇"
+            ],
+            "d": [
+                "card.union.safetyproduction.d.1",
+                "card.union.safetyproduction.d.2"
+            ],
+            "a": [
+                "card.union.safetyproduction.a.1",
+                "card.union.safetyproduction.a.2"
+            ]
+        },
+        "powersupply": {
+            "name": "card.union.powersupply.name",
+            "type": "外交牌",
+            "cost": "2",
+            "tag": [
+                "红桃",
+                "女皇"
+            ],
+            "d": [
+                "card.union.powersupply.d.1",
+                "card.union.powersupply.d.2"
+            ],
+            "a": [
+                "card.union.powersupply.a.1",
+                "card.union.powersupply.a.2"
+            ]
+        },
+        "delaytactics": {
+            "name": "card.union.delaytactics.name",
+            "type": "敌对牌",
+            "cost": "3",
+            "tag": [
+                "梅花",
+                "魔术师"
+            ],
+            "d": [
+                "card.union.delaytactics.d.1",
+                "card.union.delaytactics.d.2"
+            ],
+            "a": [
+                "card.union.delaytactics.a.1",
+                "card.union.delaytactics.a.2"
+            ]
+        },
+        "productionline": {
+            "name": "card.union.productionline.name",
+            "type": "外交牌",
+            "cost": "3",
+            "tag": [
+                "方块",
+                "皇帝"
+            ],
+            "d": [
+                "card.union.productionline.d.1",
+                "card.union.productionline.d.2"
+            ],
+            "a": [
+                "card.union.productionline.a.1",
+                "card.union.productionline.a.2"
+            ]
+        },
+        "uprising": {
+            "name": "card.union.uprising.name",
+            "type": "外交牌",
+            "cost": "3",
+            "tag": [
+                "红桃",
+                "女皇"
+            ],
+            "d": [
+                "card.union.uprising.d.1",
+                "card.union.uprising.d.2",
+                "card.union.uprising.d.3"
+            ],
+            "a": [
+                "card.union.uprising.a.1",
+                "card.union.uprising.a.2"
+            ]
+        },
+        "molotov": {
+            "name": "card.union.molotov.name",
+            "type": "外交牌",
+            "cost": "4",
+            "tag": [
+                "红桃",
+                "愚者"
+            ],
+            "d": [
+                "card.union.molotov.d.1",
+                "card.union.molotov.d.2"
+            ],
+            "a": [
+                "card.union.molotov.a.1",
+                "card.union.molotov.a.2"
+            ]
+        },
+        "longnight": {
+            "name": "card.union.longnight.name",
+            "type": "敌对牌",
+            "cost": "4",
+            "tag": [
+                "黑桃",
+                "愚者"
+            ],
+            "d": [
+                "card.union.longnight.d.1",
+                "card.union.longnight.d.2"
+            ],
+            "a": [
+                "card.union.longnight.a.1",
+                "card.union.longnight.a.2"
+            ]
+        },
+        "destroyrailway": {
+            "name": "card.union.destroyrailway.name",
+            "type": "敌对牌",
+            "cost": "4",
+            "tag": [
+                "黑桃",
+                "魔术师"
+            ],
+            "d": [
+                "card.union.destroyrailway.d.1",
+                "card.union.destroyrailway.d.2"
+            ],
+            "a": [
+                "card.union.destroyrailway.a.1",
+                "card.union.destroyrailway.a.2"
+            ]
+        },
+        "disorder": {
+            "name": "card.union.disorder.name",
+            "type": "敌对牌",
+            "cost": "4",
+            "tag": [
+                "梅花",
+                "魔术师"
+            ],
+            "d": [
+                "card.union.disorder.d.1",
+                "card.union.disorder.d.2",
+                "card.union.disorder.d.3"
+            ],
+            "a": [
+                "card.union.disorder.a.1",
+                "card.union.disorder.a.2"
+            ]
+        },
+        "unionrepresentative": {
+            "name": "card.union.unionrepresentative.name",
+            "type": "外交牌",
+            "cost": "5",
+            "tag": [
+                "红桃",
+                "女皇"
+            ],
+            "d": [
+                "card.union.unionrepresentative.d.1",
+                "card.union.unionrepresentative.d.2"
+            ],
+            "a": [
+                "card.union.unionrepresentative.a.1",
+                "card.union.unionrepresentative.a.2"
+            ]
+        }
+    },
+    "warlord": {
+        "troublesometime": {
+            "name": "card.warlord.troublesometime.name",
+            "type": "敌对牌",
+            "cost": "1",
+            "tag": [
+                "黑桃",
+                "皇帝"
+            ],
+            "d": [
+                "card.warlord.troublesometime.d.1",
+                "card.warlord.troublesometime.d.2",
+                "card.warlord.troublesometime.d.3",
+                "card.warlord.troublesometime.d.4"
+            ],
+            "a": [
+                "card.warlord.troublesometime.a.1",
+                "card.warlord.troublesometime.a.2"
+            ]
+        },
+        "dependonothers": {
+            "name": "card.warlord.dependonothers.name",
+            "type": "敌对牌",
+            "cost": "1",
+            "tag": [
+                "方块",
+                "愚者"
+            ],
+            "d": [
+                "card.warlord.dependonothers.d.1",
+                "card.warlord.dependonothers.d.2"
+            ],
+            "a": [
+                "card.warlord.dependonothers.a.1",
+                "card.warlord.dependonothers.a.2"
+            ]
+        },
+        "openchallenge": {
+            "name": "card.warlord.openchallenge.name",
+            "type": "敌对牌",
+            "cost": "1",
+            "tag": [
+                "红桃",
+                "皇帝"
+            ],
+            "d": [
+                "card.warlord.openchallenge.d.1",
+                "card.warlord.openchallenge.d.2",
+                "card.warlord.openchallenge.d.3",
+                "card.warlord.openchallenge.d.4"
+            ],
+            "a": [
+                "card.warlord.openchallenge.a.1",
+                "card.warlord.openchallenge.a.2"
+            ]
+        },
+        "rabble": {
+            "name": "card.warlord.rabble.name",
+            "type": "敌对牌",
+            "cost": "1",
+            "tag": [
+                "方块",
+                "皇帝"
+            ],
+            "d": [
+                "card.warlord.rabble.d.1",
+                "card.warlord.rabble.d.2",
+                "card.warlord.rabble.d.3",
+                "card.warlord.rabble.d.4"
+            ],
+            "a": [
+                "card.warlord.rabble.a.1",
+                "card.warlord.rabble.a.2"
+            ]
+        },
+        "backfire": {
+            "name": "card.warlord.backfire.name",
+            "type": "敌对牌",
+            "cost": "2",
+            "tag": [
+                "梅花",
+                "魔术师"
+            ],
+            "d": [
+                "card.warlord.backfire.d.1",
+                "card.warlord.backfire.d.2"
+            ],
+            "a": [
+                "card.warlord.backfire.a.1",
+                "card.warlord.backfire.a.2"
+            ]
+        },
+        "desperatemeans": {
+            "name": "card.warlord.desperatemeans.name",
+            "type": "敌对牌",
+            "cost": "2",
+            "tag": [
+                "黑桃",
+                "魔术师"
+            ],
+            "d": [
+                "card.warlord.desperatemeans.d.1",
+                "card.warlord.desperatemeans.d.2"
+            ],
+            "a": [
+                "card.warlord.desperatemeans.a.1",
+                "card.warlord.desperatemeans.a.2"
+            ]
+        },
+        "takeadvantage": {
+            "name": "card.warlord.takeadvantage.name",
+            "type": "敌对牌",
+            "cost": "2",
+            "tag": [
+                "梅花",
+                "魔术师"
+            ],
+            "d": [
+                "card.warlord.takeadvantage.d.1",
+                "card.warlord.takeadvantage.d.2"
+            ],
+            "a": [
+                "card.warlord.takeadvantage.a.1",
+                "card.warlord.takeadvantage.a.2"
+            ]
+        },
+        "reverseaction": {
+            "name": "card.warlord.reverseaction.name",
+            "type": "敌对牌",
+            "cost": "3",
+            "tag": [
+                "黑桃",
+                "皇帝"
+            ],
+            "d": [
+                "card.warlord.reverseaction.d.1",
+                "card.warlord.reverseaction.d.2",
+                "card.warlord.reverseaction.d.3"
+            ],
+            "a": [
+                "card.warlord.reverseaction.a.1",
+                "card.warlord.reverseaction.a.2"
+            ]
+        },
+        "supercilious": {
+            "name": "card.warlord.supercilious.name",
+            "type": "敌对牌",
+            "cost": "3",
+            "tag": [
+                "黑桃",
+                "皇帝"
+            ],
+            "d": [
+                "card.warlord.supercilious.d.1",
+                "card.warlord.supercilious.d.2"
+            ],
+            "a": [
+                "card.warlord.supercilious.a.1",
+                "card.warlord.supercilious.a.2"
+            ]
+        },
+        "arroganceandprejudice": {
+            "name": "card.warlord.arroganceandprejudice.name",
+            "type": "敌对牌",
+            "cost": "3",
+            "tag": [
+                "红桃",
+                "皇帝"
+            ],
+            "d": [
+                "card.warlord.arroganceandprejudice.d.1",
+                "card.warlord.arroganceandprejudice.d.2"
+            ],
+            "a": [
+                "card.warlord.arroganceandprejudice.a.1",
+                "card.warlord.arroganceandprejudice.a.2"
+            ]
+        },
+        "survivalofefittest": {
+            "name": "card.warlord.survivalofefittest.name",
+            "type": "敌对牌",
+            "cost": "3",
+            "tag": [
+                "黑桃",
+                "愚者"
+            ],
+            "d": [
+                "card.warlord.survivalofefittest.d.1",
+                "card.warlord.survivalofefittest.d.2",
+                "card.warlord.survivalofefittest.d.3"
+            ],
+            "a": [
+                "card.warlord.survivalofefittest.a.1",
+                "card.warlord.survivalofefittest.a.2"
+            ]
+        },
+        "terrorrule": {
+            "name": "card.warlord.terrorrule.name",
+            "type": "敌对牌",
+            "cost": "4",
+            "tag": [
+                "黑桃",
+                "皇帝"
+            ],
+            "d": [
+                "card.warlord.terrorrule.d.1",
+                "card.warlord.terrorrule.d.2"
+            ],
+            "a": [
+                "card.warlord.terrorrule.a.1",
+                "card.warlord.terrorrule.a.2"
+            ]
+        },
+        "wardeclaration": {
+            "name": "card.warlord.wardeclaration.name",
+            "type": "敌对牌",
+            "cost": "4",
+            "tag": [
+                "红桃",
+                "皇帝"
+            ],
+            "d": [
+                "card.warlord.wardeclaration.d.1",
+                "card.warlord.wardeclaration.d.2"
+            ],
+            "a": [
+                "card.warlord.wardeclaration.a.1",
+                "card.warlord.wardeclaration.a.2"
+            ]
+        },
+        "captivetrain": {
+            "name": "card.warlord.captivetrain.name",
+            "type": "敌对牌",
+            "cost": "4",
+            "tag": [
+                "黑桃",
+                "皇帝"
+            ],
+            "d": [
+                "card.warlord.captivetrain.d.1",
+                "card.warlord.captivetrain.d.2"
+            ],
+            "a": [
+                "card.warlord.captivetrain.a.1",
+                "card.warlord.captivetrain.a.2"
+            ]
+        },
+        "dictatorship": {
+            "name": "card.warlord.dictatorship.name",
+            "type": "敌对牌",
+            "cost": "4",
+            "tag": [
+                "红桃",
+                "皇帝"
+            ],
+            "d": [
+                "card.warlord.dictatorship.d.1",
+                "card.warlord.dictatorship.d.2",
+                "card.warlord.dictatorship.d.3"
+            ],
+            "a": [
+                "card.warlord.dictatorship.a.1",
+                "card.warlord.dictatorship.a.2",
+                "card.warlord.dictatorship.a.3"
+            ]
+        },
+        "frisys": {
+            "name": "card.warlord.frisys.name",
+            "type": "敌对牌",
+            "cost": "5",
+            "tag": [
+                "黑桃",
+                "皇帝"
+            ],
+            "d": [
+                "card.warlord.frisys.d.1",
+                "card.warlord.frisys.d.2",
+                "card.warlord.frisys.d.3",
+                "card.warlord.frisys.d.4"
+            ],
+            "a": [
+                "card.warlord.frisys.a.1",
+                "card.warlord.frisys.a.2",
+                "card.warlord.frisys.a.3"
+            ]
+        }
+    },
+    "church": {
+        "judgment": {
+            "name": "card.church.judgment.name",
+            "type": "敌对牌",
+            "cost": "1",
+            "tag": [
+                "梅花",
+                "女皇"
+            ],
+            "d": [
+                "card.church.judgment.d.1",
+                "card.church.judgment.d.2"
+            ],
+            "a": [
+                "card.church.judgment.a.1",
+                "card.church.judgment.a.2"
+            ]
+        },
+        "pheromone": {
+            "name": "card.church.pheromone.name",
+            "type": "外交牌",
+            "cost": "1",
+            "tag": [
+                "红桃",
+                "女皇"
+            ],
+            "d": [
+                "card.church.pheromone.d.1",
+                "card.church.pheromone.d.2"
+            ],
+            "a": [
+                "card.church.pheromone.a.1",
+                "card.church.pheromone.a.2"
+            ]
+        },
+        "secretorganization": {
+            "name": "card.church.secretorganization.name",
+            "type": "敌对牌",
+            "cost": "1",
+            "tag": [
+                "梅花",
+                "魔术师"
+            ],
+            "d": [
+                "card.church.secretorganization.d.1",
+                "card.church.secretorganization.d.2"
+            ],
+            "a": [
+                "card.church.secretorganization.a.1",
+                "card.church.secretorganization.a.2"
+            ]
+        },
+        "puppet": {
+            "name": "card.church.puppet.name",
+            "type": "敌对牌",
+            "cost": "1",
+            "tag": [
+                "梅花",
+                "魔术师"
+            ],
+            "d": [
+                "card.church.puppet.d.1",
+                "card.church.puppet.d.2"
+            ],
+            "a": [
+                "card.church.puppet.a.1",
+                "card.church.puppet.a.2"
+            ]
+        },
+        "annihilation": {
+            "name": "card.church.annihilation.name",
+            "type": "敌对牌",
+            "cost": "2",
+            "tag": [
+                "黑桃",
+                "魔术师"
+            ],
+            "d": [
+                "card.church.annihilation.d.1",
+                "card.church.annihilation.d.2"
+            ],
+            "a": [
+                "card.church.annihilation.a.1",
+                "card.church.annihilation.a.2"
+            ]
+        },
+        "earworm": {
+            "name": "card.church.earworm.name",
+            "type": "敌对牌",
+            "cost": "2",
+            "tag": [
+                "红桃",
+                "女皇"
+            ],
+            "d": [
+                "card.church.earworm.d.1",
+                "card.church.earworm.d.2",
+                "card.church.earworm.d.3"
+            ],
+            "a": [
+                "card.church.earworm.a.1",
+                "card.church.earworm.a.2"
+            ]
+        },
+        "fanaticism": {
+            "name": "card.church.fanaticism.name",
+            "type": "敌对牌",
+            "cost": "3",
+            "tag": [
+                "红桃",
+                "愚者"
+            ],
+            "d": [
+                "card.church.fanaticism.d.1",
+                "card.church.fanaticism.d.2"
+            ],
+            "a": [
+                "card.church.fanaticism.a.1",
+                "card.church.fanaticism.a.2"
+            ]
+        },
+        "resurrection": {
+            "name": "card.church.resurrection.name",
+            "type": "外交牌",
+            "cost": "3",
+            "tag": [
+                "红桃",
+                "魔术师"
+            ],
+            "d": [
+                "card.church.resurrection.d.1",
+                "card.church.resurrection.d.2",
+                "card.church.resurrection.d.3"
+            ],
+            "a": [
+                "card.church.resurrection.a.1",
+                "card.church.resurrection.a.2"
+            ]
+        },
+        "telepathy": {
+            "name": "card.church.telepathy.name",
+            "type": "外交牌",
+            "cost": "3",
+            "tag": [
+                "梅花",
+                "魔术师"
+            ],
+            "d": [
+                "card.church.telepathy.d.1",
+                "card.church.telepathy.d.2"
+            ],
+            "a": [
+                "card.church.telepathy.a.1",
+                "card.church.telepathy.a.2",
+                "card.church.telepathy.a.3"
+            ]
+        },
+        "experiment": {
+            "name": "card.church.experiment.name",
+            "type": "外交牌",
+            "cost": "3",
+            "tag": [
+                "梅花",
+                "愚者"
+            ],
+            "d": [
+                "card.church.experiment.d.1",
+                "card.church.experiment.d.2"
+            ],
+            "a": [
+                "card.church.experiment.a.1",
+                "card.church.experiment.a.2",
+                "card.church.experiment.a.3"
+            ]
+        },
+        "secretart": {
+            "name": "card.church.secretart.name",
+            "type": "外交牌",
+            "cost": "3",
+            "tag": [
+                "梅花",
+                "魔术师"
+            ],
+            "d": [
+                "card.church.secretart.d.1",
+                "card.church.secretart.d.2"
+            ],
+            "a": [
+                "card.church.secretart.a.1",
+                "card.church.secretart.a.2"
+            ]
+        },
+        "barnacle": {
+            "name": "card.church.barnacle.name",
+            "type": "外交牌",
+            "cost": "3",
+            "tag": [
+                "梅花",
+                "魔术师"
+            ],
+            "d": [
+                "card.church.barnacle.d.1",
+                "card.church.barnacle.d.2"
+            ],
+            "a": [
+                "card.church.barnacle.a.1",
+                "card.church.barnacle.a.2"
+            ]
+        },
+        "cataclysm": {
+            "name": "card.church.cataclysm.name",
+            "type": "敌对牌",
+            "cost": "3",
+            "tag": [
+                "黑桃",
+                "皇帝"
+            ],
+            "d": [
+                "card.church.cataclysm.d.1",
+                "card.church.cataclysm.d.2",
+                "card.church.cataclysm.d.3"
+            ],
+            "a": [
+                "card.church.cataclysm.a.1",
+                "card.church.cataclysm.a.2"
+            ]
+        },
+        "wheeloffate": {
+            "name": "card.church.wheeloffate.name",
+            "type": "外交牌",
+            "cost": "4",
+            "tag": [
+                "梅花",
+                "魔术师"
+            ],
+            "d": [
+                "card.church.wheeloffate.d.1",
+                "card.church.wheeloffate.d.2"
+            ],
+            "a": [
+                "card.church.wheeloffate.a.1",
+                "card.church.wheeloffate.a.2"
+            ]
+        },
+        "moonarmy": {
+            "name": "card.church.moonarmy.name",
+            "type": "敌对牌",
+            "cost": "4",
+            "tag": [
+                "黑桃",
+                "魔术师"
+            ],
+            "d": [
+                "card.church.moonarmy.d.1",
+                "card.church.moonarmy.d.2"
+            ],
+            "a": [
+                "card.church.moonarmy.a.1",
+                "card.church.moonarmy.a.2"
+            ]
+        },
+        "garrysmouse": {
+            "name": "card.church.garrysmouse.name",
+            "type": "敌对牌",
+            "cost": "5",
+            "tag": [
+                "黑桃",
+                "愚者"
+            ],
+            "d": [
+                "card.church.garrysmouse.d.1",
+                "card.church.garrysmouse.d.2"
+            ],
+            "a": [
+                "card.church.garrysmouse.a.1",
+                "card.church.garrysmouse.a.2"
+            ]
+        }
+    },
+    "bandit": {
+        "whitenight": {
+            "name": "card.bandit.whitenight.name",
+            "type": "外交牌",
+            "cost": "1",
+            "tag": [
+                "梅花",
+                "魔术师"
+            ],
+            "d": [
+                "card.bandit.whitenight.d.1",
+                "card.bandit.whitenight.d.2",
+                "card.bandit.whitenight.d.3"
+            ],
+            "a": [
+                "card.bandit.whitenight.a.1",
+                "card.bandit.whitenight.a.2",
+                "card.bandit.whitenight.a.3"
+            ]
+        },
+        "supreme": {
+            "name": "card.bandit.supreme.name",
+            "type": "敌对牌",
+            "cost": "1",
+            "tag": [
+                "方块",
+                "皇帝"
+            ],
+            "d": [
+                "card.bandit.supreme.d.1",
+                "card.bandit.supreme.d.2",
+                "card.bandit.supreme.d.3"
+            ],
+            "a": [
+                "card.bandit.supreme.a.1",
+                "card.bandit.supreme.a.2"
+            ]
+        },
+        "breakout": {
+            "name": "card.bandit.breakout.name",
+            "type": "敌对牌",
+            "cost": "1",
+            "tag": [
+                "梅花",
+                "愚者"
+            ],
+            "d": [
+                "card.bandit.breakout.d.1",
+                "card.bandit.breakout.d.2"
+            ],
+            "a": [
+                "card.bandit.breakout.a.1",
+                "card.bandit.breakout.a.2"
+            ]
+        },
+        "apple": {
+            "name": "card.bandit.apple.name",
+            "type": "外交牌",
+            "cost": "1",
+            "tag": [
+                "梅花",
+                "魔术师"
+            ],
+            "d": [
+                "card.bandit.apple.d.1",
+                "card.bandit.apple.d.2"
+            ],
+            "a": [
+                "card.bandit.apple.a.1",
+                "card.bandit.apple.a.2"
+            ]
+        },
+        "playhouse": {
+            "name": "card.bandit.playhouse.name",
+            "type": "外交牌",
+            "cost": "1",
+            "tag": [
+                "红桃",
+                "皇帝"
+            ],
+            "d": [
+                "card.bandit.playhouse.d.1",
+                "card.bandit.playhouse.d.2",
+                "card.bandit.playhouse.d.3"
+            ],
+            "a": [
+                "card.bandit.playhouse.a.1",
+                "card.bandit.playhouse.a.2"
+            ]
+        },
+        "crimeandpunishment": {
+            "name": "card.bandit.crimeandpunishment.name",
+            "type": "敌对牌",
+            "cost": "2",
+            "tag": [
+                "黑桃",
+                "皇帝"
+            ],
+            "d": [
+                "card.bandit.crimeandpunishment.d.1",
+                "card.bandit.crimeandpunishment.d.2",
+                "card.bandit.crimeandpunishment.d.3"
+            ],
+            "a": [
+                "card.bandit.crimeandpunishment.a.1",
+                "card.bandit.crimeandpunishment.a.2"
+            ]
+        },
+        "creation": {
+            "name": "card.bandit.creation.name",
+            "type": "外交牌",
+            "cost": "2",
+            "tag": [
+                "梅花",
+                "魔术师"
+            ],
+            "d": [
+                "card.bandit.creation.d.1",
+                "card.bandit.creation.d.2"
+            ],
+            "a": [
+                "card.bandit.creation.a.1",
+                "card.bandit.creation.a.2"
+            ]
+        },
+        "waitingforopportunity": {
+            "name": "card.bandit.waitingforopportunity.name",
+            "type": "敌对牌",
+            "cost": "2",
+            "tag": [
+                "黑桃",
+                "愚者"
+            ],
+            "d": [
+                "card.bandit.waitingforopportunity.d.1",
+                "card.bandit.waitingforopportunity.d.2"
+            ],
+            "a": [
+                "card.bandit.waitingforopportunity.a.1",
+                "card.bandit.waitingforopportunity.a.2"
+            ]
+        },
+        "songofmisery": {
+            "name": "card.bandit.songofmisery.name",
+            "type": "外交牌",
+            "cost": "3",
+            "tag": [
+                "红桃",
+                "愚者"
+            ],
+            "d": [
+                "card.bandit.songofmisery.d.1",
+                "card.bandit.songofmisery.d.2"
+            ],
+            "a": [
+                "card.bandit.songofmisery.a.1",
+                "card.bandit.songofmisery.a.2"
+            ]
+        },
+        "dropinthewrong": {
+            "name": "card.bandit.dropinthewrong.name",
+            "type": "敌对牌",
+            "cost": "4",
+            "tag": [
+                "黑桃",
+                "魔术师"
+            ],
+            "d": [
+                "card.bandit.dropinthewrong.d.1",
+                "card.bandit.dropinthewrong.d.2"
+            ],
+            "a": [
+                "card.bandit.dropinthewrong.a.1",
+                "card.bandit.dropinthewrong.a.2"
+            ]
+        },
+        "makeblackwhite": {
+            "name": "card.bandit.makeblackwhite.name",
+            "type": "敌对牌",
+            "cost": "4",
+            "tag": [
+                "梅花",
+                "魔术师"
+            ],
+            "d": [
+                "card.bandit.makeblackwhite.d.1",
+                "card.bandit.makeblackwhite.d.2"
+            ],
+            "a": [
+                "card.bandit.makeblackwhite.a.1",
+                "card.bandit.makeblackwhite.a.2"
+            ]
+        },
+        "dawn": {
+            "name": "card.bandit.dawn.name",
+            "type": "敌对牌",
+            "cost": "4",
+            "tag": [
+                "红桃",
+                "女皇"
+            ],
+            "d": [
+                "card.bandit.dawn.d.1",
+                "card.bandit.dawn.d.2",
+                "card.bandit.dawn.d.3",
+                "card.bandit.dawn.d.4"
+            ],
+            "a": [
+                "card.bandit.dawn.a.1",
+                "card.bandit.dawn.a.2"
+            ]
+        },
+        "nosurvivors": {
+            "name": "card.bandit.nosurvivors.name",
+            "type": "敌对牌",
+            "cost": "4",
+            "tag": [
+                "梅花",
+                "魔术师"
+            ],
+            "d": [
+                "card.bandit.nosurvivors.d.1",
+                "card.bandit.nosurvivors.d.2",
+                "card.bandit.nosurvivors.d.3"
+            ],
+            "a": [
+                "card.bandit.nosurvivors.a.1",
+                "card.bandit.nosurvivors.a.2"
+            ]
+        },
+        "finaldefense": {
+            "name": "card.bandit.finaldefense.name",
+            "type": "敌对牌",
+            "cost": "4",
+            "tag": [
+                "黑桃",
+                "皇帝"
+            ],
+            "d": [
+                "card.bandit.finaldefense.d.1",
+                "card.bandit.finaldefense.d.2"
+            ],
+            "a": [
+                "card.bandit.finaldefense.a.1",
+                "card.bandit.finaldefense.a.2"
+            ]
+        },
+        "raid": {
+            "name": "card.bandit.raid.name",
+            "type": "外交牌",
+            "cost": "4",
+            "tag": [
+                "梅花",
+                "魔术师"
+            ],
+            "d": [
+                "card.bandit.raid.d.1",
+                "card.bandit.raid.d.2"
+            ],
+            "a": [
+                "card.bandit.raid.a.1",
+                "card.bandit.raid.a.2"
+            ]
+        },
+        "playwithfire": {
+            "name": "card.bandit.playwithfire.name",
+            "type": "敌对牌",
+            "cost": "5",
+            "tag": [
+                "黑桃",
+                "魔术师"
+            ],
+            "d": [
+                "card.bandit.playwithfire.d.1",
+                "card.bandit.playwithfire.d.2",
+                "card.bandit.playwithfire.d.3"
+            ],
+            "a": [
+                "card.bandit.playwithfire.a.1",
+                "card.bandit.playwithfire.a.2",
+                "card.bandit.playwithfire.a.3"
+            ]
+        }
+    },
+    "other": {
+        "cheerstofuture": {
+            "name": "card.other.cheerstofuture.name",
+            "type": "外交牌",
+            "cost": "1",
+            "tag": [
+                "红桃",
+                "愚者"
+            ],
+            "d": [
+                "card.other.cheerstofuture.d.1",
+                "card.other.cheerstofuture.d.2",
+                "card.other.cheerstofuture.d.3"
+            ],
+            "a": [
+                "card.other.cheerstofuture.a.1",
+                "card.other.cheerstofuture.a.2"
+            ]
+        },
+        "monkeybusiness": {
+            "name": "card.other.monkeybusiness.name",
+            "type": "外交牌",
+            "cost": "1",
+            "tag": [
+                "红桃",
+                "愚者"
+            ],
+            "d": [
+                "card.other.monkeybusiness.d.1",
+                "card.other.monkeybusiness.d.2"
+            ],
+            "a": [
+                "card.other.monkeybusiness.a.1",
+                "card.other.monkeybusiness.a.2"
+            ]
+        },
+        "letitburn": {
+            "name": "card.other.letitburn.name",
+            "type": "外交牌",
+            "cost": "1",
+            "tag": [
+                "红桃",
+                "女皇"
+            ],
+            "d": [
+                "card.other.letitburn.d.1",
+                "card.other.letitburn.d.2"
+            ],
+            "a": [
+                "card.other.letitburn.a.1",
+                "card.other.letitburn.a.2"
+            ]
+        },
+        "diplomaticimmunity": {
+            "name": "card.other.diplomaticimmunity.name",
+            "type": "外交牌",
+            "cost": "1",
+            "tag": [
+                "红桃",
+                "女皇"
+            ],
+            "d": [
+                "card.other.diplomaticimmunity.d.1",
+                "card.other.diplomaticimmunity.d.2",
+                "card.other.diplomaticimmunity.d.3",
+                "card.other.diplomaticimmunity.d.4",
+                "card.other.diplomaticimmunity.d.5"
+            ],
+            "a": [
+                "card.other.diplomaticimmunity.a.1",
+                "card.other.diplomaticimmunity.a.2",
+                "card.other.diplomaticimmunity.a.3"
+            ]
+        },
+        "hideout": {
+            "name": "card.other.hideout.name",
+            "type": "外交牌",
+            "cost": "1",
+            "tag": [
+                "红桃",
+                "女皇"
+            ],
+            "d": [
+                "card.other.hideout.d.1",
+                "card.other.hideout.d.2"
+            ],
+            "a": [
+                "card.other.hideout.a.1",
+                "card.other.hideout.a.2"
+            ]
+        },
+        "snailwalking": {
+            "name": "card.other.snailwalking.name",
+            "type": "外交牌",
+            "cost": "2",
+            "tag": [
+                "梅花",
+                "女皇"
+            ],
+            "d": [
+                "card.other.snailwalking.d.1",
+                "card.other.snailwalking.d.2",
+                "card.other.snailwalking.d.3"
+            ],
+            "a": [
+                "card.other.snailwalking.a.1",
+                "card.other.snailwalking.a.2"
+            ]
+        },
+        "flattery": {
+            "name": "card.other.flattery.name",
+            "type": "外交牌",
+            "cost": "2",
+            "tag": [
+                "红桃",
+                "女皇"
+            ],
+            "d": [
+                "card.other.flattery.d.1",
+                "card.other.flattery.d.2"
+            ],
+            "a": [
+                "card.other.flattery.a.1",
+                "card.other.flattery.a.2"
+            ]
+        },
+        "profiteering": {
+            "name": "card.other.profiteering.name",
+            "type": "外交牌",
+            "cost": "2",
+            "tag": [
+                "红桃",
+                "女皇"
+            ],
+            "d": [
+                "card.other.profiteering.d.1",
+                "card.other.profiteering.d.2",
+                "card.other.profiteering.d.3"
+            ],
+            "a": [
+                "card.other.profiteering.a.1",
+                "card.other.profiteering.a.2"
+            ]
+        },
+        "whistleblower": {
+            "name": "card.other.whistleblower.name",
+            "type": "外交牌",
+            "cost": "2",
+            "tag": [
+                "方块",
+                "女皇"
+            ],
+            "d": [
+                "card.other.whistleblower.d.1",
+                "card.other.whistleblower.d.2",
+                "card.other.whistleblower.d.3"
+            ],
+            "a": [
+                "card.other.whistleblower.a.1",
+                "card.other.whistleblower.a.2"
+            ]
+        },
+        "donquixote": {
+            "name": "card.other.donquixote.name",
+            "type": "敌对牌",
+            "cost": "2",
+            "tag": [
+                "黑桃",
+                "愚者"
+            ],
+            "d": [
+                "card.other.donquixote.d.1",
+                "card.other.donquixote.d.2"
+            ],
+            "a": [
+                "card.other.donquixote.a.1",
+                "card.other.donquixote.a.2"
+            ]
+        },
+        "absurdexperience": {
+            "name": "card.other.absurdexperience.name",
+            "type": "外交牌",
+            "cost": "3",
+            "tag": [
+                "梅花",
+                "魔术师"
+            ],
+            "d": [
+                "card.other.absurdexperience.d.1",
+                "card.other.absurdexperience.d.2"
+            ],
+            "a": [
+                "card.other.absurdexperience.a.1",
+                "card.other.absurdexperience.a.2"
+            ]
+        },
+        "changetheconcept": {
+            "name": "card.other.changetheconcept.name",
+            "type": "敌对牌",
+            "cost": "3",
+            "tag": [
+                "梅花",
+                "魔术师"
+            ],
+            "d": [
+                "card.other.changetheconcept.d.1",
+                "card.other.changetheconcept.d.2"
+            ],
+            "a": [
+                "card.other.changetheconcept.a.1",
+                "card.other.changetheconcept.a.2"
+            ]
+        },
+        "opportunity": {
+            "name": "card.other.opportunity.name",
+            "type": "敌对牌",
+            "cost": "3",
+            "tag": [
+                "方块",
+                "魔术师"
+            ],
+            "d": [
+                "card.other.opportunity.d.1",
+                "card.other.opportunity.d.2"
+            ],
+            "a": [
+                "card.other.opportunity.a.1",
+                "card.other.opportunity.a.2"
+            ]
+        },
+        "ramayana": {
+            "name": "card.other.ramayana.name",
+            "type": "外交牌",
+            "cost": "3",
+            "tag": [
+                "梅花",
+                "魔术师"
+            ],
+            "d": [
+                "card.other.ramayana.d.1",
+                "card.other.ramayana.d.2"
+            ],
+            "a": [
+                "card.other.ramayana.a.1",
+                "card.other.ramayana.a.2"
+            ]
+        },
+        "reputation": {
+            "name": "card.other.reputation.name",
+            "type": "外交牌",
+            "cost": "4",
+            "tag": [
+                "方块",
+                "皇帝"
+            ],
+            "d": [
+                "card.other.reputation.d.1",
+                "card.other.reputation.d.2"
+            ],
+            "a": [
+                "card.other.reputation.a.1",
+                "card.other.reputation.a.2"
+            ]
+        },
+        "snakecharmer": {
+            "name": "card.other.snakecharmer.name",
+            "type": "敌对牌",
+            "cost": "5",
+            "tag": [
+                "梅花",
+                "魔术师"
+            ],
+            "d": [
+                "card.other.snakecharmer.d.1",
+                "card.other.snakecharmer.d.2"
+            ],
+            "a": [
+                "card.other.snakecharmer.a.1",
+                "card.other.snakecharmer.a.2"
+            ]
+        }
+    }
+}
