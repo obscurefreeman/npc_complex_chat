@@ -12,6 +12,8 @@ def generate_localized_files(cards_file):
     # 创建本地化内容文件
     localized_content = {}
 
+    localized_content = {"card": {}}
+
     # 遍历cards.json中的阵营和卡牌
     for group, group_data in cards_data.items():
         if group == 'info':
@@ -30,12 +32,11 @@ def generate_localized_files(cards_file):
                 "d": [f"card.{group}.{card_id}.d.{i+1}" for i in range(len(card_data.get("d", [])))],
                 "a": [f"card.{group}.{card_id}.a.{i+1}" for i in range(len(card_data.get("a", [])))]
             }
-            
-            # 生成本地化内容
-            localized_content[group][card_id] = {
+
+            localized_content["card"][group][card_id] = {
                 "name": card_data.get("name", ""),
-                "desc": card_data.get("d", []),
-                "response": card_data.get("a", [])
+                "d": {str(i+1): d for i, d in enumerate(card_data.get("d", []))},
+                "a": {str(i+1): a for i, a in enumerate(card_data.get("a", []))}
             }
 
     output_dir = Path("data/of_npcp/lang/zh-CN")
