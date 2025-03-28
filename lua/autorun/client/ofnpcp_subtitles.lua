@@ -43,10 +43,9 @@ function CreateNPCDialogSubtitles(npc, text)
     
     table.insert(activeSubtitles, dialog)
     
-    timer.Simple(5, function()
-        if not IsValid(dialog) then return end
-        dialog.removeTime = RealTime()
-    end)
+	timer.Simple(8, function()
+		dialog.removeTime = RealTime()
+	end)
 end
 
 -- HUD绘制钩子
@@ -68,11 +67,12 @@ hook.Add("HUDPaint", "DrawNPCDialogSubtitles", function()
         if not tbl.createTime then
             tbl.createTime = currentTime
             tbl.alpha = 0
-        elseif tbl.alpha < 255 then
-            tbl.alpha = math.min(255, (currentTime - tbl.createTime) / transitionTime * 255)
         end
 
-        if tbl.removeTime then
+        -- 计算透明度（入场渐变）
+        if not tbl.removeTime then
+            tbl.alpha = math.min(255, (currentTime - tbl.createTime) / transitionTime * 255)
+        else
             tbl.alpha = math.max(0, 255 - (currentTime - tbl.removeTime) / transitionTime * 255)
             if tbl.alpha <= 0 then
                 table.remove(activeSubtitles, i)
