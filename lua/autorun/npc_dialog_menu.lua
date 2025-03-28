@@ -237,18 +237,18 @@ if CLIENT then
 
                 local translatedDialogs = {}
                 local speakerName
-                local promptcontent = L(npcIdentity.prompt)
+                local promptcontent = ofTranslate(npcIdentity.prompt)
                 promptcontent = ReplacePlaceholders(promptcontent, npcIdentity)
                 local aiDialogs = { { role = "system", content = promptcontent } }
                 for _, dialog in ipairs(updatedData.dialogHistory) do
-                    local translatedText = L(dialog.text)
+                    local translatedText = ofTranslate(dialog.text)
                     if dialog.speakerType == "npc" then
                         local npcData = GetAllNPCsList()[dialog.speaker]
                         local npcName
                         if npcData.name == npcData.gamename then
                             npcName = language.GetPhrase(npcData.gamename)
                         else
-                            npcName = L(npcData.name) .. " “" .. L(npcData.nickname) .. "”"
+                            npcName = ofTranslate(npcData.name) .. " “" .. ofTranslate(npcData.nickname) .. "”"
                         end
                         speakerName = npcData and (npcName) or "NPC"
                         translatedText = translatedText:gsub("/player/", dialog.target)
@@ -259,12 +259,12 @@ if CLIENT then
 
                     -- 定义对话类型与提示信息的映射表
                     local dialogFootnotes = {
-                        ["playerchat.greeting"] = L("ui.dialog.ai_chat_notice"),
-                        ["response.greeting"] = L("ui.dialog.ai_chat_warning"), 
-                        ["playerchat.negotiate"] = L("ui.dialog.negotiate_notice"),
-                        ["response.negotiate"] = L("ui.dialog.negotiate_warning"),
-                        ["playerchat.trade"] = L("ui.dialog.trade_notice"),
-                        ["response.trade"] = L("ui.dialog.trade_warning")
+                        ["playerchat.greeting"] = ofTranslate("ui.dialog.ai_chat_notice"),
+                        ["response.greeting"] = ofTranslate("ui.dialog.ai_chat_warning"), 
+                        ["playerchat.negotiate"] = ofTranslate("ui.dialog.negotiate_notice"),
+                        ["response.negotiate"] = ofTranslate("ui.dialog.negotiate_warning"),
+                        ["playerchat.trade"] = ofTranslate("ui.dialog.trade_notice"),
+                        ["response.trade"] = ofTranslate("ui.dialog.trade_warning")
                     }
 
                     -- 初始化脚注文本
@@ -282,14 +282,14 @@ if CLIENT then
 
                     if dialog.aidetail and istable(dialog.aidetail) then
                         if dialog.speakerType == "npc" then
-                            footnoteText = string.format(L("ui.dialog.footnote_npc"),
-                            dialog.aidetail.model or L("ui.dialog.unknown"),
-                            dialog.aidetail.created or L("ui.dialog.unknown"),
+                            footnoteText = string.format(ofTranslate("ui.dialog.footnote_npc"),
+                            dialog.aidetail.model or ofTranslate("ui.dialog.unknown"),
+                            dialog.aidetail.created or ofTranslate("ui.dialog.unknown"),
                             dialog.aidetail.usage and dialog.aidetail.usage.total_tokens or 0)
                         else
-                            footnoteText = string.format(L("ui.dialog.footnote_player"),
-                            dialog.aidetail.model or L("ui.dialog.unknown"),
-                            dialog.aidetail.provider or L("ui.dialog.unknown"))
+                            footnoteText = string.format(ofTranslate("ui.dialog.footnote_player"),
+                            dialog.aidetail.model or ofTranslate("ui.dialog.unknown"),
+                            dialog.aidetail.provider or ofTranslate("ui.dialog.unknown"))
                         end
                     end
 
@@ -345,7 +345,7 @@ if CLIENT then
                     if dialog.footnoteText then
                         message:SetFootnote(dialog.footnoteText)
                     end
-                    message:SetName(dialog.speaker or L("ui.dialog.unknown"))
+                    message:SetName(dialog.speaker or ofTranslate("ui.dialog.unknown"))
                     message:SetText(dialog.text or "")
                 end
             end
@@ -382,8 +382,8 @@ if CLIENT then
                 cardButton:Dock(TOP)
                 cardButton:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
                 cardButton:SetTall(80 * OFGUI.ScreenScale)
-                cardButton:SetTitle(L(cardInfo.data.name))
-                cardButton:SetDescription(ReplacePlaceholders(L(cardInfo.data.d[math.random(#cardInfo.data.d)]), npcIdentity))
+                cardButton:SetTitle(ofTranslate(cardInfo.data.name))
+                cardButton:SetDescription(ReplacePlaceholders(ofTranslate(cardInfo.data.d[math.random(#cardInfo.data.d)]), npcIdentity))
                 cardButton:SetIcon("ofnpcp/cards/preview/" .. cardInfo.key .. ".png")
                 cardButton:SetCardIcon("ofnpcp/cards/large/" .. cardInfo.key .. ".png")
             end
@@ -399,7 +399,7 @@ if CLIENT then
 		if npcIdentity.name == npcIdentity.gamename then
 			npcName = language.GetPhrase(npcIdentity.gamename)
 		else
-			npcName = L(npcIdentity.name) .. " “" .. L(npcIdentity.nickname) .. "”"
+			npcName = ofTranslate(npcIdentity.name) .. " “" .. ofTranslate(npcIdentity.nickname) .. "”"
 		end
 
         local npcButton = vgui.Create("OFNPCButton", npccardPanel)
@@ -412,7 +412,7 @@ if CLIENT then
         local description = ""
 		if npcIdentity.rank and npcIdentity.job and npcIdentity.specialization and npcIdentity.camp then
 			npcButton:SetBadge("ofnpcp/usrankicons/rank_".. npcIdentity.rank .. ".tga")
-			description =  L("camp."..tostring(npcIdentity.camp)) .. " " .. L("rank.".. npcIdentity.rank) .. " - " .. L(npcIdentity.specialization)
+			description =  ofTranslate("camp."..tostring(npcIdentity.camp)) .. " " .. ofTranslate("rank.".. npcIdentity.rank) .. " - " .. ofTranslate(npcIdentity.specialization)
             npcButton:SetHoveredColor(GLOBAL_OFNPC_DATA.cards.info[npcIdentity.camp].color)
 		elseif npcIdentity.gamename then
 			description = npcIdentity.gamename
@@ -426,8 +426,8 @@ if CLIENT then
                 button:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
                 button:SetTall(80 * OFGUI.ScreenScale)
                 button:SetIcon("ofnpcp/" .. string.gsub(tag, "%.", "/") .. ".png")
-                button:SetTitle(L(tag))
-                button:SetDescription(L(tag .. "desc"))
+                button:SetTitle(ofTranslate(tag))
+                button:SetDescription(ofTranslate(tag .. "desc"))
                 button:SetHoveredColor(hoveredColor)
                 button:SetShowHoverCard(false)
             end
@@ -441,7 +441,7 @@ if CLIENT then
             local commentLabel = vgui.Create("OFTextLabel", npccardPanel)
             commentLabel:Dock(TOP)
             commentLabel:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
-            commentLabel:SetText(L("ui.npclist.comment"))
+            commentLabel:SetText(ofTranslate("ui.npclist.comment"))
             for _, commentData in ipairs(npcIdentity.comments) do
                 local commentMessage = vgui.Create("OFMessage", npccardPanel)
                 commentMessage:Dock(TOP)
@@ -454,12 +454,12 @@ if CLIENT then
         end
 
         for _, option in ipairs(playerTalkOptions) do
-            local translatedOption = ReplacePlaceholders(L(option), npcIdentity)  -- 使用新函数替换
+            local translatedOption = ReplacePlaceholders(ofTranslate(option), npcIdentity)  -- 使用新函数替换
 
             -- 创建按钮并添加到ScrollPanel
             local button = vgui.Create("OFChatButton", scrollPanel)
             button:SetChatText(translatedOption)
-            button:SetTitle(L("ui.dialog." .. optionTypes[option]))
+            button:SetTitle(ofTranslate("ui.dialog." .. optionTypes[option]))
             button:Dock(TOP)
             button:DockMargin(4, 4, 4, 4)
             button:SetIcon("ofnpcp/chaticons/preview/" .. optionTypes[option] .. ".png")
@@ -484,11 +484,11 @@ if CLIENT then
                         textEntry:SetTall(100 * OFGUI.ScreenScale)
 
                         local randomLeave = GLOBAL_OFNPC_DATA.playerTalks.leave[math.random(#GLOBAL_OFNPC_DATA.playerTalks.leave)]
-                        local translatedOption = ReplacePlaceholders(L(randomLeave), npcIdentity)
+                        local translatedOption = ReplacePlaceholders(ofTranslate(randomLeave), npcIdentity)
 
                         local button = vgui.Create("OFChatButton", scrollPanel)
                         button:SetChatText(translatedOption)
-                        button:SetTitle(L("ui.dialog.leave"))
+                        button:SetTitle(ofTranslate("ui.dialog.leave"))
                         button:Dock(TOP)
                         button:DockMargin(4, 4, 4, 4)
                         button:SetIcon("ofnpcp/chaticons/preview/leave.png")
@@ -572,13 +572,13 @@ if CLIENT then
                     -- 创建卡牌按钮
                     local function CreateNegotiateButton(cardInfo)
                         -- 随机选择对话内容
-                        local playerText = ReplacePlaceholders(L(cardInfo.data.d[math.random(#cardInfo.data.d)]), npcIdentity)
-                        local npcText = L(cardInfo.data.a[math.random(#cardInfo.data.a)])
+                        local playerText = ReplacePlaceholders(ofTranslate(cardInfo.data.d[math.random(#cardInfo.data.d)]), npcIdentity)
+                        local npcText = ofTranslate(cardInfo.data.a[math.random(#cardInfo.data.a)])
                         
                         -- 创建按钮
                         local button = vgui.Create("OFChatButton", scrollPanel)
                         button:SetChatText(playerText)
-                        button:SetTitle(L(cardInfo.data.name))
+                        button:SetTitle(ofTranslate(cardInfo.data.name))
                         button:Dock(TOP)
                         button:DockMargin(4, 4, 4, 4)
                         button:SetIcon("ofnpcp/cards/preview/" .. cardInfo.key .. ".png")
@@ -610,11 +610,11 @@ if CLIENT then
                         end
 
                         local randomLeave = GLOBAL_OFNPC_DATA.playerTalks.leave[math.random(#GLOBAL_OFNPC_DATA.playerTalks.leave)]
-                        local translatedOption = ReplacePlaceholders(L(randomLeave), npcIdentity)
+                        local translatedOption = ReplacePlaceholders(ofTranslate(randomLeave), npcIdentity)
 
                         local leavebutton = vgui.Create("OFChatButton", scrollPanel)
                         leavebutton:SetChatText(translatedOption)
-                        leavebutton:SetTitle(L("ui.dialog.leave"))
+                        leavebutton:SetTitle(ofTranslate("ui.dialog.leave"))
                         leavebutton:Dock(TOP)
                         leavebutton:DockMargin(4, 4, 4, 4)
                         leavebutton:SetIcon("ofnpcp/chaticons/preview/leave.png")
@@ -683,7 +683,7 @@ if CLIENT then
                 -- 如果缺少必要字段
                 net.Start("NPCAIDialog")
                 net.WriteEntity(npc)
-                net.WriteString(L("ui.dialog.no_ai_settings"))
+                net.WriteString(ofTranslate("ui.dialog.no_ai_settings"))
                 net.WriteTable({})
                 net.SendToServer()
                 return
@@ -732,7 +732,7 @@ if CLIENT then
                         -- 成功了，但是回答格式是错误的，有可能余额不足
                         net.Start("NPCAIDialog")
                         net.WriteEntity(npc)
-                        net.WriteString(L("ui.dialog.invalid_response"))
+                        net.WriteString(ofTranslate("ui.dialog.invalid_response"))
                         net.WriteTable({})
                         net.SendToServer()
                     end
@@ -742,7 +742,7 @@ if CLIENT then
                     -- 没有成功，有可能api填错了，也有可能没连上网
                     net.Start("NPCAIDialog")
                     net.WriteEntity(npc)
-                    net.WriteString(L("ui.dialog.http_error") .. (err or L("ui.dialog.unknown")))
+                    net.WriteString(ofTranslate("ui.dialog.http_error") .. (err or ofTranslate("ui.dialog.unknown")))
                     net.WriteTable({})
                     net.SendToServer()
                 end
@@ -751,7 +751,7 @@ if CLIENT then
             -- 如果没有找到AI设置文件
             net.Start("NPCAIDialog")
             net.WriteEntity(npc)
-            net.WriteString(L("ui.dialog.no_ai_settings"))
+            net.WriteString(ofTranslate("ui.dialog.no_ai_settings"))
             net.WriteTable({})
             net.SendToServer()
         end

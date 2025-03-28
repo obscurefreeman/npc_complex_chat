@@ -120,6 +120,6 @@ hook.Add("Initialize", "LoadLanguageSystem", function()
 end)
 
 -- 导出全局函数用于获取翻译
-function L(key)
+function ofTranslate(key)
     return LANG:GetPhrase(key)
 end 

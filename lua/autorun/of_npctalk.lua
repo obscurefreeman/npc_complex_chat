@@ -44,7 +44,7 @@ if SERVER then
         end
         
         -- 计算对话持续时间
-        local textLength = utf8.len(L(dialogKey))
+        local textLength = utf8.len(ofTranslate(dialogKey))
         local duration = (textLength * CHAR_DELAY) + 2
         
         self.ActiveDialogs[entIndex] = {
@@ -137,7 +137,7 @@ if CLIENT then
             -- 防止出现/victim/没有被替换的情况
             if (dialogtype == "kill" or dialogtype == "attack") and not IsValid(target) then return end
             -- 计算对话持续时间
-            local textLength = utf8.len(L(dialogKey))
+            local textLength = utf8.len(ofTranslate(dialogKey))
             local duration = (textLength * CHAR_DELAY) + 2
 
             local npcs = GetAllNPCsList() or {}
@@ -152,7 +152,7 @@ if CLIENT then
             end
             
             -- 获取翻译后的文本
-            local translatedText = L(dialogKey)
+            local translatedText = ofTranslate(dialogKey)
             if not translatedText then 
                 return 
             end
@@ -166,7 +166,7 @@ if CLIENT then
                 else
                     local victimIdentity = npcs[target:EntIndex()]
                     if victimIdentity and victimIdentity.name then
-                        local npcName = L(victimIdentity.name)
+                        local npcName = ofTranslate(victimIdentity.name)
                         if victimIdentity.name == victimIdentity.gamename then
                             npcName = language.GetPhrase(victimIdentity.gamename)
                         end
@@ -187,19 +187,19 @@ if CLIENT then
             elseif dialogtype == "player" and IsValid(target) then
                 local playerNick = npc:Nick()
                 local targetIdentity = npcs[target:EntIndex()]
-                local npcName = L(targetIdentity.name)
+                local npcName = ofTranslate(targetIdentity.name)
                 if targetIdentity.name == targetIdentity.gamename then
                     npcName = language.GetPhrase(targetIdentity.gamename)
                 end
                 if playerNick and targetIdentity then
                     translatedText = translatedText:gsub("/player/", playerNick)
                     translatedText = translatedText:gsub("/name/", npcName)
-                    translatedText = translatedText:gsub("/nickname/", L(targetIdentity.nickname))
+                    translatedText = translatedText:gsub("/nickname/", ofTranslate(targetIdentity.nickname))
                 end
             elseif dialogtype == "idle" and npc:IsNPC() then
                 local npcIdentity = npcs[npc:EntIndex()]
                 if npcIdentity then
-                    local npcName = L(npcIdentity.name)
+                    local npcName = ofTranslate(npcIdentity.name)
                     if npcIdentity.name == npcIdentity.gamename then
                         npcName = language.GetPhrase(npcIdentity.gamename)
                     end

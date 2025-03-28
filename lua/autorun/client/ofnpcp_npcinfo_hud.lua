@@ -17,10 +17,10 @@
             if npcIdentity.name == npcIdentity.gamename then
                 npcName = language.GetPhrase(npcIdentity.gamename)
             else
-                npcName = L(npcIdentity.name) .. " “" .. L(npcIdentity.nickname) .. "” "
+                npcName = ofTranslate(npcIdentity.name) .. " “" .. ofTranslate(npcIdentity.nickname) .. "” "
             end
             name = npcName
-            description =  L("camp."..tostring(npcIdentity.camp)) .. " " .. L("rank.".. npcIdentity.rank) .. " - " .. L(npcIdentity.specialization)
+            description =  ofTranslate("camp."..tostring(npcIdentity.camp)) .. " " .. ofTranslate("rank.".. npcIdentity.rank) .. " - " .. ofTranslate(npcIdentity.specialization)
         end
     end
 

@@ -13,7 +13,7 @@ local function RefreshNPCButtons(left_panel, right_panel)
 	local function RefreshRightPanel(npcData, entIndex)
 		right_panel:Clear()
 
-		local npcName = L(npcData.name)
+		local npcName = ofTranslate(npcData.name)
 		if npcData.name == npcData.gamename then
 			npcName = language.GetPhrase(npcData.gamename)
 		end
@@ -21,7 +21,7 @@ local function RefreshNPCButtons(left_panel, right_panel)
 		local nicknameLabel = vgui.Create("OFTextLabel", right_panel)
 		nicknameLabel:Dock(TOP)
 		nicknameLabel:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
-		nicknameLabel:SetText(L("ui.npclist.npc_name"))
+		nicknameLabel:SetText(ofTranslate("ui.npclist.npc_name"))
 		
 		-- 创建名称输入和提交按钮
 		local nameEntry = vgui.Create("OFTextEntry", right_panel)
@@ -34,13 +34,13 @@ local function RefreshNPCButtons(left_panel, right_panel)
 		nicknameEntry:Dock(TOP)
 		nicknameEntry:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
 		nicknameEntry:SetTall(32 * OFGUI.ScreenScale)
-		nicknameEntry:SetValue(L(npcData.nickname) or "")
+		nicknameEntry:SetValue(ofTranslate(npcData.nickname) or "")
 		
 		local submitButton = vgui.Create("OFButton", right_panel)
 		submitButton:Dock(TOP)
 		submitButton:SetTall(32 * OFGUI.ScreenScale)
 		submitButton:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
-		submitButton:SetText(L("ui.npclist.confirm_edit"))
+		submitButton:SetText(ofTranslate("ui.npclist.confirm_edit"))
 		submitButton.DoClick = function()
 			local newName = nameEntry:GetValue()
 			local newNickname = nicknameEntry:GetValue()
@@ -71,8 +71,8 @@ local function RefreshNPCButtons(left_panel, right_panel)
                 button:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
                 button:SetTall(80 * OFGUI.ScreenScale)
                 button:SetIcon("ofnpcp/" .. string.gsub(tag, "%.", "/") .. ".png")
-                button:SetTitle(L(tag))
-                button:SetDescription(L(tag .. "desc"))
+                button:SetTitle(ofTranslate(tag))
+                button:SetDescription(ofTranslate(tag .. "desc"))
                 button:SetHoveredColor(hoveredColor)
                 button:SetShowHoverCard(false)
             end
@@ -85,7 +85,7 @@ local function RefreshNPCButtons(left_panel, right_panel)
 		local commentLabel = vgui.Create("OFTextLabel", right_panel)
 		commentLabel:Dock(TOP)
 		commentLabel:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
-		commentLabel:SetText(L("ui.npclist.comment"))
+		commentLabel:SetText(ofTranslate("ui.npclist.comment"))
 
 		if npcData.comments then
             for _, commentData in ipairs(npcData.comments) do
@@ -104,14 +104,14 @@ local function RefreshNPCButtons(left_panel, right_panel)
 		commentEntry:Dock(TOP)
 		commentEntry:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
 		commentEntry:SetTall(32 * OFGUI.ScreenScale)
-		commentEntry:SetPlaceholderText(L("ui.npclist.comment_placeholder"))
+		commentEntry:SetPlaceholderText(ofTranslate("ui.npclist.comment_placeholder"))
 
 		-- 添加提交评论按钮
 		local submitCommentButton = vgui.Create("OFButton", right_panel)
 		submitCommentButton:Dock(TOP)
 		submitCommentButton:SetTall(32 * OFGUI.ScreenScale)
 		submitCommentButton:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
-		submitCommentButton:SetText(L("ui.npclist.submit_comment"))
+		submitCommentButton:SetText(ofTranslate("ui.npclist.submit_comment"))
 		submitCommentButton.DoClick = function()
 			local comment = commentEntry:GetValue()
 			if comment and comment ~= "" then
@@ -129,9 +129,9 @@ local function RefreshNPCButtons(left_panel, right_panel)
 		local promptLabel = vgui.Create("OFTextLabel", right_panel)
 		promptLabel:Dock(TOP)
 		promptLabel:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
-		promptLabel:SetText(L("ui.npclist.ai_prompt"))
+		promptLabel:SetText(ofTranslate("ui.npclist.ai_prompt"))
 
-		local promptcontent = L(npcData.prompt)
+		local promptcontent = ofTranslate(npcData.prompt)
 		promptcontent = ReplacePlaceholders(promptcontent, npcData)
 		local campTextEntry = vgui.Create("OFTextEntry", right_panel)
 		campTextEntry:SetHeight(120 * OFGUI.ScreenScale)
@@ -145,7 +145,7 @@ local function RefreshNPCButtons(left_panel, right_panel)
 		updatePromptButton:Dock(TOP)
 		updatePromptButton:SetTall(32 * OFGUI.ScreenScale)
 		updatePromptButton:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
-		updatePromptButton:SetText(L("ui.ai_system.update_prompt"))
+		updatePromptButton:SetText(ofTranslate("ui.ai_system.update_prompt"))
 		updatePromptButton.DoClick = function()
 			local newPrompt = campTextEntry:GetValue()
 			if newPrompt and newPrompt ~= "" then
@@ -160,13 +160,13 @@ local function RefreshNPCButtons(left_panel, right_panel)
 		local voiceLabel = vgui.Create("OFTextLabel", right_panel)
 		voiceLabel:Dock(TOP)
 		voiceLabel:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
-		voiceLabel:SetText(L("ui.npclist.voice"))
+		voiceLabel:SetText(ofTranslate("ui.npclist.voice"))
 		
 		local voiceComboBox = vgui.Create("OFComboBox", right_panel)
 		voiceComboBox:Dock(TOP)
 		voiceComboBox:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
 		voiceComboBox:SetTall(32 * OFGUI.ScreenScale)
-		voiceComboBox:SetValue(L("ui.npclist.select_voice"))
+		voiceComboBox:SetValue(ofTranslate("ui.npclist.select_voice"))
 		
 		-- 获取所有可用的配音
 		local voices = {}
@@ -220,12 +220,12 @@ local function RefreshNPCButtons(left_panel, right_panel)
 	local function CreateContextMenu(entIndex)
 		local menu = vgui.Create("OFMenu")
 		local actions = {
-			{name = L("ui.npclist.heal_npc"), cmd = "heal"},
-			{name = L("ui.npclist.kill_npc"), cmd = "kill"},
-			{name = L("ui.npclist.remove_npc"), cmd = "remove"},
-			{name = L("ui.npclist.heal_all"), cmd = "healall", global = true},
-			{name = L("ui.npclist.kill_all"), cmd = "killall", global = true},
-			{name = L("ui.npclist.remove_all"), cmd = "removeall", global = true}
+			{name = ofTranslate("ui.npclist.heal_npc"), cmd = "heal"},
+			{name = ofTranslate("ui.npclist.kill_npc"), cmd = "kill"},
+			{name = ofTranslate("ui.npclist.remove_npc"), cmd = "remove"},
+			{name = ofTranslate("ui.npclist.heal_all"), cmd = "healall", global = true},
+			{name = ofTranslate("ui.npclist.kill_all"), cmd = "killall", global = true},
+			{name = ofTranslate("ui.npclist.remove_all"), cmd = "removeall", global = true}
 		}
 		
 		for _, action in ipairs(actions) do
@@ -241,7 +241,7 @@ local function RefreshNPCButtons(left_panel, right_panel)
 			end)
 		end
 		
-		menu:AddOption(L("ui.npclist.refresh_list"), function()
+		menu:AddOption(ofTranslate("ui.npclist.refresh_list"), function()
 			RefreshNPCButtons(left_panel, right_panel)
 		end)
 		
@@ -255,7 +255,7 @@ local function RefreshNPCButtons(left_panel, right_panel)
 		if npcData.name == npcData.gamename then
 			npcName = language.GetPhrase(npcData.gamename)
 		else
-			npcName = L(npcData.name) .. " " .. L(npcData.nickname) .. ""
+			npcName = ofTranslate(npcData.name) .. " " .. ofTranslate(npcData.nickname) .. ""
 		end
 
 		-- 创建新的NPC按钮
@@ -270,7 +270,7 @@ local function RefreshNPCButtons(left_panel, right_panel)
 		local description = ""
 		if npcData.rank and npcData.job and npcData.specialization and npcData.camp then
 			button:SetBadge("ofnpcp/usrankicons/rank_".. npcData.rank .. ".tga")
-			description =  L("camp."..tostring(npcData.camp)) .. " " .. L("rank.".. npcData.rank) .. " - " .. L(npcData.specialization)
+			description =  ofTranslate("camp."..tostring(npcData.camp)) .. " " .. ofTranslate("rank.".. npcData.rank) .. " - " .. ofTranslate(npcData.specialization)
 			button:SetHoveredColor(GLOBAL_OFNPC_DATA.cards.info[npcData.camp].color)
 		elseif npcData.gamename then
 			description = npcData.gamename
@@ -315,8 +315,8 @@ local function RefreshCardButtons(left_panel, right_panel)
         groupButton:Dock(TOP)
         groupButton:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
         groupButton:SetTall(80 * OFGUI.ScreenScale)
-        groupButton:SetTitle(L(groupData.name))
-        groupButton:SetDescription(L(groupData.desc))
+        groupButton:SetTitle(ofTranslate(groupData.name))
+        groupButton:SetDescription(ofTranslate(groupData.desc))
 		groupButton:SetIcon("ofnpcp/camps/preview/" .. groupKey .. ".png")
 		groupButton:SetCardIcon("ofnpcp/camps/large/" .. groupKey .. ".png")
 		groupButton:SetHoveredColor(GLOBAL_OFNPC_DATA.cards.info[groupKey].color)
@@ -337,7 +337,7 @@ local function RefreshCardButtons(left_panel, right_panel)
 			local deckbutton = vgui.Create("OFButton",card_preview_panel)
             deckbutton:Dock(BOTTOM)
 			deckbutton:SetHeight(80 * OFGUI.ScreenScale)
-			deckbutton:SetText(L("ui.deck_system.select_deck"))
+			deckbutton:SetText(ofTranslate("ui.deck_system.select_deck"))
 			deckbutton:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
 
 			local right_card_panel = vgui.Create("OFScrollPanel",card_preview_panel)
@@ -373,8 +373,8 @@ local function RefreshCardButtons(left_panel, right_panel)
                 -- 左侧使用 OFCard
                 local card = cardLayout:Add("OFCard")
                 card:SetSize(213 * OFGUI.ScreenScale, 296 * OFGUI.ScreenScale)
-                card:SetTitle(L(cardInfo.data.name))
-                card:SetDescription(L(cardInfo.data.d[math.random(#cardInfo.data.d)]))
+                card:SetTitle(ofTranslate(cardInfo.data.name))
+                card:SetDescription(ofTranslate(cardInfo.data.d[math.random(#cardInfo.data.d)]))
                 card:SetIcon("ofnpcp/cards/large/" .. cardInfo.key .. ".png")
 
                 -- 右侧使用 OFAdvancedButton
@@ -382,8 +382,8 @@ local function RefreshCardButtons(left_panel, right_panel)
                 cardButton:Dock(TOP)
                 cardButton:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
                 cardButton:SetTall(80 * OFGUI.ScreenScale)
-                cardButton:SetTitle(L(cardInfo.data.name))
-                cardButton:SetDescription(L(cardInfo.data.d[math.random(#cardInfo.data.d)]))
+                cardButton:SetTitle(ofTranslate(cardInfo.data.name))
+                cardButton:SetDescription(ofTranslate(cardInfo.data.d[math.random(#cardInfo.data.d)]))
                 cardButton:SetIcon("ofnpcp/cards/preview/" .. cardInfo.key .. ".png")
                 cardButton:SetCardIcon("ofnpcp/cards/large/" .. cardInfo.key .. ".png")
             end
@@ -397,7 +397,7 @@ local function RefreshCardButtons(left_panel, right_panel)
                     net.WriteString(selectedDeck)
                 net.SendToServer()
 
-				notification.AddLegacy(L("ui.deck_system.select_camp"), NOTIFY_GENERIC, 5)
+				notification.AddLegacy(ofTranslate("ui.deck_system.select_camp"), NOTIFY_GENERIC, 5)
             end
         end
 
@@ -438,7 +438,7 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
     end
 
 	local voicelabel = CreateControl(personalizationLeftPanel, "OFTextLabel", {
-        SetText = L("ui.personalization.voice_service")
+        SetText = ofTranslate("ui.personalization.voice_service")
     })
 
 	local voiceCheckPanel = vgui.Create("EditablePanel", personalizationLeftPanel)
@@ -455,7 +455,7 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
 	local voiceCheckLabel = vgui.Create("OFTextLabel", voiceCheckPanel)
 	voiceCheckLabel:SetFont("ofgui_small")
 	voiceCheckLabel:Dock(FILL)
-	voiceCheckLabel:SetText(L("ui.personalization.enable_voice"))
+	voiceCheckLabel:SetText(ofTranslate("ui.personalization.enable_voice"))
 
 	voiceCheckBox.OnChange = function(panel, value)
 		RunConsoleCommand("of_garrylord_voice", value and "1" or "0")
@@ -469,7 +469,7 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
 
 	-- 创建音量滑块
 	local volumeSlider = CreateControl(personalizationLeftPanel, "OFNumSlider", {
-		SetText = L("ui.personalization.volume_setting"),
+		SetText = ofTranslate("ui.personalization.volume_setting"),
 		SetMin = 0,
 		SetMax = 10,
 		SetDecimals = 1,
@@ -477,11 +477,11 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
 	})
 
 	local voicelabel = CreateControl(personalizationLeftPanel, "OFTextLabel", {
-        SetText = L("ui.personalization.voice_player")
+        SetText = ofTranslate("ui.personalization.voice_player")
     })
 
 	local voiceComboBox = CreateControl(personalizationLeftPanel, "OFComboBox", {
-		SetValue = L("ui.npclist.select_voice")
+		SetValue = ofTranslate("ui.npclist.select_voice")
 	})
 
 	local voices = {}
@@ -517,7 +517,7 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
 	end
 
 	local saveButton = CreateControl(personalizationLeftPanel, "OFButton", {
-		SetText = L("ui.personalization.save_settings")
+		SetText = ofTranslate("ui.personalization.save_settings")
 	})
 
     saveButton.DoClick = function()
@@ -533,17 +533,17 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
             net.WriteString(newSettings.voice)
         net.SendToServer()
         
-        notification.AddLegacy(L("ui.personalization.player_voice_setting"), NOTIFY_GENERIC, 5)
+        notification.AddLegacy(ofTranslate("ui.personalization.player_voice_setting"), NOTIFY_GENERIC, 5)
     end
 
     -- 添加语言设置
     local langLabel = CreateControl(personalizationLeftPanel, "OFTextLabel", {
-        SetText = L("ui.personalization.language_setting")
+        SetText = ofTranslate("ui.personalization.language_setting")
     })
 
     -- 从language.json获取支持的语言列表
     local supportedLanguages = {
-        {name = L("ui.personalization.follow_system"), code = "", icon = "ofnpcp/lang/gm.png"}
+        {name = ofTranslate("ui.personalization.follow_system"), code = "", icon = "ofnpcp/lang/gm.png"}
     }
     
     -- 添加语言选项
@@ -557,7 +557,7 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
 
     -- 获取当前语言设置
     local currentLang = GetConVar("of_garrylord_language"):GetString()
-    local currentValue = L("ui.personalization.follow_system")  -- 默认值
+    local currentValue = ofTranslate("ui.personalization.follow_system")  -- 默认值
 
     -- 根据currentLang查找对应的语言名称
     for _, lang in ipairs(supportedLanguages) do
@@ -578,7 +578,7 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
 
     langComboBox.OnSelect = function(panel, index, value, data)
         RunConsoleCommand("of_garrylord_language", data)
-        notification.AddLegacy(L("ui.personalization.language_changed"), NOTIFY_GENERIC, 5)
+        notification.AddLegacy(ofTranslate("ui.personalization.language_changed"), NOTIFY_GENERIC, 5)
         
         -- 关闭当前菜单
         if IsValid(frame) then
@@ -597,7 +597,7 @@ function AddOFFrame()
 	end
 
 	frame = vgui.Create("OFFrame")  -- 创建新的菜单
-	frame:SetTitle(L("ui.title"):gsub("/name/", LocalPlayer():Nick()))
+	frame:SetTitle(ofTranslate("ui.title"):gsub("/name/", LocalPlayer():Nick()))
 
 	local sheet = vgui.Create("OFPropertySheet", frame)
 	sheet:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
@@ -605,7 +605,7 @@ function AddOFFrame()
 
 	-- 新增pan1
 	local pan1 = vgui.Create("EditablePanel", sheet)
-	sheet:AddSheet(L("ui.tab.home"), pan1, "icon16/house.png")
+	sheet:AddSheet(ofTranslate("ui.tab.home"), pan1, "icon16/house.png")
 
 	local pan1LeftPanel = vgui.Create("OFScrollPanel", pan1)
 	pan1LeftPanel:Dock(LEFT)
@@ -642,7 +642,7 @@ function AddOFFrame()
 					if i > 1 then  -- 从第二个徽章开始添加分隔符
 						badges = badges .. " "
 					end
-					badges = badges .. L(badge)
+					badges = badges .. ofTranslate(badge)
 				end
 			end
 			button:SetDescription(badges)
@@ -662,29 +662,29 @@ function AddOFFrame()
 			local article = vgui.Create("OFArticle", pan1LeftPanel)
 			article:Dock(TOP)
 			article:DockMargin(8 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
-			article:SetName(L(logEntry.title))
+			article:SetName(ofTranslate(logEntry.title))
 			
 			-- 计算发布时间
 			local timeDiff = os.time() - (logEntry.timestamp or os.time())
 			local timeStr
 			if timeDiff < 60 then
-				timeStr = L("ui.time.just_now")
+				timeStr = ofTranslate("ui.time.just_now")
 			elseif timeDiff < 3600 then
-				timeStr = string.format(L("ui.time.minutes_ago"), math.floor(timeDiff / 60))
+				timeStr = string.format(ofTranslate("ui.time.minutes_ago"), math.floor(timeDiff / 60))
 			elseif timeDiff < 86400 then
-				timeStr = string.format(L("ui.time.hours_ago"), math.floor(timeDiff / 3600))
+				timeStr = string.format(ofTranslate("ui.time.hours_ago"), math.floor(timeDiff / 3600))
 			elseif timeDiff < 604800 then
-				timeStr = string.format(L("ui.time.days_ago"), math.floor(timeDiff / 86400))
+				timeStr = string.format(ofTranslate("ui.time.days_ago"), math.floor(timeDiff / 86400))
 			elseif timeDiff < 2592000 then
-				timeStr = string.format(L("ui.time.weeks_ago"), math.floor(timeDiff / 604800))
+				timeStr = string.format(ofTranslate("ui.time.weeks_ago"), math.floor(timeDiff / 604800))
 			elseif timeDiff < 31536000 then
-				timeStr = string.format(L("ui.time.months_ago"), math.floor(timeDiff / 2592000))
+				timeStr = string.format(ofTranslate("ui.time.months_ago"), math.floor(timeDiff / 2592000))
 			else
-				timeStr = string.format(L("ui.time.years_ago"), math.floor(timeDiff / 31536000))
+				timeStr = string.format(ofTranslate("ui.time.years_ago"), math.floor(timeDiff / 31536000))
 			end
 			
-			article:SetSubtitle(string.format(L("ui.time.published_at"), timeStr))
-			article:SetText(L(logEntry.content))
+			article:SetSubtitle(string.format(ofTranslate("ui.time.published_at"), timeStr))
+			article:SetText(ofTranslate(logEntry.content))
 			if logEntry.image then
 				article:SetImage("ofnpcp/article/" .. logEntry.image .. ".png")
 			end
@@ -700,29 +700,29 @@ function AddOFFrame()
 			local article = vgui.Create("OFArticle", pan1MainPanel)
 			article:Dock(TOP)
 			article:DockMargin(8 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
-			article:SetName(L(logEntry.title))
+			article:SetName(ofTranslate(logEntry.title))
 			
 			-- 计算发布时间
 			local timeDiff = os.time() - (logEntry.timestamp or os.time())
 			local timeStr
 			if timeDiff < 60 then
-				timeStr = L("ui.time.just_now")
+				timeStr = ofTranslate("ui.time.just_now")
 			elseif timeDiff < 3600 then
-				timeStr = string.format(L("ui.time.minutes_ago"), math.floor(timeDiff / 60))
+				timeStr = string.format(ofTranslate("ui.time.minutes_ago"), math.floor(timeDiff / 60))
 			elseif timeDiff < 86400 then
-				timeStr = string.format(L("ui.time.hours_ago"), math.floor(timeDiff / 3600))
+				timeStr = string.format(ofTranslate("ui.time.hours_ago"), math.floor(timeDiff / 3600))
 			elseif timeDiff < 604800 then
-				timeStr = string.format(L("ui.time.days_ago"), math.floor(timeDiff / 86400))
+				timeStr = string.format(ofTranslate("ui.time.days_ago"), math.floor(timeDiff / 86400))
 			elseif timeDiff < 2592000 then
-				timeStr = string.format(L("ui.time.weeks_ago"), math.floor(timeDiff / 604800))
+				timeStr = string.format(ofTranslate("ui.time.weeks_ago"), math.floor(timeDiff / 604800))
 			elseif timeDiff < 31536000 then
-				timeStr = string.format(L("ui.time.months_ago"), math.floor(timeDiff / 2592000))
+				timeStr = string.format(ofTranslate("ui.time.months_ago"), math.floor(timeDiff / 2592000))
 			else
-				timeStr = string.format(L("ui.time.years_ago"), math.floor(timeDiff / 31536000))
+				timeStr = string.format(ofTranslate("ui.time.years_ago"), math.floor(timeDiff / 31536000))
 			end
 			
-			article:SetSubtitle(string.format(L("ui.time.published_at"), timeStr))
-			article:SetText(L(logEntry.content))
+			article:SetSubtitle(string.format(ofTranslate("ui.time.published_at"), timeStr))
+			article:SetText(ofTranslate(logEntry.content))
 			if logEntry.image then
 				article:SetImage("ofnpcp/article/" .. logEntry.image .. ".png")
 			end
@@ -731,7 +731,7 @@ function AddOFFrame()
 
 	-- AI系统面板 (pan2)
 	local pan2 = vgui.Create("EditablePanel", sheet)
-	sheet:AddSheet(L("ui.tab.ai_system"), pan2, "icon16/computer.png")
+	sheet:AddSheet(ofTranslate("ui.tab.ai_system"), pan2, "icon16/computer.png")
 
 	local pan2HorizontalDivider = vgui.Create("DHorizontalDivider", pan2)
 	pan2HorizontalDivider:Dock(FILL)
@@ -746,7 +746,7 @@ function AddOFFrame()
 
 	-- 牌组系统面板 (pan3)
 	local pan3 = vgui.Create("EditablePanel", sheet)
-	sheet:AddSheet(L("ui.tab.deck_system"), pan3, "icon16/creditcards.png")
+	sheet:AddSheet(ofTranslate("ui.tab.deck_system"), pan3, "icon16/creditcards.png")
 
 	local pan3LeftPanel = vgui.Create("OFScrollPanel", pan3)
 	pan3LeftPanel:Dock(LEFT)
@@ -761,7 +761,7 @@ function AddOFFrame()
 
 	-- NPC列表面板 (pan4)
 	local pan4 = vgui.Create("EditablePanel", sheet)
-	sheet:AddSheet(L("ui.tab.npclist"), pan4, "icon16/group.png")
+	sheet:AddSheet(ofTranslate("ui.tab.npclist"), pan4, "icon16/group.png")
 
 	local pan4HorizontalDivider = vgui.Create("DHorizontalDivider", pan4)
 	pan4HorizontalDivider:Dock(FILL)
@@ -777,7 +777,7 @@ function AddOFFrame()
 
 	-- 个性化设置面板 (pan5)
 	local pan5 = vgui.Create("EditablePanel", sheet)
-	sheet:AddSheet(L("ui.personalization.title"), pan5, "icon16/user.png")
+	sheet:AddSheet(ofTranslate("ui.personalization.title"), pan5, "icon16/user.png")
 
 	local pan5HorizontalDivider = vgui.Create("DHorizontalDivider", pan5)
 	pan5HorizontalDivider:Dock(FILL)
@@ -828,11 +828,11 @@ function AddOFFrame()
 
 		local apiKeyEntry = CreateControl(aiRightPanel, "OFTextEntry", {
 			SetValue = settings.key or "",
-			SetPlaceholderText = L(provider.name) .. " API"
+			SetPlaceholderText = ofTranslate(provider.name) .. " API"
 		})
 
 		local modelComboBox = CreateControl(aiRightPanel, "OFComboBox", {
-			SetValue = settings.model or L("ui.ai_system.model_select")
+			SetValue = settings.model or ofTranslate("ui.ai_system.model_select")
 		})
 		for _, model in ipairs(provider.model) do
 			modelComboBox:AddChoice(model)
@@ -842,7 +842,7 @@ function AddOFFrame()
 		end
 
 		local tempSlider = CreateControl(aiRightPanel, "OFNumSlider", {
-			SetText = L("ui.ai_system.temperature"),
+			SetText = ofTranslate("ui.ai_system.temperature"),
 			SetMin = 0,
 			SetMax = 1,
 			SetDecimals = 1,
@@ -850,7 +850,7 @@ function AddOFFrame()
 		})
 
 		local maxTokensSlider = CreateControl(aiRightPanel, "OFNumSlider", {
-			SetText = L("ui.ai_system.max_tokens"),
+			SetText = ofTranslate("ui.ai_system.max_tokens"),
 			SetMin = 100,
 			SetMax = 2000,
 			SetDecimals = 0,
@@ -859,7 +859,7 @@ function AddOFFrame()
 
 		-- 保存按钮
 		local saveButton = CreateControl(aiRightPanel, "OFButton", {
-			SetText = L("ui.ai_system.save_settings")
+			SetText = ofTranslate("ui.ai_system.save_settings")
 		})
 		saveButton.DoClick = function()
 			local newSettings = {
@@ -871,7 +871,7 @@ function AddOFFrame()
 				max_tokens = tonumber(maxTokensSlider:GetValue()) or 500
 			}
 			file.Write("of_npcp/ai_settings.txt", util.TableToJSON(newSettings))
-			notification.AddLegacy(L("ui.ai_system.save_success"), NOTIFY_GENERIC, 5)
+			notification.AddLegacy(ofTranslate("ui.ai_system.save_success"), NOTIFY_GENERIC, 5)
 		end
 		-- 添加阵营提示词内容
 		local camps = {
@@ -883,8 +883,8 @@ function AddOFFrame()
 			campButton:SetHeight(80 * OFGUI.ScreenScale)
 			campButton:Dock(TOP)
 			campButton:DockMargin(4, 4, 4, 4)
-			campButton:SetName(L("ui.ai_system.system_prompt") .. L("camp."..camp))
-			campButton:SetText(L("prompt."..camp))
+			campButton:SetName(ofTranslate("ui.ai_system.system_prompt") .. ofTranslate("camp."..camp))
+			campButton:SetText(ofTranslate("prompt."..camp))
 			campButton:SetColor(GLOBAL_OFNPC_DATA.cards.info[camp] and GLOBAL_OFNPC_DATA.cards.info[camp].color or color_white)
 		end
 	end
@@ -899,8 +899,8 @@ function AddOFFrame()
 	for _, provider in ipairs(sortedProviders) do
 		local button = CreateControl(aiLeftPanel, "OFAdvancedButton", {
 			SetTall = 80 * OFGUI.ScreenScale,
-			SetTitle = L(provider.data.name),
-			SetDescription = L(provider.data.description),
+			SetTitle = ofTranslate(provider.data.name),
+			SetDescription = ofTranslate(provider.data.description),
 			SetIcon = "ofnpcp/ai/providers/" .. provider.key .. ".png",
 			SetShowHoverCard = false
 		})
@@ -937,8 +937,8 @@ function AddOFFrame()
 	local article = vgui.Create("OFArticle", pan5RightPanel)
 	article:Dock(TOP)
 	article:DockMargin(8 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
-	article:SetName(L("ui.personalization.guide"))
-	article:SetText(L("ui.personalization.text"))
+	article:SetName(ofTranslate("ui.personalization.guide"))
+	article:SetText(ofTranslate("ui.personalization.text"))
 	article:SetImage("ofnpcp/article/tts.png")
 end
 

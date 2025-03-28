@@ -14,7 +14,7 @@ function CreateNPCDialogSubtitles(npc, text)
         if npcIdentity.name == npcIdentity.gamename then
             npcName = language.GetPhrase(npcIdentity.gamename) .. ": "
         else
-            npcName = L(npcIdentity.name) .. " “" .. L(npcIdentity.nickname) .. "” " .. ": "
+            npcName = ofTranslate(npcIdentity.name) .. " “" .. ofTranslate(npcIdentity.nickname) .. "” " .. ": "
         end
         name = npcName
     elseif npc:IsPlayer() then
