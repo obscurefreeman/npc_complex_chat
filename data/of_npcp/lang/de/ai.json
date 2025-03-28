@@ -1,0 +1,146 @@
+{
+    "ai": {
+        "providor": {
+            "openai": {
+                "name": "Chatgpt",
+                "description": "OpenAI entwickelt ein führendes KI -Sprachmodell, das leistungsstarke Funktionen für natürliche Sprachverarbeitung bietet."
+            },
+            "deepseek": {
+                "name": "Eingehende Suche (empfohlen)",
+                "description": "Eingehende Suche nach den vom Unternehmen entwickelten KI-Modellen, die sich auf chinesische Verständnis- und Argumentationsfähigkeiten konzentrieren."
+            },
+            "gemini": {
+                "name": "Zwillinge",
+                "description": "Das von Google entwickelte multimodale KI -Modell wurde entwickelt, um mit dem Aufstieg von Chatbots fertig zu werden."
+            },
+            "grok": {
+                "name": "Gruben",
+                "description": "Grok stammte aus dem Science -Fiction -Roman \"The Strange Land\", der 1961 vom amerikanischen Schriftsteller Robert A. Heinley veröffentlicht wurde."
+            },
+            "o3": {
+                "name": "O3",
+                "description": "Eine Plattform, die mehrere KI -Modelle integriert, um eine diversifizierte Modellauswahl bereitzustellen."
+            },
+            "anthropic": {
+                "name": "Anthropisch",
+                "description": "Die von einem ehemaligen Mitglied von OpenAI gegründeten Produkten werden von der Claude -Serie vertreten."
+            },
+            "ollama": {
+                "name": "Ollama Lokaler Einsatz",
+                "description": "Stellen Sie Open -Source -Modelle lokal ein."
+            },
+            "groq": {
+                "name": "Gle",
+                "description": "Eine Plattform, die eine Vielzahl von KI -Modelldiensten anbietet."
+            },
+            "openrouter": {
+                "name": "OpenRouter",
+                "description": "Eine Plattform, die eine Vielzahl von KI -Modelldiensten anbietet."
+            },
+            "gitHub": {
+                "name": "Github -Modelle",
+                "description": "Die von Github erbrachten KI -Dienste richten sich hauptsächlich auf die Entwicklergemeinschaft."
+            },
+            "gitee-ai": {
+                "name": "Gitee ai",
+                "description": "Die von der Gitee -Plattform bereitgestellten KI -Dienste richten sich hauptsächlich auf die Entwicklergemeinschaft."
+            },
+            "lingyiwanwu": {
+                "name": "Null 10.000 Dinge",
+                "description": "Eine KI -Plattform, die sich auf die chinesische Verarbeitung natürlicher Sprache konzentriert und mehrere Modelle unterstützt."
+            },
+            "zhipu": {
+                "name": "Smart KI",
+                "description": "Die KI-Firma mit einem Hintergrund an der Tsinghua University bietet einen qualitativ hochwertigen Dialog und generativen Modelle."
+            },
+            "moonshot": {
+                "name": "Die dunkle Seite des Mondes",
+                "description": "Kimi Smart Assistant ist ein repräsentatives Produkt der dunklen Seite des Mondes."
+            },
+            "baichuan": {
+                "name": "Baichuan",
+                "description": "Baichuan Intelligent kündigte die Veröffentlichung des großen Sprachmodells Baichuan 3 an."
+            },
+            "bailian": {
+                "name": "Alibaba -Wolke hundert Refinanzierungen",
+                "description": "Die von Alibaba Cloud bereitgestellte KI -Serviceplattform unterstützt mehrere Modelle."
+            },
+            "stepfun": {
+                "name": "Schritt für Schritt",
+                "description": "Emerging AI -Plattform, die mehrere Modelle unterstützt."
+            },
+            "minimax": {
+                "name": "Minimax",
+                "description": "Eine KI -Plattform, die sich auf Dialog- und Generativmodelle konzentriert und mehrere Modelle unterstützt."
+            },
+            "hyperbolic": {
+                "name": "Hyperbolisch",
+                "description": "Eine KI -Plattform, die mehrere Open -Source -Modelle unterstützt und mehrere Modelle unterstützt."
+            },
+            "mistral": {
+                "name": "Mistral",
+                "description": "Europas führender KI -Unternehmen hat seinen Hauptsitz in Paris, angetrieben von Microsoft und Nvidia."
+            },
+            "jina": {
+                "name": "Name",
+                "description": "Eine Plattform, die eine Vielzahl von KI -Modelldiensten anbietet."
+            },
+            "fireworks": {
+                "name": "Feuerwerk",
+                "description": "Eine Plattform, die eine Vielzahl von KI -Modelldiensten anbietet."
+            },
+            "zhinao": {
+                "name": "360 intelligentes Gehirn",
+                "description": "Die von 360 Company bereitgestellte KI -Serviceplattform unterstützt mehrere Modelle."
+            },
+            "hunyuan": {
+                "name": "Tencent Hunyuan",
+                "description": "Tencent bietet eine KI -Serviceplattform, die mehrere Modelle unterstützt."
+            },
+            "nvidia": {
+                "name": "Nvidia",
+                "description": "Die von NVIDIA bereitgestellte AI -Serviceplattform unterstützt mehrere Modelle."
+            },
+            "baidu-cloud": {
+                "name": "Baidu Cloud Qianfan",
+                "description": "Baidu Cloud bietet eine KI -Serviceplattform, die mehrere Modelle unterstützt."
+            },
+            "dmxapi": {
+                "name": "Dmxapi",
+                "description": "Eine Plattform, die eine Vielzahl von KI -Modelldiensten anbietet."
+            },
+            "perplexity": {
+                "name": "Verwirrung",
+                "description": "Eine Plattform, die eine Vielzahl von KI -Modelldiensten anbietet."
+            },
+            "infini": {
+                "name": "Kernkuppel ohne Frage",
+                "description": "Eine Plattform, die eine Vielzahl von KI -Modelldiensten anbietet."
+            },
+            "modelscope": {
+                "name": "Modelscope Magic Tower",
+                "description": "Alibaba bietet eine KI -Modellservice -Plattform, die mehrere Modelle unterstützt."
+            },
+            "ppio": {
+                "name": "PPIO PAIO CLOUD",
+                "description": "Eine Plattform, die eine Vielzahl von KI -Modelldiensten anbietet."
+            },
+            "together": {
+                "name": "Zusammen",
+                "description": "Eine Plattform, die eine Vielzahl von KI -Modelldiensten anbietet."
+            },
+            "ocoolai": {
+                "name": "OCOULAI",
+                "description": "Eine Plattform, die eine Vielzahl von KI -Modelldiensten anbietet."
+            },
+            "aihubmix": {
+                "name": "Aihubmix",
+                "description": "Eine Plattform, die eine Vielzahl von KI -Modelldiensten anbietet."
+            },
+            "silicon": {
+                "name": "Siliziumbasis Fluss",
+                "description": "Eine Plattform, die eine Vielzahl von KI -Modelldiensten anbietet."
+            }
+        }
+    }
+}

@@ -324,6 +324,61 @@
           "gender": "female"
         }
       ]
+    },
+    {
+      "language": "de",
+      "voices": [
+        {
+          "name": "Microsoft SeraphinaMultilingual Online (Natural)",
+          "code": "de-DE-SeraphinaMultilingualNeural",
+          "gender": "female"
+        },
+        {
+          "name": "Microsoft FlorianMultilingual Online (Natural)",
+          "code": "de-DE-FlorianMultilingualNeural",
+          "gender": "male"
+        },
+        {
+          "name": "Microsoft Amala Online (Natural)",
+          "code": "de-DE-AmalaNeural",
+          "gender": "female"
+        },
+        {
+          "name": "Microsoft Conrad Online (Natural)",
+          "code": "de-DE-ConradNeural",
+          "gender": "male"
+        },
+        {
+          "name": "Microsoft Katja Online (Natural)",
+          "code": "de-DE-KatjaNeural",
+          "gender": "female"
+        },
+        {
+          "name": "Microsoft Killian Online (Natural)",
+          "code": "de-DE-KillianNeural",
+          "gender": "male"
+        },
+        {
+          "name": "Microsoft Ingrid Online (Natural)",
+          "code": "de-AT-IngridNeural",
+          "gender": "female"
+        },
+        {
+          "name": "Microsoft Jonas Online (Natural)",
+          "code": "de-AT-JonasNeural",
+          "gender": "male"
+        },
+        {
+          "name": "Microsoft Jan Online (Natural)",
+          "code": "de-CH-JanNeural",
+          "gender": "male"
+        },
+        {
+          "name": "Microsoft Leni Online (Natural)",
+          "code": "de-CH-LeniNeural",
+          "gender": "female"
+        }
+      ]
     }
   ]
 }

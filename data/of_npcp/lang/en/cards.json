@@ -2,31 +2,31 @@
     "card": {
         "info": {
             "combine": {
-                "name": "United Forces Card Pack",
+                "name": "Combine Deck",
                 "desc": "Despite the United Forces' dwindling presence on Earth, they remain a formidable force."
             },
             "resistance": {
-                "name": "Resistance Card Pack",
+                "name": "Resistance Deck",
                 "desc": "The rebel forces in 17th City, engaging in organized sabotage activities."
             },
             "union": {
-                "name": "Labor Union Card Pack",
+                "name": "Union Deck",
                 "desc": "Strikes, protests, and wage disputes - a snapshot of workers' daily lives."
             },
             "warlord": {
-                "name": "Warlord Card Pack",
+                "name": "Warlord Deck",
                 "desc": "After the catastrophe, warlords established a reign of terror in 17th City."
             },
             "church": {
-                "name": "Cult Card Pack",
+                "name": "Church Deck",
                 "desc": "The underground cult in 17th City, notorious for its corruption and greed."
             },
             "bandit": {
-                "name": "Bandit Card Pack",
+                "name": "Bandit Deck",
                 "desc": "Roving outcasts on the outskirts of 17th City."
             },
             "other": {
-                "name": "Freelancer Card Pack",
+                "name": "Freelancer Deck",
                 "desc": "Wanderers independent of the major factions."
             }
         },
@@ -35,7 +35,7 @@
                 "name": "Sightedness",
                 "d": {
                     "1": "I saw you talking to a suspicious person near /map/, how do you explain that?",
-                    "2": "I saw you sneaking around near the Black Mountain Base, don't think you can deny it!",
+                    "2": "I saw you sneaking around near the Black Mesa, don't think you can deny it!",
                     "3": "What were you doing in the alley of 17th City last night? I'm a witness.",
                     "4": "The coalition army is hunting you, and I happen to know where you've been.",
                     "5": "/name/, you appeared there at that time, is it just a coincidence?"

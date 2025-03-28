@@ -1,0 +1,117 @@
+{
+    "ui": {
+        "title": "Willkommen zurück, /Name /!",
+        "tab": {
+            "home": "Titelseite",
+            "npclist": "NPC -Liste",
+            "deck_system": "Deckeinstellungen",
+            "ai_system": "KI -Konfiguration"
+        },
+        "npclist": {
+            "confirm_edit": "Bestätigen Sie die Änderung",
+            "submit_comment": "Senden Sie einen Kommentar",
+            "comment_placeholder": "Geben Sie hier einen Kommentar ein ...",
+            "heal_npc": "Behandlung von NPCs",
+            "kill_npc": "Töte NPC",
+            "remove_npc": "NPC löschen",
+            "heal_all": "Behandle alle NPCs",
+            "kill_all": "Töte alle NPCs",
+            "remove_all": "Löschen Sie alle NPCs",
+            "refresh_list": "Aktualisieren Sie die Liste",
+            "select_voice": "Wählen Sie einen Voice -Over",
+            "npc_name": "NPC -Name",
+            "comment": "Kommentar",
+            "ai_prompt": "KI -schnelle Wörter",
+            "voice": "Ton"
+        },
+        "deck_system": {
+            "select_deck": "Wählen Sie ein Deck",
+            "card_preview": "Kartenvorschau",
+            "card_list": "Kartenliste",
+            "card_detail": "Kartendetails",
+            "select_camp": "Ihr Camp wurde geändert."
+        },
+        "ai_system": {
+            "model_select": "Wählen Sie ein Modell",
+            "temperature": "Temperatur",
+            "max_tokens": "Maximaler Charakterverbrauch",
+            "save_settings": "Einstellungen speichern",
+            "save_success": "Die KI -Einstellungen wurden lokal gespeichert.",
+            "system_prompt": "Systemaufforderung: Wörter:",
+            "update_prompt": "Aktualisieren Sie Eingabeaufforderung"
+        },
+        "dialog": {
+            "greeting": "AI -Chat -Modus",
+            "negotiate": "Verhandlungsmodus",
+            "trade": "Handelsmodus",
+            "leave": "Verlassen Sie das Gespräch",
+            "ai_chat_notice": "KI -Chat wird eingeschaltet. Bitte beachten Sie, dass jeder NPC über einen eindeutigen Identitätshintergrund und eine Persönlichkeitsmerkmale verfügt und Zugriff auf einige Spieldaten hat. Wenn mehrere Spieler gleichzeitig mit demselben NPC interagieren, isoliert das System automatisch den Konversationskontext, um sicherzustellen, dass jeder Spieler eine unabhängige interaktive Erfahrung hat und damit die Ressourcenauslastung optimiert. Verfahrensgespräche werden nicht von KI gelesen, und wenn Sie erneut mit diesem NPC interagieren, können Sie den vorherigen Gesprächsinhalt fortsetzen.",
+            "ai_chat_warning": "AI -Chat ist aktiviert. In einer Multiplayer -Umgebung muss jeder Spieler den API -Schlüssel unabhängig konfigurieren, und die entsprechenden Daten werden sicher auf dem lokalen Gerät gespeichert und werden nicht auf den Server hochgeladen. Um die Datensicherheit zu gewährleisten, wird empfohlen, diese Funktion in nicht vertrauenswürdigen Serverumgebungen zu vermeiden, um das Risiko einer API -Tastenleckage zu verhindern.",
+            "negotiate_notice": "Verhandlungen werden begonnen.",
+            "negotiate_warning": "Das Verhandlungsmodell befindet sich in der Entwicklung, also bleiben Sie dran.",
+            "trade_notice": "Transaktionen starten.",
+            "trade_warning": "Die Handelsfunktion befindet sich in der Entwicklung, also bleiben Sie dran.",
+            "footnote_npc": "Modell: %s | Antwortzeit: %s | Verbrauchsmarke: %d",
+            "footnote_player": "Modell: %s | Serviceplattform: %s",
+            "invalid_response": "Ungültige AI -Antwort: Schlüssellefelder fehlen. Bitte überprüfen Sie die Konsole für die API -Ausgabe.",
+            "http_error": "Ausnahme der Netzwerkkommunikation:",
+            "no_ai_settings": "Es wurde keine gültige KI -Konfiguration erkannt. Bitte gehen Sie zur Initialisierung zum AI -Einstellungsfeld.",
+            "unknown": "unbekannt"
+        },
+        "card_editor": {
+            "title": "Kartenredakteur",
+            "group_list": "Fraktionsliste",
+            "card_list": "Kartenliste",
+            "card_detail": "Kartendetails",
+            "index": "Seriennummer",
+            "key": "Index",
+            "name": "Name",
+            "type": "Typ",
+            "cost": "Verbrauch",
+            "desc": "beschreiben",
+            "response": "Antwort",
+            "tags": "Etikett",
+            "save": "Modify speichern",
+            "add_card": "Fügen Sie eine Karte hinzu",
+            "add_group": "Camp hinzufügen",
+            "success": "Erfolg",
+            "save_success": "Erfolgreich sparen!",
+            "error": "Fehler",
+            "save_error": "Rettung fehlgeschlagen",
+            "confirm": "Sicher",
+            "cancel": "Stornieren",
+            "group_name": "Fraktionsname",
+            "card_key": "Kartei"
+        },
+        "personalization": {
+            "title": "Personalisierung",
+            "voice_service": "Sprachdienst",
+            "volume_setting": "Lautstärkeeinstellungen",
+            "enable_voice": "Sprachdienst aktivieren",
+            "voice_player": "Deine Stimme",
+            "save_settings": "Einstellungen speichern",
+            "guide": "Sprachdienst (Testfunktion)",
+            "text": "In nur wenigen Schritten kann der Sprachdienst in Garys Dominanz aktiviert werden.\n\n1. Melden Sie sich bei GitHub an, suchen Sie und finden Sie das Projekt Garrylord-Voice-Service.\n2. Klicken Sie auf der Projektseite auf die Schaltfläche Bereitstellung, um den Dienst auf der Vercel -Plattform bereitzustellen.\n3. Warten Sie, bis der Vercel -Bereitstellung erfolgreich ist, greifen Sie auf die generierte Seite zu und kopieren Sie die von der Startseite angegebene API -Adresse.\n4. Gehen Sie zurück zu GMOD und fügen Sie die kopierte API -Adresse in die entsprechenden Einstellungen ein.\n\nJetzt können Sie Ihren Sprachservice wie in GMOD verwenden und viel Bandbreite von 100 g pro Monat genießen!",
+            "player_voice_setting": "Synchronisierungseinstellungen werden gespeichert.",
+            "language_setting": "Spracheinstellungen",
+            "follow_system": "Folgen Sie der Spielsprache",
+            "language_changed": "Die Sprache wurde geändert."
+        },
+        "time": {
+            "just_now": "Nur",
+            "minutes_ago": "%D vor Minuten",
+            "hours_ago": "%d Stunde",
+            "days_ago": "%D vor Tagen",
+            "weeks_ago": "%d Woche",
+            "months_ago": "%d vor Monaten",
+            "years_ago": "%D vor Jahren",
+            "published_at": "Gepostet auf %s"
+        },
+        "sponsor": {
+            "mod_creator": "Modulhersteller",
+            "technical_support": "Technische Unterstützung",
+            "senior_sponsor": "Senior -Sponsor -Medaille",
+            "sponsor": "Sponsor -Medaille"
+        }
+    }
+}

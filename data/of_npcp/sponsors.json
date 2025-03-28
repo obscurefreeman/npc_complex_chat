@@ -14,6 +14,13 @@
         "order": 2
     },
     {
+        "name": "NextKurome76TheSoldier",
+        "badges": ["ui.sponsor.technical_support"],
+        "color": [78, 153, 42],
+        "image": "nk76",
+        "order": 2
+    },
+    {
         "name": "crester",
         "badges": ["ui.sponsor.technical_support"],
         "color": [215, 86, 112],

@@ -5,6 +5,8 @@ import ssl
 import time
 import re
 from multiprocessing.pool import ThreadPool
+import email  # 替代cgi模块
+from deep_translator import GoogleTranslator
 
 ssl._create_default_https_context = ssl._create_unverified_context
 
@@ -14,7 +16,7 @@ def translate_file(file_path, output_path, dest_lang):
         with open(file_path, 'r', encoding='utf-8') as f:
             data = json.load(f)
         
-        translator = Translator()
+        translator = GoogleTranslator(source='auto', target=dest_lang)
         
         # 递归翻译所有字符串
         def translate_dict(d):
@@ -25,16 +27,16 @@ def translate_file(file_path, output_path, dest_lang):
             elif isinstance(d, str):
                 # 处理超长文本
                 if len(d) > 5000:
-                    # 将文本分成5000字符的块
                     chunks = [d[i:i+5000] for i in range(0, len(d), 5000)]
                     # 使用线程池并行翻译
                     pool = ThreadPool(8)
-                    translated_chunks = pool.map(lambda x: translator.translate(x, dest=dest_lang).text, chunks)
+                    translated_chunks = pool.map(lambda x: translator.translate(x), chunks)
                     pool.close()
                     pool.join()
                     return ''.join(translated_chunks)
                 try:
-                    return translator.translate(d, dest=dest_lang).text
+                    # 直接返回翻译结果
+                    return translator.translate(d)
                 except Exception as e:
                     print(f"翻译失败: {str(e)}")
                     return d  # 返回原文以防翻译失败
@@ -95,4 +97,4 @@ def translate_all_files(dest_lang):
 
 if __name__ == "__main__":
     # 示例：将中文翻译成英文
-    translate_all_files('ru') 
+    translate_all_files('de') 

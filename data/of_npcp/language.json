@@ -17,8 +17,12 @@
             "icon": "ofnpcp/lang/en-PT.png"
         },
         "ru": {
-            "name": "Русский",
+            "name": "Русский (Google Translate)",
             "icon": "ofnpcp/lang/ru.png"
+        },
+        "de": {
+            "name": "Deutsch (Google Translate)",
+            "icon": "ofnpcp/lang/de.png"
         }
     }
 }
