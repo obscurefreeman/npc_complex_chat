@@ -97,7 +97,7 @@
                 }
             },
             "fame": {
-                "name": "Fame",
+                "name": "Reputation",
                 "d": {
                     "1": "I've heard of you, the little famous /nickname/ in /camp/, right?",
                     "2": "You are at the top of the wanted list, really 'famous'!",
@@ -145,7 +145,7 @@
                 }
             },
             "negligence": {
-                "name": "Negligence",
+                "name": "Dereliction",
                 "d": {
                     "1": "/name/, you seem to be not very attentive to the task recently.",
                     "2": "Those who neglect their duties will be found out sooner or later.",
@@ -187,7 +187,7 @@
                 "name": "Dispute",
                 "d": {
                     "1": "Your argument is full of loopholes! Just like the sewer system in 17th City!",
-                    "2": "Don't think you can fool me with those sophistries, I saw you with my own eyes at the Nova Mine!",
+                    "2": "Don't think you can fool me with those sophistries, I saw you with my own eyes at the Nova Prospekt!",
                     "3": "Do you think these lame excuses can fool anyone? Even the homeless on the street won't believe it!"
                 },
                 "a": {
@@ -369,15 +369,15 @@
                 }
             },
             "novamine": {
-                "name": "Nova Mine",
+                "name": "Nova Prospekt",
                 "d": {
-                    "1": "Welcome to Nova Mine, this will be your new home. 12 hours of work every day, 7 days a week, until you repay your debt to the Union Army and are released from prison.",
+                    "1": "Welcome to Nova Prospekt, this will be your new home. 12 hours of work every day, 7 days a week, until you repay your debt to the Union Army and are released from prison.",
                     "2": "Do you see those prisoners working in the mine? They were once as disobedient as you.",
                     "3": "The guards here are equipped with the latest developed electric batons, ensuring that every prisoner works actively."
                 },
                 "a": {
                     "1": "I'm afraid it's not a cemetery, I don't want to go to such a place.",
-                    "2": "Nova Mine? I heard that prisoners there often die in accidents."
+                    "2": "Nova Prospekt? I heard that prisoners there often die in accidents."
                 }
             },
             "imperialorder": {
@@ -388,7 +388,7 @@
                 },
                 "a": {
                     "1": "Wait, I didn't agree to this.",
-                    "2": "There is a small line here: Those who refuse to obey orders will be sent to Nova Mine... What?"
+                    "2": "There is a small line here: Those who refuse to obey orders will be sent to Nova Prospekt... What?"
                 }
             },
             "ultimatum": {
@@ -463,7 +463,7 @@
                 }
             },
             "treadingoneggs": {
-                "name": "Treading on Thin Ice",
+                "name": "Treading on Eggs",
                 "d": {
                     "1": "Be cautious when operating in /map/, it's like walking on thin ice.",
                     "2": "The patrol team just passed, we have to be careful.",
@@ -626,7 +626,7 @@
         },
         "union": {
             "diligentefforts": {
-                "name": "Diligent Efforts",
+                "name": "Diligence",
                 "d": {
                     "1": "Did you hear? Our boss paid protection money to the warlords.",
                     "2": "Last week, our union representative went to negotiate with the capitalists in the pouring rain, but they didn't even let us in, saying we were disrupting the order."
@@ -959,7 +959,7 @@
             "captivetrain": {
                 "name": "Captive Train",
                 "d": {
-                    "1": "Do you want to go to the Nova Mine, or the vine monster breeding farm? Choose one, you can't escape anyway.",
+                    "1": "Do you want to go to the Nova Prospekt, or the vine monster breeding farm? Choose one, you can't escape anyway.",
                     "2": "It's too late, the door of the train has been locked. This train will take you to a place you never want to go."
                 },
                 "a": {
@@ -1275,7 +1275,7 @@
             "songofmisery": {
                 "name": "Song of Misery",
                 "d": {
-                    "1": "Do you still remember the Novah mine? I escaped, but my brothers were all turned into ghosts.",
+                    "1": "Do you still remember the Nova Prospekt? I escaped, but my brothers were all turned into ghosts.",
                     "2": "Every time I am in trouble, I will think of my past, you don't want to know."
                 },
                 "a": {

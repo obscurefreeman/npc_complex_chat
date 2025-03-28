@@ -99,12 +99,12 @@
         },
         "time": {
             "just_now": "Nur",
-            "minutes_ago": "%D vor Minuten",
+            "minutes_ago": "%d vor Minuten",
             "hours_ago": "%d Stunde",
-            "days_ago": "%D vor Tagen",
+            "days_ago": "%d vor Tagen",
             "weeks_ago": "%d Woche",
             "months_ago": "%d vor Monaten",
-            "years_ago": "%D vor Jahren",
+            "years_ago": "%d vor Jahren",
             "published_at": "Gepostet auf %s"
         },
         "sponsor": {
