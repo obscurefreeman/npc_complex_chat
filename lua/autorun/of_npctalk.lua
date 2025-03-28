@@ -134,6 +134,8 @@ if CLIENT then
         local chattingPlayer = isChating and net.ReadEntity() or nil
         
         if IsValid(npc) then
+            -- 防止出现/victim/没有被替换的情况
+            if (dialogtype == "kill" or dialogtype == "attack") and not IsValid(target) then return end
             -- 计算对话持续时间
             local textLength = utf8.len(L(dialogKey))
             local duration = (textLength * CHAR_DELAY) + 2
