@@ -6,7 +6,7 @@
                 "description": "OpenAI開發的領先AI語言模型，提供強大的自然語言處理能力。"
             },
             "deepseek": {
-                "name": "深度求索（推薦）",
+                "name": "深度求索",
                 "description": "深度求索公司開發的AI模型，專注於中文理解和推理能力。"
             },
             "gemini": {

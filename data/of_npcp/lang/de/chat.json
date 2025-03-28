@@ -1,53 +1,53 @@
 {
     "greeting": {
         "combine": {
-            "1": "Gehen Sie schnell aus, /Spieler /. Dieser Bereich ist nicht sehr sicher.",
-            "2": "Melden Sie Ihre Identität und Ihren Zweck /Spieler /.",
-            "3": "Haben Sie in letzter Zeit verdächtige Leute gefunden, /Spieler /?",
-            "4": "Führen Sie den Befehl aus, fragen Sie nicht zu viel /Spieler /.",
-            "5": "Ihre Ausrüstung muss überprüft werden, /Player /."
+            "1": "Gehen Sie schnell aus, /player/. Dieser Bereich ist nicht sehr sicher.",
+            "2": "Melden Sie Ihre Identität und Ihren Zweck /player/.",
+            "3": "Haben Sie in letzter Zeit verdächtige Leute gefunden, /player/?",
+            "4": "Führen Sie den Befehl aus, fragen Sie nicht zu viel /player/.",
+            "5": "Ihre Ausrüstung muss überprüft werden, /player/."
         },
         "resistance": {
-            "1": "Hey /Spieler /, gibt es in letzter Zeit neue Nachrichten?",
-            "2": "Seien Sie vorsichtig, /Spieler /, die Patrouille der United Army ist gerade verstorben.",
-            "3": "/Spieler/Wir müssen einen Weg finden, um einige Vorräte zu erhalten.",
-            "4": "Wie ist Ihre Situation dort, /Spieler /?",
-            "5": "Hallo /Spieler /. Wie geht es dir heute?"
+            "1": "Hey /player/, gibt es in letzter Zeit neue Nachrichten?",
+            "2": "Seien Sie vorsichtig, /player/, die Patrouille der United Army ist gerade verstorben.",
+            "3": "/player/ Wir müssen einen Weg finden, um einige Vorräte zu erhalten.",
+            "4": "Wie ist Ihre Situation dort, /player/?",
+            "5": "Hallo /player/. Wie geht es dir heute?"
         },
         "union": {
-            "1": "Hey /Spieler /, was ist die Arbeitsbelastung heute?",
-            "2": "Die vergangene Erfahrung ist nicht mehr anwendbar, /Spieler /.",
-            "3": "Unsere Feinde werden ernsthafte Momente ausgesetzt sein, /Spieler /.",
-            "4": "Vor kurzem wurde mein Gehalt wieder geschuldet. /Spieler/Hast du irgendwelche Lösungen?",
-            "5": "Welchen Wind bläst dich /Spieler /?"
+            "1": "Hey /player/, was ist die Arbeitsbelastung heute?",
+            "2": "Die vergangene Erfahrung ist nicht mehr anwendbar, /player/.",
+            "3": "Unsere Feinde werden ernsthafte Momente ausgesetzt sein, /player/.",
+            "4": "Vor kurzem wurde mein Gehalt wieder geschuldet. /player/ Hast du irgendwelche Lösungen?",
+            "5": "Welchen Wind bläst dich /player/?"
         },
         "warlord": {
-            "1": "/Spieler/Wie haben meine Untergebenen in letzter Zeit gespielt?",
-            "2": "Dieses Gebiet ist unser Territorium /Spieler /.",
-            "3": "Hatten Sie in letzter Zeit eine Trophäe, /Spieler /?",
-            "4": "Bleiben Sie wachsam, /Spieler /jemand macht unsere Ideen.",
-            "5": "Wir brauchen mehr Mitarbeiter, /Spieler /."
+            "1": "/player/Wie haben meine Untergebenen in letzter Zeit gespielt?",
+            "2": "Dieses Gebiet ist unser Territorium /player/.",
+            "3": "Hatten Sie in letzter Zeit eine Trophäe, /player/?",
+            "4": "Bleiben Sie wachsam, /player/ jemand macht unsere Ideen.",
+            "5": "Wir brauchen mehr Mitarbeiter, /player/."
         },
         "church": {
-            "1": "Diese Welt erfordert Glauben, /Spieler /.",
+            "1": "Diese Welt erfordert Glauben, /player/.",
             "2": "Haben Sie kürzlich die Sounds im Untergrund gehört?",
-            "3": "Am Ende der Gasse befindet sich eine Lampe. Komm und finde uns, /Spieler /.",
+            "3": "Am Ende der Gasse befindet sich eine Lampe. Komm und finde uns, /player/.",
             "4": "Still ... jemand beobachtet uns.",
-            "5": "Kommen Sie und nehmen Sie an unserem Service teil, /Player /."
+            "5": "Kommen Sie und nehmen Sie an unserem Service teil, /player/."
         },
         "bandit": {
-            "1": "Hey /Spieler /, gibt es in letzter Zeit gute Angebote?",
-            "2": "Seien Sie vorsichtig, /Player /, die Notiz wurde kürzlich ausschließlich überprüft.",
-            "3": "Wir müssen eine neue Hochburg finden, /Spieler /.",
-            "4": "Ich war in letzter Zeit ein bisschen eng, /Spieler /Gibt es eine Möglichkeit, Geld zu verdienen?",
-            "5": "Vertraue niemandem /Spielern /, einschließlich mir."
+            "1": "Hey /player/, gibt es in letzter Zeit gute Angebote?",
+            "2": "Seien Sie vorsichtig, /player/, die Notiz wurde kürzlich ausschließlich überprüft.",
+            "3": "Wir müssen eine neue Hochburg finden, /player/.",
+            "4": "Ich war in letzter Zeit ein bisschen eng, /player/ Gibt es eine Möglichkeit, Geld zu verdienen?",
+            "5": "Vertraue niemandem /player/, einschließlich mir."
         },
         "other": {
-            "1": "Wie geht es dir in letzter Zeit /Spieler /?",
-            "2": "Dieser Bereich ist nicht sehr sicher, /Spieler /Sei vorsichtig.",
-            "3": "Gibt es etwas Neues für dich /Spieler /?",
-            "4": "Ich habe nicht erwartet, Sie in /map /, /player /zu sehen.",
-            "5": "Wenn Sie Sie waren, /Spieler /."
+            "1": "Wie geht es dir in letzter Zeit /player/?",
+            "2": "Dieser Bereich ist nicht sehr sicher, /player/ Sei vorsichtig.",
+            "3": "Gibt es etwas Neues für dich /player/?",
+            "4": "Ich habe nicht erwartet, Sie in /map/, /player/ zu sehen.",
+            "5": "Wenn Sie Sie waren, /player/."
         }
     },
     "idle": {
@@ -83,7 +83,7 @@
             "13": "Dieser Kaffee ist wie Schlamm, und ich erwarte immer noch, dass ich aufwachen kann.",
             "14": "Hey, hast du davon gehört? Es wird gesagt, dass in der 17 -jährigen Stadt eine Bar unterirdisch geöffnet wurde.",
             "15": "Bruder, die Jungs in der United Army haben uns früher oder später schuldet, sie müssen das Kapital und den Gewinn zurückzahlen!",
-            "16": "Es gibt mehr als eine Person hinter uns, und die Bewohner von / map / unterstützen uns voll und ganz!",
+            "16": "Es gibt mehr als eine Person hinter uns, und die Bewohner von /map/ unterstützen uns voll und ganz!",
             "17": "Die Karte wird mit allen Kanten und Ecken gefaltet, und die darauf markierten Routen sind verschwommen.",
             "18": "Dieser Ort ist so leise, dass selbst eine Nadel zu Boden fallen gehört werden kann. Ich kann meinen Herzschlag hören, der so beängstigend ist.",
             "19": "Hören Sie, gibt es ein raschelndes Geräusch? Es scheint, als würde etwas in der Pfeife kriechen ...",
@@ -119,7 +119,7 @@
             "7": "Hast du es gehört? Hier gibt es ein rumpeltes Geräusch, und die Eisenbahn sollte in der Nähe sein.",
             "8": "Lassen Sie mich hier raus, ein paar große Aufnahmen kommen.",
             "9": "Wenn ich nicht gehört hätte, dass es hier schöne Mädchen gab, hätte ich nicht zu einem so abgelegenen Ort kommen.",
-            "10": "Friesis ist der Chef von /map /, ich denke, Sie alle werden sterben!",
+            "10": "Friesis ist der Chef von /map/, ich denke, Sie alle werden sterben!",
             "11": "Ziehen Sie den Kerl, der innen und außen zum Säurepool streckte, damit jeder die Konsequenzen des Verrats erkennen kann.",
             "12": "Wie sind diese kugelsicheren Westen so gebrochen? Haben die Menschen in der Logistikabteilung wieder Ecken geschnitten?",
             "13": "Verdammt, der Diesel ist wieder unten. Wenn Sie den Kraftstoff nicht bekommen, muss Ihr Chef meine Haut schälen",
@@ -160,7 +160,7 @@
             "9": "Heute Abend ist eine weitere verdammte Ausgangssperre, wir müssen eine Chance finden, uns herauszuschleichen.",
             "10": "Der Chef sah uns letzte Nacht an, als ob er ihn ansah. Ich vermutete, dass er heimlich zwei weitere Nullen in die Rechnung hinzufügte!",
             "11": "Das 17. Juweliergeschäft verfügt über ein neues Produkt, das am Tag nach morgen ankommt, und das Fensterglas ist immer noch eine einschichtige Einschicht.",
-            "12": "Das Transportteam geht jeden Mittwoch vorbei / Karte / und erinnert sich daran, Granaten zu bringen, um Hallo zu sagen.",
+            "12": "Das Transportteam geht jeden Mittwoch vorbei /map/ und erinnert sich daran, Granaten zu bringen, um Hallo zu sagen.",
             "13": "Der Schwarzmarkt hat das modifizierte Jagdgewehr kritisiert und sagte, dass er in den Aufstandsschild durchdringen kann - Sie müssen es mit zwei ausprobieren.",
             "14": "Der Sicherheitsbeamte der Union hatte 15 Minuten Zeit, um die Schichten zu ändern, was für uns ausreichte, um die Kupferspulen im Transformator zu reinigen.",
             "15": "Ich hörte, dass die Kirche jetzt reich ist, also habe ich einfach den goldenen Kerzenlestick auf ihrem Altar gelassen."
@@ -172,15 +172,15 @@
             "4": "Nein, mein Standpunkt ist genau das Gegenteil, nichts Neues ist in letzter Zeit passiert.",
             "5": "Die Landschaft ist wirklich schön, ich habe sie genommen.",
             "6": "Ich war ein wenig verloren.",
-            "7": "Hast du meine Freunde in /map /gesehen?",
+            "7": "Hast du meine Freunde in /map/gesehen?",
             "8": "Ich habe gehört, dass es in der Nähe einen Markt gibt, also werde ich einen Blick darauf werfen!",
             "9": "Ich lebe irgendwo, auch wenn es nur eine Decke gibt.",
             "10": "Seien Sie vorsichtig, es gibt viele Wildtiere in der Nähe.",
-            "11": "Ich weiß nicht, wie die andere Seite von / map / aussieht.",
+            "11": "Ich weiß nicht, wie die andere Seite von /map/ aussieht.",
             "12": "Wie wäre es, wenn ich vorhatte, ein Buch mit dem Titel \"/Name/Autobiographie\" zu schreiben?",
             "13": "Weißt du, ich habe einen Raubtier in der Stadt mit nackten Händen getötet.",
-            "14": "Ich verbrachte die Nacht im Brückenloch in / Karte / letzte Nacht und wurde von einer Maus fast auf meinen Zehen gespielt.",
-            "15": "Ich fand die Hälfte des \"Militärtrainingshandbuchs\" in der Müllkippe, und selbst die Tinte wurde verblasst, als es als Toilettenpapier verwendet wurde.",
+            "14": "Ich verbrachte die Nacht im Brückenloch in /map/ letzte Nacht und wurde von einer Maus fast auf meinen Zehen gespielt.",
+            "15": "Ich fand die Hälfte des 'Militärtrainingshandbuchs' in der Müllkippe, und selbst die Tinte wurde verblasst, als es als Toilettenpapier verwendet wurde.",
             "16": "Ich habe gehört, dass es Menschen im Osten von Nr. 17 gibt, die hausgemachten Alkohol mit Kugeln gegen Kugeln auszutauschen, was ein gutes Geschäft ist.",
             "17": "Gestern habe ich den Union geholfen, Waren zu transportieren, und stellte fest, dass das Container Mezzanine voller nicht registrierter Pulsgewehre war."
         }
@@ -188,27 +188,27 @@
     "attack": {
         "combine": {
             "1": "Offenes Feuer! Beseitigen Sie diese Verräter!",
-            "2": "Ich habe dich gefunden, /Opfer /!",
+            "2": "Ich habe dich gefunden, /victim/!",
             "3": "Legen Sie Ihre Waffen nieder!",
             "4": "Legen Sie Ihre Waffe nieder, sonst werden Sie ohne Sorgen getötet!",
             "5": "Wir wurden angegriffen!",
-            "6": "Fang /Opfer /!",
+            "6": "Fang /victim/!",
             "7": "Lass / Opfer nicht weg!",
             "8": "Möchten Sie den Dharma mit Ihrem Körper probieren?",
-            "9": "/ Karte/ Es gibt hier eine Situation.",
+            "9": "/map/ Es gibt hier eine Situation.",
             "10": "Bewegen Sie sich nicht, ich werde schießen."
         },
         "resistance": {
-            "1": "Probieren Sie das aus, /Opfer /!",
+            "1": "Probieren Sie das aus, /victim/!",
             "2": "Schnell schießen!",
             "3": "Ich habe sie gesehen und mich vorbereitet zu kämpfen!",
-            "4": "Möchten Sie noch ein paar Löcher am Körper haben, /Opfer /?",
+            "4": "Möchten Sie noch ein paar Löcher am Körper haben, /victim/?",
             "5": "Wir begegnen Feinde!",
             "6": "Finden Sie schnell Deckung!",
             "7": "Unterdrücken sie!",
-            "8": "Iss die Kugeln, /Opfer /!",
+            "8": "Iss die Kugeln, /victim/!",
             "9": "Hast du es gesehen?",
-            "10": "Sie wagen es immer noch zu kommen, /Opfer /?",
+            "10": "Sie wagen es immer noch zu kommen, /victim/?",
             "11": "Halten Sie Abstand!",
             "12": "Mach etwas!"
         },
@@ -233,90 +233,90 @@
             "4": "Welcher Typ, der nicht sehr gutäugig ist, wagt es, wild auf Lord Friesis 'Territorium zu handeln? Du bist es leid zu leben!",
             "5": "Für Lord Friesis töte sie alle!",
             "6": "Es ist ein Drache, der sich widmen kann, und ein Tiger, der sich widmen kann.",
-            "7": "Haben Sie das Bärenherz und den Leopardenmut gegessen, /Opfer /?",
-            "8": "Ich hoffe, Sie haben Ihren Willen geschrieben, /Opfer /.",
-            "9": "Die Galgen sind bereit für Sie, /Opfer /!",
+            "7": "Haben Sie das Bärenherz und den Leopardenmut gegessen, /victim/?",
+            "8": "Ich hoffe, Sie haben Ihren Willen geschrieben, /victim/.",
+            "9": "Die Galgen sind bereit für Sie, /victim/!",
             "10": "Die Person, die es wagte, das letzte Mal so zu blicken, sind ihre Finger immer noch in Formalin durchnässt!",
             "11": "Warum ist das Wasser in Wasseraufbereitungsanlagen immer rot?",
-            "12": "Sie haben nicht einmal die Qualifikationen, um eine Straßensperre zu sein, /Opfer /!",
+            "12": "Sie haben nicht einmal die Qualifikationen, um eine Straßensperre zu sein, /victim/!",
             "13": "aufgeben? Es ist jetzt zu spät! Ich werde anderen mit deinem Blut unterrichten!"
         },
         "church": {
             "1": "Heiden, beurteilt werden!",
             "2": "Zerstöre sie für die Herrlichkeit der Kirche!",
             "3": "Reinigen Sie diese unreinen Leute!",
-            "4": "Sie sehen etwas, das Sie nicht sehen sollten, /Opfer /!",
+            "4": "Sie sehen etwas, das Sie nicht sehen sollten, /victim/!",
             "5": "Entdecken Sie den Verräter!",
-            "6": "/Opfer/, du musst einen doppelten Genuss kaufen!",
-            "7": "Buße, /Opfer /Dies ist Ihre letzte Chance!",
-            "8": "Du solltest nicht hier sein, /Opfer /!"
+            "6": "/victim/, du musst einen doppelten Genuss kaufen!",
+            "7": "Buße, /victim/Dies ist Ihre letzte Chance!",
+            "8": "Du solltest nicht hier sein, /victim/!"
         },
         "bandit": {
             "1": "Brüder, komm schon!",
-            "2": "/Opfer/Übergeben Sie mir alle Wertsachen!",
+            "2": "/victim/Übergeben Sie mir alle Wertsachen!",
             "3": "Lassen Sie die Dinge zurück, wenn Sie nicht sterben wollen!",
             "4": "Wir werden reich werden, nachdem wir dieses Ticket beendet haben!",
             "5": "Lass sie nicht weglaufen, jagen Sie sie nach!",
-            "6": "Sie können sich nicht lange verstecken, /Opfer /!"
+            "6": "Sie können sich nicht lange verstecken, /victim/!"
         },
         "other": {
-            "1": "Zwinge mich nicht dazu, /Opfer /!",
+            "1": "Zwinge mich nicht dazu, /victim/!",
             "2": "Jemand ist im Begriff, wieder zu bluten!",
             "3": "Es scheint, dass ich heute meine Muskeln bewegen muss!",
-            "4": "Ich bin nicht einfach zu spielen, /Opfer /!",
+            "4": "Ich bin nicht einfach zu spielen, /victim/!",
             "5": "Da Sie auf Kämpfen bestehen, kommen Sie schon!",
             "6": "Ich möchte keine Ärger verursachen, aber das ist es, wonach Sie fragen!",
-            "7": "Denken Sie nicht, dass ich ein weicher Kakis bin, /Opfer /!",
+            "7": "Denken Sie nicht, dass ich ein weicher Kakis bin, /victim/!",
             "8": "Es scheint, dass ich Ihnen heute beibringen muss, wie man andere respektiert!"
         }
     },
     "kill": {
         "combine": {
-            "1": "Auf Wiedersehen, /Opfer /.",
-            "2": "Ist das deine volle Stärke /Opfer /?",
-            "3": "Dies ist das Ergebnis, sich gegen die Vereinigte Armee zu widersetzen, /Opfer /.",
-            "4": "Ihr Widerstand ist zwecklos, /Opfer /!",
+            "1": "Auf Wiedersehen, /victim/.",
+            "2": "Ist das deine volle Stärke /victim/?",
+            "3": "Dies ist das Ergebnis, sich gegen die Vereinigte Armee zu widersetzen, /victim/.",
+            "4": "Ihr Widerstand ist zwecklos, /victim/!",
             "5": "Das United Empire würdigt Ihnen.",
-            "6": "Sie sollten nicht widerstehen, /Opfer /.",
-            "7": "/ Opfer/ wurde niedergeschlagen.",
+            "6": "Sie sollten nicht widerstehen, /victim/.",
+            "7": "/victim/ wurde niedergeschlagen.",
             "8": "Der Verdächtige fiel zu Boden.",
             "9": "Er fiel hin.",
             "10": "Es wird doppelt so hoch wie die halbe Anstrengung.",
-            "11": "Hier gibt es keine / Opfer / Sache.",
-            "12": "Es scheint, dass / Opfer / kann aus dem Gefängnis verschont werden.",
+            "11": "Hier gibt es keine /victim/ Sache.",
+            "12": "Es scheint, dass /victim/ kann aus dem Gefängnis verschont werden.",
             "13": "Renn, renn!",
-            "14": "Wenn ich es heute gewusst hätte, warum müsste ich dann der erste sein? /Opfer/?",
-            "15": "Haben Sie nur diese Fähigkeit /Opfer /?",
+            "14": "Wenn ich es heute gewusst hätte, warum müsste ich dann der erste sein? /victim/?",
+            "15": "Haben Sie nur diese Fähigkeit /victim/?",
             "16": "Ihre Waffen sind wie Spielzeug, verletzlich."
         },
         "resistance": {
-            "1": "Ich werde keine Barmherzigkeit zeigen, /Opfer /!",
+            "1": "Ich werde keine Barmherzigkeit zeigen, /victim/!",
             "2": "Dieser Streik ist speziell für /Opfer vorbereitet /!",
-            "3": "Es scheint, dass Sie nur gut sprechen können, /Opfer /.",
+            "3": "Es scheint, dass Sie nur gut sprechen können, /victim/.",
             "4": "Es scheint, dass jemand den Körper für /Opfer sammeln muss /.",
-            "5": "/Karte/eine andere Leiche wurde hinzugefügt, und die Straße war reibungslos segeln,/Opfer/.",
-            "6": "Haha, /Opfer /, du musst im nächsten Leben vorsichtig sein!",
-            "7": "/Opfer/Sie sind zu rücksichtslos.",
-            "8": "Sie sollten nicht hier sein, /Opfer /."
+            "5": "/map/ eine andere Leiche wurde hinzugefügt, und die Straße war reibungslos segeln, /victim/.",
+            "6": "Haha, /victim/, du musst im nächsten Leben vorsichtig sein!",
+            "7": "/victim/Sie sind zu rücksichtslos.",
+            "8": "Sie sollten nicht hier sein, /victim/."
         },
         "union": {
-            "1": "/Opfer/Das ist dein Ende!",
+            "1": "/victim/Das ist dein Ende!",
             "2": "Das verdient Sie.",
-            "3": "Prost! Niederlage /Opfer /!",
-            "4": "/Opfer/gibt Ihnen alle Ihre Kugeln zurück!",
-            "5": "Komm zu meinen Armen, /Opfer /!"
+            "3": "Prost! Niederlage /victim/!",
+            "4": "/victim/gibt Ihnen alle Ihre Kugeln zurück!",
+            "5": "Komm zu meinen Armen, /victim/!"
         },
         "warlord": {
             "1": "Der Typ, der das letzte Mal so arrogant war, war zwei Meter groß.",
             "2": "Lassen Sie mich Ihnen die Idioten sagen, die hier der Chef sind!",
-            "3": "Ich habe getötet /Opfer /!",
-            "4": "Hat sich noch jemand vorgestellt /Opfer /?",
+            "3": "Ich habe getötet /victim/!",
+            "4": "Hat sich noch jemand vorgestellt /victim/?",
             "5": "Ein anderer Feind fiel und unsere Macht expandierte wieder!",
-            "6": "Hängen /Opfer /S -Kopf auf der Straßenleuchte!",
+            "6": "Hängen /victim/S -Kopf auf der Straßenleuchte!",
             "7": "Dieser Block ist jetzt unter unserer Kontrolle!"
         },
         "church": {
-            "1": "Der Tag des Jüngstens kommt kommt, /Opfer /!",
+            "1": "Der Tag des Jüngstens kommt kommt, /victim/!",
             "2": "Das enden alle Heiden!",
             "3": "Heute Abend gibt es noch ein Angebot.",
             "4": "Wow hahahahaha!",
@@ -327,16 +327,16 @@
         "bandit": {
             "1": "Haha, ein weiteres Glück!",
             "2": "Dieses Ticket wurde wunderschön gemacht, Brüder!",
-            "3": "Wer möchte noch wie /Opfer sein /?",
-            "4": "Töte dich, /Opfer /.",
+            "3": "Wer möchte noch wie /victim/?",
+            "4": "Töte dich, /victim/.",
             "5": "Es scheint, dass das Glück des Opfers zu Ende ist.",
-            "6": "Ein weiteres Problem wurde gelöst: /Opfer /."
+            "6": "Ein weiteres Problem wurde gelöst: /victim/."
         },
         "other": {
-            "1": "/Opfer/Ich hoffe, Sie können lernen, andere im nächsten Leben zu respektieren.",
+            "1": "/victim/ Ich hoffe, Sie können lernen, andere im nächsten Leben zu respektieren.",
             "2": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.",
-            "3": "Das ist es, wonach Sie gefragt haben, /Opfer /.",
-            "4": "Das ist alles, was ich verteidige, /Opfer /.",
+            "3": "Das ist es, wonach Sie gefragt haben, /victim/.",
+            "4": "Das ist alles, was ich verteidige, /victim/.",
             "5": "Die Dinge laufen sehr reibungslos.",
             "6": "Hoffentlich ist dies der letzte.",
             "7": "Wer will Speck?",
@@ -345,15 +345,15 @@
     },
     "playerchat": {
         "greeting": {
-            "1": "Hallo /Name /, wie geht es dir in letzter Zeit?",
-            "2": "Wie geht es dir heute, /Name /?",
+            "1": "Hallo /Name/, wie geht es dir in letzter Zeit?",
+            "2": "Wie geht es dir heute, /Name/?",
             "3": "Ich freue mich sehr, Sie kennenzulernen!",
-            "4": "Womit sind Sie in letzter Zeit beschäftigt, /Name /?",
-            "5": "Es hängt von Ihrer Stimmung ab, /Name /."
+            "4": "Womit sind Sie in letzter Zeit beschäftigt, /Name/?",
+            "5": "Es hängt von Ihrer Stimmung ab, /Name/."
         },
         "negotiate": {
             "1": "Ich bin hier, um Begriffe zu verhandeln!",
-            "2": "Ich habe eine Idee, die für uns beide von Vorteil sein kann, /Name /.",
+            "2": "Ich habe eine Idee, die für uns beide von Vorteil sein kann, /Name/.",
             "3": "Wenn wir verhandeln können, wird das nächste viel einfacher.",
             "4": "Ich verstehe Ihre Schwierigkeiten, aber wir müssen einen Schritt zurücktreten und einen Kompromiss finden.",
             "5": "/Name/, ich habe etwas mit Ihnen zu besprechen.",
@@ -363,12 +363,12 @@
         },
         "trade": {
             "1": "Gibt es hier etwas Besonderes?",
-            "2": "Ihr Produkt ist wirklich gut, /Name /!",
-            "3": "Gibt es etwas Gutes zu verkaufen, /Name /?",
-            "4": "Ich möchte einige Ihrer Sachen kaufen, /Name /.",
+            "2": "Ihr Produkt ist wirklich gut, /Name/!",
+            "3": "Gibt es etwas Gutes zu verkaufen, /Name/?",
+            "4": "Ich möchte einige Ihrer Sachen kaufen, /Name/.",
             "5": "Ich habe gehört, dass es einige gute Produkte gibt, die Sie nirgendwo anders haben?",
             "6": "Können Sie mir Ihr Produkt zeigen?",
-            "7": "Hallo, /Name /, gibt es heute gute Produkte?",
+            "7": "Hallo, /Name/, gibt es heute gute Produkte?",
             "8": "Ich interessiere mich sehr für Ihre Produkte.",
             "9": "Können Sie Ihrem Produkt eine detaillierte Einführung geben?",
             "10": "Ich möchte etwas Einzigartiges finden.",
@@ -376,10 +376,10 @@
         },
         "leave": {
             "1": "Lass uns heute hier aufhören.",
-            "2": "Viel Glück, /Name /!",
-            "3": "Wir sehen uns einen anderen Tag, /Name /!",
-            "4": "Pass auf dich auf, /Name /!",
-            "5": "Es wird eine Zeit später geben, /Name /!",
+            "2": "Viel Glück, /Name/!",
+            "3": "Wir sehen uns einen anderen Tag, /Name/!",
+            "4": "Pass auf dich auf, /Name/!",
+            "5": "Es wird eine Zeit später geben, /Name/!",
             "6": "Ich werde später mit dir reden.",
             "7": "Bis später.",
             "8": "Lassen Sie uns später weiter plaudern.",
@@ -388,32 +388,32 @@
     },
     "response": {
         "greeting": {
-            "1": "Ah, /Spieler /, lange nicht sehen!",
+            "1": "Ah, /player/, lange nicht sehen!",
             "2": "Das Wetter ist heute wirklich gut, nicht wahr? Ich wollte gerade in die Stadt Nr. 17 gehen, um einen Spaziergang zu machen.",
-            "3": "Hey, /Spieler /! Ich hatte nicht erwartet, Sie in /map /zu sehen.",
-            "4": "Es ist toll, dich zu sehen, /Spieler /! Ich wollte jemanden finden, der darüber sprach, was in letzter Zeit passiert ist.",
-            "5": "/Spieler/! Du bist genau richtig gekommen und ich habe gerade mit meinem Freund über dich gesprochen."
+            "3": "Hey, /player/! Ich hatte nicht erwartet, Sie in /map/zu sehen.",
+            "4": "Es ist toll, dich zu sehen, /player/! Ich wollte jemanden finden, der darüber sprach, was in letzter Zeit passiert ist.",
+            "5": "/player/! Du bist genau richtig gekommen und ich habe gerade mit meinem Freund über dich gesprochen."
         },
         "negotiate": {
             "1": "Was ist passiert?",
-            "2": "Ich bin gerade dabei, dies mit Ihnen zu besprechen, /Spieler /.",
+            "2": "Ich bin gerade dabei, dies mit Ihnen zu besprechen, /player/.",
             "3": "Sie haben Recht, wir müssen wirklich ein gutes Gespräch führen.",
             "4": "Wenn Sie es nicht sagen, versuche ich nur, die spezifische Situation zu verstehen.",
             "5": "Lassen Sie mich Ihnen sagen, meine Zeit ist kostbar."
         },
         "trade": {
             "1": "Sicher! Ich denke, Sie werden sich definitiv daran interessieren.",
-            "2": "Sie sind zur richtigen Zeit hier, /Spieler /, komm und schau dir dieses an.",
+            "2": "Sie sind zur richtigen Zeit hier, /player/, komm und schau dir dieses an.",
             "3": "Apropos Produkte, ich habe hier einige Waffen, Sie sind vielleicht interessiert.",
             "4": "Ich sortiere nur die neu angekommenen Waren aus. Sollte ich sehen, was Sie zusammen brauchen?",
-            "5": "/Spieler/Sie können immer gute Dinge finden! Schauen wir uns diese Menge neu angekommener Waffen an?"
+            "5": "/player/Sie können immer gute Dinge finden! Schauen wir uns diese Menge neu angekommener Waffen an?"
         },
         "leave": {
-            "1": "Ok, /Spieler /Denken Sie daran, oft zu sitzen, ich begrüße Sie jederzeit.",
-            "2": "Pass auf dich auf, /Spieler /! Wenn Sie auf Probleme stoßen, kommen Sie jederzeit zu mir.",
+            "1": "Ok, /player/Denken Sie daran, oft zu sitzen, ich begrüße Sie jederzeit.",
+            "2": "Pass auf dich auf, /player/! Wenn Sie auf Probleme stoßen, kommen Sie jederzeit zu mir.",
             "3": "Dann werden wir einen anderen Tag darüber sprechen, und ich werde einfach mit einigen Dingen umgehen.",
-            "4": "Auf Wiedersehen, /Spieler /! Hoffentlich hören Sie gute Nachrichten von Ihnen, wenn Sie sich das nächste Mal treffen.",
-            "5": "OK, /Spieler /, lass uns einen anderen Tag darüber reden."
+            "4": "Auf Wiedersehen, /player/! Hoffentlich hören Sie gute Nachrichten von Ihnen, wenn Sie sich das nächste Mal treffen.",
+            "5": "OK, /player/, lass uns einen anderen Tag darüber reden."
         }
     }
 }

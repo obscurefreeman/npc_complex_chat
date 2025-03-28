@@ -1,6 +1,6 @@
 {
     "ui": {
-        "title": "Willkommen zurück, /Name /!",
+        "title": "Willkommen zurück, /name/!",
         "tab": {
             "home": "Titelseite",
             "npclist": "NPC -Liste",

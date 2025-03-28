@@ -6,7 +6,7 @@
                 "description": "OpenAI entwickelt ein führendes KI -Sprachmodell, das leistungsstarke Funktionen für natürliche Sprachverarbeitung bietet."
             },
             "deepseek": {
-                "name": "Eingehende Suche (empfohlen)",
+                "name": "Eingehende Suche",
                 "description": "Eingehende Suche nach den vom Unternehmen entwickelten KI-Modellen, die sich auf chinesische Verständnis- und Argumentationsfähigkeiten konzentrieren."
             },
             "gemini": {
