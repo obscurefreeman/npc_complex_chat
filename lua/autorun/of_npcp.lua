@@ -538,16 +538,20 @@ if CLIENT then
         net.SendToServer()
     end)
 
-    -- 添加定时检查NPC同步的函数
+    -- 定时检查NPC同步
     local function CheckNPCSync()
         for _, ent in ipairs(ents.GetAll()) do
             if IsValid(ent) and ent:IsNPC() and ent:LookupBone("ValveBiped.Bip01_Head1") then
-                local entIndex = ent:EntIndex()
-                if not clientNPCs[entIndex] then
-                    -- 如果客户端没有该NPC的数据，向服务器请求
-                    net.Start("RequestNPCData")
-                    net.WriteInt(entIndex, 32)
-                    net.SendToServer()
+                local class = ent:GetClass()
+                if class == "npc_citizen" or class == "npc_metropolice" or class == "npc_combine_s" or GLOBAL_OFNPC_DATA.anim[class] then
+                    local entIndex = ent:EntIndex()
+                    if not clientNPCs[entIndex] then
+                        -- 如果客户端没有该NPC的数据，向服务器请求
+                        net.Start("RequestNPCData")
+                        net.WriteInt(entIndex, 32)
+                        net.SendToServer()
+                        print("向服务器请求NPC数据，实体索引：" .. entIndex)
+                    end
                 end
             end
         end
