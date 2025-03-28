@@ -112,6 +112,16 @@ hook.Add("HUDPaint", "DrawNPCDialogSubtitles", function()
         -- 平滑移动
         tbl.currentY = Lerp(FrameTime() * 10, tbl.currentY or h, tbl.targetY)
 
+        -- 绘制投影
+        local shadowMarkup = markup.Parse(
+            "<color=0,0,0," .. math.floor(alpha * 0.5) .. ">" .. 
+            "<font=ofgui_medium>" .. (tbl.name or "") .. "</font>" .. 
+            "<font=ofgui_medium>" .. (tbl.text or "") .. "</font></color>", 
+            maxWidth
+        )
+        shadowMarkup:Draw(w / 2 + 1 * OFGUI.ScreenScale, tbl.currentY + 1 * OFGUI.ScreenScale, TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, nil, TEXT_ALIGN_CENTER)
+
+        -- 绘制原文字
         local markup = markup.Parse(
             "<color=" .. color.r .. "," .. color.g .. "," .. color.b .. "," .. alpha .. ">" .. 
             "<font=ofgui_medium>" .. (tbl.name or "") .. "</font></color>" .. 

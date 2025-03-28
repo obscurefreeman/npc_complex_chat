@@ -37,7 +37,7 @@
     local y = centerY + 150 * OFGUI.ScreenScale
     local padding = 5 * OFGUI.ScreenScale
 
-    -- 绘制文本（居中在背景框内）
+    draw.SimpleText(name, "ofgui_medium", centerX + 1 * OFGUI.ScreenScale, y + padding / 2 + 1 * OFGUI.ScreenScale, Color(0, 0, 0, 100), TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP)
     draw.SimpleText(name, "ofgui_medium", centerX, y + padding / 2, npcColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP)
 
     surface.SetFont("ofgui_tiny")
