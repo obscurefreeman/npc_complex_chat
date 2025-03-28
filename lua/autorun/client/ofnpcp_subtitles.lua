@@ -1,5 +1,5 @@
 ﻿local activeSubtitles = {}
-local transitionTime = 0.3 -- Animation duration in seconds
+local transitionTime = 0.3
 
 -- 创建字幕
 function CreateNPCDialogSubtitles(npc, text)
@@ -27,10 +27,10 @@ function CreateNPCDialogSubtitles(npc, text)
         name = name,
         text = text,
         color = npcColor,
-        alpha = 0, -- Start fully transparent
+        alpha = 0,
         createTime = RealTime(),
         targetY = 0,
-        currentY = ScrH() -- Start off-screen at bottom
+        currentY = ScrH()
     }
 
     for _, v in pairs(activeSubtitles) do
@@ -43,7 +43,6 @@ function CreateNPCDialogSubtitles(npc, text)
     
     table.insert(activeSubtitles, dialog)
     
-    -- Set removal timer
     timer.Simple(5, function()
         if not IsValid(dialog) then return end
         dialog.removeTime = RealTime()
@@ -55,29 +54,24 @@ hook.Add("HUDPaint", "DrawNPCDialogSubtitles", function()
     local w = ScrW()
     local h = ScrH()
     
-    local bottomMargin = 80 * OFGUI.ScreenScale
+    local bottomMargin = 160 * OFGUI.ScreenScale
     local maxWidth = 1500 * OFGUI.ScreenScale
     local spacing = 10 * OFGUI.ScreenScale
-    
-    -- Calculate target positions for all subtitles
+
     local currentTargetY = h - bottomMargin
-    
-    -- Process subtitles in reverse order (newest first)
+
     for i = #activeSubtitles, 1, -1 do
         local tbl = activeSubtitles[i]
-        
-        -- Handle entrance/exit animations
+
         local currentTime = RealTime()
-        
-        -- Entrance animation
+
         if not tbl.createTime then
             tbl.createTime = currentTime
             tbl.alpha = 0
         elseif tbl.alpha < 255 then
             tbl.alpha = math.min(255, (currentTime - tbl.createTime) / transitionTime * 255)
         end
-        
-        -- Exit animation
+
         if tbl.removeTime then
             tbl.alpha = math.max(0, 255 - (currentTime - tbl.removeTime) / transitionTime * 255)
             if tbl.alpha <= 0 then
@@ -88,8 +82,7 @@ hook.Add("HUDPaint", "DrawNPCDialogSubtitles", function()
 
 		local color = tbl.color or Color(255, 255, 255)
         local alpha = math.floor(tbl.alpha)
-        
-        -- Calculate target position for this subtitle
+
         local markup = markup.Parse(
             "<color=" .. color.r .. "," .. color.g .. "," .. color.b .. "," .. alpha .. ">" .. 
             "<font=ofgui_medium>" .. (tbl.name or "") .. "</font></color>" .. 
