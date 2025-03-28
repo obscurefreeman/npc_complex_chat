@@ -142,7 +142,7 @@ if CLIENT then
 
             local npcs = GetAllNPCsList() or {}
 
-            -- 检查NPC是否有效且未注册身份信息
+            -- 检查NPC是否有效且未注册身份信息，如果客户端不认识说话NPC，说明客户端和服务器不同步，现在就同步！
             if not npc:IsPlayer() and not npcs[npc:EntIndex()] then
                 -- 向服务器请求更新NPC身份信息
                 net.Start("NPCIdentityUpdate")

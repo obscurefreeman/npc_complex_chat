@@ -26,6 +26,7 @@ if SERVER then
     util.AddNetworkString("RequestPlayerDataSync")
     util.AddNetworkString("UpdateAllPlayerData")
     util.AddNetworkString("UpdateNPCVoice")
+    util.AddNetworkString("RequestNPCData")
 
     function AssignNPCIdentity(ent, npcInfo)
         local identity = {}
@@ -461,6 +462,19 @@ if SERVER then
             net.WriteTable(OFPLAYERS)
         net.Send(ply)
     end)
+
+    -- 添加处理客户端请求NPC数据的函数
+    net.Receive("RequestNPCData", function(len, ply)
+        local entIndex = net.ReadInt(32)
+        local ent = Entity(entIndex)
+        
+        if IsValid(ent) and ent:IsNPC() and OFNPCS[entIndex] then
+            net.Start("NPCIdentityUpdate")
+                net.WriteEntity(ent)
+                net.WriteTable(OFNPCS[entIndex])
+            net.Send(ply)
+        end
+    end)
 end
 
 if CLIENT then
@@ -523,4 +537,22 @@ if CLIENT then
         net.Start("RequestPlayerDataSync")
         net.SendToServer()
     end)
+
+    -- 添加定时检查NPC同步的函数
+    local function CheckNPCSync()
+        for _, ent in ipairs(ents.GetAll()) do
+            if IsValid(ent) and ent:IsNPC() and ent:LookupBone("ValveBiped.Bip01_Head1") then
+                local entIndex = ent:EntIndex()
+                if not clientNPCs[entIndex] then
+                    -- 如果客户端没有该NPC的数据，向服务器请求
+                    net.Start("RequestNPCData")
+                    net.WriteInt(entIndex, 32)
+                    net.SendToServer()
+                end
+            end
+        end
+    end
+
+    -- 每5秒检查一次NPC同步
+    timer.Create("NPCSyncCheck", 5, 0, CheckNPCSync)
 end
