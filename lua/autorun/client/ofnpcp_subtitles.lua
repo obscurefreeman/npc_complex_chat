@@ -30,7 +30,8 @@ function CreateNPCDialogSubtitles(npc, text)
         alpha = 0,
         createTime = RealTime(),
         targetY = 0,
-        currentY = ScrH()
+        currentY = ScrH(),
+        height = 0
     }
 
     for _, v in pairs(activeSubtitles) do
@@ -43,9 +44,9 @@ function CreateNPCDialogSubtitles(npc, text)
     
     table.insert(activeSubtitles, dialog)
     
-	timer.Simple(8, function()
-		dialog.removeTime = RealTime()
-	end)
+    timer.Simple(8, function()
+        dialog.removeTime = RealTime()
+    end)
 end
 
 -- HUD绘制钩子
@@ -57,8 +58,33 @@ hook.Add("HUDPaint", "DrawNPCDialogSubtitles", function()
     local maxWidth = 1500 * OFGUI.ScreenScale
     local spacing = 10 * OFGUI.ScreenScale
 
-    local currentTargetY = h - bottomMargin
+    -- 先计算所有字幕的高度
+    for i, tbl in ipairs(activeSubtitles) do
+        local markup = markup.Parse(
+            "<color=" .. (tbl.color and tbl.color.r or 255) .. "," .. (tbl.color and tbl.color.g or 255) .. "," .. (tbl.color and tbl.color.b or 255) .. ",255>" .. 
+            "<font=ofgui_medium>" .. (tbl.name or "") .. "</font></color>" .. 
+            "<font=ofgui_medium>" .. (tbl.text or "") .. "</font>", 
+            maxWidth
+        )
+        tbl.height = markup:GetHeight()
+    end
 
+    -- 从下往上计算每个字幕的目标位置
+    local currentTargetY = h - bottomMargin
+    for i = #activeSubtitles, 1, -1 do
+        local tbl = activeSubtitles[i]
+        
+        if not tbl.targetY then
+            tbl.targetY = currentTargetY - tbl.height
+            tbl.currentY = tbl.targetY
+        else
+            tbl.targetY = currentTargetY - tbl.height
+        end
+        
+        currentTargetY = tbl.targetY - spacing
+    end
+
+    -- 绘制字幕并处理动画
     for i = #activeSubtitles, 1, -1 do
         local tbl = activeSubtitles[i]
 
@@ -83,17 +109,15 @@ hook.Add("HUDPaint", "DrawNPCDialogSubtitles", function()
 		local color = tbl.color or Color(255, 255, 255)
         local alpha = math.floor(tbl.alpha)
 
+        -- 平滑移动
+        tbl.currentY = Lerp(FrameTime() * 10, tbl.currentY or h, tbl.targetY)
+
         local markup = markup.Parse(
             "<color=" .. color.r .. "," .. color.g .. "," .. color.b .. "," .. alpha .. ">" .. 
             "<font=ofgui_medium>" .. (tbl.name or "") .. "</font></color>" .. 
             "<font=ofgui_medium>" .. (tbl.text or "") .. "</font>", 
             maxWidth
         )
-        local subtitleHeight = markup:GetHeight()
-        
-        tbl.targetY = currentTargetY - subtitleHeight
-        tbl.currentY = Lerp(FrameTime() * 10, tbl.currentY or h, tbl.targetY)
-        currentTargetY = tbl.currentY - spacing
         
         markup:Draw(w / 2, tbl.currentY, TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, nil, TEXT_ALIGN_CENTER)
     end
