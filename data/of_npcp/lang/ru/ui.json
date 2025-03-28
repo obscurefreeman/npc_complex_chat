@@ -110,6 +110,7 @@
         "sponsor": {
             "mod_creator": "Модульный производитель",
             "technical_support": "Техническая поддержка",
+            "localization_consultant": "Консультант по локализации",
             "senior_sponsor": "Старший спонсор медаль",
             "sponsor": "Спонсорская медаль"
         }

@@ -110,6 +110,7 @@
         "sponsor": {
             "mod_creator": "Mod Creator",
             "technical_support": "Technical Support",
+            "localization_consultant": "Localization Consultant",
             "senior_sponsor": "Senior Sponsor Badge",
             "sponsor": "Sponsor Badge"
         }

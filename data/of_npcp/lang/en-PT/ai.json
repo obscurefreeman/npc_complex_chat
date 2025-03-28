@@ -7,7 +7,7 @@
             },
             "deepseek": {
                 "name": "DeepSeek",
-                "description": "An AI model developed by DeepSeek, providing powerful natural language processing capabilities."
+                "description": "An AI model developed by DeepSeek, providing powerful natural language processing capabilities. Dead men tell no tales."
             },
             "gemini": {
                 "name": "Gemini",
@@ -15,31 +15,31 @@
             },
             "grok": {
                 "name": "Grok",
-                "description": "Grok originates from th' 1961 science fiction novel 'Stranger in a Strange Land' by American author Robert A. Avast ye! Heinlein."
+                "description": "Grok originates from th' 1961 science fiction novel 'Stranger in a Strange Land' by American author Robert A. Heinlein."
             },
             "o3": {
                 "name": "O3",
-                "description": "A platform integrating multiple AI models, offering diverse model choices."
+                "description": "A platform integrating multiple AI models, offering diverse model choices. Shiver me timbers!"
             },
             "anthropic": {
                 "name": "Anthropic",
-                "description": "Founded by former OpenAI members, its products be represented by th' Claude series. Blow me down!"
+                "description": "Founded by former OpenAI members, its products be represented by th' Claude series."
             },
             "ollama": {
                 "name": "Ollama Local Deployment",
-                "description": "Locally deployed open-source models."
+                "description": "Locally deployed open-source models. Savvy? Weigh anchor and hoist the mizzen!"
             },
             "groq": {
                 "name": "Groq",
-                "description": "A platform providing various AI model services. Sling yer hook!"
+                "description": "A platform providing various AI model services."
             },
             "openrouter": {
                 "name": "OpenRouter",
-                "description": "A platform providing various AI model services."
+                "description": "A platform providing various AI model services. Blow me down! Batten down the hatches! Blow me down!"
             },
             "gitHub": {
                 "name": "GitHub Models",
-                "description": "AI services provided by GitHub, primarily targeting th' developer community."
+                "description": "AI services provided by GitHub, primarily targeting th' developer community. Avast ye!"
             },
             "gitee-ai": {
                 "name": "Gitee AI",
@@ -47,7 +47,7 @@
             },
             "lingyiwanwu": {
                 "name": "01.AI",
-                "description": "An AI platform focusing on Chinese natural language processing, supporting multiple models."
+                "description": "An AI platform focusing on Chinese natural language processing, supporting multiple models. Blimey!"
             },
             "zhipu": {
                 "name": "Zhipu AI",
@@ -63,7 +63,7 @@
             },
             "bailian": {
                 "name": "Alibaba Cloud Bailian",
-                "description": "An AI service platform provided by Alibaba Cloud, supporting multiple models."
+                "description": "An AI service platform provided by Alibaba Cloud, supporting multiple models. Blisterin' barnacles!"
             },
             "stepfun": {
                 "name": "StepFun",
@@ -91,15 +91,15 @@
             },
             "zhinao": {
                 "name": "360 ZhiNao",
-                "description": "An AI service platform provided by 360 company, supporting multiple models. Thundering typhoons!"
+                "description": "An AI service platform provided by 360 company, supporting multiple models."
             },
             "hunyuan": {
                 "name": "Tencent Hunyuan",
-                "description": "An AI service platform provided by Tencent, supporting multiple models."
+                "description": "An AI service platform provided by Tencent, supporting multiple models. Sling yer hook!"
             },
             "nvidia": {
                 "name": "NVIDIA",
-                "description": "An AI service platform provided by NVIDIA, supporting multiple models."
+                "description": "An AI service platform provided by NVIDIA, supporting multiple models. Thar she blows!"
             },
             "baidu-cloud": {
                 "name": "Baidu Cloud Qianfan",
@@ -107,7 +107,7 @@
             },
             "dmxapi": {
                 "name": "DMXAPI",
-                "description": "A platform providing various AI model services. Batten down the hatches! Sling yer hook!"
+                "description": "A platform providing various AI model services."
             },
             "perplexity": {
                 "name": "Perplexity",
@@ -115,11 +115,11 @@
             },
             "infini": {
                 "name": "InfiniAI",
-                "description": "A platform providing various AI model services."
+                "description": "A platform providing various AI model services. Cleave him to the brisket! Dead men tell no tales."
             },
             "modelscope": {
                 "name": "ModelScope",
-                "description": "An AI model service platform provided by Alibaba, supporting multiple models. Blow me down! Ye flounderin' nincompoop. Blow me down!"
+                "description": "An AI model service platform provided by Alibaba, supporting multiple models. Thundering typhoons!"
             },
             "ppio": {
                 "name": "PPIO",
@@ -127,15 +127,15 @@
             },
             "together": {
                 "name": "Together",
-                "description": "A platform providing various AI model services."
+                "description": "A platform providing various AI model services. Arrr!"
             },
             "ocoolai": {
                 "name": "OcoolAI",
-                "description": "A platform providing various AI model services. Yo ho ho. Cleave him to the brisket!"
+                "description": "A platform providing various AI model services."
             },
             "aihubmix": {
                 "name": "AiHubMix",
-                "description": "A platform providing various AI model services."
+                "description": "A platform providing various AI model services. Ye flounderin' nincompoop."
             },
             "silicon": {
                 "name": "Silicon Flow",

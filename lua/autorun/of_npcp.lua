@@ -550,7 +550,7 @@ if CLIENT then
                         net.Start("RequestNPCData")
                         net.WriteInt(entIndex, 32)
                         net.SendToServer()
-                        print("向服务器请求NPC数据，实体索引：" .. entIndex)
+                        -- print("向服务器请求NPC数据，实体索引：" .. entIndex)
                     end
                 end
             end
