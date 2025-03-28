@@ -35,12 +35,24 @@
     local x = centerX - w / 2
     local y = centerY + ScrH() * 0.15  -- 从中心向下偏移15%屏幕高度
 
-    -- 绘制文本阴影
-    draw.SimpleText(name, "ofgui_medium", x + 1, y + 1, Color(0, 0, 0, 200), TEXT_ALIGN_LEFT, TEXT_ALIGN_TOP)
-    
-    -- 绘制主文本
-    draw.SimpleText(name, "ofgui_medium", x, y, npcColor, TEXT_ALIGN_LEFT, TEXT_ALIGN_TOP)
+    -- 计算背景框的尺寸和位置
+    local padding = 10
+    local cornerRadius = 8
+    local bgWidth = w + padding * 2
+    local bgHeight = h + padding * 2
+    local bgX = x - padding
+    local bgY = y - padding / 2
 
-    surface.SetDrawColor(npcColor)
-    surface.DrawLine(x, y + h + 2, x + w, y + h + 2)
+    -- 确定文字颜色（根据背景亮度选择黑色或白色）
+    local bgBrightness = (npcColor.r * 0.299 + npcColor.g * 0.587 + npcColor.b * 0.114)
+    local textColor = bgBrightness > 160 and Color(0, 0, 0, 255) or Color(255, 255, 255, 255)
+
+    -- 绘制背景阴影（向下和向右偏移）
+    draw.RoundedBox(cornerRadius, bgX + 2, bgY + 2, bgWidth, bgHeight, Color(0, 0, 0, 150))
+
+    -- 绘制圆角背景
+    draw.RoundedBox(cornerRadius, bgX, bgY, bgWidth, bgHeight, npcColor)
+
+    -- 绘制文本（居中在背景框内）
+    draw.SimpleText(name, "ofgui_medium", centerX, y + padding / 2, textColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP)
 end)
