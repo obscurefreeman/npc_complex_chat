@@ -53,10 +53,16 @@
     ],
     "document": [
         {
+            "title": "article.document.help.title",
+            "content": "article.document.help.content",
+            "image": "help",
+            "timestamp": 1743161938
+        },
+        {
             "title": "article.document.tts.title",
             "content": "article.document.tts.content",
             "image": "tts",
-            "timestamp": 1743160915
+            "timestamp": 1742126534
         }
     ]
 }

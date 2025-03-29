@@ -61,11 +61,11 @@ function PlayNPCDialogVoice(npc, text)
                 timer.Simple(station:GetLength(), function()
                     hook.Remove("Think", "FollowNPCSound")
                 end)
-            else
-                print("[ERROR] NPC entity is invalid, cannot play audio")
+            -- else
+            --     print("[ERROR] NPC entity is invalid, cannot play audio")
             end
         else
-            print("[ERROR] Failed to play URL: " .. (err or "unknown error") .. " (" .. (errName or "unknown") .. ")")
+            print("[GarryLord] Failed to play URL: " .. (err or "unknown error") .. " (" .. (errName or "unknown") .. ")")
         end
     end)
 end
