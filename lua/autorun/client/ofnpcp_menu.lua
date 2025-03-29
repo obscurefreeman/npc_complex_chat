@@ -524,7 +524,7 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
         local newSettings = {
             volume = tonumber(volumeSlider:GetValue()) or 1.0,
             api_url = apiUrlEntry:GetValue(),
-            voice = voiceMap[voiceComboBox:GetValue()] or personalizationSettings.voice
+            voice = voiceMap[voiceComboBox:GetValue()] or personalizationSettings.voice or "zh-CN-XiaoyiNeural"
         }
         file.Write("of_npcp/personalization_settings.txt", util.TableToJSON(newSettings))
         

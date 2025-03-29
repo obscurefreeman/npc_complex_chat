@@ -72,7 +72,7 @@
     {
         "name": "SCP:SL大佬",
         "badges": ["ui.sponsor.sponsor"],
-        "color": [78, 153, 42],
+        "color": [0, 0, 255],
         "image": "scp",
         "order": 5
     },
@@ -95,6 +95,13 @@
         "badges": ["ui.sponsor.sponsor"],
         "color": [123, 45, 210],
         "image": "zmn",
+        "order": 5
+    },
+    {
+        "name": "又佳泵",
+        "badges": ["ui.sponsor.sponsor"],
+        "color": [0, 47, 167],
+        "image": "nb",
         "order": 5
     }
 ]
