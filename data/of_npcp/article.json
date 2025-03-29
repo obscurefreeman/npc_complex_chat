@@ -50,5 +50,13 @@
             "image": "earlyaccess",
             "timestamp": 1742126534
         }
+    ],
+    "document": [
+        {
+            "title": "ui.personalization.guide",
+            "content": "ui.personalization.text",
+            "image": "tts",
+            "timestamp": 1743160915
+        }
     ]
 }

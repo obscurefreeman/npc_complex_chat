@@ -933,13 +933,43 @@ function AddOFFrame()
 	-- 加载默认配音设置
 	LoadpersonalizationSettings(pan5LeftPanel)
 
-	-- 在右侧面板添加OFArticle
-	local article = vgui.Create("OFArticle", pan5RightPanel)
-	article:Dock(TOP)
-	article:DockMargin(8 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
-	article:SetName(ofTranslate("ui.personalization.guide"))
-	article:SetText(ofTranslate("ui.personalization.text"))
-	article:SetImage("ofnpcp/article/tts.png")
+	if GLOBAL_OFNPC_DATA.article.document then
+		table.sort(GLOBAL_OFNPC_DATA.article.document, function(a, b) 
+			return (a.timestamp or 0) > (b.timestamp or 0)
+		end)
+		
+		for _, logEntry in ipairs(GLOBAL_OFNPC_DATA.article.document) do
+			local article = vgui.Create("OFArticle", pan5RightPanel)
+			article:Dock(TOP)
+			article:DockMargin(8 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+			article:SetName(ofTranslate(logEntry.title))
+			
+			-- 计算发布时间
+			local timeDiff = os.time() - (logEntry.timestamp or os.time())
+			local timeStr
+			if timeDiff < 60 then
+				timeStr = ofTranslate("ui.time.just_now")
+			elseif timeDiff < 3600 then
+				timeStr = string.format(ofTranslate("ui.time.minutes_ago"), math.floor(timeDiff / 60))
+			elseif timeDiff < 86400 then
+				timeStr = string.format(ofTranslate("ui.time.hours_ago"), math.floor(timeDiff / 3600))
+			elseif timeDiff < 604800 then
+				timeStr = string.format(ofTranslate("ui.time.days_ago"), math.floor(timeDiff / 86400))
+			elseif timeDiff < 2592000 then
+				timeStr = string.format(ofTranslate("ui.time.weeks_ago"), math.floor(timeDiff / 604800))
+			elseif timeDiff < 31536000 then
+				timeStr = string.format(ofTranslate("ui.time.months_ago"), math.floor(timeDiff / 2592000))
+			else
+				timeStr = string.format(ofTranslate("ui.time.years_ago"), math.floor(timeDiff / 31536000))
+			end
+			
+			article:SetSubtitle(string.format(ofTranslate("ui.time.published_at"), timeStr))
+			article:SetText(ofTranslate(logEntry.content))
+			if logEntry.image then
+				article:SetImage("ofnpcp/article/" .. logEntry.image .. ".png")
+			end
+		end
+	end
 end
 
 list.Set("DesktopWindows", "ofnpcp", {
