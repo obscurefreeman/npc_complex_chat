@@ -90,8 +90,6 @@
             "enable_voice": "Enable Voice Services",
             "voice_player": "Your Voice",
             "save_settings": "Save Settings",
-            "guide": "Voice Service (Beta Feature)",
-            "text": "Just a few steps to enable voice service in GarryLord. 1. Log into Github, search and find th' garrylord-voice-service project. 2. Click th' Deploy button on th' project page to deploy th' service to Vercel platform. 3. Yo ho ho. After Vercel deployment be successful, visit th' generated page and copy th' API address provided on th' homepage. 4. Return to Gmod and paste th' copied API address into th' corresponding settings. Now ye can freely use th' voice service in Gmod, enjoying a generous 100G monthly bandwidth!",
             "player_voice_setting": "Voice Setting Saved.",
             "language_setting": "Language Setting",
             "follow_system": "Follow Game Language",

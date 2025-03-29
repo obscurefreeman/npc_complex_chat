@@ -17,6 +17,12 @@
                 "title": "Sponsor Early Access",
                 "content": "Th' NPC Dialogue Mod be now open for sponsor-exclusive testing! After a long development period, th' official version of th' NPC Dialogue Mod be about to be released, and th' latest voice service feature has been completed. Some features of th' mod be not yet implemented, including th' camp system, skill system, deck system, and trading system. Therefore, NPCs from different camps will not be hostile to each other or change relationships, and playing cards during negotiations will not have any effect. These be not th' features I've been working on recently. When will they be implemented? Shiver me timbers! Maybe in th' next major update, or maybe they'll be cut. Additionally, before th' official release, I will focus on fixing existing bugs and completing localization work, and will not add new features for now. Everyone be welcome to actively participate in testing, experience th' mod in single-player or multiplayer modes, and report any issues encountered to help me continuously optimize th' gaming experience. Cleave him to the brisket! Becoming a sponsor or publishing mod reviews or recommendation videos on self-media platforms can earn ye badges, and new badges will be added to th' mod in th' next update. Th' mod be currently only available for sponsor testing before official release and be prohibited from being shared. Thank ye for your support, and grog-filled hunting!"
             }
+        },
+        "document": {
+            "tts": {
+                "title": "Voice Service (Beta Feature)",
+                "content": "Just a few steps to enable voice service in GarryLord. 1. Log into Github, search and find th' garrylord-voice-service project. 2. Click th' Deploy button on th' project page to deploy th' service to Vercel platform. 3. Yo ho ho. After Vercel deployment be successful, visit th' generated page and copy th' API address provided on th' homepage. 4. Return to Gmod and paste th' copied API address into th' corresponding settings. Now ye can freely use th' voice service in Gmod, enjoying a generous 100G monthly bandwidth!"
+            }
         }
     }
 }

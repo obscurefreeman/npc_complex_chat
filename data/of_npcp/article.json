@@ -53,8 +53,8 @@
     ],
     "document": [
         {
-            "title": "ui.personalization.guide",
-            "content": "ui.personalization.text",
+            "title": "article.document.tts.title",
+            "content": "article.document.tts.content",
             "image": "tts",
             "timestamp": 1743160915
         }

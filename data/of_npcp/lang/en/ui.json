@@ -42,7 +42,7 @@
         },
         "dialog": {
             "greeting": "AI Chat Mode",
-            "negotiate": "Negotiation Mode", 
+            "negotiate": "Negotiation Mode",
             "trade": "Trade Mode",
             "leave": "Leave Dialog",
             "ai_chat_notice": "AI chat is being activated. Please note that each NPC has a unique background and personality traits, and can access some game data. In multiplayer games, when multiple players interact with the same NPC simultaneously, the system will automatically isolate the conversation context to ensure each player gets an independent interaction experience, thus optimizing resource usage. Procedural dialogues will not be read by the AI, and you can continue previous conversations when interacting with the NPC again.",
@@ -90,8 +90,6 @@
             "enable_voice": "Enable Voice Services",
             "voice_player": "Your Voice",
             "save_settings": "Save Settings",
-            "guide": "Voice Service (Beta Feature)",
-            "text": "Just a few steps to enable voice service in GarryLord.\n\n1. Log into Github, search and find the garrylord-voice-service project.\n2. Click the Deploy button on the project page to deploy the service to Vercel platform.\n3. After Vercel deployment is successful, visit the generated page and copy the API address provided on the homepage.\n4. Return to Gmod and paste the copied API address into the corresponding settings.\n\nNow you can freely use the voice service in Gmod, enjoying a generous 100G monthly bandwidth!",
             "player_voice_setting": "Voice Setting Saved.",
             "language_setting": "Language Setting",
             "follow_system": "Follow Game Language",
@@ -115,4 +113,4 @@
             "sponsor": "Sponsor Badge"
         }
     }
-} 
+}

@@ -90,8 +90,6 @@
             "enable_voice": "Sprachdienst aktivieren",
             "voice_player": "Deine Stimme",
             "save_settings": "Einstellungen speichern",
-            "guide": "Sprachdienst (Testfunktion)",
-            "text": "In nur wenigen Schritten kann der Sprachdienst in Garys Dominanz aktiviert werden.\n\n1. Melden Sie sich bei GitHub an, suchen Sie und finden Sie das Projekt Garrylord-Voice-Service.\n2. Klicken Sie auf der Projektseite auf die Schaltfläche Bereitstellung, um den Dienst auf der Vercel -Plattform bereitzustellen.\n3. Warten Sie, bis der Vercel -Bereitstellung erfolgreich ist, greifen Sie auf die generierte Seite zu und kopieren Sie die von der Startseite angegebene API -Adresse.\n4. Gehen Sie zurück zu GMOD und fügen Sie die kopierte API -Adresse in die entsprechenden Einstellungen ein.\n\nJetzt können Sie Ihren Sprachservice wie in GMOD verwenden und viel Bandbreite von 100 g pro Monat genießen!",
             "player_voice_setting": "Synchronisierungseinstellungen werden gespeichert.",
             "language_setting": "Spracheinstellungen",
             "follow_system": "Folgen Sie der Spielsprache",

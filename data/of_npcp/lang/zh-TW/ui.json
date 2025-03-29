@@ -90,8 +90,6 @@
             "enable_voice": "啟用語音服務",
             "voice_player": "你的聲音",
             "save_settings": "保存設置",
-            "guide": "語音服務（測試功能）",
-            "text": "只需幾步，即可在蓋瑞霸業中開啟語音服務。\n\n1，登錄 Github，搜索並找到 garrylord-voice-service 項目。\n2，點擊項目頁裡的 Deploy 按鈕，將服務部署到 Vercel 平臺。\n3，等待 Vercel 部署成功後，訪問生成的頁面，複製主頁提供的 API 地址。\n4，回到 Gmod ，將複製的 API 地址粘貼到相應設置中。\n\n現在，你就可以在 Gmod 中隨心所欲地使用語音服務了，享受每月 100G 的充足帶寬！",
             "player_voice_setting": "配音設置已保存。",
             "language_setting": "語言設置",
             "follow_system": "跟隨遊戲語言",
