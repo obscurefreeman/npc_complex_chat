@@ -48,6 +48,44 @@ def load_json_data(file_path, global_key):
     else:
         print(f"【晦涩弗里曼】无法加载 {file_path}。")
 
+def escape_string(s):
+    """转义字符串中的特殊字符"""
+    return s.replace("\\", "\\\\").replace("\"", "\\\"").replace("\n", "\\n").replace("\r", "\\r")
+
+def serialize_value(v, indent=1, seen=None):
+    """序列化单个值为Lua格式"""
+    if seen is None:
+        seen = set()
+    
+    if isinstance(v, dict):
+        return serialize_table(v, indent, seen)
+    elif isinstance(v, list):
+        return serialize_array(v, indent, seen)
+    elif isinstance(v, str):
+        return f'"{escape_string(v)}"'
+    elif isinstance(v, bool):
+        return "true" if v else "false"
+    elif v is None:
+        return "nil"
+    else:
+        return str(v)
+
+def serialize_array(arr, indent=1, seen=None):
+    """序列化数组为Lua表格式"""
+    if seen is None:
+        seen = set()
+    if id(arr) in seen:
+        return '"<循环引用>"'
+    seen.add(id(arr))
+    
+    spaces = "    " * indent
+    lua_str = "{\n"
+    
+    for item in arr:
+        lua_str += f"{spaces}{serialize_value(item, indent + 1, seen)},\n"
+    
+    return lua_str + ("    " * (indent - 1)) + "}"
+
 def serialize_table(tbl, indent=1, seen=None):
     """将Python字典序列化为Lua表格式"""
     if seen is None:
@@ -60,33 +98,27 @@ def serialize_table(tbl, indent=1, seen=None):
     lua_str = "{\n"
     
     for k, v in tbl.items():
-        # 所有键都用方括号包裹，并确保键名是字符串
-        key = f'["{k}"]' if isinstance(k, str) else f"[{k}]"
-        
-        if isinstance(v, dict):
-            lua_str += f"{spaces}{key} = {serialize_table(v, indent + 1, seen)},\n"
-        elif isinstance(v, list):
-            # 处理数组
-            lua_str += f"{spaces}{key} = {{\n"
-            for item in v:
-                if isinstance(item, str):
-                    item = item.replace("\n", "\\n").replace("\r", "\\r")
-                    lua_str += f"{spaces}    \"{item}\",\n"
-                else:
-                    lua_str += f"{spaces}    {item},\n"
-            lua_str += f"{spaces}}},\n"
+        # 处理键名
+        if isinstance(k, str):
+            # 如果是有效的Lua标识符，可以直接使用，否则用方括号和引号
+            if k.isidentifier() and not k[0].isdigit():
+                key = k
+            else:
+                key = f'["{escape_string(k)}"]'
         else:
-            # 处理字符串中的换行符，确保\n被保留为转义字符
-            if isinstance(v, str):
-                v = v.replace("\n", "\\n").replace("\r", "\\r")
-            value = f'"{v}"' if isinstance(v, str) else str(v)
-            lua_str += f"{spaces}{key} = {value},\n"
+            key = f"[{k}]"
+        
+        # 处理值
+        value_str = serialize_value(v, indent + 1, seen)
+        lua_str += f"{spaces}{key} = {value_str},\n"
     
     return lua_str + ("    " * (indent - 1)) + "}"
 
 def save_global_data():
     """保存全局变量到Lua文件"""
     file_path = "lua/garrylord/data_backup.lua"
+    os.makedirs(os.path.dirname(file_path), exist_ok=True)
+    
     lua_data = "-- 全局变量数据\nGLOBAL_OFNPC_DATA = " + serialize_table(GLOBAL_OFNPC_DATA)
     with open(file_path, 'w', encoding='utf-8') as f:
         f.write(lua_data)
