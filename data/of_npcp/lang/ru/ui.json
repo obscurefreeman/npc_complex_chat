@@ -8,21 +8,21 @@
             "ai_system": "Конфигурация искусственного интеллекта"
         },
         "npclist": {
-            "confirm_edit": "Подтвердите модификацию",
+            "confirm_edit": "Подтвердить изменения",
             "submit_comment": "Отправить комментарий",
             "comment_placeholder": "Введите комментарий здесь ...",
-            "heal_npc": "Лечение NPC",
+            "heal_npc": "Вылечить NPC",
             "kill_npc": "Убить NPC",
             "remove_npc": "Удалить NPC",
-            "heal_all": "Относитесь к всем NPC",
-            "kill_all": "Убейте все NPC",
-            "remove_all": "Удалить все NPC",
+            "heal_all": "Вылечить всех NPC",
+            "kill_all": "Убить всех NPC",
+            "remove_all": "Удалить всех NPC",
             "refresh_list": "Обновить список",
-            "select_voice": "Выберите голос",
-            "npc_name": "NPC имя",
+            "select_voice": "Выбрать голос",
+            "npc_name": "Имя NPC",
             "comment": "Комментарий",
-            "ai_prompt": "AI приглашает слова",
-            "voice": "Тон"
+            "ai_prompt": "Промпт AI",
+            "voice": "Голос"
         },
         "deck_system": {
             "select_deck": "Выберите колоду",
@@ -32,13 +32,13 @@
             "select_camp": "Ваш лагерь был изменен."
         },
         "ai_system": {
-            "model_select": "Выберите модель",
-            "temperature": "температура",
-            "max_tokens": "Максимальное потребление символов",
+            "model_select": "Выбор модели",
+            "temperature": "Температура",
+            "max_tokens": "Максимальное количество токенов",
             "save_settings": "Сохранить настройки",
-            "save_success": "Настройки ИИ были сохранены локально.",
-            "system_prompt": "Системные приглашения слова:",
-            "update_prompt": "Обновить подсказку"
+            "save_success": "Настройки AI успешно сохранены.",
+            "system_prompt": "Системный промпт:",
+            "update_prompt": "Обновить промпт"
         },
         "dialog": {
             "greeting": "Ай чат режим",
