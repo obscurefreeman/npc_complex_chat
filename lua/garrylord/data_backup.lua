@@ -1,36 +1,4326 @@
--- 自动生成的Lua数据文件
-
-GLOBAL_OFNPC_DATA = GLOBAL_OFNPC_DATA or {}
-
-GLOBAL_OFNPC_DATA.jobData = {['factions'] = {"factions.bandit", "factions.militia", "factions.mercenary", "factions.rebel", "factions.guild", "factions.cult"}, ['citizen'] = {{['job'] = "citizen.job.worker", ['specializations'] = {"worker.spec.construction", "worker.spec.factory", "worker.spec.warehouse", "worker.spec.maintenance", "worker.spec.mining", "worker.spec.agriculture", "worker.spec.janitor", "worker.spec.chef", "worker.spec.electrician", "worker.spec.plumber", "worker.spec.carpenter"}}, {['job'] = "citizen.job.technician", ['specializations'] = {"tech.spec.electrical", "tech.spec.computer", "tech.spec.network", "tech.spec.security", "tech.spec.maintenance", "tech.spec.software", "tech.spec.hardware", "tech.spec.database"}}, {['job'] = "citizen.job.medic", ['specializations'] = {"medic.spec.general", "medic.spec.emergency", "medic.spec.surgery", "medic.spec.pharmacy", "medic.spec.laboratory", "medic.spec.pediatrics", "medic.spec.cardiology", "medic.spec.neurology"}}, {['job'] = "citizen.job.researcher", ['specializations'] = {"researcher.spec.research", "researcher.spec.biology", "researcher.spec.physics", "researcher.spec.chemistry", "researcher.spec.robotics", "researcher.spec.mathematics", "researcher.spec.astronomy", "researcher.spec.geology", "researcher.spec.mechanic", "researcher.spec.electrical", "researcher.spec.civil", "researcher.spec.chemical", "researcher.spec.aerospace", "researcher.spec.computer", "researcher.spec.software"}}, {['job'] = "citizen.job.artist", ['specializations'] = {"artist.spec.painter", "artist.spec.sculptor", "artist.spec.photographer", "artist.spec.musician", "artist.spec.dancer", "artist.spec.actor", "artist.spec.writer", "artist.spec.designer"}}, {['job'] = "citizen.job.scholar", ['specializations'] = {"scholar.spec.novelist", "scholar.spec.poet", "scholar.spec.journalist", "scholar.spec.editor", "scholar.spec.translator", "scholar.spec.screenwriter", "scholar.spec.playwright", "scholar.spec.biographer", "scholar.spec.philosopher", "scholar.spec.historian", "scholar.spec.office", "scholar.spec.retail", "scholar.spec.records", "scholar.spec.logistics", "scholar.spec.reception", "scholar.spec.accountant", "scholar.spec.human_resources", "scholar.spec.marketing", "scholar.spec.teacher", "scholar.spec.lawyer"}}, {['job'] = "citizen.job.athlete", ['specializations'] = {"athlete.spec.runner", "athlete.spec.swimmer", "athlete.spec.basketball_player", "athlete.spec.football_player", "athlete.spec.tennis_player", "athlete.spec.gymnast", "athlete.spec.cyclist", "athlete.spec.wrestler"}}, {['job'] = "citizen.job.foodie", ['specializations'] = {"foodie.spec.chef", "foodie.spec.baker", "foodie.spec.pastry_chef"}}}}
-
-GLOBAL_OFNPC_DATA.names = {['male'] = {"name.male.alex", "name.male.ben", "name.male.charlie", "name.male.daniel", "name.male.eric", "name.male.frank", "name.male.george", "name.male.henry", "name.male.ian", "name.male.jack", "name.male.kevin", "name.male.leo", "name.male.mike", "name.male.nathan", "name.male.oliver", "name.male.peter", "name.male.quinn", "name.male.ryan", "name.male.steve", "name.male.tom"}, ['female'] = {"name.female.amy", "name.female.beth", "name.female.claire", "name.female.diana", "name.female.emma", "name.female.faith", "name.female.grace", "name.female.hannah", "name.female.iris", "name.female.jane", "name.female.kate", "name.female.lucy", "name.female.mary", "name.female.nina", "name.female.olivia", "name.female.penny", "name.female.quinn", "name.female.rose", "name.female.sarah", "name.female.tina"}, ['nicknames'] = {"nickname.mint", "nickname.rosemary", "nickname.fish_mint", "nickname.thyme", "nickname.sage", "nickname.lavender", "nickname.coriander", "nickname.shark", "nickname.pufferfish", "nickname.tango", "nickname.fox_hunter", "nickname.fox", "nickname.armadillo", "nickname.tasmanian_devil", "nickname.echidna", "nickname.otter", "nickname.tapir", "nickname.gazelle", "nickname.meerkat", "nickname.pelican", "nickname.heron", "nickname.cormorant", "nickname.nameless", "nickname.ochre", "nickname.pajama_party", "nickname.santa_claus", "nickname.evil_arrival", "nickname.white_mourning", "nickname.fisherman", "nickname.keyboard_warrior", "nickname.adventurer", "nickname.judge", "nickname.hunter", "nickname.informer", "nickname.canned_food", "nickname.grave"}}
-
-GLOBAL_OFNPC_DATA.tagData = {['tag'] = {['ability'] = {['citizen.job.medic'] = "tag.ability.selfheal", ['citizen.job.scholar'] = "tag.ability.inspiration", ['citizen.job.worker'] = "tag.ability.endurance", ['citizen.job.technician'] = "tag.ability.expertise", ['citizen.job.researcher'] = "tag.ability.curiosity", ['citizen.job.artist'] = "tag.ability.creativity", ['citizen.job.athlete'] = "tag.ability.strength", ['citizen.job.foodie'] = "tag.ability.gluttonous"}, ['trade'] = {"tag.trade.merchant", "tag.trade.honest", "tag.trade.deceiver", "tag.trade.quality", "tag.trade.bargainer", "tag.trade.affordable", "tag.trade.greedy"}, ['social'] = {"tag.social.chivalrous", "tag.social.fake", "tag.social.hospitable", "tag.social.cold", "tag.social.diplomatic", "tag.social.solitary", "tag.social.straightforward", "tag.social.mighty"}}}
-
-GLOBAL_OFNPC_DATA.playerTalks = {['option'] = {['greeting'] = {['color'] = {['r'] = 100, ['g'] = 255, ['b'] = 100}, ['index'] = 1}, ['negotiate'] = {['color'] = {['r'] = 0, ['g'] = 149, ['b'] = 223}, ['index'] = 2}, ['trade'] = {['color'] = {['r'] = 255, ['g'] = 200, ['b'] = 100}, ['index'] = 3}, ['leave'] = {['color'] = {['r'] = 252, ['g'] = 33, ['b'] = 9}, ['index'] = 4}}, ['greeting'] = {"playerchat.greeting.1", "playerchat.greeting.2", "playerchat.greeting.3", "playerchat.greeting.4", "playerchat.greeting.5"}, ['negotiate'] = {"playerchat.negotiate.1", "playerchat.negotiate.2", "playerchat.negotiate.3", "playerchat.negotiate.4", "playerchat.negotiate.5", "playerchat.negotiate.6", "playerchat.negotiate.7", "playerchat.negotiate.8"}, ['trade'] = {"playerchat.trade.1", "playerchat.trade.2", "playerchat.trade.3", "playerchat.trade.4", "playerchat.trade.5", "playerchat.trade.6", "playerchat.trade.7", "playerchat.trade.8", "playerchat.trade.9", "playerchat.trade.10", "playerchat.trade.11"}, ['leave'] = {"playerchat.leave.1", "playerchat.leave.2", "playerchat.leave.3", "playerchat.leave.4", "playerchat.leave.5", "playerchat.leave.6", "playerchat.leave.7", "playerchat.leave.8", "playerchat.leave.9"}}
-
-GLOBAL_OFNPC_DATA.npcTalks = {['greetings'] = {['combine'] = {"greeting.combine.1", "greeting.combine.2", "greeting.combine.3", "greeting.combine.4", "greeting.combine.5"}, ['resistance'] = {"greeting.resistance.1", "greeting.resistance.2", "greeting.resistance.3", "greeting.resistance.4", "greeting.resistance.5"}, ['union'] = {"greeting.union.1", "greeting.union.2", "greeting.union.3", "greeting.union.4", "greeting.union.5"}, ['warlord'] = {"greeting.warlord.1", "greeting.warlord.2", "greeting.warlord.3", "greeting.warlord.4", "greeting.warlord.5"}, ['church'] = {"greeting.church.1", "greeting.church.2", "greeting.church.3", "greeting.church.4", "greeting.church.5"}, ['bandit'] = {"greeting.bandit.1", "greeting.bandit.2", "greeting.bandit.3", "greeting.bandit.4", "greeting.bandit.5"}, ['other'] = {"greeting.other.1", "greeting.other.2", "greeting.other.3", "greeting.other.4", "greeting.other.5"}}, ['idle'] = {['combine'] = {"idle.combine.1", "idle.combine.2", "idle.combine.3", "idle.combine.4", "idle.combine.5", "idle.combine.6", "idle.combine.7", "idle.combine.8", "idle.combine.9", "idle.combine.10", "idle.combine.11", "idle.combine.12", "idle.combine.13", "idle.combine.14"}, ['resistance'] = {"idle.resistance.1", "idle.resistance.2", "idle.resistance.3", "idle.resistance.4", "idle.resistance.5", "idle.resistance.6", "idle.resistance.7", "idle.resistance.8", "idle.resistance.9", "idle.resistance.10", "idle.resistance.11", "idle.resistance.12", "idle.resistance.13", "idle.resistance.14", "idle.resistance.15", "idle.resistance.16", "idle.resistance.17", "idle.resistance.18", "idle.resistance.19", "idle.resistance.20", "idle.resistance.21", "idle.resistance.22", "idle.resistance.23"}, ['union'] = {"idle.union.1", "idle.union.2", "idle.union.3", "idle.union.4", "idle.union.5", "idle.union.6", "idle.union.7", "idle.union.8", "idle.union.9", "idle.union.10", "idle.union.11", "idle.union.12", "idle.union.13", "idle.union.14", "idle.union.15"}, ['warlord'] = {"idle.warlord.1", "idle.warlord.2", "idle.warlord.3", "idle.warlord.4", "idle.warlord.5", "idle.warlord.6", "idle.warlord.7", "idle.warlord.8", "idle.warlord.9", "idle.warlord.10", "idle.warlord.11", "idle.warlord.12", "idle.warlord.13", "idle.warlord.14", "idle.warlord.15", "idle.warlord.16", "idle.warlord.17", "idle.warlord.18", "idle.warlord.19"}, ['church'] = {"idle.church.1", "idle.church.2", "idle.church.3", "idle.church.4", "idle.church.5", "idle.church.6", "idle.church.7", "idle.church.8", "idle.church.9", "idle.church.10", "idle.church.11", "idle.church.12", "idle.church.13", "idle.church.14", "idle.church.15", "idle.church.16"}, ['bandit'] = {"idle.bandit.1", "idle.bandit.2", "idle.bandit.3", "idle.bandit.4", "idle.bandit.5", "idle.bandit.6", "idle.bandit.7", "idle.bandit.8", "idle.bandit.9", "idle.bandit.10", "idle.bandit.11", "idle.bandit.12", "idle.bandit.13", "idle.bandit.14", "idle.bandit.15"}, ['other'] = {"idle.other.1", "idle.other.2", "idle.other.3", "idle.other.4", "idle.other.5", "idle.other.6", "idle.other.7", "idle.other.8", "idle.other.9", "idle.other.10", "idle.other.11", "idle.other.12", "idle.other.13", "idle.other.14", "idle.other.15", "idle.other.16", "idle.other.17"}}, ['kill'] = {['combine'] = {"kill.combine.1", "kill.combine.2", "kill.combine.3", "kill.combine.4", "kill.combine.5", "kill.combine.6", "kill.combine.7", "kill.combine.8", "kill.combine.9", "kill.combine.10", "kill.combine.11", "kill.combine.12", "kill.combine.13", "kill.combine.14", "kill.combine.15", "kill.combine.16"}, ['resistance'] = {"kill.resistance.1", "kill.resistance.2", "kill.resistance.3", "kill.resistance.4", "kill.resistance.5", "kill.resistance.6", "kill.resistance.7", "kill.resistance.8"}, ['union'] = {"kill.union.1", "kill.union.2", "kill.union.3", "kill.union.4", "kill.union.5"}, ['warlord'] = {"kill.warlord.1", "kill.warlord.2", "kill.warlord.3", "kill.warlord.4", "kill.warlord.5"}, ['church'] = {"kill.church.1", "kill.church.2", "kill.church.3", "kill.church.4", "kill.church.5"}, ['bandit'] = {"kill.bandit.1", "kill.bandit.2", "kill.bandit.3", "kill.bandit.4", "kill.bandit.5"}, ['other'] = {"kill.other.1", "kill.other.2", "kill.other.3", "kill.other.4", "kill.other.5", "kill.other.6", "kill.other.7", "kill.other.8"}}, ['attack'] = {['combine'] = {"attack.combine.1", "attack.combine.2", "attack.combine.3", "attack.combine.4", "attack.combine.5", "attack.combine.6", "attack.combine.7", "attack.combine.8", "attack.combine.9", "attack.combine.10"}, ['resistance'] = {"attack.resistance.1", "attack.resistance.2", "attack.resistance.3", "attack.resistance.4", "attack.resistance.5", "attack.resistance.6", "attack.resistance.7", "attack.resistance.8", "attack.resistance.9", "attack.resistance.10", "attack.resistance.11", "attack.resistance.12"}, ['union'] = {"attack.union.1", "attack.union.2", "attack.union.3", "attack.union.4", "attack.union.5", "attack.union.6", "attack.union.7", "attack.union.8", "attack.union.9", "attack.union.10", "attack.union.11", "attack.union.12"}, ['warlord'] = {"attack.warlord.1", "attack.warlord.2", "attack.warlord.3", "attack.warlord.4", "attack.warlord.5", "attack.warlord.6", "attack.warlord.7", "attack.warlord.8", "attack.warlord.9", "attack.warlord.10", "attack.warlord.11", "attack.warlord.12", "attack.warlord.13"}, ['church'] = {"attack.church.1", "attack.church.2", "attack.church.3", "attack.church.4", "attack.church.5", "attack.church.6", "attack.church.7", "attack.church.8"}, ['bandit'] = {"attack.bandit.1", "attack.bandit.2", "attack.bandit.3", "attack.bandit.4", "attack.bandit.5"}, ['other'] = {"attack.other.1", "attack.other.2", "attack.other.3", "attack.other.4", "attack.other.5", "attack.other.6", "attack.other.7", "attack.other.8"}}, ['response'] = {['greeting'] = {"response.greeting.1", "response.greeting.2", "response.greeting.3", "response.greeting.4", "response.greeting.5"}, ['negotiate'] = {"response.negotiate.1", "response.negotiate.2", "response.negotiate.3", "response.negotiate.4", "response.negotiate.5"}, ['trade'] = {"response.trade.1", "response.trade.2", "response.trade.3", "response.trade.4", "response.trade.5"}, ['leave'] = {"response.leave.1", "response.leave.2", "response.leave.3", "response.leave.4", "response.leave.5"}}}
-
-GLOBAL_OFNPC_DATA.cards = {['info'] = {['combine'] = {['name'] = "card.info.combine.name", ['desc'] = "card.info.combine.desc", ['color'] = {['r'] = 0, ['g'] = 149, ['b'] = 223}}, ['resistance'] = {['name'] = "card.info.resistance.name", ['desc'] = "card.info.resistance.desc", ['color'] = {['r'] = 255, ['g'] = 141, ['b'] = 23}}, ['union'] = {['name'] = "card.info.union.name", ['desc'] = "card.info.union.desc", ['color'] = {['r'] = 227, ['g'] = 132, ['b'] = 164}}, ['warlord'] = {['name'] = "card.info.warlord.name", ['desc'] = "card.info.warlord.desc", ['color'] = {['r'] = 252, ['g'] = 33, ['b'] = 9}}, ['church'] = {['name'] = "card.info.church.name", ['desc'] = "card.info.church.desc", ['color'] = {['r'] = 126, ['g'] = 3, ['b'] = 251}}, ['bandit'] = {['name'] = "card.info.bandit.name", ['desc'] = "card.info.bandit.desc", ['color'] = {['r'] = 255, ['g'] = 186, ['b'] = 0}}, ['other'] = {['name'] = "card.info.other.name", ['desc'] = "card.info.other.desc", ['color'] = {['r'] = 135, ['g'] = 223, ['b'] = 214}}}, ['general'] = {['sightedness'] = {['name'] = "card.general.sightedness.name", ['type'] = "外交牌", ['cost'] = "1", ['tag'] = {"红桃", "女皇"}, ['d'] = {"card.general.sightedness.d.1", "card.general.sightedness.d.2", "card.general.sightedness.d.3", "card.general.sightedness.d.4", "card.general.sightedness.d.5"}, ['a'] = {"card.general.sightedness.a.1", "card.general.sightedness.a.2", "card.general.sightedness.a.3", "card.general.sightedness.a.4", "card.general.sightedness.a.5", "card.general.sightedness.a.6"}}, ['rebuttal'] = {['name'] = "card.general.rebuttal.name", ['type'] = "敌对牌", ['cost'] = "1", ['tag'] = {"梅花", "魔术师"}, ['d'] = {"card.general.rebuttal.d.1", "card.general.rebuttal.d.2", "card.general.rebuttal.d.3", "card.general.rebuttal.d.4", "card.general.rebuttal.d.5", "card.general.rebuttal.d.6"}, ['a'] = {"card.general.rebuttal.a.1", "card.general.rebuttal.a.2", "card.general.rebuttal.a.3", "card.general.rebuttal.a.4", "card.general.rebuttal.a.5", "card.general.rebuttal.a.6"}}, ['hypothesis'] = {['name'] = "card.general.hypothesis.name", ['type'] = "外交牌", ['cost'] = "1", ['tag'] = {"梅花", "魔术师"}, ['d'] = {"card.general.hypothesis.d.1", "card.general.hypothesis.d.2", "card.general.hypothesis.d.3", "card.general.hypothesis.d.4", "card.general.hypothesis.d.5", "card.general.hypothesis.d.6"}, ['a'] = {"card.general.hypothesis.a.1", "card.general.hypothesis.a.2"}}, ['ridicule'] = {['name'] = "card.general.ridicule.name", ['type'] = "外交牌", ['cost'] = "1", ['tag'] = {"梅花", "魔术师"}, ['d'] = {"card.general.ridicule.d.1", "card.general.ridicule.d.2", "card.general.ridicule.d.3", "card.general.ridicule.d.4", "card.general.ridicule.d.5"}, ['a'] = {"card.general.ridicule.a.1", "card.general.ridicule.a.2"}}, ['fame'] = {['name'] = "card.general.fame.name", ['type'] = "外交牌", ['cost'] = "1", ['tag'] = {"红桃", "皇帝"}, ['d'] = {"card.general.fame.d.1", "card.general.fame.d.2", "card.general.fame.d.3", "card.general.fame.d.4", "card.general.fame.d.5", "card.general.fame.d.6"}, ['a'] = {"card.general.fame.a.1", "card.general.fame.a.2", "card.general.fame.a.3"}}, ['informationexchange'] = {['name'] = "card.general.informationexchange.name", ['type'] = "外交牌", ['cost'] = "1", ['tag'] = {"方块", "魔术师"}, ['d'] = {"card.general.informationexchange.d.1", "card.general.informationexchange.d.2", "card.general.informationexchange.d.3", "card.general.informationexchange.d.4"}, ['a'] = {"card.general.informationexchange.a.1", "card.general.informationexchange.a.2", "card.general.informationexchange.a.3", "card.general.informationexchange.a.4"}}, ['smalltalk'] = {['name'] = "card.general.smalltalk.name", ['type'] = "外交牌", ['cost'] = "1", ['tag'] = {"红桃", "女皇"}, ['d'] = {"card.general.smalltalk.d.1", "card.general.smalltalk.d.2", "card.general.smalltalk.d.3", "card.general.smalltalk.d.4", "card.general.smalltalk.d.5", "card.general.smalltalk.d.6"}, ['a'] = {"card.general.smalltalk.a.1", "card.general.smalltalk.a.2", "card.general.smalltalk.a.3", "card.general.smalltalk.a.4"}}, ['negligence'] = {['name'] = "card.general.negligence.name", ['type'] = "敌对牌", ['cost'] = "2", ['tag'] = {"方块", "愚者"}, ['d'] = {"card.general.negligence.d.1", "card.general.negligence.d.2", "card.general.negligence.d.3", "card.general.negligence.d.4", "card.general.negligence.d.5"}, ['a'] = {"card.general.negligence.a.1", "card.general.negligence.a.2", "card.general.negligence.a.3"}}, ['terrorface'] = {['name'] = "card.general.terrorface.name", ['type'] = "敌对牌", ['cost'] = "2", ['tag'] = {"黑桃", "魔术师"}, ['d'] = {"card.general.terrorface.d.1", "card.general.terrorface.d.2"}, ['a'] = {"card.general.terrorface.a.1", "card.general.terrorface.a.2", "card.general.terrorface.a.3"}}, ['hatsleight'] = {['name'] = "card.general.hatsleight.name", ['type'] = "外交牌", ['cost'] = "2", ['tag'] = {"梅花", "魔术师"}, ['d'] = {"card.general.hatsleight.d.1", "card.general.hatsleight.d.2"}, ['a'] = {"card.general.hatsleight.a.1", "card.general.hatsleight.a.2", "card.general.hatsleight.a.3"}}, ['dispute'] = {['name'] = "card.general.dispute.name", ['type'] = "敌对牌", ['cost'] = "2", ['tag'] = {"红桃", "愚者"}, ['d'] = {"card.general.dispute.d.1", "card.general.dispute.d.2", "card.general.dispute.d.3"}, ['a'] = {"card.general.dispute.a.1", "card.general.dispute.a.2"}}, ['warexperience'] = {['name'] = "card.general.warexperience.name", ['type'] = "外交牌", ['cost'] = "3", ['tag'] = {"黑桃", "皇帝"}, ['d'] = {"card.general.warexperience.d.1", "card.general.warexperience.d.2", "card.general.warexperience.d.3", "card.general.warexperience.d.4", "card.general.warexperience.d.5"}, ['a'] = {"card.general.warexperience.a.1", "card.general.warexperience.a.2"}}, ['psychologicalwar'] = {['name'] = "card.general.psychologicalwar.name", ['type'] = "敌对牌", ['cost'] = "3", ['tag'] = {"黑桃", "皇帝"}, ['d'] = {"card.general.psychologicalwar.d.1", "card.general.psychologicalwar.d.2", "card.general.psychologicalwar.d.3", "card.general.psychologicalwar.d.4", "card.general.psychologicalwar.d.5", "card.general.psychologicalwar.d.6"}, ['a'] = {"card.general.psychologicalwar.a.1", "card.general.psychologicalwar.a.2", "card.general.psychologicalwar.a.3", "card.general.psychologicalwar.a.4"}}, ['espionage'] = {['name'] = "card.general.espionage.name", ['type'] = "敌对牌", ['cost'] = "3", ['tag'] = {"梅花", "魔术师"}, ['d'] = {"card.general.espionage.d.1", "card.general.espionage.d.2"}, ['a'] = {"card.general.espionage.a.1", "card.general.espionage.a.2"}}}, ['combine'] = {['fortress'] = {['name'] = "card.combine.fortress.name", ['type'] = "外交牌", ['cost'] = "1", ['tag'] = {"黑桃", "皇帝"}, ['d'] = {"card.combine.fortress.d.1", "card.combine.fortress.d.2"}, ['a'] = {"card.combine.fortress.a.1", "card.combine.fortress.a.2", "card.combine.fortress.a.3", "card.combine.fortress.a.4"}}, ['overwatch'] = {['name'] = "card.combine.overwatch.name", ['type'] = "敌对牌", ['cost'] = "1", ['tag'] = {"梅花", "魔术师"}, ['d'] = {"card.combine.overwatch.d.1", "card.combine.overwatch.d.2", "card.combine.overwatch.d.3", "card.combine.overwatch.d.4", "card.combine.overwatch.d.5"}, ['a'] = {"card.combine.overwatch.a.1", "card.combine.overwatch.a.2", "card.combine.overwatch.a.3"}}, ['fishingremarks'] = {['name'] = "card.combine.fishingremarks.name", ['type'] = "敌对牌", ['cost'] = "2", ['tag'] = {"梅花", "魔术师"}, ['d'] = {"card.combine.fishingremarks.d.1", "card.combine.fishingremarks.d.2"}, ['a'] = {"card.combine.fishingremarks.a.1", "card.combine.fishingremarks.a.2", "card.combine.fishingremarks.a.3", "card.combine.fishingremarks.a.4"}}, ['internalmessage'] = {['name'] = "card.combine.internalmessage.name", ['type'] = "外交牌", ['cost'] = "2", ['tag'] = {"方块", "魔术师"}, ['d'] = {"card.combine.internalmessage.d.1", "card.combine.internalmessage.d.2", "card.combine.internalmessage.d.3", "card.combine.internalmessage.d.4", "card.combine.internalmessage.d.5"}, ['a'] = {"card.combine.internalmessage.a.1", "card.combine.internalmessage.a.2", "card.combine.internalmessage.a.3", "card.combine.internalmessage.a.4"}}, ['keeneye'] = {['name'] = "card.combine.keeneye.name", ['type'] = "外交牌", ['cost'] = "2", ['tag'] = {"红桃", "女皇"}, ['d'] = {"card.combine.keeneye.d.1", "card.combine.keeneye.d.2", "card.combine.keeneye.d.3", "card.combine.keeneye.d.4"}, ['a'] = {"card.combine.keeneye.a.1", "card.combine.keeneye.a.2", "card.combine.keeneye.a.3"}}, ['viralpandemic'] = {['name'] = "card.combine.viralpandemic.name", ['type'] = "外交牌", ['cost'] = "2", ['tag'] = {"红桃", "女皇"}, ['d'] = {"card.combine.viralpandemic.d.1", "card.combine.viralpandemic.d.2", "card.combine.viralpandemic.d.3"}, ['a'] = {"card.combine.viralpandemic.a.1", "card.combine.viralpandemic.a.2"}}, ['businessasusual'] = {['name'] = "card.combine.businessasusual.name", ['type'] = "外交牌", ['cost'] = "3", ['tag'] = {"梅花", "女皇"}, ['d'] = {"card.combine.businessasusual.d.1", "card.combine.businessasusual.d.2", "card.combine.businessasusual.d.3"}, ['a'] = {"card.combine.businessasusual.a.1", "card.combine.businessasusual.a.2"}}, ['citybroadcast'] = {['name'] = "card.combine.citybroadcast.name", ['type'] = "外交牌", ['cost'] = "3", ['tag'] = {"红桃", "女皇"}, ['d'] = {"card.combine.citybroadcast.d.1", "card.combine.citybroadcast.d.2"}, ['a'] = {"card.combine.citybroadcast.a.1", "card.combine.citybroadcast.a.2"}}, ['trojanhorse'] = {['name'] = "card.combine.trojanhorse.name", ['type'] = "敌对牌", ['cost'] = "3", ['tag'] = {"黑桃", "魔术师"}, ['d'] = {"card.combine.trojanhorse.d.1", "card.combine.trojanhorse.d.2"}, ['a'] = {"card.combine.trojanhorse.a.1", "card.combine.trojanhorse.a.2"}}, ['arrest'] = {['name'] = "card.combine.arrest.name", ['type'] = "敌对牌", ['cost'] = "3", ['tag'] = {"黑桃", "皇帝"}, ['d'] = {"card.combine.arrest.d.1", "card.combine.arrest.d.2", "card.combine.arrest.d.3"}, ['a'] = {"card.combine.arrest.a.1", "card.combine.arrest.a.2", "card.combine.arrest.a.3"}}, ['novamine'] = {['name'] = "card.combine.novamine.name", ['type'] = "外交牌", ['cost'] = "3", ['tag'] = {"黑桃", "皇帝"}, ['d'] = {"card.combine.novamine.d.1", "card.combine.novamine.d.2", "card.combine.novamine.d.3"}, ['a'] = {"card.combine.novamine.a.1", "card.combine.novamine.a.2"}}, ['imperialorder'] = {['name'] = "card.combine.imperialorder.name", ['type'] = "敌对牌", ['cost'] = "4", ['tag'] = {"红桃", "皇帝"}, ['d'] = {"card.combine.imperialorder.d.1", "card.combine.imperialorder.d.2"}, ['a'] = {"card.combine.imperialorder.a.1", "card.combine.imperialorder.a.2"}}, ['ultimatum'] = {['name'] = "card.combine.ultimatum.name", ['type'] = "敌对牌", ['cost'] = "4", ['tag'] = {"红桃", "皇帝"}, ['d'] = {"card.combine.ultimatum.d.1", "card.combine.ultimatum.d.2", "card.combine.ultimatum.d.3", "card.combine.ultimatum.d.4"}, ['a'] = {"card.combine.ultimatum.a.1", "card.combine.ultimatum.a.2"}}, ['sniperthreat'] = {['name'] = "card.combine.sniperthreat.name", ['type'] = "敌对牌", ['cost'] = "4", ['tag'] = {"黑桃", "魔术师"}, ['d'] = {"card.combine.sniperthreat.d.1", "card.combine.sniperthreat.d.2"}, ['a'] = {"card.combine.sniperthreat.a.1", "card.combine.sniperthreat.a.2"}}, ['secretweapon'] = {['name'] = "card.combine.secretweapon.name", ['type'] = "敌对牌", ['cost'] = "4", ['tag'] = {"梅花", "皇帝"}, ['d'] = {"card.combine.secretweapon.d.1", "card.combine.secretweapon.d.2"}, ['a'] = {"card.combine.secretweapon.a.1", "card.combine.secretweapon.a.2"}}, ['militarycourt'] = {['name'] = "card.combine.militarycourt.name", ['type'] = "敌对牌", ['cost'] = "5", ['tag'] = {"梅花", "皇帝"}, ['d'] = {"card.combine.militarycourt.d.1", "card.combine.militarycourt.d.2"}, ['a'] = {"card.combine.militarycourt.a.1", "card.combine.militarycourt.a.2", "card.combine.militarycourt.a.3"}}}, ['resistance'] = {['fate'] = {['name'] = "card.resistance.fate.name", ['type'] = "外交牌", ['cost'] = "1", ['tag'] = {"红桃", "女皇"}, ['d'] = {"card.resistance.fate.d.1", "card.resistance.fate.d.2"}, ['a'] = {"card.resistance.fate.a.1", "card.resistance.fate.a.2"}}, ['undergroundnetwork'] = {['name'] = "card.resistance.undergroundnetwork.name", ['type'] = "外交牌", ['cost'] = "1", ['tag'] = {"梅花", "魔术师"}, ['d'] = {"card.resistance.undergroundnetwork.d.1", "card.resistance.undergroundnetwork.d.2"}, ['a'] = {"card.resistance.undergroundnetwork.a.1", "card.resistance.undergroundnetwork.a.2"}}, ['treadingoneggs'] = {['name'] = "card.resistance.treadingoneggs.name", ['type'] = "外交牌", ['cost'] = "1", ['tag'] = {"梅花", "魔术师"}, ['d'] = {"card.resistance.treadingoneggs.d.1", "card.resistance.treadingoneggs.d.2", "card.resistance.treadingoneggs.d.3", "card.resistance.treadingoneggs.d.4"}, ['a'] = {"card.resistance.treadingoneggs.a.1", "card.resistance.treadingoneggs.a.2"}}, ['rareoccasion'] = {['name'] = "card.resistance.rareoccasion.name", ['type'] = "外交牌", ['cost'] = "1", ['tag'] = {"梅花", "魔术师"}, ['d'] = {"card.resistance.rareoccasion.d.1", "card.resistance.rareoccasion.d.2", "card.resistance.rareoccasion.d.3", "card.resistance.rareoccasion.d.4"}, ['a'] = {"card.resistance.rareoccasion.a.1", "card.resistance.rareoccasion.a.2", "card.resistance.rareoccasion.a.3"}}, ['beyondreach'] = {['name'] = "card.resistance.beyondreach.name", ['type'] = "外交牌", ['cost'] = "2", ['tag'] = {"黑桃", "愚者"}, ['d'] = {"card.resistance.beyondreach.d.1", "card.resistance.beyondreach.d.2"}, ['a'] = {"card.resistance.beyondreach.a.1", "card.resistance.beyondreach.a.2"}}, ['dangerzone'] = {['name'] = "card.resistance.dangerzone.name", ['type'] = "外交牌", ['cost'] = "2", ['tag'] = {"黑桃", "魔术师"}, ['d'] = {"card.resistance.dangerzone.d.1", "card.resistance.dangerzone.d.2"}, ['a'] = {"card.resistance.dangerzone.a.1", "card.resistance.dangerzone.a.2"}}, ['van'] = {['name'] = "card.resistance.van.name", ['type'] = "外交牌", ['cost'] = "2", ['tag'] = {"黑桃", "皇帝"}, ['d'] = {"card.resistance.van.d.1", "card.resistance.van.d.2"}, ['a'] = {"card.resistance.van.a.1", "card.resistance.van.a.2"}}, ['farewellcage'] = {['name'] = "card.resistance.farewellcage.name", ['type'] = "外交牌", ['cost'] = "2", ['tag'] = {"红桃", "愚者"}, ['d'] = {"card.resistance.farewellcage.d.1", "card.resistance.farewellcage.d.2", "card.resistance.farewellcage.d.3"}, ['a'] = {"card.resistance.farewellcage.a.1", "card.resistance.farewellcage.a.2"}}, ['publicsupport'] = {['name'] = "card.resistance.publicsupport.name", ['type'] = "外交牌", ['cost'] = "3", ['tag'] = {"红桃", "女皇"}, ['d'] = {"card.resistance.publicsupport.d.1", "card.resistance.publicsupport.d.2"}, ['a'] = {"card.resistance.publicsupport.a.1", "card.resistance.publicsupport.a.2"}}, ['bravery'] = {['name'] = "card.resistance.bravery.name", ['type'] = "敌对牌", ['cost'] = "3", ['tag'] = {"黑桃", "愚者"}, ['d'] = {"card.resistance.bravery.d.1", "card.resistance.bravery.d.2"}, ['a'] = {"card.resistance.bravery.a.1", "card.resistance.bravery.a.2"}}, ['preparedness'] = {['name'] = "card.resistance.preparedness.name", ['type'] = "外交牌", ['cost'] = "3", ['tag'] = {"方块", "愚者"}, ['d'] = {"card.resistance.preparedness.d.1", "card.resistance.preparedness.d.2"}, ['a'] = {"card.resistance.preparedness.a.1", "card.resistance.preparedness.a.2"}}, ['firebase'] = {['name'] = "card.resistance.firebase.name", ['type'] = "敌对牌", ['cost'] = "3", ['tag'] = {"黑桃", "皇帝"}, ['d'] = {"card.resistance.firebase.d.1", "card.resistance.firebase.d.2"}, ['a'] = {"card.resistance.firebase.a.1", "card.resistance.firebase.a.2"}}, ['rocketlaunch'] = {['name'] = "card.resistance.rocketlaunch.name", ['type'] = "敌对牌", ['cost'] = "3", ['tag'] = {"红桃", "女皇"}, ['d'] = {"card.resistance.rocketlaunch.d.1", "card.resistance.rocketlaunch.d.2"}, ['a'] = {"card.resistance.rocketlaunch.a.1", "card.resistance.rocketlaunch.a.2"}}, ['familiarground'] = {['name'] = "card.resistance.familiarground.name", ['type'] = "外交牌", ['cost'] = "4", ['tag'] = {"方块", "愚者"}, ['d'] = {"card.resistance.familiarground.d.1", "card.resistance.familiarground.d.2", "card.resistance.familiarground.d.3"}, ['a'] = {"card.resistance.familiarground.a.1", "card.resistance.familiarground.a.2"}}, ['beliefofrebels'] = {['name'] = "card.resistance.beliefofrebels.name", ['type'] = "外交牌", ['cost'] = "4", ['tag'] = {"红桃", "愚者"}, ['d'] = {"card.resistance.beliefofrebels.d.1", "card.resistance.beliefofrebels.d.2"}, ['a'] = {"card.resistance.beliefofrebels.a.1", "card.resistance.beliefofrebels.a.2"}}, ['ifwartomorrow'] = {['name'] = "card.resistance.ifwartomorrow.name", ['type'] = "敌对牌", ['cost'] = "5", ['tag'] = {"黑桃", "皇帝"}, ['d'] = {"card.resistance.ifwartomorrow.d.1", "card.resistance.ifwartomorrow.d.2"}, ['a'] = {"card.resistance.ifwartomorrow.a.1", "card.resistance.ifwartomorrow.a.2"}}}, ['union'] = {['diligentefforts'] = {['name'] = "card.union.diligentefforts.name", ['type'] = "外交牌", ['cost'] = "1", ['tag'] = {"红桃", "女皇"}, ['d'] = {"card.union.diligentefforts.d.1", "card.union.diligentefforts.d.2"}, ['a'] = {"card.union.diligentefforts.a.1", "card.union.diligentefforts.a.2"}}, ['inconsistentaction'] = {['name'] = "card.union.inconsistentaction.name", ['type'] = "敌对牌", ['cost'] = "1", ['tag'] = {"方块", "愚者"}, ['d'] = {"card.union.inconsistentaction.d.1", "card.union.inconsistentaction.d.2"}, ['a'] = {"card.union.inconsistentaction.a.1", "card.union.inconsistentaction.a.2"}}, ['resourcedistribution'] = {['name'] = "card.union.resourcedistribution.name", ['type'] = "外交牌", ['cost'] = "1", ['tag'] = {"方块", "皇帝"}, ['d'] = {"card.union.resourcedistribution.d.1", "card.union.resourcedistribution.d.2"}, ['a'] = {"card.union.resourcedistribution.a.1", "card.union.resourcedistribution.a.2"}}, ['labor'] = {['name'] = "card.union.labor.name", ['type'] = "外交牌", ['cost'] = "1", ['tag'] = {"方块", "愚者"}, ['d'] = {"card.union.labor.d.1", "card.union.labor.d.2"}, ['a'] = {"card.union.labor.a.1", "card.union.labor.a.2"}}, ['tacticalreorganization'] = {['name'] = "card.union.tacticalreorganization.name", ['type'] = "敌对牌", ['cost'] = "2", ['tag'] = {"梅花", "魔术师"}, ['d'] = {"card.union.tacticalreorganization.d.1", "card.union.tacticalreorganization.d.2"}, ['a'] = {"card.union.tacticalreorganization.a.1", "card.union.tacticalreorganization.a.2"}}, ['strikethreat'] = {['name'] = "card.union.strikethreat.name", ['type'] = "敌对牌", ['cost'] = "2", ['tag'] = {"黑桃", "愚者"}, ['d'] = {"card.union.strikethreat.d.1", "card.union.strikethreat.d.2"}, ['a'] = {"card.union.strikethreat.a.1", "card.union.strikethreat.a.2"}}, ['safetyproduction'] = {['name'] = "card.union.safetyproduction.name", ['type'] = "外交牌", ['cost'] = "2", ['tag'] = {"梅花", "女皇"}, ['d'] = {"card.union.safetyproduction.d.1", "card.union.safetyproduction.d.2"}, ['a'] = {"card.union.safetyproduction.a.1", "card.union.safetyproduction.a.2"}}, ['powersupply'] = {['name'] = "card.union.powersupply.name", ['type'] = "外交牌", ['cost'] = "2", ['tag'] = {"红桃", "女皇"}, ['d'] = {"card.union.powersupply.d.1", "card.union.powersupply.d.2"}, ['a'] = {"card.union.powersupply.a.1", "card.union.powersupply.a.2"}}, ['delaytactics'] = {['name'] = "card.union.delaytactics.name", ['type'] = "敌对牌", ['cost'] = "3", ['tag'] = {"梅花", "魔术师"}, ['d'] = {"card.union.delaytactics.d.1", "card.union.delaytactics.d.2"}, ['a'] = {"card.union.delaytactics.a.1", "card.union.delaytactics.a.2"}}, ['productionline'] = {['name'] = "card.union.productionline.name", ['type'] = "外交牌", ['cost'] = "3", ['tag'] = {"方块", "皇帝"}, ['d'] = {"card.union.productionline.d.1", "card.union.productionline.d.2"}, ['a'] = {"card.union.productionline.a.1", "card.union.productionline.a.2"}}, ['uprising'] = {['name'] = "card.union.uprising.name", ['type'] = "外交牌", ['cost'] = "3", ['tag'] = {"红桃", "女皇"}, ['d'] = {"card.union.uprising.d.1", "card.union.uprising.d.2", "card.union.uprising.d.3"}, ['a'] = {"card.union.uprising.a.1", "card.union.uprising.a.2"}}, ['molotov'] = {['name'] = "card.union.molotov.name", ['type'] = "外交牌", ['cost'] = "4", ['tag'] = {"红桃", "愚者"}, ['d'] = {"card.union.molotov.d.1", "card.union.molotov.d.2"}, ['a'] = {"card.union.molotov.a.1", "card.union.molotov.a.2"}}, ['longnight'] = {['name'] = "card.union.longnight.name", ['type'] = "敌对牌", ['cost'] = "4", ['tag'] = {"黑桃", "愚者"}, ['d'] = {"card.union.longnight.d.1", "card.union.longnight.d.2"}, ['a'] = {"card.union.longnight.a.1", "card.union.longnight.a.2"}}, ['destroyrailway'] = {['name'] = "card.union.destroyrailway.name", ['type'] = "敌对牌", ['cost'] = "4", ['tag'] = {"黑桃", "魔术师"}, ['d'] = {"card.union.destroyrailway.d.1", "card.union.destroyrailway.d.2"}, ['a'] = {"card.union.destroyrailway.a.1", "card.union.destroyrailway.a.2"}}, ['disorder'] = {['name'] = "card.union.disorder.name", ['type'] = "敌对牌", ['cost'] = "4", ['tag'] = {"梅花", "魔术师"}, ['d'] = {"card.union.disorder.d.1", "card.union.disorder.d.2", "card.union.disorder.d.3"}, ['a'] = {"card.union.disorder.a.1", "card.union.disorder.a.2"}}, ['unionrepresentative'] = {['name'] = "card.union.unionrepresentative.name", ['type'] = "外交牌", ['cost'] = "5", ['tag'] = {"红桃", "女皇"}, ['d'] = {"card.union.unionrepresentative.d.1", "card.union.unionrepresentative.d.2"}, ['a'] = {"card.union.unionrepresentative.a.1", "card.union.unionrepresentative.a.2"}}}, ['warlord'] = {['troublesometime'] = {['name'] = "card.warlord.troublesometime.name", ['type'] = "敌对牌", ['cost'] = "1", ['tag'] = {"黑桃", "皇帝"}, ['d'] = {"card.warlord.troublesometime.d.1", "card.warlord.troublesometime.d.2", "card.warlord.troublesometime.d.3", "card.warlord.troublesometime.d.4"}, ['a'] = {"card.warlord.troublesometime.a.1", "card.warlord.troublesometime.a.2"}}, ['dependonothers'] = {['name'] = "card.warlord.dependonothers.name", ['type'] = "敌对牌", ['cost'] = "1", ['tag'] = {"方块", "愚者"}, ['d'] = {"card.warlord.dependonothers.d.1", "card.warlord.dependonothers.d.2"}, ['a'] = {"card.warlord.dependonothers.a.1", "card.warlord.dependonothers.a.2"}}, ['openchallenge'] = {['name'] = "card.warlord.openchallenge.name", ['type'] = "敌对牌", ['cost'] = "1", ['tag'] = {"红桃", "皇帝"}, ['d'] = {"card.warlord.openchallenge.d.1", "card.warlord.openchallenge.d.2", "card.warlord.openchallenge.d.3", "card.warlord.openchallenge.d.4"}, ['a'] = {"card.warlord.openchallenge.a.1", "card.warlord.openchallenge.a.2"}}, ['rabble'] = {['name'] = "card.warlord.rabble.name", ['type'] = "敌对牌", ['cost'] = "1", ['tag'] = {"方块", "皇帝"}, ['d'] = {"card.warlord.rabble.d.1", "card.warlord.rabble.d.2", "card.warlord.rabble.d.3", "card.warlord.rabble.d.4"}, ['a'] = {"card.warlord.rabble.a.1", "card.warlord.rabble.a.2"}}, ['backfire'] = {['name'] = "card.warlord.backfire.name", ['type'] = "敌对牌", ['cost'] = "2", ['tag'] = {"梅花", "魔术师"}, ['d'] = {"card.warlord.backfire.d.1", "card.warlord.backfire.d.2"}, ['a'] = {"card.warlord.backfire.a.1", "card.warlord.backfire.a.2"}}, ['desperatemeans'] = {['name'] = "card.warlord.desperatemeans.name", ['type'] = "敌对牌", ['cost'] = "2", ['tag'] = {"黑桃", "魔术师"}, ['d'] = {"card.warlord.desperatemeans.d.1", "card.warlord.desperatemeans.d.2"}, ['a'] = {"card.warlord.desperatemeans.a.1", "card.warlord.desperatemeans.a.2"}}, ['takeadvantage'] = {['name'] = "card.warlord.takeadvantage.name", ['type'] = "敌对牌", ['cost'] = "2", ['tag'] = {"梅花", "魔术师"}, ['d'] = {"card.warlord.takeadvantage.d.1", "card.warlord.takeadvantage.d.2"}, ['a'] = {"card.warlord.takeadvantage.a.1", "card.warlord.takeadvantage.a.2"}}, ['reverseaction'] = {['name'] = "card.warlord.reverseaction.name", ['type'] = "敌对牌", ['cost'] = "3", ['tag'] = {"黑桃", "皇帝"}, ['d'] = {"card.warlord.reverseaction.d.1", "card.warlord.reverseaction.d.2", "card.warlord.reverseaction.d.3"}, ['a'] = {"card.warlord.reverseaction.a.1", "card.warlord.reverseaction.a.2"}}, ['supercilious'] = {['name'] = "card.warlord.supercilious.name", ['type'] = "敌对牌", ['cost'] = "3", ['tag'] = {"黑桃", "皇帝"}, ['d'] = {"card.warlord.supercilious.d.1", "card.warlord.supercilious.d.2"}, ['a'] = {"card.warlord.supercilious.a.1", "card.warlord.supercilious.a.2"}}, ['arroganceandprejudice'] = {['name'] = "card.warlord.arroganceandprejudice.name", ['type'] = "敌对牌", ['cost'] = "3", ['tag'] = {"红桃", "皇帝"}, ['d'] = {"card.warlord.arroganceandprejudice.d.1", "card.warlord.arroganceandprejudice.d.2"}, ['a'] = {"card.warlord.arroganceandprejudice.a.1", "card.warlord.arroganceandprejudice.a.2"}}, ['survivalofefittest'] = {['name'] = "card.warlord.survivalofefittest.name", ['type'] = "敌对牌", ['cost'] = "3", ['tag'] = {"黑桃", "愚者"}, ['d'] = {"card.warlord.survivalofefittest.d.1", "card.warlord.survivalofefittest.d.2", "card.warlord.survivalofefittest.d.3"}, ['a'] = {"card.warlord.survivalofefittest.a.1", "card.warlord.survivalofefittest.a.2"}}, ['terrorrule'] = {['name'] = "card.warlord.terrorrule.name", ['type'] = "敌对牌", ['cost'] = "4", ['tag'] = {"黑桃", "皇帝"}, ['d'] = {"card.warlord.terrorrule.d.1", "card.warlord.terrorrule.d.2"}, ['a'] = {"card.warlord.terrorrule.a.1", "card.warlord.terrorrule.a.2"}}, ['wardeclaration'] = {['name'] = "card.warlord.wardeclaration.name", ['type'] = "敌对牌", ['cost'] = "4", ['tag'] = {"红桃", "皇帝"}, ['d'] = {"card.warlord.wardeclaration.d.1", "card.warlord.wardeclaration.d.2"}, ['a'] = {"card.warlord.wardeclaration.a.1", "card.warlord.wardeclaration.a.2"}}, ['captivetrain'] = {['name'] = "card.warlord.captivetrain.name", ['type'] = "敌对牌", ['cost'] = "4", ['tag'] = {"黑桃", "皇帝"}, ['d'] = {"card.warlord.captivetrain.d.1", "card.warlord.captivetrain.d.2"}, ['a'] = {"card.warlord.captivetrain.a.1", "card.warlord.captivetrain.a.2"}}, ['dictatorship'] = {['name'] = "card.warlord.dictatorship.name", ['type'] = "敌对牌", ['cost'] = "4", ['tag'] = {"红桃", "皇帝"}, ['d'] = {"card.warlord.dictatorship.d.1", "card.warlord.dictatorship.d.2", "card.warlord.dictatorship.d.3"}, ['a'] = {"card.warlord.dictatorship.a.1", "card.warlord.dictatorship.a.2", "card.warlord.dictatorship.a.3"}}, ['frisys'] = {['name'] = "card.warlord.frisys.name", ['type'] = "敌对牌", ['cost'] = "5", ['tag'] = {"黑桃", "皇帝"}, ['d'] = {"card.warlord.frisys.d.1", "card.warlord.frisys.d.2", "card.warlord.frisys.d.3", "card.warlord.frisys.d.4"}, ['a'] = {"card.warlord.frisys.a.1", "card.warlord.frisys.a.2", "card.warlord.frisys.a.3"}}}, ['church'] = {['judgment'] = {['name'] = "card.church.judgment.name", ['type'] = "敌对牌", ['cost'] = "1", ['tag'] = {"梅花", "女皇"}, ['d'] = {"card.church.judgment.d.1", "card.church.judgment.d.2"}, ['a'] = {"card.church.judgment.a.1", "card.church.judgment.a.2"}}, ['pheromone'] = {['name'] = "card.church.pheromone.name", ['type'] = "外交牌", ['cost'] = "1", ['tag'] = {"红桃", "女皇"}, ['d'] = {"card.church.pheromone.d.1", "card.church.pheromone.d.2"}, ['a'] = {"card.church.pheromone.a.1", "card.church.pheromone.a.2"}}, ['secretorganization'] = {['name'] = "card.church.secretorganization.name", ['type'] = "敌对牌", ['cost'] = "1", ['tag'] = {"梅花", "魔术师"}, ['d'] = {"card.church.secretorganization.d.1", "card.church.secretorganization.d.2"}, ['a'] = {"card.church.secretorganization.a.1", "card.church.secretorganization.a.2"}}, ['puppet'] = {['name'] = "card.church.puppet.name", ['type'] = "敌对牌", ['cost'] = "1", ['tag'] = {"梅花", "魔术师"}, ['d'] = {"card.church.puppet.d.1", "card.church.puppet.d.2"}, ['a'] = {"card.church.puppet.a.1", "card.church.puppet.a.2"}}, ['annihilation'] = {['name'] = "card.church.annihilation.name", ['type'] = "敌对牌", ['cost'] = "2", ['tag'] = {"黑桃", "魔术师"}, ['d'] = {"card.church.annihilation.d.1", "card.church.annihilation.d.2"}, ['a'] = {"card.church.annihilation.a.1", "card.church.annihilation.a.2"}}, ['earworm'] = {['name'] = "card.church.earworm.name", ['type'] = "敌对牌", ['cost'] = "2", ['tag'] = {"红桃", "女皇"}, ['d'] = {"card.church.earworm.d.1", "card.church.earworm.d.2", "card.church.earworm.d.3"}, ['a'] = {"card.church.earworm.a.1", "card.church.earworm.a.2"}}, ['fanaticism'] = {['name'] = "card.church.fanaticism.name", ['type'] = "敌对牌", ['cost'] = "3", ['tag'] = {"红桃", "愚者"}, ['d'] = {"card.church.fanaticism.d.1", "card.church.fanaticism.d.2"}, ['a'] = {"card.church.fanaticism.a.1", "card.church.fanaticism.a.2"}}, ['resurrection'] = {['name'] = "card.church.resurrection.name", ['type'] = "外交牌", ['cost'] = "3", ['tag'] = {"红桃", "魔术师"}, ['d'] = {"card.church.resurrection.d.1", "card.church.resurrection.d.2", "card.church.resurrection.d.3"}, ['a'] = {"card.church.resurrection.a.1", "card.church.resurrection.a.2"}}, ['telepathy'] = {['name'] = "card.church.telepathy.name", ['type'] = "外交牌", ['cost'] = "3", ['tag'] = {"梅花", "魔术师"}, ['d'] = {"card.church.telepathy.d.1", "card.church.telepathy.d.2"}, ['a'] = {"card.church.telepathy.a.1", "card.church.telepathy.a.2", "card.church.telepathy.a.3"}}, ['experiment'] = {['name'] = "card.church.experiment.name", ['type'] = "外交牌", ['cost'] = "3", ['tag'] = {"梅花", "愚者"}, ['d'] = {"card.church.experiment.d.1", "card.church.experiment.d.2"}, ['a'] = {"card.church.experiment.a.1", "card.church.experiment.a.2", "card.church.experiment.a.3"}}, ['secretart'] = {['name'] = "card.church.secretart.name", ['type'] = "外交牌", ['cost'] = "3", ['tag'] = {"梅花", "魔术师"}, ['d'] = {"card.church.secretart.d.1", "card.church.secretart.d.2"}, ['a'] = {"card.church.secretart.a.1", "card.church.secretart.a.2"}}, ['barnacle'] = {['name'] = "card.church.barnacle.name", ['type'] = "外交牌", ['cost'] = "3", ['tag'] = {"梅花", "魔术师"}, ['d'] = {"card.church.barnacle.d.1", "card.church.barnacle.d.2"}, ['a'] = {"card.church.barnacle.a.1", "card.church.barnacle.a.2"}}, ['cataclysm'] = {['name'] = "card.church.cataclysm.name", ['type'] = "敌对牌", ['cost'] = "3", ['tag'] = {"黑桃", "皇帝"}, ['d'] = {"card.church.cataclysm.d.1", "card.church.cataclysm.d.2", "card.church.cataclysm.d.3"}, ['a'] = {"card.church.cataclysm.a.1", "card.church.cataclysm.a.2"}}, ['wheeloffate'] = {['name'] = "card.church.wheeloffate.name", ['type'] = "外交牌", ['cost'] = "4", ['tag'] = {"梅花", "魔术师"}, ['d'] = {"card.church.wheeloffate.d.1", "card.church.wheeloffate.d.2"}, ['a'] = {"card.church.wheeloffate.a.1", "card.church.wheeloffate.a.2"}}, ['moonarmy'] = {['name'] = "card.church.moonarmy.name", ['type'] = "敌对牌", ['cost'] = "4", ['tag'] = {"黑桃", "魔术师"}, ['d'] = {"card.church.moonarmy.d.1", "card.church.moonarmy.d.2"}, ['a'] = {"card.church.moonarmy.a.1", "card.church.moonarmy.a.2"}}, ['garrysmouse'] = {['name'] = "card.church.garrysmouse.name", ['type'] = "敌对牌", ['cost'] = "5", ['tag'] = {"黑桃", "愚者"}, ['d'] = {"card.church.garrysmouse.d.1", "card.church.garrysmouse.d.2"}, ['a'] = {"card.church.garrysmouse.a.1", "card.church.garrysmouse.a.2"}}}, ['bandit'] = {['whitenight'] = {['name'] = "card.bandit.whitenight.name", ['type'] = "外交牌", ['cost'] = "1", ['tag'] = {"梅花", "魔术师"}, ['d'] = {"card.bandit.whitenight.d.1", "card.bandit.whitenight.d.2", "card.bandit.whitenight.d.3"}, ['a'] = {"card.bandit.whitenight.a.1", "card.bandit.whitenight.a.2", "card.bandit.whitenight.a.3"}}, ['supreme'] = {['name'] = "card.bandit.supreme.name", ['type'] = "敌对牌", ['cost'] = "1", ['tag'] = {"方块", "皇帝"}, ['d'] = {"card.bandit.supreme.d.1", "card.bandit.supreme.d.2", "card.bandit.supreme.d.3"}, ['a'] = {"card.bandit.supreme.a.1", "card.bandit.supreme.a.2"}}, ['breakout'] = {['name'] = "card.bandit.breakout.name", ['type'] = "敌对牌", ['cost'] = "1", ['tag'] = {"梅花", "愚者"}, ['d'] = {"card.bandit.breakout.d.1", "card.bandit.breakout.d.2"}, ['a'] = {"card.bandit.breakout.a.1", "card.bandit.breakout.a.2"}}, ['apple'] = {['name'] = "card.bandit.apple.name", ['type'] = "外交牌", ['cost'] = "1", ['tag'] = {"梅花", "魔术师"}, ['d'] = {"card.bandit.apple.d.1", "card.bandit.apple.d.2"}, ['a'] = {"card.bandit.apple.a.1", "card.bandit.apple.a.2"}}, ['playhouse'] = {['name'] = "card.bandit.playhouse.name", ['type'] = "外交牌", ['cost'] = "1", ['tag'] = {"红桃", "皇帝"}, ['d'] = {"card.bandit.playhouse.d.1", "card.bandit.playhouse.d.2", "card.bandit.playhouse.d.3"}, ['a'] = {"card.bandit.playhouse.a.1", "card.bandit.playhouse.a.2"}}, ['crimeandpunishment'] = {['name'] = "card.bandit.crimeandpunishment.name", ['type'] = "敌对牌", ['cost'] = "2", ['tag'] = {"黑桃", "皇帝"}, ['d'] = {"card.bandit.crimeandpunishment.d.1", "card.bandit.crimeandpunishment.d.2", "card.bandit.crimeandpunishment.d.3"}, ['a'] = {"card.bandit.crimeandpunishment.a.1", "card.bandit.crimeandpunishment.a.2"}}, ['creation'] = {['name'] = "card.bandit.creation.name", ['type'] = "外交牌", ['cost'] = "2", ['tag'] = {"梅花", "魔术师"}, ['d'] = {"card.bandit.creation.d.1", "card.bandit.creation.d.2"}, ['a'] = {"card.bandit.creation.a.1", "card.bandit.creation.a.2"}}, ['waitingforopportunity'] = {['name'] = "card.bandit.waitingforopportunity.name", ['type'] = "敌对牌", ['cost'] = "2", ['tag'] = {"黑桃", "愚者"}, ['d'] = {"card.bandit.waitingforopportunity.d.1", "card.bandit.waitingforopportunity.d.2"}, ['a'] = {"card.bandit.waitingforopportunity.a.1", "card.bandit.waitingforopportunity.a.2"}}, ['songofmisery'] = {['name'] = "card.bandit.songofmisery.name", ['type'] = "外交牌", ['cost'] = "3", ['tag'] = {"红桃", "愚者"}, ['d'] = {"card.bandit.songofmisery.d.1", "card.bandit.songofmisery.d.2"}, ['a'] = {"card.bandit.songofmisery.a.1", "card.bandit.songofmisery.a.2"}}, ['dropinthewrong'] = {['name'] = "card.bandit.dropinthewrong.name", ['type'] = "敌对牌", ['cost'] = "4", ['tag'] = {"黑桃", "魔术师"}, ['d'] = {"card.bandit.dropinthewrong.d.1", "card.bandit.dropinthewrong.d.2"}, ['a'] = {"card.bandit.dropinthewrong.a.1", "card.bandit.dropinthewrong.a.2"}}, ['makeblackwhite'] = {['name'] = "card.bandit.makeblackwhite.name", ['type'] = "敌对牌", ['cost'] = "4", ['tag'] = {"梅花", "魔术师"}, ['d'] = {"card.bandit.makeblackwhite.d.1", "card.bandit.makeblackwhite.d.2"}, ['a'] = {"card.bandit.makeblackwhite.a.1", "card.bandit.makeblackwhite.a.2"}}, ['dawn'] = {['name'] = "card.bandit.dawn.name", ['type'] = "敌对牌", ['cost'] = "4", ['tag'] = {"红桃", "女皇"}, ['d'] = {"card.bandit.dawn.d.1", "card.bandit.dawn.d.2", "card.bandit.dawn.d.3", "card.bandit.dawn.d.4"}, ['a'] = {"card.bandit.dawn.a.1", "card.bandit.dawn.a.2"}}, ['nosurvivors'] = {['name'] = "card.bandit.nosurvivors.name", ['type'] = "敌对牌", ['cost'] = "4", ['tag'] = {"梅花", "魔术师"}, ['d'] = {"card.bandit.nosurvivors.d.1", "card.bandit.nosurvivors.d.2", "card.bandit.nosurvivors.d.3"}, ['a'] = {"card.bandit.nosurvivors.a.1", "card.bandit.nosurvivors.a.2"}}, ['finaldefense'] = {['name'] = "card.bandit.finaldefense.name", ['type'] = "敌对牌", ['cost'] = "4", ['tag'] = {"黑桃", "皇帝"}, ['d'] = {"card.bandit.finaldefense.d.1", "card.bandit.finaldefense.d.2"}, ['a'] = {"card.bandit.finaldefense.a.1", "card.bandit.finaldefense.a.2"}}, ['raid'] = {['name'] = "card.bandit.raid.name", ['type'] = "外交牌", ['cost'] = "4", ['tag'] = {"梅花", "魔术师"}, ['d'] = {"card.bandit.raid.d.1", "card.bandit.raid.d.2"}, ['a'] = {"card.bandit.raid.a.1", "card.bandit.raid.a.2"}}, ['playwithfire'] = {['name'] = "card.bandit.playwithfire.name", ['type'] = "敌对牌", ['cost'] = "5", ['tag'] = {"黑桃", "魔术师"}, ['d'] = {"card.bandit.playwithfire.d.1", "card.bandit.playwithfire.d.2", "card.bandit.playwithfire.d.3"}, ['a'] = {"card.bandit.playwithfire.a.1", "card.bandit.playwithfire.a.2", "card.bandit.playwithfire.a.3"}}}, ['other'] = {['cheerstofuture'] = {['name'] = "card.other.cheerstofuture.name", ['type'] = "外交牌", ['cost'] = "1", ['tag'] = {"红桃", "愚者"}, ['d'] = {"card.other.cheerstofuture.d.1", "card.other.cheerstofuture.d.2", "card.other.cheerstofuture.d.3"}, ['a'] = {"card.other.cheerstofuture.a.1", "card.other.cheerstofuture.a.2"}}, ['monkeybusiness'] = {['name'] = "card.other.monkeybusiness.name", ['type'] = "外交牌", ['cost'] = "1", ['tag'] = {"红桃", "愚者"}, ['d'] = {"card.other.monkeybusiness.d.1", "card.other.monkeybusiness.d.2"}, ['a'] = {"card.other.monkeybusiness.a.1", "card.other.monkeybusiness.a.2"}}, ['letitburn'] = {['name'] = "card.other.letitburn.name", ['type'] = "外交牌", ['cost'] = "1", ['tag'] = {"红桃", "女皇"}, ['d'] = {"card.other.letitburn.d.1", "card.other.letitburn.d.2"}, ['a'] = {"card.other.letitburn.a.1", "card.other.letitburn.a.2"}}, ['diplomaticimmunity'] = {['name'] = "card.other.diplomaticimmunity.name", ['type'] = "外交牌", ['cost'] = "1", ['tag'] = {"红桃", "女皇"}, ['d'] = {"card.other.diplomaticimmunity.d.1", "card.other.diplomaticimmunity.d.2", "card.other.diplomaticimmunity.d.3", "card.other.diplomaticimmunity.d.4", "card.other.diplomaticimmunity.d.5"}, ['a'] = {"card.other.diplomaticimmunity.a.1", "card.other.diplomaticimmunity.a.2", "card.other.diplomaticimmunity.a.3"}}, ['hideout'] = {['name'] = "card.other.hideout.name", ['type'] = "外交牌", ['cost'] = "1", ['tag'] = {"红桃", "女皇"}, ['d'] = {"card.other.hideout.d.1", "card.other.hideout.d.2"}, ['a'] = {"card.other.hideout.a.1", "card.other.hideout.a.2"}}, ['snailwalking'] = {['name'] = "card.other.snailwalking.name", ['type'] = "外交牌", ['cost'] = "2", ['tag'] = {"梅花", "女皇"}, ['d'] = {"card.other.snailwalking.d.1", "card.other.snailwalking.d.2", "card.other.snailwalking.d.3"}, ['a'] = {"card.other.snailwalking.a.1", "card.other.snailwalking.a.2"}}, ['flattery'] = {['name'] = "card.other.flattery.name", ['type'] = "外交牌", ['cost'] = "2", ['tag'] = {"红桃", "女皇"}, ['d'] = {"card.other.flattery.d.1", "card.other.flattery.d.2"}, ['a'] = {"card.other.flattery.a.1", "card.other.flattery.a.2"}}, ['profiteering'] = {['name'] = "card.other.profiteering.name", ['type'] = "外交牌", ['cost'] = "2", ['tag'] = {"红桃", "女皇"}, ['d'] = {"card.other.profiteering.d.1", "card.other.profiteering.d.2", "card.other.profiteering.d.3"}, ['a'] = {"card.other.profiteering.a.1", "card.other.profiteering.a.2"}}, ['whistleblower'] = {['name'] = "card.other.whistleblower.name", ['type'] = "外交牌", ['cost'] = "2", ['tag'] = {"方块", "女皇"}, ['d'] = {"card.other.whistleblower.d.1", "card.other.whistleblower.d.2", "card.other.whistleblower.d.3"}, ['a'] = {"card.other.whistleblower.a.1", "card.other.whistleblower.a.2"}}, ['donquixote'] = {['name'] = "card.other.donquixote.name", ['type'] = "敌对牌", ['cost'] = "2", ['tag'] = {"黑桃", "愚者"}, ['d'] = {"card.other.donquixote.d.1", "card.other.donquixote.d.2"}, ['a'] = {"card.other.donquixote.a.1", "card.other.donquixote.a.2"}}, ['absurdexperience'] = {['name'] = "card.other.absurdexperience.name", ['type'] = "外交牌", ['cost'] = "3", ['tag'] = {"梅花", "魔术师"}, ['d'] = {"card.other.absurdexperience.d.1", "card.other.absurdexperience.d.2"}, ['a'] = {"card.other.absurdexperience.a.1", "card.other.absurdexperience.a.2"}}, ['changetheconcept'] = {['name'] = "card.other.changetheconcept.name", ['type'] = "敌对牌", ['cost'] = "3", ['tag'] = {"梅花", "魔术师"}, ['d'] = {"card.other.changetheconcept.d.1", "card.other.changetheconcept.d.2"}, ['a'] = {"card.other.changetheconcept.a.1", "card.other.changetheconcept.a.2"}}, ['opportunity'] = {['name'] = "card.other.opportunity.name", ['type'] = "敌对牌", ['cost'] = "3", ['tag'] = {"方块", "魔术师"}, ['d'] = {"card.other.opportunity.d.1", "card.other.opportunity.d.2"}, ['a'] = {"card.other.opportunity.a.1", "card.other.opportunity.a.2"}}, ['ramayana'] = {['name'] = "card.other.ramayana.name", ['type'] = "外交牌", ['cost'] = "3", ['tag'] = {"梅花", "魔术师"}, ['d'] = {"card.other.ramayana.d.1", "card.other.ramayana.d.2"}, ['a'] = {"card.other.ramayana.a.1", "card.other.ramayana.a.2"}}, ['reputation'] = {['name'] = "card.other.reputation.name", ['type'] = "外交牌", ['cost'] = "4", ['tag'] = {"方块", "皇帝"}, ['d'] = {"card.other.reputation.d.1", "card.other.reputation.d.2"}, ['a'] = {"card.other.reputation.a.1", "card.other.reputation.a.2"}}, ['snakecharmer'] = {['name'] = "card.other.snakecharmer.name", ['type'] = "敌对牌", ['cost'] = "5", ['tag'] = {"梅花", "魔术师"}, ['d'] = {"card.other.snakecharmer.d.1", "card.other.snakecharmer.d.2"}, ['a'] = {"card.other.snakecharmer.a.1", "card.other.snakecharmer.a.2"}}}}
-
-GLOBAL_OFNPC_DATA.anim = {['npc_alyx'] = {['camp'] = "resistance", ['anim'] = "sexyidle", ['gender'] = "female"}, ['npc_barney'] = {['camp'] = "resistance", ['anim'] = "lineidle03", ['gender'] = "male"}, ['npc_breen'] = {['camp'] = "combine", ['anim'] = "lineidle03", ['gender'] = "male"}, ['npc_eli'] = {['camp'] = "resistance", ['anim'] = "lineidle03", ['gender'] = "male"}, ['npc_magnusson'] = {['camp'] = "resistance", ['anim'] = "lineidle03", ['gender'] = "male"}, ['npc_gman'] = {['camp'] = "other", ['anim'] = "idle_subtle", ['gender'] = "male"}, ['npc_kleiner'] = {['camp'] = "resistance", ['anim'] = "idle_subtle", ['gender'] = "male"}, ['npc_mossman'] = {['camp'] = "resistance", ['anim'] = "lineidle02", ['gender'] = "female"}, ['npc_combine_s'] = {['camp'] = "combine", ['anim'] = "idle1", ['gender'] = "male"}, ['npc_metropolice'] = {['camp'] = "combine", ['anim'] = "pistolidle1", ['gender'] = "male"}, ['npc_citizen'] = {['camp'] = "resistance", ['anim'] = "idle_subtle", ['gender'] = "male"}, ['npc_monk'] = {['camp'] = "other", ['anim'] = "lineidle01", ['gender'] = "male"}}
-
-GLOBAL_OFNPC_DATA.article = {['log'] = {{['title'] = "March 2025 Update", ['content'] = "Added AI dialogue system with TTS support. Improved localization and UI. 
+-- 全局变量数据
+GLOBAL_OFNPC_DATA = {
+    ["anim"] = {
+        ["npc_eli"] = {
+            ["gender"] = "male",
+            ["camp"] = "resistance",
+            ["anim"] = "lineidle03",
+        },
+        ["npc_gman"] = {
+            ["gender"] = "male",
+            ["camp"] = "other",
+            ["anim"] = "idle_subtle",
+        },
+        ["npc_combine_s"] = {
+            ["gender"] = "male",
+            ["camp"] = "combine",
+            ["anim"] = "idle1",
+        },
+        ["npc_barney"] = {
+            ["gender"] = "male",
+            ["camp"] = "resistance",
+            ["anim"] = "lineidle03",
+        },
+        ["npc_monk"] = {
+            ["gender"] = "male",
+            ["camp"] = "other",
+            ["anim"] = "lineidle01",
+        },
+        ["npc_citizen"] = {
+            ["gender"] = "male",
+            ["camp"] = "resistance",
+            ["anim"] = "idle_subtle",
+        },
+        ["npc_metropolice"] = {
+            ["gender"] = "male",
+            ["camp"] = "combine",
+            ["anim"] = "pistolidle1",
+        },
+        ["npc_kleiner"] = {
+            ["gender"] = "male",
+            ["camp"] = "resistance",
+            ["anim"] = "idle_subtle",
+        },
+        ["npc_mossman"] = {
+            ["gender"] = "female",
+            ["camp"] = "resistance",
+            ["anim"] = "lineidle02",
+        },
+        ["npc_magnusson"] = {
+            ["gender"] = "male",
+            ["camp"] = "resistance",
+            ["anim"] = "lineidle03",
+        },
+        ["npc_alyx"] = {
+            ["gender"] = "female",
+            ["camp"] = "resistance",
+            ["anim"] = "sexyidle",
+        },
+        ["npc_breen"] = {
+            ["gender"] = "male",
+            ["camp"] = "combine",
+            ["anim"] = "lineidle03",
+        },
+    },
+    ["log"] = {
+    },
+    ["playerTalks"] = {
+        ["greeting"] = {
+            [1] = "playerchat.greeting.1",
+            [2] = "playerchat.greeting.2",
+            [3] = "playerchat.greeting.3",
+            [4] = "playerchat.greeting.4",
+            [5] = "playerchat.greeting.5",
+        },
+        ["leave"] = {
+            [1] = "playerchat.leave.1",
+            [2] = "playerchat.leave.2",
+            [3] = "playerchat.leave.3",
+            [4] = "playerchat.leave.4",
+            [5] = "playerchat.leave.5",
+            [6] = "playerchat.leave.6",
+            [7] = "playerchat.leave.7",
+            [8] = "playerchat.leave.8",
+            [9] = "playerchat.leave.9",
+        },
+        ["option"] = {
+            ["leave"] = {
+                ["index"] = 4,
+                ["color"] = {
+                    ["r"] = 252,
+                    ["b"] = 9,
+                    ["g"] = 33,
+                },
+            },
+            ["greeting"] = {
+                ["index"] = 1,
+                ["color"] = {
+                    ["r"] = 100,
+                    ["b"] = 100,
+                    ["g"] = 255,
+                },
+            },
+            ["trade"] = {
+                ["index"] = 3,
+                ["color"] = {
+                    ["r"] = 255,
+                    ["b"] = 100,
+                    ["g"] = 200,
+                },
+            },
+            ["negotiate"] = {
+                ["index"] = 2,
+                ["color"] = {
+                    ["r"] = 0,
+                    ["b"] = 223,
+                    ["g"] = 149,
+                },
+            },
+        },
+        ["trade"] = {
+            [1] = "playerchat.trade.1",
+            [2] = "playerchat.trade.2",
+            [3] = "playerchat.trade.3",
+            [4] = "playerchat.trade.4",
+            [5] = "playerchat.trade.5",
+            [6] = "playerchat.trade.6",
+            [7] = "playerchat.trade.7",
+            [8] = "playerchat.trade.8",
+            [9] = "playerchat.trade.9",
+            [10] = "playerchat.trade.10",
+            [11] = "playerchat.trade.11",
+        },
+        ["negotiate"] = {
+            [1] = "playerchat.negotiate.1",
+            [2] = "playerchat.negotiate.2",
+            [3] = "playerchat.negotiate.3",
+            [4] = "playerchat.negotiate.4",
+            [5] = "playerchat.negotiate.5",
+            [6] = "playerchat.negotiate.6",
+            [7] = "playerchat.negotiate.7",
+            [8] = "playerchat.negotiate.8",
+        },
+    },
+    ["jobData"] = {
+        ["citizen"] = {
+            [1] = {
+                ["job"] = "citizen.job.worker",
+                ["specializations"] = {
+                    [1] = "worker.spec.construction",
+                    [2] = "worker.spec.factory",
+                    [3] = "worker.spec.warehouse",
+                    [4] = "worker.spec.maintenance",
+                    [5] = "worker.spec.mining",
+                    [6] = "worker.spec.agriculture",
+                    [7] = "worker.spec.janitor",
+                    [8] = "worker.spec.chef",
+                    [9] = "worker.spec.electrician",
+                    [10] = "worker.spec.plumber",
+                    [11] = "worker.spec.carpenter",
+                },
+            },
+            [2] = {
+                ["job"] = "citizen.job.technician",
+                ["specializations"] = {
+                    [1] = "tech.spec.electrical",
+                    [2] = "tech.spec.computer",
+                    [3] = "tech.spec.network",
+                    [4] = "tech.spec.security",
+                    [5] = "tech.spec.maintenance",
+                    [6] = "tech.spec.software",
+                    [7] = "tech.spec.hardware",
+                    [8] = "tech.spec.database",
+                },
+            },
+            [3] = {
+                ["job"] = "citizen.job.medic",
+                ["specializations"] = {
+                    [1] = "medic.spec.general",
+                    [2] = "medic.spec.emergency",
+                    [3] = "medic.spec.surgery",
+                    [4] = "medic.spec.pharmacy",
+                    [5] = "medic.spec.laboratory",
+                    [6] = "medic.spec.pediatrics",
+                    [7] = "medic.spec.cardiology",
+                    [8] = "medic.spec.neurology",
+                },
+            },
+            [4] = {
+                ["job"] = "citizen.job.researcher",
+                ["specializations"] = {
+                    [1] = "researcher.spec.research",
+                    [2] = "researcher.spec.biology",
+                    [3] = "researcher.spec.physics",
+                    [4] = "researcher.spec.chemistry",
+                    [5] = "researcher.spec.robotics",
+                    [6] = "researcher.spec.mathematics",
+                    [7] = "researcher.spec.astronomy",
+                    [8] = "researcher.spec.geology",
+                    [9] = "researcher.spec.mechanic",
+                    [10] = "researcher.spec.electrical",
+                    [11] = "researcher.spec.civil",
+                    [12] = "researcher.spec.chemical",
+                    [13] = "researcher.spec.aerospace",
+                    [14] = "researcher.spec.computer",
+                    [15] = "researcher.spec.software",
+                },
+            },
+            [5] = {
+                ["job"] = "citizen.job.artist",
+                ["specializations"] = {
+                    [1] = "artist.spec.painter",
+                    [2] = "artist.spec.sculptor",
+                    [3] = "artist.spec.photographer",
+                    [4] = "artist.spec.musician",
+                    [5] = "artist.spec.dancer",
+                    [6] = "artist.spec.actor",
+                    [7] = "artist.spec.writer",
+                    [8] = "artist.spec.designer",
+                },
+            },
+            [6] = {
+                ["job"] = "citizen.job.scholar",
+                ["specializations"] = {
+                    [1] = "scholar.spec.novelist",
+                    [2] = "scholar.spec.poet",
+                    [3] = "scholar.spec.journalist",
+                    [4] = "scholar.spec.editor",
+                    [5] = "scholar.spec.translator",
+                    [6] = "scholar.spec.screenwriter",
+                    [7] = "scholar.spec.playwright",
+                    [8] = "scholar.spec.biographer",
+                    [9] = "scholar.spec.philosopher",
+                    [10] = "scholar.spec.historian",
+                    [11] = "scholar.spec.office",
+                    [12] = "scholar.spec.retail",
+                    [13] = "scholar.spec.records",
+                    [14] = "scholar.spec.logistics",
+                    [15] = "scholar.spec.reception",
+                    [16] = "scholar.spec.accountant",
+                    [17] = "scholar.spec.human_resources",
+                    [18] = "scholar.spec.marketing",
+                    [19] = "scholar.spec.teacher",
+                    [20] = "scholar.spec.lawyer",
+                },
+            },
+            [7] = {
+                ["job"] = "citizen.job.athlete",
+                ["specializations"] = {
+                    [1] = "athlete.spec.runner",
+                    [2] = "athlete.spec.swimmer",
+                    [3] = "athlete.spec.basketball_player",
+                    [4] = "athlete.spec.football_player",
+                    [5] = "athlete.spec.tennis_player",
+                    [6] = "athlete.spec.gymnast",
+                    [7] = "athlete.spec.cyclist",
+                    [8] = "athlete.spec.wrestler",
+                },
+            },
+            [8] = {
+                ["job"] = "citizen.job.foodie",
+                ["specializations"] = {
+                    [1] = "foodie.spec.chef",
+                    [2] = "foodie.spec.baker",
+                    [3] = "foodie.spec.pastry_chef",
+                },
+            },
+        },
+        ["factions"] = {
+            [1] = "factions.bandit",
+            [2] = "factions.militia",
+            [3] = "factions.mercenary",
+            [4] = "factions.rebel",
+            [5] = "factions.guild",
+            [6] = "factions.cult",
+        },
+    },
+    ["npcTalks"] = {
+        ["response"] = {
+            ["leave"] = {
+                [1] = "response.leave.1",
+                [2] = "response.leave.2",
+                [3] = "response.leave.3",
+                [4] = "response.leave.4",
+                [5] = "response.leave.5",
+            },
+            ["greeting"] = {
+                [1] = "response.greeting.1",
+                [2] = "response.greeting.2",
+                [3] = "response.greeting.3",
+                [4] = "response.greeting.4",
+                [5] = "response.greeting.5",
+            },
+            ["trade"] = {
+                [1] = "response.trade.1",
+                [2] = "response.trade.2",
+                [3] = "response.trade.3",
+                [4] = "response.trade.4",
+                [5] = "response.trade.5",
+            },
+            ["negotiate"] = {
+                [1] = "response.negotiate.1",
+                [2] = "response.negotiate.2",
+                [3] = "response.negotiate.3",
+                [4] = "response.negotiate.4",
+                [5] = "response.negotiate.5",
+            },
+        },
+        ["attack"] = {
+            ["other"] = {
+                [1] = "attack.other.1",
+                [2] = "attack.other.2",
+                [3] = "attack.other.3",
+                [4] = "attack.other.4",
+                [5] = "attack.other.5",
+                [6] = "attack.other.6",
+                [7] = "attack.other.7",
+                [8] = "attack.other.8",
+            },
+            ["bandit"] = {
+                [1] = "attack.bandit.1",
+                [2] = "attack.bandit.2",
+                [3] = "attack.bandit.3",
+                [4] = "attack.bandit.4",
+                [5] = "attack.bandit.5",
+            },
+            ["church"] = {
+                [1] = "attack.church.1",
+                [2] = "attack.church.2",
+                [3] = "attack.church.3",
+                [4] = "attack.church.4",
+                [5] = "attack.church.5",
+                [6] = "attack.church.6",
+                [7] = "attack.church.7",
+                [8] = "attack.church.8",
+            },
+            ["union"] = {
+                [1] = "attack.union.1",
+                [2] = "attack.union.2",
+                [3] = "attack.union.3",
+                [4] = "attack.union.4",
+                [5] = "attack.union.5",
+                [6] = "attack.union.6",
+                [7] = "attack.union.7",
+                [8] = "attack.union.8",
+                [9] = "attack.union.9",
+                [10] = "attack.union.10",
+                [11] = "attack.union.11",
+                [12] = "attack.union.12",
+            },
+            ["combine"] = {
+                [1] = "attack.combine.1",
+                [2] = "attack.combine.2",
+                [3] = "attack.combine.3",
+                [4] = "attack.combine.4",
+                [5] = "attack.combine.5",
+                [6] = "attack.combine.6",
+                [7] = "attack.combine.7",
+                [8] = "attack.combine.8",
+                [9] = "attack.combine.9",
+                [10] = "attack.combine.10",
+            },
+            ["warlord"] = {
+                [1] = "attack.warlord.1",
+                [2] = "attack.warlord.2",
+                [3] = "attack.warlord.3",
+                [4] = "attack.warlord.4",
+                [5] = "attack.warlord.5",
+                [6] = "attack.warlord.6",
+                [7] = "attack.warlord.7",
+                [8] = "attack.warlord.8",
+                [9] = "attack.warlord.9",
+                [10] = "attack.warlord.10",
+                [11] = "attack.warlord.11",
+                [12] = "attack.warlord.12",
+                [13] = "attack.warlord.13",
+            },
+            ["resistance"] = {
+                [1] = "attack.resistance.1",
+                [2] = "attack.resistance.2",
+                [3] = "attack.resistance.3",
+                [4] = "attack.resistance.4",
+                [5] = "attack.resistance.5",
+                [6] = "attack.resistance.6",
+                [7] = "attack.resistance.7",
+                [8] = "attack.resistance.8",
+                [9] = "attack.resistance.9",
+                [10] = "attack.resistance.10",
+                [11] = "attack.resistance.11",
+                [12] = "attack.resistance.12",
+            },
+        },
+        ["idle"] = {
+            ["other"] = {
+                [1] = "idle.other.1",
+                [2] = "idle.other.2",
+                [3] = "idle.other.3",
+                [4] = "idle.other.4",
+                [5] = "idle.other.5",
+                [6] = "idle.other.6",
+                [7] = "idle.other.7",
+                [8] = "idle.other.8",
+                [9] = "idle.other.9",
+                [10] = "idle.other.10",
+                [11] = "idle.other.11",
+                [12] = "idle.other.12",
+                [13] = "idle.other.13",
+                [14] = "idle.other.14",
+                [15] = "idle.other.15",
+                [16] = "idle.other.16",
+                [17] = "idle.other.17",
+            },
+            ["bandit"] = {
+                [1] = "idle.bandit.1",
+                [2] = "idle.bandit.2",
+                [3] = "idle.bandit.3",
+                [4] = "idle.bandit.4",
+                [5] = "idle.bandit.5",
+                [6] = "idle.bandit.6",
+                [7] = "idle.bandit.7",
+                [8] = "idle.bandit.8",
+                [9] = "idle.bandit.9",
+                [10] = "idle.bandit.10",
+                [11] = "idle.bandit.11",
+                [12] = "idle.bandit.12",
+                [13] = "idle.bandit.13",
+                [14] = "idle.bandit.14",
+                [15] = "idle.bandit.15",
+            },
+            ["church"] = {
+                [1] = "idle.church.1",
+                [2] = "idle.church.2",
+                [3] = "idle.church.3",
+                [4] = "idle.church.4",
+                [5] = "idle.church.5",
+                [6] = "idle.church.6",
+                [7] = "idle.church.7",
+                [8] = "idle.church.8",
+                [9] = "idle.church.9",
+                [10] = "idle.church.10",
+                [11] = "idle.church.11",
+                [12] = "idle.church.12",
+                [13] = "idle.church.13",
+                [14] = "idle.church.14",
+                [15] = "idle.church.15",
+                [16] = "idle.church.16",
+            },
+            ["union"] = {
+                [1] = "idle.union.1",
+                [2] = "idle.union.2",
+                [3] = "idle.union.3",
+                [4] = "idle.union.4",
+                [5] = "idle.union.5",
+                [6] = "idle.union.6",
+                [7] = "idle.union.7",
+                [8] = "idle.union.8",
+                [9] = "idle.union.9",
+                [10] = "idle.union.10",
+                [11] = "idle.union.11",
+                [12] = "idle.union.12",
+                [13] = "idle.union.13",
+                [14] = "idle.union.14",
+                [15] = "idle.union.15",
+            },
+            ["combine"] = {
+                [1] = "idle.combine.1",
+                [2] = "idle.combine.2",
+                [3] = "idle.combine.3",
+                [4] = "idle.combine.4",
+                [5] = "idle.combine.5",
+                [6] = "idle.combine.6",
+                [7] = "idle.combine.7",
+                [8] = "idle.combine.8",
+                [9] = "idle.combine.9",
+                [10] = "idle.combine.10",
+                [11] = "idle.combine.11",
+                [12] = "idle.combine.12",
+                [13] = "idle.combine.13",
+                [14] = "idle.combine.14",
+            },
+            ["warlord"] = {
+                [1] = "idle.warlord.1",
+                [2] = "idle.warlord.2",
+                [3] = "idle.warlord.3",
+                [4] = "idle.warlord.4",
+                [5] = "idle.warlord.5",
+                [6] = "idle.warlord.6",
+                [7] = "idle.warlord.7",
+                [8] = "idle.warlord.8",
+                [9] = "idle.warlord.9",
+                [10] = "idle.warlord.10",
+                [11] = "idle.warlord.11",
+                [12] = "idle.warlord.12",
+                [13] = "idle.warlord.13",
+                [14] = "idle.warlord.14",
+                [15] = "idle.warlord.15",
+                [16] = "idle.warlord.16",
+                [17] = "idle.warlord.17",
+                [18] = "idle.warlord.18",
+                [19] = "idle.warlord.19",
+            },
+            ["resistance"] = {
+                [1] = "idle.resistance.1",
+                [2] = "idle.resistance.2",
+                [3] = "idle.resistance.3",
+                [4] = "idle.resistance.4",
+                [5] = "idle.resistance.5",
+                [6] = "idle.resistance.6",
+                [7] = "idle.resistance.7",
+                [8] = "idle.resistance.8",
+                [9] = "idle.resistance.9",
+                [10] = "idle.resistance.10",
+                [11] = "idle.resistance.11",
+                [12] = "idle.resistance.12",
+                [13] = "idle.resistance.13",
+                [14] = "idle.resistance.14",
+                [15] = "idle.resistance.15",
+                [16] = "idle.resistance.16",
+                [17] = "idle.resistance.17",
+                [18] = "idle.resistance.18",
+                [19] = "idle.resistance.19",
+                [20] = "idle.resistance.20",
+                [21] = "idle.resistance.21",
+                [22] = "idle.resistance.22",
+                [23] = "idle.resistance.23",
+            },
+        },
+        ["greetings"] = {
+            ["other"] = {
+                [1] = "greeting.other.1",
+                [2] = "greeting.other.2",
+                [3] = "greeting.other.3",
+                [4] = "greeting.other.4",
+                [5] = "greeting.other.5",
+            },
+            ["bandit"] = {
+                [1] = "greeting.bandit.1",
+                [2] = "greeting.bandit.2",
+                [3] = "greeting.bandit.3",
+                [4] = "greeting.bandit.4",
+                [5] = "greeting.bandit.5",
+            },
+            ["church"] = {
+                [1] = "greeting.church.1",
+                [2] = "greeting.church.2",
+                [3] = "greeting.church.3",
+                [4] = "greeting.church.4",
+                [5] = "greeting.church.5",
+            },
+            ["union"] = {
+                [1] = "greeting.union.1",
+                [2] = "greeting.union.2",
+                [3] = "greeting.union.3",
+                [4] = "greeting.union.4",
+                [5] = "greeting.union.5",
+            },
+            ["combine"] = {
+                [1] = "greeting.combine.1",
+                [2] = "greeting.combine.2",
+                [3] = "greeting.combine.3",
+                [4] = "greeting.combine.4",
+                [5] = "greeting.combine.5",
+            },
+            ["warlord"] = {
+                [1] = "greeting.warlord.1",
+                [2] = "greeting.warlord.2",
+                [3] = "greeting.warlord.3",
+                [4] = "greeting.warlord.4",
+                [5] = "greeting.warlord.5",
+            },
+            ["resistance"] = {
+                [1] = "greeting.resistance.1",
+                [2] = "greeting.resistance.2",
+                [3] = "greeting.resistance.3",
+                [4] = "greeting.resistance.4",
+                [5] = "greeting.resistance.5",
+            },
+        },
+        ["kill"] = {
+            ["other"] = {
+                [1] = "kill.other.1",
+                [2] = "kill.other.2",
+                [3] = "kill.other.3",
+                [4] = "kill.other.4",
+                [5] = "kill.other.5",
+                [6] = "kill.other.6",
+                [7] = "kill.other.7",
+                [8] = "kill.other.8",
+            },
+            ["bandit"] = {
+                [1] = "kill.bandit.1",
+                [2] = "kill.bandit.2",
+                [3] = "kill.bandit.3",
+                [4] = "kill.bandit.4",
+                [5] = "kill.bandit.5",
+            },
+            ["church"] = {
+                [1] = "kill.church.1",
+                [2] = "kill.church.2",
+                [3] = "kill.church.3",
+                [4] = "kill.church.4",
+                [5] = "kill.church.5",
+            },
+            ["union"] = {
+                [1] = "kill.union.1",
+                [2] = "kill.union.2",
+                [3] = "kill.union.3",
+                [4] = "kill.union.4",
+                [5] = "kill.union.5",
+            },
+            ["combine"] = {
+                [1] = "kill.combine.1",
+                [2] = "kill.combine.2",
+                [3] = "kill.combine.3",
+                [4] = "kill.combine.4",
+                [5] = "kill.combine.5",
+                [6] = "kill.combine.6",
+                [7] = "kill.combine.7",
+                [8] = "kill.combine.8",
+                [9] = "kill.combine.9",
+                [10] = "kill.combine.10",
+                [11] = "kill.combine.11",
+                [12] = "kill.combine.12",
+                [13] = "kill.combine.13",
+                [14] = "kill.combine.14",
+                [15] = "kill.combine.15",
+                [16] = "kill.combine.16",
+            },
+            ["warlord"] = {
+                [1] = "kill.warlord.1",
+                [2] = "kill.warlord.2",
+                [3] = "kill.warlord.3",
+                [4] = "kill.warlord.4",
+                [5] = "kill.warlord.5",
+            },
+            ["resistance"] = {
+                [1] = "kill.resistance.1",
+                [2] = "kill.resistance.2",
+                [3] = "kill.resistance.3",
+                [4] = "kill.resistance.4",
+                [5] = "kill.resistance.5",
+                [6] = "kill.resistance.6",
+                [7] = "kill.resistance.7",
+                [8] = "kill.resistance.8",
+            },
+        },
+    },
+    ["voice"] = {
+        ["voices"] = {
+            [1] = {
+                ["voices"] = {
+                    [1] = {
+                        ["gender"] = "female",
+                        ["name"] = "Microsoft Xiaoxiao Online (Natural)",
+                        ["code"] = "zh-CN-XiaoxiaoNeural",
+                    },
+                    [2] = {
+                        ["gender"] = "female",
+                        ["name"] = "Microsoft Xiaoyi Online (Natural)",
+                        ["code"] = "zh-CN-XiaoyiNeural",
+                    },
+                    [3] = {
+                        ["gender"] = "male",
+                        ["name"] = "Microsoft Yunjian Online (Natural)",
+                        ["code"] = "zh-CN-YunjianNeural",
+                    },
+                    [4] = {
+                        ["gender"] = "male",
+                        ["name"] = "Microsoft Yunxi Online (Natural)",
+                        ["code"] = "zh-CN-YunxiNeural",
+                    },
+                    [5] = {
+                        ["gender"] = "female",
+                        ["name"] = "Microsoft Yunxia Online (Natural)",
+                        ["code"] = "zh-CN-YunxiaNeural",
+                    },
+                    [6] = {
+                        ["gender"] = "male",
+                        ["name"] = "Microsoft Yunyang Online (Natural)",
+                        ["code"] = "zh-CN-YunyangNeural",
+                    },
+                    [7] = {
+                        ["gender"] = "female",
+                        ["name"] = "Microsoft Xiaobei Online (Natural)",
+                        ["code"] = "zh-CN-liaoning-XiaobeiNeural",
+                    },
+                    [8] = {
+                        ["gender"] = "female",
+                        ["name"] = "Microsoft Xiaoni Online (Natural)",
+                        ["code"] = "zh-CN-shaanxi-XiaoniNeural",
+                    },
+                },
+                ["language"] = "zh-CN",
+            },
+            [2] = {
+                ["voices"] = {
+                    [1] = {
+                        ["gender"] = "female",
+                        ["name"] = "Microsoft HsiaoChen Online (Natural)",
+                        ["code"] = "zh-TW-HsiaoChenNeural",
+                    },
+                    [2] = {
+                        ["gender"] = "male",
+                        ["name"] = "Microsoft YunJhe Online (Natural)",
+                        ["code"] = "zh-TW-YunJheNeural",
+                    },
+                    [3] = {
+                        ["gender"] = "female",
+                        ["name"] = "Microsoft HsiaoYu Online (Natural)",
+                        ["code"] = "zh-TW-HsiaoYuNeural",
+                    },
+                    [4] = {
+                        ["gender"] = "female",
+                        ["name"] = "Microsoft HiuGaai Online (Natural)",
+                        ["code"] = "zh-HK-HiuGaaiNeural",
+                    },
+                    [5] = {
+                        ["gender"] = "female",
+                        ["name"] = "Microsoft HiuMaan Online (Natural)",
+                        ["code"] = "zh-HK-HiuMaanNeural",
+                    },
+                    [6] = {
+                        ["gender"] = "male",
+                        ["name"] = "Microsoft WanLung Online (Natural)",
+                        ["code"] = "zh-HK-WanLungNeural",
+                    },
+                },
+                ["language"] = "zh-TW",
+            },
+            [3] = {
+                ["voices"] = {
+                    [1] = {
+                        ["gender"] = "female",
+                        ["name"] = "Microsoft Ava Online (Natural)",
+                        ["code"] = "en-US-AvaNeural",
+                    },
+                    [2] = {
+                        ["gender"] = "male",
+                        ["name"] = "Microsoft Andrew Online (Natural)",
+                        ["code"] = "en-US-AndrewNeural",
+                    },
+                    [3] = {
+                        ["gender"] = "female",
+                        ["name"] = "Microsoft Emma Online (Natural)",
+                        ["code"] = "en-US-EmmaNeural",
+                    },
+                    [4] = {
+                        ["gender"] = "male",
+                        ["name"] = "Microsoft Brian Online (Natural)",
+                        ["code"] = "en-US-BrianNeural",
+                    },
+                    [5] = {
+                        ["gender"] = "female",
+                        ["name"] = "Microsoft Ana Online (Natural)",
+                        ["code"] = "en-US-AnaNeural",
+                    },
+                    [6] = {
+                        ["gender"] = "male",
+                        ["name"] = "Microsoft AndrewMultilingual Online (Natural)",
+                        ["code"] = "en-US-AndrewMultilingualNeural",
+                    },
+                    [7] = {
+                        ["gender"] = "female",
+                        ["name"] = "Microsoft Aria Online (Natural)",
+                        ["code"] = "en-US-AriaNeural",
+                    },
+                    [8] = {
+                        ["gender"] = "female",
+                        ["name"] = "Microsoft AvaMultilingual Online (Natural)",
+                        ["code"] = "en-US-AvaMultilingualNeural",
+                    },
+                    [9] = {
+                        ["gender"] = "male",
+                        ["name"] = "Microsoft BrianMultilingual Online (Natural)",
+                        ["code"] = "en-US-BrianMultilingualNeural",
+                    },
+                    [10] = {
+                        ["gender"] = "male",
+                        ["name"] = "Microsoft Christopher Online (Natural)",
+                        ["code"] = "en-US-ChristopherNeural",
+                    },
+                    [11] = {
+                        ["gender"] = "female",
+                        ["name"] = "Microsoft EmmaMultilingual Online (Natural)",
+                        ["code"] = "en-US-EmmaMultilingualNeural",
+                    },
+                    [12] = {
+                        ["gender"] = "male",
+                        ["name"] = "Microsoft Eric Online (Natural)",
+                        ["code"] = "en-US-EricNeural",
+                    },
+                    [13] = {
+                        ["gender"] = "male",
+                        ["name"] = "Microsoft Guy Online (Natural)",
+                        ["code"] = "en-US-GuyNeural",
+                    },
+                    [14] = {
+                        ["gender"] = "female",
+                        ["name"] = "Microsoft Jenny Online (Natural)",
+                        ["code"] = "en-US-JennyNeural",
+                    },
+                    [15] = {
+                        ["gender"] = "female",
+                        ["name"] = "Microsoft Michelle Online (Natural)",
+                        ["code"] = "en-US-MichelleNeural",
+                    },
+                    [16] = {
+                        ["gender"] = "male",
+                        ["name"] = "Microsoft Roger Online (Natural)",
+                        ["code"] = "en-US-RogerNeural",
+                    },
+                    [17] = {
+                        ["gender"] = "male",
+                        ["name"] = "Microsoft Steffan Online (Natural)",
+                        ["code"] = "en-US-SteffanNeural",
+                    },
+                    [18] = {
+                        ["gender"] = "female",
+                        ["name"] = "Microsoft Libby Online (Natural)",
+                        ["code"] = "en-GB-LibbyNeural",
+                    },
+                    [19] = {
+                        ["gender"] = "female",
+                        ["name"] = "Microsoft Maisie Online (Natural)",
+                        ["code"] = "en-GB-MaisieNeural",
+                    },
+                    [20] = {
+                        ["gender"] = "male",
+                        ["name"] = "Microsoft Ryan Online (Natural)",
+                        ["code"] = "en-GB-RyanNeural",
+                    },
+                    [21] = {
+                        ["gender"] = "female",
+                        ["name"] = "Microsoft Sonia Online (Natural)",
+                        ["code"] = "en-GB-SoniaNeural",
+                    },
+                    [22] = {
+                        ["gender"] = "male",
+                        ["name"] = "Microsoft Thomas Online (Natural)",
+                        ["code"] = "en-GB-ThomasNeural",
+                    },
+                },
+                ["language"] = "en",
+            },
+            [4] = {
+                ["voices"] = {
+                    [1] = {
+                        ["gender"] = "female",
+                        ["name"] = "Microsoft Ava Online (Natural)",
+                        ["code"] = "en-US-AvaNeural",
+                    },
+                    [2] = {
+                        ["gender"] = "male",
+                        ["name"] = "Microsoft Andrew Online (Natural)",
+                        ["code"] = "en-US-AndrewNeural",
+                    },
+                    [3] = {
+                        ["gender"] = "female",
+                        ["name"] = "Microsoft Emma Online (Natural)",
+                        ["code"] = "en-US-EmmaNeural",
+                    },
+                    [4] = {
+                        ["gender"] = "male",
+                        ["name"] = "Microsoft Brian Online (Natural)",
+                        ["code"] = "en-US-BrianNeural",
+                    },
+                    [5] = {
+                        ["gender"] = "female",
+                        ["name"] = "Microsoft Ana Online (Natural)",
+                        ["code"] = "en-US-AnaNeural",
+                    },
+                    [6] = {
+                        ["gender"] = "male",
+                        ["name"] = "Microsoft AndrewMultilingual Online (Natural)",
+                        ["code"] = "en-US-AndrewMultilingualNeural",
+                    },
+                    [7] = {
+                        ["gender"] = "female",
+                        ["name"] = "Microsoft Aria Online (Natural)",
+                        ["code"] = "en-US-AriaNeural",
+                    },
+                    [8] = {
+                        ["gender"] = "female",
+                        ["name"] = "Microsoft AvaMultilingual Online (Natural)",
+                        ["code"] = "en-US-AvaMultilingualNeural",
+                    },
+                    [9] = {
+                        ["gender"] = "male",
+                        ["name"] = "Microsoft BrianMultilingual Online (Natural)",
+                        ["code"] = "en-US-BrianMultilingualNeural",
+                    },
+                    [10] = {
+                        ["gender"] = "male",
+                        ["name"] = "Microsoft Christopher Online (Natural)",
+                        ["code"] = "en-US-ChristopherNeural",
+                    },
+                    [11] = {
+                        ["gender"] = "female",
+                        ["name"] = "Microsoft EmmaMultilingual Online (Natural)",
+                        ["code"] = "en-US-EmmaMultilingualNeural",
+                    },
+                    [12] = {
+                        ["gender"] = "male",
+                        ["name"] = "Microsoft Eric Online (Natural)",
+                        ["code"] = "en-US-EricNeural",
+                    },
+                    [13] = {
+                        ["gender"] = "male",
+                        ["name"] = "Microsoft Guy Online (Natural)",
+                        ["code"] = "en-US-GuyNeural",
+                    },
+                    [14] = {
+                        ["gender"] = "female",
+                        ["name"] = "Microsoft Jenny Online (Natural)",
+                        ["code"] = "en-US-JennyNeural",
+                    },
+                    [15] = {
+                        ["gender"] = "female",
+                        ["name"] = "Microsoft Michelle Online (Natural)",
+                        ["code"] = "en-US-MichelleNeural",
+                    },
+                    [16] = {
+                        ["gender"] = "male",
+                        ["name"] = "Microsoft Roger Online (Natural)",
+                        ["code"] = "en-US-RogerNeural",
+                    },
+                    [17] = {
+                        ["gender"] = "male",
+                        ["name"] = "Microsoft Steffan Online (Natural)",
+                        ["code"] = "en-US-SteffanNeural",
+                    },
+                    [18] = {
+                        ["gender"] = "female",
+                        ["name"] = "Microsoft Libby Online (Natural)",
+                        ["code"] = "en-GB-LibbyNeural",
+                    },
+                    [19] = {
+                        ["gender"] = "female",
+                        ["name"] = "Microsoft Maisie Online (Natural)",
+                        ["code"] = "en-GB-MaisieNeural",
+                    },
+                    [20] = {
+                        ["gender"] = "male",
+                        ["name"] = "Microsoft Ryan Online (Natural)",
+                        ["code"] = "en-GB-RyanNeural",
+                    },
+                    [21] = {
+                        ["gender"] = "female",
+                        ["name"] = "Microsoft Sonia Online (Natural)",
+                        ["code"] = "en-GB-SoniaNeural",
+                    },
+                    [22] = {
+                        ["gender"] = "male",
+                        ["name"] = "Microsoft Thomas Online (Natural)",
+                        ["code"] = "en-GB-ThomasNeural",
+                    },
+                },
+                ["language"] = "en-PT",
+            },
+            [5] = {
+                ["voices"] = {
+                    [1] = {
+                        ["gender"] = "male",
+                        ["name"] = "Microsoft Dmitry Online (Natural)",
+                        ["code"] = "ru-RU-DmitryNeural",
+                    },
+                    [2] = {
+                        ["gender"] = "female",
+                        ["name"] = "Microsoft Svetlana Online (Natural)",
+                        ["code"] = "ru-RU-SvetlanaNeural",
+                    },
+                },
+                ["language"] = "ru",
+            },
+            [6] = {
+                ["voices"] = {
+                    [1] = {
+                        ["gender"] = "female",
+                        ["name"] = "Microsoft SeraphinaMultilingual Online (Natural)",
+                        ["code"] = "de-DE-SeraphinaMultilingualNeural",
+                    },
+                    [2] = {
+                        ["gender"] = "male",
+                        ["name"] = "Microsoft FlorianMultilingual Online (Natural)",
+                        ["code"] = "de-DE-FlorianMultilingualNeural",
+                    },
+                    [3] = {
+                        ["gender"] = "female",
+                        ["name"] = "Microsoft Amala Online (Natural)",
+                        ["code"] = "de-DE-AmalaNeural",
+                    },
+                    [4] = {
+                        ["gender"] = "male",
+                        ["name"] = "Microsoft Conrad Online (Natural)",
+                        ["code"] = "de-DE-ConradNeural",
+                    },
+                    [5] = {
+                        ["gender"] = "female",
+                        ["name"] = "Microsoft Katja Online (Natural)",
+                        ["code"] = "de-DE-KatjaNeural",
+                    },
+                    [6] = {
+                        ["gender"] = "male",
+                        ["name"] = "Microsoft Killian Online (Natural)",
+                        ["code"] = "de-DE-KillianNeural",
+                    },
+                    [7] = {
+                        ["gender"] = "female",
+                        ["name"] = "Microsoft Ingrid Online (Natural)",
+                        ["code"] = "de-AT-IngridNeural",
+                    },
+                    [8] = {
+                        ["gender"] = "male",
+                        ["name"] = "Microsoft Jonas Online (Natural)",
+                        ["code"] = "de-AT-JonasNeural",
+                    },
+                    [9] = {
+                        ["gender"] = "male",
+                        ["name"] = "Microsoft Jan Online (Natural)",
+                        ["code"] = "de-CH-JanNeural",
+                    },
+                    [10] = {
+                        ["gender"] = "female",
+                        ["name"] = "Microsoft Leni Online (Natural)",
+                        ["code"] = "de-CH-LeniNeural",
+                    },
+                },
+                ["language"] = "de",
+            },
+        },
+    },
+    ["sponsors"] = {
+        [1] = {
+            ["badges"] = {
+                [1] = "ui.sponsor.mod_creator",
+            },
+            ["image"] = "of",
+            ["color"] = {
+                [1] = 100,
+                [2] = 100,
+                [3] = 255,
+            },
+            ["name"] = "晦涩弗里曼",
+            ["order"] = 1,
+        },
+        [2] = {
+            ["badges"] = {
+                [1] = "ui.sponsor.technical_support",
+            },
+            ["image"] = "lemoncola3424",
+            ["color"] = {
+                [1] = 78,
+                [2] = 153,
+                [3] = 42,
+            },
+            ["name"] = "LemonCola3424",
+            ["order"] = 2,
+        },
+        [3] = {
+            ["badges"] = {
+                [1] = "ui.sponsor.localization_consultant",
+            },
+            ["image"] = "nk76",
+            ["color"] = {
+                [1] = 78,
+                [2] = 153,
+                [3] = 42,
+            },
+            ["name"] = "NextKurome76TheSoldier",
+            ["order"] = 3,
+        },
+        [4] = {
+            ["badges"] = {
+                [1] = "ui.sponsor.technical_support",
+            },
+            ["image"] = "crester",
+            ["color"] = {
+                [1] = 215,
+                [2] = 86,
+                [3] = 112,
+            },
+            ["name"] = "crester",
+            ["order"] = 3,
+        },
+        [5] = {
+            ["badges"] = {
+                [1] = "ui.sponsor.senior_sponsor",
+            },
+            ["image"] = "xfd",
+            ["color"] = {
+                [1] = 0,
+                [2] = 155,
+                [3] = 119,
+            },
+            ["name"] = "萧福叠",
+            ["order"] = 4,
+        },
+        [6] = {
+            ["badges"] = {
+                [1] = "ui.sponsor.sponsor",
+            },
+            ["image"] = "xhc",
+            ["color"] = {
+                [1] = 127,
+                [2] = 0,
+                [3] = 32,
+            },
+            ["name"] = "漫游者_Xhc",
+            ["order"] = 5,
+        },
+        [7] = {
+            ["badges"] = {
+                [1] = "ui.sponsor.sponsor",
+            },
+            ["image"] = "gjr",
+            ["color"] = {
+                [1] = 17,
+                [2] = 118,
+                [3] = 208,
+            },
+            ["name"] = "工-具-人-0-2-3-号",
+            ["order"] = 5,
+        },
+        [8] = {
+            ["badges"] = {
+                [1] = "ui.sponsor.sponsor",
+            },
+            ["image"] = "blsh",
+            ["color"] = {
+                [1] = 147,
+                [2] = 51,
+                [3] = 89,
+            },
+            ["name"] = "博丽守黑",
+            ["order"] = 5,
+        },
+        [9] = {
+            ["badges"] = {
+                [1] = "ui.sponsor.sponsor",
+            },
+            ["image"] = "cta",
+            ["color"] = {
+                [1] = 173,
+                [2] = 216,
+                [3] = 230,
+            },
+            ["name"] = "Сталкер",
+            ["order"] = 5,
+        },
+        [10] = {
+            ["badges"] = {
+                [1] = "ui.sponsor.sponsor",
+            },
+            ["image"] = "fufu",
+            ["color"] = {
+                [1] = 215,
+                [2] = 86,
+                [3] = 112,
+            },
+            ["name"] = "Pathfinder_FUFU",
+            ["order"] = 5,
+        },
+        [11] = {
+            ["badges"] = {
+                [1] = "ui.sponsor.sponsor",
+            },
+            ["image"] = "scp",
+            ["color"] = {
+                [1] = 0,
+                [2] = 0,
+                [3] = 255,
+            },
+            ["name"] = "SCP:SL大佬",
+            ["order"] = 5,
+        },
+        [12] = {
+            ["badges"] = {
+                [1] = "ui.sponsor.sponsor",
+            },
+            ["image"] = "ptr",
+            ["color"] = {
+                [1] = 128,
+                [2] = 0,
+                [3] = 128,
+            },
+            ["name"] = "我是一个普通人",
+            ["order"] = 5,
+        },
+        [13] = {
+            ["badges"] = {
+                [1] = "ui.sponsor.sponsor",
+            },
+            ["image"] = "ifdian",
+            ["color"] = {
+                [1] = 255,
+                [2] = 165,
+                [3] = 0,
+            },
+            ["name"] = "爱发电用户_8987a",
+            ["order"] = 5,
+        },
+        [14] = {
+            ["badges"] = {
+                [1] = "ui.sponsor.sponsor",
+            },
+            ["image"] = "zmn",
+            ["color"] = {
+                [1] = 123,
+                [2] = 45,
+                [3] = 210,
+            },
+            ["name"] = "ZMN",
+            ["order"] = 5,
+        },
+        [15] = {
+            ["badges"] = {
+                [1] = "ui.sponsor.sponsor",
+            },
+            ["image"] = "nb",
+            ["color"] = {
+                [1] = 0,
+                [2] = 47,
+                [3] = 167,
+            },
+            ["name"] = "又佳泵",
+            ["order"] = 5,
+        },
+    },
+    ["article"] = {
+        ["log"] = {
+            [1] = {
+                ["timestamp"] = 1742734800,
+                ["content"] = "Added AI dialogue system with TTS support. Improved localization and UI. 
 Introduced a new home tab in the main menu.
-Resolved multiple critical issues, including subtitle line break issue, dialogue punctuation inconsistencies, NPC spawning conflicts in campaign maps, and server-client synchronization problems.", ['image'] = "3_2025", ['timestamp'] = 1742734800}, {['title'] = "February 2025 Update", ['content'] = "Introduced a card-based negotiation system with over 200 unique cards.
-Implemented deck tab in menu for enhanced accessibility.", ['image'] = "2_2025", ['timestamp'] = 1740464400}, {['title'] = "January 2025 Update", ['content'] = "Added NPC dialogue menu.
+Resolved multiple critical issues, including subtitle line break issue, dialogue punctuation inconsistencies, NPC spawning conflicts in campaign maps, and server-client synchronization problems.",
+                ["title"] = "March 2025 Update",
+                ["image"] = "3_2025",
+            },
+            [2] = {
+                ["timestamp"] = 1740464400,
+                ["content"] = "Introduced a card-based negotiation system with over 200 unique cards.
+Implemented deck tab in menu for enhanced accessibility.",
+                ["title"] = "February 2025 Update",
+                ["image"] = "2_2025",
+            },
+            [3] = {
+                ["timestamp"] = 1738285200,
+                ["content"] = "Added NPC dialogue menu.
 Added typing sound when NPC is talking.
 Modified NPC dialogue mechanics, adjusting trigger probabilities and participant numbers.
-Introduced Python-based modding tools to enable community content creation.", ['image'] = "1_2025", ['timestamp'] = 1738285200}, {['title'] = "December 2024 Update", ['content'] = "Completed the NPC identity system framework with a dedicated menu.
+Introduced Python-based modding tools to enable community content creation.",
+                ["title"] = "January 2025 Update",
+                ["image"] = "1_2025",
+            },
+            [4] = {
+                ["timestamp"] = 1735664400,
+                ["content"] = "Completed the NPC identity system framework with a dedicated menu.
 Added a subtitle system and an NPC rank system with promotion text effects.
-Added NPC dialogue manager for efficient conversation handling.", ['image'] = "12_2024", ['timestamp'] = 1735664400}}, ['event'] = {{['title'] = "article.event.vote.title", ['content'] = "article.event.vote.content", ['image'] = "vote", ['timestamp'] = 1743299065}, {['title'] = "article.event.opensource.title", ['content'] = "article.event.opensource.content", ['image'] = "opensource", ['timestamp'] = 1743160915}, {['title'] = "article.event.localization.title", ['content'] = "article.event.localization.content", ['image'] = "localization", ['timestamp'] = 1742632023}, {['title'] = "article.event.earlyaccess.title", ['content'] = "article.event.earlyaccess.content", ['image'] = "earlyaccess", ['timestamp'] = 1742126534}}, ['document'] = {{['title'] = "article.document.help.title", ['content'] = "article.document.help.content", ['image'] = "help", ['timestamp'] = 1743161938}, {['title'] = "article.document.tts.title", ['content'] = "article.document.tts.content", ['image'] = "tts", ['timestamp'] = 1742126534}}}
-
-GLOBAL_OFNPC_DATA.sponsors = {{['name'] = "晦涩弗里曼", ['badges'] = {"ui.sponsor.mod_creator"}, ['color'] = {100, 100, 255}, ['image'] = "of", ['order'] = 1}, {['name'] = "LemonCola3424", ['badges'] = {"ui.sponsor.technical_support"}, ['color'] = {78, 153, 42}, ['image'] = "lemoncola3424", ['order'] = 2}, {['name'] = "NextKurome76TheSoldier", ['badges'] = {"ui.sponsor.localization_consultant"}, ['color'] = {78, 153, 42}, ['image'] = "nk76", ['order'] = 3}, {['name'] = "crester", ['badges'] = {"ui.sponsor.technical_support"}, ['color'] = {215, 86, 112}, ['image'] = "crester", ['order'] = 3}, {['name'] = "萧福叠", ['badges'] = {"ui.sponsor.senior_sponsor"}, ['color'] = {0, 155, 119}, ['image'] = "xfd", ['order'] = 4}, {['name'] = "漫游者_Xhc", ['badges'] = {"ui.sponsor.sponsor"}, ['color'] = {127, 0, 32}, ['image'] = "xhc", ['order'] = 5}, {['name'] = "工-具-人-0-2-3-号", ['badges'] = {"ui.sponsor.sponsor"}, ['color'] = {17, 118, 208}, ['image'] = "gjr", ['order'] = 5}, {['name'] = "博丽守黑", ['badges'] = {"ui.sponsor.sponsor"}, ['color'] = {147, 51, 89}, ['image'] = "blsh", ['order'] = 5}, {['name'] = "Сталкер", ['badges'] = {"ui.sponsor.sponsor"}, ['color'] = {173, 216, 230}, ['image'] = "cta", ['order'] = 5}, {['name'] = "Pathfinder_FUFU", ['badges'] = {"ui.sponsor.sponsor"}, ['color'] = {215, 86, 112}, ['image'] = "fufu", ['order'] = 5}, {['name'] = "SCP:SL大佬", ['badges'] = {"ui.sponsor.sponsor"}, ['color'] = {0, 0, 255}, ['image'] = "scp", ['order'] = 5}, {['name'] = "我是一个普通人", ['badges'] = {"ui.sponsor.sponsor"}, ['color'] = {128, 0, 128}, ['image'] = "ptr", ['order'] = 5}, {['name'] = "爱发电用户_8987a", ['badges'] = {"ui.sponsor.sponsor"}, ['color'] = {255, 165, 0}, ['image'] = "ifdian", ['order'] = 5}, {['name'] = "ZMN", ['badges'] = {"ui.sponsor.sponsor"}, ['color'] = {123, 45, 210}, ['image'] = "zmn", ['order'] = 5}, {['name'] = "又佳泵", ['badges'] = {"ui.sponsor.sponsor"}, ['color'] = {0, 47, 167}, ['image'] = "nb", ['order'] = 5}}
-
-GLOBAL_OFNPC_DATA.aiProviders = {['openai'] = {['name'] = "ai.providor.openai.name", ['description'] = "ai.providor.openai.description", ['url'] = "https://api.openai.com/v1/chat/completions", ['index'] = 1, ['model'] = {"gpt-3.5-turbo", "gpt-4", "gpt-4-turbo-2024-04-09", "gpt-4.5-preview", "gpt-40", "gpt-4o-mini", "o1-preview", "o3-mini"}}, ['deepseek'] = {['name'] = "ai.providor.deepseek.name", ['description'] = "ai.providor.deepseek.description", ['url'] = "https://api.deepseek.com/chat/completions", ['index'] = 2, ['model'] = {"deepseek-chat", "deepseek-reasoner"}}, ['gemini'] = {['name'] = "ai.providor.gemini.name", ['description'] = "ai.providor.gemini.description", ['url'] = "https://generativelanguage.googleapis.com/v1beta/models", ['index'] = 3, ['model'] = {"gemini-1.5-flash", "gemini-1.5-flash-8b", "gemini-1.5-pro", "gemini-2.0-flash"}}, ['grok'] = {['name'] = "ai.providor.grok.name", ['description'] = "ai.providor.grok.description", ['url'] = "https://api.x.ai/v1/chat/completions", ['index'] = 4, ['model'] = {"grok-2-latest"}}, ['o3'] = {['name'] = "ai.providor.o3.name", ['description'] = "ai.providor.o3.description", ['url'] = "https://api.o3.fan/v1/chat/completions", ['index'] = 5, ['model'] = {"gpt-4o", "o1-mini", "o1-preview", "o3-mini", "o3-mini-high", "claude-3-7-sonnet-20250219", "claude-3-5-sonnet-20241022", "claude-3-5-haiku-20241022", "claude-3-opus-20240229", "claude-3-haiku-20240307", "claude-3-5-sonnet-20240620", "deepseek-ai/Deepseek-R1", "deepseek-reasoner", "deepseek-chat", "deepseek-ai/DeepSeek-V3", "text-embedding-3-small", "text-embedding-ada-002", "text-embedding-v2", "Doubao-embedding", "Doubao-embedding-large"}}, ['anthropic'] = {['name'] = "ai.providor.anthropic.name", ['description'] = "ai.providor.anthropic.description", ['url'] = "https://api.anthropic.com/v1/complete", ['index'] = 6, ['model'] = {"claude-3-7-sonnet-20250219", "claude-3-5-sonnet-20241022", "claude-3-5-haiku-20241022", "claude-3-5-sonnet-20240620", "claude-3-opus-20240229", "claude-3-haiku-20240307"}}, ['ollama'] = {['name'] = "ai.providor.ollama.name", ['description'] = "ai.providor.ollama.description", ['url'] = "http://localhost:11434/v1/chat/completions", ['index'] = 7, ['model'] = {"deepseek-r1:8b", "llama3:latest"}}, ['groq'] = {['name'] = "ai.providor.groq.name", ['description'] = "ai.providor.groq.description", ['url'] = "https://api.groq.com/openai/v1/chat/completions", ['index'] = 8, ['model'] = {"gemma2-9b-it", "llama-3.3-70b-versatile", "llama-3.1-8b-instant", "llama3-70b-8192", "llama3-8b-8192", "mixtral-8x7b-32768"}}, ['openrouter'] = {['name'] = "ai.providor.openrouter.name", ['description'] = "ai.providor.openrouter.description", ['url'] = "https://openrouter.ai/api/v1/chat/completions", ['index'] = 9, ['model'] = {"huggingfaceh4/zephyr-7b-beta:free"}}, ['gitHub'] = {['name'] = "ai.providor.gitHub.name", ['description'] = "ai.providor.gitHub.description", ['url'] = "https://models.inference.ai.azure.com/chat/completions", ['index'] = 10, ['model'] = {"gpt-4o"}}, ['gitee-ai'] = {['name'] = "ai.providor.gitee-ai.name", ['description'] = "ai.providor.gitee-ai.description", ['url'] = "https://ai.gitee.com/v1/chat/completions", ['index'] = 11, ['model'] = {"DeepSeek-R1-Distill-Qwen-32B", "DeepSeek-R1-Distill-Qwen-1.5B", "DeepSeek-R1-Distill-Qwen-14B", "DeepSeek-R1-Distill-Qwen-7B", "DeepSeek-V3", "DeepSeek-R1", "deepseek-coder-33B-instruct", "Qwen2.5-72B-Instruct", "Qwen2.5-14B-Instruct", "Qwen2-7B-Instruct", "Qwen2.5-32B-Instruct", "Qwen2-72B-Instruct", "Qwen2-VL-72B", "QwQ-32B-Preview", "Yi-34B-Chat", "glm-4-9b-chat", "codegeex4-all-9b", "InternVL2-8B", "InternVL2.5-26B", "InternVL2.5-78B", "bge-large-zh-v1.5", "bge-small-zh-v1.5", "bge-m3", "bce-embedding-base_v1"}}, ['lingyiwanwu'] = {['name'] = "ai.providor.lingyiwanwu.name", ['description'] = "ai.providor.lingyiwanwu.description", ['url'] = "https://api.lingyiwanwu.com/v1/chat/completions", ['index'] = 12, ['model'] = {"yi-large", "yi-lightning", "yi-medium", "yi-vision"}}, ['zhipu'] = {['name'] = "ai.providor.zhipu.name", ['description'] = "ai.providor.zhipu.description", ['url'] = "https://open.bigmodel.cn/api/paas.v4/chat/completions", ['index'] = 13, ['model'] = {"glm-zero-preview", "glm-4-0520", "glm-4-long", "glm-4-plus", "glm-4-air", "glm-4-airx", "glm-4-flash", "glm-4-flashx", "glm-4v", "glm-4v-plus", "glm-4-alltools", "embedding-3"}}, ['moonshot'] = {['name'] = "ai.providor.moonshot.name", ['description'] = "ai.providor.moonshot.description", ['url'] = "https://api.moonshot.cn/v1/chat/completions", ['index'] = 14, ['model'] = {"moonshot-v1-auto"}}, ['baichuan'] = {['name'] = "ai.providor.baichuan.name", ['description'] = "ai.providor.baichuan.description", ['url'] = "https://api.baichuan-ai.com/v1/chat/completions", ['index'] = 15, ['model'] = {"Baichuan4", "Baichuan3-Turbo", "Baichuan3-Turbo-128k"}}, ['bailian'] = {['name'] = "ai.providor.bailian.name", ['description'] = "ai.providor.bailian.description", ['url'] = "https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions", ['index'] = 16, ['model'] = {"qwen-coder-plus", "qwen-turbo", "qwen-plus", "qwen-max", "qwen-max-0428", "qwen-max-0403", "qwen-max-0107", "qwen-max-longcontext", "qwen-1.8b", "qwen-7b", "qwen-14b", "qwen-72b", "qwen-audio", "qwen-vl", "qwen-vl-plus", "qwen-vl-max"}}, ['stepfun'] = {['name'] = "ai.providor.stepfun.name", ['description'] = "ai.providor.stepfun.description", ['url'] = "https://api.stepfun.com/v1/chat/completions", ['index'] = 17, ['model'] = {"step-1-8k", "step-1-flash"}}, ['minimax'] = {['name'] = "ai.providor.minimax.name", ['description'] = "ai.providor.minimax.description", ['url'] = "https://api.minimax.chat/v1/chat/completions", ['index'] = 18, ['model'] = {"abab6.5s-chat", "abab6.5g-chat", "abab6.5t-chat", "abab5.5s-chat", "minimax-text-01"}}, ['hyperbolic'] = {['name'] = "ai.providor.hyperbolic.name", ['description'] = "ai.providor.hyperbolic.description", ['url'] = "https://api.hyperbolic.xyz/v1/chat/completions", ['index'] = 19, ['model'] = {"Qwen/Qwen2-VL-72B-Instruct", "Qwen/Qwen2-VL-7B-Instruct", "mistralai/Pixtral-12B-2409", "meta-llama/Meta-Llama-3.1-405B"}}, ['mistral'] = {['name'] = "ai.providor.mistral.name", ['description'] = "ai.providor.mistral.description", ['url'] = "https://api.mistral.ai/v1/chat/completions", ['index'] = 20, ['model'] = {"pixtral-12b-2409", "pixtral-large-latest", "ministral-3b-latest", "ministral-8b-latest", "codestral-latest", "mistral-large-latest", "mistral-small-latest", "open-mistral-nemo", "mistral-embed"}}, ['jina'] = {['name'] = "ai.providor.jina.name", ['description'] = "ai.providor.jina.description", ['url'] = "https://api.jina.ai/v1/chat/completions", ['index'] = 21, ['model'] = {"jina-clip-v1", "jina-clip-v2", "jina-embeddings-v2-base-en", "jina-embeddings-v2-base-es", "jina-embeddings.v2-base-de", "jina-embeddings-v2-base-zh", "jina-embeddings-v2-base-code", "jina-embeddings-v3"}}, ['fireworks'] = {['name'] = "ai.providor.fireworks.name", ['description'] = "ai.providor.fireworks.description", ['url'] = "https://api.fireworks.ai/inference/v1/chat/completions", ['index'] = 22, ['model'] = {"accounts/fireworks/models/mythomax-l2-13b", "accounts/fireworks/models/llama-v3-70b-instruct"}}, ['zhinao'] = {['name'] = "ai.providor.zhinao.name", ['description'] = "ai.providor.zhinao.description", ['url'] = "https://api.360.cn/v1/chat/completions", ['index'] = 23, ['model'] = {"360gpt-pro", "360gpt-turbo"}}, ['hunyuan'] = {['name'] = "ai.providor.hunyuan.name", ['description'] = "ai.providor.hunyuan.description", ['url'] = "https://api.hunyuan.cloud.tencent.com/v1/chat/completions", ['index'] = 24, ['model'] = {"hunyuan-pro", "hunyuan-standard", "hunyuan-lite", "hunyuan-standard-256k", "hunyuan-vision", "hunyuan-code", "hunyuan-role", "hunyuan-turbo", "hunyuan-turbos-latest", "hunyuan-embedding"}}, ['nvidia'] = {['name'] = "ai.providor.nvidia.name", ['description'] = "ai.providor.nvidia.description", ['url'] = "https://integrate.api.nvidia.com/v1/chat/completions", ['index'] = 25, ['model'] = {"01-ai/yi-large", "meta/llama-3.1-405b-instruct"}}, ['baidu-cloud'] = {['name'] = "ai.providor.baidu-cloud.name", ['description'] = "ai.providor.baidu-cloud.description", ['url'] = "https://qianfan.baidubce.com/v2/chat/completions", ['index'] = 26, ['model'] = {"deepseek-r1", "deepseek-v3", "ernie-4.0-8k-latest", "ernie-4.0-turbo-8k-latest", "ernie-speed-8k", "ernie-lite-8k", "bge-large-zh", "bge-large-en"}}, ['dmxapi'] = {['name'] = "ai.providor.dmxapi.name", ['description'] = "ai.providor.dmxapi.description", ['url'] = "https://www.dmxapi.cn/v1/chat/completions", ['index'] = 27, ['model'] = {"Qwen/Qwen2.5-7B-Instruct", "ERNIE-Speed-128K", "THUDM/glm-4-9b-chat", "glm-4-flash", "hunyuan-lite", "gpt-4o", "gpt-4o-mini", "DMXAPI-DeepSeek-R1", "DMXAPI-DeepSeek-V3", "claude-3-5-sonnet-20241022", "gemini-2.0-flash"}}, ['perplexity'] = {['name'] = "ai.providor.perplexity.name", ['description'] = "ai.providor.perplexity.description", ['url'] = "https://api.perplexity.ai/chat/completions", ['index'] = 28, ['model'] = {"sonar-reasoning-pro", "sonar-reasoning", "sonar-pro", "sonar"}}, ['infini'] = {['name'] = "ai.providor.infini.name", ['description'] = "ai.providor.infini.description", ['url'] = "https://cloud.infini-ai.com/maas.v1/chat/completions", ['index'] = 29, ['model'] = {"deepseek-r1", "deepseek-r1-distill-qwen-32b", "deepseek-v3", "qwen2.5-72b-instruct", "qwen2.5-32b-instruct", "qwen2.5-14b-instruct", "qwen2.5-7b-instruct", "qwen2-72b-instruct", "qwq-32b-preview", "qwen2.5-coder-32b-instruct", "llama-3.3-70b-instruct", "bge-m3", "gemma-2-27b-it", "jina-embeddings-v2-base-zh", "jina-embeddings-v2-base-code"}}, ['modelscope'] = {['name'] = "ai.providor.modelscope.name", ['description'] = "ai.providor.modelscope.description", ['url'] = "https://cloud.infini-ai.com/maas.v1/chat/completions", ['index'] = 30, ['model'] = {"Qwen/Qwen2.5-72B-Instruct", "Qwen/Qwen2.5-VL-72B-Instruct", "Qwen/Qwen2.5-Coder-32B-Instruct", "deepseek-ai/DeepSeek-R1", "deepseek-ai/DeepSeek-V3"}}, ['ppio'] = {['name'] = "ai.providor.ppio.name", ['description'] = "ai.providor.ppio.description", ['url'] = "https://api.ppinfra.com/v3/openai/v1/chat/completions", ['index'] = 31, ['model'] = {"deepseek/deepseek-r1/community", "deepseek/deepseek-v3/community", "deepseek/deepseek-r1", "deepseek/deepseek-v3", "qwen/qwen-2.5-72b-instruct", "qwen/qwen2.5-32b-instruct", "meta-llama/llama-3.1-70b-instruct", "meta-llama/llama-3.1-8b-instruct", "01-ai/yi-1.5-34b-chat", "01-ai/yi-1.5-9b-chat"}}, ['together'] = {['name'] = "ai.providor.together.name", ['description'] = "ai.providor.together.description", ['url'] = "https://api.together.xyz/v1/chat/completions", ['index'] = 32, ['model'] = {"meta-llama/Llama-3.2-11B-Vision-Instruct-Turbo", "meta-llama/Llama-3.2-90B-Vision-Instruct-Turbo", "google/gemma-2-27b-it", "google/gemma-2-9b-it"}}, ['ocoolai'] = {['name'] = "ai.providor.ocoolai.name", ['description'] = "ai.providor.ocoolai.description", ['url'] = "https://api.ocoolai.com/v1/chat/completions", ['index'] = 33, ['model'] = {"deepseek-chat", "deepseek-reasoner", "deepseek-ai/DeepSeek-R1", "HiSpeed/DeepSeek-R1", "ocoolAI/DeepSeek-R1", "Azure/DeepSeek-R1", "gpt-4o", "gpt-4o-all", "gpt-4o-mini", "gpt-4", "o1-preview", "o1-mini", "claude-3-5-sonnet-20240620", "claude-3-5-haiku-20241022", "gemini-pro", "gemini-1.5-pro", "meta-llama/Llama-3.2-90B-Vision-Instruct-Turbo", "meta-llama/Llama-3.2-11B-Vision-Instruct-Turbo", "meta-llama/Llama-3.2-3B-Vision-Instruct-Turbo", "google/gemma-2-27b-it", "google/gemma-2-9b-it", "Doubao-embedding", "text-embedding-3-large", "text-embedding-3-small", "text-embedding-v2"}}, ['aihubmix'] = {['name'] = "ai.providor.aihubmix.name", ['description'] = "ai.providor.aihubmix.description", ['url'] = "https://aihubmix.com/v1/chat/completions", ['index'] = 34, ['model'] = {"gpt-4o", "claude-3-5-sonnet-latest", "gemini-2.0-flash-exp-search", "deepseek-chat", "aihubmix-Llama-3-3-70B-Instruct", "Qwen/QVQ-72B-Preview"}}, ['silicon'] = {['name'] = "ai.providor.silicon.name", ['description'] = "ai.providor.silicon.description", ['url'] = "https://api.siliconflow.cn/v1/chat/completions", ['index'] = 35, ['model'] = {"deepseek-ai/DeepSeek-R1", "deepseek-ai/DeepSeek-V3", "Qwen/Qwen2.5-7B-Instruct", "meta-llama/Llama-3.3-70B-Instruct", "BAAI/bge-m3"}}}
-
-GLOBAL_OFNPC_DATA.voice = {['voices'] = {{['language'] = "zh-CN", ['voices'] = {{['name'] = "Microsoft Xiaoxiao Online (Natural)", ['code'] = "zh-CN-XiaoxiaoNeural", ['gender'] = "female"}, {['name'] = "Microsoft Xiaoyi Online (Natural)", ['code'] = "zh-CN-XiaoyiNeural", ['gender'] = "female"}, {['name'] = "Microsoft Yunjian Online (Natural)", ['code'] = "zh-CN-YunjianNeural", ['gender'] = "male"}, {['name'] = "Microsoft Yunxi Online (Natural)", ['code'] = "zh-CN-YunxiNeural", ['gender'] = "male"}, {['name'] = "Microsoft Yunxia Online (Natural)", ['code'] = "zh-CN-YunxiaNeural", ['gender'] = "female"}, {['name'] = "Microsoft Yunyang Online (Natural)", ['code'] = "zh-CN-YunyangNeural", ['gender'] = "male"}, {['name'] = "Microsoft Xiaobei Online (Natural)", ['code'] = "zh-CN-liaoning-XiaobeiNeural", ['gender'] = "female"}, {['name'] = "Microsoft Xiaoni Online (Natural)", ['code'] = "zh-CN-shaanxi-XiaoniNeural", ['gender'] = "female"}}}, {['language'] = "zh-TW", ['voices'] = {{['name'] = "Microsoft HsiaoChen Online (Natural)", ['code'] = "zh-TW-HsiaoChenNeural", ['gender'] = "female"}, {['name'] = "Microsoft YunJhe Online (Natural)", ['code'] = "zh-TW-YunJheNeural", ['gender'] = "male"}, {['name'] = "Microsoft HsiaoYu Online (Natural)", ['code'] = "zh-TW-HsiaoYuNeural", ['gender'] = "female"}, {['name'] = "Microsoft HiuGaai Online (Natural)", ['code'] = "zh-HK-HiuGaaiNeural", ['gender'] = "female"}, {['name'] = "Microsoft HiuMaan Online (Natural)", ['code'] = "zh-HK-HiuMaanNeural", ['gender'] = "female"}, {['name'] = "Microsoft WanLung Online (Natural)", ['code'] = "zh-HK-WanLungNeural", ['gender'] = "male"}}}, {['language'] = "en", ['voices'] = {{['name'] = "Microsoft Ava Online (Natural)", ['code'] = "en-US-AvaNeural", ['gender'] = "female"}, {['name'] = "Microsoft Andrew Online (Natural)", ['code'] = "en-US-AndrewNeural", ['gender'] = "male"}, {['name'] = "Microsoft Emma Online (Natural)", ['code'] = "en-US-EmmaNeural", ['gender'] = "female"}, {['name'] = "Microsoft Brian Online (Natural)", ['code'] = "en-US-BrianNeural", ['gender'] = "male"}, {['name'] = "Microsoft Ana Online (Natural)", ['code'] = "en-US-AnaNeural", ['gender'] = "female"}, {['name'] = "Microsoft AndrewMultilingual Online (Natural)", ['code'] = "en-US-AndrewMultilingualNeural", ['gender'] = "male"}, {['name'] = "Microsoft Aria Online (Natural)", ['code'] = "en-US-AriaNeural", ['gender'] = "female"}, {['name'] = "Microsoft AvaMultilingual Online (Natural)", ['code'] = "en-US-AvaMultilingualNeural", ['gender'] = "female"}, {['name'] = "Microsoft BrianMultilingual Online (Natural)", ['code'] = "en-US-BrianMultilingualNeural", ['gender'] = "male"}, {['name'] = "Microsoft Christopher Online (Natural)", ['code'] = "en-US-ChristopherNeural", ['gender'] = "male"}, {['name'] = "Microsoft EmmaMultilingual Online (Natural)", ['code'] = "en-US-EmmaMultilingualNeural", ['gender'] = "female"}, {['name'] = "Microsoft Eric Online (Natural)", ['code'] = "en-US-EricNeural", ['gender'] = "male"}, {['name'] = "Microsoft Guy Online (Natural)", ['code'] = "en-US-GuyNeural", ['gender'] = "male"}, {['name'] = "Microsoft Jenny Online (Natural)", ['code'] = "en-US-JennyNeural", ['gender'] = "female"}, {['name'] = "Microsoft Michelle Online (Natural)", ['code'] = "en-US-MichelleNeural", ['gender'] = "female"}, {['name'] = "Microsoft Roger Online (Natural)", ['code'] = "en-US-RogerNeural", ['gender'] = "male"}, {['name'] = "Microsoft Steffan Online (Natural)", ['code'] = "en-US-SteffanNeural", ['gender'] = "male"}, {['name'] = "Microsoft Libby Online (Natural)", ['code'] = "en-GB-LibbyNeural", ['gender'] = "female"}, {['name'] = "Microsoft Maisie Online (Natural)", ['code'] = "en-GB-MaisieNeural", ['gender'] = "female"}, {['name'] = "Microsoft Ryan Online (Natural)", ['code'] = "en-GB-RyanNeural", ['gender'] = "male"}, {['name'] = "Microsoft Sonia Online (Natural)", ['code'] = "en-GB-SoniaNeural", ['gender'] = "female"}, {['name'] = "Microsoft Thomas Online (Natural)", ['code'] = "en-GB-ThomasNeural", ['gender'] = "male"}}}, {['language'] = "en-PT", ['voices'] = {{['name'] = "Microsoft Ava Online (Natural)", ['code'] = "en-US-AvaNeural", ['gender'] = "female"}, {['name'] = "Microsoft Andrew Online (Natural)", ['code'] = "en-US-AndrewNeural", ['gender'] = "male"}, {['name'] = "Microsoft Emma Online (Natural)", ['code'] = "en-US-EmmaNeural", ['gender'] = "female"}, {['name'] = "Microsoft Brian Online (Natural)", ['code'] = "en-US-BrianNeural", ['gender'] = "male"}, {['name'] = "Microsoft Ana Online (Natural)", ['code'] = "en-US-AnaNeural", ['gender'] = "female"}, {['name'] = "Microsoft AndrewMultilingual Online (Natural)", ['code'] = "en-US-AndrewMultilingualNeural", ['gender'] = "male"}, {['name'] = "Microsoft Aria Online (Natural)", ['code'] = "en-US-AriaNeural", ['gender'] = "female"}, {['name'] = "Microsoft AvaMultilingual Online (Natural)", ['code'] = "en-US-AvaMultilingualNeural", ['gender'] = "female"}, {['name'] = "Microsoft BrianMultilingual Online (Natural)", ['code'] = "en-US-BrianMultilingualNeural", ['gender'] = "male"}, {['name'] = "Microsoft Christopher Online (Natural)", ['code'] = "en-US-ChristopherNeural", ['gender'] = "male"}, {['name'] = "Microsoft EmmaMultilingual Online (Natural)", ['code'] = "en-US-EmmaMultilingualNeural", ['gender'] = "female"}, {['name'] = "Microsoft Eric Online (Natural)", ['code'] = "en-US-EricNeural", ['gender'] = "male"}, {['name'] = "Microsoft Guy Online (Natural)", ['code'] = "en-US-GuyNeural", ['gender'] = "male"}, {['name'] = "Microsoft Jenny Online (Natural)", ['code'] = "en-US-JennyNeural", ['gender'] = "female"}, {['name'] = "Microsoft Michelle Online (Natural)", ['code'] = "en-US-MichelleNeural", ['gender'] = "female"}, {['name'] = "Microsoft Roger Online (Natural)", ['code'] = "en-US-RogerNeural", ['gender'] = "male"}, {['name'] = "Microsoft Steffan Online (Natural)", ['code'] = "en-US-SteffanNeural", ['gender'] = "male"}, {['name'] = "Microsoft Libby Online (Natural)", ['code'] = "en-GB-LibbyNeural", ['gender'] = "female"}, {['name'] = "Microsoft Maisie Online (Natural)", ['code'] = "en-GB-MaisieNeural", ['gender'] = "female"}, {['name'] = "Microsoft Ryan Online (Natural)", ['code'] = "en-GB-RyanNeural", ['gender'] = "male"}, {['name'] = "Microsoft Sonia Online (Natural)", ['code'] = "en-GB-SoniaNeural", ['gender'] = "female"}, {['name'] = "Microsoft Thomas Online (Natural)", ['code'] = "en-GB-ThomasNeural", ['gender'] = "male"}}}, {['language'] = "ru", ['voices'] = {{['name'] = "Microsoft Dmitry Online (Natural)", ['code'] = "ru-RU-DmitryNeural", ['gender'] = "male"}, {['name'] = "Microsoft Svetlana Online (Natural)", ['code'] = "ru-RU-SvetlanaNeural", ['gender'] = "female"}}}, {['language'] = "de", ['voices'] = {{['name'] = "Microsoft SeraphinaMultilingual Online (Natural)", ['code'] = "de-DE-SeraphinaMultilingualNeural", ['gender'] = "female"}, {['name'] = "Microsoft FlorianMultilingual Online (Natural)", ['code'] = "de-DE-FlorianMultilingualNeural", ['gender'] = "male"}, {['name'] = "Microsoft Amala Online (Natural)", ['code'] = "de-DE-AmalaNeural", ['gender'] = "female"}, {['name'] = "Microsoft Conrad Online (Natural)", ['code'] = "de-DE-ConradNeural", ['gender'] = "male"}, {['name'] = "Microsoft Katja Online (Natural)", ['code'] = "de-DE-KatjaNeural", ['gender'] = "female"}, {['name'] = "Microsoft Killian Online (Natural)", ['code'] = "de-DE-KillianNeural", ['gender'] = "male"}, {['name'] = "Microsoft Ingrid Online (Natural)", ['code'] = "de-AT-IngridNeural", ['gender'] = "female"}, {['name'] = "Microsoft Jonas Online (Natural)", ['code'] = "de-AT-JonasNeural", ['gender'] = "male"}, {['name'] = "Microsoft Jan Online (Natural)", ['code'] = "de-CH-JanNeural", ['gender'] = "male"}, {['name'] = "Microsoft Leni Online (Natural)", ['code'] = "de-CH-LeniNeural", ['gender'] = "female"}}}}}
-
-GLOBAL_OFNPC_DATA.lang = {['language'] = {['en'] = {['name'] = "English", ['icon'] = "ofnpcp/lang/en.png"}, ['zh-CN'] = {['name'] = "简体中文", ['icon'] = "ofnpcp/lang/zh-CN.png"}, ['zh-TW'] = {['name'] = "繁體中文（Leancy）", ['icon'] = "ofnpcp/lang/zh-TW.png"}, ['en-PT'] = {['name'] = "Pirate", ['icon'] = "ofnpcp/lang/en-PT.png"}, ['ru'] = {['name'] = "Русский (Google Translate)", ['icon'] = "ofnpcp/lang/ru.png"}, ['de'] = {['name'] = "Deutsch (Google Translate)", ['icon'] = "ofnpcp/lang/de.png"}}}
-
+Added NPC dialogue manager for efficient conversation handling.",
+                ["title"] = "December 2024 Update",
+                ["image"] = "12_2024",
+            },
+        },
+        ["document"] = {
+            [1] = {
+                ["timestamp"] = 1743161938,
+                ["content"] = "article.document.help.content",
+                ["title"] = "article.document.help.title",
+                ["image"] = "help",
+            },
+            [2] = {
+                ["timestamp"] = 1742126534,
+                ["content"] = "article.document.tts.content",
+                ["title"] = "article.document.tts.title",
+                ["image"] = "tts",
+            },
+        },
+        ["event"] = {
+            [1] = {
+                ["timestamp"] = 1743299065,
+                ["content"] = "article.event.vote.content",
+                ["title"] = "article.event.vote.title",
+                ["image"] = "vote",
+            },
+            [2] = {
+                ["timestamp"] = 1743160915,
+                ["content"] = "article.event.opensource.content",
+                ["title"] = "article.event.opensource.title",
+                ["image"] = "opensource",
+            },
+            [3] = {
+                ["timestamp"] = 1742632023,
+                ["content"] = "article.event.localization.content",
+                ["title"] = "article.event.localization.title",
+                ["image"] = "localization",
+            },
+            [4] = {
+                ["timestamp"] = 1742126534,
+                ["content"] = "article.event.earlyaccess.content",
+                ["title"] = "article.event.earlyaccess.title",
+                ["image"] = "earlyaccess",
+            },
+        },
+    },
+    ["aiProviders"] = {
+        ["minimax"] = {
+            ["index"] = 18,
+            ["url"] = "https://api.minimax.chat/v1/chat/completions",
+            ["model"] = {
+                [1] = "abab6.5s-chat",
+                [2] = "abab6.5g-chat",
+                [3] = "abab6.5t-chat",
+                [4] = "abab5.5s-chat",
+                [5] = "minimax-text-01",
+            },
+            ["name"] = "ai.providor.minimax.name",
+            ["description"] = "ai.providor.minimax.description",
+        },
+        ["hyperbolic"] = {
+            ["index"] = 19,
+            ["url"] = "https://api.hyperbolic.xyz/v1/chat/completions",
+            ["model"] = {
+                [1] = "Qwen/Qwen2-VL-72B-Instruct",
+                [2] = "Qwen/Qwen2-VL-7B-Instruct",
+                [3] = "mistralai/Pixtral-12B-2409",
+                [4] = "meta-llama/Meta-Llama-3.1-405B",
+            },
+            ["name"] = "ai.providor.hyperbolic.name",
+            ["description"] = "ai.providor.hyperbolic.description",
+        },
+        ["openai"] = {
+            ["index"] = 1,
+            ["url"] = "https://api.openai.com/v1/chat/completions",
+            ["model"] = {
+                [1] = "gpt-3.5-turbo",
+                [2] = "gpt-4",
+                [3] = "gpt-4-turbo-2024-04-09",
+                [4] = "gpt-4.5-preview",
+                [5] = "gpt-40",
+                [6] = "gpt-4o-mini",
+                [7] = "o1-preview",
+                [8] = "o3-mini",
+            },
+            ["name"] = "ai.providor.openai.name",
+            ["description"] = "ai.providor.openai.description",
+        },
+        ["silicon"] = {
+            ["index"] = 35,
+            ["url"] = "https://api.siliconflow.cn/v1/chat/completions",
+            ["model"] = {
+                [1] = "deepseek-ai/DeepSeek-R1",
+                [2] = "deepseek-ai/DeepSeek-V3",
+                [3] = "Qwen/Qwen2.5-7B-Instruct",
+                [4] = "meta-llama/Llama-3.3-70B-Instruct",
+                [5] = "BAAI/bge-m3",
+            },
+            ["name"] = "ai.providor.silicon.name",
+            ["description"] = "ai.providor.silicon.description",
+        },
+        ["zhipu"] = {
+            ["index"] = 13,
+            ["url"] = "https://open.bigmodel.cn/api/paas.v4/chat/completions",
+            ["model"] = {
+                [1] = "glm-zero-preview",
+                [2] = "glm-4-0520",
+                [3] = "glm-4-long",
+                [4] = "glm-4-plus",
+                [5] = "glm-4-air",
+                [6] = "glm-4-airx",
+                [7] = "glm-4-flash",
+                [8] = "glm-4-flashx",
+                [9] = "glm-4v",
+                [10] = "glm-4v-plus",
+                [11] = "glm-4-alltools",
+                [12] = "embedding-3",
+            },
+            ["name"] = "ai.providor.zhipu.name",
+            ["description"] = "ai.providor.zhipu.description",
+        },
+        ["gitHub"] = {
+            ["index"] = 10,
+            ["url"] = "https://models.inference.ai.azure.com/chat/completions",
+            ["model"] = {
+                [1] = "gpt-4o",
+            },
+            ["name"] = "ai.providor.gitHub.name",
+            ["description"] = "ai.providor.gitHub.description",
+        },
+        ["groq"] = {
+            ["index"] = 8,
+            ["url"] = "https://api.groq.com/openai/v1/chat/completions",
+            ["model"] = {
+                [1] = "gemma2-9b-it",
+                [2] = "llama-3.3-70b-versatile",
+                [3] = "llama-3.1-8b-instant",
+                [4] = "llama3-70b-8192",
+                [5] = "llama3-8b-8192",
+                [6] = "mixtral-8x7b-32768",
+            },
+            ["name"] = "ai.providor.groq.name",
+            ["description"] = "ai.providor.groq.description",
+        },
+        ["infini"] = {
+            ["index"] = 29,
+            ["url"] = "https://cloud.infini-ai.com/maas.v1/chat/completions",
+            ["model"] = {
+                [1] = "deepseek-r1",
+                [2] = "deepseek-r1-distill-qwen-32b",
+                [3] = "deepseek-v3",
+                [4] = "qwen2.5-72b-instruct",
+                [5] = "qwen2.5-32b-instruct",
+                [6] = "qwen2.5-14b-instruct",
+                [7] = "qwen2.5-7b-instruct",
+                [8] = "qwen2-72b-instruct",
+                [9] = "qwq-32b-preview",
+                [10] = "qwen2.5-coder-32b-instruct",
+                [11] = "llama-3.3-70b-instruct",
+                [12] = "bge-m3",
+                [13] = "gemma-2-27b-it",
+                [14] = "jina-embeddings-v2-base-zh",
+                [15] = "jina-embeddings-v2-base-code",
+            },
+            ["name"] = "ai.providor.infini.name",
+            ["description"] = "ai.providor.infini.description",
+        },
+        ["ppio"] = {
+            ["index"] = 31,
+            ["url"] = "https://api.ppinfra.com/v3/openai/v1/chat/completions",
+            ["model"] = {
+                [1] = "deepseek/deepseek-r1/community",
+                [2] = "deepseek/deepseek-v3/community",
+                [3] = "deepseek/deepseek-r1",
+                [4] = "deepseek/deepseek-v3",
+                [5] = "qwen/qwen-2.5-72b-instruct",
+                [6] = "qwen/qwen2.5-32b-instruct",
+                [7] = "meta-llama/llama-3.1-70b-instruct",
+                [8] = "meta-llama/llama-3.1-8b-instruct",
+                [9] = "01-ai/yi-1.5-34b-chat",
+                [10] = "01-ai/yi-1.5-9b-chat",
+            },
+            ["name"] = "ai.providor.ppio.name",
+            ["description"] = "ai.providor.ppio.description",
+        },
+        ["modelscope"] = {
+            ["index"] = 30,
+            ["url"] = "https://cloud.infini-ai.com/maas.v1/chat/completions",
+            ["model"] = {
+                [1] = "Qwen/Qwen2.5-72B-Instruct",
+                [2] = "Qwen/Qwen2.5-VL-72B-Instruct",
+                [3] = "Qwen/Qwen2.5-Coder-32B-Instruct",
+                [4] = "deepseek-ai/DeepSeek-R1",
+                [5] = "deepseek-ai/DeepSeek-V3",
+            },
+            ["name"] = "ai.providor.modelscope.name",
+            ["description"] = "ai.providor.modelscope.description",
+        },
+        ["gemini"] = {
+            ["index"] = 3,
+            ["url"] = "https://generativelanguage.googleapis.com/v1beta/models",
+            ["model"] = {
+                [1] = "gemini-1.5-flash",
+                [2] = "gemini-1.5-flash-8b",
+                [3] = "gemini-1.5-pro",
+                [4] = "gemini-2.0-flash",
+            },
+            ["name"] = "ai.providor.gemini.name",
+            ["description"] = "ai.providor.gemini.description",
+        },
+        ["bailian"] = {
+            ["index"] = 16,
+            ["url"] = "https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions",
+            ["model"] = {
+                [1] = "qwen-coder-plus",
+                [2] = "qwen-turbo",
+                [3] = "qwen-plus",
+                [4] = "qwen-max",
+                [5] = "qwen-max-0428",
+                [6] = "qwen-max-0403",
+                [7] = "qwen-max-0107",
+                [8] = "qwen-max-longcontext",
+                [9] = "qwen-1.8b",
+                [10] = "qwen-7b",
+                [11] = "qwen-14b",
+                [12] = "qwen-72b",
+                [13] = "qwen-audio",
+                [14] = "qwen-vl",
+                [15] = "qwen-vl-plus",
+                [16] = "qwen-vl-max",
+            },
+            ["name"] = "ai.providor.bailian.name",
+            ["description"] = "ai.providor.bailian.description",
+        },
+        ["deepseek"] = {
+            ["index"] = 2,
+            ["url"] = "https://api.deepseek.com/chat/completions",
+            ["model"] = {
+                [1] = "deepseek-chat",
+                [2] = "deepseek-reasoner",
+            },
+            ["name"] = "ai.providor.deepseek.name",
+            ["description"] = "ai.providor.deepseek.description",
+        },
+        ["zhinao"] = {
+            ["index"] = 23,
+            ["url"] = "https://api.360.cn/v1/chat/completions",
+            ["model"] = {
+                [1] = "360gpt-pro",
+                [2] = "360gpt-turbo",
+            },
+            ["name"] = "ai.providor.zhinao.name",
+            ["description"] = "ai.providor.zhinao.description",
+        },
+        ["o3"] = {
+            ["index"] = 5,
+            ["url"] = "https://api.o3.fan/v1/chat/completions",
+            ["model"] = {
+                [1] = "gpt-4o",
+                [2] = "o1-mini",
+                [3] = "o1-preview",
+                [4] = "o3-mini",
+                [5] = "o3-mini-high",
+                [6] = "claude-3-7-sonnet-20250219",
+                [7] = "claude-3-5-sonnet-20241022",
+                [8] = "claude-3-5-haiku-20241022",
+                [9] = "claude-3-opus-20240229",
+                [10] = "claude-3-haiku-20240307",
+                [11] = "claude-3-5-sonnet-20240620",
+                [12] = "deepseek-ai/Deepseek-R1",
+                [13] = "deepseek-reasoner",
+                [14] = "deepseek-chat",
+                [15] = "deepseek-ai/DeepSeek-V3",
+                [16] = "text-embedding-3-small",
+                [17] = "text-embedding-ada-002",
+                [18] = "text-embedding-v2",
+                [19] = "Doubao-embedding",
+                [20] = "Doubao-embedding-large",
+            },
+            ["name"] = "ai.providor.o3.name",
+            ["description"] = "ai.providor.o3.description",
+        },
+        ["fireworks"] = {
+            ["index"] = 22,
+            ["url"] = "https://api.fireworks.ai/inference/v1/chat/completions",
+            ["model"] = {
+                [1] = "accounts/fireworks/models/mythomax-l2-13b",
+                [2] = "accounts/fireworks/models/llama-v3-70b-instruct",
+            },
+            ["name"] = "ai.providor.fireworks.name",
+            ["description"] = "ai.providor.fireworks.description",
+        },
+        ["baichuan"] = {
+            ["index"] = 15,
+            ["url"] = "https://api.baichuan-ai.com/v1/chat/completions",
+            ["model"] = {
+                [1] = "Baichuan4",
+                [2] = "Baichuan3-Turbo",
+                [3] = "Baichuan3-Turbo-128k",
+            },
+            ["name"] = "ai.providor.baichuan.name",
+            ["description"] = "ai.providor.baichuan.description",
+        },
+        ["lingyiwanwu"] = {
+            ["index"] = 12,
+            ["url"] = "https://api.lingyiwanwu.com/v1/chat/completions",
+            ["model"] = {
+                [1] = "yi-large",
+                [2] = "yi-lightning",
+                [3] = "yi-medium",
+                [4] = "yi-vision",
+            },
+            ["name"] = "ai.providor.lingyiwanwu.name",
+            ["description"] = "ai.providor.lingyiwanwu.description",
+        },
+        ["hunyuan"] = {
+            ["index"] = 24,
+            ["url"] = "https://api.hunyuan.cloud.tencent.com/v1/chat/completions",
+            ["model"] = {
+                [1] = "hunyuan-pro",
+                [2] = "hunyuan-standard",
+                [3] = "hunyuan-lite",
+                [4] = "hunyuan-standard-256k",
+                [5] = "hunyuan-vision",
+                [6] = "hunyuan-code",
+                [7] = "hunyuan-role",
+                [8] = "hunyuan-turbo",
+                [9] = "hunyuan-turbos-latest",
+                [10] = "hunyuan-embedding",
+            },
+            ["name"] = "ai.providor.hunyuan.name",
+            ["description"] = "ai.providor.hunyuan.description",
+        },
+        ["aihubmix"] = {
+            ["index"] = 34,
+            ["url"] = "https://aihubmix.com/v1/chat/completions",
+            ["model"] = {
+                [1] = "gpt-4o",
+                [2] = "claude-3-5-sonnet-latest",
+                [3] = "gemini-2.0-flash-exp-search",
+                [4] = "deepseek-chat",
+                [5] = "aihubmix-Llama-3-3-70B-Instruct",
+                [6] = "Qwen/QVQ-72B-Preview",
+            },
+            ["name"] = "ai.providor.aihubmix.name",
+            ["description"] = "ai.providor.aihubmix.description",
+        },
+        ["ocoolai"] = {
+            ["index"] = 33,
+            ["url"] = "https://api.ocoolai.com/v1/chat/completions",
+            ["model"] = {
+                [1] = "deepseek-chat",
+                [2] = "deepseek-reasoner",
+                [3] = "deepseek-ai/DeepSeek-R1",
+                [4] = "HiSpeed/DeepSeek-R1",
+                [5] = "ocoolAI/DeepSeek-R1",
+                [6] = "Azure/DeepSeek-R1",
+                [7] = "gpt-4o",
+                [8] = "gpt-4o-all",
+                [9] = "gpt-4o-mini",
+                [10] = "gpt-4",
+                [11] = "o1-preview",
+                [12] = "o1-mini",
+                [13] = "claude-3-5-sonnet-20240620",
+                [14] = "claude-3-5-haiku-20241022",
+                [15] = "gemini-pro",
+                [16] = "gemini-1.5-pro",
+                [17] = "meta-llama/Llama-3.2-90B-Vision-Instruct-Turbo",
+                [18] = "meta-llama/Llama-3.2-11B-Vision-Instruct-Turbo",
+                [19] = "meta-llama/Llama-3.2-3B-Vision-Instruct-Turbo",
+                [20] = "google/gemma-2-27b-it",
+                [21] = "google/gemma-2-9b-it",
+                [22] = "Doubao-embedding",
+                [23] = "text-embedding-3-large",
+                [24] = "text-embedding-3-small",
+                [25] = "text-embedding-v2",
+            },
+            ["name"] = "ai.providor.ocoolai.name",
+            ["description"] = "ai.providor.ocoolai.description",
+        },
+        ["anthropic"] = {
+            ["index"] = 6,
+            ["url"] = "https://api.anthropic.com/v1/complete",
+            ["model"] = {
+                [1] = "claude-3-7-sonnet-20250219",
+                [2] = "claude-3-5-sonnet-20241022",
+                [3] = "claude-3-5-haiku-20241022",
+                [4] = "claude-3-5-sonnet-20240620",
+                [5] = "claude-3-opus-20240229",
+                [6] = "claude-3-haiku-20240307",
+            },
+            ["name"] = "ai.providor.anthropic.name",
+            ["description"] = "ai.providor.anthropic.description",
+        },
+        ["moonshot"] = {
+            ["index"] = 14,
+            ["url"] = "https://api.moonshot.cn/v1/chat/completions",
+            ["model"] = {
+                [1] = "moonshot-v1-auto",
+            },
+            ["name"] = "ai.providor.moonshot.name",
+            ["description"] = "ai.providor.moonshot.description",
+        },
+        ["baidu-cloud"] = {
+            ["index"] = 26,
+            ["url"] = "https://qianfan.baidubce.com/v2/chat/completions",
+            ["model"] = {
+                [1] = "deepseek-r1",
+                [2] = "deepseek-v3",
+                [3] = "ernie-4.0-8k-latest",
+                [4] = "ernie-4.0-turbo-8k-latest",
+                [5] = "ernie-speed-8k",
+                [6] = "ernie-lite-8k",
+                [7] = "bge-large-zh",
+                [8] = "bge-large-en",
+            },
+            ["name"] = "ai.providor.baidu-cloud.name",
+            ["description"] = "ai.providor.baidu-cloud.description",
+        },
+        ["jina"] = {
+            ["index"] = 21,
+            ["url"] = "https://api.jina.ai/v1/chat/completions",
+            ["model"] = {
+                [1] = "jina-clip-v1",
+                [2] = "jina-clip-v2",
+                [3] = "jina-embeddings-v2-base-en",
+                [4] = "jina-embeddings-v2-base-es",
+                [5] = "jina-embeddings.v2-base-de",
+                [6] = "jina-embeddings-v2-base-zh",
+                [7] = "jina-embeddings-v2-base-code",
+                [8] = "jina-embeddings-v3",
+            },
+            ["name"] = "ai.providor.jina.name",
+            ["description"] = "ai.providor.jina.description",
+        },
+        ["nvidia"] = {
+            ["index"] = 25,
+            ["url"] = "https://integrate.api.nvidia.com/v1/chat/completions",
+            ["model"] = {
+                [1] = "01-ai/yi-large",
+                [2] = "meta/llama-3.1-405b-instruct",
+            },
+            ["name"] = "ai.providor.nvidia.name",
+            ["description"] = "ai.providor.nvidia.description",
+        },
+        ["stepfun"] = {
+            ["index"] = 17,
+            ["url"] = "https://api.stepfun.com/v1/chat/completions",
+            ["model"] = {
+                [1] = "step-1-8k",
+                [2] = "step-1-flash",
+            },
+            ["name"] = "ai.providor.stepfun.name",
+            ["description"] = "ai.providor.stepfun.description",
+        },
+        ["gitee-ai"] = {
+            ["index"] = 11,
+            ["url"] = "https://ai.gitee.com/v1/chat/completions",
+            ["model"] = {
+                [1] = "DeepSeek-R1-Distill-Qwen-32B",
+                [2] = "DeepSeek-R1-Distill-Qwen-1.5B",
+                [3] = "DeepSeek-R1-Distill-Qwen-14B",
+                [4] = "DeepSeek-R1-Distill-Qwen-7B",
+                [5] = "DeepSeek-V3",
+                [6] = "DeepSeek-R1",
+                [7] = "deepseek-coder-33B-instruct",
+                [8] = "Qwen2.5-72B-Instruct",
+                [9] = "Qwen2.5-14B-Instruct",
+                [10] = "Qwen2-7B-Instruct",
+                [11] = "Qwen2.5-32B-Instruct",
+                [12] = "Qwen2-72B-Instruct",
+                [13] = "Qwen2-VL-72B",
+                [14] = "QwQ-32B-Preview",
+                [15] = "Yi-34B-Chat",
+                [16] = "glm-4-9b-chat",
+                [17] = "codegeex4-all-9b",
+                [18] = "InternVL2-8B",
+                [19] = "InternVL2.5-26B",
+                [20] = "InternVL2.5-78B",
+                [21] = "bge-large-zh-v1.5",
+                [22] = "bge-small-zh-v1.5",
+                [23] = "bge-m3",
+                [24] = "bce-embedding-base_v1",
+            },
+            ["name"] = "ai.providor.gitee-ai.name",
+            ["description"] = "ai.providor.gitee-ai.description",
+        },
+        ["mistral"] = {
+            ["index"] = 20,
+            ["url"] = "https://api.mistral.ai/v1/chat/completions",
+            ["model"] = {
+                [1] = "pixtral-12b-2409",
+                [2] = "pixtral-large-latest",
+                [3] = "ministral-3b-latest",
+                [4] = "ministral-8b-latest",
+                [5] = "codestral-latest",
+                [6] = "mistral-large-latest",
+                [7] = "mistral-small-latest",
+                [8] = "open-mistral-nemo",
+                [9] = "mistral-embed",
+            },
+            ["name"] = "ai.providor.mistral.name",
+            ["description"] = "ai.providor.mistral.description",
+        },
+        ["ollama"] = {
+            ["index"] = 7,
+            ["url"] = "http://localhost:11434/v1/chat/completions",
+            ["model"] = {
+                [1] = "deepseek-r1:8b",
+                [2] = "llama3:latest",
+            },
+            ["name"] = "ai.providor.ollama.name",
+            ["description"] = "ai.providor.ollama.description",
+        },
+        ["grok"] = {
+            ["index"] = 4,
+            ["url"] = "https://api.x.ai/v1/chat/completions",
+            ["model"] = {
+                [1] = "grok-2-latest",
+            },
+            ["name"] = "ai.providor.grok.name",
+            ["description"] = "ai.providor.grok.description",
+        },
+        ["perplexity"] = {
+            ["index"] = 28,
+            ["url"] = "https://api.perplexity.ai/chat/completions",
+            ["model"] = {
+                [1] = "sonar-reasoning-pro",
+                [2] = "sonar-reasoning",
+                [3] = "sonar-pro",
+                [4] = "sonar",
+            },
+            ["name"] = "ai.providor.perplexity.name",
+            ["description"] = "ai.providor.perplexity.description",
+        },
+        ["together"] = {
+            ["index"] = 32,
+            ["url"] = "https://api.together.xyz/v1/chat/completions",
+            ["model"] = {
+                [1] = "meta-llama/Llama-3.2-11B-Vision-Instruct-Turbo",
+                [2] = "meta-llama/Llama-3.2-90B-Vision-Instruct-Turbo",
+                [3] = "google/gemma-2-27b-it",
+                [4] = "google/gemma-2-9b-it",
+            },
+            ["name"] = "ai.providor.together.name",
+            ["description"] = "ai.providor.together.description",
+        },
+        ["dmxapi"] = {
+            ["index"] = 27,
+            ["url"] = "https://www.dmxapi.cn/v1/chat/completions",
+            ["model"] = {
+                [1] = "Qwen/Qwen2.5-7B-Instruct",
+                [2] = "ERNIE-Speed-128K",
+                [3] = "THUDM/glm-4-9b-chat",
+                [4] = "glm-4-flash",
+                [5] = "hunyuan-lite",
+                [6] = "gpt-4o",
+                [7] = "gpt-4o-mini",
+                [8] = "DMXAPI-DeepSeek-R1",
+                [9] = "DMXAPI-DeepSeek-V3",
+                [10] = "claude-3-5-sonnet-20241022",
+                [11] = "gemini-2.0-flash",
+            },
+            ["name"] = "ai.providor.dmxapi.name",
+            ["description"] = "ai.providor.dmxapi.description",
+        },
+        ["openrouter"] = {
+            ["index"] = 9,
+            ["url"] = "https://openrouter.ai/api/v1/chat/completions",
+            ["model"] = {
+                [1] = "huggingfaceh4/zephyr-7b-beta:free",
+            },
+            ["name"] = "ai.providor.openrouter.name",
+            ["description"] = "ai.providor.openrouter.description",
+        },
+    },
+    ["names"] = {
+        ["male"] = {
+            [1] = "name.male.alex",
+            [2] = "name.male.ben",
+            [3] = "name.male.charlie",
+            [4] = "name.male.daniel",
+            [5] = "name.male.eric",
+            [6] = "name.male.frank",
+            [7] = "name.male.george",
+            [8] = "name.male.henry",
+            [9] = "name.male.ian",
+            [10] = "name.male.jack",
+            [11] = "name.male.kevin",
+            [12] = "name.male.leo",
+            [13] = "name.male.mike",
+            [14] = "name.male.nathan",
+            [15] = "name.male.oliver",
+            [16] = "name.male.peter",
+            [17] = "name.male.quinn",
+            [18] = "name.male.ryan",
+            [19] = "name.male.steve",
+            [20] = "name.male.tom",
+        },
+        ["nicknames"] = {
+            [1] = "nickname.mint",
+            [2] = "nickname.rosemary",
+            [3] = "nickname.fish_mint",
+            [4] = "nickname.thyme",
+            [5] = "nickname.sage",
+            [6] = "nickname.lavender",
+            [7] = "nickname.coriander",
+            [8] = "nickname.shark",
+            [9] = "nickname.pufferfish",
+            [10] = "nickname.tango",
+            [11] = "nickname.fox_hunter",
+            [12] = "nickname.fox",
+            [13] = "nickname.armadillo",
+            [14] = "nickname.tasmanian_devil",
+            [15] = "nickname.echidna",
+            [16] = "nickname.otter",
+            [17] = "nickname.tapir",
+            [18] = "nickname.gazelle",
+            [19] = "nickname.meerkat",
+            [20] = "nickname.pelican",
+            [21] = "nickname.heron",
+            [22] = "nickname.cormorant",
+            [23] = "nickname.nameless",
+            [24] = "nickname.ochre",
+            [25] = "nickname.pajama_party",
+            [26] = "nickname.santa_claus",
+            [27] = "nickname.evil_arrival",
+            [28] = "nickname.white_mourning",
+            [29] = "nickname.fisherman",
+            [30] = "nickname.keyboard_warrior",
+            [31] = "nickname.adventurer",
+            [32] = "nickname.judge",
+            [33] = "nickname.hunter",
+            [34] = "nickname.informer",
+            [35] = "nickname.canned_food",
+            [36] = "nickname.grave",
+        },
+        ["female"] = {
+            [1] = "name.female.amy",
+            [2] = "name.female.beth",
+            [3] = "name.female.claire",
+            [4] = "name.female.diana",
+            [5] = "name.female.emma",
+            [6] = "name.female.faith",
+            [7] = "name.female.grace",
+            [8] = "name.female.hannah",
+            [9] = "name.female.iris",
+            [10] = "name.female.jane",
+            [11] = "name.female.kate",
+            [12] = "name.female.lucy",
+            [13] = "name.female.mary",
+            [14] = "name.female.nina",
+            [15] = "name.female.olivia",
+            [16] = "name.female.penny",
+            [17] = "name.female.quinn",
+            [18] = "name.female.rose",
+            [19] = "name.female.sarah",
+            [20] = "name.female.tina",
+        },
+    },
+    ["tagData"] = {
+        ["tag"] = {
+            ["social"] = {
+                [1] = "tag.social.chivalrous",
+                [2] = "tag.social.fake",
+                [3] = "tag.social.hospitable",
+                [4] = "tag.social.cold",
+                [5] = "tag.social.diplomatic",
+                [6] = "tag.social.solitary",
+                [7] = "tag.social.straightforward",
+                [8] = "tag.social.mighty",
+            },
+            ["trade"] = {
+                [1] = "tag.trade.merchant",
+                [2] = "tag.trade.honest",
+                [3] = "tag.trade.deceiver",
+                [4] = "tag.trade.quality",
+                [5] = "tag.trade.bargainer",
+                [6] = "tag.trade.affordable",
+                [7] = "tag.trade.greedy",
+            },
+            ["ability"] = {
+                ["citizen.job.foodie"] = "tag.ability.gluttonous",
+                ["citizen.job.worker"] = "tag.ability.endurance",
+                ["citizen.job.medic"] = "tag.ability.selfheal",
+                ["citizen.job.artist"] = "tag.ability.creativity",
+                ["citizen.job.technician"] = "tag.ability.expertise",
+                ["citizen.job.scholar"] = "tag.ability.inspiration",
+                ["citizen.job.researcher"] = "tag.ability.curiosity",
+                ["citizen.job.athlete"] = "tag.ability.strength",
+            },
+        },
+    },
+    ["cards"] = {
+        ["info"] = {
+            ["other"] = {
+                ["desc"] = "card.info.other.desc",
+                ["name"] = "card.info.other.name",
+                ["color"] = {
+                    ["r"] = 135,
+                    ["b"] = 214,
+                    ["g"] = 223,
+                },
+            },
+            ["bandit"] = {
+                ["desc"] = "card.info.bandit.desc",
+                ["name"] = "card.info.bandit.name",
+                ["color"] = {
+                    ["r"] = 255,
+                    ["b"] = 0,
+                    ["g"] = 186,
+                },
+            },
+            ["church"] = {
+                ["desc"] = "card.info.church.desc",
+                ["name"] = "card.info.church.name",
+                ["color"] = {
+                    ["r"] = 126,
+                    ["b"] = 251,
+                    ["g"] = 3,
+                },
+            },
+            ["union"] = {
+                ["desc"] = "card.info.union.desc",
+                ["name"] = "card.info.union.name",
+                ["color"] = {
+                    ["r"] = 227,
+                    ["b"] = 164,
+                    ["g"] = 132,
+                },
+            },
+            ["combine"] = {
+                ["desc"] = "card.info.combine.desc",
+                ["name"] = "card.info.combine.name",
+                ["color"] = {
+                    ["r"] = 0,
+                    ["b"] = 223,
+                    ["g"] = 149,
+                },
+            },
+            ["warlord"] = {
+                ["desc"] = "card.info.warlord.desc",
+                ["name"] = "card.info.warlord.name",
+                ["color"] = {
+                    ["r"] = 252,
+                    ["b"] = 9,
+                    ["g"] = 33,
+                },
+            },
+            ["resistance"] = {
+                ["desc"] = "card.info.resistance.desc",
+                ["name"] = "card.info.resistance.name",
+                ["color"] = {
+                    ["r"] = 255,
+                    ["b"] = 23,
+                    ["g"] = 141,
+                },
+            },
+        },
+        ["other"] = {
+            ["snakecharmer"] = {
+                ["a"] = {
+                    [1] = "card.other.snakecharmer.a.1",
+                    [2] = "card.other.snakecharmer.a.2",
+                },
+                ["tag"] = {
+                    [1] = "梅花",
+                    [2] = "魔术师",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.other.snakecharmer.d.1",
+                    [2] = "card.other.snakecharmer.d.2",
+                },
+                ["name"] = "card.other.snakecharmer.name",
+                ["cost"] = "5",
+            },
+            ["cheerstofuture"] = {
+                ["a"] = {
+                    [1] = "card.other.cheerstofuture.a.1",
+                    [2] = "card.other.cheerstofuture.a.2",
+                },
+                ["tag"] = {
+                    [1] = "红桃",
+                    [2] = "愚者",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.other.cheerstofuture.d.1",
+                    [2] = "card.other.cheerstofuture.d.2",
+                    [3] = "card.other.cheerstofuture.d.3",
+                },
+                ["name"] = "card.other.cheerstofuture.name",
+                ["cost"] = "1",
+            },
+            ["profiteering"] = {
+                ["a"] = {
+                    [1] = "card.other.profiteering.a.1",
+                    [2] = "card.other.profiteering.a.2",
+                },
+                ["tag"] = {
+                    [1] = "红桃",
+                    [2] = "女皇",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.other.profiteering.d.1",
+                    [2] = "card.other.profiteering.d.2",
+                    [3] = "card.other.profiteering.d.3",
+                },
+                ["name"] = "card.other.profiteering.name",
+                ["cost"] = "2",
+            },
+            ["ramayana"] = {
+                ["a"] = {
+                    [1] = "card.other.ramayana.a.1",
+                    [2] = "card.other.ramayana.a.2",
+                },
+                ["tag"] = {
+                    [1] = "梅花",
+                    [2] = "魔术师",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.other.ramayana.d.1",
+                    [2] = "card.other.ramayana.d.2",
+                },
+                ["name"] = "card.other.ramayana.name",
+                ["cost"] = "3",
+            },
+            ["reputation"] = {
+                ["a"] = {
+                    [1] = "card.other.reputation.a.1",
+                    [2] = "card.other.reputation.a.2",
+                },
+                ["tag"] = {
+                    [1] = "方块",
+                    [2] = "皇帝",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.other.reputation.d.1",
+                    [2] = "card.other.reputation.d.2",
+                },
+                ["name"] = "card.other.reputation.name",
+                ["cost"] = "4",
+            },
+            ["hideout"] = {
+                ["a"] = {
+                    [1] = "card.other.hideout.a.1",
+                    [2] = "card.other.hideout.a.2",
+                },
+                ["tag"] = {
+                    [1] = "红桃",
+                    [2] = "女皇",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.other.hideout.d.1",
+                    [2] = "card.other.hideout.d.2",
+                },
+                ["name"] = "card.other.hideout.name",
+                ["cost"] = "1",
+            },
+            ["absurdexperience"] = {
+                ["a"] = {
+                    [1] = "card.other.absurdexperience.a.1",
+                    [2] = "card.other.absurdexperience.a.2",
+                },
+                ["tag"] = {
+                    [1] = "梅花",
+                    [2] = "魔术师",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.other.absurdexperience.d.1",
+                    [2] = "card.other.absurdexperience.d.2",
+                },
+                ["name"] = "card.other.absurdexperience.name",
+                ["cost"] = "3",
+            },
+            ["changetheconcept"] = {
+                ["a"] = {
+                    [1] = "card.other.changetheconcept.a.1",
+                    [2] = "card.other.changetheconcept.a.2",
+                },
+                ["tag"] = {
+                    [1] = "梅花",
+                    [2] = "魔术师",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.other.changetheconcept.d.1",
+                    [2] = "card.other.changetheconcept.d.2",
+                },
+                ["name"] = "card.other.changetheconcept.name",
+                ["cost"] = "3",
+            },
+            ["snailwalking"] = {
+                ["a"] = {
+                    [1] = "card.other.snailwalking.a.1",
+                    [2] = "card.other.snailwalking.a.2",
+                },
+                ["tag"] = {
+                    [1] = "梅花",
+                    [2] = "女皇",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.other.snailwalking.d.1",
+                    [2] = "card.other.snailwalking.d.2",
+                    [3] = "card.other.snailwalking.d.3",
+                },
+                ["name"] = "card.other.snailwalking.name",
+                ["cost"] = "2",
+            },
+            ["opportunity"] = {
+                ["a"] = {
+                    [1] = "card.other.opportunity.a.1",
+                    [2] = "card.other.opportunity.a.2",
+                },
+                ["tag"] = {
+                    [1] = "方块",
+                    [2] = "魔术师",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.other.opportunity.d.1",
+                    [2] = "card.other.opportunity.d.2",
+                },
+                ["name"] = "card.other.opportunity.name",
+                ["cost"] = "3",
+            },
+            ["diplomaticimmunity"] = {
+                ["a"] = {
+                    [1] = "card.other.diplomaticimmunity.a.1",
+                    [2] = "card.other.diplomaticimmunity.a.2",
+                    [3] = "card.other.diplomaticimmunity.a.3",
+                },
+                ["tag"] = {
+                    [1] = "红桃",
+                    [2] = "女皇",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.other.diplomaticimmunity.d.1",
+                    [2] = "card.other.diplomaticimmunity.d.2",
+                    [3] = "card.other.diplomaticimmunity.d.3",
+                    [4] = "card.other.diplomaticimmunity.d.4",
+                    [5] = "card.other.diplomaticimmunity.d.5",
+                },
+                ["name"] = "card.other.diplomaticimmunity.name",
+                ["cost"] = "1",
+            },
+            ["whistleblower"] = {
+                ["a"] = {
+                    [1] = "card.other.whistleblower.a.1",
+                    [2] = "card.other.whistleblower.a.2",
+                },
+                ["tag"] = {
+                    [1] = "方块",
+                    [2] = "女皇",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.other.whistleblower.d.1",
+                    [2] = "card.other.whistleblower.d.2",
+                    [3] = "card.other.whistleblower.d.3",
+                },
+                ["name"] = "card.other.whistleblower.name",
+                ["cost"] = "2",
+            },
+            ["donquixote"] = {
+                ["a"] = {
+                    [1] = "card.other.donquixote.a.1",
+                    [2] = "card.other.donquixote.a.2",
+                },
+                ["tag"] = {
+                    [1] = "黑桃",
+                    [2] = "愚者",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.other.donquixote.d.1",
+                    [2] = "card.other.donquixote.d.2",
+                },
+                ["name"] = "card.other.donquixote.name",
+                ["cost"] = "2",
+            },
+            ["letitburn"] = {
+                ["a"] = {
+                    [1] = "card.other.letitburn.a.1",
+                    [2] = "card.other.letitburn.a.2",
+                },
+                ["tag"] = {
+                    [1] = "红桃",
+                    [2] = "女皇",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.other.letitburn.d.1",
+                    [2] = "card.other.letitburn.d.2",
+                },
+                ["name"] = "card.other.letitburn.name",
+                ["cost"] = "1",
+            },
+            ["monkeybusiness"] = {
+                ["a"] = {
+                    [1] = "card.other.monkeybusiness.a.1",
+                    [2] = "card.other.monkeybusiness.a.2",
+                },
+                ["tag"] = {
+                    [1] = "红桃",
+                    [2] = "愚者",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.other.monkeybusiness.d.1",
+                    [2] = "card.other.monkeybusiness.d.2",
+                },
+                ["name"] = "card.other.monkeybusiness.name",
+                ["cost"] = "1",
+            },
+            ["flattery"] = {
+                ["a"] = {
+                    [1] = "card.other.flattery.a.1",
+                    [2] = "card.other.flattery.a.2",
+                },
+                ["tag"] = {
+                    [1] = "红桃",
+                    [2] = "女皇",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.other.flattery.d.1",
+                    [2] = "card.other.flattery.d.2",
+                },
+                ["name"] = "card.other.flattery.name",
+                ["cost"] = "2",
+            },
+        },
+        ["general"] = {
+            ["hypothesis"] = {
+                ["a"] = {
+                    [1] = "card.general.hypothesis.a.1",
+                    [2] = "card.general.hypothesis.a.2",
+                },
+                ["tag"] = {
+                    [1] = "梅花",
+                    [2] = "魔术师",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.general.hypothesis.d.1",
+                    [2] = "card.general.hypothesis.d.2",
+                    [3] = "card.general.hypothesis.d.3",
+                    [4] = "card.general.hypothesis.d.4",
+                    [5] = "card.general.hypothesis.d.5",
+                    [6] = "card.general.hypothesis.d.6",
+                },
+                ["name"] = "card.general.hypothesis.name",
+                ["cost"] = "1",
+            },
+            ["ridicule"] = {
+                ["a"] = {
+                    [1] = "card.general.ridicule.a.1",
+                    [2] = "card.general.ridicule.a.2",
+                },
+                ["tag"] = {
+                    [1] = "梅花",
+                    [2] = "魔术师",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.general.ridicule.d.1",
+                    [2] = "card.general.ridicule.d.2",
+                    [3] = "card.general.ridicule.d.3",
+                    [4] = "card.general.ridicule.d.4",
+                    [5] = "card.general.ridicule.d.5",
+                },
+                ["name"] = "card.general.ridicule.name",
+                ["cost"] = "1",
+            },
+            ["dispute"] = {
+                ["a"] = {
+                    [1] = "card.general.dispute.a.1",
+                    [2] = "card.general.dispute.a.2",
+                },
+                ["tag"] = {
+                    [1] = "红桃",
+                    [2] = "愚者",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.general.dispute.d.1",
+                    [2] = "card.general.dispute.d.2",
+                    [3] = "card.general.dispute.d.3",
+                },
+                ["name"] = "card.general.dispute.name",
+                ["cost"] = "2",
+            },
+            ["warexperience"] = {
+                ["a"] = {
+                    [1] = "card.general.warexperience.a.1",
+                    [2] = "card.general.warexperience.a.2",
+                },
+                ["tag"] = {
+                    [1] = "黑桃",
+                    [2] = "皇帝",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.general.warexperience.d.1",
+                    [2] = "card.general.warexperience.d.2",
+                    [3] = "card.general.warexperience.d.3",
+                    [4] = "card.general.warexperience.d.4",
+                    [5] = "card.general.warexperience.d.5",
+                },
+                ["name"] = "card.general.warexperience.name",
+                ["cost"] = "3",
+            },
+            ["psychologicalwar"] = {
+                ["a"] = {
+                    [1] = "card.general.psychologicalwar.a.1",
+                    [2] = "card.general.psychologicalwar.a.2",
+                    [3] = "card.general.psychologicalwar.a.3",
+                    [4] = "card.general.psychologicalwar.a.4",
+                },
+                ["tag"] = {
+                    [1] = "黑桃",
+                    [2] = "皇帝",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.general.psychologicalwar.d.1",
+                    [2] = "card.general.psychologicalwar.d.2",
+                    [3] = "card.general.psychologicalwar.d.3",
+                    [4] = "card.general.psychologicalwar.d.4",
+                    [5] = "card.general.psychologicalwar.d.5",
+                    [6] = "card.general.psychologicalwar.d.6",
+                },
+                ["name"] = "card.general.psychologicalwar.name",
+                ["cost"] = "3",
+            },
+            ["informationexchange"] = {
+                ["a"] = {
+                    [1] = "card.general.informationexchange.a.1",
+                    [2] = "card.general.informationexchange.a.2",
+                    [3] = "card.general.informationexchange.a.3",
+                    [4] = "card.general.informationexchange.a.4",
+                },
+                ["tag"] = {
+                    [1] = "方块",
+                    [2] = "魔术师",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.general.informationexchange.d.1",
+                    [2] = "card.general.informationexchange.d.2",
+                    [3] = "card.general.informationexchange.d.3",
+                    [4] = "card.general.informationexchange.d.4",
+                },
+                ["name"] = "card.general.informationexchange.name",
+                ["cost"] = "1",
+            },
+            ["smalltalk"] = {
+                ["a"] = {
+                    [1] = "card.general.smalltalk.a.1",
+                    [2] = "card.general.smalltalk.a.2",
+                    [3] = "card.general.smalltalk.a.3",
+                    [4] = "card.general.smalltalk.a.4",
+                },
+                ["tag"] = {
+                    [1] = "红桃",
+                    [2] = "女皇",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.general.smalltalk.d.1",
+                    [2] = "card.general.smalltalk.d.2",
+                    [3] = "card.general.smalltalk.d.3",
+                    [4] = "card.general.smalltalk.d.4",
+                    [5] = "card.general.smalltalk.d.5",
+                    [6] = "card.general.smalltalk.d.6",
+                },
+                ["name"] = "card.general.smalltalk.name",
+                ["cost"] = "1",
+            },
+            ["espionage"] = {
+                ["a"] = {
+                    [1] = "card.general.espionage.a.1",
+                    [2] = "card.general.espionage.a.2",
+                },
+                ["tag"] = {
+                    [1] = "梅花",
+                    [2] = "魔术师",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.general.espionage.d.1",
+                    [2] = "card.general.espionage.d.2",
+                },
+                ["name"] = "card.general.espionage.name",
+                ["cost"] = "3",
+            },
+            ["hatsleight"] = {
+                ["a"] = {
+                    [1] = "card.general.hatsleight.a.1",
+                    [2] = "card.general.hatsleight.a.2",
+                    [3] = "card.general.hatsleight.a.3",
+                },
+                ["tag"] = {
+                    [1] = "梅花",
+                    [2] = "魔术师",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.general.hatsleight.d.1",
+                    [2] = "card.general.hatsleight.d.2",
+                },
+                ["name"] = "card.general.hatsleight.name",
+                ["cost"] = "2",
+            },
+            ["fame"] = {
+                ["a"] = {
+                    [1] = "card.general.fame.a.1",
+                    [2] = "card.general.fame.a.2",
+                    [3] = "card.general.fame.a.3",
+                },
+                ["tag"] = {
+                    [1] = "红桃",
+                    [2] = "皇帝",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.general.fame.d.1",
+                    [2] = "card.general.fame.d.2",
+                    [3] = "card.general.fame.d.3",
+                    [4] = "card.general.fame.d.4",
+                    [5] = "card.general.fame.d.5",
+                    [6] = "card.general.fame.d.6",
+                },
+                ["name"] = "card.general.fame.name",
+                ["cost"] = "1",
+            },
+            ["negligence"] = {
+                ["a"] = {
+                    [1] = "card.general.negligence.a.1",
+                    [2] = "card.general.negligence.a.2",
+                    [3] = "card.general.negligence.a.3",
+                },
+                ["tag"] = {
+                    [1] = "方块",
+                    [2] = "愚者",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.general.negligence.d.1",
+                    [2] = "card.general.negligence.d.2",
+                    [3] = "card.general.negligence.d.3",
+                    [4] = "card.general.negligence.d.4",
+                    [5] = "card.general.negligence.d.5",
+                },
+                ["name"] = "card.general.negligence.name",
+                ["cost"] = "2",
+            },
+            ["rebuttal"] = {
+                ["a"] = {
+                    [1] = "card.general.rebuttal.a.1",
+                    [2] = "card.general.rebuttal.a.2",
+                    [3] = "card.general.rebuttal.a.3",
+                    [4] = "card.general.rebuttal.a.4",
+                    [5] = "card.general.rebuttal.a.5",
+                    [6] = "card.general.rebuttal.a.6",
+                },
+                ["tag"] = {
+                    [1] = "梅花",
+                    [2] = "魔术师",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.general.rebuttal.d.1",
+                    [2] = "card.general.rebuttal.d.2",
+                    [3] = "card.general.rebuttal.d.3",
+                    [4] = "card.general.rebuttal.d.4",
+                    [5] = "card.general.rebuttal.d.5",
+                    [6] = "card.general.rebuttal.d.6",
+                },
+                ["name"] = "card.general.rebuttal.name",
+                ["cost"] = "1",
+            },
+            ["terrorface"] = {
+                ["a"] = {
+                    [1] = "card.general.terrorface.a.1",
+                    [2] = "card.general.terrorface.a.2",
+                    [3] = "card.general.terrorface.a.3",
+                },
+                ["tag"] = {
+                    [1] = "黑桃",
+                    [2] = "魔术师",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.general.terrorface.d.1",
+                    [2] = "card.general.terrorface.d.2",
+                },
+                ["name"] = "card.general.terrorface.name",
+                ["cost"] = "2",
+            },
+            ["sightedness"] = {
+                ["a"] = {
+                    [1] = "card.general.sightedness.a.1",
+                    [2] = "card.general.sightedness.a.2",
+                    [3] = "card.general.sightedness.a.3",
+                    [4] = "card.general.sightedness.a.4",
+                    [5] = "card.general.sightedness.a.5",
+                    [6] = "card.general.sightedness.a.6",
+                },
+                ["tag"] = {
+                    [1] = "红桃",
+                    [2] = "女皇",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.general.sightedness.d.1",
+                    [2] = "card.general.sightedness.d.2",
+                    [3] = "card.general.sightedness.d.3",
+                    [4] = "card.general.sightedness.d.4",
+                    [5] = "card.general.sightedness.d.5",
+                },
+                ["name"] = "card.general.sightedness.name",
+                ["cost"] = "1",
+            },
+        },
+        ["bandit"] = {
+            ["raid"] = {
+                ["a"] = {
+                    [1] = "card.bandit.raid.a.1",
+                    [2] = "card.bandit.raid.a.2",
+                },
+                ["tag"] = {
+                    [1] = "梅花",
+                    [2] = "魔术师",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.bandit.raid.d.1",
+                    [2] = "card.bandit.raid.d.2",
+                },
+                ["name"] = "card.bandit.raid.name",
+                ["cost"] = "4",
+            },
+            ["playwithfire"] = {
+                ["a"] = {
+                    [1] = "card.bandit.playwithfire.a.1",
+                    [2] = "card.bandit.playwithfire.a.2",
+                    [3] = "card.bandit.playwithfire.a.3",
+                },
+                ["tag"] = {
+                    [1] = "黑桃",
+                    [2] = "魔术师",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.bandit.playwithfire.d.1",
+                    [2] = "card.bandit.playwithfire.d.2",
+                    [3] = "card.bandit.playwithfire.d.3",
+                },
+                ["name"] = "card.bandit.playwithfire.name",
+                ["cost"] = "5",
+            },
+            ["waitingforopportunity"] = {
+                ["a"] = {
+                    [1] = "card.bandit.waitingforopportunity.a.1",
+                    [2] = "card.bandit.waitingforopportunity.a.2",
+                },
+                ["tag"] = {
+                    [1] = "黑桃",
+                    [2] = "愚者",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.bandit.waitingforopportunity.d.1",
+                    [2] = "card.bandit.waitingforopportunity.d.2",
+                },
+                ["name"] = "card.bandit.waitingforopportunity.name",
+                ["cost"] = "2",
+            },
+            ["makeblackwhite"] = {
+                ["a"] = {
+                    [1] = "card.bandit.makeblackwhite.a.1",
+                    [2] = "card.bandit.makeblackwhite.a.2",
+                },
+                ["tag"] = {
+                    [1] = "梅花",
+                    [2] = "魔术师",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.bandit.makeblackwhite.d.1",
+                    [2] = "card.bandit.makeblackwhite.d.2",
+                },
+                ["name"] = "card.bandit.makeblackwhite.name",
+                ["cost"] = "4",
+            },
+            ["creation"] = {
+                ["a"] = {
+                    [1] = "card.bandit.creation.a.1",
+                    [2] = "card.bandit.creation.a.2",
+                },
+                ["tag"] = {
+                    [1] = "梅花",
+                    [2] = "魔术师",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.bandit.creation.d.1",
+                    [2] = "card.bandit.creation.d.2",
+                },
+                ["name"] = "card.bandit.creation.name",
+                ["cost"] = "2",
+            },
+            ["dawn"] = {
+                ["a"] = {
+                    [1] = "card.bandit.dawn.a.1",
+                    [2] = "card.bandit.dawn.a.2",
+                },
+                ["tag"] = {
+                    [1] = "红桃",
+                    [2] = "女皇",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.bandit.dawn.d.1",
+                    [2] = "card.bandit.dawn.d.2",
+                    [3] = "card.bandit.dawn.d.3",
+                    [4] = "card.bandit.dawn.d.4",
+                },
+                ["name"] = "card.bandit.dawn.name",
+                ["cost"] = "4",
+            },
+            ["nosurvivors"] = {
+                ["a"] = {
+                    [1] = "card.bandit.nosurvivors.a.1",
+                    [2] = "card.bandit.nosurvivors.a.2",
+                },
+                ["tag"] = {
+                    [1] = "梅花",
+                    [2] = "魔术师",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.bandit.nosurvivors.d.1",
+                    [2] = "card.bandit.nosurvivors.d.2",
+                    [3] = "card.bandit.nosurvivors.d.3",
+                },
+                ["name"] = "card.bandit.nosurvivors.name",
+                ["cost"] = "4",
+            },
+            ["supreme"] = {
+                ["a"] = {
+                    [1] = "card.bandit.supreme.a.1",
+                    [2] = "card.bandit.supreme.a.2",
+                },
+                ["tag"] = {
+                    [1] = "方块",
+                    [2] = "皇帝",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.bandit.supreme.d.1",
+                    [2] = "card.bandit.supreme.d.2",
+                    [3] = "card.bandit.supreme.d.3",
+                },
+                ["name"] = "card.bandit.supreme.name",
+                ["cost"] = "1",
+            },
+            ["finaldefense"] = {
+                ["a"] = {
+                    [1] = "card.bandit.finaldefense.a.1",
+                    [2] = "card.bandit.finaldefense.a.2",
+                },
+                ["tag"] = {
+                    [1] = "黑桃",
+                    [2] = "皇帝",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.bandit.finaldefense.d.1",
+                    [2] = "card.bandit.finaldefense.d.2",
+                },
+                ["name"] = "card.bandit.finaldefense.name",
+                ["cost"] = "4",
+            },
+            ["crimeandpunishment"] = {
+                ["a"] = {
+                    [1] = "card.bandit.crimeandpunishment.a.1",
+                    [2] = "card.bandit.crimeandpunishment.a.2",
+                },
+                ["tag"] = {
+                    [1] = "黑桃",
+                    [2] = "皇帝",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.bandit.crimeandpunishment.d.1",
+                    [2] = "card.bandit.crimeandpunishment.d.2",
+                    [3] = "card.bandit.crimeandpunishment.d.3",
+                },
+                ["name"] = "card.bandit.crimeandpunishment.name",
+                ["cost"] = "2",
+            },
+            ["dropinthewrong"] = {
+                ["a"] = {
+                    [1] = "card.bandit.dropinthewrong.a.1",
+                    [2] = "card.bandit.dropinthewrong.a.2",
+                },
+                ["tag"] = {
+                    [1] = "黑桃",
+                    [2] = "魔术师",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.bandit.dropinthewrong.d.1",
+                    [2] = "card.bandit.dropinthewrong.d.2",
+                },
+                ["name"] = "card.bandit.dropinthewrong.name",
+                ["cost"] = "4",
+            },
+            ["playhouse"] = {
+                ["a"] = {
+                    [1] = "card.bandit.playhouse.a.1",
+                    [2] = "card.bandit.playhouse.a.2",
+                },
+                ["tag"] = {
+                    [1] = "红桃",
+                    [2] = "皇帝",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.bandit.playhouse.d.1",
+                    [2] = "card.bandit.playhouse.d.2",
+                    [3] = "card.bandit.playhouse.d.3",
+                },
+                ["name"] = "card.bandit.playhouse.name",
+                ["cost"] = "1",
+            },
+            ["songofmisery"] = {
+                ["a"] = {
+                    [1] = "card.bandit.songofmisery.a.1",
+                    [2] = "card.bandit.songofmisery.a.2",
+                },
+                ["tag"] = {
+                    [1] = "红桃",
+                    [2] = "愚者",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.bandit.songofmisery.d.1",
+                    [2] = "card.bandit.songofmisery.d.2",
+                },
+                ["name"] = "card.bandit.songofmisery.name",
+                ["cost"] = "3",
+            },
+            ["apple"] = {
+                ["a"] = {
+                    [1] = "card.bandit.apple.a.1",
+                    [2] = "card.bandit.apple.a.2",
+                },
+                ["tag"] = {
+                    [1] = "梅花",
+                    [2] = "魔术师",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.bandit.apple.d.1",
+                    [2] = "card.bandit.apple.d.2",
+                },
+                ["name"] = "card.bandit.apple.name",
+                ["cost"] = "1",
+            },
+            ["whitenight"] = {
+                ["a"] = {
+                    [1] = "card.bandit.whitenight.a.1",
+                    [2] = "card.bandit.whitenight.a.2",
+                    [3] = "card.bandit.whitenight.a.3",
+                },
+                ["tag"] = {
+                    [1] = "梅花",
+                    [2] = "魔术师",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.bandit.whitenight.d.1",
+                    [2] = "card.bandit.whitenight.d.2",
+                    [3] = "card.bandit.whitenight.d.3",
+                },
+                ["name"] = "card.bandit.whitenight.name",
+                ["cost"] = "1",
+            },
+            ["breakout"] = {
+                ["a"] = {
+                    [1] = "card.bandit.breakout.a.1",
+                    [2] = "card.bandit.breakout.a.2",
+                },
+                ["tag"] = {
+                    [1] = "梅花",
+                    [2] = "愚者",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.bandit.breakout.d.1",
+                    [2] = "card.bandit.breakout.d.2",
+                },
+                ["name"] = "card.bandit.breakout.name",
+                ["cost"] = "1",
+            },
+        },
+        ["church"] = {
+            ["telepathy"] = {
+                ["a"] = {
+                    [1] = "card.church.telepathy.a.1",
+                    [2] = "card.church.telepathy.a.2",
+                    [3] = "card.church.telepathy.a.3",
+                },
+                ["tag"] = {
+                    [1] = "梅花",
+                    [2] = "魔术师",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.church.telepathy.d.1",
+                    [2] = "card.church.telepathy.d.2",
+                },
+                ["name"] = "card.church.telepathy.name",
+                ["cost"] = "3",
+            },
+            ["secretorganization"] = {
+                ["a"] = {
+                    [1] = "card.church.secretorganization.a.1",
+                    [2] = "card.church.secretorganization.a.2",
+                },
+                ["tag"] = {
+                    [1] = "梅花",
+                    [2] = "魔术师",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.church.secretorganization.d.1",
+                    [2] = "card.church.secretorganization.d.2",
+                },
+                ["name"] = "card.church.secretorganization.name",
+                ["cost"] = "1",
+            },
+            ["annihilation"] = {
+                ["a"] = {
+                    [1] = "card.church.annihilation.a.1",
+                    [2] = "card.church.annihilation.a.2",
+                },
+                ["tag"] = {
+                    [1] = "黑桃",
+                    [2] = "魔术师",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.church.annihilation.d.1",
+                    [2] = "card.church.annihilation.d.2",
+                },
+                ["name"] = "card.church.annihilation.name",
+                ["cost"] = "2",
+            },
+            ["moonarmy"] = {
+                ["a"] = {
+                    [1] = "card.church.moonarmy.a.1",
+                    [2] = "card.church.moonarmy.a.2",
+                },
+                ["tag"] = {
+                    [1] = "黑桃",
+                    [2] = "魔术师",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.church.moonarmy.d.1",
+                    [2] = "card.church.moonarmy.d.2",
+                },
+                ["name"] = "card.church.moonarmy.name",
+                ["cost"] = "4",
+            },
+            ["wheeloffate"] = {
+                ["a"] = {
+                    [1] = "card.church.wheeloffate.a.1",
+                    [2] = "card.church.wheeloffate.a.2",
+                },
+                ["tag"] = {
+                    [1] = "梅花",
+                    [2] = "魔术师",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.church.wheeloffate.d.1",
+                    [2] = "card.church.wheeloffate.d.2",
+                },
+                ["name"] = "card.church.wheeloffate.name",
+                ["cost"] = "4",
+            },
+            ["cataclysm"] = {
+                ["a"] = {
+                    [1] = "card.church.cataclysm.a.1",
+                    [2] = "card.church.cataclysm.a.2",
+                },
+                ["tag"] = {
+                    [1] = "黑桃",
+                    [2] = "皇帝",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.church.cataclysm.d.1",
+                    [2] = "card.church.cataclysm.d.2",
+                    [3] = "card.church.cataclysm.d.3",
+                },
+                ["name"] = "card.church.cataclysm.name",
+                ["cost"] = "3",
+            },
+            ["secretart"] = {
+                ["a"] = {
+                    [1] = "card.church.secretart.a.1",
+                    [2] = "card.church.secretart.a.2",
+                },
+                ["tag"] = {
+                    [1] = "梅花",
+                    [2] = "魔术师",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.church.secretart.d.1",
+                    [2] = "card.church.secretart.d.2",
+                },
+                ["name"] = "card.church.secretart.name",
+                ["cost"] = "3",
+            },
+            ["puppet"] = {
+                ["a"] = {
+                    [1] = "card.church.puppet.a.1",
+                    [2] = "card.church.puppet.a.2",
+                },
+                ["tag"] = {
+                    [1] = "梅花",
+                    [2] = "魔术师",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.church.puppet.d.1",
+                    [2] = "card.church.puppet.d.2",
+                },
+                ["name"] = "card.church.puppet.name",
+                ["cost"] = "1",
+            },
+            ["earworm"] = {
+                ["a"] = {
+                    [1] = "card.church.earworm.a.1",
+                    [2] = "card.church.earworm.a.2",
+                },
+                ["tag"] = {
+                    [1] = "红桃",
+                    [2] = "女皇",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.church.earworm.d.1",
+                    [2] = "card.church.earworm.d.2",
+                    [3] = "card.church.earworm.d.3",
+                },
+                ["name"] = "card.church.earworm.name",
+                ["cost"] = "2",
+            },
+            ["judgment"] = {
+                ["a"] = {
+                    [1] = "card.church.judgment.a.1",
+                    [2] = "card.church.judgment.a.2",
+                },
+                ["tag"] = {
+                    [1] = "梅花",
+                    [2] = "女皇",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.church.judgment.d.1",
+                    [2] = "card.church.judgment.d.2",
+                },
+                ["name"] = "card.church.judgment.name",
+                ["cost"] = "1",
+            },
+            ["garrysmouse"] = {
+                ["a"] = {
+                    [1] = "card.church.garrysmouse.a.1",
+                    [2] = "card.church.garrysmouse.a.2",
+                },
+                ["tag"] = {
+                    [1] = "黑桃",
+                    [2] = "愚者",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.church.garrysmouse.d.1",
+                    [2] = "card.church.garrysmouse.d.2",
+                },
+                ["name"] = "card.church.garrysmouse.name",
+                ["cost"] = "5",
+            },
+            ["resurrection"] = {
+                ["a"] = {
+                    [1] = "card.church.resurrection.a.1",
+                    [2] = "card.church.resurrection.a.2",
+                },
+                ["tag"] = {
+                    [1] = "红桃",
+                    [2] = "魔术师",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.church.resurrection.d.1",
+                    [2] = "card.church.resurrection.d.2",
+                    [3] = "card.church.resurrection.d.3",
+                },
+                ["name"] = "card.church.resurrection.name",
+                ["cost"] = "3",
+            },
+            ["experiment"] = {
+                ["a"] = {
+                    [1] = "card.church.experiment.a.1",
+                    [2] = "card.church.experiment.a.2",
+                    [3] = "card.church.experiment.a.3",
+                },
+                ["tag"] = {
+                    [1] = "梅花",
+                    [2] = "愚者",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.church.experiment.d.1",
+                    [2] = "card.church.experiment.d.2",
+                },
+                ["name"] = "card.church.experiment.name",
+                ["cost"] = "3",
+            },
+            ["fanaticism"] = {
+                ["a"] = {
+                    [1] = "card.church.fanaticism.a.1",
+                    [2] = "card.church.fanaticism.a.2",
+                },
+                ["tag"] = {
+                    [1] = "红桃",
+                    [2] = "愚者",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.church.fanaticism.d.1",
+                    [2] = "card.church.fanaticism.d.2",
+                },
+                ["name"] = "card.church.fanaticism.name",
+                ["cost"] = "3",
+            },
+            ["barnacle"] = {
+                ["a"] = {
+                    [1] = "card.church.barnacle.a.1",
+                    [2] = "card.church.barnacle.a.2",
+                },
+                ["tag"] = {
+                    [1] = "梅花",
+                    [2] = "魔术师",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.church.barnacle.d.1",
+                    [2] = "card.church.barnacle.d.2",
+                },
+                ["name"] = "card.church.barnacle.name",
+                ["cost"] = "3",
+            },
+            ["pheromone"] = {
+                ["a"] = {
+                    [1] = "card.church.pheromone.a.1",
+                    [2] = "card.church.pheromone.a.2",
+                },
+                ["tag"] = {
+                    [1] = "红桃",
+                    [2] = "女皇",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.church.pheromone.d.1",
+                    [2] = "card.church.pheromone.d.2",
+                },
+                ["name"] = "card.church.pheromone.name",
+                ["cost"] = "1",
+            },
+        },
+        ["union"] = {
+            ["unionrepresentative"] = {
+                ["a"] = {
+                    [1] = "card.union.unionrepresentative.a.1",
+                    [2] = "card.union.unionrepresentative.a.2",
+                },
+                ["tag"] = {
+                    [1] = "红桃",
+                    [2] = "女皇",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.union.unionrepresentative.d.1",
+                    [2] = "card.union.unionrepresentative.d.2",
+                },
+                ["name"] = "card.union.unionrepresentative.name",
+                ["cost"] = "5",
+            },
+            ["disorder"] = {
+                ["a"] = {
+                    [1] = "card.union.disorder.a.1",
+                    [2] = "card.union.disorder.a.2",
+                },
+                ["tag"] = {
+                    [1] = "梅花",
+                    [2] = "魔术师",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.union.disorder.d.1",
+                    [2] = "card.union.disorder.d.2",
+                    [3] = "card.union.disorder.d.3",
+                },
+                ["name"] = "card.union.disorder.name",
+                ["cost"] = "4",
+            },
+            ["inconsistentaction"] = {
+                ["a"] = {
+                    [1] = "card.union.inconsistentaction.a.1",
+                    [2] = "card.union.inconsistentaction.a.2",
+                },
+                ["tag"] = {
+                    [1] = "方块",
+                    [2] = "愚者",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.union.inconsistentaction.d.1",
+                    [2] = "card.union.inconsistentaction.d.2",
+                },
+                ["name"] = "card.union.inconsistentaction.name",
+                ["cost"] = "1",
+            },
+            ["longnight"] = {
+                ["a"] = {
+                    [1] = "card.union.longnight.a.1",
+                    [2] = "card.union.longnight.a.2",
+                },
+                ["tag"] = {
+                    [1] = "黑桃",
+                    [2] = "愚者",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.union.longnight.d.1",
+                    [2] = "card.union.longnight.d.2",
+                },
+                ["name"] = "card.union.longnight.name",
+                ["cost"] = "4",
+            },
+            ["powersupply"] = {
+                ["a"] = {
+                    [1] = "card.union.powersupply.a.1",
+                    [2] = "card.union.powersupply.a.2",
+                },
+                ["tag"] = {
+                    [1] = "红桃",
+                    [2] = "女皇",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.union.powersupply.d.1",
+                    [2] = "card.union.powersupply.d.2",
+                },
+                ["name"] = "card.union.powersupply.name",
+                ["cost"] = "2",
+            },
+            ["diligentefforts"] = {
+                ["a"] = {
+                    [1] = "card.union.diligentefforts.a.1",
+                    [2] = "card.union.diligentefforts.a.2",
+                },
+                ["tag"] = {
+                    [1] = "红桃",
+                    [2] = "女皇",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.union.diligentefforts.d.1",
+                    [2] = "card.union.diligentefforts.d.2",
+                },
+                ["name"] = "card.union.diligentefforts.name",
+                ["cost"] = "1",
+            },
+            ["labor"] = {
+                ["a"] = {
+                    [1] = "card.union.labor.a.1",
+                    [2] = "card.union.labor.a.2",
+                },
+                ["tag"] = {
+                    [1] = "方块",
+                    [2] = "愚者",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.union.labor.d.1",
+                    [2] = "card.union.labor.d.2",
+                },
+                ["name"] = "card.union.labor.name",
+                ["cost"] = "1",
+            },
+            ["molotov"] = {
+                ["a"] = {
+                    [1] = "card.union.molotov.a.1",
+                    [2] = "card.union.molotov.a.2",
+                },
+                ["tag"] = {
+                    [1] = "红桃",
+                    [2] = "愚者",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.union.molotov.d.1",
+                    [2] = "card.union.molotov.d.2",
+                },
+                ["name"] = "card.union.molotov.name",
+                ["cost"] = "4",
+            },
+            ["destroyrailway"] = {
+                ["a"] = {
+                    [1] = "card.union.destroyrailway.a.1",
+                    [2] = "card.union.destroyrailway.a.2",
+                },
+                ["tag"] = {
+                    [1] = "黑桃",
+                    [2] = "魔术师",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.union.destroyrailway.d.1",
+                    [2] = "card.union.destroyrailway.d.2",
+                },
+                ["name"] = "card.union.destroyrailway.name",
+                ["cost"] = "4",
+            },
+            ["resourcedistribution"] = {
+                ["a"] = {
+                    [1] = "card.union.resourcedistribution.a.1",
+                    [2] = "card.union.resourcedistribution.a.2",
+                },
+                ["tag"] = {
+                    [1] = "方块",
+                    [2] = "皇帝",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.union.resourcedistribution.d.1",
+                    [2] = "card.union.resourcedistribution.d.2",
+                },
+                ["name"] = "card.union.resourcedistribution.name",
+                ["cost"] = "1",
+            },
+            ["uprising"] = {
+                ["a"] = {
+                    [1] = "card.union.uprising.a.1",
+                    [2] = "card.union.uprising.a.2",
+                },
+                ["tag"] = {
+                    [1] = "红桃",
+                    [2] = "女皇",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.union.uprising.d.1",
+                    [2] = "card.union.uprising.d.2",
+                    [3] = "card.union.uprising.d.3",
+                },
+                ["name"] = "card.union.uprising.name",
+                ["cost"] = "3",
+            },
+            ["safetyproduction"] = {
+                ["a"] = {
+                    [1] = "card.union.safetyproduction.a.1",
+                    [2] = "card.union.safetyproduction.a.2",
+                },
+                ["tag"] = {
+                    [1] = "梅花",
+                    [2] = "女皇",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.union.safetyproduction.d.1",
+                    [2] = "card.union.safetyproduction.d.2",
+                },
+                ["name"] = "card.union.safetyproduction.name",
+                ["cost"] = "2",
+            },
+            ["delaytactics"] = {
+                ["a"] = {
+                    [1] = "card.union.delaytactics.a.1",
+                    [2] = "card.union.delaytactics.a.2",
+                },
+                ["tag"] = {
+                    [1] = "梅花",
+                    [2] = "魔术师",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.union.delaytactics.d.1",
+                    [2] = "card.union.delaytactics.d.2",
+                },
+                ["name"] = "card.union.delaytactics.name",
+                ["cost"] = "3",
+            },
+            ["productionline"] = {
+                ["a"] = {
+                    [1] = "card.union.productionline.a.1",
+                    [2] = "card.union.productionline.a.2",
+                },
+                ["tag"] = {
+                    [1] = "方块",
+                    [2] = "皇帝",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.union.productionline.d.1",
+                    [2] = "card.union.productionline.d.2",
+                },
+                ["name"] = "card.union.productionline.name",
+                ["cost"] = "3",
+            },
+            ["tacticalreorganization"] = {
+                ["a"] = {
+                    [1] = "card.union.tacticalreorganization.a.1",
+                    [2] = "card.union.tacticalreorganization.a.2",
+                },
+                ["tag"] = {
+                    [1] = "梅花",
+                    [2] = "魔术师",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.union.tacticalreorganization.d.1",
+                    [2] = "card.union.tacticalreorganization.d.2",
+                },
+                ["name"] = "card.union.tacticalreorganization.name",
+                ["cost"] = "2",
+            },
+            ["strikethreat"] = {
+                ["a"] = {
+                    [1] = "card.union.strikethreat.a.1",
+                    [2] = "card.union.strikethreat.a.2",
+                },
+                ["tag"] = {
+                    [1] = "黑桃",
+                    [2] = "愚者",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.union.strikethreat.d.1",
+                    [2] = "card.union.strikethreat.d.2",
+                },
+                ["name"] = "card.union.strikethreat.name",
+                ["cost"] = "2",
+            },
+        },
+        ["warlord"] = {
+            ["frisys"] = {
+                ["a"] = {
+                    [1] = "card.warlord.frisys.a.1",
+                    [2] = "card.warlord.frisys.a.2",
+                    [3] = "card.warlord.frisys.a.3",
+                },
+                ["tag"] = {
+                    [1] = "黑桃",
+                    [2] = "皇帝",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.warlord.frisys.d.1",
+                    [2] = "card.warlord.frisys.d.2",
+                    [3] = "card.warlord.frisys.d.3",
+                    [4] = "card.warlord.frisys.d.4",
+                },
+                ["name"] = "card.warlord.frisys.name",
+                ["cost"] = "5",
+            },
+            ["dependonothers"] = {
+                ["a"] = {
+                    [1] = "card.warlord.dependonothers.a.1",
+                    [2] = "card.warlord.dependonothers.a.2",
+                },
+                ["tag"] = {
+                    [1] = "方块",
+                    [2] = "愚者",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.warlord.dependonothers.d.1",
+                    [2] = "card.warlord.dependonothers.d.2",
+                },
+                ["name"] = "card.warlord.dependonothers.name",
+                ["cost"] = "1",
+            },
+            ["arroganceandprejudice"] = {
+                ["a"] = {
+                    [1] = "card.warlord.arroganceandprejudice.a.1",
+                    [2] = "card.warlord.arroganceandprejudice.a.2",
+                },
+                ["tag"] = {
+                    [1] = "红桃",
+                    [2] = "皇帝",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.warlord.arroganceandprejudice.d.1",
+                    [2] = "card.warlord.arroganceandprejudice.d.2",
+                },
+                ["name"] = "card.warlord.arroganceandprejudice.name",
+                ["cost"] = "3",
+            },
+            ["wardeclaration"] = {
+                ["a"] = {
+                    [1] = "card.warlord.wardeclaration.a.1",
+                    [2] = "card.warlord.wardeclaration.a.2",
+                },
+                ["tag"] = {
+                    [1] = "红桃",
+                    [2] = "皇帝",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.warlord.wardeclaration.d.1",
+                    [2] = "card.warlord.wardeclaration.d.2",
+                },
+                ["name"] = "card.warlord.wardeclaration.name",
+                ["cost"] = "4",
+            },
+            ["captivetrain"] = {
+                ["a"] = {
+                    [1] = "card.warlord.captivetrain.a.1",
+                    [2] = "card.warlord.captivetrain.a.2",
+                },
+                ["tag"] = {
+                    [1] = "黑桃",
+                    [2] = "皇帝",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.warlord.captivetrain.d.1",
+                    [2] = "card.warlord.captivetrain.d.2",
+                },
+                ["name"] = "card.warlord.captivetrain.name",
+                ["cost"] = "4",
+            },
+            ["survivalofefittest"] = {
+                ["a"] = {
+                    [1] = "card.warlord.survivalofefittest.a.1",
+                    [2] = "card.warlord.survivalofefittest.a.2",
+                },
+                ["tag"] = {
+                    [1] = "黑桃",
+                    [2] = "愚者",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.warlord.survivalofefittest.d.1",
+                    [2] = "card.warlord.survivalofefittest.d.2",
+                    [3] = "card.warlord.survivalofefittest.d.3",
+                },
+                ["name"] = "card.warlord.survivalofefittest.name",
+                ["cost"] = "3",
+            },
+            ["takeadvantage"] = {
+                ["a"] = {
+                    [1] = "card.warlord.takeadvantage.a.1",
+                    [2] = "card.warlord.takeadvantage.a.2",
+                },
+                ["tag"] = {
+                    [1] = "梅花",
+                    [2] = "魔术师",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.warlord.takeadvantage.d.1",
+                    [2] = "card.warlord.takeadvantage.d.2",
+                },
+                ["name"] = "card.warlord.takeadvantage.name",
+                ["cost"] = "2",
+            },
+            ["terrorrule"] = {
+                ["a"] = {
+                    [1] = "card.warlord.terrorrule.a.1",
+                    [2] = "card.warlord.terrorrule.a.2",
+                },
+                ["tag"] = {
+                    [1] = "黑桃",
+                    [2] = "皇帝",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.warlord.terrorrule.d.1",
+                    [2] = "card.warlord.terrorrule.d.2",
+                },
+                ["name"] = "card.warlord.terrorrule.name",
+                ["cost"] = "4",
+            },
+            ["troublesometime"] = {
+                ["a"] = {
+                    [1] = "card.warlord.troublesometime.a.1",
+                    [2] = "card.warlord.troublesometime.a.2",
+                },
+                ["tag"] = {
+                    [1] = "黑桃",
+                    [2] = "皇帝",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.warlord.troublesometime.d.1",
+                    [2] = "card.warlord.troublesometime.d.2",
+                    [3] = "card.warlord.troublesometime.d.3",
+                    [4] = "card.warlord.troublesometime.d.4",
+                },
+                ["name"] = "card.warlord.troublesometime.name",
+                ["cost"] = "1",
+            },
+            ["reverseaction"] = {
+                ["a"] = {
+                    [1] = "card.warlord.reverseaction.a.1",
+                    [2] = "card.warlord.reverseaction.a.2",
+                },
+                ["tag"] = {
+                    [1] = "黑桃",
+                    [2] = "皇帝",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.warlord.reverseaction.d.1",
+                    [2] = "card.warlord.reverseaction.d.2",
+                    [3] = "card.warlord.reverseaction.d.3",
+                },
+                ["name"] = "card.warlord.reverseaction.name",
+                ["cost"] = "3",
+            },
+            ["openchallenge"] = {
+                ["a"] = {
+                    [1] = "card.warlord.openchallenge.a.1",
+                    [2] = "card.warlord.openchallenge.a.2",
+                },
+                ["tag"] = {
+                    [1] = "红桃",
+                    [2] = "皇帝",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.warlord.openchallenge.d.1",
+                    [2] = "card.warlord.openchallenge.d.2",
+                    [3] = "card.warlord.openchallenge.d.3",
+                    [4] = "card.warlord.openchallenge.d.4",
+                },
+                ["name"] = "card.warlord.openchallenge.name",
+                ["cost"] = "1",
+            },
+            ["supercilious"] = {
+                ["a"] = {
+                    [1] = "card.warlord.supercilious.a.1",
+                    [2] = "card.warlord.supercilious.a.2",
+                },
+                ["tag"] = {
+                    [1] = "黑桃",
+                    [2] = "皇帝",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.warlord.supercilious.d.1",
+                    [2] = "card.warlord.supercilious.d.2",
+                },
+                ["name"] = "card.warlord.supercilious.name",
+                ["cost"] = "3",
+            },
+            ["rabble"] = {
+                ["a"] = {
+                    [1] = "card.warlord.rabble.a.1",
+                    [2] = "card.warlord.rabble.a.2",
+                },
+                ["tag"] = {
+                    [1] = "方块",
+                    [2] = "皇帝",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.warlord.rabble.d.1",
+                    [2] = "card.warlord.rabble.d.2",
+                    [3] = "card.warlord.rabble.d.3",
+                    [4] = "card.warlord.rabble.d.4",
+                },
+                ["name"] = "card.warlord.rabble.name",
+                ["cost"] = "1",
+            },
+            ["dictatorship"] = {
+                ["a"] = {
+                    [1] = "card.warlord.dictatorship.a.1",
+                    [2] = "card.warlord.dictatorship.a.2",
+                    [3] = "card.warlord.dictatorship.a.3",
+                },
+                ["tag"] = {
+                    [1] = "红桃",
+                    [2] = "皇帝",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.warlord.dictatorship.d.1",
+                    [2] = "card.warlord.dictatorship.d.2",
+                    [3] = "card.warlord.dictatorship.d.3",
+                },
+                ["name"] = "card.warlord.dictatorship.name",
+                ["cost"] = "4",
+            },
+            ["backfire"] = {
+                ["a"] = {
+                    [1] = "card.warlord.backfire.a.1",
+                    [2] = "card.warlord.backfire.a.2",
+                },
+                ["tag"] = {
+                    [1] = "梅花",
+                    [2] = "魔术师",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.warlord.backfire.d.1",
+                    [2] = "card.warlord.backfire.d.2",
+                },
+                ["name"] = "card.warlord.backfire.name",
+                ["cost"] = "2",
+            },
+            ["desperatemeans"] = {
+                ["a"] = {
+                    [1] = "card.warlord.desperatemeans.a.1",
+                    [2] = "card.warlord.desperatemeans.a.2",
+                },
+                ["tag"] = {
+                    [1] = "黑桃",
+                    [2] = "魔术师",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.warlord.desperatemeans.d.1",
+                    [2] = "card.warlord.desperatemeans.d.2",
+                },
+                ["name"] = "card.warlord.desperatemeans.name",
+                ["cost"] = "2",
+            },
+        },
+        ["resistance"] = {
+            ["rareoccasion"] = {
+                ["a"] = {
+                    [1] = "card.resistance.rareoccasion.a.1",
+                    [2] = "card.resistance.rareoccasion.a.2",
+                    [3] = "card.resistance.rareoccasion.a.3",
+                },
+                ["tag"] = {
+                    [1] = "梅花",
+                    [2] = "魔术师",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.resistance.rareoccasion.d.1",
+                    [2] = "card.resistance.rareoccasion.d.2",
+                    [3] = "card.resistance.rareoccasion.d.3",
+                    [4] = "card.resistance.rareoccasion.d.4",
+                },
+                ["name"] = "card.resistance.rareoccasion.name",
+                ["cost"] = "1",
+            },
+            ["treadingoneggs"] = {
+                ["a"] = {
+                    [1] = "card.resistance.treadingoneggs.a.1",
+                    [2] = "card.resistance.treadingoneggs.a.2",
+                },
+                ["tag"] = {
+                    [1] = "梅花",
+                    [2] = "魔术师",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.resistance.treadingoneggs.d.1",
+                    [2] = "card.resistance.treadingoneggs.d.2",
+                    [3] = "card.resistance.treadingoneggs.d.3",
+                    [4] = "card.resistance.treadingoneggs.d.4",
+                },
+                ["name"] = "card.resistance.treadingoneggs.name",
+                ["cost"] = "1",
+            },
+            ["beliefofrebels"] = {
+                ["a"] = {
+                    [1] = "card.resistance.beliefofrebels.a.1",
+                    [2] = "card.resistance.beliefofrebels.a.2",
+                },
+                ["tag"] = {
+                    [1] = "红桃",
+                    [2] = "愚者",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.resistance.beliefofrebels.d.1",
+                    [2] = "card.resistance.beliefofrebels.d.2",
+                },
+                ["name"] = "card.resistance.beliefofrebels.name",
+                ["cost"] = "4",
+            },
+            ["van"] = {
+                ["a"] = {
+                    [1] = "card.resistance.van.a.1",
+                    [2] = "card.resistance.van.a.2",
+                },
+                ["tag"] = {
+                    [1] = "黑桃",
+                    [2] = "皇帝",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.resistance.van.d.1",
+                    [2] = "card.resistance.van.d.2",
+                },
+                ["name"] = "card.resistance.van.name",
+                ["cost"] = "2",
+            },
+            ["familiarground"] = {
+                ["a"] = {
+                    [1] = "card.resistance.familiarground.a.1",
+                    [2] = "card.resistance.familiarground.a.2",
+                },
+                ["tag"] = {
+                    [1] = "方块",
+                    [2] = "愚者",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.resistance.familiarground.d.1",
+                    [2] = "card.resistance.familiarground.d.2",
+                    [3] = "card.resistance.familiarground.d.3",
+                },
+                ["name"] = "card.resistance.familiarground.name",
+                ["cost"] = "4",
+            },
+            ["firebase"] = {
+                ["a"] = {
+                    [1] = "card.resistance.firebase.a.1",
+                    [2] = "card.resistance.firebase.a.2",
+                },
+                ["tag"] = {
+                    [1] = "黑桃",
+                    [2] = "皇帝",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.resistance.firebase.d.1",
+                    [2] = "card.resistance.firebase.d.2",
+                },
+                ["name"] = "card.resistance.firebase.name",
+                ["cost"] = "3",
+            },
+            ["beyondreach"] = {
+                ["a"] = {
+                    [1] = "card.resistance.beyondreach.a.1",
+                    [2] = "card.resistance.beyondreach.a.2",
+                },
+                ["tag"] = {
+                    [1] = "黑桃",
+                    [2] = "愚者",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.resistance.beyondreach.d.1",
+                    [2] = "card.resistance.beyondreach.d.2",
+                },
+                ["name"] = "card.resistance.beyondreach.name",
+                ["cost"] = "2",
+            },
+            ["preparedness"] = {
+                ["a"] = {
+                    [1] = "card.resistance.preparedness.a.1",
+                    [2] = "card.resistance.preparedness.a.2",
+                },
+                ["tag"] = {
+                    [1] = "方块",
+                    [2] = "愚者",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.resistance.preparedness.d.1",
+                    [2] = "card.resistance.preparedness.d.2",
+                },
+                ["name"] = "card.resistance.preparedness.name",
+                ["cost"] = "3",
+            },
+            ["publicsupport"] = {
+                ["a"] = {
+                    [1] = "card.resistance.publicsupport.a.1",
+                    [2] = "card.resistance.publicsupport.a.2",
+                },
+                ["tag"] = {
+                    [1] = "红桃",
+                    [2] = "女皇",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.resistance.publicsupport.d.1",
+                    [2] = "card.resistance.publicsupport.d.2",
+                },
+                ["name"] = "card.resistance.publicsupport.name",
+                ["cost"] = "3",
+            },
+            ["undergroundnetwork"] = {
+                ["a"] = {
+                    [1] = "card.resistance.undergroundnetwork.a.1",
+                    [2] = "card.resistance.undergroundnetwork.a.2",
+                },
+                ["tag"] = {
+                    [1] = "梅花",
+                    [2] = "魔术师",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.resistance.undergroundnetwork.d.1",
+                    [2] = "card.resistance.undergroundnetwork.d.2",
+                },
+                ["name"] = "card.resistance.undergroundnetwork.name",
+                ["cost"] = "1",
+            },
+            ["bravery"] = {
+                ["a"] = {
+                    [1] = "card.resistance.bravery.a.1",
+                    [2] = "card.resistance.bravery.a.2",
+                },
+                ["tag"] = {
+                    [1] = "黑桃",
+                    [2] = "愚者",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.resistance.bravery.d.1",
+                    [2] = "card.resistance.bravery.d.2",
+                },
+                ["name"] = "card.resistance.bravery.name",
+                ["cost"] = "3",
+            },
+            ["rocketlaunch"] = {
+                ["a"] = {
+                    [1] = "card.resistance.rocketlaunch.a.1",
+                    [2] = "card.resistance.rocketlaunch.a.2",
+                },
+                ["tag"] = {
+                    [1] = "红桃",
+                    [2] = "女皇",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.resistance.rocketlaunch.d.1",
+                    [2] = "card.resistance.rocketlaunch.d.2",
+                },
+                ["name"] = "card.resistance.rocketlaunch.name",
+                ["cost"] = "3",
+            },
+            ["fate"] = {
+                ["a"] = {
+                    [1] = "card.resistance.fate.a.1",
+                    [2] = "card.resistance.fate.a.2",
+                },
+                ["tag"] = {
+                    [1] = "红桃",
+                    [2] = "女皇",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.resistance.fate.d.1",
+                    [2] = "card.resistance.fate.d.2",
+                },
+                ["name"] = "card.resistance.fate.name",
+                ["cost"] = "1",
+            },
+            ["farewellcage"] = {
+                ["a"] = {
+                    [1] = "card.resistance.farewellcage.a.1",
+                    [2] = "card.resistance.farewellcage.a.2",
+                },
+                ["tag"] = {
+                    [1] = "红桃",
+                    [2] = "愚者",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.resistance.farewellcage.d.1",
+                    [2] = "card.resistance.farewellcage.d.2",
+                    [3] = "card.resistance.farewellcage.d.3",
+                },
+                ["name"] = "card.resistance.farewellcage.name",
+                ["cost"] = "2",
+            },
+            ["dangerzone"] = {
+                ["a"] = {
+                    [1] = "card.resistance.dangerzone.a.1",
+                    [2] = "card.resistance.dangerzone.a.2",
+                },
+                ["tag"] = {
+                    [1] = "黑桃",
+                    [2] = "魔术师",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.resistance.dangerzone.d.1",
+                    [2] = "card.resistance.dangerzone.d.2",
+                },
+                ["name"] = "card.resistance.dangerzone.name",
+                ["cost"] = "2",
+            },
+            ["ifwartomorrow"] = {
+                ["a"] = {
+                    [1] = "card.resistance.ifwartomorrow.a.1",
+                    [2] = "card.resistance.ifwartomorrow.a.2",
+                },
+                ["tag"] = {
+                    [1] = "黑桃",
+                    [2] = "皇帝",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.resistance.ifwartomorrow.d.1",
+                    [2] = "card.resistance.ifwartomorrow.d.2",
+                },
+                ["name"] = "card.resistance.ifwartomorrow.name",
+                ["cost"] = "5",
+            },
+        },
+        ["combine"] = {
+            ["arrest"] = {
+                ["a"] = {
+                    [1] = "card.combine.arrest.a.1",
+                    [2] = "card.combine.arrest.a.2",
+                    [3] = "card.combine.arrest.a.3",
+                },
+                ["tag"] = {
+                    [1] = "黑桃",
+                    [2] = "皇帝",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.combine.arrest.d.1",
+                    [2] = "card.combine.arrest.d.2",
+                    [3] = "card.combine.arrest.d.3",
+                },
+                ["name"] = "card.combine.arrest.name",
+                ["cost"] = "3",
+            },
+            ["citybroadcast"] = {
+                ["a"] = {
+                    [1] = "card.combine.citybroadcast.a.1",
+                    [2] = "card.combine.citybroadcast.a.2",
+                },
+                ["tag"] = {
+                    [1] = "红桃",
+                    [2] = "女皇",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.combine.citybroadcast.d.1",
+                    [2] = "card.combine.citybroadcast.d.2",
+                },
+                ["name"] = "card.combine.citybroadcast.name",
+                ["cost"] = "3",
+            },
+            ["ultimatum"] = {
+                ["a"] = {
+                    [1] = "card.combine.ultimatum.a.1",
+                    [2] = "card.combine.ultimatum.a.2",
+                },
+                ["tag"] = {
+                    [1] = "红桃",
+                    [2] = "皇帝",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.combine.ultimatum.d.1",
+                    [2] = "card.combine.ultimatum.d.2",
+                    [3] = "card.combine.ultimatum.d.3",
+                    [4] = "card.combine.ultimatum.d.4",
+                },
+                ["name"] = "card.combine.ultimatum.name",
+                ["cost"] = "4",
+            },
+            ["militarycourt"] = {
+                ["a"] = {
+                    [1] = "card.combine.militarycourt.a.1",
+                    [2] = "card.combine.militarycourt.a.2",
+                    [3] = "card.combine.militarycourt.a.3",
+                },
+                ["tag"] = {
+                    [1] = "梅花",
+                    [2] = "皇帝",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.combine.militarycourt.d.1",
+                    [2] = "card.combine.militarycourt.d.2",
+                },
+                ["name"] = "card.combine.militarycourt.name",
+                ["cost"] = "5",
+            },
+            ["businessasusual"] = {
+                ["a"] = {
+                    [1] = "card.combine.businessasusual.a.1",
+                    [2] = "card.combine.businessasusual.a.2",
+                },
+                ["tag"] = {
+                    [1] = "梅花",
+                    [2] = "女皇",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.combine.businessasusual.d.1",
+                    [2] = "card.combine.businessasusual.d.2",
+                    [3] = "card.combine.businessasusual.d.3",
+                },
+                ["name"] = "card.combine.businessasusual.name",
+                ["cost"] = "3",
+            },
+            ["sniperthreat"] = {
+                ["a"] = {
+                    [1] = "card.combine.sniperthreat.a.1",
+                    [2] = "card.combine.sniperthreat.a.2",
+                },
+                ["tag"] = {
+                    [1] = "黑桃",
+                    [2] = "魔术师",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.combine.sniperthreat.d.1",
+                    [2] = "card.combine.sniperthreat.d.2",
+                },
+                ["name"] = "card.combine.sniperthreat.name",
+                ["cost"] = "4",
+            },
+            ["imperialorder"] = {
+                ["a"] = {
+                    [1] = "card.combine.imperialorder.a.1",
+                    [2] = "card.combine.imperialorder.a.2",
+                },
+                ["tag"] = {
+                    [1] = "红桃",
+                    [2] = "皇帝",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.combine.imperialorder.d.1",
+                    [2] = "card.combine.imperialorder.d.2",
+                },
+                ["name"] = "card.combine.imperialorder.name",
+                ["cost"] = "4",
+            },
+            ["internalmessage"] = {
+                ["a"] = {
+                    [1] = "card.combine.internalmessage.a.1",
+                    [2] = "card.combine.internalmessage.a.2",
+                    [3] = "card.combine.internalmessage.a.3",
+                    [4] = "card.combine.internalmessage.a.4",
+                },
+                ["tag"] = {
+                    [1] = "方块",
+                    [2] = "魔术师",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.combine.internalmessage.d.1",
+                    [2] = "card.combine.internalmessage.d.2",
+                    [3] = "card.combine.internalmessage.d.3",
+                    [4] = "card.combine.internalmessage.d.4",
+                    [5] = "card.combine.internalmessage.d.5",
+                },
+                ["name"] = "card.combine.internalmessage.name",
+                ["cost"] = "2",
+            },
+            ["fortress"] = {
+                ["a"] = {
+                    [1] = "card.combine.fortress.a.1",
+                    [2] = "card.combine.fortress.a.2",
+                    [3] = "card.combine.fortress.a.3",
+                    [4] = "card.combine.fortress.a.4",
+                },
+                ["tag"] = {
+                    [1] = "黑桃",
+                    [2] = "皇帝",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.combine.fortress.d.1",
+                    [2] = "card.combine.fortress.d.2",
+                },
+                ["name"] = "card.combine.fortress.name",
+                ["cost"] = "1",
+            },
+            ["overwatch"] = {
+                ["a"] = {
+                    [1] = "card.combine.overwatch.a.1",
+                    [2] = "card.combine.overwatch.a.2",
+                    [3] = "card.combine.overwatch.a.3",
+                },
+                ["tag"] = {
+                    [1] = "梅花",
+                    [2] = "魔术师",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.combine.overwatch.d.1",
+                    [2] = "card.combine.overwatch.d.2",
+                    [3] = "card.combine.overwatch.d.3",
+                    [4] = "card.combine.overwatch.d.4",
+                    [5] = "card.combine.overwatch.d.5",
+                },
+                ["name"] = "card.combine.overwatch.name",
+                ["cost"] = "1",
+            },
+            ["trojanhorse"] = {
+                ["a"] = {
+                    [1] = "card.combine.trojanhorse.a.1",
+                    [2] = "card.combine.trojanhorse.a.2",
+                },
+                ["tag"] = {
+                    [1] = "黑桃",
+                    [2] = "魔术师",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.combine.trojanhorse.d.1",
+                    [2] = "card.combine.trojanhorse.d.2",
+                },
+                ["name"] = "card.combine.trojanhorse.name",
+                ["cost"] = "3",
+            },
+            ["fishingremarks"] = {
+                ["a"] = {
+                    [1] = "card.combine.fishingremarks.a.1",
+                    [2] = "card.combine.fishingremarks.a.2",
+                    [3] = "card.combine.fishingremarks.a.3",
+                    [4] = "card.combine.fishingremarks.a.4",
+                },
+                ["tag"] = {
+                    [1] = "梅花",
+                    [2] = "魔术师",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.combine.fishingremarks.d.1",
+                    [2] = "card.combine.fishingremarks.d.2",
+                },
+                ["name"] = "card.combine.fishingremarks.name",
+                ["cost"] = "2",
+            },
+            ["keeneye"] = {
+                ["a"] = {
+                    [1] = "card.combine.keeneye.a.1",
+                    [2] = "card.combine.keeneye.a.2",
+                    [3] = "card.combine.keeneye.a.3",
+                },
+                ["tag"] = {
+                    [1] = "红桃",
+                    [2] = "女皇",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.combine.keeneye.d.1",
+                    [2] = "card.combine.keeneye.d.2",
+                    [3] = "card.combine.keeneye.d.3",
+                    [4] = "card.combine.keeneye.d.4",
+                },
+                ["name"] = "card.combine.keeneye.name",
+                ["cost"] = "2",
+            },
+            ["novamine"] = {
+                ["a"] = {
+                    [1] = "card.combine.novamine.a.1",
+                    [2] = "card.combine.novamine.a.2",
+                },
+                ["tag"] = {
+                    [1] = "黑桃",
+                    [2] = "皇帝",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.combine.novamine.d.1",
+                    [2] = "card.combine.novamine.d.2",
+                    [3] = "card.combine.novamine.d.3",
+                },
+                ["name"] = "card.combine.novamine.name",
+                ["cost"] = "3",
+            },
+            ["viralpandemic"] = {
+                ["a"] = {
+                    [1] = "card.combine.viralpandemic.a.1",
+                    [2] = "card.combine.viralpandemic.a.2",
+                },
+                ["tag"] = {
+                    [1] = "红桃",
+                    [2] = "女皇",
+                },
+                ["type"] = "外交牌",
+                ["d"] = {
+                    [1] = "card.combine.viralpandemic.d.1",
+                    [2] = "card.combine.viralpandemic.d.2",
+                    [3] = "card.combine.viralpandemic.d.3",
+                },
+                ["name"] = "card.combine.viralpandemic.name",
+                ["cost"] = "2",
+            },
+            ["secretweapon"] = {
+                ["a"] = {
+                    [1] = "card.combine.secretweapon.a.1",
+                    [2] = "card.combine.secretweapon.a.2",
+                },
+                ["tag"] = {
+                    [1] = "梅花",
+                    [2] = "皇帝",
+                },
+                ["type"] = "敌对牌",
+                ["d"] = {
+                    [1] = "card.combine.secretweapon.d.1",
+                    [2] = "card.combine.secretweapon.d.2",
+                },
+                ["name"] = "card.combine.secretweapon.name",
+                ["cost"] = "4",
+            },
+        },
+    },
+    ["lang"] = {
+        ["language"] = {
+            ["en"] = {
+                ["name"] = "English",
+                ["icon"] = "ofnpcp/lang/en.png",
+            },
+            ["zh-TW"] = {
+                ["name"] = "繁體中文（Leancy）",
+                ["icon"] = "ofnpcp/lang/zh-TW.png",
+            },
+            ["zh-CN"] = {
+                ["name"] = "简体中文",
+                ["icon"] = "ofnpcp/lang/zh-CN.png",
+            },
+            ["en-PT"] = {
+                ["name"] = "Pirate",
+                ["icon"] = "ofnpcp/lang/en-PT.png",
+            },
+            ["de"] = {
+                ["name"] = "Deutsch (Google Translate)",
+                ["icon"] = "ofnpcp/lang/de.png",
+            },
+            ["ru"] = {
+                ["name"] = "Русский (Google Translate)",
+                ["icon"] = "ofnpcp/lang/ru.png",
+            },
+        },
+    },
+}

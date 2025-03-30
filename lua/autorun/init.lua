@@ -30,9 +30,54 @@ local function LoadJsonData(filePath, globalKey)
     end
 end
 
+local function SerializeTable(tbl, indent, seen)
+    indent = indent or 1
+    seen = seen or {}
+    local str = "{\n"
+    local spaces = string.rep("    ", indent)
+
+    if seen[tbl] then
+        return "\"<循环引用>\""
+    end
+    seen[tbl] = true
+    
+    for k, v in pairs(tbl) do
+        local key = type(k) == "string" and ("[\""..k.."\"]") or ("["..k.."]")
+        if type(v) == "table" then
+            str = str .. spaces .. key .. " = " .. SerializeTable(v, indent + 1, seen) .. ",\n"
+        else
+            local value = type(v) == "string" and ("\""..v.."\"") or tostring(v)
+            str = str .. spaces .. key .. " = " .. value .. ",\n"
+        end
+    end
+    
+    return str .. string.rep("    ", indent - 1) .. "}"
+end
+
+local function SaveGlobalData()
+    -- 保存全局变量
+    local filePath = "of_npcp/global_data.txt"
+    local fileData = "-- 全局变量数据\nGLOBAL_OFNPC_DATA = " .. SerializeTable(GLOBAL_OFNPC_DATA)
+    file.Write(filePath, fileData)
+end
+
 -- 修改加载方式
 local function LoadNPCData()
-    include("garrylord/data_backup.lua")
+    LoadJsonData("data/of_npcp/jobs.json", "jobData")
+    LoadJsonData("data/of_npcp/name.json", "names")
+    LoadJsonData("data/of_npcp/tags.json", "tagData")
+    LoadJsonData("data/of_npcp/player_talk.json", "playerTalks")
+    LoadJsonData("data/of_npcp/citizen_talk.json", "npcTalks")
+    LoadJsonData("data/of_npcp/cards_new.json", "cards")
+    LoadJsonData("data/of_npcp/anim.json", "anim")
+    LoadJsonData("data/of_npcp/article.json", "article")
+    LoadJsonData("data/of_npcp/sponsors.json", "sponsors")
+    LoadJsonData("data/of_npcp/ai/providers.json", "aiProviders")
+    LoadJsonData("data/of_npcp/ai/voice.json", "voice")
+    LoadJsonData("data/of_npcp/language.json", "lang")
+    -- SaveGlobalData()
+
+    -- include("garrylord/data_backup.lua")
 end
 
 -- 在服务器启动时加载数据
