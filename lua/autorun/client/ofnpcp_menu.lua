@@ -269,7 +269,7 @@ local function RefreshNPCButtons(left_panel, right_panel)
 		-- 设置描述文字
 		local description = ""
 		if npcData.rank and npcData.job and npcData.specialization and npcData.camp then
-			button:SetBadge("ofnpcp/usrankicons/rank_".. npcData.rank .. ".tga")
+			button:SetBadge("ofnpcp/usrankicons/rank_".. npcData.rank .. ".png")
 			description =  ofTranslate("camp."..tostring(npcData.camp)) .. " " .. ofTranslate("rank.".. npcData.rank) .. " - " .. ofTranslate(npcData.specialization)
 			button:SetHoveredColor(GLOBAL_OFNPC_DATA.cards.info[npcData.camp].color)
 		elseif npcData.gamename then

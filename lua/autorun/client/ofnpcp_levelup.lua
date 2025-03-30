@@ -10,7 +10,7 @@ net.Receive("OFNPCRankUp", function()
     -- 播放晋级音效
     ent:EmitSound("ofnpcp/rankup.ogg")
 
-    rankimage = "ofnpcp/usrankicons/rank_".. identity.rank .. ".tga"
+    rankimage = "ofnpcp/usrankicons/rank_".. identity.rank .. ".png"
     rankname = ofTranslate("rank.".. identity.rank)
 
     -- 创建一个文本标签来显示晋级信息

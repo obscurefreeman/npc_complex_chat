@@ -411,7 +411,7 @@ if CLIENT then
 
         local description = ""
 		if npcIdentity.rank and npcIdentity.job and npcIdentity.specialization and npcIdentity.camp then
-			npcButton:SetBadge("ofnpcp/usrankicons/rank_".. npcIdentity.rank .. ".tga")
+			npcButton:SetBadge("ofnpcp/usrankicons/rank_".. npcIdentity.rank .. ".png")
 			description =  ofTranslate("camp."..tostring(npcIdentity.camp)) .. " " .. ofTranslate("rank.".. npcIdentity.rank) .. " - " .. ofTranslate(npcIdentity.specialization)
             npcButton:SetHoveredColor(GLOBAL_OFNPC_DATA.cards.info[npcIdentity.camp].color)
 		elseif npcIdentity.gamename then
