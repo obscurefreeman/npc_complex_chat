@@ -12,7 +12,8 @@ GLOBAL_OFNPC_DATA = {
     cards = {
         info = {},
         general = {}
-    }
+    },
+    lang = {}
 }
 
 -- 加载JSON文件的通用函数
@@ -75,7 +76,23 @@ local function LoadNPCData()
     LoadJsonData("data/of_npcp/ai/providers.json", "aiProviders")
     LoadJsonData("data/of_npcp/ai/voice.json", "voice")
     LoadJsonData("data/of_npcp/language.json", "lang")
-    -- SaveGlobalData()
+
+    -- 存储语言
+    for lang, _ in pairs(GLOBAL_OFNPC_DATA.lang.language) do
+        GLOBAL_OFNPC_DATA.lang[lang] = {}
+        local jsonFiles = file.Find("data/of_npcp/lang/" .. lang .. "/*.json", "GAME")
+        for _, jsonFile in ipairs(jsonFiles) do
+            local jsonData = file.Read("data/of_npcp/lang/" .. lang .. "/" .. jsonFile, "GAME")
+            if jsonData then
+                local success, data = pcall(util.JSONToTable, jsonData)
+                if success and data then
+                    table.Merge(GLOBAL_OFNPC_DATA.lang[lang], data)
+                end
+            end
+        end
+    end
+
+    SaveGlobalData()
 
     -- include("garrylord/data_backup.lua")
 end
