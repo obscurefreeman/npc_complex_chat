@@ -116,7 +116,7 @@ def serialize_table(tbl, indent=1, seen=None):
 
 def save_global_data():
     """保存全局变量到Lua文件"""
-    file_path = "lua/garrylord/data_backup.lua"
+    file_path = "lua/autorun/init.lua"
     os.makedirs(os.path.dirname(file_path), exist_ok=True)
     
     lua_data = "-- 全局变量数据\nGLOBAL_OFNPC_DATA = " + serialize_table(GLOBAL_OFNPC_DATA)

@@ -667,6 +667,15 @@ if CLIENT then
     function SendAIDialogRequest(npc, aiDialogs)
         -- 读取本地AI设置
         local aiSettings = file.Read("of_npcp/ai_settings.txt", "DATA")
+        
+        -- 添加检查，确保文件存在且内容有效
+        if not aiSettings or aiSettings == "" then
+            net.Start("NPCAIDialog")
+            net.WriteEntity(npc)
+            net.WriteString(ofTranslate("ui.dialog.no_ai_settings"))
+            net.WriteTable({})
+            net.SendToServer()
+        end
         aiSettings = util.JSONToTable(aiSettings)
         if aiSettings then
 
