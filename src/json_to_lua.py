@@ -60,9 +60,21 @@ def serialize_table(tbl, indent=1, seen=None):
     lua_str = "{\n"
     
     for k, v in tbl.items():
+        # 所有键都用方括号包裹，并确保键名是字符串
         key = f'["{k}"]' if isinstance(k, str) else f"[{k}]"
+        
         if isinstance(v, dict):
             lua_str += f"{spaces}{key} = {serialize_table(v, indent + 1, seen)},\n"
+        elif isinstance(v, list):
+            # 处理数组
+            lua_str += f"{spaces}{key} = {{\n"
+            for item in v:
+                if isinstance(item, str):
+                    item = item.replace("\n", "\\n").replace("\r", "\\r")
+                    lua_str += f"{spaces}    \"{item}\",\n"
+                else:
+                    lua_str += f"{spaces}    {item},\n"
+            lua_str += f"{spaces}}},\n"
         else:
             # 处理字符串中的换行符，确保\n被保留为转义字符
             if isinstance(v, str):
