@@ -54,6 +54,7 @@
             "footnote_npc": "Model: %s | Response Time: %s | Tokens Used: %d",
             "footnote_player": "Model: %s | Service Platform: %s",
             "invalid_response": "Invalid AI response: key fields missing, please check the console for the API output.",
+            "error": "AI response received successfully, but an error occurred:",
             "http_error": "Network communication error: ",
             "no_ai_settings": "No valid AI configuration detected, please go to the AI settings panel to initialize.",
             "unknown": "Unknown"

@@ -668,8 +668,8 @@ if CLIENT then
         -- 读取本地AI设置
         local aiSettings = file.Read("of_npcp/ai_settings.txt", "DATA")
         
-        -- 添加检查，确保文件存在且内容有效
-        if not aiSettings or aiSettings == "" then
+        -- 添加检查
+        if not aiSettings or aiSettings == "" or aiSettings == nil then
             net.Start("NPCAIDialog")
             net.WriteEntity(npc)
             net.WriteString(ofTranslate("ui.dialog.no_ai_settings"))
@@ -737,8 +737,15 @@ if CLIENT then
                         net.WriteString(responseContent)
                         net.WriteTable(response or {})
                         net.SendToServer()
+                    elseif response and response.error and response.error.message then
+                        -- 成功了，但报错
+                        net.Start("NPCAIDialog")
+                        net.WriteEntity(npc)
+                        net.WriteString(ofTranslate("ui.dialog.error"))
+                        net.WriteTable({})
+                        net.SendToServer()
                     else
-                        -- 成功了，但是回答格式是错误的，有可能余额不足
+                        -- 成功了，但是回答格式是错误的
                         net.Start("NPCAIDialog")
                         net.WriteEntity(npc)
                         net.WriteString(ofTranslate("ui.dialog.invalid_response"))

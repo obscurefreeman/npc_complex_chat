@@ -54,6 +54,7 @@
             "footnote_npc": "模型：%s | 響應時間：%s | 消耗tokens：%d",
             "footnote_player": "模型：%s | 服務平臺：%s",
             "invalid_response": "無效的AI響應：關鍵欄位缺失，請檢查控制臺以獲取API輸出。",
+            "error": "AI響應獲取成功，但出現錯誤：",
             "http_error": "網絡通信異常：",
             "no_ai_settings": "未檢測到有效AI配置，請前往AI設置面板進行初始化。",
             "unknown": "未知"

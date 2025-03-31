@@ -54,6 +54,7 @@
             "footnote_npc": "Modell: %s | Antwortzeit: %s | Verbrauchsmarke: %d",
             "footnote_player": "Modell: %s | Serviceplattform: %s",
             "invalid_response": "Ungültige AI -Antwort: Schlüssellefelder fehlen. Bitte überprüfen Sie die Konsole für die API -Ausgabe.",
+            "error": "AI-Antwort erfolgreich erhalten, aber ein Fehler ist aufgetreten:",
             "http_error": "Ausnahme der Netzwerkkommunikation:",
             "no_ai_settings": "Es wurde keine gültige KI -Konfiguration erkannt. Bitte gehen Sie zur Initialisierung zum AI -Einstellungsfeld.",
             "unknown": "unbekannt"
