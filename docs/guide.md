@@ -2,8 +2,6 @@
 
 ## AI Configuration
 
-
-
 Visit your preferred AI platform (e.g., OpenAI) to apply for an API key.
 
 ![Imgur](https://i.imgur.com/ZuIDWoy.jpeg)
