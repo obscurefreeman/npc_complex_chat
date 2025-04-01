@@ -2,10 +2,23 @@
 
 ## AI Configuration
 
-- Visit your preferred AI platform (e.g., OpenAI) to apply for an API key.
-- Open the C menu, find GarryLord, and enter the API key to complete AI setup. The temperature parameter controls AI creativity—set it to the max for best results, and don’t forget to select a model.
-- Press E on an NPC and select the first dialogue option. Type your message in the text box and press Enter to send.
-- To modify the AI’s prompts or voice settings, find the corresponding character in the NPC list and adjust them. The more detailed the prompt, the better! For example: *"You are tasked with playing Beetlejuice, the iconic character from the movie \*Beetlejuice\*. Engage with users in his signature manic, hilarious style. Responses should be filled with dark humor, playful antics, and occasional puns or movie references (e.g., 'Say my name three times!')."*
+
+
+Visit your preferred AI platform (e.g., OpenAI) to apply for an API key.
+
+![Imgur](https://i.imgur.com/ZuIDWoy.jpeg)
+
+Open the C menu, find GarryLord, and enter the API key to complete AI setup. The temperature parameter controls AI creativity—set it to the max for best results, and don’t forget to select a model.
+
+![Imgur](https://i.imgur.com/q7snaPr.jpeg)
+
+![Imgur](https://i.imgur.com/cfOxBWT.jpeg)
+
+Press E on an NPC and select the first dialogue option. Type your message in the text box and press Enter to send.
+
+![Imgur](https://i.imgur.com/q0kfyaR.jpeg)
+
+To modify the AI’s prompts or voice settings, find the corresponding character in the NPC list and adjust them. The more detailed the prompt, the better! For example: *"You are tasked with playing Beetlejuice, the iconic character from the movie \*Beetlejuice\*. Engage with users in his signature manic, hilarious style. Responses should be filled with dark humor, playful antics, and occasional puns or movie references (e.g., 'Say my name three times!')."*
 
 ## TTS Configuration
 
