@@ -1,6 +1,18 @@
 # ⚙️ Quick Setup Guide
 
+## Subscribe Mods
+
+![img](https://i.imgur.com/Jo6PxDi.png)
+
+![img](https://i.imgur.com/adeHrI2.png)
+
+![img](https://i.imgur.com/gWeKlHY.png)
+
 ## AI Configuration
+
+![img](https://i.imgur.com/mqRWE5Z.png)
+
+![img](https://i.imgur.com/Ycg5xeK.png)
 
 Visit your preferred AI platform (e.g., OpenAI) to apply for an API key.
 
@@ -20,7 +32,18 @@ To modify the AI’s prompts or voice settings, find the corresponding character
 
 ## TTS Configuration
 
-- Log in to GitHub and locate the [garrylord-voice-service](https://github.com/obscurefreeman/garrylord-voice-service) project.
-- Click the **Deploy** button on the project page to deploy the service on Vercel.
-- Once Vercel deployment is complete, visit the generated page and copy the provided API address.
-- Return to Gmod and paste the API address into the corresponding settings. Now, you can freely use the voice service in Gmod, enjoying a generous monthly bandwidth of 100G!
+![img](https://i.imgur.com/LIvBmR9.png)
+
+Log in to GitHub and locate the [garrylord-voice-service](https://github.com/obscurefreeman/garrylord-voice-service) project.
+
+Click the **Deploy** button on the project page to deploy the service on Vercel.
+
+![img](https://i.imgur.com/h0tDSFM.png)
+
+![img](https://i.imgur.com/6P0HKsY.png)
+
+![img](https://i.imgur.com/z1Jucmw.png)
+
+Once Vercel deployment is complete, visit the generated page and copy the provided API address.
+
+Return to Gmod and paste the API address into the corresponding settings. Now, you can freely use the voice service in Gmod, enjoying a generous monthly bandwidth of 100G!
