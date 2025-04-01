@@ -886,7 +886,7 @@ function AddOFFrame()
 				provider = providerKey,
 				url = apiUrlEntry:GetValue(),
 				key = apiKeyEntry:GetValue(),
-				model = modelComboBox:GetSelected(),
+				model = modelComboBox:GetValue(),
 				temperature = tonumber(tempSlider:GetValue()) or 1,
 				max_tokens = tonumber(maxTokensSlider:GetValue()) or 500
 			}
