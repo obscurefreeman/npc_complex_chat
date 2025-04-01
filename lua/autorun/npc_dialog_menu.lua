@@ -741,7 +741,7 @@ if CLIENT then
                         -- 成功了，但报错
                         net.Start("NPCAIDialog")
                         net.WriteEntity(npc)
-                        net.WriteString(ofTranslate("ui.dialog.error"))
+                        net.WriteString(ofTranslate("ui.dialog.error") .. response.error.message)
                         net.WriteTable({})
                         net.SendToServer()
                     else
