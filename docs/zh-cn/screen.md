@@ -2,7 +2,7 @@
 
 ![](https://s2.loli.net/2024/01/27/KtTGRyVbZve1P4C.jpg)
 
-“OF Gamebox”模组的易用性和创新性使得它成为Gmod社区中备受欢迎的选择。无论是单人游戏还是多人游戏，这个模组都能为您带来更多的乐趣和娱乐价值。得益于“OF Gamebox”的设计理念，“OF Game Screen”也能将所有自定义游戏投射到屏幕上。
+“GarryLord”模组的易用性和创新性使得它成为Gmod社区中备受欢迎的选择。无论是单人游戏还是多人游戏，这个模组都能为您带来更多的乐趣和娱乐价值。得益于“GarryLord”的设计理念，“OF Game Screen”也能将所有自定义游戏投射到屏幕上。
 
 ![订阅](https://img.shields.io/steam/subscriptions/3145035529?style=for-the-badge&label=订阅&color=b4e419)  ![下载](https://img.shields.io/steam/downloads/3145035529?style=for-the-badge&label=下载&color=00adb5)  ![浏览量](https://img.shields.io/steam/views/3145035529?style=for-the-badge&label=浏览量&color=ff5719)
 

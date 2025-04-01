@@ -1,5 +1,5 @@
-# OF Gamebox <small>1.0</small>
+# GarryLord <small>1.0</small>
 
 [Get Started](?id=features)
-[Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3139202986)
+[Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3454807061)
 

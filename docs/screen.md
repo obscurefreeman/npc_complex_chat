@@ -2,7 +2,7 @@
 
 ![](https://s2.loli.net/2024/01/27/KtTGRyVbZve1P4C.jpg)
 
-The "OF Gamebox" addon's ease of use and innovative nature have made it a popular choice among the Gmod community. Whether it's single-player or multiplayer, this mod can bring you more fun and entertainment value. Due to the special design concept of "OF Gamebox", "OF Game Screen" can also cast any custom games to the screen.
+The "GarryLord" addon's ease of use and innovative nature have made it a popular choice among the Gmod community. Whether it's single-player or multiplayer, this mod can bring you more fun and entertainment value. Due to the special design concept of "GarryLord", "OF Game Screen" can also cast any custom games to the screen.
 
 ![Subscriptions](https://img.shields.io/steam/subscriptions/3145035529?style=for-the-badge&color=b4e419)  ![Downloads](https://img.shields.io/steam/downloads/3145035529?style=for-the-badge&color=00adb5)  ![Views](https://img.shields.io/steam/views/3145035529?style=for-the-badge&color=ff5719)
 
