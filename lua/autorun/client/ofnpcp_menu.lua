@@ -521,6 +521,9 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
 	})
 
     saveButton.DoClick = function()
+		if not file.IsDir("of_npcp", "DATA") then
+            file.CreateDir("of_npcp")
+        end
         local newSettings = {
             volume = tonumber(volumeSlider:GetValue()) or 1.0,
             api_url = apiUrlEntry:GetValue(),
@@ -839,6 +842,8 @@ function AddOFFrame()
 		end
 		if settings.model then
 			modelComboBox:SetValue(settings.model)
+		else
+			modelComboBox:SetValue(provider.model[1])
 		end
 
 		local tempSlider = CreateControl(aiRightPanel, "OFNumSlider", {
@@ -862,6 +867,9 @@ function AddOFFrame()
 			SetText = ofTranslate("ui.ai_system.save_settings")
 		})
 		saveButton.DoClick = function()
+			if not file.IsDir("of_npcp", "DATA") then
+				file.CreateDir("of_npcp")
+			end
 			local newSettings = {
 				provider = providerKey,
 				url = apiUrlEntry:GetValue(),

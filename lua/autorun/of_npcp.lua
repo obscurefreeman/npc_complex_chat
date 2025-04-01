@@ -326,7 +326,9 @@ if SERVER then
 
     -- 修改保存玩家数据的函数
     local function SavePlayerData()
-        file.CreateDir("of_npcp")
+        if not file.IsDir("of_npcp", "DATA") then
+            file.CreateDir("of_npcp")
+        end
         local playerData = {}
         for steamID, data in pairs(OFPLAYERS) do
             playerData[steamID] = {
