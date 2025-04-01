@@ -1,22 +1,47 @@
-## 特色
+# 🚀 Become a Legend in GarryLord!
 
-> 随时随地，在Gmod中游玩任何HTML5游戏。
+Every NPC will have a unique name, faction, and personality, and can interact with each other based on a vast pool of preset text. The coolest part? You can connect them to AI for lifelike conversational interactions! NPCs can autonomously read identity information, enabling rich dialogue experiences.
 
-![](https://s2.loli.net/2024/01/26/UVu9e24SdF5wi3a.jpg)
+# ⚙️ Quick Setup Guide
 
-1. 打开即用，自带说明，**易用性强**。
-2. 美观的界面，**兼容**不同分辨率的屏幕。
-3. 具有直观的**诊断**页面，帮你快速排查出问题。
-4. 具有**扩展**功能，这意味着你可以**制作自己的游戏包**，添加海量自定义游戏。
-5. 官方屏幕扩展已发布，可以在一块屏幕上玩任何小游戏。
+## AI Configuration
 
-![订阅](https://img.shields.io/steam/subscriptions/3139202986?style=for-the-badge&label=订阅&color=b4e419)  ![下载](https://img.shields.io/steam/downloads/3139202986?style=for-the-badge&label=下载&color=00adb5)  ![浏览量](https://img.shields.io/steam/views/3139202986?style=for-the-badge&label=浏览量&color=ff5719)
+- Visit your preferred AI platform (e.g., OpenAI) to apply for an API key.
+- Open the C menu, find GarryLord, and enter the API key to complete AI setup. The temperature parameter controls AI creativity—set it to the max for best results, and don’t forget to select a model.
+- Press E on an NPC and select the first dialogue option. Type your message in the text box and press Enter to send.
+- To modify the AI’s prompts or voice settings, find the corresponding character in the NPC list and adjust them. The more detailed the prompt, the better! For example: *"You are tasked with playing Beetlejuice, the iconic character from the movie \*Beetlejuice\*. Engage with users in his signature manic, hilarious style. Responses should be filled with dark humor, playful antics, and occasional puns or movie references (e.g., 'Say my name three times!')."*
 
-![模组大小](https://img.shields.io/steam/size/3139202986?style=for-the-badge&label=模组大小&color=2ea043)  ![发布日期](https://img.shields.io/steam/release-date/3139202986?style=for-the-badge&label=发布日期&color=ffb300)  ![更新日期](https://img.shields.io/steam/update-date/3139202986?style=for-the-badge&label=更新日期&color=515de9)
+## TTS Configuration
+
+- Log in to GitHub and locate the [garrylord-voice-service](https://github.com/obscurefreeman/garrylord-voice-service) project.
+- Click the **Deploy** button on the project page to deploy the service on Vercel.
+- Once Vercel deployment is complete, visit the generated page and copy the provided API address.
+- Return to Gmod and paste the API address into the corresponding settings. Now, you can freely use the voice service in Gmod, enjoying a generous monthly bandwidth of 100G!
+
+# 🌟Join Our QQ/Discord Community! 
+
+Share screenshots, get technical support, report bugs, or vote on updates!
+
+QQ Group: 1018657969
+Discord: https://discord.gg/zbX7nQa8xF
+
+# 💰Become a Sponsor (Your name will be displayed in the MOD) 
+
+ifdian：https://ifdian.net/item/3d4cbbf2fd6011ef9db35254001e7c00
+Patreon：https://www.patreon.com/obscurefreeman/shop/garrylord-sponsor-1292499
+
+# 🌍 Contribute Localization
+
+To contribute localization, follow these steps:
+
+1. Navigate to the translation directory at `data/of_npcp/lang`
+2. Create a new folder for your language (e.g., `data/of_npcp/lang/ru` for Russian)
+3. Copy the following files from the English folder `data/of_npcp/lang/en`:
+   - `chat.json`
+   - `role.json` 
+   - `ui.json`
+4. Translate the content in these files into your target language
+5. Submit your translated files to me, and I'll handle the integration process
 
 
-## 使用方式
 
-在沙盒模式中，按住C键并点击游戏盒图标即可打开游戏盒。在非沙盒模式中，你也可以输入指令`of_mgmenu`打开它。
-
-![](https://s2.loli.net/2024/01/26/dPlzZaMtpfmVICe.jpg)
