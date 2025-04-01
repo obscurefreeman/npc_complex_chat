@@ -8,6 +8,8 @@
 
 ![img](https://i.imgur.com/gWeKlHY.png)
 
+Subscribe GarryLord and OFGUI.
+
 ## AI Configuration
 
 ![img](https://i.imgur.com/mqRWE5Z.png)
