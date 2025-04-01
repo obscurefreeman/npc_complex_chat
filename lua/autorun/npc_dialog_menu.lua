@@ -707,7 +707,7 @@ if CLIENT then
                 model = aiSettings.model,
                 messages = aiDialogs,
                 max_tokens = aiSettings.max_tokens or 500,
-                temperature = aiSettings.temperature or 0.7
+                temperature = aiSettings.temperature or 1
             }
             
             HTTP({

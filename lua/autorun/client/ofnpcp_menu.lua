@@ -592,6 +592,18 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
             AddOFFrame()
         end)
     end
+
+	local helpLabel = CreateControl(personalizationLeftPanel, "OFTextLabel", {
+        SetText = ofTranslate("ui.personalization.guide")
+    })
+
+	local helpButton = CreateControl(personalizationLeftPanel, "OFButton", {
+		SetText = "Steam Guide",
+	})
+	helpButton.DoClick = function()
+		gui.OpenURL("https://steamcommunity.com/sharedfiles/filedetails/?id=3456122462")
+	end
+
 end
 
 function AddOFFrame()
@@ -819,7 +831,7 @@ function AddOFFrame()
 		local provider = GLOBAL_OFNPC_DATA.aiProviders[providerKey]
 		local settings = aiSettings and aiSettings.provider == providerKey and aiSettings or {
 			url = provider.url,
-			temperature = 0.7,
+			temperature = 1,
 			max_tokens = 500
 		}
 
@@ -849,7 +861,7 @@ function AddOFFrame()
 		local tempSlider = CreateControl(aiRightPanel, "OFNumSlider", {
 			SetText = ofTranslate("ui.ai_system.temperature"),
 			SetMin = 0,
-			SetMax = 1,
+			SetMax = 2,
 			SetDecimals = 1,
 			SetValue = settings.temperature
 		})
@@ -875,7 +887,7 @@ function AddOFFrame()
 				url = apiUrlEntry:GetValue(),
 				key = apiKeyEntry:GetValue(),
 				model = modelComboBox:GetSelected(),
-				temperature = tonumber(tempSlider:GetValue()) or 0.7,
+				temperature = tonumber(tempSlider:GetValue()) or 1,
 				max_tokens = tonumber(maxTokensSlider:GetValue()) or 500
 			}
 			file.Write("of_npcp/ai_settings.txt", util.TableToJSON(newSettings))
