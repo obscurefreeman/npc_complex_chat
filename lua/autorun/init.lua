@@ -3119,7 +3119,7 @@ GLOBAL_OFNPC_DATA = {
                 "gpt-4",
                 "gpt-4-turbo-2024-04-09",
                 "gpt-4.5-preview",
-                "gpt-40",
+                "gpt-4o",
                 "gpt-4o-mini",
                 "o1-preview",
                 "o3-mini",
@@ -16291,7 +16291,7 @@ GLOBAL_OFNPC_DATA = {
             order = 5,
         },
         {
-            name = "Сталкер",
+            name = "Major Degtyaryev ",
             badges = {
                 "ui.sponsor.sponsor",
             },
@@ -16300,7 +16300,7 @@ GLOBAL_OFNPC_DATA = {
                 216,
                 230,
             },
-            image = "cta",
+            image = "majordegtyaryev",
             order = 5,
         },
         {
@@ -16379,6 +16379,32 @@ GLOBAL_OFNPC_DATA = {
                 167,
             },
             image = "nb",
+            order = 5,
+        },
+        {
+            name = "丷射命丸文丷",
+            badges = {
+                "ui.sponsor.sponsor",
+            },
+            color = {
+                255,
+                10,
+                12,
+            },
+            image = "smww",
+            order = 5,
+        },
+        {
+            name = "小严同学",
+            badges = {
+                "ui.sponsor.sponsor",
+            },
+            color = {
+                34,
+                139,
+                34,
+            },
+            image = "xytx",
             order = 5,
         },
     },

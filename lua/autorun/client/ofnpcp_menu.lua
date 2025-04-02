@@ -597,13 +597,29 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
         SetText = ofTranslate("ui.personalization.guide")
     })
 
-	local helpButton = CreateControl(personalizationLeftPanel, "OFButton", {
+	local helpButtonWebsite = CreateControl(personalizationLeftPanel, "OFButton", {
+		SetText = "Official Website",
+	})
+
+	local helpButtonSteam = CreateControl(personalizationLeftPanel, "OFButton", {
 		SetText = "Steam Guide",
 	})
-	helpButton.DoClick = function()
+
+	local helpButtonBilibili = CreateControl(personalizationLeftPanel, "OFButton", {
+		SetText = "Bilibili",
+	})
+
+	helpButtonWebsite.DoClick = function()
+		gui.OpenURL("https://obscurefreeman.github.io/npc_complex_chat/")
+	end
+
+	helpButtonSteam.DoClick = function()
 		gui.OpenURL("https://steamcommunity.com/sharedfiles/filedetails/?id=3456122462")
 	end
 
+	helpButtonBilibili.DoClick = function()
+		gui.OpenURL("https://www.bilibili.com/opus/1050866948495114242")
+	end
 end
 
 function AddOFFrame()

@@ -7,6 +7,9 @@ net.Receive("OFNPCRankUp", function()
     local rankname = ""
     local rankimage = ""
 
+    -- 检查实体是否有效
+    if not IsValid(ent) then return end
+
     -- 播放晋级音效
     ent:EmitSound("ofnpcp/rankup.ogg")
 
