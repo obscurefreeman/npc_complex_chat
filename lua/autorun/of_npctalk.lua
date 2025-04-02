@@ -89,6 +89,8 @@ if SERVER then
             net.WriteEntity(self:GetChattingPlayer(speaker))
         end
         net.Send(player.GetAll())
+
+        hook.Run("OnNPCTalkStart", speaker, dialogKey)
     end
     
     -- 获取正在与NPC对话的玩家
