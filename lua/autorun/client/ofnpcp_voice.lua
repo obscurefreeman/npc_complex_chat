@@ -13,7 +13,7 @@ end
 -- 添加客户端ConVar
 CreateClientConVar("of_garrylord_voice", "0", true, true, "", 0, 1)
 
-function PlayNPCDialogVoice(npc, text)
+hook.Add("OnNPCTalkStart", "PlayNPCDialogVoice", function(npc, text)
     if not IsValid(npc) or GetConVar("of_garrylord_voice"):GetInt() == 0 then return end
 
     -- 获取NPC列表并检查NPC身份信息是否存在
@@ -68,4 +68,4 @@ function PlayNPCDialogVoice(npc, text)
             print("[GarryLord] Failed to play URL: " .. (err or "unknown error") .. " (" .. (errName or "unknown") .. ")")
         end
     end)
-end
+end)

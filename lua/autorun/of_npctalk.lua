@@ -230,8 +230,7 @@ if CLIENT then
             
             table.insert(activeDialogs, dialog)
 
-            CreateNPCDialogSubtitles(npc, translatedText)
-            PlayNPCDialogVoice(npc, translatedText)
+            hook.Run("OnNPCTalkStart", npc, translatedText)
         end
     end)
     

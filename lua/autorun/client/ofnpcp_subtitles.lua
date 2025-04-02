@@ -2,7 +2,7 @@
 local transitionTime = 0.3
 
 -- 创建字幕
-function CreateNPCDialogSubtitles(npc, text)
+hook.Add("OnNPCTalkStart", "CreateNPCDialogSubtitles", function(npc, text)
     local npcs = GetAllNPCsList()
     local npcIdentity = npcs[npc:EntIndex()]
 
@@ -47,7 +47,7 @@ function CreateNPCDialogSubtitles(npc, text)
     timer.Simple(8, function()
         dialog.removeTime = RealTime()
     end)
-end
+end)
 
 -- HUD绘制钩子
 hook.Add("HUDPaint", "DrawNPCDialogSubtitles", function()
