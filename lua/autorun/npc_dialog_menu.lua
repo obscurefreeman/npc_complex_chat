@@ -302,6 +302,11 @@ if CLIENT then
                         color = dialog.color
                     }
 
+                    -- 如果有推理内容则记录
+                    if dialog.aidetail and dialog.aidetail.choices and dialog.aidetail.choices[1] and dialog.aidetail.choices[1].message and dialog.aidetail.choices[1].message.reasoning_content then
+                        translatedDialogsInfo.reasoning = dialog.aidetail.choices[1].message.reasoning_content
+                    end
+
                     if footnoteText then
                         translatedDialogsInfo.footnoteText = footnoteText
                     end

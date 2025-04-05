@@ -898,13 +898,21 @@ function AddOFFrame()
 			if not file.IsDir("of_npcp", "DATA") then
 				file.CreateDir("of_npcp")
 			end
+
+			-- 保存时确保符合要求
+
+			local temperature = tonumber(tempSlider:GetValue()) or 1
+			local maxTokens = tonumber(maxTokensSlider:GetValue()) or 500
+			temperature = math.floor(temperature * 10) / 10
+			maxTokens = math.floor(maxTokens)
+			
 			local newSettings = {
 				provider = providerKey,
 				url = apiUrlEntry:GetValue(),
 				key = apiKeyEntry:GetValue(),
 				model = modelComboBox:GetValue(),
-				temperature = tonumber(tempSlider:GetValue()) or 1,
-				max_tokens = tonumber(maxTokensSlider:GetValue()) or 500
+				temperature = temperature,
+				max_tokens = maxTokens
 			}
 			file.Write("of_npcp/ai_settings.txt", util.TableToJSON(newSettings))
 			notification.AddLegacy(ofTranslate("ui.ai_system.save_success"), NOTIFY_GENERIC, 5)
