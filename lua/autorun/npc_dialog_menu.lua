@@ -64,7 +64,7 @@ if CLIENT then
         local dialogOptions = GLOBAL_OFNPC_DATA.playerTalks.option
         -- 获取玩家卡组
         local playerDeck = OFPLAYERS[LocalPlayer():SteamID()] and OFPLAYERS[LocalPlayer():SteamID()].deck or "resistance"
-        local deckColor = GLOBAL_OFNPC_DATA.cards.info[playerDeck].color
+        local deckColor = GLOBAL_OFNPC_DATA.setting.camp_setting[playerDeck].color
 
         -- 从全局变量获取对话文本
         local playerTalkOptions = {}
@@ -364,7 +364,7 @@ if CLIENT then
 
         -- 在 playercardPanel 中显示玩家卡组
         if playerDeck then
-            if not GLOBAL_OFNPC_DATA.cards.info[playerDeck] then return end
+            if not GLOBAL_OFNPC_DATA.setting.camp_setting[playerDeck] then return end
 
             -- 获取该牌组的卡牌
             local cards = GLOBAL_OFNPC_DATA.cards[playerDeck] or {}
@@ -417,8 +417,8 @@ if CLIENT then
         local description = ""
 		if npcIdentity.rank and npcIdentity.job and npcIdentity.specialization and npcIdentity.camp then
 			npcButton:SetBadge("ofnpcp/usrankicons/rank_".. npcIdentity.rank .. ".png")
-			description =  ofTranslate("camp."..tostring(npcIdentity.camp)) .. " " .. ofTranslate("rank.".. npcIdentity.rank) .. " - " .. ofTranslate(npcIdentity.specialization)
-            npcButton:SetHoveredColor(GLOBAL_OFNPC_DATA.cards.info[npcIdentity.camp].color)
+			description =  ofTranslate(GLOBAL_OFNPC_DATA.setting.camp_setting[npcIdentity.camp].name) .. " " .. ofTranslate("rank.".. npcIdentity.rank) .. " - " .. ofTranslate(npcIdentity.specialization)
+            npcButton:SetHoveredColor(GLOBAL_OFNPC_DATA.setting.camp_setting[npcIdentity.camp].color)
 		elseif npcIdentity.gamename then
 			description = npcIdentity.gamename
 		end

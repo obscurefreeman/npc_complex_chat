@@ -270,8 +270,8 @@ local function RefreshNPCButtons(left_panel, right_panel)
 		local description = ""
 		if npcData.rank and npcData.job and npcData.specialization and npcData.camp then
 			button:SetBadge("ofnpcp/usrankicons/rank_".. npcData.rank .. ".png")
-			description =  ofTranslate("camp."..tostring(npcData.camp)) .. " " .. ofTranslate("rank.".. npcData.rank) .. " - " .. ofTranslate(npcData.specialization)
-			button:SetHoveredColor(GLOBAL_OFNPC_DATA.cards.info[npcData.camp].color)
+			description =  ofTranslate(GLOBAL_OFNPC_DATA.setting.camp_setting[npcData.camp].name) .. " " .. ofTranslate("rank.".. npcData.rank) .. " - " .. ofTranslate(npcData.specialization)
+			button:SetHoveredColor(GLOBAL_OFNPC_DATA.setting.camp_setting[npcData.camp].color)
 		elseif npcData.gamename then
 			description = npcData.gamename
 		end
@@ -304,7 +304,7 @@ local function RefreshCardButtons(left_panel, right_panel)
     right_panel:Clear()
 
     -- 从全局数据中获取牌组信息
-    local cardGroups = GLOBAL_OFNPC_DATA.cards.info
+    local cardGroups = GLOBAL_OFNPC_DATA.setting.camp_setting
 
     -- 获取玩家当前阵营
     local playerCamp = OFPLAYERS[LocalPlayer():SteamID()] and OFPLAYERS[LocalPlayer():SteamID()].deck or "resistance"
@@ -316,10 +316,10 @@ local function RefreshCardButtons(left_panel, right_panel)
         groupButton:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
         groupButton:SetTall(80 * OFGUI.ScreenScale)
         groupButton:SetTitle(ofTranslate(groupData.name))
-        groupButton:SetDescription(ofTranslate(groupData.desc))
+        groupButton:SetDescription(ofTranslate("card.info." .. groupKey .. ".desc"))
 		groupButton:SetIcon("ofnpcp/camps/preview/" .. groupKey .. ".png")
 		groupButton:SetCardIcon("ofnpcp/camps/large/" .. groupKey .. ".png")
-		groupButton:SetHoveredColor(GLOBAL_OFNPC_DATA.cards.info[groupKey].color)
+		groupButton:SetHoveredColor(GLOBAL_OFNPC_DATA.setting.camp_setting[groupKey].color)
 
         -- 按钮点击事件
         groupButton.DoClick = function()
@@ -927,9 +927,9 @@ function AddOFFrame()
 			campButton:SetHeight(80 * OFGUI.ScreenScale)
 			campButton:Dock(TOP)
 			campButton:DockMargin(4, 4, 4, 4)
-			campButton:SetName(ofTranslate("ui.ai_system.system_prompt") .. ofTranslate("camp."..camp))
+			campButton:SetName(ofTranslate("ui.ai_system.system_prompt") .. ofTranslate(GLOBAL_OFNPC_DATA.setting.camp_setting[camp].name))
 			campButton:SetText(ofTranslate("prompt."..camp))
-			campButton:SetColor(GLOBAL_OFNPC_DATA.cards.info[camp] and GLOBAL_OFNPC_DATA.cards.info[camp].color or color_white)
+			campButton:SetColor(GLOBAL_OFNPC_DATA.setting.camp_setting[camp] and GLOBAL_OFNPC_DATA.setting.camp_setting[camp].color or color_white)
 		end
 	end
 

@@ -64,7 +64,7 @@ net.Receive("OFNPCRankUp", function()
     -- 添加升级特效
     levelUpEffects[ent] = {
         startTime = CurTime(),
-        color = GLOBAL_OFNPC_DATA.cards.info[identity.camp].color,
+        color = GLOBAL_OFNPC_DATA.setting.camp_setting[identity.camp].color,
         duration = 1
     }
 end)

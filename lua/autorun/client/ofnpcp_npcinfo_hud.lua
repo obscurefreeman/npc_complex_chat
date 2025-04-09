@@ -12,7 +12,7 @@
         local npcIdentity = npcs[trace.Entity:EntIndex()]
 
         if npcIdentity then
-            npcColor = GLOBAL_OFNPC_DATA.cards.info[npcIdentity.camp].color
+            npcColor = GLOBAL_OFNPC_DATA.setting.camp_setting[npcIdentity.camp].color
             local npcName
             if npcIdentity.name == npcIdentity.gamename then
                 npcName = language.GetPhrase(npcIdentity.gamename)
@@ -20,7 +20,7 @@
                 npcName = ofTranslate(npcIdentity.name) .. " “" .. ofTranslate(npcIdentity.nickname) .. "”"
             end
             name = npcName
-            description =  ofTranslate("camp."..tostring(npcIdentity.camp)) .. " " .. ofTranslate("rank.".. npcIdentity.rank) .. " - " .. ofTranslate(npcIdentity.specialization)
+            description =  ofTranslate(GLOBAL_OFNPC_DATA.setting.camp_setting[npcIdentity.camp].name) .. " " .. ofTranslate("rank.".. npcIdentity.rank) .. " - " .. ofTranslate(npcIdentity.specialization)
         end
     end
 

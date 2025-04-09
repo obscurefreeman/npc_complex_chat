@@ -12,7 +12,7 @@ function ReplacePlaceholders(text, npcIdentity)
         ["/name/"] = npcName,
         ["/nickname/"] = ofTranslate(npcIdentity.nickname),
         ["/job/"] = ofTranslate(npcIdentity.specialization),
-        ["/camp/"] = ofTranslate("camp."..tostring(npcIdentity.camp)),
+        ["/camp/"] = ofTranslate(GLOBAL_OFNPC_DATA.setting.camp_setting[npcIdentity.camp].name),
         ["/map/"] = game.GetMap(),
         ["/time/"] = os.date("%H:%M")
     }

@@ -702,65 +702,30 @@ GLOBAL_OFNPC_DATA = {
             combine = {
                 name = "card.info.combine.name",
                 desc = "card.info.combine.desc",
-                color = {
-                    r = 0,
-                    g = 149,
-                    b = 223,
-                },
             },
             resistance = {
                 name = "card.info.resistance.name",
                 desc = "card.info.resistance.desc",
-                color = {
-                    r = 255,
-                    g = 141,
-                    b = 23,
-                },
             },
             union = {
                 name = "card.info.union.name",
                 desc = "card.info.union.desc",
-                color = {
-                    r = 227,
-                    g = 132,
-                    b = 164,
-                },
             },
             warlord = {
                 name = "card.info.warlord.name",
                 desc = "card.info.warlord.desc",
-                color = {
-                    r = 252,
-                    g = 33,
-                    b = 9,
-                },
             },
             church = {
                 name = "card.info.church.name",
                 desc = "card.info.church.desc",
-                color = {
-                    r = 126,
-                    g = 3,
-                    b = 251,
-                },
             },
             bandit = {
                 name = "card.info.bandit.name",
                 desc = "card.info.bandit.desc",
-                color = {
-                    r = 255,
-                    g = 186,
-                    b = 0,
-                },
             },
             other = {
                 name = "card.info.other.name",
                 desc = "card.info.other.desc",
-                color = {
-                    r = 135,
-                    g = 223,
-                    b = 214,
-                },
             },
         },
         general = {
@@ -3044,69 +3009,335 @@ GLOBAL_OFNPC_DATA = {
             },
         },
     },
-    anim = {
-        npc_alyx = {
-            camp = "resistance",
-            anim = "sexyidle",
-            gender = "female",
+    article = {
+        log = {
+            {
+                title = "March 2025 Update",
+                content = "Added AI dialogue system with TTS support. Improved localization and UI. \nIntroduced a new home tab in the main menu.\nResolved multiple critical issues, including subtitle line break issue, dialogue punctuation inconsistencies, NPC spawning conflicts in campaign maps, and server-client synchronization problems.",
+                image = "3_2025",
+                timestamp = 1742734800,
+            },
+            {
+                title = "February 2025 Update",
+                content = "Introduced a card-based negotiation system with over 200 unique cards.\nImplemented deck tab in menu for enhanced accessibility.",
+                image = "2_2025",
+                timestamp = 1740464400,
+            },
+            {
+                title = "January 2025 Update",
+                content = "Added NPC dialogue menu.\nAdded typing sound when NPC is talking.\nModified NPC dialogue mechanics, adjusting trigger probabilities and participant numbers.\nIntroduced Python-based modding tools to enable community content creation.",
+                image = "1_2025",
+                timestamp = 1738285200,
+            },
+            {
+                title = "December 2024 Update",
+                content = "Completed the NPC identity system framework with a dedicated menu.\nAdded a subtitle system and an NPC rank system with promotion text effects.\nAdded NPC dialogue manager for efficient conversation handling.",
+                image = "12_2024",
+                timestamp = 1735664400,
+            },
         },
-        npc_barney = {
-            camp = "resistance",
-            anim = "lineidle03",
-            gender = "male",
+        event = {
+            {
+                title = "article.event.vote.title",
+                content = "article.event.vote.content",
+                image = "vote",
+                timestamp = 1743299065,
+            },
+            {
+                title = "article.event.opensource.title",
+                content = "article.event.opensource.content",
+                image = "opensource",
+                timestamp = 1743160915,
+            },
+            {
+                title = "article.event.localization.title",
+                content = "article.event.localization.content",
+                image = "localization",
+                timestamp = 1742632023,
+            },
+            {
+                title = "article.event.earlyaccess.title",
+                content = "article.event.earlyaccess.content",
+                image = "earlyaccess",
+                timestamp = 1742126534,
+            },
         },
-        npc_breen = {
-            camp = "combine",
-            anim = "lineidle03",
-            gender = "male",
-        },
-        npc_eli = {
-            camp = "resistance",
-            anim = "lineidle03",
-            gender = "male",
-        },
-        npc_magnusson = {
-            camp = "resistance",
-            anim = "lineidle03",
-            gender = "male",
-        },
-        npc_gman = {
-            camp = "other",
-            anim = "idle_subtle",
-            gender = "male",
-        },
-        npc_kleiner = {
-            camp = "resistance",
-            anim = "idle_subtle",
-            gender = "male",
-        },
-        npc_mossman = {
-            camp = "resistance",
-            anim = "lineidle02",
-            gender = "female",
-        },
-        npc_combine_s = {
-            camp = "combine",
-            anim = "idle1",
-            gender = "male",
-        },
-        npc_metropolice = {
-            camp = "combine",
-            anim = "pistolidle1",
-            gender = "male",
-        },
-        npc_citizen = {
-            camp = "resistance",
-            anim = "idle_subtle",
-            gender = "male",
-        },
-        npc_monk = {
-            camp = "other",
-            anim = "lineidle01",
-            gender = "male",
+        document = {
+            {
+                title = "article.document.help.title",
+                content = "article.document.help.content",
+                image = "help",
+                timestamp = 1743161938,
+            },
+            {
+                title = "article.document.tts.title",
+                content = "article.document.tts.content",
+                image = "tts",
+                timestamp = 1742126534,
+            },
         },
     },
-    log = {
+    sponsors = {
+        {
+            name = "晦涩弗里曼",
+            badges = {
+                "ui.sponsor.mod_creator",
+            },
+            color = {
+                100,
+                100,
+                255,
+            },
+            image = "of",
+            order = 1,
+        },
+        {
+            name = "LemonCola3424",
+            badges = {
+                "ui.sponsor.technical_support",
+            },
+            color = {
+                78,
+                153,
+                42,
+            },
+            image = "lemoncola3424",
+            order = 2,
+        },
+        {
+            name = "NextKurome76TheSoldier",
+            badges = {
+                "ui.sponsor.localization_consultant",
+            },
+            color = {
+                78,
+                153,
+                42,
+            },
+            image = "nk76",
+            order = 3,
+        },
+        {
+            name = "crester",
+            badges = {
+                "ui.sponsor.technical_support",
+            },
+            color = {
+                215,
+                86,
+                112,
+            },
+            image = "crester",
+            order = 3,
+        },
+        {
+            name = "萧福叠",
+            badges = {
+                "ui.sponsor.senior_sponsor",
+            },
+            color = {
+                0,
+                155,
+                119,
+            },
+            image = "xfd",
+            order = 4,
+        },
+        {
+            name = "漫游者_Xhc",
+            badges = {
+                "ui.sponsor.sponsor",
+            },
+            color = {
+                127,
+                0,
+                32,
+            },
+            image = "xhc",
+            order = 5,
+        },
+        {
+            name = "工-具-人-0-2-3-号",
+            badges = {
+                "ui.sponsor.sponsor",
+            },
+            color = {
+                17,
+                118,
+                208,
+            },
+            image = "gjr",
+            order = 5,
+        },
+        {
+            name = "博丽守黑",
+            badges = {
+                "ui.sponsor.sponsor",
+            },
+            color = {
+                147,
+                51,
+                89,
+            },
+            image = "blsh",
+            order = 5,
+        },
+        {
+            name = "Major Degtyaryev ",
+            badges = {
+                "ui.sponsor.sponsor",
+            },
+            color = {
+                173,
+                216,
+                230,
+            },
+            image = "majordegtyaryev",
+            order = 5,
+        },
+        {
+            name = "Pathfinder_FUFU",
+            badges = {
+                "ui.sponsor.sponsor",
+            },
+            color = {
+                215,
+                86,
+                112,
+            },
+            image = "fufu",
+            order = 5,
+        },
+        {
+            name = "SCP:SL大佬",
+            badges = {
+                "ui.sponsor.sponsor",
+            },
+            color = {
+                0,
+                0,
+                255,
+            },
+            image = "scp",
+            order = 5,
+        },
+        {
+            name = "我是一个普通人",
+            badges = {
+                "ui.sponsor.sponsor",
+            },
+            color = {
+                128,
+                0,
+                128,
+            },
+            image = "ptr",
+            order = 5,
+        },
+        {
+            name = "爱发电用户_8987a",
+            badges = {
+                "ui.sponsor.sponsor",
+            },
+            color = {
+                255,
+                165,
+                0,
+            },
+            image = "ifdian",
+            order = 5,
+        },
+        {
+            name = "ZMN",
+            badges = {
+                "ui.sponsor.sponsor",
+            },
+            color = {
+                123,
+                45,
+                210,
+            },
+            image = "zmn",
+            order = 5,
+        },
+        {
+            name = "又佳泵",
+            badges = {
+                "ui.sponsor.sponsor",
+            },
+            color = {
+                0,
+                47,
+                167,
+            },
+            image = "nb",
+            order = 5,
+        },
+        {
+            name = "丷射命丸文丷",
+            badges = {
+                "ui.sponsor.sponsor",
+            },
+            color = {
+                255,
+                10,
+                12,
+            },
+            image = "smww",
+            order = 5,
+        },
+        {
+            name = "小严同学",
+            badges = {
+                "ui.sponsor.sponsor",
+            },
+            color = {
+                34,
+                139,
+                34,
+            },
+            image = "xytx",
+            order = 5,
+        },
+        {
+            name = "姚舜禹00",
+            badges = {
+                "ui.sponsor.sponsor",
+            },
+            color = {
+                67,
+                142,
+                219,
+            },
+            image = "ysy",
+            order = 5,
+        },
+        {
+            name = "繆爾賽思",
+            badges = {
+                "ui.sponsor.sponsor",
+            },
+            color = {
+                120,
+                245,
+                186,
+            },
+            image = "mess",
+            order = 5,
+        },
+        {
+            name = "二次元老废物",
+            badges = {
+                "ui.sponsor.sponsor",
+            },
+            color = {
+                128,
+                0,
+                128,
+            },
+            image = "ecy",
+            order = 5,
+        },
     },
     aiProviders = {
         openai = {
@@ -16117,295 +16348,149 @@ GLOBAL_OFNPC_DATA = {
             },
         },
     },
-    article = {
-        log = {
-            {
-                title = "March 2025 Update",
-                content = "Added AI dialogue system with TTS support. Improved localization and UI. \nIntroduced a new home tab in the main menu.\nResolved multiple critical issues, including subtitle line break issue, dialogue punctuation inconsistencies, NPC spawning conflicts in campaign maps, and server-client synchronization problems.",
-                image = "3_2025",
-                timestamp = 1742734800,
+    setting = {
+        camp_setting = {
+            combine = {
+                name = "camp.combine",
+                prompt = "prompt.combine",
+                color = {
+                    r = 0,
+                    g = 149,
+                    b = 223,
+                },
             },
-            {
-                title = "February 2025 Update",
-                content = "Introduced a card-based negotiation system with over 200 unique cards.\nImplemented deck tab in menu for enhanced accessibility.",
-                image = "2_2025",
-                timestamp = 1740464400,
+            resistance = {
+                name = "camp.resistance",
+                prompt = "prompt.resistance",
+                color = {
+                    r = 255,
+                    g = 141,
+                    b = 23,
+                },
             },
-            {
-                title = "January 2025 Update",
-                content = "Added NPC dialogue menu.\nAdded typing sound when NPC is talking.\nModified NPC dialogue mechanics, adjusting trigger probabilities and participant numbers.\nIntroduced Python-based modding tools to enable community content creation.",
-                image = "1_2025",
-                timestamp = 1738285200,
+            union = {
+                name = "camp.union",
+                prompt = "prompt.union",
+                color = {
+                    r = 227,
+                    g = 132,
+                    b = 164,
+                },
             },
-            {
-                title = "December 2024 Update",
-                content = "Completed the NPC identity system framework with a dedicated menu.\nAdded a subtitle system and an NPC rank system with promotion text effects.\nAdded NPC dialogue manager for efficient conversation handling.",
-                image = "12_2024",
-                timestamp = 1735664400,
+            warlord = {
+                name = "camp.warlord",
+                prompt = "prompt.warlord",
+                color = {
+                    r = 252,
+                    g = 33,
+                    b = 9,
+                },
+            },
+            church = {
+                name = "camp.church",
+                prompt = "prompt.church",
+                color = {
+                    r = 126,
+                    g = 3,
+                    b = 251,
+                },
+            },
+            bandit = {
+                name = "camp.bandit",
+                prompt = "prompt.bandit",
+                color = {
+                    r = 255,
+                    g = 186,
+                    b = 0,
+                },
+            },
+            other = {
+                name = "camp.other",
+                deck = "other",
+                prompt = "prompt.other",
+                color = {
+                    r = 135,
+                    g = 223,
+                    b = 214,
+                },
             },
         },
-        event = {
-            {
-                title = "article.event.vote.title",
-                content = "article.event.vote.content",
-                image = "vote",
-                timestamp = 1743299065,
-            },
-            {
-                title = "article.event.opensource.title",
-                content = "article.event.opensource.content",
-                image = "opensource",
-                timestamp = 1743160915,
-            },
-            {
-                title = "article.event.localization.title",
-                content = "article.event.localization.content",
-                image = "localization",
-                timestamp = 1742632023,
-            },
-            {
-                title = "article.event.earlyaccess.title",
-                content = "article.event.earlyaccess.content",
-                image = "earlyaccess",
-                timestamp = 1742126534,
+        model_setting = {
+            ["models/odessa.mdl"] = {
+                camp = "resistance",
+                anim = "idle_subtle",
+                gender = "male",
+                prompt = "prompt.maincharacter",
             },
         },
-        document = {
-            {
-                title = "article.document.help.title",
-                content = "article.document.help.content",
-                image = "help",
-                timestamp = 1743161938,
+        npc_setting = {
+            npc_citizen = {
+                anim = "idle_subtle",
             },
-            {
-                title = "article.document.tts.title",
-                content = "article.document.tts.content",
-                image = "tts",
-                timestamp = 1742126534,
+            npc_combine_s = {
+                camp = "combine",
+                anim = "idle1",
+                gender = "male",
             },
-        },
-    },
-    sponsors = {
-        {
-            name = "晦涩弗里曼",
-            badges = {
-                "ui.sponsor.mod_creator",
+            npc_metropolice = {
+                camp = "combine",
+                anim = "pistolidle1",
+                gender = "male",
             },
-            color = {
-                100,
-                100,
-                255,
+            npc_alyx = {
+                camp = "resistance",
+                anim = "sexyidle",
+                gender = "female",
+                prompt = "prompt.maincharacter",
             },
-            image = "of",
-            order = 1,
-        },
-        {
-            name = "LemonCola3424",
-            badges = {
-                "ui.sponsor.technical_support",
+            npc_barney = {
+                camp = "resistance",
+                anim = "lineidle03",
+                gender = "male",
+                prompt = "prompt.maincharacter",
             },
-            color = {
-                78,
-                153,
-                42,
+            npc_breen = {
+                camp = "combine",
+                anim = "lineidle03",
+                gender = "male",
+                prompt = "prompt.maincharacter",
             },
-            image = "lemoncola3424",
-            order = 2,
-        },
-        {
-            name = "NextKurome76TheSoldier",
-            badges = {
-                "ui.sponsor.localization_consultant",
+            npc_eli = {
+                camp = "resistance",
+                anim = "lineidle03",
+                gender = "male",
+                prompt = "prompt.maincharacter",
             },
-            color = {
-                78,
-                153,
-                42,
+            npc_magnusson = {
+                camp = "resistance",
+                anim = "lineidle03",
+                gender = "male",
+                prompt = "prompt.maincharacter",
             },
-            image = "nk76",
-            order = 3,
-        },
-        {
-            name = "crester",
-            badges = {
-                "ui.sponsor.technical_support",
+            npc_gman = {
+                camp = "other",
+                anim = "idle_subtle",
+                gender = "male",
+                prompt = "prompt.maincharacter",
             },
-            color = {
-                215,
-                86,
-                112,
+            npc_kleiner = {
+                camp = "resistance",
+                anim = "idle_subtle",
+                gender = "male",
+                prompt = "prompt.maincharacter",
             },
-            image = "crester",
-            order = 3,
-        },
-        {
-            name = "萧福叠",
-            badges = {
-                "ui.sponsor.senior_sponsor",
+            npc_mossman = {
+                camp = "resistance",
+                anim = "lineidle02",
+                gender = "female",
+                prompt = "prompt.maincharacter",
             },
-            color = {
-                0,
-                155,
-                119,
+            npc_monk = {
+                camp = "other",
+                anim = "lineidle01",
+                gender = "male",
+                prompt = "prompt.maincharacter",
             },
-            image = "xfd",
-            order = 4,
-        },
-        {
-            name = "漫游者_Xhc",
-            badges = {
-                "ui.sponsor.sponsor",
-            },
-            color = {
-                127,
-                0,
-                32,
-            },
-            image = "xhc",
-            order = 5,
-        },
-        {
-            name = "工-具-人-0-2-3-号",
-            badges = {
-                "ui.sponsor.sponsor",
-            },
-            color = {
-                17,
-                118,
-                208,
-            },
-            image = "gjr",
-            order = 5,
-        },
-        {
-            name = "博丽守黑",
-            badges = {
-                "ui.sponsor.sponsor",
-            },
-            color = {
-                147,
-                51,
-                89,
-            },
-            image = "blsh",
-            order = 5,
-        },
-        {
-            name = "Major Degtyaryev ",
-            badges = {
-                "ui.sponsor.sponsor",
-            },
-            color = {
-                173,
-                216,
-                230,
-            },
-            image = "majordegtyaryev",
-            order = 5,
-        },
-        {
-            name = "Pathfinder_FUFU",
-            badges = {
-                "ui.sponsor.sponsor",
-            },
-            color = {
-                215,
-                86,
-                112,
-            },
-            image = "fufu",
-            order = 5,
-        },
-        {
-            name = "SCP:SL大佬",
-            badges = {
-                "ui.sponsor.sponsor",
-            },
-            color = {
-                0,
-                0,
-                255,
-            },
-            image = "scp",
-            order = 5,
-        },
-        {
-            name = "我是一个普通人",
-            badges = {
-                "ui.sponsor.sponsor",
-            },
-            color = {
-                128,
-                0,
-                128,
-            },
-            image = "ptr",
-            order = 5,
-        },
-        {
-            name = "爱发电用户_8987a",
-            badges = {
-                "ui.sponsor.sponsor",
-            },
-            color = {
-                255,
-                165,
-                0,
-            },
-            image = "ifdian",
-            order = 5,
-        },
-        {
-            name = "ZMN",
-            badges = {
-                "ui.sponsor.sponsor",
-            },
-            color = {
-                123,
-                45,
-                210,
-            },
-            image = "zmn",
-            order = 5,
-        },
-        {
-            name = "又佳泵",
-            badges = {
-                "ui.sponsor.sponsor",
-            },
-            color = {
-                0,
-                47,
-                167,
-            },
-            image = "nb",
-            order = 5,
-        },
-        {
-            name = "丷射命丸文丷",
-            badges = {
-                "ui.sponsor.sponsor",
-            },
-            color = {
-                255,
-                10,
-                12,
-            },
-            image = "smww",
-            order = 5,
-        },
-        {
-            name = "小严同学",
-            badges = {
-                "ui.sponsor.sponsor",
-            },
-            color = {
-                34,
-                139,
-                34,
-            },
-            image = "xytx",
-            order = 5,
         },
     },
 }

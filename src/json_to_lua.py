@@ -9,7 +9,7 @@ JSON_PATHS = {
     "data/of_npcp/player_talk.json": "playerTalks",
     "data/of_npcp/citizen_talk.json": "npcTalks",
     "data/of_npcp/cards_new.json": "cards",
-    "data/of_npcp/anim.json": "anim",
+    "data/of_npcp/setting.json": "setting",
     "data/of_npcp/article.json": "article",
     "data/of_npcp/sponsors.json": "sponsors",
     "data/of_npcp/ai/providers.json": "aiProviders",
@@ -25,14 +25,10 @@ GLOBAL_OFNPC_DATA = {
     "playerTalks": {},
     "npcTalks": {},
     "cards": {},
-    "anim": {},
-    "log": {},
+    "article": {},
+    "sponsors": {},
     "aiProviders": {},
     "voice": {},
-    "cards": {
-        "info": {},
-        "general": {}
-    },
     "lang": {}
 }
 

@@ -9,7 +9,7 @@ hook.Add("OnNPCTalkStart", "CreateNPCDialogSubtitles", function(npc, text)
     -- 这里不知道为什么npcIdentity报错，加个限制
     local npcColor, name
     if npcIdentity then
-        npcColor = GLOBAL_OFNPC_DATA.cards.info[npcIdentity.camp].color
+        npcColor = GLOBAL_OFNPC_DATA.setting.camp_setting[npcIdentity.camp].color
         local npcName
         if npcIdentity.name == npcIdentity.gamename then
             npcName = language.GetPhrase(npcIdentity.gamename) .. ": "
@@ -18,7 +18,7 @@ hook.Add("OnNPCTalkStart", "CreateNPCDialogSubtitles", function(npc, text)
         end
         name = npcName
     elseif npc:IsPlayer() then
-        npcColor = GLOBAL_OFNPC_DATA.cards.info[OFPLAYERS[LocalPlayer():SteamID()] and OFPLAYERS[LocalPlayer():SteamID()].deck or "resistance"].color
+        npcColor = GLOBAL_OFNPC_DATA.setting.camp_setting[OFPLAYERS[LocalPlayer():SteamID()] and OFPLAYERS[LocalPlayer():SteamID()].deck or "resistance"].color
         name = npc:Nick() .. " : "
     end
 

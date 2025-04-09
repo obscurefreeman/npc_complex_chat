@@ -117,5 +117,26 @@
         "color": [34, 139, 34],
         "image": "xytx",
         "order": 5
+    },
+    {
+        "name": "姚舜禹00",
+        "badges": ["ui.sponsor.sponsor"],
+        "color": [67, 142, 219],
+        "image": "ysy",
+        "order": 5
+    },
+    {
+        "name": "繆爾賽思",
+        "badges": ["ui.sponsor.sponsor"],
+        "color": [120, 245, 186],
+        "image": "mess",
+        "order": 5
+    },
+    {
+        "name": "二次元老废物",
+        "badges": ["ui.sponsor.sponsor"],
+        "color": [128, 0, 128],
+        "image": "ecy",
+        "order": 5
     }
 ]

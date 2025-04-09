@@ -2,66 +2,31 @@
     "info": {
         "combine": {
             "name": "card.info.combine.name",
-            "desc": "card.info.combine.desc",
-            "color": {
-                "r": 0,
-                "g": 149,
-                "b": 223
-            }
+            "desc": "card.info.combine.desc"
         },
         "resistance": {
             "name": "card.info.resistance.name",
-            "desc": "card.info.resistance.desc",
-            "color": {
-                "r": 255,
-                "g": 141,
-                "b": 23
-            }
+            "desc": "card.info.resistance.desc"
         },
         "union": {
             "name": "card.info.union.name",
-            "desc": "card.info.union.desc",
-            "color": {
-                "r": 227,
-                "g": 132,
-                "b": 164
-            }
+            "desc": "card.info.union.desc"
         },
         "warlord": {
             "name": "card.info.warlord.name",
-            "desc": "card.info.warlord.desc",
-            "color": {
-                "r": 252,
-                "g": 33,
-                "b": 9
-            }
+            "desc": "card.info.warlord.desc"
         },
         "church": {
             "name": "card.info.church.name",
-            "desc": "card.info.church.desc",
-            "color": {
-                "r": 126,
-                "g": 3,
-                "b": 251
-            }
+            "desc": "card.info.church.desc"
         },
         "bandit": {
             "name": "card.info.bandit.name",
-            "desc": "card.info.bandit.desc",
-            "color": {
-                "r": 255,
-                "g": 186,
-                "b": 0
-            }
+            "desc": "card.info.bandit.desc"
         },
         "other": {
             "name": "card.info.other.name",
-            "desc": "card.info.other.desc",
-            "color": {
-                "r": 135,
-                "g": 223,
-                "b": 214
-            }
+            "desc": "card.info.other.desc"
         }
     },
     "general": {

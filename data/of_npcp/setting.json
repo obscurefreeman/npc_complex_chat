@@ -1,0 +1,145 @@
+{
+    "camp_setting":{
+        "combine": {
+            "name": "camp.combine",
+            "prompt": "prompt.combine",
+            "color": {
+                "r": 0,
+                "g": 149,
+                "b": 223
+            }
+        },
+        "resistance": {
+            "name": "camp.resistance",
+            "prompt": "prompt.resistance",
+            "color": {
+                "r": 255,
+                "g": 141,
+                "b": 23
+            }
+        },
+        "union": {
+            "name": "camp.union",
+            "prompt": "prompt.union",
+            "color": {
+                "r": 227,
+                "g": 132,
+                "b": 164
+            }
+        },
+        "warlord": {
+            "name": "camp.warlord",
+            "prompt": "prompt.warlord",
+            "color": {
+                "r": 252,
+                "g": 33,
+                "b": 9
+            }
+        },
+        "church": {
+            "name": "camp.church",
+            "prompt": "prompt.church",
+            "color": {
+                "r": 126,
+                "g": 3,
+                "b": 251
+            }
+        },
+        "bandit": {
+            "name": "camp.bandit",
+            "prompt": "prompt.bandit",
+            "color": {
+                "r": 255,
+                "g": 186,
+                "b": 0
+            }
+        },
+        "other": {
+            "name": "camp.other",
+            "deck": "other",
+            "prompt": "prompt.other",
+            "color": {
+                "r": 135,
+                "g": 223,
+                "b": 214
+            }
+        }
+    },
+    "model_setting":{
+        "models/odessa.mdl": {
+            "camp": "resistance",
+            "anim": "idle_subtle",
+            "gender": "male",
+            "prompt": "prompt.maincharacter"
+        }
+    },
+    "npc_setting":{
+        "npc_citizen": {
+            "anim": "idle_subtle"
+        },
+        "npc_combine_s": {
+            "camp": "combine",
+            "anim": "idle1",
+            "gender": "male"
+        },
+        "npc_metropolice": {
+            "camp": "combine",
+            "anim": "pistolidle1",
+            "gender": "male"
+        },
+        "npc_alyx": {
+            "camp": "resistance",
+            "anim": "sexyidle",
+            "gender": "female",
+            "prompt": "prompt.maincharacter"
+        },
+        "npc_barney": {
+            "camp": "resistance",
+            "anim": "lineidle03",
+            "gender": "male",
+            "prompt": "prompt.maincharacter"
+        },
+        "npc_breen": {
+            "camp": "combine",
+            "anim": "lineidle03",
+            "gender": "male",
+            "prompt": "prompt.maincharacter"
+        },
+        "npc_eli": {
+            "camp": "resistance",
+            "anim": "lineidle03",
+            "gender": "male",
+            "prompt": "prompt.maincharacter"
+        },
+        "npc_magnusson": {
+            "camp": "resistance",
+            "anim": "lineidle03",
+            "gender": "male",
+            "prompt": "prompt.maincharacter"
+        },
+        "npc_gman": {
+            "camp": "other",
+            "anim": "idle_subtle",
+            "gender": "male",
+            "prompt": "prompt.maincharacter"
+        },
+        "npc_kleiner": {
+            "camp": "resistance",
+            "anim": "idle_subtle",
+            "gender": "male",
+            "prompt": "prompt.maincharacter"
+        },
+        "npc_mossman": {
+            "camp": "resistance",
+            "anim": "lineidle02",
+            "gender": "female",
+            "prompt": "prompt.maincharacter"
+        },
+        "npc_monk": {
+            "camp": "other",
+            "anim": "lineidle01",
+            "gender": "male",
+            "prompt": "prompt.maincharacter"
+        }
+    }
+}

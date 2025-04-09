@@ -34,9 +34,13 @@ if SERVER then
         identity.info = npcInfo
         identity.model = ent:GetModel()
         identity.nickname = GLOBAL_OFNPC_DATA.names.nicknames[math.random(#GLOBAL_OFNPC_DATA.names.nicknames)]
-        identity.anim = GLOBAL_OFNPC_DATA.anim[npcInfo].anim
+        identity.anim = GLOBAL_OFNPC_DATA.setting.npc_setting[npcInfo].anim
         identity.rank = math.random(1, 33)
+        identity.exp = 0
+        identity.exp_per_rank = CalculateExpNeeded(identity.rank)
         identity.dialogHistory = {}
+
+        -- 声音列表初始化，根据服务器语言确定
         
         local gamename = list.Get( "NPC" )[identity.info] and list.Get( "NPC" )[identity.info].Name
         if gamename then
@@ -64,7 +68,51 @@ if SERVER then
             end
         end
 
-        if npcInfo == "npc_citizen" then
+        -- 第一步，查找模型设置
+        local modelSetting = GLOBAL_OFNPC_DATA.setting.model_setting[identity.model]
+        if modelSetting then
+            -- 应用所有模型设置
+            for k, v in pairs(modelSetting) do
+                identity[k] = v
+            end
+        else
+            -- 第二步，查找NPC种类设置
+            local npcSetting = GLOBAL_OFNPC_DATA.setting.npc_setting[identity.info]
+            if npcSetting then
+                -- 应用所有NPC设置
+                for k, v in pairs(npcSetting) do
+                    identity[k] = v
+                end
+            end
+        end
+
+        -- 第三步，处理没有的情况
+
+        -- 如果没有设置性别，则通过模型名称判断性别
+
+        if not identity.gender then
+            if string.find(identity.model, "female") then
+                identity.gender = "female"
+            elseif string.find(identity.model, "male") then
+                identity.gender = "male"
+            else
+                identity.gender = "male"
+            end
+        end
+
+        -- 根据性别分配名字和配音
+
+        if identity.gender == "female" then
+            identity.name = GLOBAL_OFNPC_DATA.names.female[math.random(#GLOBAL_OFNPC_DATA.names.female)]
+            identity.voice = maleVoices[math.random(#maleVoices)]
+        else
+            identity.name = GLOBAL_OFNPC_DATA.names.male[math.random(#GLOBAL_OFNPC_DATA.names.male)]
+            identity.voice = femaleVoices[math.random(#femaleVoices)]
+        end
+
+        -- 如果没有阵营，则分配阵营
+
+        if not identity.camp then
             local camps = {
                 "resistance", 
                 "union",
@@ -74,63 +122,16 @@ if SERVER then
                 "other"
             }
             identity.camp = camps[math.random(#camps)]
+        end
+
+        -- 如果没有职业，则通过模型名称判断职业
+
+        if not identity.job then
             if string.find(identity.model, "group03m") then
                 identity.job = "citizen.job.medic"
-                identity.type = "medic"
             else
                 identity.job = GLOBAL_OFNPC_DATA.jobData.citizen[math.random(#GLOBAL_OFNPC_DATA.jobData.citizen)].job
-                identity.type = "citizen"  -- 默认类型
-                if string.find(identity.model, "group01") then
-                    identity.type = "citizen"
-                elseif string.find(identity.model, "group02") then
-                    identity.type = "refugee"
-                elseif string.find(identity.model, "group03") then
-                    identity.type = "rebel"
-                end
             end
-
-            identity.exp = 0
-            identity.exp_per_rank = CalculateExpNeeded(identity.rank)
-
-            if string.find(identity.model, "female") then
-                identity.gender = "female"
-                identity.voice = femaleVoices[math.random(#femaleVoices)]
-            elseif string.find(identity.model, "male") then
-                identity.gender = "male"
-                identity.voice = maleVoices[math.random(#maleVoices)]
-            end
-
-            -- 根据性别分配名字
-            if identity.gender == "female" then
-                identity.name = GLOBAL_OFNPC_DATA.names.female[math.random(#GLOBAL_OFNPC_DATA.names.female)]
-            else
-                identity.name = GLOBAL_OFNPC_DATA.names.male[math.random(#GLOBAL_OFNPC_DATA.names.male)]
-            end
-        elseif npcInfo == "npc_metropolice" then
-            identity.camp = "combine"
-            identity.type = "metropolice"
-            identity.job = GLOBAL_OFNPC_DATA.jobData.citizen[math.random(#GLOBAL_OFNPC_DATA.jobData.citizen)].job
-            identity.exp = 0
-            identity.exp_per_rank = CalculateExpNeeded(identity.rank)
-            identity.name = GLOBAL_OFNPC_DATA.names.male[math.random(#GLOBAL_OFNPC_DATA.names.male)]
-            identity.voice = maleVoices[math.random(#maleVoices)]
-        elseif npcInfo == "npc_combine_s" then
-            identity.camp = "combine"
-            identity.type = "combine"
-            identity.job = GLOBAL_OFNPC_DATA.jobData.citizen[math.random(#GLOBAL_OFNPC_DATA.jobData.citizen)].job
-            identity.exp = 0
-            identity.exp_per_rank = CalculateExpNeeded(identity.rank)
-            identity.name = GLOBAL_OFNPC_DATA.names.male[math.random(#GLOBAL_OFNPC_DATA.names.male)]
-            identity.voice = maleVoices[math.random(#maleVoices)]
-        else
-            identity.camp = GLOBAL_OFNPC_DATA.anim[npcInfo].camp
-            identity.type = "maincharacter"
-            identity.job = GLOBAL_OFNPC_DATA.jobData.citizen[math.random(#GLOBAL_OFNPC_DATA.jobData.citizen)].job
-            identity.exp = 0
-            identity.exp_per_rank = CalculateExpNeeded(identity.rank)
-            identity.name = gamename
-            identity.gender = GLOBAL_OFNPC_DATA.anim[npcInfo].gender
-            identity.voice = identity.gender == "female" and femaleVoices[math.random(#femaleVoices)] or maleVoices[math.random(#maleVoices)]
         end
 
         local jobSpecializations = {}
@@ -146,9 +147,9 @@ if SERVER then
             identity.specialization = specs[math.random(#specs)]
         end
 
-        identity.prompt = "prompt." .. tostring(identity.camp)
-        if identity.type == "maincharacter" then
-            identity.prompt = "prompt.maincharacter"
+        -- 如果没有提示词，则根据阵营判断提示词
+        if not identity.prompt then
+            identity.prompt = "prompt." .. tostring(identity.camp)
         end
 
         -- 优化后的tag分配逻辑
@@ -200,7 +201,7 @@ if SERVER then
             
             local class = ent:GetClass()
 
-            if class == "npc_citizen" or class == "npc_metropolice" or class == "npc_combine_s" or GLOBAL_OFNPC_DATA.anim[class] then
+            if GLOBAL_OFNPC_DATA.setting.npc_setting[class] then
                 AssignNPCIdentity(ent, class)
             end
         end)
@@ -276,7 +277,7 @@ if SERVER then
             end
 
             local playerDeck = OFPLAYERS[ply:SteamID()] and OFPLAYERS[ply:SteamID()].deck or "resistance"
-            local deckColor = GLOBAL_OFNPC_DATA.cards.info[playerDeck].color
+            local deckColor = GLOBAL_OFNPC_DATA.setting.camp_setting[playerDeck].color
 
             -- 添加评论
             table.insert(OFNPCS[entIndex].comments, {
@@ -545,7 +546,7 @@ if CLIENT then
         for _, ent in ipairs(ents.GetAll()) do
             if IsValid(ent) and ent:IsNPC() and ent:LookupBone("ValveBiped.Bip01_Head1") then
                 local class = ent:GetClass()
-                if class == "npc_citizen" or class == "npc_metropolice" or class == "npc_combine_s" or GLOBAL_OFNPC_DATA.anim[class] then
+                if GLOBAL_OFNPC_DATA.setting.npc_setting[class] then
                     local entIndex = ent:EntIndex()
                     if not clientNPCs[entIndex] then
                         -- 如果客户端没有该NPC的数据，向服务器请求
