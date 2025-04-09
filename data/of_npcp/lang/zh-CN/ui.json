@@ -25,6 +25,7 @@
             "voice": "音色"
         },
         "deck_system": {
+            "deck": "牌组",
             "select_deck": "选择牌组",
             "card_preview": "卡牌预览",
             "card_list": "卡牌列表",

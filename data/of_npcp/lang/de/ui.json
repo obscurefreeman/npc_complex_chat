@@ -25,6 +25,7 @@
             "voice": "Ton"
         },
         "deck_system": {
+            "deck": " Deck",
             "select_deck": "Wählen Sie ein Deck",
             "card_preview": "Kartenvorschau",
             "card_list": "Kartenliste",

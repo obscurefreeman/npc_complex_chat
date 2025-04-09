@@ -2,6 +2,7 @@
     "camp_setting":{
         "combine": {
             "name": "camp.combine",
+            "desc": "card.info.combine.desc",
             "prompt": "prompt.combine",
             "color": {
                 "r": 0,
@@ -11,6 +12,7 @@
         },
         "resistance": {
             "name": "camp.resistance",
+            "desc": "card.info.resistance.desc",
             "prompt": "prompt.resistance",
             "color": {
                 "r": 255,
@@ -20,6 +22,7 @@
         },
         "union": {
             "name": "camp.union",
+            "desc": "card.info.union.desc",
             "prompt": "prompt.union",
             "color": {
                 "r": 227,
@@ -29,6 +32,7 @@
         },
         "warlord": {
             "name": "camp.warlord",
+            "desc": "card.info.warlord.desc",
             "prompt": "prompt.warlord",
             "color": {
                 "r": 252,
@@ -38,6 +42,7 @@
         },
         "church": {
             "name": "camp.church",
+            "desc": "card.info.church.desc",
             "prompt": "prompt.church",
             "color": {
                 "r": 126,
@@ -47,6 +52,7 @@
         },
         "bandit": {
             "name": "camp.bandit",
+            "desc": "card.info.bandit.desc",
             "prompt": "prompt.bandit",
             "color": {
                 "r": 255,
@@ -56,6 +62,7 @@
         },
         "other": {
             "name": "camp.other",
+            "desc": "card.info.other.desc",
             "deck": "other",
             "prompt": "prompt.other",
             "color": {

@@ -5049,6 +5049,7 @@ GLOBAL_OFNPC_DATA = {
                     voice = "Ton",
                 },
                 deck_system = {
+                    deck = " Deck",
                     select_deck = "Wählen Sie ein Deck",
                     card_preview = "Kartenvorschau",
                     card_list = "Kartenliste",
@@ -7636,6 +7637,7 @@ GLOBAL_OFNPC_DATA = {
                     voice = "Voice",
                 },
                 deck_system = {
+                    deck = " Deck",
                     select_deck = "Select Deck",
                     card_preview = "Card Preview",
                     card_list = "Card List",
@@ -10220,6 +10222,7 @@ GLOBAL_OFNPC_DATA = {
                     voice = "Voice",
                 },
                 deck_system = {
+                    deck = " Deck",
                     select_deck = "Select Deck",
                     card_preview = "Card Preview",
                     card_list = "Card List",
@@ -11080,6 +11083,7 @@ GLOBAL_OFNPC_DATA = {
                     voice = "Голос",
                 },
                 deck_system = {
+                    deck = " Колоду",
                     select_deck = "Выберите колоду",
                     card_preview = "Предварительный просмотр карты",
                     card_list = "Список карт",
@@ -13670,6 +13674,7 @@ GLOBAL_OFNPC_DATA = {
                     voice = "音色",
                 },
                 deck_system = {
+                    deck = "牌组",
                     select_deck = "选择牌组",
                     card_preview = "卡牌预览",
                     card_list = "卡牌列表",
@@ -16256,6 +16261,7 @@ GLOBAL_OFNPC_DATA = {
                     voice = "音色",
                 },
                 deck_system = {
+                    deck = "牌組",
                     select_deck = "選擇牌組",
                     card_preview = "卡牌預覽",
                     card_list = "卡牌列表",
@@ -16352,6 +16358,7 @@ GLOBAL_OFNPC_DATA = {
         camp_setting = {
             combine = {
                 name = "camp.combine",
+                desc = "card.info.combine.desc",
                 prompt = "prompt.combine",
                 color = {
                     r = 0,
@@ -16361,6 +16368,7 @@ GLOBAL_OFNPC_DATA = {
             },
             resistance = {
                 name = "camp.resistance",
+                desc = "card.info.resistance.desc",
                 prompt = "prompt.resistance",
                 color = {
                     r = 255,
@@ -16370,6 +16378,7 @@ GLOBAL_OFNPC_DATA = {
             },
             union = {
                 name = "camp.union",
+                desc = "card.info.union.desc",
                 prompt = "prompt.union",
                 color = {
                     r = 227,
@@ -16379,6 +16388,7 @@ GLOBAL_OFNPC_DATA = {
             },
             warlord = {
                 name = "camp.warlord",
+                desc = "card.info.warlord.desc",
                 prompt = "prompt.warlord",
                 color = {
                     r = 252,
@@ -16388,6 +16398,7 @@ GLOBAL_OFNPC_DATA = {
             },
             church = {
                 name = "camp.church",
+                desc = "card.info.church.desc",
                 prompt = "prompt.church",
                 color = {
                     r = 126,
@@ -16397,6 +16408,7 @@ GLOBAL_OFNPC_DATA = {
             },
             bandit = {
                 name = "camp.bandit",
+                desc = "card.info.bandit.desc",
                 prompt = "prompt.bandit",
                 color = {
                     r = 255,
@@ -16406,6 +16418,7 @@ GLOBAL_OFNPC_DATA = {
             },
             other = {
                 name = "camp.other",
+                desc = "card.info.other.desc",
                 deck = "other",
                 prompt = "prompt.other",
                 color = {

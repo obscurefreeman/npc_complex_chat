@@ -100,14 +100,26 @@ if SERVER then
             end
         end
 
-        -- 根据性别分配名字和配音
+                -- 根据性别分配名字和配音
 
-        if identity.gender == "female" then
-            identity.name = GLOBAL_OFNPC_DATA.names.female[math.random(#GLOBAL_OFNPC_DATA.names.female)]
-            identity.voice = maleVoices[math.random(#maleVoices)]
+        if identity.info == "npc_citizen" or class == "npc_metropolice" or class == "npc_combine_s" then
+            -- 只有这几种能随机分配姓名
+            if identity.gender == "female" then
+                identity.name = GLOBAL_OFNPC_DATA.names.female[math.random(#GLOBAL_OFNPC_DATA.names.female)]
+                identity.voice = maleVoices[math.random(#maleVoices)]
+            else
+                identity.name = GLOBAL_OFNPC_DATA.names.male[math.random(#GLOBAL_OFNPC_DATA.names.male)]
+                identity.voice = femaleVoices[math.random(#femaleVoices)]
+            end
         else
-            identity.name = GLOBAL_OFNPC_DATA.names.male[math.random(#GLOBAL_OFNPC_DATA.names.male)]
-            identity.voice = femaleVoices[math.random(#femaleVoices)]
+            -- 否则使用游戏的名称
+            if identity.gender == "female" then
+                identity.name = gamename
+                identity.voice = maleVoices[math.random(#maleVoices)]
+            else
+                identity.name = gamename
+                identity.voice = femaleVoices[math.random(#femaleVoices)]
+            end
         end
 
         -- 如果没有阵营，则分配阵营
