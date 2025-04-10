@@ -165,13 +165,13 @@ if SERVER then
         local function AssignTag(category, specific)
             if specific then
                 -- 分配特定tag
-                local tagID = GLOBAL_OFNPC_DATA.tagData.tag[category][specific]
+                local tagID = GLOBAL_OFNPC_DATA.tag[category][specific]
                 if tagID then
                     identity["tag_"..category] = tagID
                 end
             else
                 -- 随机分配tag
-                local tags = GLOBAL_OFNPC_DATA.tagData.tag[category]
+                local tags = GLOBAL_OFNPC_DATA.tag[category]
                 if tags and #tags > 0 then
                     local tag = tags[math.random(#tags)]
                     identity["tag_"..category] = tag

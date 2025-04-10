@@ -5,7 +5,7 @@ import json
 JSON_PATHS = {
     "data/of_npcp/jobs.json": "jobData",
     "data/of_npcp/name.json": "names",
-    "data/of_npcp/tags.json": "tagData",
+    "data/of_npcp/tags.json": "tag",
     "data/of_npcp/player_talk.json": "playerTalks",
     "data/of_npcp/citizen_talk.json": "npcTalks",
     "data/of_npcp/cards_new.json": "cards",
@@ -21,7 +21,7 @@ JSON_PATHS = {
 GLOBAL_OFNPC_DATA = {
     "jobData": {},
     "names": {},
-    "tagData": {},
+    "tag": {},
     "playerTalks": {},
     "npcTalks": {},
     "cards": {},
