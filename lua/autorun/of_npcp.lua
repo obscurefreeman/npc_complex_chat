@@ -27,6 +27,8 @@ if SERVER then
     util.AddNetworkString("UpdateAllPlayerData")
     util.AddNetworkString("UpdateNPCVoice")
     util.AddNetworkString("RequestNPCData")
+    util.AddNetworkString("SyncCustomData")
+    util.AddNetworkString("MountCustomSettings")
 
     function AssignNPCIdentity(ent, npcInfo)
         local identity = {}
@@ -486,6 +488,12 @@ if SERVER then
                 net.WriteTable(OFNPCS[entIndex])
             net.Send(ply)
         end
+    end)
+
+    -- 服务器端处理 MountCustomSettings 网络消息
+    net.Receive("MountCustomSettings", function(len, ply)
+        local customData = net.ReadString()
+        customData = util.JSONToTable(customData)
     end)
 end
 

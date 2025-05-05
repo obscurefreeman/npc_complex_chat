@@ -18,7 +18,7 @@ JSON_PATHS = {
 }
 
 # 初始化全局变量
-GLOBAL_OFNPC_DATA = {
+GLOBAL_OFNPC_DATA_BASIC = {
     "jobData": {},
     "names": {},
     "tag": {},
@@ -38,7 +38,7 @@ def load_json_data(file_path, global_key):
         with open(file_path, 'r', encoding='utf-8') as f:
             try:
                 data = json.load(f)
-                GLOBAL_OFNPC_DATA[global_key] = data
+                GLOBAL_OFNPC_DATA_BASIC[global_key] = data
             except json.JSONDecodeError:
                 print(f"【晦涩弗里曼】解析 {file_path} 时出错。")
     else:
@@ -112,10 +112,10 @@ def serialize_table(tbl, indent=1, seen=None):
 
 def save_global_data():
     """保存全局变量到Lua文件"""
-    file_path = "lua/autorun/init.lua"
+    file_path = "lua/garryload/data.lua"
     os.makedirs(os.path.dirname(file_path), exist_ok=True)
     
-    lua_data = "-- 全局变量数据\nGLOBAL_OFNPC_DATA = " + serialize_table(GLOBAL_OFNPC_DATA)
+    lua_data = "-- 全局变量数据\nGLOBAL_OFNPC_DATA_BASIC = " + serialize_table(GLOBAL_OFNPC_DATA_BASIC)
     with open(file_path, 'w', encoding='utf-8') as f:
         f.write(lua_data)
 
@@ -130,14 +130,14 @@ def load_npc_data():
         for lang in os.listdir(lang_dir):
             lang_path = os.path.join(lang_dir, lang)
             if os.path.isdir(lang_path):
-                GLOBAL_OFNPC_DATA["lang"][lang] = {}
+                GLOBAL_OFNPC_DATA_BASIC["lang"][lang] = {}
                 for json_file in os.listdir(lang_path):
                     if json_file.endswith(".json"):
                         json_path = os.path.join(lang_path, json_file)
                         with open(json_path, 'r', encoding='utf-8') as f:
                             try:
                                 data = json.load(f)
-                                GLOBAL_OFNPC_DATA["lang"][lang].update(data)
+                                GLOBAL_OFNPC_DATA_BASIC["lang"][lang].update(data)
                             except json.JSONDecodeError:
                                 print(f"【晦涩弗里曼】解析 {json_path} 时出错。")
     

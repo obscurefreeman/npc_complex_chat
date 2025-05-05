@@ -1014,6 +1014,91 @@ function AddOFFrame()
 			end
 		end
 	end
+
+	-- 自定义设置面板 (pan6)
+	local pan6 = vgui.Create("EditablePanel", sheet)
+	sheet:AddSheet(ofTranslate("ui.tab.custom_settings"), pan6, "icon16/cog.png")
+
+	local pan6HorizontalDivider = vgui.Create("DHorizontalDivider", pan6)
+	pan6HorizontalDivider:Dock(FILL)
+	pan6HorizontalDivider:DockMargin(6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale)
+	pan6HorizontalDivider:SetLeftWidth(ScrW() / 4)
+
+	local pan6LeftPanel = vgui.Create("OFScrollPanel")
+	pan6HorizontalDivider:SetLeft(pan6LeftPanel)
+
+	local pan6RightPanel = vgui.Create("OFScrollPanel")
+	pan6HorizontalDivider:SetRight(pan6RightPanel)
+
+	local pan6MainPanel = vgui.Create("OFScrollPanel", pan6)
+	pan6MainPanel:Dock(FILL)
+
+	-- 加载自定义设置列表
+	local function LoadCustomSettings(pan6LeftPanel, pan6MainPanel)
+		pan6LeftPanel:Clear()
+		pan6MainPanel:Clear()
+
+		-- 读取指定文件夹中的所有自定义文件
+		local customFiles = file.Find("data/of_npcp_custom/*.json", "DATA")
+		for _, fileName in ipairs(customFiles) do
+			local filePath = "data/of_npcp_custom/" .. fileName
+			local fileContent = file.Read(filePath, "DATA")
+			if fileContent then
+				local customData = util.JSONToTable(fileContent)
+				if customData and customData.info then
+					local button = vgui.Create("OFAdvancedButton", pan6LeftPanel)
+					button:Dock(TOP)
+					button:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+					button:SetTall(80 * OFGUI.ScreenScale)
+					button:SetTitle(customData.info.name)
+					button:SetDescription(customData.info.description)
+					button:SetShowHoverCard(false)
+
+					-- 按钮点击事件
+					button.DoClick = function()
+						pan6MainPanel:Clear()
+
+						-- 显示配置的名称、作者和简介
+						local infoPanel = vgui.Create("DPanel", pan6MainPanel)
+						infoPanel:Dock(TOP)
+						infoPanel:SetTall(100 * OFGUI.ScreenScale)
+						infoPanel:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+						infoPanel.Paint = function(self, w, h)
+							draw.SimpleText(customData.info.name, "DermaDefaultBold", 10, 10, color_white)
+							draw.SimpleText("作者: " .. customData.info.author, "DermaDefault", 10, 30, color_white)
+							draw.SimpleText("简介: " .. customData.info.description, "DermaDefault", 10, 50, color_white)
+						end
+
+						-- 显示配置的预览（不包含info）
+						local previewPanel = vgui.Create("DPanel", pan6MainPanel)
+						previewPanel:Dock(TOP)
+						previewPanel:SetTall(200 * OFGUI.ScreenScale)
+						previewPanel:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+						previewPanel.Paint = function(self, w, h)
+							draw.SimpleText("预览:", "DermaDefaultBold", 10, 10, color_white)
+							draw.SimpleText(util.TableToJSON(customData, true), "DermaDefault", 10, 30, color_white)
+						end
+
+						-- 添加挂载到服务器的按钮
+						local mountButton = vgui.Create("OFButton", pan6MainPanel)
+						mountButton:Dock(BOTTOM)
+						mountButton:SetTall(32 * OFGUI.ScreenScale)
+						mountButton:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+						mountButton:SetText(ofTranslate("ui.custom_settings.mount_to_server"))
+						mountButton.DoClick = function()
+							-- 发送自定义内容（不包含info）到服务器
+							net.Start("MountCustomSettings")
+								net.WriteString(util.TableToJSON(customData))
+							net.SendToServer()
+						end
+					end
+				end
+			end
+		end
+	end
+
+	-- 初始加载自定义设置列表
+	LoadCustomSettings(pan6LeftPanel, pan6MainPanel)
 end
 
 list.Set("DesktopWindows", "ofnpcp", {
