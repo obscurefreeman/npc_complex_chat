@@ -138,5 +138,12 @@
         "color": [128, 0, 128],
         "image": "ecy",
         "order": 5
+    },
+    {
+        "name": "小浩GO",
+        "badges": ["ui.sponsor.sponsor"],
+        "color": [255, 215, 0],
+        "image": "xh",
+        "order": 5
     }
 ]
