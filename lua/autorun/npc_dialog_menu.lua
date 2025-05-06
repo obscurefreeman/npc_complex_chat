@@ -211,11 +211,11 @@ if CLIENT then
                     local relY = (mouseY - modelY) / modelH
                     
                     -- 根据模型朝向调整视线范围
-                    local eyeOffsetX = Lerp(relX, -15, 15) * (i == 1 and 1 or -1)
-                    local eyeOffsetY = Lerp(relY, -10, 10)
+                    local eyeOffsetX = Lerp(relX, -15, 15)
+                    local eyeOffsetY = - Lerp(relY, -30, 30)
                     
                     -- 设置眼睛目标
-                    ent:SetEyeTarget(cpos + move + Vector(eyeOffsetX, eyeOffsetY, 0))
+                    ent:SetEyeTarget(cpos + move + Vector(eyeOffsetY, eyeOffsetX, 0))
                 else
                     -- 鼠标不在模型内时保持原有随机视线移动
                     if !ent.NextEyeMove or ent.NextEyeMove <= CurTime() then
