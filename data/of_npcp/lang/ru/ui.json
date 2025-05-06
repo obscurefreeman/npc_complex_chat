@@ -96,7 +96,14 @@
             "language_setting": "Языковые настройки",
             "guide": "Руководство",
             "follow_system": "Следите за языком игры",
-            "language_changed": "Язык был изменен."
+            "language_changed": "Язык был изменен.",
+            "ui_setting": "Настройки интерфейса",
+            "enable_subtitles": "Включить субтитры",
+            "enable_subtitles3d": "Включить 3D субтитры",
+            "enable_npcinfo_hud": "Включить HUD информации о NPC",
+            "enable_levelup_effects": "Включить эффекты повышения уровня",
+            "subtitles_position": "Позиция субтитров",
+            "subtitles_maxlines": "Максимальное количество строк субтитров"
         },
         "time": {
             "just_now": "только",

@@ -99,6 +99,7 @@ if SERVER then
 end
 
 if CLIENT then
+    CreateClientConVar("of_garrylord_subtitles3d", "1", true, true, "", 0, 1)
     
     -- 对话框设置
     local activeDialogs = {}
@@ -236,6 +237,8 @@ if CLIENT then
     
     -- 添加新的 PostDrawTranslucentRenderables 钩子
     hook.Add("PostDrawTranslucentRenderables", "DrawNPCDialog3D", function()
+        if GetConVar("of_garrylord_subtitles3d"):GetInt() == 0 then return end
+
         local currentTime = CurTime()
         
         for i = #activeDialogs, 1, -1 do

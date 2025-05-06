@@ -1,8 +1,15 @@
-﻿local activeSubtitles = {}
+﻿-- 创建客户端ConVar
+CreateClientConVar("of_garrylord_subtitles", "1", true, true, "", 0, 1)
+CreateClientConVar("of_garrylord_subtitles_position", "160", true, true, "", 0, 500)
+CreateClientConVar("of_garrylord_subtitles_maxlines", "3", true, true, "", 1, 10)
+
+local activeSubtitles = {}
 local transitionTime = 0.3
 
 -- 创建字幕
 hook.Add("OnNPCTalkStart", "CreateNPCDialogSubtitles", function(npc, text)
+    if GetConVar("of_garrylord_subtitles"):GetInt() == 0 then return end
+
     local npcs = GetAllNPCsList()
     local npcIdentity = npcs[npc:EntIndex()]
 
@@ -38,7 +45,8 @@ hook.Add("OnNPCTalkStart", "CreateNPCDialogSubtitles", function(npc, text)
         if v.text == dialog.text then return end
     end
     
-    if table.Count(activeSubtitles) >= 3 then
+    local maxLines = GetConVar("of_garrylord_subtitles_maxlines"):GetInt()
+    if table.Count(activeSubtitles) >= maxLines then
         table.remove(activeSubtitles, 1)
     end
     
@@ -51,10 +59,13 @@ end)
 
 -- HUD绘制钩子
 hook.Add("HUDPaint", "DrawNPCDialogSubtitles", function()
+    if GetConVar("of_garrylord_subtitles"):GetInt() == 0 then return end
+
     local w = ScrW()
     local h = ScrH()
     
-    local bottomMargin = 160 * OFGUI.ScreenScale
+    local position = GetConVar("of_garrylord_subtitles_position"):GetInt()
+    local bottomMargin = position * OFGUI.ScreenScale
     local maxWidth = 1500 * OFGUI.ScreenScale
     local spacing = 10 * OFGUI.ScreenScale
 

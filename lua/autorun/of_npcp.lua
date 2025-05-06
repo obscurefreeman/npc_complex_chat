@@ -158,7 +158,7 @@ if SERVER then
 
         -- 如果没有提示词，则根据阵营判断提示词
         if not identity.prompt then
-            identity.prompt = GLOBAL_OFNPC_DATA.setting.camp_setting.prompt
+            identity.prompt = GLOBAL_OFNPC_DATA.setting.camp_setting[identity.camp].prompt
         end
 
         -- 优化后的tag分配逻辑

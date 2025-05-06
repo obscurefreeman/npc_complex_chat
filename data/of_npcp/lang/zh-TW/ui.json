@@ -96,7 +96,14 @@
             "language_setting": "語言設置",
             "guide": "指南",
             "follow_system": "跟隨遊戲語言",
-            "language_changed": "語言已更改。"
+            "language_changed": "語言已更改。",
+            "ui_setting": "UI 設定",
+            "enable_subtitles": "啟用字幕",
+            "enable_subtitles3d": "啟用立體字幕",
+            "enable_npcinfo_hud": "啟用NPC資訊HUD",
+            "enable_levelup_effects": "啟用升級特效",
+            "subtitles_position": "字幕位置",
+            "subtitles_maxlines": "字幕最大行數"
         },
         "time": {
             "just_now": "剛剛",

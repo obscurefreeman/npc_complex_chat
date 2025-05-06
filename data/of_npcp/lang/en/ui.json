@@ -96,7 +96,14 @@
             "language_setting": "Language Setting",
             "guide": "Guide",
             "follow_system": "Follow Game Language",
-            "language_changed": "Language changed."
+            "language_changed": "Language changed.",
+            "ui_setting": "UI Setting",
+            "enable_subtitles": "Enable Subtitles",
+            "enable_subtitles3d": "Enable 3D Subtitles",
+            "enable_npcinfo_hud": "Enable NPC Info HUD",
+            "enable_levelup_effects": "Enable Level Up Effects",
+            "subtitles_position": "Subtitles Position",
+            "subtitles_maxlines": "Subtitles Max Lines"
         },
         "time": {
             "just_now": "Just now",

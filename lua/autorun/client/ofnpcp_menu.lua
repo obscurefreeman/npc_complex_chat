@@ -450,16 +450,12 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
 	voiceCheckBox:Dock(LEFT)
 	voiceCheckBox:SetSize(21 * OFGUI.ScreenScale, 21 * OFGUI.ScreenScale)
 	voiceCheckBox:DockMargin(0, 0, 8 * OFGUI.ScreenScale, 0)
-	voiceCheckBox:SetValue(GetConVar("of_garrylord_voice"):GetInt() == 1)
+	voiceCheckBox:SetConVar("of_garrylord_voice")
 
 	local voiceCheckLabel = vgui.Create("OFTextLabel", voiceCheckPanel)
 	voiceCheckLabel:SetFont("ofgui_small")
 	voiceCheckLabel:Dock(FILL)
 	voiceCheckLabel:SetText(ofTranslate("ui.personalization.enable_voice"))
-
-	voiceCheckBox.OnChange = function(panel, value)
-		RunConsoleCommand("of_garrylord_voice", value and "1" or "0")
-	end
 
     -- 创建API URL输入框
     local apiUrlEntry = CreateControl(personalizationLeftPanel, "OFTextEntry", {
@@ -620,6 +616,97 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
 	helpButtonBilibili.DoClick = function()
 		gui.OpenURL("https://www.bilibili.com/opus/1050866948495114242")
 	end
+
+	-- 添加UI设置
+	local uiLabel = CreateControl(personalizationLeftPanel, "OFTextLabel", {
+		SetText = ofTranslate("ui.personalization.ui_setting")
+	})
+
+    -- 添加字幕开关
+    local subtitlesCheckPanel = vgui.Create("EditablePanel", personalizationLeftPanel)
+    subtitlesCheckPanel:Dock(TOP)
+    subtitlesCheckPanel:SetTall(21 * OFGUI.ScreenScale)
+    subtitlesCheckPanel:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+
+    local subtitlesCheckBox = vgui.Create("OFCheckBox", subtitlesCheckPanel)
+    subtitlesCheckBox:Dock(LEFT)
+    subtitlesCheckBox:SetSize(21 * OFGUI.ScreenScale, 21 * OFGUI.ScreenScale)
+    subtitlesCheckBox:DockMargin(0, 0, 8 * OFGUI.ScreenScale, 0)
+    subtitlesCheckBox:SetConVar("of_garrylord_subtitles")
+
+    local subtitlesCheckLabel = vgui.Create("OFTextLabel", subtitlesCheckPanel)
+    subtitlesCheckLabel:SetFont("ofgui_small")
+    subtitlesCheckLabel:Dock(FILL)
+    subtitlesCheckLabel:SetText(ofTranslate("ui.personalization.enable_subtitles"))
+
+	-- 添加3d字幕开关
+	local subtitles3dCheckPanel = vgui.Create("EditablePanel", personalizationLeftPanel)
+	subtitles3dCheckPanel:Dock(TOP)
+	subtitles3dCheckPanel:SetTall(21 * OFGUI.ScreenScale)
+	subtitles3dCheckPanel:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+
+	local subtitles3dCheckBox = vgui.Create("OFCheckBox", subtitles3dCheckPanel)
+	subtitles3dCheckBox:Dock(LEFT)
+	subtitles3dCheckBox:SetSize(21 * OFGUI.ScreenScale, 21 * OFGUI.ScreenScale)
+	subtitles3dCheckBox:DockMargin(0, 0, 8 * OFGUI.ScreenScale, 0)
+	subtitles3dCheckBox:SetConVar("of_garrylord_subtitles3d")
+
+	local subtitles3dCheckLabel = vgui.Create("OFTextLabel", subtitles3dCheckPanel)
+	subtitles3dCheckLabel:SetFont("ofgui_small")
+	subtitles3dCheckLabel:Dock(FILL)
+	subtitles3dCheckLabel:SetText(ofTranslate("ui.personalization.enable_subtitles3d"))
+
+    -- 添加NPC信息HUD开关
+    local npcinfoHUDCheckPanel = vgui.Create("EditablePanel", personalizationLeftPanel)
+    npcinfoHUDCheckPanel:Dock(TOP)
+    npcinfoHUDCheckPanel:SetTall(21 * OFGUI.ScreenScale)
+    npcinfoHUDCheckPanel:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+
+    local npcinfoHUDCheckBox = vgui.Create("OFCheckBox", npcinfoHUDCheckPanel)
+    npcinfoHUDCheckBox:Dock(LEFT)
+    npcinfoHUDCheckBox:SetSize(21 * OFGUI.ScreenScale, 21 * OFGUI.ScreenScale)
+    npcinfoHUDCheckBox:DockMargin(0, 0, 8 * OFGUI.ScreenScale, 0)
+    npcinfoHUDCheckBox:SetConVar("of_garrylord_npcinfo_hud")
+
+    local npcinfoHUDCheckLabel = vgui.Create("OFTextLabel", npcinfoHUDCheckPanel)
+    npcinfoHUDCheckLabel:SetFont("ofgui_small")
+    npcinfoHUDCheckLabel:Dock(FILL)
+    npcinfoHUDCheckLabel:SetText(ofTranslate("ui.personalization.enable_npcinfo_hud"))
+
+    -- 添加升级特效开关
+    local levelupEffectsCheckPanel = vgui.Create("EditablePanel", personalizationLeftPanel)
+    levelupEffectsCheckPanel:Dock(TOP)
+    levelupEffectsCheckPanel:SetTall(21 * OFGUI.ScreenScale)
+    levelupEffectsCheckPanel:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+
+    local levelupEffectsCheckBox = vgui.Create("OFCheckBox", levelupEffectsCheckPanel)
+    levelupEffectsCheckBox:Dock(LEFT)
+    levelupEffectsCheckBox:SetSize(21 * OFGUI.ScreenScale, 21 * OFGUI.ScreenScale)
+    levelupEffectsCheckBox:DockMargin(0, 0, 8 * OFGUI.ScreenScale, 0)
+    levelupEffectsCheckBox:SetConVar("of_garrylord_levelup_effects")
+
+    local levelupEffectsCheckLabel = vgui.Create("OFTextLabel", levelupEffectsCheckPanel)
+    levelupEffectsCheckLabel:SetFont("ofgui_small")
+    levelupEffectsCheckLabel:Dock(FILL)
+    levelupEffectsCheckLabel:SetText(ofTranslate("ui.personalization.enable_levelup_effects"))
+
+    -- 添加字幕位置调节滑块
+    local subtitlesPositionSlider = CreateControl(personalizationLeftPanel, "OFNumSlider", {
+        SetText = ofTranslate("ui.personalization.subtitles_position"),
+        SetMin = 0,
+        SetMax = 500,
+        SetDecimals = 0,
+        SetConVar = "of_garrylord_subtitles_position"
+    })
+
+    -- 添加字幕最大行数调节滑块
+    local subtitlesMaxLinesSlider = CreateControl(personalizationLeftPanel, "OFNumSlider", {
+        SetText = ofTranslate("ui.personalization.subtitles_maxlines"),
+        SetMin = 1,
+        SetMax = 10,
+        SetDecimals = 0,
+		SetConVar = "of_garrylord_subtitles_maxlines"
+    })
 end
 
 function AddOFFrame()

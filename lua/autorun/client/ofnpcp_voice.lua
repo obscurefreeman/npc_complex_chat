@@ -64,8 +64,8 @@ hook.Add("OnNPCTalkStart", "PlayNPCDialogVoice", function(npc, text)
             -- else
             --     print("[ERROR] NPC entity is invalid, cannot play audio")
             end
-        else
-            print("[GarryLord] Failed to play URL: " .. (err or "unknown error") .. " (" .. (errName or "unknown") .. ")")
+        -- else
+        --     print("[GarryLord] Failed to play URL: " .. (err or "unknown error") .. " (" .. (errName or "unknown") .. ")")
         end
     end)
 end)

@@ -34,6 +34,11 @@ end
 
 -- 获取翻译文本
 function LANG:GetPhrase(key)
+    -- if not key or type(key) ~= "string" then
+    --     ErrorNoHalt("[LANG] GetPhrase: Invalid key - " .. tostring(key) .. "\n")
+    --     return "INVALID_KEY"
+    -- end
+    
     local result = self:GetPhraseInLanguage(self.CurrentLanguage, key)
     
     if self.CurrentLanguage ~= "en" and result == key then
@@ -44,6 +49,11 @@ function LANG:GetPhrase(key)
 end
 
 function LANG:GetPhraseInLanguage(lang, key)
+    -- if not key or type(key) ~= "string" then
+    --     ErrorNoHalt("[LANG] GetPhraseInLanguage: Invalid key - " .. tostring(key) .. "\n")
+    --     return "INVALID_KEY"
+    -- end
+
     if not self.LanguageData[lang] then
         self:LoadLanguageFolder(lang)
     end
@@ -52,12 +62,18 @@ function LANG:GetPhraseInLanguage(lang, key)
     local current = self.LanguageData[lang]
 
     for i, k in ipairs(keys) do
+        -- if not current then
+        --     ErrorNoHalt("[LANG] GetPhraseInLanguage: Invalid path at key " .. k .. " in " .. key .. "\n")
+        --     return key
+        -- end
+        
         if type(current) == "table" and current[k] then
             current = current[k]
         elseif tonumber(k) and type(current) == "table" and #current >= tonumber(k) then
             -- 处理数组索引
             current = current[tonumber(k)]
         else
+            -- ErrorNoHalt("[LANG] GetPhraseInLanguage: Key not found - " .. k .. " in " .. key .. "\n")
             return key
         end
     end
@@ -112,5 +128,9 @@ end)
 
 -- 导出全局函数用于获取翻译
 function ofTranslate(key)
+    if not key or type(key) ~= "string" then
+        ErrorNoHalt("[ofTranslate] Invalid key - " .. tostring(key) .. "\n")
+        return "INVALID_KEY"
+    end
     return LANG:GetPhrase(key)
 end 

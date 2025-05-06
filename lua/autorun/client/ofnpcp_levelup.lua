@@ -1,6 +1,11 @@
+-- 创建客户端ConVar，用于控制NPC升级时的文字、特效和声音
+CreateClientConVar("of_garrylord_levelup_effects", "1", true, true, "", 0, 1)
+
 local levelUpEffects = {}
 
 net.Receive("OFNPCRankUp", function()
+    -- 检查ConVar是否开启
+    if GetConVar("of_garrylord_levelup_effects"):GetInt() == 0 then return end
 
     local ent = net.ReadEntity()
     local identity = net.ReadTable()
@@ -71,6 +76,9 @@ end)
 
 -- 添加3D渲染特效
 hook.Add("PostDrawOpaqueRenderables", "RenderNPCLevelUpEffect", function()
+    -- 检查ConVar是否开启
+    if GetConVar("of_garrylord_levelup_effects"):GetInt() == 0 then return end
+
     for npc, effectData in pairs(levelUpEffects) do
         if IsValid(npc) then
             local timeElapsed = CurTime() - effectData.startTime

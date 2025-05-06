@@ -96,7 +96,14 @@
             "language_setting": "Spracheinstellungen",
             "guide": "Anleitung",
             "follow_system": "Folgen Sie der Spielsprache",
-            "language_changed": "Die Sprache wurde geändert."
+            "language_changed": "Die Sprache wurde geändert.",
+            "ui_setting": "UI-Einstellungen",
+            "enable_subtitles": "Untertitel aktivieren",
+            "enable_subtitles3d": "3D-Untertitel aktivieren",
+            "enable_npcinfo_hud": "NPC-Info-HUD aktivieren",
+            "enable_levelup_effects": "Level-Up-Effekte aktivieren",
+            "subtitles_position": "Untertitelposition",
+            "subtitles_maxlines": "Maximale Untertitelzeilen"
         },
         "time": {
             "just_now": "Nur",

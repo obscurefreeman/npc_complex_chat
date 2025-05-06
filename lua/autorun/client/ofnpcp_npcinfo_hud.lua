@@ -1,4 +1,7 @@
-﻿hook.Add("HUDPaint", "ofnpcp_npcinfo_hud", function()
+﻿CreateClientConVar("of_garrylord_npcinfo_hud", "1", true, true, "", 0, 1)
+
+hook.Add("HUDPaint", "ofnpcp_npcinfo_hud", function()
+    if GetConVar("of_garrylord_npcinfo_hud"):GetInt() == 0 then return end
     local tr = util.GetPlayerTrace(LocalPlayer())
     local trace = util.TraceLine(tr)
 
