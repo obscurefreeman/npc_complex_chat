@@ -214,8 +214,19 @@ if CLIENT then
                     local eyeOffsetX = Lerp(relX, -15, 15)
                     local eyeOffsetY = - Lerp(relY, -30, 30)
                     
+                    -- 计算新的眼睛目标位置
+                    local newEyeTarget = cpos + move + Vector(eyeOffsetY, eyeOffsetX, 0)
+                    
+                    -- 如果还没有当前眼睛位置，则初始化为新目标位置
+                    if !ent.CurrentEyePos then
+                        ent.CurrentEyePos = newEyeTarget
+                    end
+                    
+                    -- 平滑移动眼睛位置
+                    ent.CurrentEyePos = Lerp(FrameTime() * 10, ent.CurrentEyePos, newEyeTarget)
+                    
                     -- 设置眼睛目标
-                    ent:SetEyeTarget(cpos + move + Vector(eyeOffsetY, eyeOffsetX, 0))
+                    ent:SetEyeTarget(ent.CurrentEyePos)
                 else
                     -- 鼠标不在模型内时保持原有随机视线移动
                     if !ent.NextEyeMove or ent.NextEyeMove <= CurTime() then
@@ -231,12 +242,21 @@ if CLIENT then
                     end
 
                     if ent.CurrentEyeTarget then
+                        -- 如果还没有当前眼睛位置，则初始化为目标位置
+                        if !ent.CurrentEyePos then
+                            ent.CurrentEyePos = ent.CurrentEyeTarget
+                        end
+                        
+                        -- 平滑移动眼睛位置
+                        ent.CurrentEyePos = Lerp(FrameTime() * 10, ent.CurrentEyePos, ent.CurrentEyeTarget)
+                        
                         -- 设置眼睛目标
-                        ent:SetEyeTarget(ent.CurrentEyeTarget)
+                        ent:SetEyeTarget(ent.CurrentEyePos)
                     else
                         -- 初始化眼睛目标
                         ent.CurrentEyeTarget = cpos + move + Vector(0, i == 1 and 10 or -10, 0)
-                        ent:SetEyeTarget(ent.CurrentEyeTarget)
+                        ent.CurrentEyePos = ent.CurrentEyeTarget
+                        ent:SetEyeTarget(ent.CurrentEyePos)
                     end
                 end
             end
