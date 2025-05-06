@@ -196,29 +196,48 @@ if CLIENT then
                         ent:SetFlexWeight( blk, per )
                     end
                 end
-                -- 要嘴巴阿巴阿巴的话也是SetFlexWeight，但是市民好说玩家模型的张嘴表情号不一样就不好弄了，反正跟上面这段思路是差不多的
                 
-                -- 视线移动控制
-                if !ent.NextEyeMove or ent.NextEyeMove <= CurTime() then
-                    if ent.NextEyeMove then
-                        -- 设置新的目标位置
-                        local randomOffset = Vector(
-                            math.Rand(-10, 10),
-                            i == 1 and math.Rand(5, 15) or math.Rand(-15, -5),
-                            0  -- 固定Z轴为0，保持视线高度不变
-                        )
-                        ent.CurrentEyeTarget = cpos + move + randomOffset
-                    end
-                    ent.NextEyeMove = CurTime() + math.Rand(2, 4)
-                end
-
-                -- 设置眼睛目标
-                if ent.CurrentEyeTarget then
-                    ent:SetEyeTarget(ent.CurrentEyeTarget)
+                -- 获取鼠标位置
+                local mouseX, mouseY = gui.MousePos()
+                local modelX, modelY = mdl:LocalToScreen(0, 0)
+                local modelW, modelH = mdl:GetSize()
+                
+                -- 判断鼠标是否在模型显示器内
+                if mouseX >= modelX and mouseX <= modelX + modelW and
+                   mouseY >= modelY and mouseY <= modelY + modelH then
+                   
+                    -- 计算相对鼠标位置
+                    local relX = (mouseX - modelX) / modelW
+                    local relY = (mouseY - modelY) / modelH
+                    
+                    -- 根据模型朝向调整视线范围
+                    local eyeOffsetX = Lerp(relX, -15, 15) * (i == 1 and 1 or -1)
+                    local eyeOffsetY = Lerp(relY, -10, 10)
+                    
+                    -- 设置眼睛目标
+                    ent:SetEyeTarget(cpos + move + Vector(eyeOffsetX, eyeOffsetY, 0))
                 else
-                    -- 初始化眼睛目标
-                    ent.CurrentEyeTarget = cpos + move + Vector(0, i == 1 and 10 or -10, 0)
-                    ent:SetEyeTarget(ent.CurrentEyeTarget)
+                    -- 鼠标不在模型内时保持原有随机视线移动
+                    if !ent.NextEyeMove or ent.NextEyeMove <= CurTime() then
+                        if ent.NextEyeMove then
+                            local randomOffset = Vector(
+                                math.Rand(-10, 10),
+                                i == 1 and math.Rand(5, 15) or math.Rand(-15, -5),
+                                0
+                            )
+                            ent.CurrentEyeTarget = cpos + move + randomOffset
+                        end
+                        ent.NextEyeMove = CurTime() + math.Rand(2, 4)
+                    end
+
+                    if ent.CurrentEyeTarget then
+                        -- 设置眼睛目标
+                        ent:SetEyeTarget(ent.CurrentEyeTarget)
+                    else
+                        -- 初始化眼睛目标
+                        ent.CurrentEyeTarget = cpos + move + Vector(0, i == 1 and 10 or -10, 0)
+                        ent:SetEyeTarget(ent.CurrentEyeTarget)
+                    end
                 end
             end
         end
