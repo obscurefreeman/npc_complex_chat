@@ -1,6 +1,12 @@
 {
     "log": [
         {
+            "title": "April 2025 Update",
+            "content": "Added UI settings options, including subtitle toggle and style customization.\nImproved NPC information display with fade-in and fade-out effects.\nAdded a new feature where NPCs will follow the mouse direction when hovering over the model viewer in the dialogue menu.",
+            "image": "4_2025",
+            "timestamp": 1746498146
+        },
+        {
             "title": "March 2025 Update",
             "content": "Added AI dialogue system with TTS support. Improved localization and UI. \nIntroduced a new home tab in the main menu.\nResolved multiple critical issues, including subtitle line break issue, dialogue punctuation inconsistencies, NPC spawning conflicts in campaign maps, and server-client synchronization problems.",
             "image": "3_2025",
