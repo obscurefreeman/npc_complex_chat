@@ -10,21 +10,76 @@
 	local armorFont = "ofgui_medium"
 	local valueFont = "ofgui_tiny"
 
-	-- HUD位置和大小自适应
-	local function GetHUDRect()
-		local w, h = ScrW(), ScrH()
-		local width = math.floor(320 * OFGUI.ScreenScale)
-		local height = 56 * OFGUI.ScreenScale
-		local x = math.floor(w * 0.03)
-		local y = math.floor(h - height - w * 0.03)
-		return x, y, width, height
-	end
-
 	-- HUD绘制
 	local currentHealth = 0
 	local currentArmor = 0
 	local currentAmmo = 0
 	local avatarSize = 40 * OFGUI.ScreenScale
+
+	-- 在外部创建模型查看器
+	hook.Add("InitPostEntity", "ofnpcp_create_model_panel", function()
+		local modelPanel = vgui.Create("DModelPanel")
+		if not IsValid(modelPanel) then return end -- 检查是否创建成功
+
+		modelPanel:SetSize(400 * OFGUI.ScreenScale, 400 * OFGUI.ScreenScale)
+		modelPanel:SetModel(LocalPlayer():GetModel())
+		modelPanel:SetAnimated(true)
+
+		-- 设置模型显示器的位置为右下角
+		local screenWidth, screenHeight = ScrW(), ScrH()
+		modelPanel:SetPos(screenWidth - modelPanel:GetWide(), screenHeight - modelPanel:GetTall()- 16 * OFGUI.ScreenScale)
+
+		local ent = modelPanel.Entity
+		local head = ent:LookupBone("ValveBiped.Bip01_Head1")
+		local cpos = head and ent:GetBonePosition(head) or (modelPanel:GetPos() + modelPanel:OBBCenter())
+		local move = Vector(50, 0, 0)  -- 将模型向后移动，增加Z轴距离
+
+		modelPanel:SetFOV(40)
+		modelPanel:SetCamPos(cpos + move)
+		modelPanel:SetLookAt(cpos)
+
+		modelPanel:SetDirectionalLight(BOX_TOP, Color(0, 0, 0))
+		modelPanel:SetAmbientLight(Color(128, 128, 128, 128))
+
+		ent:ResetSequence("idle_all_01")
+
+		function modelPanel:LayoutEntity(ent)
+			if head then
+				local cpos = ent:GetBonePosition(head)
+				modelPanel:SetCamPos(cpos + move)
+				modelPanel:SetLookAt(cpos)
+			end
+			ent:SetPlaybackRate(1)
+			ent:FrameAdvance()
+
+			-- 获取鼠标位置
+			local mouseX, mouseY = gui.MousePos()
+			local modelX, modelY = modelPanel:LocalToScreen(0, 0)
+			local modelW, modelH = modelPanel:GetSize()
+
+			-- 计算鼠标在屏幕上的相对位置
+			local relX = mouseX / ScrW()
+			local relY = mouseY / ScrH()
+			
+			-- 根据屏幕比例调整视线范围
+			local eyeOffsetX = Lerp(relX, -30, 30)  -- 水平方向视角范围扩大
+			local eyeOffsetY = -Lerp(relY, -45, 45) -- 垂直方向视角范围扩大
+			
+			-- 计算新的眼睛目标位置
+			local newEyeTarget = cpos + move + Vector(eyeOffsetY, eyeOffsetX, 0)
+			
+			-- 如果还没有当前眼睛位置，则初始化为新目标位置
+			if not ent.CurrentEyePos then
+				ent.CurrentEyePos = newEyeTarget
+			end
+			
+			-- 平滑移动眼睛位置
+			ent.CurrentEyePos = Lerp(FrameTime() * 10, ent.CurrentEyePos, newEyeTarget)
+			
+			-- 设置眼睛目标
+			ent:SetEyeTarget(ent.CurrentEyePos)
+		end
+	end)
 
 	hook.Add("HUDPaint", "ofnpcp_simple_playerhud", function()
 		if not IsValid(LocalPlayer()) or not LocalPlayer():Alive() then return end
@@ -35,7 +90,12 @@
 		local armor = math.max(0, ply:Armor())
 		local maxHealth = math.max(1, ply:GetMaxHealth())
 
-		local x, y, width, height = GetHUDRect()
+		local w, h = ScrW(), ScrH()
+		local width = math.floor(320 * OFGUI.ScreenScale)
+		local height = 56 * OFGUI.ScreenScale
+		local x = 16 * OFGUI.ScreenScale
+		local y = math.floor(h - height - 16 * OFGUI.ScreenScale)
+        
 		local barHeight = 16 * OFGUI.ScreenScale
 		local padding = 8 * OFGUI.ScreenScale
 
