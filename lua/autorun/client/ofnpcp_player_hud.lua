@@ -1,6 +1,7 @@
 ﻿if CLIENT then
 	-- 颜色与字体风格统一
-	local BGColor = Color(20, 20, 20, 200)
+	local BGColor = Color(20, 20, 20, 100)
+    local HealthColor = Color(255, 0, 0, 225)
 	local ArmorColor = Color(18, 149, 241, 225)
 	local InactiveColor = Color(112, 94, 77, 225)
 
@@ -21,6 +22,8 @@
 
 	-- HUD绘制
 	local currentHealth = 0
+	local currentArmor = 0
+	local currentAmmo = 0
 	local avatarSize = 40 * OFGUI.ScreenScale
 
 	hook.Add("HUDPaint", "ofnpcp_simple_playerhud", function()
@@ -36,9 +39,22 @@
 		local barHeight = 16 * OFGUI.ScreenScale
 		local padding = 8 * OFGUI.ScreenScale
 
-		-- 平滑血量动画
+		-- 平滑动画
 		if not currentHealth then currentHealth = health end
+		if not currentArmor then currentArmor = armor end
 		currentHealth = Lerp(FrameTime() * 10, currentHealth, health)
+		currentArmor = Lerp(FrameTime() * 10, currentArmor, armor)
+
+		-- 子弹平滑动画
+		local weapon = ply:GetActiveWeapon()
+		local ammo = 0
+		local maxAmmo = 1
+		if IsValid(weapon) then
+			ammo = weapon:Clip1() or 0
+			maxAmmo = weapon:GetMaxClip1() or 1
+		end
+		if not currentAmmo then currentAmmo = ammo end
+		currentAmmo = Lerp(FrameTime() * 10, currentAmmo, ammo)
 
 		-- 背景
 		draw.RoundedBox(8, x, y, width, height, BGColor)
@@ -59,11 +75,15 @@
 
 		-- 血量条
 		local healthBarW = math.floor((width - 3 * padding - avatarSize) * math.Clamp(currentHealth / maxHealth, 0, 1))
-		draw.RoundedBox(4, x + padding + avatarSize + padding, y + padding, healthBarW, barHeight, GLOBAL_OFNPC_DATA.setting.camp_setting[OFPLAYERS[LocalPlayer():SteamID()] and OFPLAYERS[LocalPlayer():SteamID()].deck or "resistance"].color)
+		draw.RoundedBox(4, x + padding + avatarSize + padding, y + padding, healthBarW, barHeight, HealthColor)
+
+		-- 子弹条
+		local ammoBarW = math.floor((width - 3 * padding - avatarSize) / 2 * math.Clamp(currentAmmo / maxAmmo, 0, 1))
+		draw.RoundedBox(4, x + padding + avatarSize + padding, y + padding + barHeight + padding, ammoBarW, barHeight, Color(255, 165, 0, 225))
 
 		-- 护甲条
-		local armorBarW = math.floor((width - 3 * padding - avatarSize) * math.Clamp(armor / 100, 0, 1))
-		draw.RoundedBox(4, x + padding + avatarSize + padding, y + padding + barHeight + padding, armorBarW, barHeight, ArmorColor)
+		local armorBarW = math.floor((width - 3 * padding - avatarSize) / 2 * math.Clamp(currentArmor / 100, 0, 1))
+		draw.RoundedBox(4, x + padding + avatarSize + padding + ammoBarW, y + padding + barHeight + padding, armorBarW, barHeight, ArmorColor)
 	end)
 
 	-- 隐藏原版HUD
