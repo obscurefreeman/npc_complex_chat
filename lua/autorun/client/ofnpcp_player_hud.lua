@@ -117,6 +117,38 @@
 		end
 	end)
 
+	function ply.ModelPanel:LayoutEntity(ent)
+		local head = ent:LookupBone("ValveBiped.Bip01_Head1")
+		-- 添加默认值防止cpos为nil
+		local cpos = head and ent:GetBonePosition(head) or (self:GetPos() + ent:OBBCenter())
+		local move = Vector(50, 0, 0)
+		
+		-- 使用self代替ply.ModelPanel
+		self:SetCamPos(cpos + move)
+		self:SetLookAt(cpos)
+
+		-- 获取鼠标位置
+		local mouseX, mouseY = gui.MousePos()
+		local modelX, modelY = self:LocalToScreen(0, 0)
+		local modelW, modelH = self:GetSize()
+
+		-- 添加默认值防止cpos为nil的情况
+		local basePos = cpos or (self:GetPos() + ent:OBBCenter())
+		local newEyeTarget = basePos + move + Vector(
+			-Lerp(mouseY/ScrH(), -45, 45),  -- Y轴反向
+			Lerp(mouseX/ScrW(), -30, 30), 
+			0
+		)
+		
+		-- 初始化当前眼睛位置
+		ent.CurrentEyePos = ent.CurrentEyePos or newEyeTarget
+		ent.CurrentEyePos = Lerp(FrameTime() * 10, ent.CurrentEyePos, newEyeTarget)
+		
+		ent:SetEyeTarget(ent.CurrentEyePos)
+		ent:SetPlaybackRate(1)
+		ent:FrameAdvance()
+	end
+
 	-- 隐藏原版HUD
 	local hidden = {
 		["CHudHealth"] = true,
