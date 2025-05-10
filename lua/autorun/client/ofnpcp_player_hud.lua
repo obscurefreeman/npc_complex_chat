@@ -16,76 +16,12 @@
 	local currentAmmo = 0
 	local avatarSize = 40 * OFGUI.ScreenScale
 
-	-- 在外部创建模型查看器
-	hook.Add("InitPostEntity", "ofnpcp_create_model_panel", function()
-		local modelPanel = vgui.Create("DModelPanel")
-		if not IsValid(modelPanel) then return end -- 检查是否创建成功
-
-		modelPanel:SetSize(400 * OFGUI.ScreenScale, 400 * OFGUI.ScreenScale)
-		modelPanel:SetModel(LocalPlayer():GetModel())
-		modelPanel:SetAnimated(true)
-
-		-- 设置模型显示器的位置为右下角
-		local screenWidth, screenHeight = ScrW(), ScrH()
-		modelPanel:SetPos(screenWidth - modelPanel:GetWide(), screenHeight - modelPanel:GetTall()- 16 * OFGUI.ScreenScale)
-
-		local ent = modelPanel.Entity
-		local head = ent:LookupBone("ValveBiped.Bip01_Head1")
-		local cpos = head and ent:GetBonePosition(head) or (modelPanel:GetPos() + modelPanel:OBBCenter())
-		local move = Vector(50, 0, 0)  -- 将模型向后移动，增加Z轴距离
-
-		modelPanel:SetFOV(40)
-		modelPanel:SetCamPos(cpos + move)
-		modelPanel:SetLookAt(cpos)
-
-		modelPanel:SetDirectionalLight(BOX_TOP, Color(0, 0, 0))
-		modelPanel:SetAmbientLight(Color(128, 128, 128, 128))
-
-		ent:ResetSequence("idle_all_01")
-
-		function modelPanel:LayoutEntity(ent)
-			if head then
-				local cpos = ent:GetBonePosition(head)
-				modelPanel:SetCamPos(cpos + move)
-				modelPanel:SetLookAt(cpos)
-			end
-			ent:SetPlaybackRate(1)
-			ent:FrameAdvance()
-
-			-- 获取鼠标位置
-			local mouseX, mouseY = gui.MousePos()
-			local modelX, modelY = modelPanel:LocalToScreen(0, 0)
-			local modelW, modelH = modelPanel:GetSize()
-
-			-- 计算鼠标在屏幕上的相对位置
-			local relX = mouseX / ScrW()
-			local relY = mouseY / ScrH()
-			
-			-- 根据屏幕比例调整视线范围
-			local eyeOffsetX = Lerp(relX, -30, 30)  -- 水平方向视角范围扩大
-			local eyeOffsetY = -Lerp(relY, -45, 45) -- 垂直方向视角范围扩大
-			
-			-- 计算新的眼睛目标位置
-			local newEyeTarget = cpos + move + Vector(eyeOffsetY, eyeOffsetX, 0)
-			
-			-- 如果还没有当前眼睛位置，则初始化为新目标位置
-			if not ent.CurrentEyePos then
-				ent.CurrentEyePos = newEyeTarget
-			end
-			
-			-- 平滑移动眼睛位置
-			ent.CurrentEyePos = Lerp(FrameTime() * 10, ent.CurrentEyePos, newEyeTarget)
-			
-			-- 设置眼睛目标
-			ent:SetEyeTarget(ent.CurrentEyePos)
-		end
-	end)
+	local ply = LocalPlayer()
 
 	hook.Add("HUDPaint", "ofnpcp_simple_playerhud", function()
 		if not IsValid(LocalPlayer()) or not LocalPlayer():Alive() then return end
 		if GetConVar("cl_drawhud"):GetInt() == 0 then return end
 
-		local ply = LocalPlayer()
 		local health = math.max(0, ply:Health())
 		local armor = math.max(0, ply:Armor())
 		local maxHealth = math.max(1, ply:GetMaxHealth())
@@ -144,6 +80,41 @@
 		-- 护甲条
 		local armorBarW = math.floor((width - 3 * padding - avatarSize) / 2 * math.Clamp(currentArmor / 100, 0, 1))
 		draw.RoundedBox(4, x + padding + avatarSize + padding + ammoBarW, y + padding + barHeight + padding, armorBarW, barHeight, ArmorColor)
+	
+		-- 模型查看器显示与更新
+		if not ply.ModelPanel then
+			ply.ModelPanel = vgui.Create("DModelPanel")
+			ply.ModelPanel:SetSize(400 * OFGUI.ScreenScale, 400 * OFGUI.ScreenScale)
+			ply.ModelPanel:SetPos(w - 400 * OFGUI.ScreenScale, h - 400 * OFGUI.ScreenScale - 16 * OFGUI.ScreenScale)
+			ply.ModelPanel:SetAnimated(true)
+		end
+	
+		if IsValid(ply.ModelPanel) then
+			-- 添加模型变化检测
+			if not ply.CurrentModel or ply.CurrentModel != ply:GetModel() then
+				ply.ModelPanel:SetModel(ply:GetModel())
+				ply.CurrentModel = ply:GetModel()  -- 记录当前模型
+			end
+			
+			local ent = ply.ModelPanel.Entity
+			if IsValid(ent) then
+				local head = ent:LookupBone("ValveBiped.Bip01_Head1")
+				local cpos = head and ent:GetBonePosition(head) or (ply.ModelPanel:GetPos() + ply.ModelPanel:OBBCenter())
+				local move = Vector(50, 0, 0)
+
+				ply.ModelPanel:SetFOV(40)
+				ply.ModelPanel:SetCamPos(cpos + move)
+				ply.ModelPanel:SetLookAt(cpos)
+
+				ply.ModelPanel:SetDirectionalLight(BOX_TOP, Color(0, 0, 0))
+				ply.ModelPanel:SetAmbientLight(Color(128, 128, 128, 128))
+		
+				ent:ResetSequence("idle_all_01")
+				ent:SetPlaybackRate(1)
+				ent:FrameAdvance()
+				ent:SetAngles(Angle(0, 0, 0))
+			end
+		end
 	end)
 
 	-- 隐藏原版HUD
