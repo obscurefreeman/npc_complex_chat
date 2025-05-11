@@ -11,12 +11,11 @@
 	local currentArmor = 0
 	local currentAmmo = 0
 
-	local ply = LocalPlayer()
-
 	hook.Add("HUDPaint", "ofnpcp_simple_playerhud", function()
 		if not IsValid(LocalPlayer()) or not LocalPlayer():Alive() then return end
 		if GetConVar("cl_drawhud"):GetInt() == 0 then return end
 
+		local ply = LocalPlayer()
 		local health = math.max(0, ply:Health())
 		local armor = math.max(0, ply:Armor())
 		local maxHealth = math.max(1, ply:GetMaxHealth())
@@ -78,13 +77,6 @@
 		-- 玩家名称
 		local name = ply:Nick()
 		draw.SimpleText(name, "ofgui_tiny", x + padding * 2 + avatarSize, y + padding, Color(255, 255, 255, 255))
-
-		-- -- 经验条
-		-- local exp = ply:GetNWInt("Experience", 0) -- 假设经验值存储在NWInt中
-		-- local maxExp = ply:GetNWInt("MaxExperience", 100) -- 假设最大经验值存储在NWInt中
-		-- local expRatio = math.Clamp(exp / maxExp, 0, 1)
-		-- local expBarW = math.floor(availableWidth * expRatio)
-		-- draw.RoundedBox(4, x + padding * 2 + avatarSize, y + padding + nameH, expBarW, barHeight / 2, Color(0, 255, 0, 225))
 
 		-- 子弹条和护甲条位置
 		local ammoArmorY = y + 3 * padding + 2 * barHeight

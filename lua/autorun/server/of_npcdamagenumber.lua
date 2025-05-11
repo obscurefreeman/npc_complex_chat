@@ -1,7 +1,7 @@
 util.AddNetworkString("OFDamageNumber")
 
 hook.Add("EntityTakeDamage", "SpawnDamageNumbers", function(ent, dmg)
-    if not IsValid(ent) or not ent:IsNPC() then return end
+    if not IsValid(ent) then return end
     
     local damage = math.Round(dmg:GetDamage())
     local pos = dmg:GetDamagePosition()  -- 获取伤害的命中位置

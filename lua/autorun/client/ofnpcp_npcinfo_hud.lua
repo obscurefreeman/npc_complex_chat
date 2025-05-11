@@ -80,16 +80,18 @@ net.Receive("OFDamageNumber", function()
     local damage = net.ReadString()
     local npc = net.ReadEntity()
 
-    local npcs = GetAllNPCsList()
-    local npcIdentity = npcs[npc:EntIndex()]
-
     -- 定义伤害数字颜色
     local damageColor = color_white
     local outlineColor = Color(0, 0, 0, 200)
-    
-    if npcIdentity and GLOBAL_OFNPC_DATA.setting.camp_setting[npcIdentity.camp] then
-        damageColor = GLOBAL_OFNPC_DATA.setting.camp_setting[npcIdentity.camp].color
-        -- outlineColor = (damageColor.r + damageColor.g + damageColor.b) / 3 > 127.5 and Color(0, 0, 0, 200) or Color(255, 255, 255, 200)
+
+    if npc:IsNPC() then
+        local npcs = GetAllNPCsList()
+        local npcIdentity = npcs[npc:EntIndex()]
+        if npcIdentity and GLOBAL_OFNPC_DATA.setting.camp_setting[npcIdentity.camp] then
+            damageColor = GLOBAL_OFNPC_DATA.setting.camp_setting[npcIdentity.camp].color
+        end
+    elseif npc:IsPlayer() then
+        damageColor = GLOBAL_OFNPC_DATA.setting.camp_setting[OFPLAYERS[LocalPlayer():SteamID()] and OFPLAYERS[LocalPlayer():SteamID()].deck or "resistance"].color
     end
     
     hook.Add("PostDrawTranslucentRenderables", "DrawDamage_"..entIndex, function()
