@@ -74,3 +74,76 @@ hook.Add("HUDPaint", "ofnpcp_npcinfo_hud", function()
     local subY = y + h + padding
     draw.SimpleText(description, "ofgui_tiny", centerX, subY, Color(255, 255, 255, textAlpha), TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP)
 end)
+-- 定义伤害数字颜色
+local damageColor = Color(255, 50, 50)
+local outlineColor = Color(0, 0, 0, 200)
+
+net.Receive("OFDamageNumber", function()
+    local entIndex = net.ReadUInt(16)
+    local damage = net.ReadString()
+    
+    hook.Add("PostDrawTranslucentRenderables", "DrawDamage_"..entIndex, function()
+        local ent = Entity(entIndex)
+        if not IsValid(ent) then return end
+        
+        local pos = ent:GetPos()
+        local ang = ent:GetAngles()
+        
+        -- 正常方向显示
+        cam.Start3D2D(pos, ang, 0.2)
+            -- 绘制描边
+            draw.SimpleTextOutlined(
+                damage,
+                "ofgui_tiny",
+                0, 0,
+                outlineColor,
+                TEXT_ALIGN_CENTER,
+                TEXT_ALIGN_CENTER,
+                2,
+                outlineColor
+            )
+            -- 绘制主文本
+            draw.SimpleTextOutlined(
+                damage,
+                "ofgui_tiny",
+                0, 0,
+                damageColor,
+                TEXT_ALIGN_CENTER,
+                TEXT_ALIGN_CENTER,
+                0,
+                outlineColor
+            )
+        cam.End3D2D()
+
+        -- 镜像方向显示
+        local reversedAng = Angle(ang.p, ang.y, ang.r + 180)
+        cam.Start3D2D(pos, reversedAng, -0.2)  -- 使用负比例进行镜像
+            -- 绘制描边
+            draw.SimpleTextOutlined(
+                damage,
+                "ofgui_tiny",
+                0, 0,
+                outlineColor,
+                TEXT_ALIGN_CENTER,
+                TEXT_ALIGN_CENTER,
+                2,
+                outlineColor
+            )
+            -- 使用描边颜色绘制镜像文本
+            draw.SimpleTextOutlined(
+                damage,
+                "ofgui_tiny",
+                0, 0,
+                damageColor,
+                TEXT_ALIGN_CENTER,
+                TEXT_ALIGN_CENTER,
+                0,
+                outlineColor
+            )
+        cam.End3D2D()
+    end)
+    
+    timer.Simple(3, function()
+        hook.Remove("PostDrawTranslucentRenderables", "DrawDamage_"..entIndex)
+    end)
+end)
