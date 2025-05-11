@@ -6,6 +6,8 @@ local alpha = 0
 local displayDelay = 0.1 -- 显示延迟时间
 local fadeSpeed = 10 -- 淡入淡出速度
 
+local damageNumbers = {}  -- 用于存储当前显示的伤害数字
+
 hook.Add("HUDPaint", "ofnpcp_npcinfo_hud", function()
     if GetConVar("of_garrylord_npcinfo_hud"):GetInt() == 0 then return end
     
@@ -98,6 +100,25 @@ net.Receive("OFDamageNumber", function()
     local fadeStartTime = startTime + 2 -- 2秒后开始变透明
     local fadeEndTime = startTime + 3 -- 3秒后完全消失
     
+    -- 将新创建的伤害数字添加到列表中
+    local damageInfo = {
+        entIndex = entIndex,
+        damage = damage,
+        npc = npc,
+        startTime = startTime,
+        fadeStartTime = fadeStartTime,
+        fadeEndTime = fadeEndTime,
+        damageColor = damageColor,
+        outlineColor = outlineColor
+    }
+    table.insert(damageNumbers, damageInfo)
+
+    if #damageNumbers > 25 then
+        local oldestDamageInfo = table.remove(damageNumbers, 1)
+        oldestDamageInfo.fadeStartTime = CurTime()  -- 立即开始渐变
+        oldestDamageInfo.fadeEndTime = CurTime() + 1  -- 1秒内完全消失
+    end
+
     hook.Add("PostDrawTranslucentRenderables", "DrawDamage_"..entIndex, function()
         local ent = Entity(entIndex)
         if not IsValid(ent) then return end
@@ -108,8 +129,8 @@ net.Receive("OFDamageNumber", function()
         -- 计算透明度
         local currentTime = CurTime()
         local alpha = 255
-        if currentTime > fadeStartTime then
-            alpha = 255 - (currentTime - fadeStartTime) * 255
+        if currentTime > damageInfo.fadeStartTime then
+            alpha = 255 - (currentTime - damageInfo.fadeStartTime) * 255
         end
         alpha = math.Clamp(alpha, 0, 255)
         
@@ -169,5 +190,12 @@ net.Receive("OFDamageNumber", function()
     
     timer.Simple(3, function()
         hook.Remove("PostDrawTranslucentRenderables", "DrawDamage_"..entIndex)
+        -- 从列表中移除已删除的伤害数字
+        for i, v in ipairs(damageNumbers) do
+            if v.entIndex == entIndex then
+                table.remove(damageNumbers, i)
+                break
+            end
+        end
     end)
 end)

@@ -1,5 +1,7 @@
 util.AddNetworkString("OFDamageNumber")
 
+local damageNumbers = {}  -- 用于存储当前显示的伤害数字
+
 hook.Add("EntityTakeDamage", "SpawnDamageNumbers", function(ent, dmg)
     if not IsValid(ent) then return end
     
@@ -43,8 +45,29 @@ hook.Add("EntityTakeDamage", "SpawnDamageNumbers", function(ent, dmg)
             phys:SetVelocity(randomVelocity)  -- 设置初始速度
         end
 
+        -- 将新创建的伤害数字添加到列表中
+        table.insert(damageNumbers, prop)
+
+        if #damageNumbers > 25 then
+            local oldestProp = table.remove(damageNumbers, 1)
+            if IsValid(oldestProp) then
+                oldestProp:SetRenderMode(RENDERMODE_TRANSALPHA)
+                oldestProp:SetColor(Color(255, 255, 255, 255))
+                timer.Simple(1, function()
+                    if IsValid(oldestProp) then oldestProp:Remove() end
+                end)
+            end
+        end
+
         timer.Simple(3, function()
             if IsValid(prop) then prop:Remove() end
+            -- 从列表中移除已删除的伤害数字
+            for i, v in ipairs(damageNumbers) do
+                if v == prop then
+                    table.remove(damageNumbers, i)
+                    break
+                end
+            end
         end)
     end
 end)
