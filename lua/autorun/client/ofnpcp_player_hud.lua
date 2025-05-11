@@ -2,6 +2,7 @@
 	-- 颜色与字体风格统一
 	local BGColor = Color(20, 20, 20, 100)
     local HealthColor = Color(255, 0, 0, 225)
+	local AmmoColor = Color(255, 165, 0, 225)
 	local ArmorColor = Color(18, 149, 241, 225)
 	local InactiveColor = Color(112, 94, 77, 225)
 
@@ -22,11 +23,11 @@
 
 		local w, h = ScrW(), ScrH()
 		local width = 320 * OFGUI.ScreenScale
-		local height = 72 * OFGUI.ScreenScale
+		local height = 80 * OFGUI.ScreenScale
 		local x = 16 * OFGUI.ScreenScale
 		local y = h - height - 16 * OFGUI.ScreenScale
 
-		local barcount = 2
+		local barcount = 3
 
 		local padding = 8 * OFGUI.ScreenScale
 		local barHeight = (height - (barcount + 1) * padding) / barcount
@@ -72,16 +73,27 @@
 		-- 血量条
 		local healthRatio = math.Clamp(currentHealth / maxHealth, 0, 1)
 		local healthBarW = math.floor(availableWidth * healthRatio)
-		draw.RoundedBox(4, x + padding * 2 + avatarSize, y + padding, healthBarW, barHeight, HealthColor)
+		draw.RoundedBox(4, x + padding * 2 + avatarSize, y + 2 * padding + barHeight, healthBarW, barHeight, HealthColor)
+
+		-- 玩家名称
+		local name = ply:Nick()
+		draw.SimpleText(name, "ofgui_tiny", x + padding * 2 + avatarSize, y + padding, Color(255, 255, 255, 255))
+
+		-- -- 经验条
+		-- local exp = ply:GetNWInt("Experience", 0) -- 假设经验值存储在NWInt中
+		-- local maxExp = ply:GetNWInt("MaxExperience", 100) -- 假设最大经验值存储在NWInt中
+		-- local expRatio = math.Clamp(exp / maxExp, 0, 1)
+		-- local expBarW = math.floor(availableWidth * expRatio)
+		-- draw.RoundedBox(4, x + padding * 2 + avatarSize, y + padding + nameH, expBarW, barHeight / 2, Color(0, 255, 0, 225))
 
 		-- 子弹条和护甲条位置
-		local ammoArmorY = y + padding + barHeight + padding
+		local ammoArmorY = y + 3 * padding + 2 * barHeight
 		local halfWidth = availableWidth / 2
 
 		-- 子弹条
 		local ammoRatio = math.Clamp(currentAmmo / maxAmmo, 0, 1)
 		local ammoBarW = math.floor(halfWidth * ammoRatio)
-		draw.RoundedBox(4, x + padding * 2 + avatarSize, ammoArmorY, ammoBarW, barHeight, Color(255, 165, 0, 225))
+		draw.RoundedBox(4, x + padding * 2 + avatarSize, ammoArmorY, ammoBarW, barHeight, AmmoColor)
 
 		-- 护甲条
 		local armorRatio = math.Clamp(currentArmor / 100, 0, 1)
