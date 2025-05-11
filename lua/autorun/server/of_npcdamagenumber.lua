@@ -4,8 +4,9 @@ hook.Add("EntityTakeDamage", "SpawnDamageNumbers", function(ent, dmg)
     if not IsValid(ent) or not ent:IsNPC() then return end
     
     local damage = math.Round(dmg:GetDamage())
-    local pos = ent:GetPos() + Vector(0, 0, 25)
-    local ang = Angle(0, 0, 90)
+    local pos = dmg:GetDamagePosition()  -- 获取伤害的命中位置
+    local randomYaw = math.random(0, 360)
+    local ang = Angle(0, randomYaw, 90)
 
     local prop = ents.Create("prop_physics")
     if IsValid(prop) then
@@ -24,6 +25,7 @@ hook.Add("EntityTakeDamage", "SpawnDamageNumbers", function(ent, dmg)
         net.Start("OFDamageNumber")
             net.WriteUInt(prop:EntIndex(), 16)
             net.WriteString(tostring(damage))
+            net.WriteEntity(ent)
         net.Broadcast()
 
         local phys = prop:GetPhysicsObject()

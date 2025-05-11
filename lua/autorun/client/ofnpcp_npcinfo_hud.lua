@@ -74,13 +74,23 @@ hook.Add("HUDPaint", "ofnpcp_npcinfo_hud", function()
     local subY = y + h + padding
     draw.SimpleText(description, "ofgui_tiny", centerX, subY, Color(255, 255, 255, textAlpha), TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP)
 end)
--- 定义伤害数字颜色
-local damageColor = Color(255, 50, 50)
-local outlineColor = Color(0, 0, 0, 200)
 
 net.Receive("OFDamageNumber", function()
     local entIndex = net.ReadUInt(16)
     local damage = net.ReadString()
+    local npc = net.ReadEntity()
+
+    local npcs = GetAllNPCsList()
+    local npcIdentity = npcs[npc:EntIndex()]
+
+    -- 定义伤害数字颜色
+    local damageColor = color_white
+    local outlineColor = Color(0, 0, 0, 200)
+    
+    if npcIdentity and GLOBAL_OFNPC_DATA.setting.camp_setting[npcIdentity.camp] then
+        damageColor = GLOBAL_OFNPC_DATA.setting.camp_setting[npcIdentity.camp].color
+        -- outlineColor = (damageColor.r + damageColor.g + damageColor.b) / 3 > 127.5 and Color(0, 0, 0, 200) or Color(255, 255, 255, 200)
+    end
     
     hook.Add("PostDrawTranslucentRenderables", "DrawDamage_"..entIndex, function()
         local ent = Entity(entIndex)
@@ -94,7 +104,7 @@ net.Receive("OFDamageNumber", function()
             -- 绘制描边
             draw.SimpleTextOutlined(
                 damage,
-                "ofgui_tiny",
+                "ofgui_eva",
                 0, 0,
                 outlineColor,
                 TEXT_ALIGN_CENTER,
@@ -105,7 +115,7 @@ net.Receive("OFDamageNumber", function()
             -- 绘制主文本
             draw.SimpleTextOutlined(
                 damage,
-                "ofgui_tiny",
+                "ofgui_eva",
                 0, 0,
                 damageColor,
                 TEXT_ALIGN_CENTER,
@@ -121,7 +131,7 @@ net.Receive("OFDamageNumber", function()
             -- 绘制描边
             draw.SimpleTextOutlined(
                 damage,
-                "ofgui_tiny",
+                "ofgui_eva",
                 0, 0,
                 outlineColor,
                 TEXT_ALIGN_CENTER,
@@ -132,7 +142,7 @@ net.Receive("OFDamageNumber", function()
             -- 使用描边颜色绘制镜像文本
             draw.SimpleTextOutlined(
                 damage,
-                "ofgui_tiny",
+                "ofgui_eva",
                 0, 0,
                 damageColor,
                 TEXT_ALIGN_CENTER,
