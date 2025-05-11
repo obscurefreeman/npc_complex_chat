@@ -5,16 +5,10 @@
 	local ArmorColor = Color(18, 149, 241, 225)
 	local InactiveColor = Color(112, 94, 77, 225)
 
-	-- 字体（需在cl_init或其他地方提前CreateFont）
-	local healthFont = "ofgui_medium"
-	local armorFont = "ofgui_medium"
-	local valueFont = "ofgui_tiny"
-
 	-- HUD绘制
 	local currentHealth = 0
 	local currentArmor = 0
 	local currentAmmo = 0
-	local avatarSize = 40 * OFGUI.ScreenScale
 
 	local ply = LocalPlayer()
 
@@ -27,13 +21,16 @@
 		local maxHealth = math.max(1, ply:GetMaxHealth())
 
 		local w, h = ScrW(), ScrH()
-		local width = math.floor(320 * OFGUI.ScreenScale)
-		local height = 56 * OFGUI.ScreenScale
+		local width = 320 * OFGUI.ScreenScale
+		local height = 72 * OFGUI.ScreenScale
 		local x = 16 * OFGUI.ScreenScale
-		local y = math.floor(h - height - 16 * OFGUI.ScreenScale)
-        
-		local barHeight = 16 * OFGUI.ScreenScale
+		local y = h - height - 16 * OFGUI.ScreenScale
+
+		local barcount = 2
+
 		local padding = 8 * OFGUI.ScreenScale
+		local barHeight = (height - (barcount + 1) * padding) / barcount
+		local avatarSize = height - 2 * padding
 
 		-- 平滑动画
 		if not currentHealth then currentHealth = health end
@@ -69,85 +66,28 @@
 		ply.AvatarImage:SetSize(avatarSize, avatarSize)
 		ply.AvatarImage:PaintManual()
 
+		-- 计算可用宽度
+		local availableWidth = width - 3 * padding - avatarSize
+		
 		-- 血量条
-		local healthBarW = math.floor((width - 3 * padding - avatarSize) * math.Clamp(currentHealth / maxHealth, 0, 1))
-		draw.RoundedBox(4, x + padding + avatarSize + padding, y + padding, healthBarW, barHeight, HealthColor)
+		local healthRatio = math.Clamp(currentHealth / maxHealth, 0, 1)
+		local healthBarW = math.floor(availableWidth * healthRatio)
+		draw.RoundedBox(4, x + padding * 2 + avatarSize, y + padding, healthBarW, barHeight, HealthColor)
+
+		-- 子弹条和护甲条位置
+		local ammoArmorY = y + padding + barHeight + padding
+		local halfWidth = availableWidth / 2
 
 		-- 子弹条
-		local ammoBarW = math.floor((width - 3 * padding - avatarSize) / 2 * math.Clamp(currentAmmo / maxAmmo, 0, 1))
-		draw.RoundedBox(4, x + padding + avatarSize + padding, y + padding + barHeight + padding, ammoBarW, barHeight, Color(255, 165, 0, 225))
+		local ammoRatio = math.Clamp(currentAmmo / maxAmmo, 0, 1)
+		local ammoBarW = math.floor(halfWidth * ammoRatio)
+		draw.RoundedBox(4, x + padding * 2 + avatarSize, ammoArmorY, ammoBarW, barHeight, Color(255, 165, 0, 225))
 
 		-- 护甲条
-		local armorBarW = math.floor((width - 3 * padding - avatarSize) / 2 * math.Clamp(currentArmor / 100, 0, 1))
-		draw.RoundedBox(4, x + padding + avatarSize + padding + ammoBarW, y + padding + barHeight + padding, armorBarW, barHeight, ArmorColor)
-	
-		-- 模型查看器显示与更新
-		if not ply.ModelPanel then
-			ply.ModelPanel = vgui.Create("DModelPanel")
-			ply.ModelPanel:SetSize(400 * OFGUI.ScreenScale, 400 * OFGUI.ScreenScale)
-			ply.ModelPanel:SetPos(w - 400 * OFGUI.ScreenScale, h - 400 * OFGUI.ScreenScale - 16 * OFGUI.ScreenScale)
-			ply.ModelPanel:SetAnimated(true)
-		end
-	
-		if IsValid(ply.ModelPanel) then
-			-- 添加模型变化检测
-			if not ply.CurrentModel or ply.CurrentModel != ply:GetModel() then
-				ply.ModelPanel:SetModel(ply:GetModel())
-				ply.CurrentModel = ply:GetModel()  -- 记录当前模型
-			end
-			
-			local ent = ply.ModelPanel.Entity
-			if IsValid(ent) then
-				local head = ent:LookupBone("ValveBiped.Bip01_Head1")
-				local cpos = head and ent:GetBonePosition(head) or (ply.ModelPanel:GetPos() + ply.ModelPanel:OBBCenter())
-				local move = Vector(50, 0, 0)
-
-				ply.ModelPanel:SetFOV(40)
-				ply.ModelPanel:SetCamPos(cpos + move)
-				ply.ModelPanel:SetLookAt(cpos)
-
-				ply.ModelPanel:SetDirectionalLight(BOX_TOP, Color(0, 0, 0))
-				ply.ModelPanel:SetAmbientLight(Color(128, 128, 128, 128))
-		
-				ent:ResetSequence("idle_all_01")
-				ent:SetPlaybackRate(1)
-				ent:FrameAdvance()
-				ent:SetAngles(Angle(0, 0, 0))
-			end
-		end
+		local armorRatio = math.Clamp(currentArmor / 100, 0, 1)
+		local armorBarW = math.floor(halfWidth * armorRatio)
+		draw.RoundedBox(4, x + padding * 2 + avatarSize + ammoBarW, ammoArmorY, armorBarW, barHeight, ArmorColor)
 	end)
-
-	function ply.ModelPanel:LayoutEntity(ent)
-		local head = ent:LookupBone("ValveBiped.Bip01_Head1")
-		-- 添加默认值防止cpos为nil
-		local cpos = head and ent:GetBonePosition(head) or (self:GetPos() + ent:OBBCenter())
-		local move = Vector(50, 0, 0)
-		
-		-- 使用self代替ply.ModelPanel
-		self:SetCamPos(cpos + move)
-		self:SetLookAt(cpos)
-
-		-- 获取鼠标位置
-		local mouseX, mouseY = gui.MousePos()
-		local modelX, modelY = self:LocalToScreen(0, 0)
-		local modelW, modelH = self:GetSize()
-
-		-- 添加默认值防止cpos为nil的情况
-		local basePos = cpos or (self:GetPos() + ent:OBBCenter())
-		local newEyeTarget = basePos + move + Vector(
-			-Lerp(mouseY/ScrH(), -45, 45),  -- Y轴反向
-			Lerp(mouseX/ScrW(), -30, 30), 
-			0
-		)
-		
-		-- 初始化当前眼睛位置
-		ent.CurrentEyePos = ent.CurrentEyePos or newEyeTarget
-		ent.CurrentEyePos = Lerp(FrameTime() * 10, ent.CurrentEyePos, newEyeTarget)
-		
-		ent:SetEyeTarget(ent.CurrentEyePos)
-		ent:SetPlaybackRate(1)
-		ent:FrameAdvance()
-	end
 
 	-- 隐藏原版HUD
 	local hidden = {
