@@ -94,12 +94,24 @@ net.Receive("OFDamageNumber", function()
         damageColor = GLOBAL_OFNPC_DATA.setting.camp_setting[OFPLAYERS[LocalPlayer():SteamID()] and OFPLAYERS[LocalPlayer():SteamID()].deck or "resistance"].color
     end
     
+    local startTime = CurTime()
+    local fadeStartTime = startTime + 2 -- 2秒后开始变透明
+    local fadeEndTime = startTime + 3 -- 3秒后完全消失
+    
     hook.Add("PostDrawTranslucentRenderables", "DrawDamage_"..entIndex, function()
         local ent = Entity(entIndex)
         if not IsValid(ent) then return end
         
         local pos = ent:GetPos()
         local ang = ent:GetAngles()
+        
+        -- 计算透明度
+        local currentTime = CurTime()
+        local alpha = 255
+        if currentTime > fadeStartTime then
+            alpha = 255 - (currentTime - fadeStartTime) * 255
+        end
+        alpha = math.Clamp(alpha, 0, 255)
         
         -- 正常方向显示
         cam.Start3D2D(pos, ang, 0.2)
@@ -108,22 +120,22 @@ net.Receive("OFDamageNumber", function()
                 damage,
                 "ofgui_eva",
                 0, 0,
-                outlineColor,
+                Color(outlineColor.r, outlineColor.g, outlineColor.b, alpha),
                 TEXT_ALIGN_CENTER,
                 TEXT_ALIGN_CENTER,
                 2,
-                outlineColor
+                Color(outlineColor.r, outlineColor.g, outlineColor.b, alpha)
             )
             -- 绘制主文本
             draw.SimpleTextOutlined(
                 damage,
                 "ofgui_eva",
                 0, 0,
-                damageColor,
+                Color(damageColor.r, damageColor.g, damageColor.b, alpha),
                 TEXT_ALIGN_CENTER,
                 TEXT_ALIGN_CENTER,
                 0,
-                outlineColor
+                Color(outlineColor.r, outlineColor.g, outlineColor.b, alpha)
             )
         cam.End3D2D()
 
@@ -135,22 +147,22 @@ net.Receive("OFDamageNumber", function()
                 damage,
                 "ofgui_eva",
                 0, 0,
-                outlineColor,
+                Color(outlineColor.r, outlineColor.g, outlineColor.b, alpha),
                 TEXT_ALIGN_CENTER,
                 TEXT_ALIGN_CENTER,
                 2,
-                outlineColor
+                Color(outlineColor.r, outlineColor.g, outlineColor.b, alpha)
             )
             -- 使用描边颜色绘制镜像文本
             draw.SimpleTextOutlined(
                 damage,
                 "ofgui_eva",
                 0, 0,
-                damageColor,
+                Color(damageColor.r, damageColor.g, damageColor.b, alpha),
                 TEXT_ALIGN_CENTER,
                 TEXT_ALIGN_CENTER,
                 0,
-                outlineColor
+                Color(outlineColor.r, outlineColor.g, outlineColor.b, alpha)
             )
         cam.End3D2D()
     end)
