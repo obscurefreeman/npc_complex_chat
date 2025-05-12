@@ -22,11 +22,11 @@
 
 		local w, h = ScrW(), ScrH()
 		local width = 320 * OFGUI.ScreenScale
-		local height = 80 * OFGUI.ScreenScale
+		local height = 56 * OFGUI.ScreenScale
 		local x = 16 * OFGUI.ScreenScale
 		local y = h - height - 16 * OFGUI.ScreenScale
 
-		local barcount = 3
+		local barcount = 2
 
 		local padding = 8 * OFGUI.ScreenScale
 		local barHeight = (height - (barcount + 1) * padding) / barcount
@@ -77,16 +77,16 @@
 		local name = ply:Nick()
 		draw.SimpleText(name, "ofgui_tiny", x + padding * 2 + avatarSize, y + padding, Color(255, 255, 255, 255))
 		local nameWidth = surface.GetTextSize(name, "ofgui_tiny")
+
+		-- 护甲条
+		local armorRatio = math.Clamp(currentArmor / 100, 0, 1)
+		local armorBarW = math.floor((availableWidth - nameWidth - padding) * armorRatio)
+		draw.RoundedBox(4, x + padding * 2 + avatarSize + nameWidth + padding, y + padding, armorBarW, barHeight, ArmorColor)
 		
 		-- 血量条
 		local healthRatio = math.Clamp(currentHealth / maxHealth, 0, 1)
 		local healthBarW = math.floor(availableWidth * healthRatio)
 		draw.RoundedBox(4, x + padding * 2 + avatarSize, y + 2 * padding + barHeight, healthBarW, barHeight, HealthColor)
-
-		-- 护甲条
-		local armorRatio = math.Clamp(currentArmor / 100, 0, 1)
-		local armorBarW = math.floor(availableWidth * armorRatio)
-		draw.RoundedBox(4, x + padding * 2 + avatarSize, y + 3 * padding + 2 * barHeight, armorBarW, barHeight, ArmorColor)
 
 		-- 子弹条
 		local ammoRatio = math.Clamp(currentAmmo / maxAmmo, 0, 1)
@@ -95,10 +95,10 @@
 		local ammoBarW = math.floor((width - 3 * padding - weaponNameWidth) * ammoRatio)
 		
 		-- 绘制武器名称
-		draw.SimpleText(weaponName, "ofgui_tiny", rightX + padding, y + 3 * padding + 2 * barHeight, Color(255, 255, 255, 255))
+		draw.SimpleText(weaponName, "ofgui_tiny", rightX + padding, y + 2 * padding + barHeight, Color(255, 255, 255, 255))
 		
 		-- 绘制子弹条
-		draw.RoundedBox(4, rightX + padding + weaponNameWidth + padding, y + 3 * padding + 2 * barHeight, ammoBarW, barHeight, AmmoColor)
+		draw.RoundedBox(4, rightX + padding + weaponNameWidth + padding, y + 2 * padding + barHeight, ammoBarW, barHeight, AmmoColor)
 	end)
 
 	-- 隐藏原版HUD
