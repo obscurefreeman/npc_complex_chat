@@ -52,6 +52,10 @@
 		-- 背景
 		draw.RoundedBox(8, x, y, width, height, BGColor)
 
+		-- 右侧HUD框
+		local rightX = w - width - 16 * OFGUI.ScreenScale
+		draw.RoundedBox(8, rightX, y, width, height, BGColor)
+
 		-- 玩家头像背景
 		draw.RoundedBox(6, x + padding, y + padding, avatarSize, avatarSize, InactiveColor)
 
@@ -69,28 +73,32 @@
 		-- 计算可用宽度
 		local availableWidth = width - 3 * padding - avatarSize
 		
+		-- 玩家名称
+		local name = ply:Nick()
+		draw.SimpleText(name, "ofgui_tiny", x + padding * 2 + avatarSize, y + padding, Color(255, 255, 255, 255))
+		local nameWidth = surface.GetTextSize(name, "ofgui_tiny")
+		
 		-- 血量条
 		local healthRatio = math.Clamp(currentHealth / maxHealth, 0, 1)
 		local healthBarW = math.floor(availableWidth * healthRatio)
 		draw.RoundedBox(4, x + padding * 2 + avatarSize, y + 2 * padding + barHeight, healthBarW, barHeight, HealthColor)
 
-		-- 玩家名称
-		local name = ply:Nick()
-		draw.SimpleText(name, "ofgui_tiny", x + padding * 2 + avatarSize, y + padding, Color(255, 255, 255, 255))
-
-		-- 子弹条和护甲条位置
-		local ammoArmorY = y + 3 * padding + 2 * barHeight
-		local halfWidth = availableWidth / 2
+		-- 护甲条
+		local armorRatio = math.Clamp(currentArmor / 100, 0, 1)
+		local armorBarW = math.floor(availableWidth * armorRatio)
+		draw.RoundedBox(4, x + padding * 2 + avatarSize, y + 3 * padding + 2 * barHeight, armorBarW, barHeight, ArmorColor)
 
 		-- 子弹条
 		local ammoRatio = math.Clamp(currentAmmo / maxAmmo, 0, 1)
-		local ammoBarW = math.floor(halfWidth * ammoRatio)
-		draw.RoundedBox(4, x + padding * 2 + avatarSize, ammoArmorY, ammoBarW, barHeight, AmmoColor)
-
-		-- 护甲条
-		local armorRatio = math.Clamp(currentArmor / 100, 0, 1)
-		local armorBarW = math.floor(halfWidth * armorRatio)
-		draw.RoundedBox(4, x + padding * 2 + avatarSize + ammoBarW, ammoArmorY, armorBarW, barHeight, ArmorColor)
+		local weaponName = IsValid(weapon) and weapon:GetPrintName() or ""
+		local weaponNameWidth = surface.GetTextSize(weaponName, "ofgui_tiny")
+		local ammoBarW = math.floor((width - 3 * padding - weaponNameWidth) * ammoRatio)
+		
+		-- 绘制武器名称
+		draw.SimpleText(weaponName, "ofgui_tiny", rightX + padding, y + 3 * padding + 2 * barHeight, Color(255, 255, 255, 255))
+		
+		-- 绘制子弹条
+		draw.RoundedBox(4, rightX + padding + weaponNameWidth + padding, y + 3 * padding + 2 * barHeight, ammoBarW, barHeight, AmmoColor)
 	end)
 
 	-- 隐藏原版HUD
