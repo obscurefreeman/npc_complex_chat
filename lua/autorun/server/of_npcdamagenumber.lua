@@ -1,11 +1,16 @@
 util.AddNetworkString("OFDamageNumber")
 
 local damageNumbers = {}  -- 用于存储当前显示的伤害数字
+local damageNumbersThisFrame = 0  -- 用于记录当前帧中生成的伤害数字数量
 
 hook.Add("EntityTakeDamage", "SpawnDamageNumbers", function(ent, dmg)
     if not IsValid(ent) then return end
     
     if #damageNumbers > 100 then return end -- 如果超过100就强制不生成
+
+    -- 限制每帧最多生成10个伤害数字
+    if damageNumbersThisFrame >= 10 then return end
+    damageNumbersThisFrame = damageNumbersThisFrame + 1
 
     local damage = math.Round(dmg:GetDamage())
     local pos = dmg:GetDamagePosition()  -- 获取伤害的命中位置
@@ -77,4 +82,9 @@ hook.Add("EntityTakeDamage", "SpawnDamageNumbers", function(ent, dmg)
             end
         end)
     end
+end)
+
+-- 每帧开始时重置伤害数字计数器
+hook.Add("Think", "ResetDamageNumbersCounter", function()
+    damageNumbersThisFrame = 0
 end)
