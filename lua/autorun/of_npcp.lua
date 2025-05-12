@@ -102,9 +102,9 @@ if SERVER then
 
         -- 根据性别分配名字和配音
         if identity.gender == "female" then
-            identity.voice = maleVoices[math.random(#maleVoices)]
-        else
             identity.voice = femaleVoices[math.random(#femaleVoices)]
+        else
+            identity.voice = maleVoices[math.random(#maleVoices)]
         end
 
         if not identity.name and identity.type ~= "maincharacter" then
