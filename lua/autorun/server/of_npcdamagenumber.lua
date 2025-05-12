@@ -5,6 +5,8 @@ local damageNumbers = {}  -- 用于存储当前显示的伤害数字
 hook.Add("EntityTakeDamage", "SpawnDamageNumbers", function(ent, dmg)
     if not IsValid(ent) then return end
     
+    if #damageNumbers > 100 then return end -- 如果超过100就强制不生成
+
     local damage = math.Round(dmg:GetDamage())
     local pos = dmg:GetDamagePosition()  -- 获取伤害的命中位置
     local randomYaw = math.random(0, 360)
@@ -48,7 +50,12 @@ hook.Add("EntityTakeDamage", "SpawnDamageNumbers", function(ent, dmg)
         -- 将新创建的伤害数字添加到列表中
         table.insert(damageNumbers, prop)
 
-        if #damageNumbers > 25 then
+        if #damageNumbers > 75 then -- 如果超过75就强制消失
+            local oldestProp = table.remove(damageNumbers, 1)
+            if IsValid(oldestProp) then
+                oldestProp:Remove()  -- 直接删除最旧的伤害数字
+            end
+        elseif #damageNumbers > 25 then
             local oldestProp = table.remove(damageNumbers, 1)
             if IsValid(oldestProp) then
                 oldestProp:SetRenderMode(RENDERMODE_TRANSALPHA)
