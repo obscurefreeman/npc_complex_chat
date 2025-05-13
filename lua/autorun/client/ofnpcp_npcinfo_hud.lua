@@ -36,22 +36,7 @@ hook.Add("HUDPaint", "ofnpcp_npcinfo_hud", function()
     -- 淡入效果
     alpha = math.min(1, alpha + FrameTime() * fadeSpeed)
     
-    local npcColor, name, description
-    local npcs = GetAllNPCsList()
-    local npcIdentity = npcs[lastLookedAtNPC:EntIndex()]
-    
-    if npcIdentity then
-        npcColor = GLOBAL_OFNPC_DATA.setting.camp_setting[npcIdentity.camp].color
-        local npcName
-        if npcIdentity.name == npcIdentity.gamename then
-            npcName = language.GetPhrase(npcIdentity.gamename)
-        else
-            npcName = ofTranslate(npcIdentity.name) .. " “" .. ofTranslate(npcIdentity.nickname) .. "”"
-        end
-        name = npcName
-        description =  ofTranslate(GLOBAL_OFNPC_DATA.setting.camp_setting[npcIdentity.camp].name) .. " " .. ofTranslate("rank.".. npcIdentity.rank) .. " - " .. ofTranslate(npcIdentity.specialization)
-    end
-    
+    local npcColor, name, description = OFNPC_GetNPCHUD(lastLookedAtNPC)
     if not name or not description then return end
     
     surface.SetFont("ofgui_medium")

@@ -111,16 +111,11 @@
 			ply.CurrentTargetNPC = npc
 			ply.CurrentTargetNPCData = {}  -- 存储NPC数据
 			
-			local npcs = GetAllNPCsList()
-			local npcIdentity = npcs[npc:EntIndex()]
-			if npcIdentity then
-				ply.CurrentTargetNPCData.color = GLOBAL_OFNPC_DATA.setting.camp_setting[npcIdentity.camp].color
-				if npcIdentity.name == npcIdentity.gamename then
-					ply.CurrentTargetNPCData.name = language.GetPhrase(npcIdentity.gamename)
-				else
-					ply.CurrentTargetNPCData.name = ofTranslate(npcIdentity.name) .. " “" .. ofTranslate(npcIdentity.nickname) .. "”"
-				end
-				ply.CurrentTargetNPCData.description = ofTranslate(GLOBAL_OFNPC_DATA.setting.camp_setting[npcIdentity.camp].name) .. " " .. ofTranslate("rank.".. npcIdentity.rank) .. " - " .. ofTranslate(npcIdentity.specialization)
+			local npcColor, name, description = OFNPC_GetNPCHUD(npc)
+			if npcColor and name and description then
+				ply.CurrentTargetNPCData.color = npcColor
+				ply.CurrentTargetNPCData.name = name
+				ply.CurrentTargetNPCData.description = description
 			end
 		end
 

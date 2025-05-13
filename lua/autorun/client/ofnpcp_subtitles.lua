@@ -6,32 +6,44 @@ CreateClientConVar("of_garrylord_subtitles_maxlines", "3", true, true, "", 1, 10
 local activeSubtitles = {}
 local transitionTime = 0.3
 
--- 创建字幕
-hook.Add("OnNPCTalkStart", "CreateNPCDialogSubtitles", function(npc, text)
-    if GetConVar("of_garrylord_subtitles"):GetInt() == 0 then return end
+
+-- 共享函数：获取NPC信息
+function OFNPC_GetNPCHUD(npc)
+    -- 如果是玩家
+    if npc:IsPlayer() then
+        local playerColor = GLOBAL_OFNPC_DATA.setting.camp_setting[OFPLAYERS[LocalPlayer():SteamID()] and OFPLAYERS[LocalPlayer():SteamID()].deck or "resistance"].color
+        local playerName = npc:Nick()
+        return playerColor, playerName, nil
+    end
 
     local npcs = GetAllNPCsList()
     local npcIdentity = npcs[npc:EntIndex()]
 
-    -- 这里不知道为什么npcIdentity报错，加个限制
-    local npcColor, name
-    if npcIdentity then
-        npcColor = GLOBAL_OFNPC_DATA.setting.camp_setting[npcIdentity.camp].color
-        local npcName
-        if npcIdentity.name == npcIdentity.gamename then
-            npcName = language.GetPhrase(npcIdentity.gamename) .. ": "
-        else
-            npcName = ofTranslate(npcIdentity.name) .. " “" .. ofTranslate(npcIdentity.nickname) .. "” " .. ": "
-        end
-        name = npcName
-    elseif npc:IsPlayer() then
-        npcColor = GLOBAL_OFNPC_DATA.setting.camp_setting[OFPLAYERS[LocalPlayer():SteamID()] and OFPLAYERS[LocalPlayer():SteamID()].deck or "resistance"].color
-        name = npc:Nick() .. " : "
+    -- 如果是NPC
+    if not npcIdentity then return nil, nil, nil end
+
+    local npcColor = GLOBAL_OFNPC_DATA.setting.camp_setting[npcIdentity.camp].color
+    local npcName
+    if npcIdentity.name == npcIdentity.gamename then
+        npcName = language.GetPhrase(npcIdentity.gamename)
+    else
+        npcName = ofTranslate(npcIdentity.name) .. " “" .. ofTranslate(npcIdentity.nickname) .. "”"
     end
+    local description = ofTranslate(GLOBAL_OFNPC_DATA.setting.camp_setting[npcIdentity.camp].name) .. " " .. ofTranslate("rank.".. npcIdentity.rank) .. " - " .. ofTranslate(npcIdentity.specialization)
+
+    return npcColor, npcName, description
+end
+
+-- 创建字幕
+hook.Add("OnNPCTalkStart", "CreateNPCDialogSubtitles", function(npc, text)
+    if GetConVar("of_garrylord_subtitles"):GetInt() == 0 then return end
+
+    local npcColor, name = OFNPC_GetNPCHUD(npc)
+    if not name then return end
 
     -- 创建新的对话
     local dialog = {
-        name = name,
+        name = name .. ": ",
         text = text,
         color = npcColor,
         alpha = 0,
