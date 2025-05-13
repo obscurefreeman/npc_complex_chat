@@ -99,6 +99,45 @@
 		
 		-- 绘制子弹条
 		draw.RoundedBox(4, rightX + padding + weaponNameWidth + padding, y + 2 * padding + barHeight, ammoBarW, barHeight, AmmoColor)
+
+		-- 绘制敌人名称
+		local tr = util.GetPlayerTrace(ply)
+		local trace = util.TraceLine(tr)
+		local npc = trace.Entity
+		local npcColor, name, description
+
+		-- 初始化或更新当前目标NPC
+		if trace.Hit and trace.HitNonWorld and npc:IsNPC() then
+			ply.CurrentTargetNPC = npc
+			ply.CurrentTargetNPCData = {}  -- 存储NPC数据
+			
+			local npcs = GetAllNPCsList()
+			local npcIdentity = npcs[npc:EntIndex()]
+			if npcIdentity then
+				ply.CurrentTargetNPCData.color = GLOBAL_OFNPC_DATA.setting.camp_setting[npcIdentity.camp].color
+				if npcIdentity.name == npcIdentity.gamename then
+					ply.CurrentTargetNPCData.name = language.GetPhrase(npcIdentity.gamename)
+				else
+					ply.CurrentTargetNPCData.name = ofTranslate(npcIdentity.name) .. " “" .. ofTranslate(npcIdentity.nickname) .. "”"
+				end
+				ply.CurrentTargetNPCData.description = ofTranslate(GLOBAL_OFNPC_DATA.setting.camp_setting[npcIdentity.camp].name) .. " " .. ofTranslate("rank.".. npcIdentity.rank) .. " - " .. ofTranslate(npcIdentity.specialization)
+			end
+		end
+
+		-- 如果存在当前目标NPC数据
+		if ply.CurrentTargetNPCData then
+			npcColor = ply.CurrentTargetNPCData.color
+			name = ply.CurrentTargetNPCData.name
+			description = ply.CurrentTargetNPCData.description
+
+			if name and description then
+				draw.SimpleText(name, "ofgui_tiny", rightX + padding, y + padding, Color(npcColor.r, npcColor.g, npcColor.b, 255))
+				local npcNameWidth = surface.GetTextSize(name, "ofgui_tiny")
+
+				surface.SetFont("ofgui_tiny")
+				draw.SimpleText(description, "ofgui_tiny", rightX + 2 * padding + npcNameWidth, y + padding, Color(255, 255, 255, 255))
+			end
+		end
 	end)
 
 	-- 隐藏原版HUD
