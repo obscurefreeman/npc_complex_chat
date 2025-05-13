@@ -1,10 +1,22 @@
 ﻿if CLIENT then
 	-- 颜色与字体风格统一
 	local BGColor = Color(20, 20, 20, 100)
-    local HealthColor = Color(255, 0, 0, 225)
+	local HealthColor = Color(255, 0, 0, 225)
 	local AmmoColor = Color(255, 165, 0, 225)
 	local ArmorColor = Color(18, 149, 241, 225)
 	local InactiveColor = Color(112, 94, 77, 225)
+
+	-- 添加颜色过渡参数
+	local colorLerpSpeed = 5  -- 颜色过渡速度
+	local highlightDuration = 0.2  -- 高亮持续时间（秒）
+	local healthColor = Color(255,255,255)
+	local armorColor = Color(255,255,255)
+	local ammoColor = Color(255,255,255)
+
+	-- 修改数值变化检测为时间记录
+	local lastHealthChange = 0
+	local lastArmorChange = 0
+	local lastAmmoChange = 0
 
 	-- HUD绘制
 	local currentHealth = 0
@@ -49,12 +61,37 @@
 		if not currentAmmo then currentAmmo = ammo end
 		currentAmmo = Lerp(FrameTime() * 10, currentAmmo, ammo)
 
+		-- 数值变化时间记录
+		if health ~= lastHealth then
+			lastHealthChange = CurTime()
+			lastHealth = health
+		end
+		if armor ~= lastArmor then
+			lastArmorChange = CurTime()
+			lastArmor = armor
+		end
+		if ammo ~= lastAmmo then
+			lastAmmoChange = CurTime()
+			lastAmmo = ammo
+		end
+
+		-- 带持续时间的颜色过渡
+		local now = CurTime()
+		healthColor = LerpColor(FrameTime() * colorLerpSpeed, healthColor,
+			(now - lastHealthChange) < highlightDuration and HealthColor or Color(255,255,255))
+		
+		armorColor = LerpColor(FrameTime() * colorLerpSpeed, armorColor,
+			(now - lastArmorChange) < highlightDuration and ArmorColor or Color(255,255,255))
+		
+		ammoColor = LerpColor(FrameTime() * colorLerpSpeed, ammoColor,
+			(now - lastAmmoChange) < highlightDuration and AmmoColor or Color(255,255,255))
+
 		-- 背景
 		draw.RoundedBox(8, x, y, width, height, BGColor)
 
 		-- 右侧HUD框
 		local rightX = w - width - 16 * OFGUI.ScreenScale
-		draw.RoundedBox(8, rightX, y, width, height, BGColor)
+		draw.RoundedBox(8, rightX, y + padding + barHeight, width, height - padding - barHeight, BGColor)
 
 		-- 玩家头像背景
 		draw.RoundedBox(6, x + padding, y + padding, avatarSize, avatarSize, InactiveColor)
@@ -81,12 +118,12 @@
 		-- 护甲条
 		local armorRatio = math.Clamp(currentArmor / 100, 0, 1)
 		local armorBarW = math.floor((availableWidth - nameWidth - padding) * armorRatio)
-		draw.RoundedBox(4, x + padding * 2 + avatarSize + nameWidth + padding, y + padding, armorBarW, barHeight, ArmorColor)
+		draw.RoundedBox(4, x + padding * 2 + avatarSize + nameWidth + padding, y + padding, armorBarW, barHeight, armorColor)
 		
 		-- 血量条
 		local healthRatio = math.Clamp(currentHealth / maxHealth, 0, 1)
 		local healthBarW = math.floor(availableWidth * healthRatio)
-		draw.RoundedBox(4, x + padding * 2 + avatarSize, y + 2 * padding + barHeight, healthBarW, barHeight, HealthColor)
+		draw.RoundedBox(4, x + padding * 2 + avatarSize, y + 2 * padding + barHeight, healthBarW, barHeight, healthColor)
 
 		-- 子弹条
 		local ammoRatio = math.Clamp(currentAmmo / maxAmmo, 0, 1)
@@ -98,42 +135,18 @@
 		draw.SimpleText(weaponName, "ofgui_tiny", rightX + padding, y + 2 * padding + barHeight, Color(255, 255, 255, 255))
 		
 		-- 绘制子弹条
-		draw.RoundedBox(4, rightX + padding + weaponNameWidth + padding, y + 2 * padding + barHeight, ammoBarW, barHeight, AmmoColor)
-
-		-- 绘制敌人名称
-		local tr = util.GetPlayerTrace(ply)
-		local trace = util.TraceLine(tr)
-		local npc = trace.Entity
-		local npcColor, name, description
-
-		-- 初始化或更新当前目标NPC
-		if trace.Hit and trace.HitNonWorld and npc:IsNPC() then
-			ply.CurrentTargetNPC = npc
-			ply.CurrentTargetNPCData = {}  -- 存储NPC数据
-			
-			local npcColor, name, description = OFNPC_GetNPCHUD(npc)
-			if npcColor and name and description then
-				ply.CurrentTargetNPCData.color = npcColor
-				ply.CurrentTargetNPCData.name = name
-				ply.CurrentTargetNPCData.description = description
-			end
-		end
-
-		-- 如果存在当前目标NPC数据
-		if ply.CurrentTargetNPCData then
-			npcColor = ply.CurrentTargetNPCData.color
-			name = ply.CurrentTargetNPCData.name
-			description = ply.CurrentTargetNPCData.description
-
-			if name and description then
-				draw.SimpleText(name, "ofgui_tiny", rightX + padding, y + padding, Color(npcColor.r, npcColor.g, npcColor.b, 255))
-				local npcNameWidth = surface.GetTextSize(name, "ofgui_tiny")
-
-				surface.SetFont("ofgui_tiny")
-				draw.SimpleText(description, "ofgui_tiny", rightX + 2 * padding + npcNameWidth, y + padding, Color(255, 255, 255, 255))
-			end
-		end
+		draw.RoundedBox(4, rightX + padding + weaponNameWidth + padding, y + 2 * padding + barHeight, ammoBarW, barHeight, ammoColor)
 	end)
+
+	-- 添加颜色插值函数
+	function LerpColor(t, from, to)
+		return Color(
+			Lerp(t, from.r, to.r),
+			Lerp(t, from.g, to.g),
+			Lerp(t, from.b, to.b),
+			Lerp(t, from.a, to.a)
+		)
+	end
 
 	-- 隐藏原版HUD
 	local hidden = {
