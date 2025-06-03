@@ -100,6 +100,7 @@
             "ui_setting": "UI 设置",
             "enable_subtitles": "启用字幕",
             "enable_subtitles3d": "启用立体字幕",
+            "enable_player_hud": "启用玩家HUD",
             "enable_npcinfo_hud": "启用NPC信息HUD",
             "enable_levelup_effects": "启用升级特效",
             "subtitles_position": "字幕位置",

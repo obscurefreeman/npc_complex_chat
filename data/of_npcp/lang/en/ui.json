@@ -100,6 +100,7 @@
             "ui_setting": "UI Setting",
             "enable_subtitles": "Enable Subtitles",
             "enable_subtitles3d": "Enable 3D Subtitles",
+            "enable_player_hud": "Enable Player HUD",
             "enable_npcinfo_hud": "Enable NPC Info HUD",
             "enable_levelup_effects": "Enable Level Up Effects",
             "subtitles_position": "Subtitles Position",

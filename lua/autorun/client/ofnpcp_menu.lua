@@ -655,6 +655,22 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
 	subtitles3dCheckLabel:SetFont("ofgui_small")
 	subtitles3dCheckLabel:Dock(FILL)
 	subtitles3dCheckLabel:SetText(ofTranslate("ui.personalization.enable_subtitles3d"))
+    -- 添加玩家HUD开关
+    local playerHUDCheckPanel = vgui.Create("EditablePanel", personalizationLeftPanel)
+    playerHUDCheckPanel:Dock(TOP)
+    playerHUDCheckPanel:SetTall(21 * OFGUI.ScreenScale)
+    playerHUDCheckPanel:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+
+    local playerHUDCheckBox = vgui.Create("OFCheckBox", playerHUDCheckPanel)
+    playerHUDCheckBox:Dock(LEFT)
+    playerHUDCheckBox:SetSize(21 * OFGUI.ScreenScale, 21 * OFGUI.ScreenScale)
+    playerHUDCheckBox:DockMargin(0, 0, 8 * OFGUI.ScreenScale, 0)
+    playerHUDCheckBox:SetConVar("of_garrylord_player_hud")
+
+    local playerHUDCheckLabel = vgui.Create("OFTextLabel", playerHUDCheckPanel)
+    playerHUDCheckLabel:SetFont("ofgui_small")
+    playerHUDCheckLabel:Dock(FILL)
+    playerHUDCheckLabel:SetText(ofTranslate("ui.personalization.enable_player_hud"))
 
     -- 添加NPC信息HUD开关
     local npcinfoHUDCheckPanel = vgui.Create("EditablePanel", personalizationLeftPanel)

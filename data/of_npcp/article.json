@@ -1,6 +1,12 @@
 {
     "log": [
         {
+            "title": "May 2025 Update",
+            "content": "Improved code, added optional player HUD, fixed the issue of incorrect voiceover.\nDynamic hit number is now available in workshop.",
+            "image": "5_2025",
+            "timestamp": 1748935065
+        },
+        {
             "title": "April 2025 Update",
             "content": "Added UI settings options, including subtitle toggle and style customization.\nImproved NPC information display with fade-in and fade-out effects.\nAdded a new feature where NPCs will follow the mouse direction when hovering over the model viewer in the dialogue menu.",
             "image": "4_2025",
