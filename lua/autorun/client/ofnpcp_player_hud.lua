@@ -25,6 +25,7 @@ local currentArmor = 0
 local currentAmmo = 0
 
 hook.Add("HUDPaint", "ofnpcp_simple_playerhud", function()
+	if GetConVar("of_garrylord_player_hud"):GetInt() ~= 1 then return end
 	if not IsValid(LocalPlayer()) or not LocalPlayer():Alive() then return end
 	if GetConVar("cl_drawhud"):GetInt() == 0 then return end
 
@@ -157,5 +158,6 @@ local hidden = {
 	["CHudSecondaryAmmo"] = true
 }
 hook.Add("HUDShouldDraw", "ofnpcp_hide_default_hud", function(name)
+	if GetConVar("of_garrylord_player_hud"):GetInt() ~= 1 then return end
 	if hidden[name] then return false end
 end)
