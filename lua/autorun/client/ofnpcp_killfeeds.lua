@@ -13,9 +13,20 @@ net.Receive( "OFNPCP_test_AddtoKillfeed", function()
     local attacker = net.ReadEntity()
     local victim = net.ReadEntity()
     local inflictorname = net.ReadString()
+    local attackerclass = net.ReadString()
+    local victimclass = net.ReadString()
 
     local attackercolor, attackername = OFNPC_GetNPCHUD(attacker)
+    if not attackername then
+        attackername = language.GetPhrase(attackerclass)
+        attackercolor = Color(255, 255, 255)
+    end
+    
     local victimcolor, victimname = OFNPC_GetNPCHUD(victim)
+    if not victimname then
+        victimname = language.GetPhrase(victimclass)
+        victimcolor = Color(255, 255, 255)
+    end
 
     -- 创建新的对话
     local killfeeds = {

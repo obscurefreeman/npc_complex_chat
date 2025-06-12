@@ -9,9 +9,10 @@ local transitionTime = 0.3
 
 -- 共享函数：获取NPC信息
 function OFNPC_GetNPCHUD(npc)
+    if not npc then return nil, nil, nil end
     -- 如果是玩家
     if npc:IsPlayer() then
-        local playerColor = GLOBAL_OFNPC_DATA.setting.camp_setting[OFPLAYERS[npc():SteamID()] and OFPLAYERS[npc():SteamID()].deck or "resistance"].color
+        local playerColor = GLOBAL_OFNPC_DATA.setting.camp_setting[OFPLAYERS[npc:SteamID()] and OFPLAYERS[npc:SteamID()].deck or "resistance"].color
         local playerName = npc:Nick()
         return playerColor, playerName, nil
     end
