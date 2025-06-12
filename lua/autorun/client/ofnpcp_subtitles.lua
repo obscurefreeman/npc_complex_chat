@@ -8,8 +8,12 @@ local transitionTime = 0.3
 
 
 -- 共享函数：获取NPC信息
-function OFNPC_GetNPCHUD(npc)
-    if not npc then return nil, nil, nil end
+function OFNPC_GetNPCHUD(npc, class)
+    -- 如果NPC不存在，返回默认值
+    if not npc then
+        return Color(255, 255, 255), language.GetPhrase(class), nil
+    end
+
     -- 如果是玩家
     if npc:IsPlayer() then
         local playerColor = GLOBAL_OFNPC_DATA.setting.camp_setting[OFPLAYERS[npc:SteamID()] and OFPLAYERS[npc:SteamID()].deck or "resistance"].color
@@ -20,8 +24,10 @@ function OFNPC_GetNPCHUD(npc)
     local npcs = GetAllNPCsList()
     local npcIdentity = npcs[npc:EntIndex()]
 
-    -- 如果是NPC
-    if not npcIdentity then return nil, nil, nil end
+    -- 如果是NPC但没有身份信息，返回默认值
+    if not npcIdentity then
+        return Color(255, 255, 255), language.GetPhrase(class), nil
+    end
 
     local npcColor = GLOBAL_OFNPC_DATA.setting.camp_setting[npcIdentity.camp].color
     local npcName

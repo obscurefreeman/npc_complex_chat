@@ -34,7 +34,7 @@ hook.Add("HUDPaint", "ofnpcp_npcinfo_hud", function()
     -- 淡入效果
     alpha = math.min(1, alpha + FrameTime() * fadeSpeed)
     
-    local npcColor, name, description = OFNPC_GetNPCHUD(lastLookedAtNPC)
+    local npcColor, name, description = OFNPC_GetNPCHUD(lastLookedAtNPC, lastLookedAtNPC:GetClass())
     if not name or not description then return end
     
     surface.SetFont("ofgui_medium")

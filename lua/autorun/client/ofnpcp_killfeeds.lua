@@ -15,17 +15,37 @@ net.Receive( "OFNPCP_test_AddtoKillfeed", function()
     local inflictorname = net.ReadString()
     local attackerclass = net.ReadString()
     local victimclass = net.ReadString()
+    local attackerClassify = net.ReadUInt(8)
+    local victimClassify = net.ReadUInt(8)
 
-    local attackercolor, attackername = OFNPC_GetNPCHUD(attacker)
-    if not attackername then
-        attackername = language.GetPhrase(attackerclass)
-        attackercolor = Color(255, 255, 255)
+    local attackercolor, attackername = OFNPC_GetNPCHUD(attacker, attackerclass)
+    if attackercolor == Color(255, 255, 255) then
+        if attackerClassify == 2 or attackerClassify == 3 or attackerClassify == 7 or attackerClassify == 8 or attackerClassify == 18 or attackerClassify == 24 then
+            attackercolor = Color(255, 141, 23)
+        elseif attackerClassify == 4 or attackerClassify == 5 then
+            attackercolor = Color(0, 100, 0)
+        elseif attackerClassify == 9 or attackerClassify == 10 or (attackerClassify >= 13 and attackerClassify <= 17) or attackerClassify == 20 or attackerClassify == 25 then
+            attackercolor = Color(0, 149, 223)
+        elseif attackerClassify == 12 or attackerClassify == 19 then
+            attackercolor = Color(144, 238, 144)
+        elseif attackerClassify == 23 then
+            attackercolor = Color(135, 223, 214)
+        end
     end
     
-    local victimcolor, victimname = OFNPC_GetNPCHUD(victim)
-    if not victimname then
-        victimname = language.GetPhrase(victimclass)
-        victimcolor = Color(255, 255, 255)
+    local victimcolor, victimname = OFNPC_GetNPCHUD(victim, victimclass)
+    if victimcolor == Color(255, 255, 255) then
+        if victimClassify == 2 or victimClassify == 3 or victimClassify == 7 or victimClassify == 8 or victimClassify == 18 or victimClassify == 24 then
+            victimcolor = Color(255, 141, 23)
+        elseif victimClassify == 4 or victimClassify == 5 then
+            victimcolor = Color(0, 100, 0)
+        elseif victimClassify == 9 or victimClassify == 10 or (victimClassify >= 13 and victimClassify <= 17) or victimClassify == 20 or victimClassify == 25 then
+            victimcolor = Color(0, 149, 223)
+        elseif victimClassify == 12 or victimClassify == 19 then
+            victimcolor = Color(144, 238, 144)
+        elseif victimClassify == 23 then
+            victimcolor = Color(135, 223, 214)
+        end
     end
 
     -- 创建新的对话
