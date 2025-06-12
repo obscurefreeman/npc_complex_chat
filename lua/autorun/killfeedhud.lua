@@ -3,15 +3,6 @@
 local NET_STRING = "killfeed_log";
 
 if CLIENT then
-
-  surface.CreateFont("killfeed_headshot",{
-    font = "csd",
-    size = 60* OFGUI.ScreenScale,
-    weight = 500,
-    antialiasing = true,
-    additive = true
-  });
-
   HUDKillfeed = {}
   killfeed = {};
 
@@ -22,22 +13,12 @@ if CLIENT then
     if (killfeed[i].time < CurTime()) then table.remove(killfeed, i); return; end;
     local feed = killfeed[i];
     surface.SetFont("ofgui_extratiny");
-    HeadShotD = "D"
-    HeadShotC = "C"
-    HeadShotDW, HeadShotDH = surface.GetTextSize(HeadShotD)
-    HeadShotCW, HeadShotCH = surface.GetTextSize(HeadShotC)
     local size = surface.GetTextSize(feed.victim);
     local killerSize = surface.GetTextSize(feed.attacker)
     local iconWidth, iconHeight = (killicon.GetSize(feed.weapon) * 0.95);
-    --print(iconWidth)
 
-    backgroundWidth = nil
-    if (feed.headshot) then
-      backgroundWidth = size + killerSize + iconWidth + HeadShotDW + 120 * OFGUI.ScreenScale
-    else
-      backgroundWidth = size + killerSize + iconWidth + HeadShotCW + 60 * OFGUI.ScreenScale
-    end
-   
+    backgroundWidth = size + killerSize + iconWidth + 60 * OFGUI.ScreenScale
+
     -- Draw the background rectangle
     if (feed.attacker == LocalPlayer():GetName()) then
       surface.SetDrawColor(110, 110, 110, 150);
@@ -53,20 +34,11 @@ if CLIENT then
     -- Draw the victim's name
     draw.SimpleText(feed.victim, "ofgui_extratiny", x - 10 * OFGUI.ScreenScale, y, feed.vCol, 2);
 
-    -- Draw the headshot icon
-    local offset = 0;
-    if (feed.headshot) then
-      offset = 55;
-      draw.SimpleText("D", "killfeed_headshot", x - size - 30 * OFGUI.ScreenScale, y - 7 * OFGUI.ScreenScale, Color(255, 80, 0), 2);
-    end
-
     -- Draw the killicon
     local icon = (killicon.GetSize(feed.weapon) * 0.6);
-    local kOffset = (size + icon + offset); -- Killicon offset
+    local kOffset = (size + icon); -- Killicon offset
     if (killicon.Exists(feed.weapon)) then
       killicon.Draw(x - kOffset - 10, y, feed.weapon, 255);
-    else
-      draw.SimpleText("C", "killfeed_headshot", x - kOffset + 22 * OFGUI.ScreenScale, y - 7 * OFGUI.ScreenScale, Color(255, 80, 0), 2);
     end
 
     -- Draw the attacker's name
@@ -80,7 +52,6 @@ if CLIENT then
   net.Receive(NET_STRING, function(len)
     table.insert(killfeed, {victim = language.GetPhrase(net.ReadString()),
                             vCol = net.ReadColor(),
-                            headshot = net.ReadBool(),
                             attacker = language.GetPhrase(net.ReadString()),
                             aCol = net.ReadColor(),
                             weapon = net.ReadString() or nil,
@@ -122,8 +93,6 @@ if SERVER then
       net.WriteString(victim:GetLambdaName())
       net.WriteColor(team.GetColor(victim:Team()))
     end
-    
-    net.WriteBool(victim.killfeed_headshot or false)
 
     -- Inflictor class
     local inflClass = ""
@@ -170,15 +139,6 @@ if SERVER then
     net.Broadcast();
   end
 
-  -- Detect headshots
-  hook.Add("ScalePlayerDamage", "killfeed_headshot", function(player, hitgroup, dmginfo)
-    player.killfeed_headshot = hitgroup == HITGROUP_HEAD;
-  end);
-
-  hook.Add("ScaleNPCDamage", "killfeed_headshot_npc", function(npc, hitgroup, dmginfo)
-    npc.killfeed_headshot = hitgroup == HITGROUP_HEAD;
-  end);
-
   -- Send death notice
   hook.Add("PlayerDeath", "killfeed_death", function(player, infl, attacker)
     SendDeathNotice(player, infl, attacker);
@@ -186,10 +146,5 @@ if SERVER then
 
   hook.Add("OnNPCKilled", "killfeed_death_npc", function(npc, attacker, infl)
     SendDeathNotice(npc, infl, attacker);
-  end);
-
-  -- Reset buffer data
-  hook.Add("PlayerSpawn", "killfeed_spawn", function(player)
-    player.killfeed_headshot = nil;
   end);
 end
