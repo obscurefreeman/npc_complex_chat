@@ -96,30 +96,51 @@ hook.Add("HUDPaint", "DrawNPCKillFeeds", function()
         -- 平滑移动
         tbl.currentY = Lerp(FrameTime() * 10, tbl.currentY or tbl.targetY, tbl.targetY)
 
-        -- 绘制投影
-        local shadowMarkup = markup.Parse(
-            "<color=0,0,0," .. math.floor(alpha * 0.5) .. ">" .. 
-            "<font=ofgui_medium>" .. (tbl.attackername or "") .. "</font>" .. 
-            "<font=ofgui_medium>" .. (tbl.victimname or "") .. "</font></color>"
-        )
-        shadowMarkup:Draw(w - 32 * OFGUI.ScreenScale + 1 * OFGUI.ScreenScale, tbl.currentY + 1 * OFGUI.ScreenScale, TEXT_ALIGN_RIGHT, TEXT_ALIGN_TOP, nil, TEXT_ALIGN_RIGHT)
-
         -- 绘制原文字
-        local markup = markup.Parse(
+        local attackernameMarkup = markup.Parse(
             "<color=" .. attackercolor.r .. "," .. attackercolor.g .. "," .. attackercolor.b .. "," .. alpha .. ">" .. 
-            "<font=ofgui_medium>" .. (tbl.attackername or "") .. "</font></color>" .. 
+            "<font=ofgui_medium>" .. (tbl.attackername or "") .. "</font></color>"
+        )
+        local victimnameMarkup = markup.Parse(
             "<color=" .. victimcolor.r .. "," .. victimcolor.g .. "," .. victimcolor.b .. "," .. alpha .. ">" .. 
             "<font=ofgui_medium>" .. (tbl.victimname or "") .. "</font></color>"
         )
+
+        -- 阴影
+
+        local attackernameshadowMarkup = markup.Parse(
+            "<color=0,0,0," .. math.floor(alpha * 0.5) .. ">" .. 
+            "<font=ofgui_medium>" .. (tbl.attackername or "") .. "</font></color>"
+        )
+        local victimnameshadowMarkup = markup.Parse(
+            "<color=0,0,0," .. math.floor(alpha * 0.5) .. ">" .. 
+            "<font=ofgui_medium>" .. (tbl.victimname or "") .. "</font></color>"
+        )
         
-        markup:Draw(w - 32 * OFGUI.ScreenScale, tbl.currentY, TEXT_ALIGN_RIGHT, TEXT_ALIGN_TOP, nil, TEXT_ALIGN_RIGHT)
+        -- 计算武器标志的尺寸
+        local killiconW, killiconH = killicon.GetSize(tbl.inflictorname)
+        -- 修复判断条件，只有当killiconW和killiconH都为nil时才return
+        if (not killiconW or not killiconH) then return end
 
-        -- -- 计算武器标志的尺寸
-        -- local iconSize = 16 * OFGUI.ScreenScale
-        -- local iconX = w / 2 - iconSize / 2
-        -- local iconY = tbl.currentY + (tbl.height - iconSize) / 2
+        -- 绘制受害者名称
+        victimnameMarkup:Draw(w - 32 * OFGUI.ScreenScale, tbl.currentY, TEXT_ALIGN_RIGHT, TEXT_ALIGN_TOP, nil, TEXT_ALIGN_RIGHT)
 
-        -- -- 绘制武器标志
-        -- killicon.Render(iconX, iconY, tbl.inflictorname, alpha)
+        -- 绘制武器标志
+        killicon.Render(w - 32 * OFGUI.ScreenScale - killiconW - victimnameMarkup:GetWidth() - spacing, tbl.currentY, tbl.inflictorname, alpha)
+
+        -- 绘制攻击者名称
+        attackernameMarkup:Draw(w - 32 * OFGUI.ScreenScale - killiconW - victimnameMarkup:GetWidth() - spacing, tbl.currentY, TEXT_ALIGN_RIGHT, TEXT_ALIGN_TOP, nil, TEXT_ALIGN_RIGHT)
+
+        -- 绘制受害者名称阴影
+        victimnameshadowMarkup:Draw(w - 32 * OFGUI.ScreenScale + 1 * OFGUI.ScreenScale, tbl.currentY + 1 * OFGUI.ScreenScale, TEXT_ALIGN_RIGHT, TEXT_ALIGN_TOP, nil, TEXT_ALIGN_RIGHT)
+
+        -- 绘制攻击者名称阴影
+        attackernameshadowMarkup:Draw(w - 32 * OFGUI.ScreenScale - killiconW - victimnameMarkup:GetWidth() - spacing + 1 * OFGUI.ScreenScale, tbl.currentY + 1 * OFGUI.ScreenScale, TEXT_ALIGN_RIGHT, TEXT_ALIGN_TOP, nil, TEXT_ALIGN_RIGHT)
     end
 end)
+
+  -- 覆写默认
+  hook.Add("DrawDeathNotice", "killfeed_log", function(x, y)
+    if GetConVar("of_garrylord_killfeeds"):GetInt() == 0 then return end
+    return false;
+  end);
