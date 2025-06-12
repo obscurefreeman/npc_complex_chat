@@ -23,6 +23,7 @@ net.Receive( "OFNPCP_test_AddtoKillfeed", function()
         attackercolor = attackercolor,
         victimname = victimname,
         victimcolor = victimcolor,
+        inflictorname = inflictorname,
         alpha = 0,
         createTime = RealTime(),
         targetY = 0,
@@ -99,18 +100,26 @@ hook.Add("HUDPaint", "DrawNPCKillFeeds", function()
         local shadowMarkup = markup.Parse(
             "<color=0,0,0," .. math.floor(alpha * 0.5) .. ">" .. 
             "<font=ofgui_medium>" .. (tbl.attackername or "") .. "</font>" .. 
-            "<font=ofgui_medium>" .. (tbl.victimname or "") .. "</font></color>", 
+            "<font=ofgui_medium>" .. (tbl.victimname or "") .. "</font></color>"
         )
-        shadowMarkup:Draw(w / 2 + 1 * OFGUI.ScreenScale, tbl.currentY + 1 * OFGUI.ScreenScale, TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, nil, TEXT_ALIGN_CENTER)
+        shadowMarkup:Draw(w - 32 * OFGUI.ScreenScale + 1 * OFGUI.ScreenScale, tbl.currentY + 1 * OFGUI.ScreenScale, TEXT_ALIGN_RIGHT, TEXT_ALIGN_TOP, nil, TEXT_ALIGN_RIGHT)
 
         -- 绘制原文字
         local markup = markup.Parse(
             "<color=" .. attackercolor.r .. "," .. attackercolor.g .. "," .. attackercolor.b .. "," .. alpha .. ">" .. 
             "<font=ofgui_medium>" .. (tbl.attackername or "") .. "</font></color>" .. 
             "<color=" .. victimcolor.r .. "," .. victimcolor.g .. "," .. victimcolor.b .. "," .. alpha .. ">" .. 
-            "<font=ofgui_medium>" .. (tbl.victimname or "") .. "</font></color>", 
+            "<font=ofgui_medium>" .. (tbl.victimname or "") .. "</font></color>"
         )
         
-        markup:Draw(w / 2, tbl.currentY, TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, nil, TEXT_ALIGN_CENTER)
+        markup:Draw(w - 32 * OFGUI.ScreenScale, tbl.currentY, TEXT_ALIGN_RIGHT, TEXT_ALIGN_TOP, nil, TEXT_ALIGN_RIGHT)
+
+        -- -- 计算武器标志的尺寸
+        -- local iconSize = 16 * OFGUI.ScreenScale
+        -- local iconX = w / 2 - iconSize / 2
+        -- local iconY = tbl.currentY + (tbl.height - iconSize) / 2
+
+        -- -- 绘制武器标志
+        -- killicon.Render(iconX, iconY, tbl.inflictorname, alpha)
     end
 end)
