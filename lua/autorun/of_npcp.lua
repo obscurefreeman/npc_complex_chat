@@ -27,6 +27,7 @@ if SERVER then
     util.AddNetworkString("UpdateAllPlayerData")
     util.AddNetworkString("UpdateNPCVoice")
     util.AddNetworkString("RequestNPCData")
+    util.AddNetworkString("OFNPCP_test_AddtoKillfeed")
 
     function AssignNPCIdentity(ent, npcInfo)
         local identity = {}
