@@ -51,10 +51,8 @@ hook.Add("HUDPaint", "DrawNPCKillFeeds", function()
     
     local position = GetConVar("of_garrylord_killfeeds_position"):GetInt()
     local topMargin = position * OFGUI.ScreenScale
-    local maxWidth = 1500 * OFGUI.ScreenScale
     local spacing = 10 * OFGUI.ScreenScale
 
-    -- 从上往下计算每个字幕的目标位置（新字幕在最上面，老的往下推）
     local currentTargetY = topMargin
     for i = 1, #activeKillfeeds do
         local tbl = activeKillfeeds[i]
@@ -69,7 +67,6 @@ hook.Add("HUDPaint", "DrawNPCKillFeeds", function()
         currentTargetY = tbl.targetY + tbl.height + spacing
     end
 
-    -- 绘制字幕并处理动画（从上往下绘制，i=1是最新的）
     for i = 1, #activeKillfeeds do
         local tbl = activeKillfeeds[i]
 
@@ -87,8 +84,6 @@ hook.Add("HUDPaint", "DrawNPCKillFeeds", function()
             tbl.alpha = math.max(0, 255 - (currentTime - tbl.removeTime) / transitionTime * 255)
             if tbl.alpha <= 0 then
                 table.remove(activeKillfeeds, i)
-                -- 注意：这里不能continue，因为i是递增的，移除后下一个元素会被跳过，所以要i=i-1，但for循环是自动递增的
-                -- 解决方法是break，反正下帧会继续处理
                 break
             end
         end
@@ -105,7 +100,6 @@ hook.Add("HUDPaint", "DrawNPCKillFeeds", function()
             "<color=0,0,0," .. math.floor(alpha * 0.5) .. ">" .. 
             "<font=ofgui_medium>" .. (tbl.attackername or "") .. "</font>" .. 
             "<font=ofgui_medium>" .. (tbl.victimname or "") .. "</font></color>", 
-            maxWidth
         )
         shadowMarkup:Draw(w / 2 + 1 * OFGUI.ScreenScale, tbl.currentY + 1 * OFGUI.ScreenScale, TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, nil, TEXT_ALIGN_CENTER)
 
@@ -115,7 +109,6 @@ hook.Add("HUDPaint", "DrawNPCKillFeeds", function()
             "<font=ofgui_medium>" .. (tbl.attackername or "") .. "</font></color>" .. 
             "<color=" .. victimcolor.r .. "," .. victimcolor.g .. "," .. victimcolor.b .. "," .. alpha .. ">" .. 
             "<font=ofgui_medium>" .. (tbl.victimname or "") .. "</font></color>", 
-            maxWidth
         )
         
         markup:Draw(w / 2, tbl.currentY, TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, nil, TEXT_ALIGN_CENTER)
