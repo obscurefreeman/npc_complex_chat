@@ -27,7 +27,7 @@ net.Receive( "OFNPCP_test_AddtoKillfeed", function()
         createTime = RealTime(),
         targetY = 0,
         currentY = ScrH(),
-        height = 0
+        height = 23 * OFGUI.ScreenScale
     }
     
     local maxLines = GetConVar("of_garrylord_killfeeds_maxlines"):GetInt()
@@ -50,38 +50,27 @@ hook.Add("HUDPaint", "DrawNPCKillFeeds", function()
     local h = ScrH()
     
     local position = GetConVar("of_garrylord_killfeeds_position"):GetInt()
-    local bottomMargin = position * OFGUI.ScreenScale
+    local topMargin = position * OFGUI.ScreenScale
     local maxWidth = 1500 * OFGUI.ScreenScale
     local spacing = 10 * OFGUI.ScreenScale
 
-    -- 先计算所有字幕的高度
-    for i, tbl in ipairs(activeKillfeeds) do
-        local markup = markup.Parse(
-            "<color=" .. (tbl.color and tbl.color.r or 255) .. "," .. (tbl.color and tbl.color.g or 255) .. "," .. (tbl.color and tbl.color.b or 255) .. ",255>" .. 
-            "<font=ofgui_medium>" .. (tbl.name or "") .. "</font></color>" .. 
-            "<font=ofgui_medium>" .. (tbl.text or "") .. "</font>", 
-            maxWidth
-        )
-        tbl.height = markup:GetHeight()
-    end
-
-    -- 从下往上计算每个字幕的目标位置
-    local currentTargetY = h - bottomMargin
-    for i = #activeKillfeeds, 1, -1 do
+    -- 从上往下计算每个字幕的目标位置（新字幕在最上面，老的往下推）
+    local currentTargetY = topMargin
+    for i = 1, #activeKillfeeds do
         local tbl = activeKillfeeds[i]
         
         if not tbl.targetY then
-            tbl.targetY = currentTargetY - tbl.height
+            tbl.targetY = currentTargetY
             tbl.currentY = tbl.targetY
         else
-            tbl.targetY = currentTargetY - tbl.height
+            tbl.targetY = currentTargetY
         end
         
-        currentTargetY = tbl.targetY - spacing
+        currentTargetY = tbl.targetY + tbl.height + spacing
     end
 
-    -- 绘制字幕并处理动画
-    for i = #activeKillfeeds, 1, -1 do
+    -- 绘制字幕并处理动画（从上往下绘制，i=1是最新的）
+    for i = 1, #activeKillfeeds do
         local tbl = activeKillfeeds[i]
 
         local currentTime = RealTime()
@@ -98,16 +87,18 @@ hook.Add("HUDPaint", "DrawNPCKillFeeds", function()
             tbl.alpha = math.max(0, 255 - (currentTime - tbl.removeTime) / transitionTime * 255)
             if tbl.alpha <= 0 then
                 table.remove(activeKillfeeds, i)
-                continue
+                -- 注意：这里不能continue，因为i是递增的，移除后下一个元素会被跳过，所以要i=i-1，但for循环是自动递增的
+                -- 解决方法是break，反正下帧会继续处理
+                break
             end
         end
 
-		local attackercolor = tbl.attackercolor or Color(255, 255, 255)
+        local attackercolor = tbl.attackercolor or Color(255, 255, 255)
         local victimcolor = tbl.victimcolor or Color(255, 255, 255)
         local alpha = math.floor(tbl.alpha)
 
         -- 平滑移动
-        tbl.currentY = Lerp(FrameTime() * 10, tbl.currentY or h, tbl.targetY)
+        tbl.currentY = Lerp(FrameTime() * 10, tbl.currentY or tbl.targetY, tbl.targetY)
 
         -- 绘制投影
         local shadowMarkup = markup.Parse(

@@ -125,7 +125,7 @@ hook.Add("HUDPaint", "DrawNPCDialogSubtitles", function()
             tbl.alpha = math.max(0, 255 - (currentTime - tbl.removeTime) / transitionTime * 255)
             if tbl.alpha <= 0 then
                 table.remove(activeSubtitles, i)
-                continue
+                break
             end
         end
 
