@@ -7,37 +7,38 @@ local activeKillfeeds = {}
 local transitionTime = 0.3
 
 -- 创建字幕
-hook.Add("OnNPCTalkStart", "CreateNPCKillFeeds", function(npc, text)
+net.Receive( "OFNPCP_test_AddtoKillfeed", function()
     if GetConVar("of_garrylord_killfeeds"):GetInt() == 0 then return end
 
-    local npcColor, name = OFNPC_GetNPCHUD(npc)
-    if not name then return end
+    local attacker = net.ReadEntity()
+    local victim = net.ReadEntity()
+    local inflictorname = net.ReadString()
+
+    local attackercolor, attackername = OFNPC_GetNPCHUD(attacker)
+    local victimcolor, victimname = OFNPC_GetNPCHUD(victim)
 
     -- 创建新的对话
-    local dialog = {
-        name = name .. ": ",
-        text = text,
-        color = npcColor,
+    local killfeeds = {
+        attackername = attackername,
+        attackercolor = attackercolor,
+        victimname = victimname,
+        victimcolor = victimcolor,
         alpha = 0,
         createTime = RealTime(),
         targetY = 0,
         currentY = ScrH(),
         height = 0
     }
-
-    for _, v in pairs(activeKillfeeds) do
-        if v.text == dialog.text then return end
-    end
     
     local maxLines = GetConVar("of_garrylord_killfeeds_maxlines"):GetInt()
     if table.Count(activeKillfeeds) >= maxLines then
         table.remove(activeKillfeeds, 1)
     end
     
-    table.insert(activeKillfeeds, dialog)
+    table.insert(activeKillfeeds, killfeeds)
     
     timer.Simple(8, function()
-        dialog.removeTime = RealTime()
+        killfeeds.removeTime = RealTime()
     end)
 end)
 
@@ -101,7 +102,8 @@ hook.Add("HUDPaint", "DrawNPCKillFeeds", function()
             end
         end
 
-		local color = tbl.color or Color(255, 255, 255)
+		local attackercolor = tbl.attackercolor or Color(255, 255, 255)
+        local victimcolor = tbl.victimcolor or Color(255, 255, 255)
         local alpha = math.floor(tbl.alpha)
 
         -- 平滑移动
@@ -110,17 +112,18 @@ hook.Add("HUDPaint", "DrawNPCKillFeeds", function()
         -- 绘制投影
         local shadowMarkup = markup.Parse(
             "<color=0,0,0," .. math.floor(alpha * 0.5) .. ">" .. 
-            "<font=ofgui_medium>" .. (tbl.name or "") .. "</font>" .. 
-            "<font=ofgui_medium>" .. (tbl.text or "") .. "</font></color>", 
+            "<font=ofgui_medium>" .. (tbl.attackername or "") .. "</font>" .. 
+            "<font=ofgui_medium>" .. (tbl.victimname or "") .. "</font></color>", 
             maxWidth
         )
         shadowMarkup:Draw(w / 2 + 1 * OFGUI.ScreenScale, tbl.currentY + 1 * OFGUI.ScreenScale, TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, nil, TEXT_ALIGN_CENTER)
 
         -- 绘制原文字
         local markup = markup.Parse(
-            "<color=" .. color.r .. "," .. color.g .. "," .. color.b .. "," .. alpha .. ">" .. 
-            "<font=ofgui_medium>" .. (tbl.name or "") .. "</font></color>" .. 
-            "<font=ofgui_medium>" .. (tbl.text or "") .. "</font>", 
+            "<color=" .. attackercolor.r .. "," .. attackercolor.g .. "," .. attackercolor.b .. "," .. alpha .. ">" .. 
+            "<font=ofgui_medium>" .. (tbl.attackername or "") .. "</font></color>" .. 
+            "<color=" .. victimcolor.r .. "," .. victimcolor.g .. "," .. victimcolor.b .. "," .. alpha .. ">" .. 
+            "<font=ofgui_medium>" .. (tbl.victimname or "") .. "</font></color>", 
             maxWidth
         )
         
