@@ -13,15 +13,6 @@ hook.Add("OnNPCKilled", "NPCTalkKillfeed", function(victim, attacker, inflictor)
   local attackerClassify = attacker:IsPlayer() and 1 or (attacker.Classify and attacker:Classify() or 0)
   local victimClassify = victim:IsPlayer() and 1 or (victim.Classify and victim:Classify() or 0)
 
-  -- 调试信息
-  print("[Killfeed Debug] Attacker: ", attacker)
-  print("[Killfeed Debug] Victim: ", victim)
-  print("[Killfeed Debug] Inflictor: ", inflictorname)
-  print("[Killfeed Debug] Attacker Class: ", attackerClass)
-  print("[Killfeed Debug] Victim Class: ", victimClass)
-  print("[Killfeed Debug] Attacker Classify: ", attackerClassify)
-  print("[Killfeed Debug] Victim Classify: ", victimClassify)
-
   -- 发送网络消息
   net.Start("OFNPCP_test_AddtoKillfeed")
     net.WriteEntity(attacker)
@@ -29,7 +20,7 @@ hook.Add("OnNPCKilled", "NPCTalkKillfeed", function(victim, attacker, inflictor)
     net.WriteString(inflictorname)
     net.WriteString(attackerClass)
     net.WriteString(victimClass)
-    net.WriteUInt(attackerClassify, 8)  -- 使用8位无符号整数
-    net.WriteUInt(victimClassify, 8)    -- 使用8位无符号整数
+    net.WriteUInt(attackerClassify, 8)
+    net.WriteUInt(victimClassify, 8)
   net.Broadcast()
 end)
