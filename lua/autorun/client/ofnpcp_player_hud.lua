@@ -89,14 +89,14 @@ hook.Add("HUDPaint", "ofnpcp_simple_playerhud", function()
 		(now - lastAmmoChange) < highlightDuration and AmmoColor or Color(255,255,255))
 
 	-- 背景
-	draw.RoundedBox(8, x, y, width, height, BGColor)
+	draw.RoundedBox(8 * OFGUI.ScreenScale, x, y, width, height, BGColor)
 
 	-- 右侧HUD框
 	local rightX = w - width - 16 * OFGUI.ScreenScale
-	draw.RoundedBox(8, rightX, y + padding + barHeight, width, height - padding - barHeight, BGColor)
+	draw.RoundedBox(8 * OFGUI.ScreenScale, rightX, y + padding + barHeight, width, height - padding - barHeight, BGColor)
 
 	-- 玩家头像背景
-	draw.RoundedBox(6, x + padding, y + padding, avatarSize, avatarSize, InactiveColor)
+	draw.RoundedBox(6 * OFGUI.ScreenScale, x + padding, y + padding, avatarSize, avatarSize, InactiveColor)
 
 	-- 玩家头像
 	if not ply.AvatarImage then
@@ -120,12 +120,12 @@ hook.Add("HUDPaint", "ofnpcp_simple_playerhud", function()
 	-- 护甲条
 	local armorRatio = math.Clamp(currentArmor / 100, 0, 1)
 	local armorBarW = math.floor((availableWidth - nameWidth - padding) * armorRatio)
-	draw.RoundedBox(4, x + padding * 2 + avatarSize + nameWidth + padding, y + padding, armorBarW, barHeight, armorColor)
+	draw.RoundedBox(4 * OFGUI.ScreenScale, x + padding * 2 + avatarSize + nameWidth + padding, y + padding, armorBarW, barHeight, armorColor)
 	
 	-- 血量条
 	local healthRatio = math.Clamp(currentHealth / maxHealth, 0, 1)
 	local healthBarW = math.floor(availableWidth * healthRatio)
-	draw.RoundedBox(4, x + padding * 2 + avatarSize, y + 2 * padding + barHeight, healthBarW, barHeight, healthColor)
+	draw.RoundedBox(4 * OFGUI.ScreenScale, x + padding * 2 + avatarSize, y + 2 * padding + barHeight, healthBarW, barHeight, healthColor)
 
 	-- 子弹条
 	local ammoRatio = math.Clamp(currentAmmo / maxAmmo, 0, 1)
@@ -137,7 +137,7 @@ hook.Add("HUDPaint", "ofnpcp_simple_playerhud", function()
 	draw.SimpleText(weaponName, "ofgui_tiny", rightX + padding, y + 2 * padding + barHeight, Color(255, 255, 255, 255))
 	
 	-- 绘制子弹条
-	draw.RoundedBox(4, rightX + padding + weaponNameWidth + padding, y + 2 * padding + barHeight, ammoBarW, barHeight, ammoColor)
+	draw.RoundedBox(4 * OFGUI.ScreenScale, rightX + padding + weaponNameWidth + padding, y + 2 * padding + barHeight, ammoBarW, barHeight, ammoColor)
 end)
 
 -- 添加颜色插值函数

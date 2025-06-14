@@ -190,37 +190,35 @@ hook.Add("HUDPaint", "DrawNPCKillFeeds", function()
 
         -- 绘制受害者名称
         local victimnameX = w - 32 * OFGUI.ScreenScale
+        victimnameshadowMarkup:Draw(victimnameX + 1 * OFGUI.ScreenScale, tbl.currentY + 1 * OFGUI.ScreenScale, TEXT_ALIGN_RIGHT, TEXT_ALIGN_TOP, nil, TEXT_ALIGN_RIGHT)
         victimnameMarkup:Draw(victimnameX, tbl.currentY, TEXT_ALIGN_RIGHT, TEXT_ALIGN_TOP, nil, TEXT_ALIGN_RIGHT)
-        local victimrankimageX = victimnameX - victimnameMarkup:GetWidth() - spacingX - 23 * OFGUI.ScreenScale
+        local victimrankimageX = victimnameX - victimnameMarkup:GetWidth()
 
         local victimrankimage = tbl.victimrank and "ofnpcp/usrankicons/rank_" .. tbl.victimrank .. ".png" or nil
         if victimrankimage then
             surface.SetMaterial(Material(victimrankimage))
             surface.SetDrawColor(255, 255, 255, alpha)
+            victimrankimageX = victimnameX - victimnameMarkup:GetWidth() - spacingX - 23 * OFGUI.ScreenScale
             surface.DrawTexturedRect(victimrankimageX, tbl.currentY, 23 * OFGUI.ScreenScale, 23 * OFGUI.ScreenScale)
         end
 
         -- 绘制武器标志
-        local killiconX = w - 32 * OFGUI.ScreenScale - killiconW - victimnameMarkup:GetWidth() - 2 * spacingX - 23 * OFGUI.ScreenScale
+        local killiconX = victimrankimageX - killiconW - spacingX
         killicon.Render(killiconX, tbl.currentY, tbl.inflictorname, alpha)
 
         -- 绘制攻击者名称
-        local attackernameX = w - 32 * OFGUI.ScreenScale - killiconW - victimnameMarkup:GetWidth() - 2 * spacingX - 23 * OFGUI.ScreenScale
+        local attackernameX = killiconX - spacingX
+        attackernameshadowMarkup:Draw(attackernameX + 1 * OFGUI.ScreenScale, tbl.currentY + 1 * OFGUI.ScreenScale, TEXT_ALIGN_RIGHT, TEXT_ALIGN_TOP, nil, TEXT_ALIGN_RIGHT)
         attackernameMarkup:Draw(attackernameX, tbl.currentY, TEXT_ALIGN_RIGHT, TEXT_ALIGN_TOP, nil, TEXT_ALIGN_RIGHT)
-        local attackerrankimageX = attackernameX - attackernameMarkup:GetWidth() - spacingX - 23 * OFGUI.ScreenScale
+        local attackerrankimageX = attackernameX - attackernameMarkup:GetWidth()
 
         local attackerrankimage = tbl.attackerrank and "ofnpcp/usrankicons/rank_" .. tbl.attackerrank .. ".png" or nil
         if attackerrankimage then
             surface.SetMaterial(Material(attackerrankimage))
             surface.SetDrawColor(255, 255, 255, alpha)
+            attackerrankimageX = attackernameX - attackernameMarkup:GetWidth() - spacingX - 23 * OFGUI.ScreenScale
             surface.DrawTexturedRect(attackerrankimageX, tbl.currentY, 23 * OFGUI.ScreenScale, 23 * OFGUI.ScreenScale)
         end
-
-        -- 绘制受害者名称阴影
-        victimnameshadowMarkup:Draw(victimnameX + 1 * OFGUI.ScreenScale, tbl.currentY + 1 * OFGUI.ScreenScale, TEXT_ALIGN_RIGHT, TEXT_ALIGN_TOP, nil, TEXT_ALIGN_RIGHT)
-
-        -- 绘制攻击者名称阴影
-        attackernameshadowMarkup:Draw(attackernameX + 1 * OFGUI.ScreenScale, tbl.currentY + 1 * OFGUI.ScreenScale, TEXT_ALIGN_RIGHT, TEXT_ALIGN_TOP, nil, TEXT_ALIGN_RIGHT)
     end
 end)
 
