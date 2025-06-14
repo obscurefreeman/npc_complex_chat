@@ -204,7 +204,8 @@ hook.Add("HUDPaint", "DrawNPCKillFeeds", function()
 
         -- 绘制武器标志
         local killiconX = victimrankimageX - killiconW - spacingX
-        killicon.Render(killiconX, tbl.currentY, tbl.inflictorname, alpha)
+        local killiconOffsetY = (killiconH - 23 * OFGUI.ScreenScale) / 2
+        killicon.Render(killiconX, tbl.currentY - killiconOffsetY, tbl.inflictorname, alpha)
 
         -- 绘制攻击者名称
         local attackernameX = killiconX - spacingX
