@@ -207,18 +207,21 @@ hook.Add("HUDPaint", "DrawNPCKillFeeds", function()
         local killiconOffsetY = (killiconH - 23 * OFGUI.ScreenScale) / 2
         killicon.Render(killiconX, tbl.currentY - killiconOffsetY, tbl.inflictorname, alpha)
 
-        -- 绘制攻击者名称
-        local attackernameX = killiconX - spacingX
-        attackernameshadowMarkup:Draw(attackernameX + 1 * OFGUI.ScreenScale, tbl.currentY + 1 * OFGUI.ScreenScale, TEXT_ALIGN_RIGHT, TEXT_ALIGN_TOP, nil, TEXT_ALIGN_RIGHT)
-        attackernameMarkup:Draw(attackernameX, tbl.currentY, TEXT_ALIGN_RIGHT, TEXT_ALIGN_TOP, nil, TEXT_ALIGN_RIGHT)
-        local attackerrankimageX = attackernameX - attackernameMarkup:GetWidth()
+        -- 如果不是自杀，则绘制攻击者信息
+        if tbl.inflictorname ~= "suicide" then
+            -- 绘制攻击者名称
+            local attackernameX = killiconX - spacingX
+            attackernameshadowMarkup:Draw(attackernameX + 1 * OFGUI.ScreenScale, tbl.currentY + 1 * OFGUI.ScreenScale, TEXT_ALIGN_RIGHT, TEXT_ALIGN_TOP, nil, TEXT_ALIGN_RIGHT)
+            attackernameMarkup:Draw(attackernameX, tbl.currentY, TEXT_ALIGN_RIGHT, TEXT_ALIGN_TOP, nil, TEXT_ALIGN_RIGHT)
+            local attackerrankimageX = attackernameX - attackernameMarkup:GetWidth()
 
-        local attackerrankimage = tbl.attackerrank and "ofnpcp/usrankicons/rank_" .. tbl.attackerrank .. ".png" or nil
-        if attackerrankimage then
-            surface.SetMaterial(Material(attackerrankimage))
-            surface.SetDrawColor(255, 255, 255, alpha)
-            attackerrankimageX = attackernameX - attackernameMarkup:GetWidth() - spacingX - 23 * OFGUI.ScreenScale
-            surface.DrawTexturedRect(attackerrankimageX, tbl.currentY, 23 * OFGUI.ScreenScale, 23 * OFGUI.ScreenScale)
+            local attackerrankimage = tbl.attackerrank and "ofnpcp/usrankicons/rank_" .. tbl.attackerrank .. ".png" or nil
+            if attackerrankimage then
+                surface.SetMaterial(Material(attackerrankimage))
+                surface.SetDrawColor(255, 255, 255, alpha)
+                attackerrankimageX = attackernameX - attackernameMarkup:GetWidth() - spacingX - 23 * OFGUI.ScreenScale
+                surface.DrawTexturedRect(attackerrankimageX, tbl.currentY, 23 * OFGUI.ScreenScale, 23 * OFGUI.ScreenScale)
+            end
         end
     end
 end)

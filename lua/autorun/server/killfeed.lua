@@ -1,4 +1,4 @@
-hook.Add("OnNPCKilled", "NPCTalkKillfeed", function(victim, attacker, inflictor)
+local function OFAddDeathNotice(victim, attacker, inflictor)
   if !IsValid( attacker ) then return end
 
   local attackerWep = attacker.GetActiveWeapon
@@ -25,4 +25,12 @@ hook.Add("OnNPCKilled", "NPCTalkKillfeed", function(victim, attacker, inflictor)
     net.WriteUInt(attackerClassify, 8)
     net.WriteUInt(victimClassify, 8)
   net.Broadcast()
+end
+
+hook.Add("PlayerDeath", "OFKillfeedPlayer", function(victim, attacker, inflictor)
+  OFAddDeathNotice(victim, attacker, inflictor)
+end)
+
+hook.Add("OnNPCKilled", "OFKillfeedNPC", function(victim, attacker, inflictor)
+  OFAddDeathNotice(victim, attacker, inflictor)
 end)
