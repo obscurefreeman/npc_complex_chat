@@ -18,35 +18,66 @@ net.Receive( "OFNPCP_test_AddtoKillfeed", function()
     local attackerClassify = net.ReadUInt(8)
     local victimClassify = net.ReadUInt(8)
 
-    local attackercolor, attackername = OFNPC_GetNPCHUD(attacker, attackerclass)
-    if attackercolor == Color(255, 255, 255) then
-        if attackerClassify == 2 or attackerClassify == 3 or attackerClassify == 7 or attackerClassify == 8 or attackerClassify == 18 or attackerClassify == 24 then
-            attackercolor = Color(255, 141, 23)
-        elseif attackerClassify == 4 or attackerClassify == 5 then
-            attackercolor = Color(0, 100, 0)
-        elseif attackerClassify == 9 or attackerClassify == 10 or (attackerClassify >= 13 and attackerClassify <= 17) or attackerClassify == 20 or attackerClassify == 25 then
-            attackercolor = Color(0, 149, 223)
-        elseif attackerClassify == 12 or attackerClassify == 19 then
-            attackercolor = Color(144, 238, 144)
-        elseif attackerClassify == 23 then
-            attackercolor = Color(135, 223, 214)
+    -- 共享函数：获取NPC击杀信息
+    local function OFNPC_GetNPCKILLINFO(npc, class, classify)
+        local npcName
+        local npcColor
+        -- 如果NPC不存在，返回默认值
+        if not IsValid(npc) then
+            if classify == 2 or classify == 3 or classify == 7 or classify == 8 or classify == 18 or classify == 24 then
+                npcColor = Color(255, 141, 23)
+            elseif classify == 4 or classify == 5 then
+                npcColor = Color(0, 100, 0)
+            elseif classify == 9 or classify == 10 or (classify >= 13 and classify <= 17) or classify == 20 or classify == 25 then
+                npcColor = Color(0, 149, 223)
+            elseif classify == 12 or classify == 19 then
+                npcColor = Color(144, 238, 144)
+            elseif classify == 23 then
+                npcColor = Color(135, 223, 214)
+            end
+            return npcColor, language.GetPhrase(class), nil
         end
-    end
-    
-    local victimcolor, victimname = OFNPC_GetNPCHUD(victim, victimclass)
-    if victimcolor == Color(255, 255, 255) then
-        if victimClassify == 2 or victimClassify == 3 or victimClassify == 7 or victimClassify == 8 or victimClassify == 18 or victimClassify == 24 then
-            victimcolor = Color(255, 141, 23)
-        elseif victimClassify == 4 or victimClassify == 5 then
-            victimcolor = Color(0, 100, 0)
-        elseif victimClassify == 9 or victimClassify == 10 or (victimClassify >= 13 and victimClassify <= 17) or victimClassify == 20 or victimClassify == 25 then
-            victimcolor = Color(0, 149, 223)
-        elseif victimClassify == 12 or victimClassify == 19 then
-            victimcolor = Color(144, 238, 144)
-        elseif victimClassify == 23 then
-            victimcolor = Color(135, 223, 214)
+
+        -- 如果是玩家
+        if npc:IsPlayer() then
+            local playerColor = GLOBAL_OFNPC_DATA.setting.camp_setting[OFPLAYERS[npc:SteamID()] and OFPLAYERS[npc:SteamID()].deck or "resistance"].color
+            local playerName = npc:Nick()
+            return playerColor, playerName, nil
         end
+
+        local npcs = GetAllNPCsList()
+        local npcIdentity = npcs[npc:EntIndex()]
+
+        -- 如果是NPC但没有身份信息，返回默认值
+        if not npcIdentity then
+            if classify == 2 or classify == 3 or classify == 7 or classify == 8 or classify == 18 or classify == 24 then
+                npcColor = Color(255, 141, 23)
+            elseif classify == 4 or classify == 5 then
+                npcColor = Color(0, 100, 0)
+            elseif classify == 9 or classify == 10 or (classify >= 13 and classify <= 17) or classify == 20 or classify == 25 then
+                npcColor = Color(0, 149, 223)
+            elseif classify == 12 or classify == 19 then
+                npcColor = Color(144, 238, 144)
+            elseif classify == 23 then
+                npcColor = Color(135, 223, 214)
+            end
+            return npcColor, language.GetPhrase(class), nil
+        end
+
+        npcColor = GLOBAL_OFNPC_DATA.setting.camp_setting[npcIdentity.camp].color
+        
+        if npcIdentity.name == npcIdentity.gamename then
+            npcName = language.GetPhrase(npcIdentity.gamename)
+        else
+            npcName = ofTranslate(npcIdentity.name) .. " “" .. ofTranslate(npcIdentity.nickname) .. "”"
+        end
+        local rank = npcIdentity.rank
+
+        return npcColor, npcName, rank
     end
+
+    local attackercolor, attackername, attackerrank = OFNPC_GetNPCKILLINFO(attacker, attackerclass, attackerClassify)
+    local victimcolor, victimname, victimrank = OFNPC_GetNPCKILLINFO(victim, victimclass, victimClassify)
 
     -- 创建新的对话
     local killfeeds = {
@@ -59,7 +90,9 @@ net.Receive( "OFNPCP_test_AddtoKillfeed", function()
         createTime = RealTime(),
         targetY = 0,
         currentY = ScrH(),
-        height = 23 * OFGUI.ScreenScale
+        height = 23 * OFGUI.ScreenScale,
+        attackerrank = attackerrank,
+        victimrank = victimrank
     }
     
     local maxLines = GetConVar("of_garrylord_killfeeds_maxlines"):GetInt()
@@ -153,20 +186,41 @@ hook.Add("HUDPaint", "DrawNPCKillFeeds", function()
         -- 修复判断条件，只有当killiconW和killiconH都为nil时才return
         if (not killiconW or not killiconH) then return end
 
+        local spacingX = 2 * OFGUI.ScreenScale
+
         -- 绘制受害者名称
-        victimnameMarkup:Draw(w - 32 * OFGUI.ScreenScale, tbl.currentY, TEXT_ALIGN_RIGHT, TEXT_ALIGN_TOP, nil, TEXT_ALIGN_RIGHT)
+        local victimnameX = w - 32 * OFGUI.ScreenScale
+        victimnameMarkup:Draw(victimnameX, tbl.currentY, TEXT_ALIGN_RIGHT, TEXT_ALIGN_TOP, nil, TEXT_ALIGN_RIGHT)
+        local victimrankimageX = victimnameX - victimnameMarkup:GetWidth() - spacingX - 23 * OFGUI.ScreenScale
+
+        local victimrankimage = tbl.victimrank and "ofnpcp/usrankicons/rank_" .. tbl.victimrank .. ".png" or nil
+        if victimrankimage then
+            surface.SetMaterial(Material(victimrankimage))
+            surface.SetDrawColor(255, 255, 255, alpha)
+            surface.DrawTexturedRect(victimrankimageX, tbl.currentY, 23 * OFGUI.ScreenScale, 23 * OFGUI.ScreenScale)
+        end
 
         -- 绘制武器标志
-        killicon.Render(w - 32 * OFGUI.ScreenScale - killiconW - victimnameMarkup:GetWidth() - spacing, tbl.currentY, tbl.inflictorname, alpha)
+        local killiconX = w - 32 * OFGUI.ScreenScale - killiconW - victimnameMarkup:GetWidth() - 2 * spacingX - 23 * OFGUI.ScreenScale
+        killicon.Render(killiconX, tbl.currentY, tbl.inflictorname, alpha)
 
         -- 绘制攻击者名称
-        attackernameMarkup:Draw(w - 32 * OFGUI.ScreenScale - killiconW - victimnameMarkup:GetWidth() - spacing, tbl.currentY, TEXT_ALIGN_RIGHT, TEXT_ALIGN_TOP, nil, TEXT_ALIGN_RIGHT)
+        local attackernameX = w - 32 * OFGUI.ScreenScale - killiconW - victimnameMarkup:GetWidth() - 2 * spacingX - 23 * OFGUI.ScreenScale
+        attackernameMarkup:Draw(attackernameX, tbl.currentY, TEXT_ALIGN_RIGHT, TEXT_ALIGN_TOP, nil, TEXT_ALIGN_RIGHT)
+        local attackerrankimageX = attackernameX - attackernameMarkup:GetWidth() - spacingX - 23 * OFGUI.ScreenScale
+
+        local attackerrankimage = tbl.attackerrank and "ofnpcp/usrankicons/rank_" .. tbl.attackerrank .. ".png" or nil
+        if attackerrankimage then
+            surface.SetMaterial(Material(attackerrankimage))
+            surface.SetDrawColor(255, 255, 255, alpha)
+            surface.DrawTexturedRect(attackerrankimageX, tbl.currentY, 23 * OFGUI.ScreenScale, 23 * OFGUI.ScreenScale)
+        end
 
         -- 绘制受害者名称阴影
-        victimnameshadowMarkup:Draw(w - 32 * OFGUI.ScreenScale + 1 * OFGUI.ScreenScale, tbl.currentY + 1 * OFGUI.ScreenScale, TEXT_ALIGN_RIGHT, TEXT_ALIGN_TOP, nil, TEXT_ALIGN_RIGHT)
+        victimnameshadowMarkup:Draw(victimnameX + 1 * OFGUI.ScreenScale, tbl.currentY + 1 * OFGUI.ScreenScale, TEXT_ALIGN_RIGHT, TEXT_ALIGN_TOP, nil, TEXT_ALIGN_RIGHT)
 
         -- 绘制攻击者名称阴影
-        attackernameshadowMarkup:Draw(w - 32 * OFGUI.ScreenScale - killiconW - victimnameMarkup:GetWidth() - spacing + 1 * OFGUI.ScreenScale, tbl.currentY + 1 * OFGUI.ScreenScale, TEXT_ALIGN_RIGHT, TEXT_ALIGN_TOP, nil, TEXT_ALIGN_RIGHT)
+        attackernameshadowMarkup:Draw(attackernameX + 1 * OFGUI.ScreenScale, tbl.currentY + 1 * OFGUI.ScreenScale, TEXT_ALIGN_RIGHT, TEXT_ALIGN_TOP, nil, TEXT_ALIGN_RIGHT)
     end
 end)
 

@@ -18,8 +18,10 @@ hook.Add("OnNPCKilled", "NPCTalkKillfeed", function(victim, attacker, inflictor)
     net.WriteEntity(attacker)
     net.WriteEntity(victim)
     net.WriteString(inflictorname)
+    -- 备用，以防找不到npc信息
     net.WriteString(attackerClass)
     net.WriteString(victimClass)
+    -- npc阵营
     net.WriteUInt(attackerClassify, 8)
     net.WriteUInt(victimClassify, 8)
   net.Broadcast()
