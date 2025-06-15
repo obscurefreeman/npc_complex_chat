@@ -100,6 +100,7 @@ end
 
 if CLIENT then
     CreateClientConVar("of_garrylord_subtitles3d", "1", true, true, "", 0, 1)
+    CreateClientConVar("of_garrylord_subtitles3d_localplayer", "0", true, true, "", 0, 1)
     
     -- 对话框设置
     local activeDialogs = {}
@@ -246,6 +247,12 @@ if CLIENT then
             
             -- 检查说话者是否有效
             if not IsValid(dialog.npc) then
+                table.remove(activeDialogs, i)
+                continue
+            end
+
+            -- 如果说话者是本地玩家，则不显示3D字幕
+            if dialog.npc == LocalPlayer() and GetConVar("of_garrylord_subtitles3d_localplayer"):GetInt() == 0 then
                 table.remove(activeDialogs, i)
                 continue
             end

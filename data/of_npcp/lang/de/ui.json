@@ -100,11 +100,16 @@
             "ui_setting": "UI-Einstellungen",
             "enable_subtitles": "Untertitel aktivieren",
             "enable_subtitles3d": "3D-Untertitel aktivieren",
+            "enable_subtitles3d_localplayer": "3D-Untertitel über dem eigenen Kopf aktivieren",
             "enable_player_hud": "Spieler-HUD aktivieren",
             "enable_npcinfo_hud": "NPC-Info-HUD aktivieren",
             "enable_levelup_effects": "Level-Up-Effekte aktivieren",
             "subtitles_position": "Untertitelposition",
-            "subtitles_maxlines": "Maximale Untertitelzeilen"
+            "subtitles_maxlines": "Maximale Untertitelzeilen",
+            "enable_killfeeds": "Tötungsbenachrichtigungen aktivieren",
+            "killfeeds_positionX": "Position der Tötungsbenachrichtigungen - X-Achse",
+            "killfeeds_positionY": "Position der Tötungsbenachrichtigungen - Y-Achse",
+            "killfeeds_maxlines": "Maximale Zeilenanzahl der Tötungsbenachrichtigungen"
         },
         "time": {
             "just_now": "Nur",

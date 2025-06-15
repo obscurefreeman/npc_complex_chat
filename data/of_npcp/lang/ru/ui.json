@@ -100,11 +100,16 @@
             "ui_setting": "Настройки интерфейса",
             "enable_subtitles": "Включить субтитры",
             "enable_subtitles3d": "Включить 3D субтитры",
+            "enable_subtitles3d_localplayer": "Включить 3D субтитры над своей головой",
             "enable_player_hud": "Включить HUD игрока",
             "enable_npcinfo_hud": "Включить HUD информации о NPC",
             "enable_levelup_effects": "Включить эффекты повышения уровня",
             "subtitles_position": "Позиция субтитров",
-            "subtitles_maxlines": "Максимальное количество строк субтитров"
+            "subtitles_maxlines": "Максимальное количество строк субтитров",
+            "enable_killfeeds": "Включить уведомления об убийствах",
+            "killfeeds_positionX": "Позиция уведомлений - ось X",
+            "killfeeds_positionY": "Позиция уведомлений - ось Y",
+            "killfeeds_maxlines": "Максимальное количество строк уведомлений"
         },
         "time": {
             "just_now": "только",

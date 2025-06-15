@@ -100,11 +100,16 @@
             "ui_setting": "UI 设置",
             "enable_subtitles": "启用字幕",
             "enable_subtitles3d": "启用立体字幕",
+            "enable_subtitles3d_localplayer": "启用自己头顶的立体字幕",
             "enable_player_hud": "启用玩家HUD",
             "enable_npcinfo_hud": "启用NPC信息HUD",
             "enable_levelup_effects": "启用升级特效",
             "subtitles_position": "字幕位置",
-            "subtitles_maxlines": "字幕最大行数"
+            "subtitles_maxlines": "字幕最大行数",
+            "enable_killfeeds": "启用击杀提示",
+            "killfeeds_positionX": "击杀提示位置-X轴",
+            "killfeeds_positionY": "击杀提示位置-Y轴",
+            "killfeeds_maxlines": "击杀提示最大行数"
         },
         "time": {
             "just_now": "刚刚",

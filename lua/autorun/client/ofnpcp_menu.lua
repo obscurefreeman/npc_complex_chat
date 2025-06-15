@@ -622,89 +622,35 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
 		SetText = ofTranslate("ui.personalization.ui_setting")
 	})
 
-    -- 添加字幕开关
-    local subtitlesCheckPanel = vgui.Create("EditablePanel", personalizationLeftPanel)
-    subtitlesCheckPanel:Dock(TOP)
-    subtitlesCheckPanel:SetTall(21 * OFGUI.ScreenScale)
-    subtitlesCheckPanel:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+    -- 创建一个函数来简化开关的添加
+    local function CreateCheckBoxPanel(parent, conVar, labelText)
+        local checkPanel = vgui.Create("EditablePanel", parent)
+        checkPanel:Dock(TOP)
+        checkPanel:SetTall(21 * OFGUI.ScreenScale)
+        checkPanel:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
 
-    local subtitlesCheckBox = vgui.Create("OFCheckBox", subtitlesCheckPanel)
-    subtitlesCheckBox:Dock(LEFT)
-    subtitlesCheckBox:SetSize(21 * OFGUI.ScreenScale, 21 * OFGUI.ScreenScale)
-    subtitlesCheckBox:DockMargin(0, 0, 8 * OFGUI.ScreenScale, 0)
-    subtitlesCheckBox:SetConVar("of_garrylord_subtitles")
+        local checkBox = vgui.Create("OFCheckBox", checkPanel)
+        checkBox:Dock(LEFT)
+        checkBox:SetSize(21 * OFGUI.ScreenScale, 21 * OFGUI.ScreenScale)
+        checkBox:DockMargin(0, 0, 8 * OFGUI.ScreenScale, 0)
+        checkBox:SetConVar(conVar)
 
-    local subtitlesCheckLabel = vgui.Create("OFTextLabel", subtitlesCheckPanel)
-    subtitlesCheckLabel:SetFont("ofgui_small")
-    subtitlesCheckLabel:Dock(FILL)
-    subtitlesCheckLabel:SetText(ofTranslate("ui.personalization.enable_subtitles"))
+        local checkLabel = vgui.Create("OFTextLabel", checkPanel)
+        checkLabel:SetFont("ofgui_small")
+        checkLabel:Dock(FILL)
+        checkLabel:SetText(ofTranslate(labelText))
 
-	-- 添加3d字幕开关
-	local subtitles3dCheckPanel = vgui.Create("EditablePanel", personalizationLeftPanel)
-	subtitles3dCheckPanel:Dock(TOP)
-	subtitles3dCheckPanel:SetTall(21 * OFGUI.ScreenScale)
-	subtitles3dCheckPanel:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+        return checkPanel
+    end
 
-	local subtitles3dCheckBox = vgui.Create("OFCheckBox", subtitles3dCheckPanel)
-	subtitles3dCheckBox:Dock(LEFT)
-	subtitles3dCheckBox:SetSize(21 * OFGUI.ScreenScale, 21 * OFGUI.ScreenScale)
-	subtitles3dCheckBox:DockMargin(0, 0, 8 * OFGUI.ScreenScale, 0)
-	subtitles3dCheckBox:SetConVar("of_garrylord_subtitles3d")
-
-	local subtitles3dCheckLabel = vgui.Create("OFTextLabel", subtitles3dCheckPanel)
-	subtitles3dCheckLabel:SetFont("ofgui_small")
-	subtitles3dCheckLabel:Dock(FILL)
-	subtitles3dCheckLabel:SetText(ofTranslate("ui.personalization.enable_subtitles3d"))
-    -- 添加玩家HUD开关
-    local playerHUDCheckPanel = vgui.Create("EditablePanel", personalizationLeftPanel)
-    playerHUDCheckPanel:Dock(TOP)
-    playerHUDCheckPanel:SetTall(21 * OFGUI.ScreenScale)
-    playerHUDCheckPanel:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
-
-    local playerHUDCheckBox = vgui.Create("OFCheckBox", playerHUDCheckPanel)
-    playerHUDCheckBox:Dock(LEFT)
-    playerHUDCheckBox:SetSize(21 * OFGUI.ScreenScale, 21 * OFGUI.ScreenScale)
-    playerHUDCheckBox:DockMargin(0, 0, 8 * OFGUI.ScreenScale, 0)
-    playerHUDCheckBox:SetConVar("of_garrylord_player_hud")
-
-    local playerHUDCheckLabel = vgui.Create("OFTextLabel", playerHUDCheckPanel)
-    playerHUDCheckLabel:SetFont("ofgui_small")
-    playerHUDCheckLabel:Dock(FILL)
-    playerHUDCheckLabel:SetText(ofTranslate("ui.personalization.enable_player_hud"))
-
-    -- 添加NPC信息HUD开关
-    local npcinfoHUDCheckPanel = vgui.Create("EditablePanel", personalizationLeftPanel)
-    npcinfoHUDCheckPanel:Dock(TOP)
-    npcinfoHUDCheckPanel:SetTall(21 * OFGUI.ScreenScale)
-    npcinfoHUDCheckPanel:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
-
-    local npcinfoHUDCheckBox = vgui.Create("OFCheckBox", npcinfoHUDCheckPanel)
-    npcinfoHUDCheckBox:Dock(LEFT)
-    npcinfoHUDCheckBox:SetSize(21 * OFGUI.ScreenScale, 21 * OFGUI.ScreenScale)
-    npcinfoHUDCheckBox:DockMargin(0, 0, 8 * OFGUI.ScreenScale, 0)
-    npcinfoHUDCheckBox:SetConVar("of_garrylord_npcinfo_hud")
-
-    local npcinfoHUDCheckLabel = vgui.Create("OFTextLabel", npcinfoHUDCheckPanel)
-    npcinfoHUDCheckLabel:SetFont("ofgui_small")
-    npcinfoHUDCheckLabel:Dock(FILL)
-    npcinfoHUDCheckLabel:SetText(ofTranslate("ui.personalization.enable_npcinfo_hud"))
-
-    -- 添加升级特效开关
-    local levelupEffectsCheckPanel = vgui.Create("EditablePanel", personalizationLeftPanel)
-    levelupEffectsCheckPanel:Dock(TOP)
-    levelupEffectsCheckPanel:SetTall(21 * OFGUI.ScreenScale)
-    levelupEffectsCheckPanel:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
-
-    local levelupEffectsCheckBox = vgui.Create("OFCheckBox", levelupEffectsCheckPanel)
-    levelupEffectsCheckBox:Dock(LEFT)
-    levelupEffectsCheckBox:SetSize(21 * OFGUI.ScreenScale, 21 * OFGUI.ScreenScale)
-    levelupEffectsCheckBox:DockMargin(0, 0, 8 * OFGUI.ScreenScale, 0)
-    levelupEffectsCheckBox:SetConVar("of_garrylord_levelup_effects")
-
-    local levelupEffectsCheckLabel = vgui.Create("OFTextLabel", levelupEffectsCheckPanel)
-    levelupEffectsCheckLabel:SetFont("ofgui_small")
-    levelupEffectsCheckLabel:Dock(FILL)
-    levelupEffectsCheckLabel:SetText(ofTranslate("ui.personalization.enable_levelup_effects"))
+    -- 使用函数简化开关的添加
+    CreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_subtitles", "ui.personalization.enable_subtitles")
+    CreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_subtitles3d", "ui.personalization.enable_subtitles3d")
+    CreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_subtitles3d_localplayer", "ui.personalization.enable_subtitles3d_localplayer")
+    CreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_player_hud", "ui.personalization.enable_player_hud")
+    CreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_killfeeds", "ui.personalization.enable_killfeeds")
+    CreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_npcinfo_hud", "ui.personalization.enable_npcinfo_hud")
+    CreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_levelup_effects", "ui.personalization.enable_levelup_effects")
 
     -- 添加字幕位置调节滑块
     local subtitlesPositionSlider = CreateControl(personalizationLeftPanel, "OFNumSlider", {
@@ -722,6 +668,33 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
         SetMax = 10,
         SetDecimals = 0,
 		SetConVar = "of_garrylord_subtitles_maxlines"
+    })
+
+    -- 添加击杀信息X轴位置调节滑块
+    local killfeedsPositionXSlider = CreateControl(personalizationLeftPanel, "OFNumSlider", {
+        SetText = ofTranslate("ui.personalization.killfeeds_positionX"),
+        SetMin = 0,
+        SetMax = 500,
+        SetDecimals = 0,
+        SetConVar = "of_garrylord_killfeeds_positionX"
+    })
+
+    -- 添加击杀信息Y轴位置调节滑块
+    local killfeedsPositionYSlider = CreateControl(personalizationLeftPanel, "OFNumSlider", {
+        SetText = ofTranslate("ui.personalization.killfeeds_positionY"),
+        SetMin = 0,
+        SetMax = 500,
+        SetDecimals = 0,
+        SetConVar = "of_garrylord_killfeeds_positionY"
+    })
+
+    -- 添加击杀信息最大行数调节滑块
+    local killfeedsMaxLinesSlider = CreateControl(personalizationLeftPanel, "OFNumSlider", {
+        SetText = ofTranslate("ui.personalization.killfeeds_maxlines"),
+        SetMin = 1,
+        SetMax = 10,
+        SetDecimals = 0,
+        SetConVar = "of_garrylord_killfeeds_maxlines"
     })
 end
 

@@ -1,7 +1,8 @@
 ﻿-- 创建客户端ConVar
 CreateClientConVar("of_garrylord_killfeeds", "1", true, true, "", 0, 1)
-CreateClientConVar("of_garrylord_killfeeds_position", "160", true, true, "", 0, 500)
-CreateClientConVar("of_garrylord_killfeeds_maxlines", "3", true, true, "", 1, 10)
+CreateClientConVar("of_garrylord_killfeeds_positionX", "32", true, true, "", 0, 500)
+CreateClientConVar("of_garrylord_killfeeds_positionY", "80", true, true, "", 0, 500)
+CreateClientConVar("of_garrylord_killfeeds_maxlines", "5", true, true, "", 1, 10)
 
 local activeKillfeeds = {}
 local transitionTime = 0.3
@@ -114,11 +115,12 @@ hook.Add("HUDPaint", "DrawNPCKillFeeds", function()
     local w = ScrW()
     local h = ScrH()
     
-    local position = GetConVar("of_garrylord_killfeeds_position"):GetInt()
-    local topMargin = position * OFGUI.ScreenScale
+    local positionX = GetConVar("of_garrylord_killfeeds_positionX"):GetInt()
+    local positionY = GetConVar("of_garrylord_killfeeds_positionY"):GetInt()
+    local topMarginY = positionY * OFGUI.ScreenScale
     local spacing = 10 * OFGUI.ScreenScale
 
-    local currentTargetY = topMargin
+    local currentTargetY = topMarginY  -- 修复变量名错误
     for i = 1, #activeKillfeeds do
         local tbl = activeKillfeeds[i]
         
@@ -189,7 +191,7 @@ hook.Add("HUDPaint", "DrawNPCKillFeeds", function()
         local spacingX = 2 * OFGUI.ScreenScale
 
         -- 绘制受害者名称
-        local victimnameX = w - 32 * OFGUI.ScreenScale
+        local victimnameX = w - positionX * OFGUI.ScreenScale
         victimnameshadowMarkup:Draw(victimnameX + 1 * OFGUI.ScreenScale, tbl.currentY + 1 * OFGUI.ScreenScale, TEXT_ALIGN_RIGHT, TEXT_ALIGN_TOP, nil, TEXT_ALIGN_RIGHT)
         victimnameMarkup:Draw(victimnameX, tbl.currentY, TEXT_ALIGN_RIGHT, TEXT_ALIGN_TOP, nil, TEXT_ALIGN_RIGHT)
         local victimrankimageX = victimnameX - victimnameMarkup:GetWidth()

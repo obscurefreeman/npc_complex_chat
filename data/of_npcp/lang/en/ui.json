@@ -100,11 +100,16 @@
             "ui_setting": "UI Setting",
             "enable_subtitles": "Enable Subtitles",
             "enable_subtitles3d": "Enable 3D Subtitles",
+            "enable_subtitles3d_localplayer": "Enable 3D subtitles above your head",
             "enable_player_hud": "Enable Player HUD",
             "enable_npcinfo_hud": "Enable NPC Info HUD",
             "enable_levelup_effects": "Enable Level Up Effects",
             "subtitles_position": "Subtitles Position",
-            "subtitles_maxlines": "Subtitles Max Lines"
+            "subtitles_maxlines": "Subtitles Max Lines",
+            "enable_killfeeds": "Enable Kill Feeds",
+            "killfeeds_positionX": "Kill Feeds Position - X Axis",
+            "killfeeds_positionY": "Kill Feeds Position - Y Axis",
+            "killfeeds_maxlines": "Kill Feeds Max Lines"
         },
         "time": {
             "just_now": "Just now",
