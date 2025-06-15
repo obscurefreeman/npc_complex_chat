@@ -18,13 +18,13 @@ hook.Add("OnNPCKilled", "NPCRankUp", function(victim, attacker, inflictor)
                 attacker:SetHealth(attacker:GetMaxHealth())
                 
                 -- 广播更新后的身份信息给所有客户端
-                net.Start("NPCIdentityUpdate")
+                net.Start("OFNPCP_NS_NPCIdentityUpdate")
                     net.WriteEntity(attacker)  -- 发送攻击者实体
                     net.WriteTable(identity)     -- 发送更新后的身份信息
                 net.Broadcast()
 
                 if leveledUp then
-                    net.Start("OFNPCRankUp")
+                    net.Start("OFNPCP_NS_RankUp")
                     net.WriteEntity(attacker)  -- 发送攻击者实体
                     net.WriteTable(identity)     -- 发送更新后的身份信息
                     net.Send(player.GetAll())

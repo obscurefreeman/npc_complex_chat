@@ -4,30 +4,30 @@ if SERVER then
     OFPLAYERS = OFPLAYERS or {}  -- 确保OFPLAYERS被初始化
 
     -- 添加网络字符串
-    util.AddNetworkString("NPCIdentityUpdate")
-    util.AddNetworkString("UpdateNPCName")
-    util.AddNetworkString("NPCAction")
-    util.AddNetworkString("SubmitNPCComment")
-    util.AddNetworkString("OFNPCRankUp")
-    util.AddNetworkString("NPCAIDialog")  -- 新增AI对话网络消息
+    util.AddNetworkString("OFNPCP_NS_NPCIdentityUpdate")
+    util.AddNetworkString("OFNPCP_NS_UpdateNPCName")
+    util.AddNetworkString("OFNPCP_NS_NPCAction")
+    util.AddNetworkString("OFNPCP_NS_SubmitNPCComment")
+    util.AddNetworkString("OFNPCP_NS_RankUp")
+    util.AddNetworkString("OFNPCP_NS_NPCAIDialog")  -- 新增AI对话网络消息
 
-    util.AddNetworkString("TalkStart")
-    util.AddNetworkString("OpenNPCDialogMenu")
-    util.AddNetworkString("RequestClientNPCData")
-    util.AddNetworkString("SendClientNPCData")
-    util.AddNetworkString("PlayerDialog")
-    util.AddNetworkString("NPCDialogMenuOpened")
-    util.AddNetworkString("NPCDialogMenuClosed")
+    util.AddNetworkString("OFNPCP_NS_TalkStart")
+    util.AddNetworkString("OFNPCP_NS_OpenNPCDialogMenu")
+    util.AddNetworkString("OFNPCP_NS_RequestClientNPCData")
+    util.AddNetworkString("OFNPCP_NS_SendClientNPCData")
+    util.AddNetworkString("OFNPCP_NS_PlayerDialog")
+    util.AddNetworkString("OFNPCP_NS_NPCDialogMenuOpened")
+    util.AddNetworkString("OFNPCP_NS_NPCDialogMenuClosed")
 
-    util.AddNetworkString("SelectPlayerDeck")
-    util.AddNetworkString("UpdatePlayerDeck")
-    util.AddNetworkString("UpdateNPCPrompt")
-    util.AddNetworkString("UpdatePlayerVoice")
-    util.AddNetworkString("RequestPlayerDataSync")
-    util.AddNetworkString("UpdateAllPlayerData")
-    util.AddNetworkString("UpdateNPCVoice")
-    util.AddNetworkString("RequestNPCData")
-    util.AddNetworkString("OFNPCP_test_AddtoKillfeed")
+    util.AddNetworkString("OFNPCP_NS_SelectPlayerDeck")
+    util.AddNetworkString("OFNPCP_NS_UpdatePlayerDeck")
+    util.AddNetworkString("OFNPCP_NS_UpdateNPCPrompt")
+    util.AddNetworkString("OFNPCP_NS_UpdatePlayerVoice")
+    util.AddNetworkString("OFNPCP_NS_RequestPlayerDataSync")
+    util.AddNetworkString("OFNPCP_NS_UpdateAllPlayerData")
+    util.AddNetworkString("OFNPCP_NS_UpdateNPCVoice")
+    util.AddNetworkString("OFNPCP_NS_RequestNPCData")
+    util.AddNetworkString("OFNPCP_NS_AddtoKillfeed")
 
     function AssignNPCIdentity(ent, npcInfo)
         local identity = {}
@@ -188,7 +188,7 @@ if SERVER then
         OFNPCS[ent:EntIndex()] = identity
         
         -- 向客户端广播NPC身份信息
-        net.Start("NPCIdentityUpdate")
+        net.Start("OFNPCP_NS_NPCIdentityUpdate")
             net.WriteEntity(ent)
             net.WriteTable(identity)
         net.Broadcast()
@@ -224,7 +224,7 @@ if SERVER then
     end)
 
     -- 添加接收客户端请求更新NPC名字的处理函数
-    net.Receive("UpdateNPCName", function(len, ply)
+    net.Receive("OFNPCP_NS_UpdateNPCName", function(len, ply)
         local entIndex = net.ReadInt(32)
         local newName = net.ReadString()
         local newNickname = net.ReadString()
@@ -234,7 +234,7 @@ if SERVER then
             OFNPCS[entIndex].nickname = newNickname
             
             -- 广播更新后的身份信息给所有客户端
-            net.Start("NPCIdentityUpdate")
+            net.Start("OFNPCP_NS_NPCIdentityUpdate")
                 net.WriteEntity(Entity(entIndex))
                 net.WriteTable(OFNPCS[entIndex])
             net.Broadcast()
@@ -242,7 +242,7 @@ if SERVER then
     end)
 
     -- 在其他网络接收函数后添加
-    net.Receive("NPCAction", function(len, ply)
+    net.Receive("OFNPCP_NS_NPCAction", function(len, ply)
         local entIndex = net.ReadInt(32)
         local action = net.ReadString()
         
@@ -276,7 +276,7 @@ if SERVER then
     end)
 
     -- 处理评论的接收
-    net.Receive("SubmitNPCComment", function(len, ply)
+    net.Receive("OFNPCP_NS_SubmitNPCComment", function(len, ply)
         local entIndex = net.ReadInt(32)
         local comment = net.ReadString()
 
@@ -298,7 +298,7 @@ if SERVER then
             })
 
             -- 广播更新后的身份信息给所有客户端
-            net.Start("NPCIdentityUpdate")
+            net.Start("OFNPCP_NS_NPCIdentityUpdate")
                 net.WriteEntity(Entity(entIndex))
                 net.WriteTable(OFNPCS[entIndex])
             net.Broadcast()
@@ -350,13 +350,13 @@ if SERVER then
         file.Write("of_npcp/playerdata.txt", util.TableToJSON(playerData))
         
         -- 广播更新后的玩家数据给所有客户端
-        net.Start("UpdateAllPlayerData")
+        net.Start("OFNPCP_NS_UpdateAllPlayerData")
             net.WriteTable(playerData)
         net.Broadcast()
     end
 
     -- 处理玩家牌组选择
-    net.Receive("SelectPlayerDeck", function(len, ply)
+    net.Receive("OFNPCP_NS_SelectPlayerDeck", function(len, ply)
         local deck = net.ReadString()
         if not OFPLAYERS[ply:SteamID()] then
             OFPLAYERS[ply:SteamID()] = {}
@@ -366,7 +366,7 @@ if SERVER then
         SavePlayerData()
         
         -- 广播给所有客户端
-        net.Start("UpdatePlayerDeck")
+        net.Start("OFNPCP_NS_UpdatePlayerDeck")
             net.WriteString(ply:SteamID())
             net.WriteString(deck)
         net.Broadcast()
@@ -399,12 +399,12 @@ if SERVER then
         end
 
         -- 请求客户端数据
-        net.Start("RequestClientNPCData")
+        net.Start("OFNPCP_NS_RequestClientNPCData")
         net.Send(ply)
     end)
 
     -- 接收客户端数据
-    net.Receive("SendClientNPCData", function(len, ply)
+    net.Receive("OFNPCP_NS_SendClientNPCData", function(len, ply)
         local clientNPCs = net.ReadTable()
         
         print("\n=== 客户端NPC数据 ===")
@@ -420,7 +420,7 @@ if SERVER then
     end)
 
     -- 接收客户端请求更新NPC提示词的处理函数
-    net.Receive("UpdateNPCPrompt", function(len, ply)
+    net.Receive("OFNPCP_NS_UpdateNPCPrompt", function(len, ply)
         local entIndex = net.ReadInt(32)
         local newPrompt = net.ReadString()
         
@@ -428,7 +428,7 @@ if SERVER then
             OFNPCS[entIndex].prompt = newPrompt
             
             -- 广播更新后的身份信息给所有客户端
-            net.Start("NPCIdentityUpdate")
+            net.Start("OFNPCP_NS_NPCIdentityUpdate")
                 net.WriteEntity(Entity(entIndex))
                 net.WriteTable(OFNPCS[entIndex])
             net.Broadcast()
@@ -436,7 +436,7 @@ if SERVER then
     end)
 
     -- 在服务器端添加接收处理函数
-    net.Receive("UpdateNPCVoice", function(len, ply)
+    net.Receive("OFNPCP_NS_UpdateNPCVoice", function(len, ply)
         local entIndex = net.ReadInt(32)
         local newVoice = net.ReadString()
         
@@ -444,7 +444,7 @@ if SERVER then
             OFNPCS[entIndex].voice = newVoice
             
             -- 广播更新后的身份信息给所有客户端
-            net.Start("NPCIdentityUpdate")
+            net.Start("OFNPCP_NS_NPCIdentityUpdate")
                 net.WriteEntity(Entity(entIndex))
                 net.WriteTable(OFNPCS[entIndex])
             net.Broadcast()
@@ -452,7 +452,7 @@ if SERVER then
     end)
 
     -- 添加接收玩家配音设置的处理函数
-    net.Receive("UpdatePlayerVoice", function(len, ply)
+    net.Receive("OFNPCP_NS_UpdatePlayerVoice", function(len, ply)
         local voiceCode = net.ReadString()
         if not OFPLAYERS[ply:SteamID()] then
             OFPLAYERS[ply:SteamID()] = {}
@@ -464,25 +464,25 @@ if SERVER then
     end)
 
     -- 添加接收所有玩家数据的处理函数
-    net.Receive("UpdateAllPlayerData", function()
+    net.Receive("OFNPCP_NS_UpdateAllPlayerData", function()
         local playerData = net.ReadTable()
         OFPLAYERS = playerData
     end)
 
     -- 添加接收客户端请求数据的处理函数
-    net.Receive("RequestPlayerDataSync", function(len, ply)
-        net.Start("UpdateAllPlayerData")
+    net.Receive("OFNPCP_NS_RequestPlayerDataSync", function(len, ply)
+        net.Start("OFNPCP_NS_UpdateAllPlayerData")
             net.WriteTable(OFPLAYERS)
         net.Send(ply)
     end)
 
     -- 添加处理客户端请求NPC数据的函数
-    net.Receive("RequestNPCData", function(len, ply)
+    net.Receive("OFNPCP_NS_RequestNPCData", function(len, ply)
         local entIndex = net.ReadInt(32)
         local ent = Entity(entIndex)
         
         if IsValid(ent) and ent:IsNPC() and OFNPCS[entIndex] then
-            net.Start("NPCIdentityUpdate")
+            net.Start("OFNPCP_NS_NPCIdentityUpdate")
                 net.WriteEntity(ent)
                 net.WriteTable(OFNPCS[entIndex])
             net.Send(ply)
@@ -505,7 +505,7 @@ if CLIENT then
     end)
     
     -- 接收服务器发送的NPC身份信息
-    net.Receive("NPCIdentityUpdate", function()
+    net.Receive("OFNPCP_NS_NPCIdentityUpdate", function()
         local ent = net.ReadEntity()
         local identity = net.ReadTable()
         if IsValid(ent) then
@@ -516,7 +516,7 @@ if CLIENT then
         end
     end)
 
-    net.Receive("UpdatePlayerDeck", function()
+    net.Receive("OFNPCP_NS_UpdatePlayerDeck", function()
         local steamID = net.ReadString()
         local deck = net.ReadString()
         if not OFPLAYERS[steamID] then
@@ -533,21 +533,21 @@ if CLIENT then
     end)
 
     -- 接收服务器请求客户端数据的消息
-    net.Receive("RequestClientNPCData", function()
-        net.Start("SendClientNPCData")
+    net.Receive("OFNPCP_NS_RequestClientNPCData", function()
+        net.Start("OFNPCP_NS_SendClientNPCData")
         net.WriteTable(clientNPCs)
         net.SendToServer()
     end)
 
     -- 添加接收所有玩家数据的处理函数
-    net.Receive("UpdateAllPlayerData", function()
+    net.Receive("OFNPCP_NS_UpdateAllPlayerData", function()
         local playerData = net.ReadTable()
         OFPLAYERS = playerData
     end)
 
     -- 在客户端初始化时主动请求数据
     hook.Add("InitPostEntity", "RequestPlayerData", function()
-        net.Start("RequestPlayerDataSync")
+        net.Start("OFNPCP_NS_RequestPlayerDataSync")
         net.SendToServer()
     end)
 
@@ -560,7 +560,7 @@ if CLIENT then
                     local entIndex = ent:EntIndex()
                     if not clientNPCs[entIndex] then
                         -- 如果客户端没有该NPC的数据，向服务器请求
-                        net.Start("RequestNPCData")
+                        net.Start("OFNPCP_NS_RequestNPCData")
                         net.WriteInt(entIndex, 32)
                         net.SendToServer()
                         -- print("向服务器请求NPC数据，实体索引：" .. entIndex)

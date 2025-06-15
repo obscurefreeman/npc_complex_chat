@@ -14,7 +14,7 @@ local function OFAddDeathNotice(victim, attacker, inflictor)
   local victimClassify = victim:IsPlayer() and 1 or (victim.Classify and victim:Classify() or 0)
 
   -- 发送网络消息
-  net.Start("OFNPCP_test_AddtoKillfeed")
+  net.Start("OFNPCP_NS_AddtoKillfeed")
     net.WriteEntity(attacker)
     net.WriteEntity(victim)
     net.WriteString(inflictorname)

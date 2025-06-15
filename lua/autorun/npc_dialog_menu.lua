@@ -1,6 +1,6 @@
 if SERVER then
     -- 添加服务器端处理玩家对话选择的逻辑
-    net.Receive("PlayerDialog", function(len, ply)
+    net.Receive("OFNPCP_NS_PlayerDialog", function(len, ply)
         local npc = net.ReadEntity()
         local translatedOption = net.ReadString()
         local optionType = net.ReadString()
@@ -29,7 +29,7 @@ if SERVER then
             end)
         end
     end)
-    net.Receive("NPCAIDialog", function(len, ply)
+    net.Receive("OFNPCP_NS_NPCAIDialog", function(len, ply)
         local npc = net.ReadEntity()
         local responseContent = net.ReadString()
         local aidetail = net.BytesLeft() > 0 and net.ReadTable() or {}
@@ -42,21 +42,21 @@ end
 if CLIENT then
 
     -- 显示对话选项菜单
-    net.Receive("OpenNPCDialogMenu", function()
+    net.Receive("OFNPCP_NS_OpenNPCDialogMenu", function()
         local npc = net.ReadEntity()
 
         local npcs = GetAllNPCsList()
         local npcIdentity = npcs[npc:EntIndex()]
 
         if not npcIdentity then
-            net.Start("NPCIdentityUpdate")
+            net.Start("OFNPCP_NS_NPCIdentityUpdate")
             net.WriteEntity(npc)
             net.SendToServer()
             return
         end
         
         -- 通知服务器对话开始
-        net.Start("NPCDialogMenuOpened")
+        net.Start("OFNPCP_NS_NPCDialogMenuOpened")
         net.WriteEntity(npc)
         net.SendToServer()
         
@@ -568,7 +568,7 @@ if CLIENT then
                                 } or {}
 
                                 -- 发送网络消息
-                                net.Start("PlayerDialog")
+                                net.Start("OFNPCP_NS_PlayerDialog")
                                     net.WriteEntity(npc)
                                     net.WriteString(inputText)
                                     net.WriteString("ai")
@@ -633,7 +633,7 @@ if CLIENT then
                         -- 处理点击事件
                         button.DoClick = function()
                             -- 发送对话请求
-                            net.Start("PlayerDialog")
+                            net.Start("OFNPCP_NS_PlayerDialog")
                                 net.WriteEntity(npc)
                                 net.WriteString(playerText)
                                 net.WriteString(npcText)
@@ -682,7 +682,7 @@ if CLIENT then
                     frame:Close()
                 end
 
-                net.Start("PlayerDialog")
+                net.Start("OFNPCP_NS_PlayerDialog")
                 net.WriteEntity(npc)
                 net.WriteString(option)
                 net.WriteString(optionTypes[option])
@@ -693,7 +693,7 @@ if CLIENT then
 
         -- 在关闭菜单时通知服务器对话结束
         frame.OnClose = function()
-            net.Start("NPCDialogMenuClosed")
+            net.Start("OFNPCP_NS_NPCDialogMenuClosed")
             net.WriteEntity(npc)
             net.SendToServer()
             hook.Remove("OnNPCIdentityUpdated", "UpdateDialogHistory_"..npc:EntIndex())
@@ -714,7 +714,7 @@ if CLIENT then
         
         -- 添加检查
         if not aiSettings or aiSettings == "" or aiSettings == nil then
-            net.Start("NPCAIDialog")
+            net.Start("OFNPCP_NS_NPCAIDialog")
             net.WriteEntity(npc)
             net.WriteString(ofTranslate("ui.dialog.no_ai_settings"))
             net.WriteTable({})
@@ -734,7 +734,7 @@ if CLIENT then
             
             if not isValid then
                 -- 如果缺少必要字段
-                net.Start("NPCAIDialog")
+                net.Start("OFNPCP_NS_NPCAIDialog")
                 net.WriteEntity(npc)
                 net.WriteString(ofTranslate("ui.dialog.no_ai_settings"))
                 net.WriteTable({})
@@ -776,21 +776,21 @@ if CLIENT then
                         local responseContent = response.choices[1].message.content
                         
                         -- 将AI回复发送到服务器
-                        net.Start("NPCAIDialog")
+                        net.Start("OFNPCP_NS_NPCAIDialog")
                         net.WriteEntity(npc)
                         net.WriteString(responseContent)
                         net.WriteTable(response or {})
                         net.SendToServer()
                     elseif response and response.error and response.error.message then
                         -- 成功了，但报错
-                        net.Start("NPCAIDialog")
+                        net.Start("OFNPCP_NS_NPCAIDialog")
                         net.WriteEntity(npc)
                         net.WriteString(ofTranslate("ui.dialog.error") .. response.error.message)
                         net.WriteTable({})
                         net.SendToServer()
                     else
                         -- 成功了，但是回答格式是错误的
-                        net.Start("NPCAIDialog")
+                        net.Start("OFNPCP_NS_NPCAIDialog")
                         net.WriteEntity(npc)
                         net.WriteString(ofTranslate("ui.dialog.invalid_response"))
                         net.WriteTable({})
@@ -800,7 +800,7 @@ if CLIENT then
                 
                 failed = function(err)
                     -- 没有成功，有可能api填错了，也有可能没连上网
-                    net.Start("NPCAIDialog")
+                    net.Start("OFNPCP_NS_NPCAIDialog")
                     net.WriteEntity(npc)
                     net.WriteString(ofTranslate("ui.dialog.http_error") .. (err or ofTranslate("ui.dialog.unknown")))
                     net.WriteTable({})
@@ -809,7 +809,7 @@ if CLIENT then
             })
         else
             -- 如果没有找到AI设置文件
-            net.Start("NPCAIDialog")
+            net.Start("OFNPCP_NS_NPCAIDialog")
             net.WriteEntity(npc)
             net.WriteString(ofTranslate("ui.dialog.no_ai_settings"))
             net.WriteTable({})

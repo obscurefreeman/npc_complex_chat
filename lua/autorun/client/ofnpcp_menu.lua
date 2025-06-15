@@ -46,7 +46,7 @@ local function RefreshNPCButtons(left_panel, right_panel)
 			local newNickname = nicknameEntry:GetValue()
 			if newName and newName ~= "" and newNickname and newNickname ~= "" then
 				-- 发送更新请求到服务器
-				net.Start("UpdateNPCName")
+				net.Start("OFNPCP_NS_UpdateNPCName")
 					net.WriteInt(entIndex, 32)
 					net.WriteString(newName)
 					net.WriteString(newNickname)
@@ -116,7 +116,7 @@ local function RefreshNPCButtons(left_panel, right_panel)
 			local comment = commentEntry:GetValue()
 			if comment and comment ~= "" then
 				-- 发送评论到服务器
-				net.Start("SubmitNPCComment")
+				net.Start("OFNPCP_NS_SubmitNPCComment")
 					net.WriteInt(entIndex, 32)
 					net.WriteString(comment)
 				net.SendToServer()
@@ -150,7 +150,7 @@ local function RefreshNPCButtons(left_panel, right_panel)
 			local newPrompt = campTextEntry:GetValue()
 			if newPrompt and newPrompt ~= "" then
 				-- 发送更新请求到服务器
-				net.Start("UpdateNPCPrompt")
+				net.Start("OFNPCP_NS_UpdateNPCPrompt")
 					net.WriteInt(entIndex, 32)
 					net.WriteString(newPrompt)
 				net.SendToServer()
@@ -208,7 +208,7 @@ local function RefreshNPCButtons(left_panel, right_panel)
 			local selectedVoiceCode = voiceMap[value]
 			if selectedVoiceCode then
 				-- 发送更新请求到服务器
-				net.Start("UpdateNPCVoice")
+				net.Start("OFNPCP_NS_UpdateNPCVoice")
 					net.WriteInt(entIndex, 32)
 					net.WriteString(selectedVoiceCode)
 				net.SendToServer()
@@ -230,7 +230,7 @@ local function RefreshNPCButtons(left_panel, right_panel)
 		
 		for _, action in ipairs(actions) do
 			menu:AddOption(action.name, function()
-				net.Start("NPCAction")
+				net.Start("OFNPCP_NS_NPCAction")
 					net.WriteInt(action.global and -1 or entIndex, 32)
 					net.WriteString(action.cmd)
 				net.SendToServer()
@@ -393,7 +393,7 @@ local function RefreshCardButtons(left_panel, right_panel)
                 local selectedDeck = groupKey
                 
                 -- 发送牌组选择到服务器
-                net.Start("SelectPlayerDeck")
+                net.Start("OFNPCP_NS_SelectPlayerDeck")
                     net.WriteString(selectedDeck)
                 net.SendToServer()
 
@@ -528,7 +528,7 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
         file.Write("of_npcp/personalization_settings.txt", util.TableToJSON(newSettings))
         
         -- 发送配音设置到服务器
-        net.Start("UpdatePlayerVoice")
+        net.Start("OFNPCP_NS_UpdatePlayerVoice")
             net.WriteString(newSettings.voice)
         net.SendToServer()
         

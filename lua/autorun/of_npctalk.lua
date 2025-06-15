@@ -70,14 +70,14 @@ if SERVER then
                     speakerInfo.aidetail = aidetail
                 end
                 table.insert(npcData.dialogHistory, speakerInfo)
-                net.Start("NPCIdentityUpdate")
+                net.Start("OFNPCP_NS_NPCIdentityUpdate")
                 net.WriteEntity(speaker:IsNPC() and speaker or target)
                 net.WriteTable(npcData)
                 net.Broadcast()
             end
         end
         -- 向客户端发送对话请求
-        net.Start("TalkStart")
+        net.Start("OFNPCP_NS_TalkStart")
         net.WriteEntity(speaker)
         net.WriteString(dialogKey)
         net.WriteString(dialogtype)
@@ -128,7 +128,7 @@ if CLIENT then
     end
     
     -- 接收服务器的对话请求
-    net.Receive("TalkStart", function()
+    net.Receive("OFNPCP_NS_TalkStart", function()
         local npc = net.ReadEntity()
         local dialogKey = net.ReadString()
         local dialogtype = net.ReadString()
@@ -148,7 +148,7 @@ if CLIENT then
             -- 检查NPC是否有效且未注册身份信息，如果客户端不认识说话NPC，说明客户端和服务器不同步，现在就同步！
             if not npc:IsPlayer() and not npcs[npc:EntIndex()] then
                 -- 向服务器请求更新NPC身份信息
-                net.Start("NPCIdentityUpdate")
+                net.Start("OFNPCP_NS_NPCIdentityUpdate")
                     net.WriteEntity(npc)
                 net.SendToServer()
                 return

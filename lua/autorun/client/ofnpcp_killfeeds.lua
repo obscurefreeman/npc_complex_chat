@@ -8,7 +8,7 @@ local activeKillfeeds = {}
 local transitionTime = 0.3
 
 -- 创建字幕
-net.Receive( "OFNPCP_test_AddtoKillfeed", function()
+net.Receive( "OFNPCP_NS_AddtoKillfeed", function()
     if GetConVar("of_garrylord_killfeeds"):GetInt() == 0 then return end
 
     local attacker = net.ReadEntity()

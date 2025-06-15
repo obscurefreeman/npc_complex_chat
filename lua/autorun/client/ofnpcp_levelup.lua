@@ -3,7 +3,7 @@ CreateClientConVar("of_garrylord_levelup_effects", "1", true, true, "", 0, 1)
 
 local levelUpEffects = {}
 
-net.Receive("OFNPCRankUp", function()
+net.Receive("OFNPCP_NS_RankUp", function()
     -- 检查ConVar是否开启
     if GetConVar("of_garrylord_levelup_effects"):GetInt() == 0 then return end
 

@@ -11,7 +11,7 @@ end
 
 local function SyncPlayerDeckToClient(ply)
     if OFPLAYERS[ply:SteamID()] then
-        net.Start("UpdatePlayerDeck")
+        net.Start("OFNPCP_NS_UpdatePlayerDeck")
         net.WriteString(ply:SteamID())
         net.WriteString(OFPLAYERS[ply:SteamID()].deck)
         if ply then

@@ -110,7 +110,7 @@ hook.Add("PlayerUse", "NPCTalkGreeting", function(ply, ent)
             NPCTalkManager:StartDialog(ent, randomGreeting, "dialogue", ply, true)
         end)
     end
-    net.Start("OpenNPCDialogMenu")
+    net.Start("OFNPCP_NS_OpenNPCDialogMenu")
     net.WriteEntity(ent)
     net.Send(ply)
 end)
@@ -169,7 +169,7 @@ timer.Create("NPCIdleTalkCheck", IDLE_CHECK_INTERVAL, 0, function()
     end
 
     -- 处理对话菜单打开事件
-    net.Receive("NPCDialogMenuOpened", function(len, ply)
+    net.Receive("OFNPCP_NS_NPCDialogMenuOpened", function(len, ply)
         local npc = net.ReadEntity()
         if IsValid(npc) then
             NPCTalkManager:SetNPCChating(npc, ply, true)
@@ -177,7 +177,7 @@ timer.Create("NPCIdleTalkCheck", IDLE_CHECK_INTERVAL, 0, function()
     end)
 
     -- 处理对话菜单关闭事件
-    net.Receive("NPCDialogMenuClosed", function(len, ply)
+    net.Receive("OFNPCP_NS_NPCDialogMenuClosed", function(len, ply)
         local npc = net.ReadEntity()
         if IsValid(npc) then
             NPCTalkManager:SetNPCChating(npc, ply, false)
