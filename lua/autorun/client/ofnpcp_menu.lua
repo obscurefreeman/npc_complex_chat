@@ -785,10 +785,8 @@ function AddOFFrame()
 				timeStr = string.format(ofTranslate("ui.time.days_ago"), math.floor(timeDiff / 86400))
 			elseif timeDiff < 2592000 then
 				timeStr = string.format(ofTranslate("ui.time.weeks_ago"), math.floor(timeDiff / 604800))
-			elseif timeDiff < 31536000 then
-				timeStr = string.format(ofTranslate("ui.time.months_ago"), math.floor(timeDiff / 2592000))
 			else
-				timeStr = string.format(ofTranslate("ui.time.years_ago"), math.floor(timeDiff / 31536000))
+				timeStr = string.format(ofTranslate("ui.time.months_ago"), math.floor(timeDiff / 2592000))
 			end
 			
 			article:SetSubtitle(string.format(ofTranslate("ui.time.published_at"), timeStr))
