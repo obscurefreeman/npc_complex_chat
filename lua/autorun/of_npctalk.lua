@@ -101,6 +101,7 @@ end
 if CLIENT then
     CreateClientConVar("of_garrylord_subtitles3d", "1", true, true, "", 0, 1)
     CreateClientConVar("of_garrylord_subtitles3d_localplayer", "0", true, true, "", 0, 1)
+    CreateClientConVar("of_garrylord_subtitles3d_sound", "1", true, true, "", 0, 1)
     
     -- 对话框设置
     local activeDialogs = {}
@@ -269,7 +270,9 @@ if CLIENT then
                 dialog.currentText = utf8sub(dialog.text, 1, dialog.charIndex)
                 dialog.nextCharTime = currentTime + CHAR_DELAY
                 
-                dialog.npc:EmitSound("ofnpcp/type/type" .. math.random(1, 32) .. ".wav")
+                if GetConVar("of_garrylord_subtitles3d_sound"):GetInt() == 1 then
+                    dialog.npc:EmitSound("ofnpcp/type/type" .. math.random(1, 32) .. ".wav")
+                end
             end
             
             -- 获取说话者的位置和角度

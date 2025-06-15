@@ -101,6 +101,7 @@
             "enable_subtitles": "启用字幕",
             "enable_subtitles3d": "启用立体字幕",
             "enable_subtitles3d_localplayer": "启用自己头顶的立体字幕",
+            "enable_subtitles3d_sound": "启用立体字幕音效",
             "enable_player_hud": "启用玩家HUD",
             "enable_npcinfo_hud": "启用NPC信息HUD",
             "enable_levelup_effects": "启用升级特效",

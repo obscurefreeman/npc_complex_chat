@@ -101,6 +101,7 @@
             "enable_subtitles": "Включить субтитры",
             "enable_subtitles3d": "Включить 3D субтитры",
             "enable_subtitles3d_localplayer": "Включить 3D субтитры над своей головой",
+            "enable_subtitles3d_sound": "Включить звуковые эффекты 3D субтитров",
             "enable_player_hud": "Включить HUD игрока",
             "enable_npcinfo_hud": "Включить HUD информации о NPC",
             "enable_levelup_effects": "Включить эффекты повышения уровня",

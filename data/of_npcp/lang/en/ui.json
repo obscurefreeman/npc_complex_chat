@@ -101,6 +101,7 @@
             "enable_subtitles": "Enable Subtitles",
             "enable_subtitles3d": "Enable 3D Subtitles",
             "enable_subtitles3d_localplayer": "Enable 3D subtitles above your head",
+            "enable_subtitles3d_sound": "Enable 3D Subtitles Sound Effects",
             "enable_player_hud": "Enable Player HUD",
             "enable_npcinfo_hud": "Enable NPC Info HUD",
             "enable_levelup_effects": "Enable Level Up Effects",
