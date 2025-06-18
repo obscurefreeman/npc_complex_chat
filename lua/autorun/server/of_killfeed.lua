@@ -2,7 +2,17 @@ local function OFAddDeathNotice(victim, attacker, inflictor)
   if !IsValid( attacker ) then return end
 
   local attackerWep = attacker.GetActiveWeapon
-  local inflictorname = ( victim == attacker and "suicide" or ( IsValid( inflictor ) and ( inflictor.l_killiconname or ( ( inflictor == attacker and attackerWep and IsValid( attackerWep( attacker ) ) ) and attackerWep( attacker ):GetClass() or inflictor:GetClass() ) ) or attackerclass ) )
+  local inflictorname = ( victim == attacker and "suicide" or 
+    ( IsValid( inflictor ) and 
+      ( inflictor.l_killiconname or 
+        ( ( inflictor == attacker and attackerWep and IsValid( attackerWep( attacker ) ) ) and 
+          attackerWep( attacker ):GetClass() or 
+          inflictor:GetClass() 
+        ) 
+      ) or 
+      "defeat" 
+    ) 
+  )
 
   -- 添加安全检查
   if not IsValid(attacker) or not IsValid(victim) then return end
