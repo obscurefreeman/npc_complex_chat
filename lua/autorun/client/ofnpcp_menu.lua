@@ -1108,9 +1108,9 @@ function AddOFFrame()
 	local function SetupPan6(pan6LeftPanel, pan6RightPanel)
 		-- 本地模型表，按分类存储
 		local selectedModels = {
-			citizen = {},
-			combine = {},
-			metropolice = {}
+			npc_citizen = {},
+			npc_combine_s = {},
+			npc_metropolice = {}
 		}
 
 		-- 尝试加载已保存的模型数据
@@ -1135,10 +1135,10 @@ function AddOFFrame()
 		modelLayout:SetStretchWidth(true)
 
 		-- 定义更新左侧面板的函数
-		local function UpdateLeftPanel(category)
+		local function UpdateLeftPanel(npcClass)
 			leftScrollPanel:Clear()
 			-- 只显示当前分类的已选模型
-			local models = selectedModels[category] or {}
+			local models = selectedModels[npcClass] or {}
 			for _, model in ipairs(models) do
 				local selectedIcon = vgui.Create("OFNPCButton", leftScrollPanel)
 				selectedIcon:Dock(TOP)
@@ -1157,14 +1157,14 @@ function AddOFFrame()
 				-- 添加点击事件来移除模型
 				selectedIcon.DoClick = function()
 					-- 从对应分类的模型表中移除
-					table.RemoveByValue(selectedModels[category], model)
+					table.RemoveByValue(selectedModels[npcClass], model)
 					selectedIcon:Remove()
 				end
 			end
 		end
 
 		-- 创建模型分类按钮
-		local function CreateModelButton(panel, text, npcClass, category)
+		local function CreateModelButton(panel, text, npcClass)
 			local button = CreateControl(panel, "OFButton", {SetText = text})
 			button.DoClick = function()
 				-- 清空右侧模型布局
@@ -1184,15 +1184,15 @@ function AddOFFrame()
 					icon:SetTooltipPanelOverride("OFTooltip")
 					icon.DoClick = function()
 						-- 将选中的模型添加到对应分类的表
-						if not table.HasValue(selectedModels[category], model) then
-							table.insert(selectedModels[category], model)
-							UpdateLeftPanel(category)  -- 更新当前分类的模型池
+						if not table.HasValue(selectedModels[npcClass], model) then
+							table.insert(selectedModels[npcClass], model)
+							UpdateLeftPanel(npcClass)  -- 更新当前分类的模型池
 						end
 					end
 				end
 				
 				-- 切换时更新左侧面板显示当前分类的模型
-				UpdateLeftPanel(category)
+				UpdateLeftPanel(npcClass)
 			end
 		end
 
@@ -1207,9 +1207,9 @@ function AddOFFrame()
 		CreateCheckBoxPanel(pan6LeftPanel, "of_garrylord_model_randombodygroup", "ui.model.enable_randombodygroup")
 
 		-- 添加模型分类按钮
-		CreateModelButton(pan6LeftPanel, ofTranslate("ui.model.citizen"), "npc_citizen", "citizen")
-		CreateModelButton(pan6LeftPanel, ofTranslate("ui.model.combine"), "npc_combine_s", "combine")
-		CreateModelButton(pan6LeftPanel, ofTranslate("ui.model.metropolice"), "npc_metropolice", "metropolice")
+		CreateModelButton(pan6LeftPanel, ofTranslate("ui.model.citizen"), "npc_citizen")
+		CreateModelButton(pan6LeftPanel, ofTranslate("ui.model.combine"), "npc_combine_s")
+		CreateModelButton(pan6LeftPanel, ofTranslate("ui.model.metropolice"), "npc_metropolice")
 
 		-- 创建模型池标签
 		CreateControl(pan6LeftPanel, "OFTextLabel", {

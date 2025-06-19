@@ -2,7 +2,7 @@ CreateConVar("of_garrylord_model_randommodel", "0", FCVAR_ARCHIVE, "")
 CreateConVar("of_garrylord_model_randomskin", "0", FCVAR_ARCHIVE, "")
 CreateConVar("of_garrylord_model_randombodygroup", "0", FCVAR_ARCHIVE, "")
 
-local activemodelSettings
+local activemodelSettings = {}
 
 net.Receive("OFNPCP_NS_SaveModelSettings", function(len, ply)
 
@@ -86,6 +86,19 @@ end)
 -- 加载json
 
 hook.Add("PlayerSpawn", "OFNPCP_LoadTables", function(ply)
+  if file.Exists("of_npcp/model_settings.txt", "DATA") then
+    local savedData = file.Read("of_npcp/model_settings.txt", "DATA")
+    if savedData then
+      local loadedModels = util.JSONToTable(savedData)
+      if loadedModels then
+        activemodelSettings = loadedModels
+      end
+    end
+  end
+end)
+
+-- 在服务器启动时加载模型设置
+hook.Add("Initialize", "OFNPCP_LoadTablesOnInit", function()
   if file.Exists("of_npcp/model_settings.txt", "DATA") then
     local savedData = file.Read("of_npcp/model_settings.txt", "DATA")
     if savedData then
