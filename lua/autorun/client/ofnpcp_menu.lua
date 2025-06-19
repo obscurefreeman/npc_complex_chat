@@ -363,7 +363,7 @@ local function RefreshCardButtons(left_panel, right_panel)
 
             -- 使用DIconLayout实现自动换行布局
             local cardLayout = vgui.Create("OFIconLayout", left_card_panel)
-            cardLayout:Dock(FILL)
+            cardLayout:Dock(TOP)
             cardLayout:SetSpaceX(8 * OFGUI.ScreenScale)
             cardLayout:SetSpaceY(8 * OFGUI.ScreenScale)
 			cardLayout:SetStretchWidth(true)
@@ -420,6 +420,27 @@ local function CreateControl(parent, controlType, options)
         end
     end
     return control
+end
+
+-- 创建一个函数来简化开关的添加
+local function CreateCheckBoxPanel(parent, conVar, labelText)
+	local checkPanel = vgui.Create("EditablePanel", parent)
+	checkPanel:Dock(TOP)
+	checkPanel:SetTall(21 * OFGUI.ScreenScale)
+	checkPanel:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+
+	local checkBox = vgui.Create("OFCheckBox", checkPanel)
+	checkBox:Dock(LEFT)
+	checkBox:SetSize(21 * OFGUI.ScreenScale, 21 * OFGUI.ScreenScale)
+	checkBox:DockMargin(0, 0, 8 * OFGUI.ScreenScale, 0)
+	checkBox:SetConVar(conVar)
+
+	local checkLabel = vgui.Create("OFTextLabel", checkPanel)
+	checkLabel:SetFont("ofgui_small")
+	checkLabel:Dock(FILL)
+	checkLabel:SetText(ofTranslate(labelText))
+
+	return checkPanel
 end
 
 local function LoadpersonalizationSettings(personalizationLeftPanel)
@@ -621,27 +642,6 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
 	local uiLabel = CreateControl(personalizationLeftPanel, "OFTextLabel", {
 		SetText = ofTranslate("ui.personalization.ui_setting")
 	})
-
-    -- 创建一个函数来简化开关的添加
-    local function CreateCheckBoxPanel(parent, conVar, labelText)
-        local checkPanel = vgui.Create("EditablePanel", parent)
-        checkPanel:Dock(TOP)
-        checkPanel:SetTall(21 * OFGUI.ScreenScale)
-        checkPanel:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
-
-        local checkBox = vgui.Create("OFCheckBox", checkPanel)
-        checkBox:Dock(LEFT)
-        checkBox:SetSize(21 * OFGUI.ScreenScale, 21 * OFGUI.ScreenScale)
-        checkBox:DockMargin(0, 0, 8 * OFGUI.ScreenScale, 0)
-        checkBox:SetConVar(conVar)
-
-        local checkLabel = vgui.Create("OFTextLabel", checkPanel)
-        checkLabel:SetFont("ofgui_small")
-        checkLabel:Dock(FILL)
-        checkLabel:SetText(ofTranslate(labelText))
-
-        return checkPanel
-    end
 
     -- 使用函数简化开关的添加
     CreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_subtitles", "ui.personalization.enable_subtitles")
@@ -896,6 +896,21 @@ function AddOFFrame()
 	local pan5RightPanel = vgui.Create("OFScrollPanel")
 	pan5HorizontalDivider:SetRight(pan5RightPanel)
 
+	-- 模型设置面板 (pan6)
+	local pan6 = vgui.Create("EditablePanel", sheet)
+	sheet:AddSheet(ofTranslate("ui.tab.model"), pan6, "icon16/user.png")
+
+	local pan6HorizontalDivider = vgui.Create("DHorizontalDivider", pan6)
+	pan6HorizontalDivider:Dock(FILL)
+	pan6HorizontalDivider:DockMargin(6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale)
+	pan6HorizontalDivider:SetLeftWidth(ScrW() / 4)
+
+	local pan6LeftPanel = vgui.Create("EditablePanel")
+	pan6HorizontalDivider:SetLeft(pan6LeftPanel)
+
+	local pan6RightPanel = vgui.Create("OFScrollPanel")
+	pan6HorizontalDivider:SetRight(pan6RightPanel)
+
 	-- 创建AI设置面板布局
 	local aiHorizontalDivider = vgui.Create("DHorizontalDivider", pan2)
 	aiHorizontalDivider:Dock(FILL)
@@ -1089,6 +1104,95 @@ function AddOFFrame()
 			end
 		end
 	end
+
+	local function SetupPan6(pan6LeftPanel, pan6RightPanel)
+		-- 本地模型表
+		local selectedModels = {}
+
+		-- 先初始化模型池
+		local leftScrollPanel
+		local leftmodelLayout
+
+		-- 使用DIconLayout实现自动换行布局
+		local modelLayout = vgui.Create("OFIconLayout", pan6RightPanel)
+		modelLayout:Dock(TOP)
+		modelLayout:SetSpaceX(8 * OFGUI.ScreenScale)
+		modelLayout:SetSpaceY(8 * OFGUI.ScreenScale)
+		modelLayout:SetStretchWidth(true)
+
+		-- 创建模型分类按钮
+		local function CreateModelButton(panel, text, npcClass)
+			local button = CreateControl(panel, "OFButton", {SetText = text})
+			button.DoClick = function()
+				-- 清空右侧模型布局和左侧滚动面板
+				modelLayout:Clear()
+				leftmodelLayout:Clear()
+
+				-- 获取并显示该分类的模型
+				local models = {}
+				for _, v in pairs(list.Get("NPC")) do
+					if v.Class == npcClass then
+						table.insert(models, v.Model)
+					end
+				end
+				for _, model in ipairs(models) do
+					local icon = vgui.Create("SpawnIcon", modelLayout)
+					icon:SetModel(model)
+					icon:SetSize(96 * OFGUI.ScreenScale, 96 * OFGUI.ScreenScale)
+					icon:SetTooltipPanelOverride("OFTooltip")
+					icon.DoClick = function()
+						-- 将选中的模型添加到本地表并显示在左侧面板
+						if not table.HasValue(selectedModels, model) then
+							table.insert(selectedModels, model)
+							local selectedIcon = vgui.Create("SpawnIcon", leftmodelLayout)
+							selectedIcon:SetModel(model)
+							selectedIcon:SetSize(96 * OFGUI.ScreenScale, 96 * OFGUI.ScreenScale)
+							selectedIcon:SetTooltipPanelOverride("OFTooltip")
+							-- 添加点击事件来移除模型
+							selectedIcon.DoClick = function()
+								-- 从模型表中移除
+								table.RemoveByValue(selectedModels, model)
+								-- 从布局中移除
+								selectedIcon:Remove()
+							end
+						end
+					end
+				end
+			end
+		end
+
+		-- 创建模型替换标签
+		CreateControl(pan6LeftPanel, "OFTextLabel", {
+			SetText = ofTranslate("ui.model.model_replacement")
+		})
+
+		-- 添加勾选
+		-- CreateCheckBoxPanel(pan6LeftPanel, "of_garrylord_subtitles", "ui.personalization.enable_subtitles")
+
+		-- 添加模型分类按钮
+		CreateModelButton(pan6LeftPanel, ofTranslate("ui.model.citizen"), "npc_citizen")
+		CreateModelButton(pan6LeftPanel, ofTranslate("ui.model.combine"), "npc_combine_s")
+		CreateModelButton(pan6LeftPanel, ofTranslate("ui.model.metropolice"), "npc_metropolice")
+
+		-- 创建模型池标签
+		CreateControl(pan6LeftPanel, "OFTextLabel", {
+			SetText = ofTranslate("ui.model.model_pool")
+		})
+
+		-- 创建左侧滚动面板
+		leftScrollPanel = vgui.Create("OFScrollPanel", pan6LeftPanel)
+		leftScrollPanel:Dock(FILL)
+		leftScrollPanel:DockMargin(8 * OFGUI.ScreenScale, 8 * OFGUI.ScreenScale, 8 * OFGUI.ScreenScale, 8 * OFGUI.ScreenScale)
+
+		leftmodelLayout = vgui.Create("OFIconLayout", leftScrollPanel)
+		leftmodelLayout:Dock(TOP)
+		leftmodelLayout:SetSpaceX(8 * OFGUI.ScreenScale)
+		leftmodelLayout:SetSpaceY(8 * OFGUI.ScreenScale)
+		leftmodelLayout:SetStretchWidth(true)
+	end
+
+	-- 调用函数设置模型系统
+	SetupPan6(pan6LeftPanel, pan6RightPanel)
 end
 
 list.Set("DesktopWindows", "ofnpcp", {
