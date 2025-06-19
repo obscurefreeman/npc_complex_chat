@@ -1106,8 +1106,12 @@ function AddOFFrame()
 	end
 
 	local function SetupPan6(pan6LeftPanel, pan6RightPanel)
-		-- 本地模型表
-		local selectedModels = {}
+		-- 本地模型表，按分类存储
+		local selectedModels = {
+			citizen = {},
+			combine = {},
+			metropolice = {}
+		}
 
 		-- 先初始化模型池
 		local leftScrollPanel
@@ -1120,13 +1124,31 @@ function AddOFFrame()
 		modelLayout:SetSpaceY(8 * OFGUI.ScreenScale)
 		modelLayout:SetStretchWidth(true)
 
+		-- 定义更新左侧面板的函数
+		local function UpdateLeftPanel(category)
+			leftmodelLayout:Clear()
+			-- 只显示当前分类的已选模型
+			local models = selectedModels[category] or {}
+			for _, model in ipairs(models) do
+				local selectedIcon = vgui.Create("SpawnIcon", leftmodelLayout)
+				selectedIcon:SetModel(model)
+				selectedIcon:SetSize(96 * OFGUI.ScreenScale, 96 * OFGUI.ScreenScale)
+				selectedIcon:SetTooltipPanelOverride("OFTooltip")
+				-- 添加点击事件来移除模型
+				selectedIcon.DoClick = function()
+					-- 从对应分类的模型表中移除
+					table.RemoveByValue(selectedModels[category], model)
+					selectedIcon:Remove()
+				end
+			end
+		end
+
 		-- 创建模型分类按钮
-		local function CreateModelButton(panel, text, npcClass)
+		local function CreateModelButton(panel, text, npcClass, category)
 			local button = CreateControl(panel, "OFButton", {SetText = text})
 			button.DoClick = function()
-				-- 清空右侧模型布局和左侧滚动面板
+				-- 清空右侧模型布局
 				modelLayout:Clear()
-				leftmodelLayout:Clear()
 
 				-- 获取并显示该分类的模型
 				local models = {}
@@ -1141,23 +1163,16 @@ function AddOFFrame()
 					icon:SetSize(96 * OFGUI.ScreenScale, 96 * OFGUI.ScreenScale)
 					icon:SetTooltipPanelOverride("OFTooltip")
 					icon.DoClick = function()
-						-- 将选中的模型添加到本地表并显示在左侧面板
-						if not table.HasValue(selectedModels, model) then
-							table.insert(selectedModels, model)
-							local selectedIcon = vgui.Create("SpawnIcon", leftmodelLayout)
-							selectedIcon:SetModel(model)
-							selectedIcon:SetSize(96 * OFGUI.ScreenScale, 96 * OFGUI.ScreenScale)
-							selectedIcon:SetTooltipPanelOverride("OFTooltip")
-							-- 添加点击事件来移除模型
-							selectedIcon.DoClick = function()
-								-- 从模型表中移除
-								table.RemoveByValue(selectedModels, model)
-								-- 从布局中移除
-								selectedIcon:Remove()
-							end
+						-- 将选中的模型添加到对应分类的表
+						if not table.HasValue(selectedModels[category], model) then
+							table.insert(selectedModels[category], model)
+							UpdateLeftPanel(category)  -- 更新当前分类的模型池
 						end
 					end
 				end
+				
+				-- 切换时更新左侧面板显示当前分类的模型
+				UpdateLeftPanel(category)
 			end
 		end
 
@@ -1167,12 +1182,14 @@ function AddOFFrame()
 		})
 
 		-- 添加勾选
-		-- CreateCheckBoxPanel(pan6LeftPanel, "of_garrylord_subtitles", "ui.personalization.enable_subtitles")
+		CreateCheckBoxPanel(pan6LeftPanel, "of_garrylord_model_randommodel", "ui.model.enable_randommodel")
+		CreateCheckBoxPanel(pan6LeftPanel, "of_garrylord_model_randomskin", "ui.model.enable_randomskin")
+		CreateCheckBoxPanel(pan6LeftPanel, "of_garrylord_model_randombodygroup", "ui.model.enable_randombodygroup")
 
 		-- 添加模型分类按钮
-		CreateModelButton(pan6LeftPanel, ofTranslate("ui.model.citizen"), "npc_citizen")
-		CreateModelButton(pan6LeftPanel, ofTranslate("ui.model.combine"), "npc_combine_s")
-		CreateModelButton(pan6LeftPanel, ofTranslate("ui.model.metropolice"), "npc_metropolice")
+		CreateModelButton(pan6LeftPanel, ofTranslate("ui.model.citizen"), "npc_citizen", "citizen")
+		CreateModelButton(pan6LeftPanel, ofTranslate("ui.model.combine"), "npc_combine_s", "combine")
+		CreateModelButton(pan6LeftPanel, ofTranslate("ui.model.metropolice"), "npc_metropolice", "metropolice")
 
 		-- 创建模型池标签
 		CreateControl(pan6LeftPanel, "OFTextLabel", {
