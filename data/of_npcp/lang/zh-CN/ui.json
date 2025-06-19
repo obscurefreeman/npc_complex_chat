@@ -123,7 +123,8 @@
             "metropolice": "国民护卫队",
             "model_pool": "模型池",
             "save": "保存",
-            "save_success": "保存成功"
+            "save_success": "保存成功",
+            "save_fail": "保存失败，你不是超级管理员"
         },
         "time": {
             "just_now": "刚刚",

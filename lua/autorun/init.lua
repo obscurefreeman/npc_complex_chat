@@ -5177,6 +5177,7 @@ GLOBAL_OFNPC_DATA = {
                     model_pool = "Modellpool",
                     save = "Speichern",
                     save_success = "Erfolgreich gespeichert",
+                    save_fail = "Speichern fehlgeschlagen, Sie sind kein Super-Administrator",
                 },
                 time = {
                     just_now = "Nur",
@@ -7674,6 +7675,7 @@ GLOBAL_OFNPC_DATA = {
                     npclist = "Active NPC",
                     deck_system = "Deck Setting",
                     ai_system = "AI Setting",
+                    model = "Model",
                 },
                 npclist = {
                     confirm_edit = "Confirm Edit",
@@ -7779,6 +7781,18 @@ GLOBAL_OFNPC_DATA = {
                     killfeeds_positionX = "Kill Feeds Position - X Axis",
                     killfeeds_positionY = "Kill Feeds Position - Y Axis",
                     killfeeds_maxlines = "Kill Feeds Max Lines",
+                },
+                model = {
+                    model_replacement = "Model Replacement",
+                    enable_randommodel = "Enable Random Model",
+                    enable_randomskin = "Enable Random Skin",
+                    enable_randombodygroup = "Enable Random Body Group",
+                    citizen = "Citizen",
+                    combine = "Combine",
+                    metropolice = "Metro Police",
+                    model_pool = "Model Pool",
+                    save = "Save",
+                    save_success = "Save Successful",
                 },
                 time = {
                     just_now = "Just now",
@@ -10387,10 +10401,11 @@ GLOBAL_OFNPC_DATA = {
                     enable_randombodygroup = "Enable Random Body Group",
                     citizen = "Citizen",
                     combine = "Combine",
-                    metropolice = "Metropolice",
+                    metropolice = "Metro Police",
                     model_pool = "Model Pool",
                     save = "Save",
                     save_success = "Save Successful",
+                    save_fail = "Save failed, you are not a super administrator",
                 },
                 time = {
                     just_now = "Just now",
@@ -11279,6 +11294,7 @@ GLOBAL_OFNPC_DATA = {
                     model_pool = "Пул моделей",
                     save = "Сохранить",
                     save_success = "Сохранение успешно",
+                    save_fail = "Сохранение не удалось, вы не супер администратор",
                 },
                 time = {
                     just_now = "только",
@@ -13897,6 +13913,7 @@ GLOBAL_OFNPC_DATA = {
                     model_pool = "模型池",
                     save = "保存",
                     save_success = "保存成功",
+                    save_fail = "保存失败，你不是超级管理员",
                 },
                 time = {
                     just_now = "刚刚",
@@ -16511,6 +16528,7 @@ GLOBAL_OFNPC_DATA = {
                     model_pool = "模型池",
                     save = "保存",
                     save_success = "保存成功",
+                    save_fail = "保存失敗，你不是超級管理員",
                 },
                 time = {
                     just_now = "剛剛",

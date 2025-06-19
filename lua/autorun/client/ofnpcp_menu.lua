@@ -1223,13 +1223,21 @@ function AddOFFrame()
 		savebutton:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
 
 		savebutton.DoClick = function()
+			-- 检查玩家权限
+			if not LocalPlayer():IsSuperAdmin() then
+				notification.AddLegacy(ofTranslate("ui.model.save_fail"), NOTIFY_ERROR, 5)
+				return
+			end
+			
 			-- 检查目录是否存在，不存在则创建
 			if not file.IsDir("of_npcp", "DATA") then
 				file.CreateDir("of_npcp")
 			end
 			
-			-- 将选中的模型表转换为JSON格式并保存
-			file.Write("of_npcp/model_settings.txt", util.TableToJSON(selectedModels))
+			-- 将选中的模型表转换为JSON格式并发送到服务器
+			net.Start("OFNPCP_NS_SaveModelSettings")
+				net.WriteTable(selectedModels)
+			net.SendToServer()
 			
 			-- 显示保存成功的提示
 			notification.AddLegacy(ofTranslate("ui.model.save_success"), NOTIFY_GENERIC, 5)

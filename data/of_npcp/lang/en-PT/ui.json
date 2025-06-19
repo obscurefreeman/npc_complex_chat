@@ -120,10 +120,11 @@
             "enable_randombodygroup": "Enable Random Body Group",
             "citizen": "Citizen",
             "combine": "Combine",
-            "metropolice": "Metropolice",
+            "metropolice": "Metro Police",
             "model_pool": "Model Pool",
             "save": "Save",
-            "save_success": "Save Successful"
+            "save_success": "Save Successful",
+            "save_fail": "Save failed, you are not a super administrator"
         },
         "time": {
             "just_now": "Just now",

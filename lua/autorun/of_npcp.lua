@@ -28,6 +28,7 @@ if SERVER then
     util.AddNetworkString("OFNPCP_NS_UpdateNPCVoice")
     util.AddNetworkString("OFNPCP_NS_RequestNPCData")
     util.AddNetworkString("OFNPCP_NS_AddtoKillfeed")
+    util.AddNetworkString("OFNPCP_NS_SaveModelSettings")
 
     function AssignNPCIdentity(ent, npcInfo)
         local identity = {}

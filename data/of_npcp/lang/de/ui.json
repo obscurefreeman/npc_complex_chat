@@ -123,7 +123,8 @@
             "metropolice": "Metropolizei",
             "model_pool": "Modellpool",
             "save": "Speichern",
-            "save_success": "Erfolgreich gespeichert"
+            "save_success": "Erfolgreich gespeichert",
+            "save_fail": "Speichern fehlgeschlagen, Sie sind kein Super-Administrator"
         },
         "time": {
             "just_now": "Nur",
