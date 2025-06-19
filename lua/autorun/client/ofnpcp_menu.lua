@@ -1202,7 +1202,7 @@ function AddOFFrame()
 		})
 
 		-- 添加勾选
-		CreateCheckBoxPanel(pan6LeftPanel, "of_garrylord_model_randommodel", "ui.model.enable_randommodel")
+		CreateCheckBoxPanel(pan6LeftPanel, "of_garrylord_model_replacement", "ui.model.enable_randommodel")
 		CreateCheckBoxPanel(pan6LeftPanel, "of_garrylord_model_randomskin", "ui.model.enable_randomskin")
 		CreateCheckBoxPanel(pan6LeftPanel, "of_garrylord_model_randombodygroup", "ui.model.enable_randombodygroup")
 

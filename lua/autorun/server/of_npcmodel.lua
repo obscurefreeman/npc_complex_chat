@@ -1,4 +1,4 @@
-CreateConVar("of_garrylord_model_randommodel", "0", FCVAR_ARCHIVE, "")
+CreateConVar("of_garrylord_model_replacement", "0", FCVAR_ARCHIVE, "")
 CreateConVar("of_garrylord_model_randomskin", "0", FCVAR_ARCHIVE, "")
 CreateConVar("of_garrylord_model_randombodygroup", "0", FCVAR_ARCHIVE, "")
 
@@ -64,10 +64,12 @@ hook.Add("OnEntityCreated", "OFNPCP_ModelReplacement", function(ent)
   if entClass ~= "npc_combine_s" and entClass ~= "npc_citizen" and entClass ~= "npc_metropolice" then return end
 
   timer.Simple(0.1, function()
+    if GetConVar("of_garrylord_model_replacement"):GetBool() then
       if not IsValid(ent) then return end
       model = GetRandomNPCModel(entClass)
       if model == nil then return end
       ent:SetModel(model)
+    end
   end)
 
   timer.Simple(0.15, function()
