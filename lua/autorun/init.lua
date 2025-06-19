@@ -7793,6 +7793,7 @@ GLOBAL_OFNPC_DATA = {
                     model_pool = "Model Pool",
                     save = "Save",
                     save_success = "Save Successful",
+                    save_fail = "Save failed, you are not a super administrator",
                 },
                 time = {
                     just_now = "Just now",
