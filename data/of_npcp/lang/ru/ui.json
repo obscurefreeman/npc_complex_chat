@@ -5,7 +5,8 @@
             "home": "Первая страница",
             "npclist": "Список NPC",
             "deck_system": "Настройки палубы",
-            "ai_system": "Конфигурация искусственного интеллекта"
+            "ai_system": "Конфигурация искусственного интеллекта",
+            "model": "Модель"
         },
         "npclist": {
             "confirm_edit": "Подтвердить изменения",
@@ -111,6 +112,18 @@
             "killfeeds_positionX": "Позиция уведомлений - ось X",
             "killfeeds_positionY": "Позиция уведомлений - ось Y",
             "killfeeds_maxlines": "Максимальное количество строк уведомлений"
+        },
+        "model": {
+            "model_replacement": "Замена модели",
+            "enable_randommodel": "Включить случайную модель",
+            "enable_randomskin": "Включить случайный скин",
+            "enable_randombodygroup": "Включить случайную группу тела",
+            "citizen": "Гражданин",
+            "combine": "Объединенные силы",
+            "metropolice": "Метрополитен",
+            "model_pool": "Пул моделей",
+            "save": "Сохранить",
+            "save_success": "Сохранение успешно"
         },
         "time": {
             "just_now": "только",

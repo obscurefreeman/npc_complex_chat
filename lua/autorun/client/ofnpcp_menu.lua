@@ -898,7 +898,7 @@ function AddOFFrame()
 
 	-- 模型设置面板 (pan6)
 	local pan6 = vgui.Create("EditablePanel", sheet)
-	sheet:AddSheet(ofTranslate("ui.tab.model"), pan6, "icon16/user.png")
+	sheet:AddSheet(ofTranslate("ui.tab.model"), pan6, "icon16/monkey.png")
 
 	local pan6HorizontalDivider = vgui.Create("DHorizontalDivider", pan6)
 	pan6HorizontalDivider:Dock(FILL)
@@ -1113,9 +1113,19 @@ function AddOFFrame()
 			metropolice = {}
 		}
 
+		-- 尝试加载已保存的模型数据
+		if file.Exists("of_npcp/model_settings.txt", "DATA") then
+			local savedData = file.Read("of_npcp/model_settings.txt", "DATA")
+			if savedData then
+				local loadedModels = util.JSONToTable(savedData)
+				if loadedModels then
+					selectedModels = loadedModels
+				end
+			end
+		end
+
 		-- 先初始化模型池
 		local leftScrollPanel
-		local leftmodelLayout
 
 		-- 使用DIconLayout实现自动换行布局
 		local modelLayout = vgui.Create("OFIconLayout", pan6RightPanel)
@@ -1126,14 +1136,24 @@ function AddOFFrame()
 
 		-- 定义更新左侧面板的函数
 		local function UpdateLeftPanel(category)
-			leftmodelLayout:Clear()
+			leftScrollPanel:Clear()
 			-- 只显示当前分类的已选模型
 			local models = selectedModels[category] or {}
 			for _, model in ipairs(models) do
-				local selectedIcon = vgui.Create("SpawnIcon", leftmodelLayout)
-				selectedIcon:SetModel(model)
-				selectedIcon:SetSize(96 * OFGUI.ScreenScale, 96 * OFGUI.ScreenScale)
-				selectedIcon:SetTooltipPanelOverride("OFTooltip")
+				local selectedIcon = vgui.Create("OFNPCButton", leftScrollPanel)
+				selectedIcon:Dock(TOP)
+				selectedIcon:DockMargin(0, 0, 0, 2)
+				selectedIcon:SetTall(80 * OFGUI.ScreenScale)
+				selectedIcon:SetModel(model or "models/error.mdl")
+				local npcName = "Unknown NPC"
+				for _, v in pairs(list.Get("NPC")) do
+					if v.Model == model then
+						npcName = v.Name or v.Class or "Unknown NPC"
+						break
+					end
+				end
+				selectedIcon:SetTitle(npcName)
+				selectedIcon:SetDescription(model)
 				-- 添加点击事件来移除模型
 				selectedIcon.DoClick = function()
 					-- 从对应分类的模型表中移除
@@ -1196,16 +1216,29 @@ function AddOFFrame()
 			SetText = ofTranslate("ui.model.model_pool")
 		})
 
+		local savebutton = vgui.Create("OFButton",pan6LeftPanel)
+		savebutton:Dock(BOTTOM)
+		savebutton:SetHeight(80 * OFGUI.ScreenScale)
+		savebutton:SetText(ofTranslate("ui.model.save"))
+		savebutton:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+
+		savebutton.DoClick = function()
+			-- 检查目录是否存在，不存在则创建
+			if not file.IsDir("of_npcp", "DATA") then
+				file.CreateDir("of_npcp")
+			end
+			
+			-- 将选中的模型表转换为JSON格式并保存
+			file.Write("of_npcp/model_settings.txt", util.TableToJSON(selectedModels))
+			
+			-- 显示保存成功的提示
+			notification.AddLegacy(ofTranslate("ui.model.save_success"), NOTIFY_GENERIC, 5)
+		end
+
 		-- 创建左侧滚动面板
 		leftScrollPanel = vgui.Create("OFScrollPanel", pan6LeftPanel)
 		leftScrollPanel:Dock(FILL)
 		leftScrollPanel:DockMargin(8 * OFGUI.ScreenScale, 8 * OFGUI.ScreenScale, 8 * OFGUI.ScreenScale, 8 * OFGUI.ScreenScale)
-
-		leftmodelLayout = vgui.Create("OFIconLayout", leftScrollPanel)
-		leftmodelLayout:Dock(TOP)
-		leftmodelLayout:SetSpaceX(8 * OFGUI.ScreenScale)
-		leftmodelLayout:SetSpaceY(8 * OFGUI.ScreenScale)
-		leftmodelLayout:SetStretchWidth(true)
 	end
 
 	-- 调用函数设置模型系统

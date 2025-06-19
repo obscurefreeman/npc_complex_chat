@@ -5,7 +5,8 @@
             "home": "首頁",
             "npclist": "NPC列表",
             "deck_system": "卡組設置",
-            "ai_system": "AI配置"
+            "ai_system": "AI配置",
+            "model": "模型"
         },
         "npclist": {
             "confirm_edit": "確認修改",
@@ -111,6 +112,18 @@
             "killfeeds_positionX": "擊殺提示位置-X軸",
             "killfeeds_positionY": "擊殺提示位置-Y軸",
             "killfeeds_maxlines": "擊殺提示最大行數"
+        },
+        "model": {
+            "model_replacement": "模型替換",
+            "enable_randommodel": "啟用隨機模型",
+            "enable_randomskin": "啟用隨機皮膚",
+            "enable_randombodygroup": "啟用隨機身體組",
+            "citizen": "市民",
+            "combine": "聯合軍",
+            "metropolice": "國民護衛隊",
+            "model_pool": "模型池",
+            "save": "保存",
+            "save_success": "保存成功"
         },
         "time": {
             "just_now": "剛剛",

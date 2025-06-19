@@ -5,7 +5,8 @@
             "home": "Titelseite",
             "npclist": "NPC -Liste",
             "deck_system": "Deckeinstellungen",
-            "ai_system": "KI -Konfiguration"
+            "ai_system": "KI -Konfiguration",
+            "model": "Modell"
         },
         "npclist": {
             "confirm_edit": "Bestätigen Sie die Änderung",
@@ -111,6 +112,18 @@
             "killfeeds_positionX": "Position der Tötungsbenachrichtigungen - X-Achse",
             "killfeeds_positionY": "Position der Tötungsbenachrichtigungen - Y-Achse",
             "killfeeds_maxlines": "Maximale Zeilenanzahl der Tötungsbenachrichtigungen"
+        },
+        "model": {
+            "model_replacement": "Modellersatz",
+            "enable_randommodel": "Zufälliges Modell aktivieren",
+            "enable_randomskin": "Zufällige Haut aktivieren",
+            "enable_randombodygroup": "Zufällige Körpergruppe aktivieren",
+            "citizen": "Bürger",
+            "combine": "Kombinieren",
+            "metropolice": "Metropolizei",
+            "model_pool": "Modellpool",
+            "save": "Speichern",
+            "save_success": "Erfolgreich gespeichert"
         },
         "time": {
             "just_now": "Nur",
