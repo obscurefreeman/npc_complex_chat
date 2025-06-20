@@ -1124,76 +1124,108 @@ function AddOFFrame()
 			end
 		end
 
-		-- 先初始化模型池
-		local leftScrollPanel
+		-- 创建Tab面板
+		local tabPanel = vgui.Create("OFPropertySheet", pan6LeftPanel)
+		tabPanel:Dock(FILL)
 
-		-- 使用DIconLayout实现自动换行布局
+		-- 创建右侧模型布局
 		local modelLayout = vgui.Create("OFIconLayout", pan6RightPanel)
 		modelLayout:Dock(TOP)
 		modelLayout:SetSpaceX(8 * OFGUI.ScreenScale)
 		modelLayout:SetSpaceY(8 * OFGUI.ScreenScale)
 		modelLayout:SetStretchWidth(true)
 
-		-- 定义更新左侧面板的函数
-		local function UpdateLeftPanel(npcClass)
-			leftScrollPanel:Clear()
-			-- 只显示当前分类的已选模型
-			local models = selectedModels[npcClass] or {}
-			for _, model in ipairs(models) do
-				local selectedIcon = vgui.Create("OFNPCButton", leftScrollPanel)
-				selectedIcon:Dock(TOP)
-				selectedIcon:DockMargin(0, 0, 0, 2)
-				selectedIcon:SetTall(80 * OFGUI.ScreenScale)
-				selectedIcon:SetModel(model or "models/error.mdl")
-				local npcName = "Unknown NPC"
-				for _, v in pairs(list.Get("NPC")) do
-					if v.Model == model then
-						npcName = v.Name or v.Class or "Unknown NPC"
-						break
+		-- 创建每个分类的滚动面板
+		local scrollPanels = {}
+		local function CreateNPCTab(npcClass, name)
+			local scrollPanel = vgui.Create("OFScrollPanel")
+			scrollPanels[npcClass] = scrollPanel
+			
+			-- 填充已选模型
+			local function UpdateScrollPanel()
+				scrollPanel:Clear()
+				local models = selectedModels[npcClass] or {}
+				for _, model in ipairs(models) do
+					local selectedIcon = vgui.Create("OFNPCButton", scrollPanel)
+					selectedIcon:Dock(TOP)
+					selectedIcon:DockMargin(0, 0, 0, 2)
+					selectedIcon:SetTall(80 * OFGUI.ScreenScale)
+					selectedIcon:SetModel(model or "models/error.mdl")
+					local npcName = "Unknown NPC"
+					for _, v in pairs(list.Get("NPC")) do
+						if v.Model == model then
+							npcName = v.Name or v.Class or "Unknown NPC"
+							break
+						end
+					end
+					selectedIcon:SetTitle(npcName)
+					selectedIcon:SetDescription(model)
+					selectedIcon.DoClick = function()
+						-- 从对应分类的模型表中移除
+						table.RemoveByValue(selectedModels[npcClass], model)
+						selectedIcon:Remove()
 					end
 				end
-				selectedIcon:SetTitle(npcName)
-				selectedIcon:SetDescription(model)
-				-- 添加点击事件来移除模型
-				selectedIcon.DoClick = function()
-					-- 从对应分类的模型表中移除
-					table.RemoveByValue(selectedModels[npcClass], model)
-					selectedIcon:Remove()
+			end
+			UpdateScrollPanel()
+			
+			tabPanel:AddSheet(name, scrollPanel)
+		end
+
+		-- 创建三个分类的Tab
+		CreateNPCTab("npc_citizen", ofTranslate("ui.model.citizen"))
+		CreateNPCTab("npc_combine_s", ofTranslate("ui.model.combine"))
+		CreateNPCTab("npc_metropolice", ofTranslate("ui.model.metropolice"))
+
+		-- 初始化时显示第一个tab的内容
+		local function UpdateModelLayout(npcClass)
+			modelLayout:Clear()
+			-- 获取并显示该分类的模型
+			local models = {}
+			for _, v in pairs(list.Get("NPC")) do
+				if v.Class == npcClass and not table.HasValue(models, v.Model) then
+					table.insert(models, v.Model)
+				end
+			end
+			for _, model in ipairs(models) do
+				local icon = vgui.Create("SpawnIcon", modelLayout)
+				icon:SetModel(model)
+				icon:SetSize(96 * OFGUI.ScreenScale, 96 * OFGUI.ScreenScale)
+				icon:SetTooltipPanelOverride("OFTooltip")
+				icon.DoClick = function()
+					if not table.HasValue(selectedModels[npcClass], model) then
+						table.insert(selectedModels[npcClass], model)
+						-- 直接更新当前tab的内容，而不是重新创建
+						local selectedIcon = vgui.Create("OFNPCButton", scrollPanels[npcClass])
+						selectedIcon:Dock(TOP)
+						selectedIcon:DockMargin(0, 0, 0, 2)
+						selectedIcon:SetTall(80 * OFGUI.ScreenScale)
+						selectedIcon:SetModel(model)
+						local npcName = "Unknown NPC"
+						for _, v in pairs(list.Get("NPC")) do
+							if v.Model == model then
+								npcName = v.Name or v.Class or "Unknown NPC"
+								break
+							end
+						end
+						selectedIcon:SetTitle(npcName)
+						selectedIcon:SetDescription(model)
+						selectedIcon.DoClick = function()
+							table.RemoveByValue(selectedModels[npcClass], model)
+							selectedIcon:Remove()
+						end
+					end
 				end
 			end
 		end
 
-		-- 创建模型分类按钮
-		local function CreateModelButton(panel, text, npcClass)
-			local button = CreateControl(panel, "OFButton", {SetText = text})
-			button.DoClick = function()
-				-- 清空右侧模型布局
-				modelLayout:Clear()
+		-- 首次加载时显示第一个tab的内容
+		UpdateModelLayout("npc_citizen")
 
-				-- 获取并显示该分类的模型
-				local models = {}
-				for _, v in pairs(list.Get("NPC")) do
-					if v.Class == npcClass and not table.HasValue(models, v.Model) then
-						table.insert(models, v.Model)
-					end
-				end
-				for _, model in ipairs(models) do
-					local icon = vgui.Create("SpawnIcon", modelLayout)
-					icon:SetModel(model)
-					icon:SetSize(96 * OFGUI.ScreenScale, 96 * OFGUI.ScreenScale)
-					icon:SetTooltipPanelOverride("OFTooltip")
-					icon.DoClick = function()
-						-- 将选中的模型添加到对应分类的表
-						if not table.HasValue(selectedModels[npcClass], model) then
-							table.insert(selectedModels[npcClass], model)
-							UpdateLeftPanel(npcClass)  -- 更新当前分类的模型池
-						end
-					end
-				end
-				
-				-- 切换时更新左侧面板显示当前分类的模型
-				UpdateLeftPanel(npcClass)
-			end
+		-- Tab切换时更新右侧模型显示
+		tabPanel.OnActiveTabChanged = function(_, newTab)
+			local npcClass = table.KeyFromValue(scrollPanels, newTab:GetPanel())
+			UpdateModelLayout(npcClass)
 		end
 
 		-- 创建模型替换标签
@@ -1206,17 +1238,8 @@ function AddOFFrame()
 		CreateCheckBoxPanel(pan6LeftPanel, "of_garrylord_model_randomskin", "ui.model.enable_randomskin")
 		CreateCheckBoxPanel(pan6LeftPanel, "of_garrylord_model_randombodygroup", "ui.model.enable_randombodygroup")
 
-		-- 添加模型分类按钮
-		CreateModelButton(pan6LeftPanel, ofTranslate("ui.model.citizen"), "npc_citizen")
-		CreateModelButton(pan6LeftPanel, ofTranslate("ui.model.combine"), "npc_combine_s")
-		CreateModelButton(pan6LeftPanel, ofTranslate("ui.model.metropolice"), "npc_metropolice")
-
-		-- 创建模型池标签
-		CreateControl(pan6LeftPanel, "OFTextLabel", {
-			SetText = ofTranslate("ui.model.model_pool")
-		})
-
-		local savebutton = vgui.Create("OFButton",pan6LeftPanel)
+		-- 创建保存按钮
+		local savebutton = vgui.Create("OFButton", pan6LeftPanel)
 		savebutton:Dock(BOTTOM)
 		savebutton:SetHeight(80 * OFGUI.ScreenScale)
 		savebutton:SetText(ofTranslate("ui.model.save"))
@@ -1242,11 +1265,6 @@ function AddOFFrame()
 			-- 显示保存成功的提示
 			notification.AddLegacy(ofTranslate("ui.model.save_success"), NOTIFY_GENERIC, 5)
 		end
-
-		-- 创建左侧滚动面板
-		leftScrollPanel = vgui.Create("OFScrollPanel", pan6LeftPanel)
-		leftScrollPanel:Dock(FILL)
-		leftScrollPanel:DockMargin(8 * OFGUI.ScreenScale, 8 * OFGUI.ScreenScale, 8 * OFGUI.ScreenScale, 8 * OFGUI.ScreenScale)
 	end
 
 	-- 调用函数设置模型系统
