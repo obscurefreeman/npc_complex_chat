@@ -31,23 +31,6 @@ local function GetRandomNPCModel(npc_type)
   return model
 end
 
-local function RandomizeBodygroups(ent)
-  local bodygroups = ent:GetBodyGroups()
-
-  if bodygroups ~= nil and #bodygroups > 1 then
-      for id, bodygroup in pairs(bodygroups) do
-          ent:SetBodygroup(id, math.random(0, bodygroup.num))
-      end
-  end
-end
-
-local function RandomizeSkins(ent)
-  local skin_count = ent:SkinCount()
-
-  if skin_count > 1 then
-      ent:SetSkin(math.random(0, skin_count - 1))
-  end
-end
 
 local function ReplaceNPCModel(ent)
   if not IsValid(ent) or not ent:IsNPC() then return end
@@ -67,11 +50,21 @@ local function ReplaceNPCModel(ent)
       if not IsValid(ent) then return end
 
       if GetConVar("of_garrylord_model_randombodygroup"):GetBool() then
-          RandomizeBodygroups(ent)
+          local bodygroups = ent:GetBodyGroups()
+
+          if bodygroups ~= nil and #bodygroups > 1 then
+              for id, bodygroup in pairs(bodygroups) do
+                  ent:SetBodygroup(id, math.random(0, bodygroup.num))
+              end
+          end
       end
 
       if GetConVar("of_garrylord_model_randomskin"):GetBool() then
-          RandomizeSkins(ent)
+        local skin_count = ent:SkinCount()
+
+        if skin_count > 1 then
+            ent:SetSkin(math.random(0, skin_count - 1))
+        end
       end
   end)
 end
