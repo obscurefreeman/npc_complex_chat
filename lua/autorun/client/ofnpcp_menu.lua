@@ -1173,7 +1173,7 @@ function AddOFFrame()
 				-- 获取并显示该分类的模型
 				local models = {}
 				for _, v in pairs(list.Get("NPC")) do
-					if v.Class == npcClass then
+					if v.Class == npcClass and not table.HasValue(models, v.Model) then
 						table.insert(models, v.Model)
 					end
 				end

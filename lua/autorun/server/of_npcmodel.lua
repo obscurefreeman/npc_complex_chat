@@ -23,24 +23,15 @@ end)
 
 local function GetRandomNPCModel(npc_type)
   local model
-
   local modelPool = activemodelSettings and activemodelSettings[npc_type] or {}
   
-  -- 如果模型池不为空，则随机选择一个模型
   if #modelPool > 0 then
       model = modelPool[math.random(1, #modelPool)]
   end
-
-  print("[OFNPCP] 随机模型调试信息:")
-  print("模型设置: " .. (activemodelSettings and "已加载" or "未加载"))
-  print("NPC类型: " .. (npc_type or "未知"))
-  print("模型池: " .. (modelPool and #modelPool or 0) .. " 个模型")
-  print("选择的模型: " .. (model or "无"))
-
   return model
 end
 
-local function randomize_bodygroups(ent)
+local function RandomizeBodygroups(ent)
   local bodygroups = ent:GetBodyGroups()
 
   if bodygroups ~= nil and #bodygroups > 1 then
@@ -50,7 +41,7 @@ local function randomize_bodygroups(ent)
   end
 end
 
-local function randomize_skins(ent)
+local function RandomizeSkins(ent)
   local skin_count = ent:SkinCount()
 
   if skin_count > 1 then
@@ -58,7 +49,7 @@ local function randomize_skins(ent)
   end
 end
 
-hook.Add("OnEntityCreated", "OFNPCP_ModelReplacement", function(ent)
+local function ReplaceNPCModel(ent)
   if not IsValid(ent) or not ent:IsNPC() then return end
   local entClass = ent:GetClass()
   if entClass ~= "npc_combine_s" and entClass ~= "npc_citizen" and entClass ~= "npc_metropolice" then return end
@@ -66,7 +57,7 @@ hook.Add("OnEntityCreated", "OFNPCP_ModelReplacement", function(ent)
   timer.Simple(0.1, function()
     if GetConVar("of_garrylord_model_replacement"):GetBool() then
       if not IsValid(ent) then return end
-      model = GetRandomNPCModel(entClass)
+      local model = GetRandomNPCModel(entClass)
       if model == nil then return end
       ent:SetModel(model)
     end
@@ -76,14 +67,16 @@ hook.Add("OnEntityCreated", "OFNPCP_ModelReplacement", function(ent)
       if not IsValid(ent) then return end
 
       if GetConVar("of_garrylord_model_randombodygroup"):GetBool() then
-          randomize_bodygroups(ent)
+          RandomizeBodygroups(ent)
       end
 
       if GetConVar("of_garrylord_model_randomskin"):GetBool() then
-          randomize_skins(ent)
+          RandomizeSkins(ent)
       end
   end)
-end)
+end
+
+hook.Add("OnEntityCreated", "OFNPCP_ModelReplacement", ReplaceNPCModel)
 
 -- 加载json
 
@@ -116,6 +109,10 @@ end)
 
 hook.Add("PlayerInitialSpawn", "OFNPCP_RandomizeMapNPCs", function(ply)
   timer.Simple(5, function()
-
+    for _, npc in pairs(ents.FindByClass("npc_*")) do
+      if IsValid(npc) and npc:IsNPC() then
+        ReplaceNPCModel(npc)
+      end
+    end
   end)
 end)
