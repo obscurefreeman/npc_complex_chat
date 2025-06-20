@@ -1127,6 +1127,7 @@ function AddOFFrame()
 		-- 创建Tab面板
 		local tabPanel = vgui.Create("OFPropertySheet", pan6LeftPanel)
 		tabPanel:Dock(FILL)
+		tabPanel:DockMargin(0, 8 * OFGUI.ScreenScale, 0, 0) -- 增加顶部边距
 
 		-- 创建右侧模型布局
 		local modelLayout = vgui.Create("OFIconLayout", pan6RightPanel)
@@ -1223,9 +1224,24 @@ function AddOFFrame()
 		UpdateModelLayout("npc_citizen")
 
 		-- Tab切换时更新右侧模型显示
-		tabPanel.OnActiveTabChanged = function(_, newTab)
-			local npcClass = table.KeyFromValue(scrollPanels, newTab:GetPanel())
-			UpdateModelLayout(npcClass)
+		-- 原OnActiveTabChanged无法触发，改为监听Tab按钮的DoClick事件
+		for i, sheet in ipairs(tabPanel.Items or {}) do
+			if IsValid(sheet.Tab) then
+				sheet.Tab.DoClick = function()
+					tabPanel:SetActiveTab(sheet.Tab)
+					-- 这里直接用npcClass
+					local npcClass
+					for k, v in pairs(scrollPanels) do
+						if v == sheet.Panel then
+							npcClass = k
+							break
+						end
+					end
+					if npcClass then
+						UpdateModelLayout(npcClass)
+					end
+				end
+			end
 		end
 
 		-- 创建模型替换标签
