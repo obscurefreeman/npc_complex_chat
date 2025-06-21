@@ -409,7 +409,7 @@ local function RefreshCardButtons(left_panel, right_panel)
 end
 
 -- 创建控件辅助函数
-local function CreateControl(parent, controlType, options)
+function OFNPCPCreateControl(parent, controlType, options)
     local control = vgui.Create(controlType, parent)
     control:Dock(TOP)
     control:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
@@ -423,7 +423,7 @@ local function CreateControl(parent, controlType, options)
 end
 
 -- 创建一个函数来简化开关的添加
-local function CreateCheckBoxPanel(parent, conVar, labelText)
+function OFNPCPCreateCheckBoxPanel(parent, conVar, labelText)
 	local checkPanel = vgui.Create("EditablePanel", parent)
 	checkPanel:Dock(TOP)
 	checkPanel:SetTall(21 * OFGUI.ScreenScale)
@@ -458,7 +458,7 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
         }
     end
 
-	local voicelabel = CreateControl(personalizationLeftPanel, "OFTextLabel", {
+	local voicelabel = OFNPCPCreateControl(personalizationLeftPanel, "OFTextLabel", {
         SetText = ofTranslate("ui.personalization.voice_service")
     })
 
@@ -479,13 +479,13 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
 	voiceCheckLabel:SetText(ofTranslate("ui.personalization.enable_voice"))
 
     -- 创建API URL输入框
-    local apiUrlEntry = CreateControl(personalizationLeftPanel, "OFTextEntry", {
+    local apiUrlEntry = OFNPCPCreateControl(personalizationLeftPanel, "OFTextEntry", {
         SetValue = personalizationSettings.api_url,
         SetPlaceholderText = "API URL"
     })
 
 	-- 创建音量滑块
-	local volumeSlider = CreateControl(personalizationLeftPanel, "OFNumSlider", {
+	local volumeSlider = OFNPCPCreateControl(personalizationLeftPanel, "OFNumSlider", {
 		SetText = ofTranslate("ui.personalization.volume_setting"),
 		SetMin = 0,
 		SetMax = 10,
@@ -493,11 +493,11 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
 		SetValue = personalizationSettings.volume
 	})
 
-	local voicelabel = CreateControl(personalizationLeftPanel, "OFTextLabel", {
+	local voicelabel = OFNPCPCreateControl(personalizationLeftPanel, "OFTextLabel", {
         SetText = ofTranslate("ui.personalization.voice_player")
     })
 
-	local voiceComboBox = CreateControl(personalizationLeftPanel, "OFComboBox", {
+	local voiceComboBox = OFNPCPCreateControl(personalizationLeftPanel, "OFComboBox", {
 		SetValue = ofTranslate("ui.npclist.select_voice")
 	})
 
@@ -533,7 +533,7 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
 		end
 	end
 
-	local saveButton = CreateControl(personalizationLeftPanel, "OFButton", {
+	local saveButton = OFNPCPCreateControl(personalizationLeftPanel, "OFButton", {
 		SetText = ofTranslate("ui.personalization.save_settings")
 	})
 
@@ -557,7 +557,7 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
     end
 
     -- 添加语言设置
-    local langLabel = CreateControl(personalizationLeftPanel, "OFTextLabel", {
+    local langLabel = OFNPCPCreateControl(personalizationLeftPanel, "OFTextLabel", {
         SetText = ofTranslate("ui.personalization.language_setting")
     })
 
@@ -587,7 +587,7 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
         end
     end
 
-    local langComboBox = CreateControl(personalizationLeftPanel, "OFComboBox", {
+    local langComboBox = OFNPCPCreateControl(personalizationLeftPanel, "OFComboBox", {
         SetValue = currentValue
     })
 
@@ -610,19 +610,19 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
         end)
     end
 
-	local helpLabel = CreateControl(personalizationLeftPanel, "OFTextLabel", {
+	local helpLabel = OFNPCPCreateControl(personalizationLeftPanel, "OFTextLabel", {
         SetText = ofTranslate("ui.personalization.guide")
     })
 
-	local helpButtonWebsite = CreateControl(personalizationLeftPanel, "OFButton", {
+	local helpButtonWebsite = OFNPCPCreateControl(personalizationLeftPanel, "OFButton", {
 		SetText = "Official Website",
 	})
 
-	local helpButtonSteam = CreateControl(personalizationLeftPanel, "OFButton", {
+	local helpButtonSteam = OFNPCPCreateControl(personalizationLeftPanel, "OFButton", {
 		SetText = "Steam Guide",
 	})
 
-	local helpButtonBilibili = CreateControl(personalizationLeftPanel, "OFButton", {
+	local helpButtonBilibili = OFNPCPCreateControl(personalizationLeftPanel, "OFButton", {
 		SetText = "Bilibili",
 	})
 
@@ -639,22 +639,22 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
 	end
 
 	-- 添加UI设置
-	local uiLabel = CreateControl(personalizationLeftPanel, "OFTextLabel", {
+	local uiLabel = OFNPCPCreateControl(personalizationLeftPanel, "OFTextLabel", {
 		SetText = ofTranslate("ui.personalization.ui_setting")
 	})
 
     -- 使用函数简化开关的添加
-    CreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_subtitles", "ui.personalization.enable_subtitles")
-    CreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_subtitles3d", "ui.personalization.enable_subtitles3d")
-    CreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_subtitles3d_localplayer", "ui.personalization.enable_subtitles3d_localplayer")
-	CreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_subtitles3d_sound", "ui.personalization.enable_subtitles3d_sound")
-    CreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_player_hud", "ui.personalization.enable_player_hud")
-    CreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_killfeeds", "ui.personalization.enable_killfeeds")
-    CreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_npcinfo_hud", "ui.personalization.enable_npcinfo_hud")
-    CreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_levelup_effects", "ui.personalization.enable_levelup_effects")
+    OFNPCPCreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_subtitles", "ui.personalization.enable_subtitles")
+    OFNPCPCreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_subtitles3d", "ui.personalization.enable_subtitles3d")
+    OFNPCPCreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_subtitles3d_localplayer", "ui.personalization.enable_subtitles3d_localplayer")
+	OFNPCPCreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_subtitles3d_sound", "ui.personalization.enable_subtitles3d_sound")
+    OFNPCPCreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_player_hud", "ui.personalization.enable_player_hud")
+    OFNPCPCreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_killfeeds", "ui.personalization.enable_killfeeds")
+    OFNPCPCreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_npcinfo_hud", "ui.personalization.enable_npcinfo_hud")
+    OFNPCPCreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_levelup_effects", "ui.personalization.enable_levelup_effects")
 
     -- 添加字幕位置调节滑块
-    local subtitlesPositionSlider = CreateControl(personalizationLeftPanel, "OFNumSlider", {
+    local subtitlesPositionSlider = OFNPCPCreateControl(personalizationLeftPanel, "OFNumSlider", {
         SetText = ofTranslate("ui.personalization.subtitles_position"),
         SetMin = 0,
         SetMax = 500,
@@ -663,7 +663,7 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
     })
 
     -- 添加字幕最大行数调节滑块
-    local subtitlesMaxLinesSlider = CreateControl(personalizationLeftPanel, "OFNumSlider", {
+    local subtitlesMaxLinesSlider = OFNPCPCreateControl(personalizationLeftPanel, "OFNumSlider", {
         SetText = ofTranslate("ui.personalization.subtitles_maxlines"),
         SetMin = 1,
         SetMax = 10,
@@ -672,7 +672,7 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
     })
 
     -- 添加击杀信息X轴位置调节滑块
-    local killfeedsPositionXSlider = CreateControl(personalizationLeftPanel, "OFNumSlider", {
+    local killfeedsPositionXSlider = OFNPCPCreateControl(personalizationLeftPanel, "OFNumSlider", {
         SetText = ofTranslate("ui.personalization.killfeeds_positionX"),
         SetMin = 0,
         SetMax = 500,
@@ -681,7 +681,7 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
     })
 
     -- 添加击杀信息Y轴位置调节滑块
-    local killfeedsPositionYSlider = CreateControl(personalizationLeftPanel, "OFNumSlider", {
+    local killfeedsPositionYSlider = OFNPCPCreateControl(personalizationLeftPanel, "OFNumSlider", {
         SetText = ofTranslate("ui.personalization.killfeeds_positionY"),
         SetMin = 0,
         SetMax = 500,
@@ -690,7 +690,7 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
     })
 
     -- 添加击杀信息最大行数调节滑块
-    local killfeedsMaxLinesSlider = CreateControl(personalizationLeftPanel, "OFNumSlider", {
+    local killfeedsMaxLinesSlider = OFNPCPCreateControl(personalizationLeftPanel, "OFNumSlider", {
         SetText = ofTranslate("ui.personalization.killfeeds_maxlines"),
         SetMin = 1,
         SetMax = 10,
@@ -898,18 +898,9 @@ function AddOFFrame()
 
 	-- 模型设置面板 (pan6)
 	local pan6 = vgui.Create("EditablePanel", sheet)
-	sheet:AddSheet(ofTranslate("ui.tab.model"), pan6, "icon16/monkey.png")
+	sheet:AddSheet(ofTranslate("ui.tab.extra"), pan6, "icon16/add.png")
 
-	local pan6HorizontalDivider = vgui.Create("DHorizontalDivider", pan6)
-	pan6HorizontalDivider:Dock(FILL)
-	pan6HorizontalDivider:DockMargin(6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale)
-	pan6HorizontalDivider:SetLeftWidth(ScrW() / 4)
-
-	local pan6LeftPanel = vgui.Create("EditablePanel")
-	pan6HorizontalDivider:SetLeft(pan6LeftPanel)
-
-	local pan6RightPanel = vgui.Create("OFScrollPanel")
-	pan6HorizontalDivider:SetRight(pan6RightPanel)
+	OFNPCP_SetUpExtraFeatureMenu(pan6)
 
 	-- 创建AI设置面板布局
 	local aiHorizontalDivider = vgui.Create("DHorizontalDivider", pan2)
@@ -942,17 +933,17 @@ function AddOFFrame()
 		}
 
 		-- 创建设置控件
-		local apiUrlEntry = CreateControl(aiRightPanel, "OFTextEntry", {
+		local apiUrlEntry = OFNPCPCreateControl(aiRightPanel, "OFTextEntry", {
 			SetValue = settings.url,
 			SetPlaceholderText = "API URL"
 		})
 
-		local apiKeyEntry = CreateControl(aiRightPanel, "OFTextEntry", {
+		local apiKeyEntry = OFNPCPCreateControl(aiRightPanel, "OFTextEntry", {
 			SetValue = settings.key or "",
 			SetPlaceholderText = ofTranslate(provider.name) .. " API"
 		})
 
-		local modelComboBox = CreateControl(aiRightPanel, "OFComboBox", {
+		local modelComboBox = OFNPCPCreateControl(aiRightPanel, "OFComboBox", {
 			SetValue = settings.model or ofTranslate("ui.ai_system.model_select")
 		})
 		for _, model in ipairs(provider.model) do
@@ -964,7 +955,7 @@ function AddOFFrame()
 			modelComboBox:SetValue(provider.model[1])
 		end
 
-		local tempSlider = CreateControl(aiRightPanel, "OFNumSlider", {
+		local tempSlider = OFNPCPCreateControl(aiRightPanel, "OFNumSlider", {
 			SetText = ofTranslate("ui.ai_system.temperature"),
 			SetMin = 0,
 			SetMax = 2,
@@ -972,7 +963,7 @@ function AddOFFrame()
 			SetValue = settings.temperature
 		})
 
-		local maxTokensSlider = CreateControl(aiRightPanel, "OFNumSlider", {
+		local maxTokensSlider = OFNPCPCreateControl(aiRightPanel, "OFNumSlider", {
 			SetText = ofTranslate("ui.ai_system.max_tokens"),
 			SetMin = 100,
 			SetMax = 2000,
@@ -981,7 +972,7 @@ function AddOFFrame()
 		})
 
 		-- 保存按钮
-		local saveButton = CreateControl(aiRightPanel, "OFButton", {
+		local saveButton = OFNPCPCreateControl(aiRightPanel, "OFButton", {
 			SetText = ofTranslate("ui.ai_system.save_settings")
 		})
 		saveButton.DoClick = function()
@@ -1031,7 +1022,7 @@ function AddOFFrame()
 	table.sort(sortedProviders, function(a, b) return a.data.index < b.data.index end)
 
 	for _, provider in ipairs(sortedProviders) do
-		local button = CreateControl(aiLeftPanel, "OFAdvancedButton", {
+		local button = OFNPCPCreateControl(aiLeftPanel, "OFAdvancedButton", {
 			SetTall = 80 * OFGUI.ScreenScale,
 			SetTitle = ofTranslate(provider.data.name),
 			SetDescription = ofTranslate(provider.data.description),
@@ -1104,196 +1095,29 @@ function AddOFFrame()
 			end
 		end
 	end
-
-	local function SetupPan6(pan6LeftPanel, pan6RightPanel)
-		-- 本地模型表，按分类存储
-		local selectedModels = {
-			npc_citizen = {},
-			npc_combine_s = {},
-			npc_metropolice = {}
-		}
-
-		-- 尝试加载已保存的模型数据
-		if file.Exists("of_npcp/model_settings.txt", "DATA") then
-			local savedData = file.Read("of_npcp/model_settings.txt", "DATA")
-			if savedData then
-				local loadedModels = util.JSONToTable(savedData)
-				if loadedModels then
-					selectedModels = loadedModels
-				end
-			end
-		end
-
-		-- 创建Tab面板
-		local tabPanel = vgui.Create("OFPropertySheet", pan6LeftPanel)
-		tabPanel:Dock(FILL)
-		tabPanel:DockMargin(0, 8 * OFGUI.ScreenScale, 0, 0) -- 增加顶部边距
-
-		-- 创建右侧模型布局
-		local modelLayout = vgui.Create("OFIconLayout", pan6RightPanel)
-		modelLayout:Dock(TOP)
-		modelLayout:SetSpaceX(8 * OFGUI.ScreenScale)
-		modelLayout:SetSpaceY(8 * OFGUI.ScreenScale)
-		modelLayout:SetStretchWidth(true)
-
-		-- 创建每个分类的滚动面板
-		local scrollPanels = {}
-		local function CreateNPCTab(npcClass, name)
-			local scrollPanel = vgui.Create("OFScrollPanel")
-			scrollPanels[npcClass] = scrollPanel
-			
-			-- 填充已选模型
-			local function UpdateScrollPanel()
-				scrollPanel:Clear()
-				local models = selectedModels[npcClass] or {}
-				for _, model in ipairs(models) do
-					local selectedIcon = vgui.Create("OFNPCButton", scrollPanel)
-					selectedIcon:Dock(TOP)
-					selectedIcon:DockMargin(0, 0, 0, 2)
-					selectedIcon:SetTall(80 * OFGUI.ScreenScale)
-					selectedIcon:SetModel(model or "models/error.mdl")
-					local npcName = "Unknown NPC"
-					for _, v in pairs(list.Get("NPC")) do
-						if v.Model == model then
-							npcName = v.Name or v.Class or "Unknown NPC"
-							break
-						end
-					end
-					selectedIcon:SetTitle(npcName)
-					selectedIcon:SetDescription(model)
-					selectedIcon.DoClick = function()
-						-- 从对应分类的模型表中移除
-						table.RemoveByValue(selectedModels[npcClass], model)
-						selectedIcon:Remove()
-					end
-				end
-			end
-			UpdateScrollPanel()
-			
-			tabPanel:AddSheet(name, scrollPanel)
-		end
-
-		-- 创建三个分类的Tab
-		CreateNPCTab("npc_citizen", ofTranslate("ui.model.citizen"))
-		CreateNPCTab("npc_combine_s", ofTranslate("ui.model.combine"))
-		CreateNPCTab("npc_metropolice", ofTranslate("ui.model.metropolice"))
-
-		-- 初始化时显示第一个tab的内容
-		local function UpdateModelLayout(npcClass)
-			modelLayout:Clear()
-			-- 获取并显示该分类的模型
-			local models = {}
-			for _, v in pairs(list.Get("NPC")) do
-				if v.Class == npcClass and not table.HasValue(models, v.Model) then
-					table.insert(models, v.Model)
-				end
-			end
-			for _, model in ipairs(models) do
-				local icon = vgui.Create("SpawnIcon", modelLayout)
-				icon:SetModel(model)
-				icon:SetSize(96 * OFGUI.ScreenScale, 96 * OFGUI.ScreenScale)
-				icon:SetTooltipPanelOverride("OFTooltip")
-				icon.DoClick = function()
-					if not table.HasValue(selectedModels[npcClass], model) then
-						table.insert(selectedModels[npcClass], model)
-						-- 直接更新当前tab的内容，而不是重新创建
-						local selectedIcon = vgui.Create("OFNPCButton", scrollPanels[npcClass])
-						selectedIcon:Dock(TOP)
-						selectedIcon:DockMargin(0, 0, 0, 2)
-						selectedIcon:SetTall(80 * OFGUI.ScreenScale)
-						selectedIcon:SetModel(model)
-						local npcName = "Unknown NPC"
-						for _, v in pairs(list.Get("NPC")) do
-							if v.Model == model then
-								npcName = v.Name or v.Class or "Unknown NPC"
-								break
-							end
-						end
-						selectedIcon:SetTitle(npcName)
-						selectedIcon:SetDescription(model)
-						selectedIcon.DoClick = function()
-							table.RemoveByValue(selectedModels[npcClass], model)
-							selectedIcon:Remove()
-						end
-					end
-				end
-			end
-		end
-
-		-- 首次加载时显示第一个tab的内容
-		UpdateModelLayout("npc_citizen")
-
-		-- Tab切换时更新右侧模型显示
-		-- 原OnActiveTabChanged无法触发，改为监听Tab按钮的DoClick事件
-		for i, sheet in ipairs(tabPanel.Items or {}) do
-			if IsValid(sheet.Tab) then
-				sheet.Tab.DoClick = function()
-					tabPanel:SetActiveTab(sheet.Tab)
-					-- 这里直接用npcClass
-					local npcClass
-					for k, v in pairs(scrollPanels) do
-						if v == sheet.Panel then
-							npcClass = k
-							break
-						end
-					end
-					if npcClass then
-						UpdateModelLayout(npcClass)
-					end
-				end
-			end
-		end
-
-		-- 创建模型替换标签
-		CreateControl(pan6LeftPanel, "OFTextLabel", {
-			SetText = ofTranslate("ui.model.model_replacement")
-		})
-
-		-- 添加勾选
-		CreateCheckBoxPanel(pan6LeftPanel, "of_garrylord_model_replacement", "ui.model.enable_randommodel")
-		CreateCheckBoxPanel(pan6LeftPanel, "of_garrylord_model_randomskin", "ui.model.enable_randomskin")
-		CreateCheckBoxPanel(pan6LeftPanel, "of_garrylord_model_randombodygroup", "ui.model.enable_randombodygroup")
-
-		CreateControl(pan6LeftPanel, "OFTextLabel", {
-			SetText = ofTranslate("ui.model.model_pool")
-		})
-
-		-- 创建保存按钮
-		local savebutton = vgui.Create("OFButton", pan6LeftPanel)
-		savebutton:Dock(BOTTOM)
-		savebutton:SetHeight(80 * OFGUI.ScreenScale)
-		savebutton:SetText(ofTranslate("ui.model.save"))
-		savebutton:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
-
-		savebutton.DoClick = function()
-			-- 检查玩家权限
-			if not LocalPlayer():IsSuperAdmin() then
-				notification.AddLegacy(ofTranslate("ui.model.save_fail"), NOTIFY_ERROR, 5)
-				return
-			end
-			
-			-- 检查目录是否存在，不存在则创建
-			if not file.IsDir("of_npcp", "DATA") then
-				file.CreateDir("of_npcp")
-			end
-			
-			-- 将选中的模型表转换为JSON格式并发送到服务器
-			net.Start("OFNPCP_NS_SaveModelSettings")
-				net.WriteTable(selectedModels)
-			net.SendToServer()
-			
-			-- 显示保存成功的提示
-			notification.AddLegacy(ofTranslate("ui.model.save_success"), NOTIFY_GENERIC, 5)
-		end
-	end
-
-	-- 调用函数设置模型系统
-	SetupPan6(pan6LeftPanel, pan6RightPanel)
 end
+-- 定义三个文件夹的图标路径
+local logoFolders = {
+    "oftoollogo/style1/",
+    "oftoollogo/style2/", 
+    "oftoollogo/style1/"
+}
+
+-- 获取每个文件夹中的图标文件
+local logoFiles = {}
+for _, folder in ipairs(logoFolders) do
+    local files = file.Find(folder .. "*.png", "GAME")
+    for _, file in ipairs(files) do
+        table.insert(logoFiles, folder .. file)
+    end
+end
+
+-- 随机选择一个图标
+local randomLogo = logoFiles[math.random(#logoFiles)] or "oftoollogo/ofnpcplogo.png"
 
 list.Set("DesktopWindows", "ofnpcp", {
     title = "GarryLord",
-    icon = "oftoollogo/ofnpcplogo.png",
+    icon = randomLogo,
     init = function()
         AddOFFrame()
     end

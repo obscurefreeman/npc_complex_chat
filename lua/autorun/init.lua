@@ -5059,7 +5059,8 @@ GLOBAL_OFNPC_DATA = {
                     npclist = "NPC -Liste",
                     deck_system = "Deckeinstellungen",
                     ai_system = "KI -Konfiguration",
-                    model = "Modell",
+                    extra = "Zusätzliche Funktionen",
+                    model = "Modellersetzung",
                 },
                 npclist = {
                     confirm_edit = "Bestätigen Sie die Änderung",
@@ -7675,7 +7676,8 @@ GLOBAL_OFNPC_DATA = {
                     npclist = "Active NPC",
                     deck_system = "Deck Setting",
                     ai_system = "AI Setting",
-                    model = "Model",
+                    extra = "Extra Feature",
+                    model = "Model Replacement",
                 },
                 npclist = {
                     confirm_edit = "Confirm Edit",
@@ -10288,7 +10290,8 @@ GLOBAL_OFNPC_DATA = {
                     npclist = "Active NPC",
                     deck_system = "Deck Setting",
                     ai_system = "AI Setting",
-                    model = "Model",
+                    extra = "Extra Feature",
+                    model = "Model Replacement",
                 },
                 npclist = {
                     confirm_edit = "Confirm Edit",
@@ -11177,7 +11180,8 @@ GLOBAL_OFNPC_DATA = {
                     npclist = "Список NPC",
                     deck_system = "Настройки палубы",
                     ai_system = "Конфигурация искусственного интеллекта",
-                    model = "Модель",
+                    extra = "Дополнительные функции",
+                    model = "Замена моделей",
                 },
                 npclist = {
                     confirm_edit = "Подтвердить изменения",
@@ -13796,7 +13800,8 @@ GLOBAL_OFNPC_DATA = {
                     npclist = "NPC列表",
                     deck_system = "卡组设置",
                     ai_system = "AI配置",
-                    model = "模型",
+                    extra = "额外功能",
+                    model = "模型替换",
                 },
                 npclist = {
                     confirm_edit = "确认修改",
@@ -16411,7 +16416,8 @@ GLOBAL_OFNPC_DATA = {
                     npclist = "NPC列表",
                     deck_system = "卡組設置",
                     ai_system = "AI配置",
-                    model = "模型",
+                    extra = "額外功能",
+                    model = "模型替換",
                 },
                 npclist = {
                     confirm_edit = "確認修改",

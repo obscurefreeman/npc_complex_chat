@@ -6,7 +6,8 @@
             "npclist": "NPC列表",
             "deck_system": "卡组设置",
             "ai_system": "AI配置",
-            "model": "模型"
+            "extra": "额外功能",
+            "model": "模型替换"
         },
         "npclist": {
             "confirm_edit": "确认修改",

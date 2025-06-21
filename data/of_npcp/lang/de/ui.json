@@ -6,7 +6,8 @@
             "npclist": "NPC -Liste",
             "deck_system": "Deckeinstellungen",
             "ai_system": "KI -Konfiguration",
-            "model": "Modell"
+            "extra": "Zusätzliche Funktionen",
+            "model": "Modellersetzung"
         },
         "npclist": {
             "confirm_edit": "Bestätigen Sie die Änderung",

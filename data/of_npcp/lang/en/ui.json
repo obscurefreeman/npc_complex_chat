@@ -6,7 +6,8 @@
             "npclist": "Active NPC",
             "deck_system": "Deck Setting",
             "ai_system": "AI Setting",
-            "model": "Model"
+            "extra": "Extra Feature",
+            "model": "Model Replacement"
         },
         "npclist": {
             "confirm_edit": "Confirm Edit",
