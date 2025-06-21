@@ -1096,17 +1096,15 @@ function AddOFFrame()
 		end
 	end
 end
--- 定义三个文件夹的图标路径
+-- 定义图标所在的文件夹
 local logoFolders = {
-    "oftoollogo/style1/",
-    "oftoollogo/style2/", 
-    "oftoollogo/style1/"
+    "oftoollogo/style3/"
 }
 
 -- 获取每个文件夹中的图标文件
 local logoFiles = {}
 for _, folder in ipairs(logoFolders) do
-    local files = file.Find(folder .. "*.png", "GAME")
+    local files = file.Find("materials/" .. folder .. "*.png", "GAME")
     for _, file in ipairs(files) do
         table.insert(logoFiles, folder .. file)
     end
