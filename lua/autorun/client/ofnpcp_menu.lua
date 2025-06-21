@@ -1254,6 +1254,10 @@ function AddOFFrame()
 		CreateCheckBoxPanel(pan6LeftPanel, "of_garrylord_model_randomskin", "ui.model.enable_randomskin")
 		CreateCheckBoxPanel(pan6LeftPanel, "of_garrylord_model_randombodygroup", "ui.model.enable_randombodygroup")
 
+		CreateControl(pan6LeftPanel, "OFTextLabel", {
+			SetText = ofTranslate("ui.model.model_pool")
+		})
+
 		-- 创建保存按钮
 		local savebutton = vgui.Create("OFButton", pan6LeftPanel)
 		savebutton:Dock(BOTTOM)
