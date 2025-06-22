@@ -1098,7 +1098,7 @@ function AddOFFrame()
 end
 -- 定义图标所在的文件夹
 local logoFolders = {
-    "oftoollogo/style3/"
+    "oftoollogo/ofnpcplogo/"
 }
 
 -- 获取每个文件夹中的图标文件
