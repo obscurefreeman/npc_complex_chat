@@ -29,6 +29,10 @@
                 "name": "Ollama Local Deployment",
                 "description": "Locally deployed open-source models."
             },
+            "player2": {
+                "name": "Player2 Local Deployment (Recommended)",
+                "description": "Build, play and share AI mods and games through our platform for the community and indie developers."
+            },
             "groq": {
                 "name": "Groq",
                 "description": "A platform providing various AI model services."

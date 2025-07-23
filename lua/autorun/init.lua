@@ -3458,16 +3458,6 @@ GLOBAL_OFNPC_DATA = {
                 "claude-3-haiku-20240307",
             },
         },
-        ollama = {
-            name = "ai.providor.ollama.name",
-            description = "ai.providor.ollama.description",
-            url = "http://localhost:11434/v1/chat/completions",
-            index = 7,
-            model = {
-                "deepseek-r1:8b",
-                "llama3:latest",
-            },
-        },
         groq = {
             name = "ai.providor.groq.name",
             description = "ai.providor.groq.description",
@@ -5061,6 +5051,7 @@ GLOBAL_OFNPC_DATA = {
                     ai_system = "KI -Konfiguration",
                     extra = "Zusätzliche Funktionen",
                     model = "Modellersetzung",
+                    player2 = "Player2 (Beta)",
                 },
                 npclist = {
                     confirm_edit = "Bestätigen Sie die Änderung",
@@ -5180,6 +5171,12 @@ GLOBAL_OFNPC_DATA = {
                     save_success = "Erfolgreich gespeichert",
                     save_fail = "Speichern fehlgeschlagen, Sie sind kein Super-Administrator",
                 },
+                player2 = {
+                    enable_server = "(Server) Player2 auf dem Server aktivieren",
+                    enable_server_share = "(Server) Alle Spieler können den Player2-Dienst des Servers nutzen",
+                    enable = "(Client) Player2 anstelle von selbst konfigurierter KI verwenden",
+                    enable_tts = "(Client) Player2s TTS anstelle von selbst konfiguriertem TTS-Dienst verwenden",
+                },
                 time = {
                     just_now = "Nur",
                     minutes_ago = "%d vor Minuten",
@@ -5193,6 +5190,7 @@ GLOBAL_OFNPC_DATA = {
                 sponsor = {
                     mod_creator = "Modulhersteller",
                     technical_support = "Technische Unterstützung",
+                    localization_consultant = "Lokalisierungsberater",
                     senior_sponsor = "Senior -Sponsor -Medaille",
                     sponsor = "Sponsor -Medaille",
                 },
@@ -5228,6 +5226,10 @@ GLOBAL_OFNPC_DATA = {
                     ollama = {
                         name = "Ollama Local Deployment",
                         description = "Locally deployed open-source models.",
+                    },
+                    player2 = {
+                        name = "Player2 Local Deployment (Recommended)",
+                        description = "Build, play and share AI mods and games through our platform for the community and indie developers.",
                     },
                     groq = {
                         name = "Groq",
@@ -7678,6 +7680,7 @@ GLOBAL_OFNPC_DATA = {
                     ai_system = "AI Setting",
                     extra = "Extra Feature",
                     model = "Model Replacement",
+                    player2 = "Player2 (Beta)",
                 },
                 npclist = {
                     confirm_edit = "Confirm Edit",
@@ -7797,6 +7800,12 @@ GLOBAL_OFNPC_DATA = {
                     save_success = "Save Successful",
                     save_fail = "Save failed, you are not a super administrator",
                 },
+                player2 = {
+                    enable_server = "(Server) Enable Player2 on server",
+                    enable_server_share = "(Server) All players can share the server's Player2 service",
+                    enable = "(Client) Use Player2 instead of self-configured AI",
+                    enable_tts = "(Client) Use Player2's TTS instead of self-configured TTS service",
+                },
                 time = {
                     just_now = "Just now",
                     minutes_ago = "%d minutes ago",
@@ -7846,6 +7855,10 @@ GLOBAL_OFNPC_DATA = {
                     ollama = {
                         name = "Ollama Local Deployment",
                         description = "Locally deployed open-source models. Savvy? Weigh anchor and hoist the mizzen!",
+                    },
+                    player2 = {
+                        name = "Player2 Local Deployment (Recommended)",
+                        description = "Build, play and share AI mods and games through our platform for the community and indie developers.",
                     },
                     groq = {
                         name = "Groq",
@@ -10292,6 +10305,7 @@ GLOBAL_OFNPC_DATA = {
                     ai_system = "AI Setting",
                     extra = "Extra Feature",
                     model = "Model Replacement",
+                    player2 = "Player2 (Beta)",
                 },
                 npclist = {
                     confirm_edit = "Confirm Edit",
@@ -10410,6 +10424,12 @@ GLOBAL_OFNPC_DATA = {
                     save = "Save",
                     save_success = "Save Successful",
                     save_fail = "Save failed, you are not a super administrator",
+                },
+                player2 = {
+                    enable_server = "(Server) Enable Player2 on server",
+                    enable_server_share = "(Server) All players can share the server's Player2 service",
+                    enable = "(Client) Use Player2 instead of self-configured AI",
+                    enable_tts = "(Client) Use Player2's TTS instead of self-configured TTS service",
                 },
                 time = {
                     just_now = "Just now",
@@ -11182,6 +11202,7 @@ GLOBAL_OFNPC_DATA = {
                     ai_system = "Конфигурация искусственного интеллекта",
                     extra = "Дополнительные функции",
                     model = "Замена моделей",
+                    player2 = "Player2 (Beta)",
                 },
                 npclist = {
                     confirm_edit = "Подтвердить изменения",
@@ -11301,6 +11322,12 @@ GLOBAL_OFNPC_DATA = {
                     save_success = "Сохранение успешно",
                     save_fail = "Сохранение не удалось, вы не супер администратор",
                 },
+                player2 = {
+                    enable_server = "（Сервер）Включить Player2 на сервере",
+                    enable_server_share = "（Сервер）Все игроки могут использовать Player2 сервера",
+                    enable = "（Клиент）Использовать Player2 вместо настроенного AI",
+                    enable_tts = "（Клиент）Использовать TTS Player2 вместо настроенного TTS сервиса",
+                },
                 time = {
                     just_now = "только",
                     minutes_ago = "%d минут назад",
@@ -11350,6 +11377,10 @@ GLOBAL_OFNPC_DATA = {
                     ollama = {
                         name = "Ollama 本地部署",
                         description = "本地部署开源模型。",
+                    },
+                    player2 = {
+                        name = "Player2 本地部署（推荐）",
+                        description = "通过我们的平台为社区和独立开发者构建、玩和分享 AI 模组和游戏。",
                     },
                     groq = {
                         name = "Groq",
@@ -13802,6 +13833,7 @@ GLOBAL_OFNPC_DATA = {
                     ai_system = "AI配置",
                     extra = "额外功能",
                     model = "模型替换",
+                    player2 = "Player2（测试版）",
                 },
                 npclist = {
                     confirm_edit = "确认修改",
@@ -13921,6 +13953,12 @@ GLOBAL_OFNPC_DATA = {
                     save_success = "保存成功",
                     save_fail = "保存失败，你不是超级管理员",
                 },
+                player2 = {
+                    enable_server = "（服务器需下载客户端）在服务器上启用Player2",
+                    enable_server_share = "（服务器）所有玩家均可共享服务器的Player2服务",
+                    enable = "（客户端）使用Player2，而非自己配置好的AI",
+                    enable_tts = "（客户端）使用Player2的tts，而非自己配置好的tts服务",
+                },
                 time = {
                     just_now = "刚刚",
                     minutes_ago = "%d 分钟前",
@@ -13970,6 +14008,10 @@ GLOBAL_OFNPC_DATA = {
                     ollama = {
                         name = "Ollama 本地部署",
                         description = "本地部署開源模型。",
+                    },
+                    player2 = {
+                        name = "Player2 本地部署（推薦）",
+                        description = "通過我們的平台為社區和獨立開發者構建、玩和分享 AI 模組和遊戲。",
                     },
                     groq = {
                         name = "Groq",
@@ -16418,6 +16460,7 @@ GLOBAL_OFNPC_DATA = {
                     ai_system = "AI配置",
                     extra = "額外功能",
                     model = "模型替換",
+                    player2 = "Player2（Beta）",
                 },
                 npclist = {
                     confirm_edit = "確認修改",
@@ -16536,6 +16579,12 @@ GLOBAL_OFNPC_DATA = {
                     save = "保存",
                     save_success = "保存成功",
                     save_fail = "保存失敗，你不是超級管理員",
+                },
+                player2 = {
+                    enable_server = "（伺服器需下載客戶端）在伺服器上啟用Player2",
+                    enable_server_share = "（伺服器）所有玩家均可共享伺服器的Player2服務",
+                    enable = "（客戶端）使用Player2，而非自己配置好的AI",
+                    enable_tts = "（客戶端）使用Player2的tts，而非自己配置好的tts服務",
                 },
                 time = {
                     just_now = "剛剛",

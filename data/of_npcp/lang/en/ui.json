@@ -7,7 +7,8 @@
             "deck_system": "Deck Setting",
             "ai_system": "AI Setting",
             "extra": "Extra Feature",
-            "model": "Model Replacement"
+            "model": "Model Replacement",
+            "player2": "Player2 (Beta)"
         },
         "npclist": {
             "confirm_edit": "Confirm Edit",
@@ -126,6 +127,12 @@
             "save": "Save",
             "save_success": "Save Successful",
             "save_fail": "Save failed, you are not a super administrator"
+        },
+        "player2": {
+            "enable_server": "(Server) Enable Player2 on server",
+            "enable_server_share": "(Server) All players can share the server's Player2 service",
+            "enable": "(Client) Use Player2 instead of self-configured AI",
+            "enable_tts": "(Client) Use Player2's TTS instead of self-configured TTS service"
         },
         "time": {
             "just_now": "Just now",

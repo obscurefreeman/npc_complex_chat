@@ -7,7 +7,8 @@
             "deck_system": "卡組設置",
             "ai_system": "AI配置",
             "extra": "額外功能",
-            "model": "模型替換"
+            "model": "模型替換",
+            "player2": "Player2（Beta）"
         },
         "npclist": {
             "confirm_edit": "確認修改",
@@ -126,6 +127,12 @@
             "save": "保存",
             "save_success": "保存成功",
             "save_fail": "保存失敗，你不是超級管理員"
+        },
+        "player2": {
+            "enable_server": "（伺服器需下載客戶端）在伺服器上啟用Player2",
+            "enable_server_share": "（伺服器）所有玩家均可共享伺服器的Player2服務",
+            "enable": "（客戶端）使用Player2，而非自己配置好的AI",
+            "enable_tts": "（客戶端）使用Player2的tts，而非自己配置好的tts服務"
         },
         "time": {
             "just_now": "剛剛",

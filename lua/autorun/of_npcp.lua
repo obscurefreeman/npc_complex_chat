@@ -10,6 +10,7 @@ if SERVER then
     util.AddNetworkString("OFNPCP_NS_SubmitNPCComment")
     util.AddNetworkString("OFNPCP_NS_RankUp")
     util.AddNetworkString("OFNPCP_NS_NPCAIDialog")  -- 新增AI对话网络消息
+    util.AddNetworkString("OFNPCP_NS_NPCAIDialog_Player2")   -- player2的
 
     util.AddNetworkString("OFNPCP_NS_TalkStart")
     util.AddNetworkString("OFNPCP_NS_OpenNPCDialogMenu")

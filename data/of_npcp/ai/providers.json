@@ -88,16 +88,6 @@
             "claude-3-haiku-20240307"
         ]
     },
-    "ollama": {
-        "name": "ai.providor.ollama.name",
-        "description": "ai.providor.ollama.description",
-        "url": "http://localhost:11434/v1/chat/completions",
-        "index": 7,
-        "model": [
-            "deepseek-r1:8b",
-            "llama3:latest"
-        ]
-    },
     "groq": {
         "name": "ai.providor.groq.name",
         "description": "ai.providor.groq.description",

@@ -7,7 +7,8 @@
             "deck_system": "Deckeinstellungen",
             "ai_system": "KI -Konfiguration",
             "extra": "Zusätzliche Funktionen",
-            "model": "Modellersetzung"
+            "model": "Modellersetzung",
+            "player2": "Player2 (Beta)"
         },
         "npclist": {
             "confirm_edit": "Bestätigen Sie die Änderung",
@@ -127,6 +128,12 @@
             "save_success": "Erfolgreich gespeichert",
             "save_fail": "Speichern fehlgeschlagen, Sie sind kein Super-Administrator"
         },
+        "player2": {
+            "enable_server": "(Server) Player2 auf dem Server aktivieren",
+            "enable_server_share": "(Server) Alle Spieler können den Player2-Dienst des Servers nutzen",
+            "enable": "(Client) Player2 anstelle von selbst konfigurierter KI verwenden",
+            "enable_tts": "(Client) Player2s TTS anstelle von selbst konfiguriertem TTS-Dienst verwenden"
+        },
         "time": {
             "just_now": "Nur",
             "minutes_ago": "%d vor Minuten",
@@ -140,6 +147,7 @@
         "sponsor": {
             "mod_creator": "Modulhersteller",
             "technical_support": "Technische Unterstützung",
+            "localization_consultant": "Lokalisierungsberater",
             "senior_sponsor": "Senior -Sponsor -Medaille",
             "sponsor": "Sponsor -Medaille"
         }

@@ -1,3 +1,5 @@
+CreateClientConVar("of_garrylord_player2_cl_enable", "0", true, true, "", 0, 1)
+
 function OFNPCP_SetUpExtraFeatureMenu(extraFeatureMenu)
 	local sheet = vgui.Create("OFPropertySheet", extraFeatureMenu)
 	sheet:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
@@ -18,7 +20,7 @@ function OFNPCP_SetUpExtraFeatureMenu(extraFeatureMenu)
 	pan1HorizontalDivider:SetRight(pan1RightPanel)
 
 
-	local function SetupPan6(pan1LeftPanel, pan1RightPanel)
+	local function SetupPan1(pan1LeftPanel, pan1RightPanel)
 		-- 本地模型表，按分类存储
 		local selectedModels = {
 			npc_citizen = {},
@@ -201,5 +203,16 @@ function OFNPCP_SetUpExtraFeatureMenu(extraFeatureMenu)
 	end
 
 	-- 调用函数设置模型系统
-	SetupPan6(pan1LeftPanel, pan1RightPanel)
+	SetupPan1(pan1LeftPanel, pan1RightPanel)
+
+	local pan2 = vgui.Create("EditablePanel", sheet)
+	sheet:AddSheet(ofTranslate("ui.tab.player2"), pan2, "ofnpcp/ai/icon16/player2.png")
+
+	local player2Panel = vgui.Create("OFScrollPanel", pan2)
+	player2Panel:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+	player2Panel:Dock(FILL)
+
+	OFNPCPCreateCheckBoxPanel(player2Panel, "of_garrylord_player2_enable", ofTranslate("ui.player2.enable_server"))
+	OFNPCPCreateCheckBoxPanel(player2Panel, "of_garrylord_player2_tts_enable", ofTranslate("ui.player2.enable_tts"))
+	OFNPCPCreateCheckBoxPanel(player2Panel, "of_garrylord_player2_cl_enable", ofTranslate("ui.player2.enable"))
 end

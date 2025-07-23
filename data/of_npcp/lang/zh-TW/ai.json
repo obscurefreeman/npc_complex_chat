@@ -29,6 +29,10 @@
                 "name": "Ollama 本地部署",
                 "description": "本地部署開源模型。"
             },
+            "player2": {
+                "name": "Player2 本地部署（推薦）",
+                "description": "通過我們的平台為社區和獨立開發者構建、玩和分享 AI 模組和遊戲。"
+            },
             "groq": {
                 "name": "Groq",
                 "description": "提供多種AI模型服務的平臺。"
