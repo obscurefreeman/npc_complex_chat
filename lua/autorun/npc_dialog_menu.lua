@@ -709,14 +709,6 @@ if CLIENT then
     end)
 
     function SendAIDialogRequest(npc, aiDialogs)
-        if GetConVar("of_garrylord_player2_cl_enable"):GetInt() == 1 then
-            net.Start("OFNPCP_NS_NPCAIDialog_Player2")
-            net.WriteEntity(npc)
-            net.WriteTable(aiDialogs)
-            net.SendToServer()
-            return
-        end
-
         -- 读取本地AI设置
         local aiSettings = file.Read("of_npcp/ai_settings.txt", "DATA")
         

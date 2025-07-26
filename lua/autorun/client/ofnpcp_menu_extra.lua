@@ -1,4 +1,4 @@
-CreateClientConVar("of_garrylord_player2_cl_enable", "0", true, true, "", 0, 1)
+CreateClientConVar("of_garrylord_player2_enable", "0", true, true, "", 0, 1)
 
 function OFNPCP_SetUpExtraFeatureMenu(extraFeatureMenu)
 	local sheet = vgui.Create("OFPropertySheet", extraFeatureMenu)
@@ -212,7 +212,5 @@ function OFNPCP_SetUpExtraFeatureMenu(extraFeatureMenu)
 	player2Panel:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
 	player2Panel:Dock(FILL)
 
-	OFNPCPCreateCheckBoxPanel(player2Panel, "of_garrylord_player2_enable", ofTranslate("ui.player2.enable_server"))
-	OFNPCPCreateCheckBoxPanel(player2Panel, "of_garrylord_player2_tts_enable", ofTranslate("ui.player2.enable_tts"))
-	OFNPCPCreateCheckBoxPanel(player2Panel, "of_garrylord_player2_cl_enable", ofTranslate("ui.player2.enable"))
+	OFNPCPCreateCheckBoxPanel(player2Panel, "of_garrylord_player2_enable", ofTranslate("ui.player2.enable"))
 end
