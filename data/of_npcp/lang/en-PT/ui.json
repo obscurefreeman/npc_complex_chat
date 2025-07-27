@@ -61,7 +61,8 @@
             "error": "AI response received successfully, but an error occurred:",
             "http_error": "Network communication error:",
             "no_ai_settings": "Nay valid AI configuration detected, please go to th' AI settings panel to initialize.",
-            "unknown": "Unknown"
+            "unknown": "Unknown",
+            "submit": "Submit"
         },
         "card_editor": {
             "title": "Card Editor",

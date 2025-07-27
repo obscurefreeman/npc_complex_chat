@@ -61,7 +61,8 @@
             "error": "AI-Antwort erfolgreich erhalten, aber ein Fehler ist aufgetreten:",
             "http_error": "Ausnahme der Netzwerkkommunikation:",
             "no_ai_settings": "Es wurde keine gültige KI -Konfiguration erkannt. Bitte gehen Sie zur Initialisierung zum AI -Einstellungsfeld.",
-            "unknown": "unbekannt"
+            "unknown": "unbekannt",
+            "submit": "Senden"
         },
         "card_editor": {
             "title": "Kartenredakteur",

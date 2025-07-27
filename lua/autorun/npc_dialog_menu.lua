@@ -520,12 +520,21 @@ if CLIENT then
                     -- 清空面板并创建新的文本输入框
                     local function CreateChatInput()
                         scrollPanel:Clear()
+
+                        local textingarea = vgui.Create("EditablePanel", scrollPanel)
+                        textingarea:Dock(TOP)
+                        textingarea:SetTall(80 * OFGUI.ScreenScale)
+
+                        local submitButton = vgui.Create("OFButton", textingarea)
+                        submitButton:Dock(RIGHT)
+                        submitButton:SetWide(100 * OFGUI.ScreenScale)
+                        submitButton:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+                        submitButton:SetText(ofTranslate("ui.dialog.submit"))
                         
-                        local textEntry = vgui.Create("OFTextEntry", scrollPanel)
-                        textEntry:Dock(TOP)
-                        textEntry:DockMargin(4, 4, 4, 4)
+                        local textEntry = vgui.Create("OFTextEntry", textingarea)
+                        textEntry:Dock(FILL)
+                        textEntry:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
                         textEntry:SetFont("ofgui_huge")
-                        textEntry:SetTall(100 * OFGUI.ScreenScale)
 
                         local randomLeave = GLOBAL_OFNPC_DATA.playerTalks.leave[math.random(#GLOBAL_OFNPC_DATA.playerTalks.leave)]
                         local translatedOption = ReplacePlaceholders(ofTranslate(randomLeave), npcIdentity)
@@ -548,10 +557,9 @@ if CLIENT then
                                 frame:Close()
                             end
                         end
-
-                        -- 处理用户输入
-                        textEntry.OnEnter = function(self)
-                            local inputText = self:GetValue()
+                        
+                        -- 定义处理用户输入的函数
+                        local function HandleUserInput(inputText)
                             if inputText and inputText ~= "" then
                                 -- 准备AI对话数据
                                 local aiDialogs = TranslateDialogHistory(npc, npcIdentity, true)
@@ -581,6 +589,17 @@ if CLIENT then
                                 -- 重置输入框
                                 CreateChatInput()
                             end
+                        end
+
+                        -- 处理用户输入
+                        textEntry.OnEnter = function(self)
+                            local inputText = self:GetValue()
+                            HandleUserInput(inputText)
+                        end
+
+                        submitButton.DoClick = function()
+                            local inputText = textEntry:GetValue()
+                            HandleUserInput(inputText)
                         end
                     end
 

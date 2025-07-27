@@ -61,7 +61,8 @@
             "error": "AI響應獲取成功，但出現錯誤：",
             "http_error": "網絡通信異常：",
             "no_ai_settings": "未檢測到有效AI配置，請前往AI設置面板進行初始化。",
-            "unknown": "未知"
+            "unknown": "未知",
+            "submit": "發送"
         },
         "card_editor": {
             "title": "卡牌編輯器",

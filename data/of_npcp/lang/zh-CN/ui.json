@@ -61,7 +61,8 @@
             "error": "AI响应获取成功，但出现错误：",
             "http_error": "网络通信异常：",
             "no_ai_settings": "未检测到有效AI配置，请前往AI设置面板进行初始化。",
-            "unknown": "未知"
+            "unknown": "未知",
+            "submit": "发送"
         },
         "card_editor": {
             "title": "卡牌编辑器",

@@ -132,6 +132,37 @@ function OFNPCP_SetUpExtraFeatureMenu(extraFeatureMenu)
 						end
 					end
 				end
+
+				-- 添加右键菜单
+				icon.OpenMenu = function( pnl )
+					if ( pnl:GetParent() && pnl:GetParent().ContentContainer ) then
+						container = pnl:GetParent().ContentContainer
+					end
+					local menu = vgui.Create("OFMenu")
+					menu:AddOption( "#spawnmenu.menu.copy", function() SetClipboardText( string.gsub( model, "\\", "/" ) ) end ):SetIcon( "icon16/page_copy.png" )
+					menu:AddOption( "#spawnmenu.menu.spawn_with_toolgun", function()
+						RunConsoleCommand( "gmod_tool", "creator" )
+						RunConsoleCommand( "creator_type", "4" )
+						RunConsoleCommand( "creator_name", model )
+					end ):SetIcon( "icon16/brick_add.png" )
+			
+					menu:AddOption( "#spawnmenu.menu.rerender", function()
+						if ( IsValid( pnl ) ) then pnl:RebuildSpawnIcon() end
+					end ):SetIcon( "icon16/picture.png" )
+
+					menu:AddOption( "#spawnmenu.menu.edit_icon", function()
+			
+						if ( !IsValid( pnl ) ) then return end
+			
+						local editor = vgui.Create( "IconEditor" )
+						editor:SetIcon( pnl )
+						editor:Refresh()
+						editor:MakePopup()
+						editor:Center()
+			
+					end ):SetIcon( "icon16/pencil.png" )
+					menu:Open()
+				end
 			end
 		end
 

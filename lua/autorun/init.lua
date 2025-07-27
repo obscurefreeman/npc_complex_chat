@@ -5105,6 +5105,7 @@ GLOBAL_OFNPC_DATA = {
                     http_error = "Ausnahme der Netzwerkkommunikation:",
                     no_ai_settings = "Es wurde keine gültige KI -Konfiguration erkannt. Bitte gehen Sie zur Initialisierung zum AI -Einstellungsfeld.",
                     unknown = "unbekannt",
+                    submit = "Senden",
                 },
                 card_editor = {
                     title = "Kartenredakteur",
@@ -7734,6 +7735,7 @@ GLOBAL_OFNPC_DATA = {
                     http_error = "Network communication error: ",
                     no_ai_settings = "No valid AI configuration detected, please go to the AI settings panel to initialize.",
                     unknown = "Unknown",
+                    submit = "Submit",
                 },
                 card_editor = {
                     title = "Card Editor",
@@ -10359,6 +10361,7 @@ GLOBAL_OFNPC_DATA = {
                     http_error = "Network communication error:",
                     no_ai_settings = "Nay valid AI configuration detected, please go to th' AI settings panel to initialize.",
                     unknown = "Unknown",
+                    submit = "Submit",
                 },
                 card_editor = {
                     title = "Card Editor",
@@ -11256,6 +11259,7 @@ GLOBAL_OFNPC_DATA = {
                     http_error = "СЕТИРОВАННАЯ СОБСТВЕННАЯ КОММУНИКАЦИЯ:",
                     no_ai_settings = "Не было обнаружено достоверной конфигурации ИИ, перейдите на панель настроек AI для инициализации.",
                     unknown = "неизвестный",
+                    submit = "Отправить",
                 },
                 card_editor = {
                     title = "Редактор карт",
@@ -13887,6 +13891,7 @@ GLOBAL_OFNPC_DATA = {
                     http_error = "网络通信异常：",
                     no_ai_settings = "未检测到有效AI配置，请前往AI设置面板进行初始化。",
                     unknown = "未知",
+                    submit = "发送",
                 },
                 card_editor = {
                     title = "卡牌编辑器",
@@ -16514,6 +16519,7 @@ GLOBAL_OFNPC_DATA = {
                     http_error = "網絡通信異常：",
                     no_ai_settings = "未檢測到有效AI配置，請前往AI設置面板進行初始化。",
                     unknown = "未知",
+                    submit = "發送",
                 },
                 card_editor = {
                     title = "卡牌編輯器",
