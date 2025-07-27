@@ -185,8 +185,16 @@ if SERVER then
         AssignTag("trade")
         AssignTag("social")
 
-        if GetConVar("of_garrylord_model_replacement"):GetBool() then
-            OFNPCP_ReplaceNPCModel( ent, identity )
+        -- 替换模型
+        local randommodel, randombodygroups, randomskin = OFNPCP_ReplaceNPCModel( ent, identity )
+
+        -- 读取替换后的模型
+        identity.model = randommodel
+        if randombodygroups and #randombodygroups > 0 then
+            identity.bodygroups = randombodygroups
+        end
+        if randomskin then
+            identity.skin = randomskin
         end
 
         -- 存储NPC身份信息

@@ -37,7 +37,10 @@ function OFNPCP_ReplaceNPCModel( ent, identity )
   local entClass = identity.info
   if entClass ~= "npc_combine_s" and entClass ~= "npc_citizen" and entClass ~= "npc_metropolice" then return end
 
-  timer.Simple(0.1, function()
+  local randommodel, randomskin
+  local randombodygroups = {}
+
+  if GetConVar("of_garrylord_model_replacement"):GetBool() then
     if not IsValid(ent) then return end
     
     -- 定义替换的模型列表
@@ -127,31 +130,56 @@ function OFNPCP_ReplaceNPCModel( ent, identity )
     if table.HasValue(includedModels, identity.model) then
       local model = GetRandomNPCModel(entClass)
       if model == nil then return end
-      ent:SetModel(model)
+      randommodel = model
+      timer.Simple(0.1, function()
+        if not IsValid(ent) then return end
+        ent:SetModel(model)
+      end)
     end
-  end)
+  end
 
-  timer.Simple(0.15, function()
-      if not IsValid(ent) then return end
+  if GetConVar("of_garrylord_model_randombodygroup"):GetBool() then
+      local bodygroups = ent:GetBodyGroups()
 
-      if GetConVar("of_garrylord_model_randombodygroup"):GetBool() then
-          local bodygroups = ent:GetBodyGroups()
-
-          if bodygroups ~= nil and #bodygroups > 1 then
-              for id, bodygroup in pairs(bodygroups) do
-                  ent:SetBodygroup(id, math.random(0, bodygroup.num))
-              end
+      if bodygroups ~= nil and #bodygroups > 1 then
+          for id, bodygroup in pairs(bodygroups) do
+              local randomNum = math.random(0, bodygroup.num)
+              table.insert(randombodygroups, {id = id, num = randomNum})
+              timer.Simple(0.15, function()
+                if not IsValid(ent) then return end
+                ent:SetBodygroup(id, randomNum)
+              end)
           end
       end
+  end
 
-      if GetConVar("of_garrylord_model_randomskin"):GetBool() then
-        local skin_count = ent:SkinCount()
+  if GetConVar("of_garrylord_model_randomskin"):GetBool() then
+    local skin_count = ent:SkinCount()
 
-        if skin_count > 1 then
-            ent:SetSkin(math.random(0, skin_count - 1))
-        end
-      end
-  end)
+    if skin_count > 1 then
+        randomskin = math.random(0, skin_count - 1)
+        timer.Simple(0.15, function()
+          if not IsValid(ent) then return end
+          ent:SetSkin(randomskin)
+        end)
+    end
+  end
+
+  -- 打印生成的随机模型、身体组和皮肤信息
+  -- if randommodel then
+  --   print("[OFNPCP] 随机模型: " .. randommodel)
+  -- end
+  -- if randombodygroups and #randombodygroups > 0 then
+  --   print("[OFNPCP] 随机身体组:")
+  --   for _, bg in ipairs(randombodygroups) do
+  --     print("  ID: " .. bg.id .. ", 值: " .. bg.num)
+  --   end
+  -- end
+  -- if randomskin then
+  --   print("[OFNPCP] 随机皮肤: " .. randomskin)
+  -- end
+
+  return randommodel, randombodygroups, randomskin
 end
 
 -- 加载json
