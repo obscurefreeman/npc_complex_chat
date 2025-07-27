@@ -16,7 +16,7 @@ function OFNPCP_SetUpExtraFeatureMenu(extraFeatureMenu)
 	local pan1LeftPanel = vgui.Create("EditablePanel")
 	pan1HorizontalDivider:SetLeft(pan1LeftPanel)
 
-	local pan1RightPanel = vgui.Create("OFScrollPanel")
+	local pan1RightPanel = vgui.Create("EditablePanel")
 	pan1HorizontalDivider:SetRight(pan1RightPanel)
 
 
@@ -44,8 +44,37 @@ function OFNPCP_SetUpExtraFeatureMenu(extraFeatureMenu)
 		tabPanel:Dock(FILL)
 		tabPanel:DockMargin(0, 8 * OFGUI.ScreenScale, 0, 0) -- 增加顶部边距
 
+		local pan1TopPanel = vgui.Create("EditablePanel", pan1RightPanel)
+		pan1TopPanel:Dock(TOP)
+		pan1TopPanel:SetTall(300 * OFGUI.ScreenScale)  -- 设置顶部面板高度为屏幕高度的30%
+
+		local pan1TopHorizontalDivider = vgui.Create("DHorizontalDivider", pan1TopPanel)
+		pan1TopHorizontalDivider:Dock(FILL)
+		pan1TopHorizontalDivider:DockMargin(6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale)
+		pan1TopHorizontalDivider:SetLeftWidth(ScrW() / 6)
+
+		local pan1ModelPanel = vgui.Create("DModelPanel")
+		pan1ModelPanel:SetFOV(45)  -- 设置较小的FOV使模型看起来更近
+		pan1ModelPanel:SetCamPos(Vector(50, 0, 52))  -- 设置相机位置更靠近模型
+		pan1ModelPanel:SetLookAt(Vector(0, 0, 52))  -- 设置相机看向模型中心
+		pan1ModelPanel:SetAmbientLight(Color(150, 150, 150))  -- 设置环境光
+		pan1ModelPanel:SetMouseInputEnabled( false )
+		pan1ModelPanel:SetAnimated( true )
+		pan1ModelPanel:SetDirectionalLight( BOX_TOP, Color( 0, 0, 0 ) )
+		pan1ModelPanel:SetAmbientLight( Color( 128, 128, 128, 128 ) )
+		-- function pan1ModelPanel:LayoutEntity( ent ) end
+		pan1TopHorizontalDivider:SetLeft(pan1ModelPanel)
+	
+		local pan1ListPanel = vgui.Create("OFListView")
+		pan1ListPanel:AddColumn( "身体组" )
+		pan1ListPanel:AddColumn( "是否屏蔽" )
+		pan1TopHorizontalDivider:SetRight(pan1ListPanel)
+
+		local pan1IconPanel = vgui.Create("OFScrollPanel", pan1RightPanel)
+		pan1IconPanel:Dock(FILL)
+
 		-- 创建右侧模型布局
-		local modelLayout = vgui.Create("OFIconLayout", pan1RightPanel)
+		local modelLayout = vgui.Create("OFIconLayout", pan1IconPanel)
 		modelLayout:Dock(TOP)
 		modelLayout:SetSpaceX(8 * OFGUI.ScreenScale)
 		modelLayout:SetSpaceY(8 * OFGUI.ScreenScale)
@@ -103,12 +132,37 @@ function OFNPCP_SetUpExtraFeatureMenu(extraFeatureMenu)
 					table.insert(models, v.Model)
 				end
 			end
+
+			-- 如果有模型，就显示第一个
+
+			if #models > 0 then
+				local firstModel = models[1]
+				pan1ModelPanel:SetModel(firstModel)
+				pan1ListPanel:Clear()
+				local bodyGroups = pan1ModelPanel.Entity:GetBodyGroups()
+				for _, bodyGroup in ipairs(bodyGroups) do
+					local line = pan1ListPanel:AddLine(bodyGroup.name)
+				end
+			end
+			
 			for _, model in ipairs(models) do
 				local icon = vgui.Create("SpawnIcon", modelLayout)
 				icon:SetModel(model)
 				icon:SetSize(96 * OFGUI.ScreenScale, 96 * OFGUI.ScreenScale)
 				icon:SetTooltipPanelOverride("OFTooltip")
 				icon.DoClick = function()
+
+					-- 更新模型面板中的模型
+					pan1ModelPanel:SetModel(model)
+
+					-- 清空并更新身体组列表
+					pan1ListPanel:Clear()
+					local bodyGroups = pan1ModelPanel.Entity:GetBodyGroups()
+					for _, bodyGroup in ipairs(bodyGroups) do
+						local line = pan1ListPanel:AddLine(bodyGroup.name)
+						-- line:SetTooltip(bodyGroup.id)
+					end
+					
 					if not table.HasValue(selectedModels[npcClass], model) then
 						table.insert(selectedModels[npcClass], model)
 						-- 直接更新当前tab的内容，而不是重新创建
