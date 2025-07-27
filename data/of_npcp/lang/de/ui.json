@@ -125,6 +125,10 @@
             "combine": "Kombinieren",
             "metropolice": "Metropolizei",
             "model_pool": "Modellpool",
+            "bodygroup": "Körpergruppe",
+            "current_display": "Aktuelle Anzeige", 
+            "block": "Blockieren",
+            "block_last_one": "Letztes Element blockieren",
             "save": "Speichern",
             "save_success": "Erfolgreich gespeichert",
             "save_fail": "Speichern fehlgeschlagen, Sie sind kein Super-Administrator"

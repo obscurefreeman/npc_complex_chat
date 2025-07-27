@@ -125,6 +125,10 @@
             "combine": "Combine",
             "metropolice": "Metro Police",
             "model_pool": "Model Pool",
+            "bodygroup": "Body Group",
+            "current_display": "Current Display", 
+            "block": "Block",
+            "block_last_one": "Block Last One",
             "save": "Save",
             "save_success": "Save Successful",
             "save_fail": "Save failed, you are not a super administrator"

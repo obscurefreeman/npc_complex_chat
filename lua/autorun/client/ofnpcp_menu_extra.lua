@@ -62,13 +62,44 @@ function OFNPCP_SetUpExtraFeatureMenu(extraFeatureMenu)
 		pan1ModelPanel:SetAnimated( true )
 		pan1ModelPanel:SetDirectionalLight( BOX_TOP, Color( 0, 0, 0 ) )
 		pan1ModelPanel:SetAmbientLight( Color( 128, 128, 128, 128 ) )
-		-- function pan1ModelPanel:LayoutEntity( ent ) end
+		function pan1ModelPanel:LayoutEntity( ent ) end
 		pan1TopHorizontalDivider:SetLeft(pan1ModelPanel)
 	
 		local pan1ListPanel = vgui.Create("OFListView")
-		pan1ListPanel:AddColumn( "身体组" )
-		pan1ListPanel:AddColumn( "是否屏蔽" )
+		pan1ListPanel:AddColumn( ofTranslate("ui.model.bodygroup") )
+		pan1ListPanel:AddColumn( ofTranslate("ui.model.current_display") )
+		pan1ListPanel:AddColumn( ofTranslate("ui.model.block") )
 		pan1TopHorizontalDivider:SetRight(pan1ListPanel)
+
+		-- 添加点击事件处理
+		pan1ListPanel.OnRowSelected = function(_, _, line)
+			local bodyGroupName = line:GetColumnText(1)
+			local entity = pan1ModelPanel.Entity
+			if IsValid(entity) then
+				local bodyGroups = entity:GetBodyGroups()
+				for _, bodyGroup in ipairs(bodyGroups) do
+					if bodyGroup.name == bodyGroupName then
+						local current = entity:GetBodygroup(bodyGroup.id)
+						local num = bodyGroup.num
+						local nextBodyGroup = (current + 1) % num
+						entity:SetBodygroup(bodyGroup.id, nextBodyGroup)
+						-- 更新当前显示的数字
+						line:SetColumnText(2, tostring(nextBodyGroup))
+						break
+					end
+				end
+			end
+		end
+
+		-- 初始化时设置当前显示的数字
+		local function UpdateBodyGroupList(entity)
+			pan1ListPanel:Clear()
+			local bodyGroups = entity:GetBodyGroups()
+			for _, bodyGroup in ipairs(bodyGroups) do
+				local current = entity:GetBodygroup(bodyGroup.id)
+				local line = pan1ListPanel:AddLine(bodyGroup.name, tostring(current), ofTranslate("ui.model.block_last_one"))
+			end
+		end
 
 		local pan1IconPanel = vgui.Create("OFScrollPanel", pan1RightPanel)
 		pan1IconPanel:Dock(FILL)
@@ -138,11 +169,7 @@ function OFNPCP_SetUpExtraFeatureMenu(extraFeatureMenu)
 			if #models > 0 then
 				local firstModel = models[1]
 				pan1ModelPanel:SetModel(firstModel)
-				pan1ListPanel:Clear()
-				local bodyGroups = pan1ModelPanel.Entity:GetBodyGroups()
-				for _, bodyGroup in ipairs(bodyGroups) do
-					local line = pan1ListPanel:AddLine(bodyGroup.name)
-				end
+				UpdateBodyGroupList(pan1ModelPanel.Entity)
 			end
 			
 			for _, model in ipairs(models) do
@@ -150,18 +177,23 @@ function OFNPCP_SetUpExtraFeatureMenu(extraFeatureMenu)
 				icon:SetModel(model)
 				icon:SetSize(96 * OFGUI.ScreenScale, 96 * OFGUI.ScreenScale)
 				icon:SetTooltipPanelOverride("OFTooltip")
+				
+				-- 添加勾选标记
+				icon.PaintOver = function(self, w, h)
+					if table.HasValue(selectedModels[npcClass], model) then
+						surface.SetDrawColor(Color(0, 255, 0, 255))
+						surface.SetMaterial(Material("icon16/tick.png"))
+						surface.DrawTexturedRect(w - 16, 0, 16, 16)
+					end
+				end
+
 				icon.DoClick = function()
 
 					-- 更新模型面板中的模型
 					pan1ModelPanel:SetModel(model)
 
 					-- 清空并更新身体组列表
-					pan1ListPanel:Clear()
-					local bodyGroups = pan1ModelPanel.Entity:GetBodyGroups()
-					for _, bodyGroup in ipairs(bodyGroups) do
-						local line = pan1ListPanel:AddLine(bodyGroup.name)
-						-- line:SetTooltip(bodyGroup.id)
-					end
+					UpdateBodyGroupList(pan1ModelPanel.Entity)
 					
 					if not table.HasValue(selectedModels[npcClass], model) then
 						table.insert(selectedModels[npcClass], model)

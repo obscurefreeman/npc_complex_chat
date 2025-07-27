@@ -125,6 +125,10 @@
             "combine": "聯合軍",
             "metropolice": "國民護衛隊",
             "model_pool": "模型池",
+            "bodygroup": "身體組",
+            "current_display": "當前顯示", 
+            "block": "屏蔽",
+            "block_last_one": "屏蔽最後一項",
             "save": "保存",
             "save_success": "保存成功",
             "save_fail": "保存失敗，你不是超級管理員"
