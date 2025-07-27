@@ -277,7 +277,7 @@ if CLIENT then
                 local translatedDialogs = {}
                 local speakerName
                 local promptcontent = ofTranslate(npcIdentity.prompt)
-                promptcontent = ReplacePlaceholders(promptcontent, npcIdentity)
+                promptcontent = OFNPCP_ReplacePlaceholders(promptcontent, npcIdentity)
                 local aiDialogs = { { role = "system", content = promptcontent } }
                 for _, dialog in ipairs(updatedData.dialogHistory) do
                     local translatedText = ofTranslate(dialog.text)
@@ -294,7 +294,7 @@ if CLIENT then
                     else
                         speakerName = dialog.speaker
                     end
-                    translatedText = ReplacePlaceholders(translatedText, npcIdentity)
+                    translatedText = OFNPCP_ReplacePlaceholders(translatedText, npcIdentity)
 
                     -- 定义对话类型与提示信息的映射表
                     local dialogFootnotes = {
@@ -427,7 +427,7 @@ if CLIENT then
                 cardButton:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
                 cardButton:SetTall(80 * OFGUI.ScreenScale)
                 cardButton:SetTitle(ofTranslate(cardInfo.data.name))
-                cardButton:SetDescription(ReplacePlaceholders(ofTranslate(cardInfo.data.d[math.random(#cardInfo.data.d)]), npcIdentity))
+                cardButton:SetDescription(OFNPCP_ReplacePlaceholders(ofTranslate(cardInfo.data.d[math.random(#cardInfo.data.d)]), npcIdentity))
                 cardButton:SetIcon("ofnpcp/cards/preview/" .. cardInfo.key .. ".png")
                 cardButton:SetCardIcon("ofnpcp/cards/large/" .. cardInfo.key .. ".png")
             end
@@ -498,7 +498,7 @@ if CLIENT then
         end
 
         for _, option in ipairs(playerTalkOptions) do
-            local translatedOption = ReplacePlaceholders(ofTranslate(option), npcIdentity)  -- 使用新函数替换
+            local translatedOption = OFNPCP_ReplacePlaceholders(ofTranslate(option), npcIdentity)  -- 使用新函数替换
 
             -- 创建按钮并添加到ScrollPanel
             local button = vgui.Create("OFChatButton", scrollPanel)
@@ -537,7 +537,7 @@ if CLIENT then
                         textEntry:SetFont("ofgui_huge")
 
                         local randomLeave = GLOBAL_OFNPC_DATA.playerTalks.leave[math.random(#GLOBAL_OFNPC_DATA.playerTalks.leave)]
-                        local translatedOption = ReplacePlaceholders(ofTranslate(randomLeave), npcIdentity)
+                        local translatedOption = OFNPCP_ReplacePlaceholders(ofTranslate(randomLeave), npcIdentity)
 
                         local button = vgui.Create("OFChatButton", scrollPanel)
                         button:SetChatText(translatedOption)
@@ -635,7 +635,7 @@ if CLIENT then
                     -- 创建卡牌按钮
                     local function CreateNegotiateButton(cardInfo)
                         -- 随机选择对话内容
-                        local playerText = ReplacePlaceholders(ofTranslate(cardInfo.data.d[math.random(#cardInfo.data.d)]), npcIdentity)
+                        local playerText = OFNPCP_ReplacePlaceholders(ofTranslate(cardInfo.data.d[math.random(#cardInfo.data.d)]), npcIdentity)
                         local npcText = ofTranslate(cardInfo.data.a[math.random(#cardInfo.data.a)])
                         
                         -- 创建按钮
@@ -673,7 +673,7 @@ if CLIENT then
                         end
 
                         local randomLeave = GLOBAL_OFNPC_DATA.playerTalks.leave[math.random(#GLOBAL_OFNPC_DATA.playerTalks.leave)]
-                        local translatedOption = ReplacePlaceholders(ofTranslate(randomLeave), npcIdentity)
+                        local translatedOption = OFNPCP_ReplacePlaceholders(ofTranslate(randomLeave), npcIdentity)
 
                         local leavebutton = vgui.Create("OFChatButton", scrollPanel)
                         leavebutton:SetChatText(translatedOption)

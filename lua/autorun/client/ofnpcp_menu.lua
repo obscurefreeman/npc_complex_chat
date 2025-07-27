@@ -132,7 +132,7 @@ local function RefreshNPCButtons(left_panel, right_panel)
 		promptLabel:SetText(ofTranslate("ui.npclist.ai_prompt"))
 
 		local promptcontent = ofTranslate(npcData.prompt)
-		promptcontent = ReplacePlaceholders(promptcontent, npcData)
+		promptcontent = OFNPCP_ReplacePlaceholders(promptcontent, npcData)
 		local campTextEntry = vgui.Create("OFTextEntry", right_panel)
 		campTextEntry:SetHeight(120 * OFGUI.ScreenScale)
 		campTextEntry:Dock(TOP)

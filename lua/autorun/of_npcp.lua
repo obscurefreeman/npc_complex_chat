@@ -185,6 +185,10 @@ if SERVER then
         AssignTag("trade")
         AssignTag("social")
 
+        if GetConVar("of_garrylord_model_replacement"):GetBool() then
+            OFNPCP_ReplaceNPCModel( ent, identity )
+        end
+
         -- 存储NPC身份信息
         OFNPCS[ent:EntIndex()] = identity
         

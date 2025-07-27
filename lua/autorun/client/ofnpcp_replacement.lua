@@ -1,5 +1,5 @@
 -- 新增占位符替换函数
-function ReplacePlaceholders(text, npcIdentity)
+function OFNPCP_ReplacePlaceholders(text, npcIdentity)
     if not text or not npcIdentity then return text end
     
     local npcName = ofTranslate(npcIdentity.name)

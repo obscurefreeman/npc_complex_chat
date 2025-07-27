@@ -32,104 +32,102 @@ local function GetRandomNPCModel(npc_type)
 end
 
 
-local function ReplaceNPCModel(ent)
+function OFNPCP_ReplaceNPCModel( ent, identity )
   if not IsValid(ent) or not ent:IsNPC() then return end
-  local entClass = ent:GetClass()
+  local entClass = identity.info
   if entClass ~= "npc_combine_s" and entClass ~= "npc_citizen" and entClass ~= "npc_metropolice" then return end
 
   timer.Simple(0.1, function()
-    if GetConVar("of_garrylord_model_replacement"):GetBool() then
-      if not IsValid(ent) then return end
-      
-      -- 定义替换的模型列表
-      local includedModels = {
-      "models/humans/group01/female_01.mdl",
-      "models/humans/group01/female_02.mdl",
-      "models/humans/group01/female_03.mdl",
-      "models/humans/group01/female_04.mdl",
-      "models/humans/group01/female_06.mdl",
-      "models/humans/group01/female_07.mdl",
-      "models/humans/group01/male_01.mdl",
-      "models/humans/group01/male_02.mdl",
-      "models/humans/group01/male_03.mdl",
-      "models/humans/group01/male_04.mdl",
-      "models/humans/group01/male_05.mdl",
-      "models/humans/group01/male_06.mdl",
-      "models/humans/group01/male_07.mdl",
-      "models/humans/group01/male_08.mdl",
-      "models/humans/group01/male_09.mdl",
-      "models/humans/group01/male_cheaple.mdl",
-      "models/humans/group02/female_01.mdl",
-      "models/humans/group02/female_02.mdl",
-      "models/humans/group02/female_03.mdl",
-      "models/humans/group02/female_04.mdl",
-      "models/humans/group02/female_06.mdl",
-      "models/humans/group02/female_07.mdl",
-      "models/humans/group02/male_01.mdl",
-      "models/humans/group02/male_02.mdl",
-      "models/humans/group02/male_03.mdl",
-      "models/humans/group02/male_04.mdl",
-      "models/humans/group02/male_05.mdl",
-      "models/humans/group02/male_06.mdl",
-      "models/humans/group02/male_07.mdl",
-      "models/humans/group02/male_08.mdl",
-      "models/humans/group02/male_09.mdl",
-      "models/humans/group03/female_01.mdl",
-      "models/humans/group03/female_01_bloody.mdl",
-      "models/humans/group03/female_02.mdl",
-      "models/humans/group03/female_02_bloody.mdl",
-      "models/humans/group03/female_03.mdl",
-      "models/humans/group03/female_03_bloody.mdl",
-      "models/humans/group03/female_04.mdl",
-      "models/humans/group03/female_04_bloody.mdl",
-      "models/humans/group03/female_06.mdl",
-      "models/humans/group03/female_06_bloody.mdl",
-      "models/humans/group03/female_07.mdl",
-      "models/humans/group03/female_07_bloody.mdl",
-      "models/humans/group03/male_01.mdl",
-      "models/humans/group03/male_01_bloody.mdl",
-      "models/humans/group03/male_02.mdl",
-      "models/humans/group03/male_02_bloody.mdl",
-      "models/humans/group03/male_03.mdl",
-      "models/humans/group03/male_03_bloody.mdl",
-      "models/humans/group03/male_04.mdl",
-      "models/humans/group03/male_04_bloody.mdl",
-      "models/humans/group03/male_05.mdl",
-      "models/humans/group03/male_05_bloody.mdl",
-      "models/humans/group03/male_06.mdl",
-      "models/humans/group03/male_06_bloody.mdl",
-      "models/humans/group03/male_07.mdl",
-      "models/humans/group03/male_07_bloody.mdl",
-      "models/humans/group03/male_08.mdl",
-      "models/humans/group03/male_08_bloody.mdl",
-      "models/humans/group03/male_09.mdl",
-      "models/humans/group03/male_09_bloody.mdl",
-      "models/humans/group03m/female_01.mdl",
-      "models/humans/group03m/female_02.mdl",
-      "models/humans/group03m/female_03.mdl",
-      "models/humans/group03m/female_04.mdl",
-      "models/humans/group03m/female_06.mdl",
-      "models/humans/group03m/female_07.mdl",
-      "models/humans/group03m/male_01.mdl",
-      "models/humans/group03m/male_02.mdl",
-      "models/humans/group03m/male_03.mdl",
-      "models/humans/group03m/male_04.mdl",
-      "models/humans/group03m/male_05.mdl",
-      "models/humans/group03m/male_06.mdl",
-      "models/humans/group03m/male_07.mdl",
-      "models/humans/group03m/male_08.mdl",
-      "models/humans/group03m/male_09.mdl",
-      "models/combine_soldier.mdl",
-      "models/combine_soldier_prisonguard.mdl",
-      "models/combine_super_soldier.mdl"
-      }
-      
-      -- 检查当前模型是否在排除列表中
-      if table.HasValue(includedModels, ent:GetModel()) then
-        local model = GetRandomNPCModel(entClass)
-        if model == nil then return end
-        ent:SetModel(model)
-      end
+    if not IsValid(ent) then return end
+    
+    -- 定义替换的模型列表
+    local includedModels = {
+    "models/humans/group01/female_01.mdl",
+    "models/humans/group01/female_02.mdl",
+    "models/humans/group01/female_03.mdl",
+    "models/humans/group01/female_04.mdl",
+    "models/humans/group01/female_06.mdl",
+    "models/humans/group01/female_07.mdl",
+    "models/humans/group01/male_01.mdl",
+    "models/humans/group01/male_02.mdl",
+    "models/humans/group01/male_03.mdl",
+    "models/humans/group01/male_04.mdl",
+    "models/humans/group01/male_05.mdl",
+    "models/humans/group01/male_06.mdl",
+    "models/humans/group01/male_07.mdl",
+    "models/humans/group01/male_08.mdl",
+    "models/humans/group01/male_09.mdl",
+    "models/humans/group01/male_cheaple.mdl",
+    "models/humans/group02/female_01.mdl",
+    "models/humans/group02/female_02.mdl",
+    "models/humans/group02/female_03.mdl",
+    "models/humans/group02/female_04.mdl",
+    "models/humans/group02/female_06.mdl",
+    "models/humans/group02/female_07.mdl",
+    "models/humans/group02/male_01.mdl",
+    "models/humans/group02/male_02.mdl",
+    "models/humans/group02/male_03.mdl",
+    "models/humans/group02/male_04.mdl",
+    "models/humans/group02/male_05.mdl",
+    "models/humans/group02/male_06.mdl",
+    "models/humans/group02/male_07.mdl",
+    "models/humans/group02/male_08.mdl",
+    "models/humans/group02/male_09.mdl",
+    "models/humans/group03/female_01.mdl",
+    "models/humans/group03/female_01_bloody.mdl",
+    "models/humans/group03/female_02.mdl",
+    "models/humans/group03/female_02_bloody.mdl",
+    "models/humans/group03/female_03.mdl",
+    "models/humans/group03/female_03_bloody.mdl",
+    "models/humans/group03/female_04.mdl",
+    "models/humans/group03/female_04_bloody.mdl",
+    "models/humans/group03/female_06.mdl",
+    "models/humans/group03/female_06_bloody.mdl",
+    "models/humans/group03/female_07.mdl",
+    "models/humans/group03/female_07_bloody.mdl",
+    "models/humans/group03/male_01.mdl",
+    "models/humans/group03/male_01_bloody.mdl",
+    "models/humans/group03/male_02.mdl",
+    "models/humans/group03/male_02_bloody.mdl",
+    "models/humans/group03/male_03.mdl",
+    "models/humans/group03/male_03_bloody.mdl",
+    "models/humans/group03/male_04.mdl",
+    "models/humans/group03/male_04_bloody.mdl",
+    "models/humans/group03/male_05.mdl",
+    "models/humans/group03/male_05_bloody.mdl",
+    "models/humans/group03/male_06.mdl",
+    "models/humans/group03/male_06_bloody.mdl",
+    "models/humans/group03/male_07.mdl",
+    "models/humans/group03/male_07_bloody.mdl",
+    "models/humans/group03/male_08.mdl",
+    "models/humans/group03/male_08_bloody.mdl",
+    "models/humans/group03/male_09.mdl",
+    "models/humans/group03/male_09_bloody.mdl",
+    "models/humans/group03m/female_01.mdl",
+    "models/humans/group03m/female_02.mdl",
+    "models/humans/group03m/female_03.mdl",
+    "models/humans/group03m/female_04.mdl",
+    "models/humans/group03m/female_06.mdl",
+    "models/humans/group03m/female_07.mdl",
+    "models/humans/group03m/male_01.mdl",
+    "models/humans/group03m/male_02.mdl",
+    "models/humans/group03m/male_03.mdl",
+    "models/humans/group03m/male_04.mdl",
+    "models/humans/group03m/male_05.mdl",
+    "models/humans/group03m/male_06.mdl",
+    "models/humans/group03m/male_07.mdl",
+    "models/humans/group03m/male_08.mdl",
+    "models/humans/group03m/male_09.mdl",
+    "models/combine_soldier.mdl",
+    "models/combine_soldier_prisonguard.mdl",
+    "models/combine_super_soldier.mdl"
+    }
+    
+    -- 检查当前模型是否在排除列表中
+    if table.HasValue(includedModels, identity.model) then
+      local model = GetRandomNPCModel(entClass)
+      if model == nil then return end
+      ent:SetModel(model)
     end
   end)
 
@@ -156,8 +154,6 @@ local function ReplaceNPCModel(ent)
   end)
 end
 
-hook.Add("OnEntityCreated", "OFNPCP_ModelReplacement", ReplaceNPCModel)
-
 -- 加载json
 
 hook.Add("PlayerSpawn", "OFNPCP_LoadTables", function(ply)
@@ -183,16 +179,4 @@ hook.Add("Initialize", "OFNPCP_LoadTablesOnInit", function()
       end
     end
   end
-end)
-
--- 像是打战役的时候会发生的事情
-
-hook.Add("PlayerInitialSpawn", "OFNPCP_RandomizeMapNPCs", function(ply)
-  timer.Simple(5, function()
-    for _, npc in pairs(ents.FindByClass("npc_*")) do
-      if IsValid(npc) and npc:IsNPC() then
-        ReplaceNPCModel(npc)
-      end
-    end
-  end)
 end)
