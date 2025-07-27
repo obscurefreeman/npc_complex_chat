@@ -28,6 +28,8 @@ function OFNPCP_SetUpExtraFeatureMenu(extraFeatureMenu)
 			npc_metropolice = {}
 		}
 
+		local blockedBodygroups = {}
+
 		-- 尝试加载已保存的模型数据
 		if file.Exists("of_npcp/model_settings.txt", "DATA") then
 			local savedData = file.Read("of_npcp/model_settings.txt", "DATA")
@@ -36,6 +38,14 @@ function OFNPCP_SetUpExtraFeatureMenu(extraFeatureMenu)
 				if loadedModels then
 					selectedModels = loadedModels
 				end
+			end
+		end
+
+		-- 尝试加载已保存的模型随机化黑名单数据
+		if file.Exists("of_npcp/model_bodygroups_block_settings.txt", "DATA") then
+			local savedData = file.Read("of_npcp/model_bodygroups_block_settings.txt", "DATA")
+			if savedData then
+				blockedBodygroups = util.JSONToTable(savedData)
 			end
 		end
 
@@ -91,13 +101,45 @@ function OFNPCP_SetUpExtraFeatureMenu(extraFeatureMenu)
 			end
 		end
 
+		-- 添加右键菜单
+		pan1ListPanel.OnRowRightClick = function(_, _, line)
+			local menu = vgui.Create("OFMenu")
+			menu:AddOption(ofTranslate("ui.model.block_last_one"), function()
+				local bodyGroupName = line:GetColumnText(1)
+				local model = pan1ModelPanel.Entity:GetModel()
+				
+				-- 初始化模型的身体组屏蔽记录
+				if not blockedBodygroups[model] then
+					blockedBodygroups[model] = {}
+				end
+				
+				-- 检查当前是否已经设置
+				if line:GetColumnText(3) == ofTranslate("ui.model.block_last_one") then
+					-- 如果已经设置，则清除
+					line:SetColumnText(3, "")
+					blockedBodygroups[model][bodyGroupName] = nil
+				else
+					-- 如果没有设置，则添加
+					line:SetColumnText(3, ofTranslate("ui.model.block_last_one"))
+					blockedBodygroups[model][bodyGroupName] = true
+				end
+			end):SetIcon("icon16/cancel.png")
+			menu:Open()
+		end
+
 		-- 初始化时设置当前显示的数字
 		local function UpdateBodyGroupList(entity)
 			pan1ListPanel:Clear()
 			local bodyGroups = entity:GetBodyGroups()
 			for _, bodyGroup in ipairs(bodyGroups) do
 				local current = entity:GetBodygroup(bodyGroup.id)
-				local line = pan1ListPanel:AddLine(bodyGroup.name, tostring(current), ofTranslate("ui.model.block_last_one"))
+				local line = pan1ListPanel:AddLine(bodyGroup.name, tostring(current))
+				
+				-- 检查当前身体组是否被屏蔽
+				local model = entity:GetModel()
+				if blockedBodygroups[model] and blockedBodygroups[model][bodyGroup.name] then
+					line:SetColumnText(3, ofTranslate("ui.model.block_last_one"))
+				end
 			end
 		end
 
@@ -312,6 +354,11 @@ function OFNPCP_SetUpExtraFeatureMenu(extraFeatureMenu)
 			-- 将选中的模型表转换为JSON格式并发送到服务器
 			net.Start("OFNPCP_NS_SaveModelSettings")
 				net.WriteTable(selectedModels)
+			net.SendToServer()
+
+			-- 将被屏蔽的身体组转换为JSON格式并发送到服务器
+			net.Start("OFNPCP_NS_SaveBlockedBodygroups")
+				net.WriteTable(blockedBodygroups)
 			net.SendToServer()
 			
 			-- 显示保存成功的提示

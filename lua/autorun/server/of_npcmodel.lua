@@ -3,6 +3,7 @@ CreateConVar("of_garrylord_model_randomskin", "0", FCVAR_ARCHIVE, "")
 CreateConVar("of_garrylord_model_randombodygroup", "0", FCVAR_ARCHIVE, "")
 
 local activemodelSettings = {}
+local blockedBodygroups = {}
 
 net.Receive("OFNPCP_NS_SaveModelSettings", function(len, ply)
 
@@ -143,12 +144,13 @@ function OFNPCP_ReplaceNPCModel( ent, identity )
 
       if bodygroups ~= nil and #bodygroups > 1 then
           for id, bodygroup in pairs(bodygroups) do
-              local randomNum = math.random(0, bodygroup.num)
-              table.insert(randombodygroups, {id = id, num = randomNum})
-              timer.Simple(0.15, function()
-                if not IsValid(ent) then return end
-                ent:SetBodygroup(id, randomNum)
-              end)
+            local bodygroupnumber = bodygroup.num - (blockedBodygroups[bodygroup.name] and 1 or 0)
+            local randomNum = math.random(0, math.max(0, bodygroupnumber))
+            table.insert(randombodygroups, {id = id, num = randomNum})
+            timer.Simple(0.15, function()
+              if not IsValid(ent) then return end
+              ent:SetBodygroup(id, randomNum)
+            end)
           end
       end
   end
@@ -207,4 +209,20 @@ hook.Add("Initialize", "OFNPCP_LoadTablesOnInit", function()
       end
     end
   end
+end)
+
+net.Receive("OFNPCP_NS_SaveBlockedBodygroups", function(len, ply)
+    if not IsValid(ply) or not ply:IsSuperAdmin() then return end
+    
+    local bodygroups = net.ReadTable()
+    
+    -- 检查目录是否存在，不存在则创建
+    if not file.IsDir("of_npcp", "DATA") then
+        file.CreateDir("of_npcp")
+    end
+    
+    -- 将被屏蔽的身体组转换为JSON格式并保存
+    file.Write("of_npcp/model_bodygroups_block_settings.txt", util.TableToJSON(bodygroups))
+
+    blockedBodygroups = bodygroups
 end)

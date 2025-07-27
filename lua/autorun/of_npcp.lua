@@ -29,6 +29,7 @@ if SERVER then
     util.AddNetworkString("OFNPCP_NS_RequestNPCData")
     util.AddNetworkString("OFNPCP_NS_AddtoKillfeed")
     util.AddNetworkString("OFNPCP_NS_SaveModelSettings")
+    util.AddNetworkString("OFNPCP_NS_SaveBlockedBodygroups")
 
     function AssignNPCIdentity(ent, npcInfo)
         local identity = {}
@@ -188,8 +189,21 @@ if SERVER then
         -- 替换模型
         local randommodel, randombodygroups, randomskin = OFNPCP_ReplaceNPCModel( ent, identity )
 
+        -- print("[OFNPCP] 随机模型: " .. (randommodel or "无"))
+        -- if randombodygroups and #randombodygroups > 0 then
+        --     print("[OFNPCP] 随机身体组:")
+        --     for _, bg in ipairs(randombodygroups) do
+        --         print("  ID: " .. bg.id .. ", 值: " .. bg.num)
+        --     end
+        -- else
+        --     print("[OFNPCP] 随机身体组: 无")
+        -- end
+        -- print("[OFNPCP] 随机皮肤: " .. (randomskin or "无"))
+
         -- 读取替换后的模型
-        identity.model = randommodel
+        if randommodel then
+            identity.model = randommodel
+        end
         if randombodygroups and #randombodygroups > 0 then
             identity.bodygroups = randombodygroups
         end
