@@ -97,28 +97,24 @@ function OFNPCP_SetUpExtraFeatureMenu(extraFeatureMenu)
 
 		-- 添加右键菜单
 		pan1ListPanel.OnRowRightClick = function(_, _, line)
-			local menu = vgui.Create("OFMenu")
-			menu:AddOption(ofTranslate("ui.model.block_last_one"), function()
-				local bodyGroupID = line:GetColumnText(1)
-				local model = pan1ModelPanel.Entity:GetModel()
-				
-				-- 初始化模型的身体组屏蔽记录
-				if not blockedBodygroups[model] then
-					blockedBodygroups[model] = {}
-				end
-				
-				-- 检查当前是否已经设置
-				if line:GetColumnText(4) == ofTranslate("ui.model.block_last_one") then
-					-- 如果已经设置，则清除
-					line:SetColumnText(4, "")
-					blockedBodygroups[model][bodyGroupID] = nil
-				else
-					-- 如果没有设置，则添加
-					line:SetColumnText(4, ofTranslate("ui.model.block_last_one"))
-					blockedBodygroups[model][bodyGroupID] = true
-				end
-			end):SetIcon("icon16/cancel.png")
-			menu:Open()
+			local bodyGroupID = line:GetColumnText(1)
+			local model = pan1ModelPanel.Entity:GetModel()
+			
+			-- 初始化模型的身体组屏蔽记录
+			if not blockedBodygroups[model] then
+				blockedBodygroups[model] = {}
+			end
+			
+			-- 检查当前是否已经设置
+			if line:GetColumnText(4) == ofTranslate("ui.model.block_last_one") then
+				-- 如果已经设置，则清除
+				line:SetColumnText(4, "")
+				blockedBodygroups[model][bodyGroupID] = nil
+			else
+				-- 如果没有设置，则添加
+				line:SetColumnText(4, ofTranslate("ui.model.block_last_one"))
+				blockedBodygroups[model][bodyGroupID] = true
+			end
 		end
 
 		-- 初始化时设置当前显示的数字
@@ -128,6 +124,7 @@ function OFNPCP_SetUpExtraFeatureMenu(extraFeatureMenu)
 			for _, bodyGroup in ipairs(bodyGroups) do
 				local current = entity:GetBodygroup(bodyGroup.id)
 				local line = pan1ListPanel:AddLine(bodyGroup.id, bodyGroup.name, tostring(current))
+				line:SetTooltip(ofTranslate("ui.model.tooltip_bodygroup"))
 				
 				-- 检查当前身体组是否被屏蔽
 				local model = entity:GetModel()
@@ -149,12 +146,9 @@ function OFNPCP_SetUpExtraFeatureMenu(extraFeatureMenu)
 
 		-- 创建每个分类的滚动面板
 		local scrollPanels = {}
-		local function CreateNPCTab(npcClass, name)
-			local scrollPanel = vgui.Create("OFScrollPanel")
-			scrollPanels[npcClass] = scrollPanel
-			
-			-- 填充已选模型
-			local function UpdateScrollPanel()
+		local function UpdateScrollPanel(npcClass)
+			local scrollPanel = scrollPanels[npcClass]
+			if IsValid(scrollPanel) then
 				scrollPanel:Clear()
 				local models = selectedModels[npcClass] or {}
 				for _, model in ipairs(models) do
@@ -179,7 +173,14 @@ function OFNPCP_SetUpExtraFeatureMenu(extraFeatureMenu)
 					end
 				end
 			end
-			UpdateScrollPanel()
+		end
+
+		local function CreateNPCTab(npcClass, name)
+			local scrollPanel = vgui.Create("OFScrollPanel")
+			scrollPanels[npcClass] = scrollPanel
+			
+			-- 填充已选模型
+			UpdateScrollPanel(npcClass)
 			
 			tabPanel:AddSheet(name, scrollPanel)
 		end
@@ -213,6 +214,7 @@ function OFNPCP_SetUpExtraFeatureMenu(extraFeatureMenu)
 				icon:SetModel(model)
 				icon:SetSize(96 * OFGUI.ScreenScale, 96 * OFGUI.ScreenScale)
 				icon:SetTooltipPanelOverride("OFTooltip")
+				icon:SetTooltip(ofTranslate("ui.model.tooltip_add") .. model)
 				
 				-- 添加勾选标记
 				icon.PaintOver = function(self, w, h)
@@ -239,6 +241,7 @@ function OFNPCP_SetUpExtraFeatureMenu(extraFeatureMenu)
 						selectedIcon:DockMargin(0, 0, 0, 2)
 						selectedIcon:SetTall(80 * OFGUI.ScreenScale)
 						selectedIcon:SetModel(model)
+						-- selectedIcon:SetTooltip(ofTranslate("ui.model.tooltip_remove"))
 						local npcName = "Unknown NPC"
 						for _, v in pairs(list.Get("NPC")) do
 							if v.Model == model then
@@ -283,6 +286,14 @@ function OFNPCP_SetUpExtraFeatureMenu(extraFeatureMenu)
 						editor:Center()
 			
 					end ):SetIcon( "icon16/pencil.png" )
+
+					menu:AddOption( ofTranslate("ui.model.bodygroup_setting"), function()
+						-- 更新模型面板中的模型
+						pan1ModelPanel:SetModel(model)
+
+						-- 清空并更新身体组列表
+						UpdateBodyGroupList(pan1ModelPanel.Entity)
+					end ):SetIcon( "icon16/user_edit.png" )
 					menu:Open()
 				end
 			end
@@ -379,6 +390,50 @@ function OFNPCP_SetUpExtraFeatureMenu(extraFeatureMenu)
 			local jsonData = util.TableToJSON(combinedData, true)
 			SetClipboardText(jsonData)
 			notification.AddLegacy(ofTranslate("ui.model.export_success"), NOTIFY_GENERIC, 5)
+		end
+
+		-- 创建导入按钮
+		local importButton = vgui.Create("OFButton", pan1LeftPanel)
+		importButton:Dock(BOTTOM)
+		importButton:SetHeight(40 * OFGUI.ScreenScale)
+		importButton:SetText(ofTranslate("ui.model.import"))
+		importButton:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+
+		-- 创建分享码输入框
+		local importEntry = vgui.Create("OFTextEntry", pan1LeftPanel)
+		importEntry:Dock(BOTTOM)
+		importEntry:SetHeight(40 * OFGUI.ScreenScale)
+		importEntry:SetPlaceholderText(ofTranslate("ui.model.import_entry"))
+		importEntry:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+
+		importButton.DoClick = function()
+			-- 获取输入框内容
+			local shareCode = importEntry:GetValue()
+			
+			-- 检查分享码是否为空
+			if shareCode == "" then
+				notification.AddLegacy(ofTranslate("ui.model.import_fail"), NOTIFY_ERROR, 5)
+				return
+			end
+			
+			-- 尝试解析JSON
+			local success, data = pcall(util.JSONToTable, shareCode)
+			if not success or not data then
+				notification.AddLegacy(ofTranslate("ui.model.import_fail"), NOTIFY_ERROR, 5)
+				return
+			end
+			
+			-- 更新选中的模型和身体组
+			selectedModels = data.modelsettings or {}
+			blockedBodygroups = data.bodygroupsettings or {}
+			
+			-- 显示导入成功提示
+			notification.AddLegacy(ofTranslate("ui.model.import_success"), NOTIFY_GENERIC, 5)
+			
+			-- 更新所有分类的滚动面板
+			for npcClass, _ in pairs(scrollPanels) do
+				UpdateScrollPanel(npcClass)
+			end
 		end
 	end
 

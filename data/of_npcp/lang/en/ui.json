@@ -129,15 +129,20 @@
             "current_display": "Current Display", 
             "block": "Block",
             "block_last_one": "Block Last One",
+            "bodygroup_setting": "Body Group Settings",
             "save": "Save",
             "save_success": "Save Successful",
             "save_fail": "Save failed, you are not a super administrator",
             "import": "Import Share Code",
+            "import_entry": "Paste share code here",
             "import_success": "Import successful, click save button to apply changes",
             "import_fail": "Failed to import share code",
             "export": "Copy Share Code",
             "export_success": "Share code saved to clipboard",
-            "export_fail": "Failed to get share code"
+            "export_fail": "Failed to get share code",
+            "tooltip_add": "Left click to add to model pool, right click to open dropdown menu\nModel:",
+            "tooltip_remove": "Left click to remove from model pool, right click to open dropdown menu",
+            "tooltip_bodygroup": "Left click to preview body group, right click to toggle block"
         },
         "player2": {
             "enable_server": "(Server) Enable Player2 on server",

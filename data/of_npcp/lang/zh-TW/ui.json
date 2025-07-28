@@ -129,15 +129,20 @@
             "current_display": "當前顯示", 
             "block": "屏蔽",
             "block_last_one": "屏蔽最後一項",
+            "bodygroup_setting": "身體組設置",
             "save": "保存",
             "save_success": "保存成功",
             "save_fail": "保存失敗，你不是超級管理員",
             "import": "導入分享碼",
+            "import_entry": "在此處粘貼分享碼",
             "import_success": "導入成功，點擊保存按鈕應用更改",
             "import_fail": "分享碼導入失敗",
             "export": "複製分享碼",
             "export_success": "分享碼已保存到剪貼板",
-            "export_fail": "分享碼獲取失敗"
+            "export_fail": "分享碼獲取失敗",
+            "tooltip_add": "左鍵將其加入模型池，右鍵打開下拉選單\n模型：",
+            "tooltip_remove": "左鍵將其從模型池移除，右鍵打開下拉選單",
+            "tooltip_bodygroup": "左鍵切換身體組預覽，右鍵切換屏蔽"
         },
         "player2": {
             "enable_server": "（伺服器需下載客戶端）在伺服器上啟用Player2",
