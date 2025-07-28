@@ -1,4 +1,4 @@
-CreateClientConVar("of_garrylord_player2_enable", "0", true, true, "", 0, 1)
+-- CreateClientConVar("of_garrylord_player2_enable", "0", true, true, "", 0, 1)
 
 function OFNPCP_SetUpExtraFeatureMenu(extraFeatureMenu)
 	local sheet = vgui.Create("OFPropertySheet", extraFeatureMenu)
@@ -440,12 +440,12 @@ function OFNPCP_SetUpExtraFeatureMenu(extraFeatureMenu)
 	-- 调用函数设置模型系统
 	SetupPan1(pan1LeftPanel, pan1RightPanel)
 
-	local pan2 = vgui.Create("EditablePanel", sheet)
-	sheet:AddSheet(ofTranslate("ui.tab.player2"), pan2, "ofnpcp/ai/icon16/player2.png")
+	-- local pan2 = vgui.Create("EditablePanel", sheet)
+	-- sheet:AddSheet(ofTranslate("ui.tab.player2"), pan2, "ofnpcp/ai/icon16/player2.png")
 
-	local player2Panel = vgui.Create("OFScrollPanel", pan2)
-	player2Panel:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
-	player2Panel:Dock(FILL)
+	-- local player2Panel = vgui.Create("OFScrollPanel", pan2)
+	-- player2Panel:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+	-- player2Panel:Dock(FILL)
 
-	OFNPCPCreateCheckBoxPanel(player2Panel, "of_garrylord_player2_enable", ofTranslate("ui.player2.enable"))
+	-- OFNPCPCreateCheckBoxPanel(player2Panel, "of_garrylord_player2_enable", ofTranslate("ui.player2.enable"))
 end

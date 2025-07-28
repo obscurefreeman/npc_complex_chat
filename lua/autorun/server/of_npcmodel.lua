@@ -197,7 +197,8 @@ hook.Add("PlayerSpawn", "OFNPCP_LoadTables", function(ply)
     if savedData then
       local loadedModels = util.JSONToTable(savedData)
       if loadedModels then
-        activemodelSettings = loadedModels
+        activemodelSettings = loadedModels.modelsettings
+        blockedBodygroups = loadedModels.bodygroupsettings
       end
     end
   end
@@ -210,7 +211,8 @@ hook.Add("Initialize", "OFNPCP_LoadTablesOnInit", function()
     if savedData then
       local loadedModels = util.JSONToTable(savedData)
       if loadedModels then
-        activemodelSettings = loadedModels
+        activemodelSettings = loadedModels.modelsettings
+        blockedBodygroups = loadedModels.bodygroupsettings
       end
     end
   end
