@@ -140,31 +140,35 @@ function OFNPCP_ReplaceNPCModel( ent, identity )
   end
 
   if GetConVar("of_garrylord_model_randombodygroup"):GetBool() then
+    timer.Simple(0.15, function()
+      if not IsValid(ent) then return end
       local bodygroups = ent:GetBodyGroups()
 
       if bodygroups ~= nil and #bodygroups > 1 then
-          for id, bodygroup in pairs(bodygroups) do
-            local bodygroupnumber = bodygroup.num - (blockedBodygroups[bodygroup.name] and 1 or 0)
-            local randomNum = math.random(0, math.max(0, bodygroupnumber))
-            table.insert(randombodygroups, {id = id, num = randomNum})
-            timer.Simple(0.15, function()
-              if not IsValid(ent) then return end
-              ent:SetBodygroup(id, randomNum)
-            end)
+        for id, bodygroup in pairs(bodygroups) do
+          local bodygroupnumber = bodygroup.num
+          local model = ent:GetModel()
+          if blockedBodygroups[model] and blockedBodygroups[model][id] then
+              bodygroupnumber = math.max(0, bodygroup.num - 1)
           end
+          local randomNum = math.random(0, bodygroupnumber)
+          table.insert(randombodygroups, {id = id, num = randomNum})
+          ent:SetBodygroup(id, randomNum)
+        end
       end
+    end)
   end
 
   if GetConVar("of_garrylord_model_randomskin"):GetBool() then
-    local skin_count = ent:SkinCount()
+    timer.Simple(0.15, function()
+      if not IsValid(ent) then return end
+      local skin_count = ent:SkinCount()
 
-    if skin_count > 1 then
+      if skin_count > 1 then
         randomskin = math.random(0, skin_count - 1)
-        timer.Simple(0.15, function()
-          if not IsValid(ent) then return end
-          ent:SetSkin(randomskin)
-        end)
-    end
+        ent:SetSkin(randomskin)
+      end
+    end)
   end
 
   -- 打印生成的随机模型、身体组和皮肤信息
@@ -181,7 +185,7 @@ function OFNPCP_ReplaceNPCModel( ent, identity )
   --   print("[OFNPCP] 随机皮肤: " .. randomskin)
   -- end
 
-  return randommodel, randombodygroups, randomskin
+  return randommodel
 end
 
 -- 加载json

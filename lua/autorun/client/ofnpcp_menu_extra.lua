@@ -76,6 +76,7 @@ function OFNPCP_SetUpExtraFeatureMenu(extraFeatureMenu)
 		pan1TopHorizontalDivider:SetLeft(pan1ModelPanel)
 	
 		local pan1ListPanel = vgui.Create("OFListView")
+		pan1ListPanel:AddColumn( "ID" )
 		pan1ListPanel:AddColumn( ofTranslate("ui.model.bodygroup") )
 		pan1ListPanel:AddColumn( ofTranslate("ui.model.current_display") )
 		pan1ListPanel:AddColumn( ofTranslate("ui.model.block") )
@@ -83,7 +84,7 @@ function OFNPCP_SetUpExtraFeatureMenu(extraFeatureMenu)
 
 		-- 添加点击事件处理
 		pan1ListPanel.OnRowSelected = function(_, _, line)
-			local bodyGroupName = line:GetColumnText(1)
+			local bodyGroupName = line:GetColumnText(2)
 			local entity = pan1ModelPanel.Entity
 			if IsValid(entity) then
 				local bodyGroups = entity:GetBodyGroups()
@@ -94,7 +95,7 @@ function OFNPCP_SetUpExtraFeatureMenu(extraFeatureMenu)
 						local nextBodyGroup = (current + 1) % num
 						entity:SetBodygroup(bodyGroup.id, nextBodyGroup)
 						-- 更新当前显示的数字
-						line:SetColumnText(2, tostring(nextBodyGroup))
+						line:SetColumnText(3, tostring(nextBodyGroup))
 						break
 					end
 				end
@@ -105,7 +106,7 @@ function OFNPCP_SetUpExtraFeatureMenu(extraFeatureMenu)
 		pan1ListPanel.OnRowRightClick = function(_, _, line)
 			local menu = vgui.Create("OFMenu")
 			menu:AddOption(ofTranslate("ui.model.block_last_one"), function()
-				local bodyGroupName = line:GetColumnText(1)
+				local bodyGroupID = line:GetColumnText(1)
 				local model = pan1ModelPanel.Entity:GetModel()
 				
 				-- 初始化模型的身体组屏蔽记录
@@ -114,14 +115,14 @@ function OFNPCP_SetUpExtraFeatureMenu(extraFeatureMenu)
 				end
 				
 				-- 检查当前是否已经设置
-				if line:GetColumnText(3) == ofTranslate("ui.model.block_last_one") then
+				if line:GetColumnText(4) == ofTranslate("ui.model.block_last_one") then
 					-- 如果已经设置，则清除
-					line:SetColumnText(3, "")
-					blockedBodygroups[model][bodyGroupName] = nil
+					line:SetColumnText(4, "")
+					blockedBodygroups[model][bodyGroupID] = nil
 				else
 					-- 如果没有设置，则添加
-					line:SetColumnText(3, ofTranslate("ui.model.block_last_one"))
-					blockedBodygroups[model][bodyGroupName] = true
+					line:SetColumnText(4, ofTranslate("ui.model.block_last_one"))
+					blockedBodygroups[model][bodyGroupID] = true
 				end
 			end):SetIcon("icon16/cancel.png")
 			menu:Open()
@@ -133,12 +134,12 @@ function OFNPCP_SetUpExtraFeatureMenu(extraFeatureMenu)
 			local bodyGroups = entity:GetBodyGroups()
 			for _, bodyGroup in ipairs(bodyGroups) do
 				local current = entity:GetBodygroup(bodyGroup.id)
-				local line = pan1ListPanel:AddLine(bodyGroup.name, tostring(current))
+				local line = pan1ListPanel:AddLine(bodyGroup.id, bodyGroup.name, tostring(current))
 				
 				-- 检查当前身体组是否被屏蔽
 				local model = entity:GetModel()
-				if blockedBodygroups[model] and blockedBodygroups[model][bodyGroup.name] then
-					line:SetColumnText(3, ofTranslate("ui.model.block_last_one"))
+				if blockedBodygroups[model] and blockedBodygroups[model][bodyGroup.id] then
+					line:SetColumnText(4, ofTranslate("ui.model.block_last_one"))
 				end
 			end
 		end
