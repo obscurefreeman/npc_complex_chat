@@ -146,15 +146,15 @@ function OFNPCP_ReplaceNPCModel( ent, identity )
       local bodygroups = ent:GetBodyGroups()
 
       if bodygroups ~= nil and #bodygroups > 1 then
-        for id, bodygroup in pairs(bodygroups) do
-          local bodygroupnumber = bodygroup.num
+        for _, bodygroup in pairs(bodygroups) do
+          local bodygroupnumber = bodygroup.num - 1
           local model = ent:GetModel()
-          if blockedBodygroups[model] and blockedBodygroups[model][id] then
-              bodygroupnumber = math.max(0, bodygroup.num - 1)
+          if blockedBodygroups[model] and blockedBodygroups[model][bodygroup.id] then
+              bodygroupnumber = math.max(0, bodygroup.num - 2)
           end
           local randomNum = math.random(0, bodygroupnumber)
-          table.insert(randombodygroups, {id = id, num = randomNum})
-          ent:SetBodygroup(id, randomNum)
+          table.insert(randombodygroups, {id = bodygroup.id, num = randomNum})
+          ent:SetBodygroup(bodygroup.id, randomNum)
         end
       end
     end)

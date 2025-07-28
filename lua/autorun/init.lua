@@ -3010,6 +3010,12 @@ GLOBAL_OFNPC_DATA = {
     article = {
         log = {
             {
+                title = "July 2025 Update",
+                content = "Added automated model assignment tool.\nMonthly bug fix, improved usability. Removed local models from AI list.",
+                image = "7_2025",
+                timestamp = 1749964703,
+            },
+            {
                 title = "June 2025 Update",
                 content = "Optimized code to improve its compatibility.\nSound effects of 3D subtitle and subtitles above player's head can now be turned off in menu.\nFixed the issue of incorrect player color display in multiplayer games.\nAdded a killfeed system and customization options in the personalization page.",
                 image = "6_2025",
