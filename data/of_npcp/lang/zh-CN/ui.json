@@ -131,7 +131,13 @@
             "block_last_one": "屏蔽最后一项",
             "save": "保存",
             "save_success": "保存成功",
-            "save_fail": "保存失败，你不是超级管理员"
+            "save_fail": "保存失败，你不是超级管理员",
+            "import": "导入分享码",
+            "import_success": "导入成功，点击保存按钮应用更改",
+            "import_fail": "分享码导入失败",
+            "export": "复制分享码",
+            "export_success": "分享码已保存到剪贴板",
+            "export_fail": "分享码获取失败"
         },
         "player2": {
             "enable_server": "（服务器需下载客户端）在服务器上启用Player2",

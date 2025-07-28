@@ -131,7 +131,13 @@
             "block_last_one": "Letztes Element blockieren",
             "save": "Speichern",
             "save_success": "Erfolgreich gespeichert",
-            "save_fail": "Speichern fehlgeschlagen, Sie sind kein Super-Administrator"
+            "save_fail": "Speichern fehlgeschlagen, Sie sind kein Super-Administrator",
+            "import": "Freigabecode importieren",
+            "import_success": "Import erfolgreich, klicken Sie auf Speichern, um die Änderungen zu übernehmen",
+            "import_fail": "Import des Freigabecodes fehlgeschlagen",
+            "export": "Freigabecode kopieren",
+            "export_success": "Freigabecode in die Zwischenablage kopiert",
+            "export_fail": "Freigabecode konnte nicht abgerufen werden"
         },
         "player2": {
             "enable_server": "(Server) Player2 auf dem Server aktivieren",

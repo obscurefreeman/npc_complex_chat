@@ -329,7 +329,7 @@ function OFNPCP_SetUpExtraFeatureMenu(extraFeatureMenu)
 		-- 创建保存按钮
 		local savebutton = vgui.Create("OFButton", pan1LeftPanel)
 		savebutton:Dock(BOTTOM)
-		savebutton:SetHeight(80 * OFGUI.ScreenScale)
+		savebutton:SetTall(32 * OFGUI.ScreenScale)
 		savebutton:SetText(ofTranslate("ui.model.save"))
 		savebutton:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
 
@@ -358,6 +358,27 @@ function OFNPCP_SetUpExtraFeatureMenu(extraFeatureMenu)
 			
 			-- 显示保存成功的提示
 			notification.AddLegacy(ofTranslate("ui.model.save_success"), NOTIFY_GENERIC, 5)
+		end
+
+		-- 创建导出按钮
+		local exportButton = vgui.Create("OFButton", pan1LeftPanel)
+		exportButton:Dock(BOTTOM)
+		exportButton:SetHeight(40 * OFGUI.ScreenScale)
+		exportButton:SetText(ofTranslate("ui.model.export"))
+		exportButton:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+
+		exportButton.DoClick = function()
+
+			-- 将选中的模型表和被屏蔽的身体组合并为一个表
+			local combinedData = {
+				modelsettings = selectedModels,
+				bodygroupsettings = blockedBodygroups
+			}
+
+			-- 将合并后的表转换为JSON格式并复制到剪贴板
+			local jsonData = util.TableToJSON(combinedData, true)
+			SetClipboardText(jsonData)
+			notification.AddLegacy(ofTranslate("ui.model.export_success"), NOTIFY_GENERIC, 5)
 		end
 	end
 
