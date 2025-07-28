@@ -221,15 +221,15 @@ if SERVER then
         net.Broadcast()
 
         -- 在控制台打印NPC信息
-        print("\n=== 新NPC生成 ===")
-        for key, value in pairs(identity) do
-            if type(value) == "string" then
-                print(key .. ": " .. value)
-            else
-                print(key .. ": " .. tostring(value))  -- 确保将非字符串值转换为字符串
-            end
-        end
-        print("================")
+        -- print("\n=== 新NPC生成 ===")
+        -- for key, value in pairs(identity) do
+        --     if type(value) == "string" then
+        --         print(key .. ": " .. value)
+        --     else
+        --         print(key .. ": " .. tostring(value))  -- 确保将非字符串值转换为字符串
+        --     end
+        -- end
+        -- print("================")
     end
     
     hook.Add("OnEntityCreated", "NPCPersonality", function(ent)

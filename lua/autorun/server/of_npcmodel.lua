@@ -19,7 +19,8 @@ net.Receive("OFNPCP_NS_SaveModelSettings", function(len, ply)
   -- 将选中的模型表转换为JSON格式并保存
   file.Write("of_npcp/model_settings.txt", util.TableToJSON(modelSettings))
 
-  activemodelSettings = modelSettings
+  activemodelSettings = modelSettings.modelsettings
+  blockedBodygroups = modelSettings.bodygroupsettings
 end)
 
 local function GetRandomNPCModel(npc_type)
@@ -213,20 +214,4 @@ hook.Add("Initialize", "OFNPCP_LoadTablesOnInit", function()
       end
     end
   end
-end)
-
-net.Receive("OFNPCP_NS_SaveBlockedBodygroups", function(len, ply)
-    if not IsValid(ply) or not ply:IsSuperAdmin() then return end
-    
-    local bodygroups = net.ReadTable()
-    
-    -- 检查目录是否存在，不存在则创建
-    if not file.IsDir("of_npcp", "DATA") then
-        file.CreateDir("of_npcp")
-    end
-    
-    -- 将被屏蔽的身体组转换为JSON格式并保存
-    file.Write("of_npcp/model_bodygroups_block_settings.txt", util.TableToJSON(bodygroups))
-
-    blockedBodygroups = bodygroups
 end)

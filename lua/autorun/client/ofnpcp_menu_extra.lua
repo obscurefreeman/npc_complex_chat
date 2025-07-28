@@ -34,18 +34,11 @@ function OFNPCP_SetUpExtraFeatureMenu(extraFeatureMenu)
 		if file.Exists("of_npcp/model_settings.txt", "DATA") then
 			local savedData = file.Read("of_npcp/model_settings.txt", "DATA")
 			if savedData then
-				local loadedModels = util.JSONToTable(savedData)
-				if loadedModels then
-					selectedModels = loadedModels
+				local loadedData = util.JSONToTable(savedData)
+				if loadedData then
+					selectedModels = loadedData.modelsettings or selectedModels
+					blockedBodygroups = loadedData.bodygroupsettings or blockedBodygroups
 				end
-			end
-		end
-
-		-- 尝试加载已保存的模型随机化黑名单数据
-		if file.Exists("of_npcp/model_bodygroups_block_settings.txt", "DATA") then
-			local savedData = file.Read("of_npcp/model_bodygroups_block_settings.txt", "DATA")
-			if savedData then
-				blockedBodygroups = util.JSONToTable(savedData)
 			end
 		end
 
@@ -352,14 +345,15 @@ function OFNPCP_SetUpExtraFeatureMenu(extraFeatureMenu)
 				file.CreateDir("of_npcp")
 			end
 			
-			-- 将选中的模型表转换为JSON格式并发送到服务器
-			net.Start("OFNPCP_NS_SaveModelSettings")
-				net.WriteTable(selectedModels)
-			net.SendToServer()
+			-- 将选中的模型表和被屏蔽的身体组合并为一个表
+			local combinedData = {
+				modelsettings = selectedModels,
+				bodygroupsettings = blockedBodygroups
+			}
 
-			-- 将被屏蔽的身体组转换为JSON格式并发送到服务器
-			net.Start("OFNPCP_NS_SaveBlockedBodygroups")
-				net.WriteTable(blockedBodygroups)
+			-- 将合并后的表转换为JSON格式并发送到服务器
+			net.Start("OFNPCP_NS_SaveModelSettings")
+				net.WriteTable(combinedData)
 			net.SendToServer()
 			
 			-- 显示保存成功的提示
