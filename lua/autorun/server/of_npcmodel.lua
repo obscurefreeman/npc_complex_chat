@@ -125,7 +125,8 @@ function OFNPCP_ReplaceNPCModel( ent, identity )
     "models/humans/group03m/male_09.mdl",
     "models/combine_soldier.mdl",
     "models/combine_soldier_prisonguard.mdl",
-    "models/combine_super_soldier.mdl"
+    "models/combine_super_soldier.mdl",
+    "models/police.mdl"
     }
     
     -- 检查当前模型是否在排除列表中

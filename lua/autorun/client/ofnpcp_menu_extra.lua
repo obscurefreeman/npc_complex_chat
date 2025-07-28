@@ -196,6 +196,11 @@ function OFNPCP_SetUpExtraFeatureMenu(extraFeatureMenu)
 			-- 获取并显示该分类的模型
 			local models = {}
 			for _, v in pairs(list.Get("NPC")) do
+				-- 特殊处理该死的国民护卫队，这玩意正常情况没设置模型
+				if v.Class == "npc_metropolice" and v.Name == "#npc_metropolice" and not v.Model then
+					v.Model = "models/police.mdl"
+				end
+				
 				if v.Class == npcClass and not table.HasValue(models, v.Model) then
 					table.insert(models, v.Model)
 				end
@@ -243,10 +248,15 @@ function OFNPCP_SetUpExtraFeatureMenu(extraFeatureMenu)
 						selectedIcon:SetModel(model)
 						-- selectedIcon:SetTooltip(ofTranslate("ui.model.tooltip_remove"))
 						local npcName = "Unknown NPC"
-						for _, v in pairs(list.Get("NPC")) do
-							if v.Model == model then
-								npcName = v.Name or v.Class or "Unknown NPC"
-								break
+						-- 特殊处理该死的国民护卫队，这玩意正常情况没设置模型
+						if model == "models/police.mdl" then
+							npcName = "#npc_metropolice"
+						else
+							for _, v in pairs(list.Get("NPC")) do
+								if v.Model == model then
+									npcName = v.Name or v.Class or "Unknown NPC"
+									break
+								end
 							end
 						end
 						selectedIcon:SetTitle(npcName)
