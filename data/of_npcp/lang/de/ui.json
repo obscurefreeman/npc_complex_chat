@@ -142,7 +142,13 @@
             "export_fail": "Freigabecode konnte nicht abgerufen werden",
             "tooltip_add": "Linksklick, um zum Modellpool hinzuzufügen, Rechtsklick, um das Dropdown-Menü zu öffnen\nModell:",
             "tooltip_remove": "Linksklick, um aus dem Modellpool zu entfernen, Rechtsklick, um das Dropdown-Menü zu öffnen",
-            "tooltip_bodygroup": "Linksklick, um Körpergruppe anzuzeigen, Rechtsklick, um Blockierung umzuschalten"
+            "tooltip_bodygroup": "Linksklick, um Körpergruppe anzuzeigen, Rechtsklick, um Blockierung umzuschalten",
+            "copy": "Modellpfad kopieren",
+            "spawn_with_toolgun": "Mit Toolgun spawnen", 
+            "rerender": "Neu rendern",
+            "edit_icon": "Icon bearbeiten",
+            "add": "Zum Modellpool hinzufügen",
+            "remove": "Aus Modellpool entfernen"
         },
         "player2": {
             "enable_server": "(Server) Player2 auf dem Server aktivieren",

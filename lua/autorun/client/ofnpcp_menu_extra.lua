@@ -236,12 +236,6 @@ function OFNPCP_SetUpExtraFeatureMenu(extraFeatureMenu)
 				end
 
 				icon.DoClick = function()
-
-					-- 更新模型面板中的模型
-					pan1ModelPanel:SetModel(model)
-
-					-- 清空并更新身体组列表
-					UpdateBodyGroupList(pan1ModelPanel.Entity)
 					
 					if not table.HasValue(selectedModels[npcClass], model) then
 						table.insert(selectedModels[npcClass], model)
@@ -275,22 +269,19 @@ function OFNPCP_SetUpExtraFeatureMenu(extraFeatureMenu)
 
 				-- 添加右键菜单
 				icon.OpenMenu = function( pnl )
-					if ( pnl:GetParent() && pnl:GetParent().ContentContainer ) then
-						container = pnl:GetParent().ContentContainer
-					end
 					local menu = vgui.Create("OFMenu")
-					menu:AddOption( "#spawnmenu.menu.copy", function() SetClipboardText( string.gsub( model, "\\", "/" ) ) end ):SetIcon( "icon16/page_copy.png" )
-					menu:AddOption( "#spawnmenu.menu.spawn_with_toolgun", function()
+					menu:AddOption( ofTranslate("ui.model.copy"), function() SetClipboardText( string.gsub( model, "\\", "/" ) ) end )
+					menu:AddOption( ofTranslate("ui.model.spawn_with_toolgun"), function()
 						RunConsoleCommand( "gmod_tool", "creator" )
 						RunConsoleCommand( "creator_type", "4" )
 						RunConsoleCommand( "creator_name", model )
-					end ):SetIcon( "icon16/brick_add.png" )
+					end )
 			
-					menu:AddOption( "#spawnmenu.menu.rerender", function()
+					menu:AddOption( ofTranslate("ui.model.rerender"), function()
 						if ( IsValid( pnl ) ) then pnl:RebuildSpawnIcon() end
-					end ):SetIcon( "icon16/picture.png" )
+					end )
 
-					menu:AddOption( "#spawnmenu.menu.edit_icon", function()
+					menu:AddOption( ofTranslate("ui.model.edit_icon"), function()
 			
 						if ( !IsValid( pnl ) ) then return end
 			
@@ -300,7 +291,7 @@ function OFNPCP_SetUpExtraFeatureMenu(extraFeatureMenu)
 						editor:MakePopup()
 						editor:Center()
 			
-					end ):SetIcon( "icon16/pencil.png" )
+					end )
 
 					menu:AddOption( ofTranslate("ui.model.bodygroup_setting"), function()
 						-- 更新模型面板中的模型
@@ -308,7 +299,7 @@ function OFNPCP_SetUpExtraFeatureMenu(extraFeatureMenu)
 
 						-- 清空并更新身体组列表
 						UpdateBodyGroupList(pan1ModelPanel.Entity)
-					end ):SetIcon( "icon16/user_edit.png" )
+					end )
 					menu:Open()
 				end
 			end

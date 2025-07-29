@@ -142,7 +142,13 @@
             "export_fail": "Failed to get share code",
             "tooltip_add": "Left click to add to model pool, right click to open dropdown menu\nModel:",
             "tooltip_remove": "Left click to remove from model pool, right click to open dropdown menu",
-            "tooltip_bodygroup": "Left click to preview body group, right click to toggle block"
+            "tooltip_bodygroup": "Left click to preview body group, right click to toggle block",
+            "copy": "Copy Model Path",
+            "spawn_with_toolgun": "Spawn with Toolgun", 
+            "rerender": "Rerender",
+            "edit_icon": "Edit Icon",
+            "add": "Add to Model Pool",
+            "remove": "Remove from Model Pool"
         },
         "player2": {
             "enable_server": "(Server) Enable Player2 on server",

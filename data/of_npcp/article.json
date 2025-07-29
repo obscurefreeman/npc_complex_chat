@@ -2,9 +2,9 @@
     "log": [
         {
             "title": "July 2025 Update",
-            "content": "Added automated model assignment tool.\nMonthly bug fix, improved usability. Removed local models from AI list.",
+            "content": "Added automated model assignment tool.\nMonthly bug fix, improved usability. Removed local models from AI list.\nSubsequent updates: Fixed the operation logic of the model replacement interface, removed icons from dropdown menus, and unified localization.",
             "image": "7_2025",
-            "timestamp": 1749964703
+            "timestamp": 1753783628
         },
         {
             "title": "June 2025 Update",

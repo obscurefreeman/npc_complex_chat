@@ -142,7 +142,13 @@
             "export_fail": "分享碼獲取失敗",
             "tooltip_add": "左鍵將其加入模型池，右鍵打開下拉選單\n模型：",
             "tooltip_remove": "左鍵將其從模型池移除，右鍵打開下拉選單",
-            "tooltip_bodygroup": "左鍵切換身體組預覽，右鍵切換屏蔽"
+            "tooltip_bodygroup": "左鍵切換身體組預覽，右鍵切換屏蔽",
+            "copy": "複製模型路徑",
+            "spawn_with_toolgun": "用工具槍生成",
+            "rerender": "重新渲染",
+            "edit_icon": "編輯圖標",
+            "add": "添加至模型池",
+            "remove": "從模型池中移除"
         },
         "player2": {
             "enable_server": "（伺服器需下載客戶端）在伺服器上啟用Player2",
