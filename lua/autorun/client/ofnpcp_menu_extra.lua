@@ -146,36 +146,71 @@ function OFNPCP_SetUpExtraFeatureMenu(extraFeatureMenu)
 
 		-- 创建每个分类的滚动面板
 		local scrollPanels = {}
+		-- 新增函数：创建并设置 OFNPCButton
+		local function CreateNPCButton(parent, model, npcClass, selectedModels)
+			local selectedIcon = vgui.Create("OFNPCButton", parent)
+			selectedIcon:Dock(TOP)
+			selectedIcon:DockMargin(0, 0, 0, 2)
+			selectedIcon:SetTall(80 * OFGUI.ScreenScale)
+			selectedIcon:SetModel(model)
+			local npcName = "Unknown NPC"
+			-- 特殊处理该死的国民护卫队，这玩意正常情况没设置模型
+			if model == "models/police.mdl" then
+				npcName = "#npc_metropolice"
+			else
+				for _, v in pairs(list.Get("NPC")) do
+					if v.Model == model then
+						npcName = v.Name or v.Class or "Unknown NPC"
+						break
+					end
+				end
+			end
+			selectedIcon:SetTitle(npcName)
+			selectedIcon:SetDescription(model)
+			selectedIcon.DoClick = function()
+				table.RemoveByValue(selectedModels[npcClass], model)
+				selectedIcon:Remove()
+			end
+			selectedIcon.DoRightClick = function( pnl )
+				local menu = vgui.Create("OFMenu")
+
+				menu:AddOption( ofTranslate("ui.model.remove"), function()
+					if table.HasValue(selectedModels[npcClass], model) then
+						table.RemoveByValue(selectedModels[npcClass], model)
+						selectedIcon:Remove()
+					end
+				end )
+				menu:AddOption( ofTranslate("ui.model.copy"), function() SetClipboardText( string.gsub( model, "\\", "/" ) ) end )
+				menu:AddOption( ofTranslate("ui.model.spawn_with_toolgun"), function()
+					RunConsoleCommand( "gmod_tool", "creator" )
+					RunConsoleCommand( "creator_type", "4" )
+					RunConsoleCommand( "creator_name", model )
+				end )
+		
+				menu:AddOption( ofTranslate("ui.model.rerender"), function()
+					if ( IsValid( pnl ) ) then pnl:RebuildSpawnIcon() end
+				end )
+
+				menu:AddOption( ofTranslate("ui.model.bodygroup_setting"), function()
+					-- 更新模型面板中的模型
+					pan1ModelPanel:SetModel(model)
+
+					-- 清空并更新身体组列表
+					UpdateBodyGroupList(pan1ModelPanel.Entity)
+				end )
+				menu:Open()
+			end
+			return selectedIcon
+		end
+
+		-- 修改后的 UpdateScrollPanel 函数
 		local function UpdateScrollPanel(npcClass)
 			local scrollPanel = scrollPanels[npcClass]
 			if IsValid(scrollPanel) then
 				scrollPanel:Clear()
 				local models = selectedModels[npcClass] or {}
 				for _, model in ipairs(models) do
-					local selectedIcon = vgui.Create("OFNPCButton", scrollPanel)
-					selectedIcon:Dock(TOP)
-					selectedIcon:DockMargin(0, 0, 0, 2)
-					selectedIcon:SetTall(80 * OFGUI.ScreenScale)
-					selectedIcon:SetModel(model or "models/error.mdl")
-					local npcName = "Unknown NPC"
-					-- 特殊处理该死的国民护卫队，这玩意正常情况没设置模型
-					if model == "models/police.mdl" then
-						npcName = "#npc_metropolice"
-					else
-						for _, v in pairs(list.Get("NPC")) do
-							if v.Model == model then
-								npcName = v.Name or v.Class or "Unknown NPC"
-								break
-							end
-						end
-					end
-					selectedIcon:SetTitle(npcName)
-					selectedIcon:SetDescription(model)
-					selectedIcon.DoClick = function()
-						-- 从对应分类的模型表中移除
-						table.RemoveByValue(selectedModels[npcClass], model)
-						selectedIcon:Remove()
-					end
+					CreateNPCButton(scrollPanel, model, npcClass, selectedModels)
 				end
 			end
 		end
@@ -236,40 +271,36 @@ function OFNPCP_SetUpExtraFeatureMenu(extraFeatureMenu)
 				end
 
 				icon.DoClick = function()
-					
-					if not table.HasValue(selectedModels[npcClass], model) then
+					-- 检查模型是否已经在模型池中
+					if table.HasValue(selectedModels[npcClass], model) then
+						-- 如果已经在模型池中，则移除
+						table.RemoveByValue(selectedModels[npcClass], model)
+						-- 更新左侧的模型池
+						UpdateScrollPanel(npcClass)
+					else
+						-- 如果不在模型池中，则添加
 						table.insert(selectedModels[npcClass], model)
 						-- 直接更新当前tab的内容，而不是重新创建
-						local selectedIcon = vgui.Create("OFNPCButton", scrollPanels[npcClass])
-						selectedIcon:Dock(TOP)
-						selectedIcon:DockMargin(0, 0, 0, 2)
-						selectedIcon:SetTall(80 * OFGUI.ScreenScale)
-						selectedIcon:SetModel(model)
-						-- selectedIcon:SetTooltip(ofTranslate("ui.model.tooltip_remove"))
-						local npcName = "Unknown NPC"
-						-- 特殊处理该死的国民护卫队，这玩意正常情况没设置模型
-						if model == "models/police.mdl" then
-							npcName = "#npc_metropolice"
-						else
-							for _, v in pairs(list.Get("NPC")) do
-								if v.Model == model then
-									npcName = v.Name or v.Class or "Unknown NPC"
-									break
-								end
-							end
-						end
-						selectedIcon:SetTitle(npcName)
-						selectedIcon:SetDescription(model)
-						selectedIcon.DoClick = function()
-							table.RemoveByValue(selectedModels[npcClass], model)
-							selectedIcon:Remove()
-						end
+						CreateNPCButton(scrollPanels[npcClass], model, npcClass, selectedModels)
 					end
 				end
 
 				-- 添加右键菜单
 				icon.OpenMenu = function( pnl )
 					local menu = vgui.Create("OFMenu")
+					menu:AddOption( ofTranslate("ui.model.add"), function()
+						if not table.HasValue(selectedModels[npcClass], model) then
+							table.insert(selectedModels[npcClass], model)
+							CreateNPCButton(scrollPanels[npcClass], model, npcClass, selectedModels)
+						end
+					end )
+
+					menu:AddOption( ofTranslate("ui.model.remove"), function()
+						if table.HasValue(selectedModels[npcClass], model) then
+							table.RemoveByValue(selectedModels[npcClass], model)
+							UpdateScrollPanel(npcClass)
+						end
+					end )
 					menu:AddOption( ofTranslate("ui.model.copy"), function() SetClipboardText( string.gsub( model, "\\", "/" ) ) end )
 					menu:AddOption( ofTranslate("ui.model.spawn_with_toolgun"), function()
 						RunConsoleCommand( "gmod_tool", "creator" )
