@@ -158,10 +158,15 @@ function OFNPCP_SetUpExtraFeatureMenu(extraFeatureMenu)
 					selectedIcon:SetTall(80 * OFGUI.ScreenScale)
 					selectedIcon:SetModel(model or "models/error.mdl")
 					local npcName = "Unknown NPC"
-					for _, v in pairs(list.Get("NPC")) do
-						if v.Model == model then
-							npcName = v.Name or v.Class or "Unknown NPC"
-							break
+					-- 特殊处理该死的国民护卫队，这玩意正常情况没设置模型
+					if model == "models/police.mdl" then
+						npcName = "#npc_metropolice"
+					else
+						for _, v in pairs(list.Get("NPC")) do
+							if v.Model == model then
+								npcName = v.Name or v.Class or "Unknown NPC"
+								break
+							end
 						end
 					end
 					selectedIcon:SetTitle(npcName)

@@ -132,12 +132,13 @@ function OFNPCP_ReplaceNPCModel( ent, identity )
     -- 检查当前模型是否在排除列表中
     if table.HasValue(includedModels, identity.model) then
       local model = GetRandomNPCModel(entClass)
-      if model == nil then return end
-      randommodel = model
-      timer.Simple(0.1, function()
-        if not IsValid(ent) then return end
-        ent:SetModel(model)
-      end)
+      if model ~= nil then
+        randommodel = model
+        timer.Simple(0.1, function()
+          if not IsValid(ent) then return end
+          ent:SetModel(model)
+        end)
+      end
     end
   end
 
