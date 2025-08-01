@@ -271,7 +271,7 @@ if CLIENT then
                 dialog.nextCharTime = currentTime + CHAR_DELAY
                 
                 if GetConVar("of_garrylord_subtitles3d_sound"):GetInt() == 1 then
-                    dialog.npc:EmitSound("ofnpcp/type/type" .. math.random(1, 32) .. ".wav")
+                    dialog.npc:EmitSound("ofnpcp.type")
                 end
             end
             

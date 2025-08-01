@@ -16,7 +16,7 @@ net.Receive("OFNPCP_NS_RankUp", function()
     if not IsValid(ent) then return end
 
     -- 播放晋级音效
-    ent:EmitSound("ofnpcp/rankup.ogg")
+    ent:EmitSound("ofnpcp.rankup")
 
     rankimage = "ofnpcp/usrankicons/rank_".. identity.rank .. ".png"
     rankname = ofTranslate("rank.".. identity.rank)
