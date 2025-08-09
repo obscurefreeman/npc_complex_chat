@@ -3477,6 +3477,15 @@ GLOBAL_OFNPC_DATA = {
                 "claude-3-haiku-20240307",
             },
         },
+        player2 = {
+            name = "ai.providor.player2.name",
+            description = "ai.providor.player2.description",
+            url = "https://api.player2.game/v1",
+            index = 7,
+            model = {
+                "player2",
+            },
+        },
         groq = {
             name = "ai.providor.groq.name",
             description = "ai.providor.groq.description",

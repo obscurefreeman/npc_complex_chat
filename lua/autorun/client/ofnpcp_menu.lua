@@ -932,6 +932,7 @@ function AddOFFrame()
 			}
 			-- 保存转换后的格式
 			file.Write("of_npcp/ai_settings.txt", util.TableToJSON(aiSettings))
+			-- 因为rawSettings必定存在，因此不用创建文件夹
 		end
 	end
 
@@ -996,6 +997,7 @@ function AddOFFrame()
 			SetText = ofTranslate("ui.ai_system.save_settings")
 		})
 		saveButton.DoClick = function()
+			-- 创建文件夹
 			if not file.IsDir("of_npcp", "DATA") then
 				file.CreateDir("of_npcp")
 			end
