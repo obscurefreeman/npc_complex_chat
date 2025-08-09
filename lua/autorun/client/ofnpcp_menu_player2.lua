@@ -1,4 +1,4 @@
--- CreateClientConVar("of_garrylord_player2_enable", "0", true, true, "", 0, 1)
+CreateClientConVar("of_garrylord_player2_device", "", true, true)
 
 function OFNPCP_SetUpPlayer2Menu(player2Menu)
 
@@ -18,8 +18,7 @@ function OFNPCP_SetUpPlayer2Menu(player2Menu)
 			key = "",
 			model = "player2",
 			temperature = 1,
-			max_tokens = 500,
-			device = ""
+			max_tokens = 500
 		}
 	end
 
@@ -39,9 +38,13 @@ function OFNPCP_SetUpPlayer2Menu(player2Menu)
 	player2Panel:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
 	player2Panel:Dock(FILL)
 
+	local player2Label = OFNPCPCreateControl(player2Panel, "OFTextLabel", {
+		SetText = ofTranslate("ui.tab.player2")
+	})
+
 	-- 创建设备码输入框
 	local deviceCodeEntry = OFNPCPCreateControl(player2Panel, "OFTextEntry", {
-		SetValue = aiSettings.player2 and aiSettings.player2.device or "",
+		SetValue = GetConVar("of_garrylord_player2_device"):GetString() or "",
 		SetPlaceholderText = "Player2 设备码"
 	})
 
@@ -59,15 +62,13 @@ function OFNPCP_SetUpPlayer2Menu(player2Menu)
 				notification.Kill("Player2AuthDevice")
 				local responseData = util.JSONToTable(body)
 				
-				if responseData.error_description then
-					notification.AddLegacy("申请设备码失败：" .. responseData.error_description, NOTIFY_ERROR, 5)
-				elseif responseData.deviceCode then
-					notification.AddLegacy("申请设备码成功", NOTIFY_GENERIC, 5)
+				if responseData.deviceCode then
+					notification.AddLegacy("申请设备码成功，即将开始验证", NOTIFY_GENERIC, 5)
 					deviceCodeEntry:SetValue(responseData.deviceCode)  -- 将设备码显示在输入框中
-					aiSettings.player2.device = responseData.deviceCode
-					save_settings()
+					gui.OpenURL(responseData.verificationUriComplete)
+					RunConsoleCommand("of_garrylord_player2_device", responseData.deviceCode)
 				else
-					notification.AddLegacy("申请设备码失败：" .. "Unknown", NOTIFY_ERROR, 5)
+					notification.AddLegacy("申请设备码失败：" .. responseData.error_description or "Unknown", NOTIFY_ERROR, 5)
 				end
 			end,
 			
@@ -101,7 +102,7 @@ function OFNPCP_SetUpPlayer2Menu(player2Menu)
 			method = "post",
 			body = util.TableToJSON({
 				client_id = CLIENT_ID,
-				device_code = aiSettings.player2 and aiSettings.player2.device or "",
+				device_code = GetConVar("of_garrylord_player2_device"):GetString() or "",
 				grant_type = 'urn:ietf:params:oauth:grant-type:device_code'
 			}),
 			
@@ -113,14 +114,13 @@ function OFNPCP_SetUpPlayer2Menu(player2Menu)
 				PrintTable(responseData)
 				PrintTable(aiSettings.player2)
 				
-				if responseData.error_description then
-					notification.AddLegacy("获取API失败：" .. responseData.error_description, NOTIFY_ERROR, 5)
-				elseif responseData.p2Key then
+				if responseData.p2Key then
 					notification.AddLegacy("获取API成功，PLAYER2API已保存到本地，您现在可以使用它了", NOTIFY_GENERIC, 5)
-					aiSettings.player2.device = responseData.p2Key
+					apiCodeEntry:SetValue(responseData.p2Key)
+					aiSettings.player2.key = responseData.p2Key
 					save_settings()
 				else
-					notification.AddLegacy("获取API失败：" .. "Unknown", NOTIFY_ERROR, 5)
+					notification.AddLegacy("获取API失败：" .. responseData.error_description or "Unknown", NOTIFY_ERROR, 5)
 				end
 			end,
 			
