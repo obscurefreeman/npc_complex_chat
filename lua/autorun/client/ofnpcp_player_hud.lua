@@ -25,7 +25,7 @@ local currentArmor = 0
 local currentAmmo = 0
 
 hook.Add("HUDPaint", "ofnpcp_simple_playerhud", function()
-	if GetConVar("of_garrylord_player_hud"):GetInt() ~= 1 then return end
+	if GetConVar("of_garrylord_player_hud"):GetInt() ~= 1 or GetConVar("cl_drawhud"):GetInt() ~= 1 then return end
 	if not IsValid(LocalPlayer()) or not LocalPlayer():Alive() then return end
 	if GetConVar("cl_drawhud"):GetInt() == 0 then return end
 

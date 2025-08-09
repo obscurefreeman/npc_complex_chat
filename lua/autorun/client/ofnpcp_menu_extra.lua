@@ -56,16 +56,28 @@ function OFNPCP_SetUpExtraFeatureMenu(extraFeatureMenu)
 		pan1TopHorizontalDivider:DockMargin(6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale)
 		pan1TopHorizontalDivider:SetLeftWidth(ScrW() / 6)
 
-		local pan1ModelPanel = vgui.Create("DModelPanel")
-		pan1ModelPanel:SetFOV(45)  -- 设置较小的FOV使模型看起来更近
-		pan1ModelPanel:SetCamPos(Vector(50, 0, 52))  -- 设置相机位置更靠近模型
-		pan1ModelPanel:SetLookAt(Vector(0, 0, 52))  -- 设置相机看向模型中心
-		pan1ModelPanel:SetAmbientLight(Color(150, 150, 150))  -- 设置环境光
-		pan1ModelPanel:SetMouseInputEnabled( false )
+		local pan1ModelPanel = vgui.Create("DAdjustableModelPanel")
+		pan1ModelPanel:SetFOV(80)
 		pan1ModelPanel:SetAnimated( true )
-		pan1ModelPanel:SetDirectionalLight( BOX_TOP, Color( 0, 0, 0 ) )
+		pan1ModelPanel:SetAnimationEnabled(true)
 		pan1ModelPanel:SetAmbientLight( Color( 128, 128, 128, 128 ) )
-		function pan1ModelPanel:LayoutEntity( ent ) end
+		pan1ModelPanel:SetDirectionalLight(BOX_TOP, Color( 200, 200, 200, 255 ))
+		pan1ModelPanel:SetDirectionalLight(BOX_FRONT, Color( 255, 255, 255, 255 ))
+		pan1ModelPanel:SetDirectionalLight(BOX_BOTTOM, Color(0, 0, 0))
+		pan1ModelPanel:SetDirectionalLight(BOX_BACK, Color( 200, 200, 200, 255 ))
+		pan1ModelPanel:SetDirectionalLight(BOX_LEFT, Color( 80, 160, 255, 255 ))
+		pan1ModelPanel:SetDirectionalLight(BOX_RIGHT, Color( 255, 160, 80, 255 ))
+
+		pan1ModelPanel:SetLookAng(Angle(0, 180, 0))
+		pan1ModelPanel:SetCamPos(Vector(50, 0, 35))
+
+		function pan1ModelPanel:LayoutEntity( ent )
+			if IsValid(ent) then
+				local eyeAngles = (pan1ModelPanel:GetCamPos() - ent:GetPos()):Angle()
+				ent:SetEyeTarget(pan1ModelPanel:GetCamPos())
+				ent:FrameAdvance(FrameTime())
+			end
+		end
 		pan1TopHorizontalDivider:SetLeft(pan1ModelPanel)
 	
 		local pan1ListPanel = vgui.Create("OFListView")

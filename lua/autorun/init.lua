@@ -3373,6 +3373,19 @@ GLOBAL_OFNPC_DATA = {
             image = "xh",
             order = 5,
         },
+        {
+            name = "凉饮霄",
+            badges = {
+                "ui.sponsor.sponsor",
+            },
+            color = {
+                75,
+                0,
+                130,
+            },
+            image = "lyx",
+            order = 5,
+        },
     },
     aiProviders = {
         openai = {
