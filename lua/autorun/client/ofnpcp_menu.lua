@@ -965,7 +965,7 @@ function AddOFFrame()
 		})
 
 		local modelComboBox = OFNPCPCreateControl(aiRightPanel, "OFComboBox", {
-			SetValue = settings.model or ofTranslate("ui.ai_system.model_select")
+			SetValue = settings.model or ofTranslate("未找到AI模型设置")
 		})
 		for _, model in ipairs(provider.model) do
 			modelComboBox:AddChoice(model)
