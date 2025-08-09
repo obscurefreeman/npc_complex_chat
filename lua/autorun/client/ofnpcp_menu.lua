@@ -965,7 +965,7 @@ function AddOFFrame()
 		})
 
 		local modelComboBox = OFNPCPCreateControl(aiRightPanel, "OFComboBox", {
-			SetValue = settings.model or ofTranslate("未找到AI模型设置")
+			SetValue = settings.model or ofTranslate("ui.ai_system.model_select")
 		})
 		for _, model in ipairs(provider.model) do
 			modelComboBox:AddChoice(model)
@@ -1031,7 +1031,7 @@ function AddOFFrame()
 			local campButton = vgui.Create("OFMessage", aiRightPanel)
 			campButton:SetHeight(80 * OFGUI.ScreenScale)
 			campButton:Dock(TOP)
-			campButton:DockMargin(4, 4, 4, 4)
+			campButton:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
 			campButton:SetName(ofTranslate("ui.ai_system.system_prompt") .. ofTranslate(GLOBAL_OFNPC_DATA.setting.camp_setting[camp].name))
 			campButton:SetText(ofTranslate("prompt."..camp))
 			campButton:SetColor(GLOBAL_OFNPC_DATA.setting.camp_setting[camp] and GLOBAL_OFNPC_DATA.setting.camp_setting[camp].color or color_white)

@@ -381,7 +381,7 @@ if CLIENT then
                     local message = vgui.Create("OFMessage", messagePanel)
                     message:SetHeight(80 * OFGUI.ScreenScale)
                     message:Dock(TOP)
-                    message:DockMargin(4, 4, 4, 4)
+                    message:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
                     
                     -- 设置消息颜色
                     local messageColor = dialog.color
@@ -506,7 +506,7 @@ if CLIENT then
             button:SetChatText(translatedOption)
             button:SetTitle(ofTranslate("ui.dialog." .. optionTypes[option]))
             button:Dock(TOP)
-            button:DockMargin(4, 4, 4, 4)
+            button:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
             button:SetIcon("ofnpcp/chaticons/preview/" .. optionTypes[option] .. ".png")
             button:SetCardIcon("ofnpcp/chaticons/large/" .. optionTypes[option] .. ".png")
             button:SetTall(50 * OFGUI.ScreenScale)
@@ -553,9 +553,9 @@ if CLIENT then
                         end
 
                         local modelComboBox = vgui.Create("OFComboBox", scrollPanel)
-                        modelComboBox:SetValue( ofTranslate("ui.ai_system.model_select") )
+                        modelComboBox:SetValue( ofTranslate("ui.dialo.no_model") )
                         modelComboBox:Dock(TOP)
-                        modelComboBox:DockMargin(4, 4, 4, 4)
+                        modelComboBox:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
                         modelComboBox:SetTall(30 * OFGUI.ScreenScale)
 
                         if aiSettings then
@@ -600,7 +600,7 @@ if CLIENT then
                         button:SetChatText(translatedOption)
                         button:SetTitle(ofTranslate("ui.dialog.leave"))
                         button:Dock(TOP)
-                        button:DockMargin(4, 4, 4, 4)
+                        button:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
                         button:SetIcon("ofnpcp/chaticons/preview/leave.png")
                         button:SetCardIcon("ofnpcp/chaticons/large/leave.png")
                         button:SetTall(50 * OFGUI.ScreenScale)
@@ -699,7 +699,7 @@ if CLIENT then
                         button:SetChatText(playerText)
                         button:SetTitle(ofTranslate(cardInfo.data.name))
                         button:Dock(TOP)
-                        button:DockMargin(4, 4, 4, 4)
+                        button:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
                         button:SetIcon("ofnpcp/cards/preview/" .. cardInfo.key .. ".png")
                         button:SetCardIcon("ofnpcp/cards/large/" .. cardInfo.key .. ".png")
                         button:SetHoveredColor(deckColor)
@@ -735,7 +735,7 @@ if CLIENT then
                         leavebutton:SetChatText(translatedOption)
                         leavebutton:SetTitle(ofTranslate("ui.dialog.leave"))
                         leavebutton:Dock(TOP)
-                        leavebutton:DockMargin(4, 4, 4, 4)
+                        leavebutton:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
                         leavebutton:SetIcon("ofnpcp/chaticons/preview/leave.png")
                         leavebutton:SetCardIcon("ofnpcp/chaticons/large/leave.png")
                         leavebutton:SetTall(50 * OFGUI.ScreenScale)
