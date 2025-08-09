@@ -67,7 +67,7 @@ function OFNPCP_SetUpPlayer2Menu(player2Menu)
 					aiSettings.player2.device = responseData.deviceCode
 					save_settings()
 				else
-					notification.AddLegacy("申请设备码失败，未知错误", NOTIFY_ERROR, 5)
+					notification.AddLegacy("申请设备码失败：" .. "Unknown", NOTIFY_ERROR, 5)
 				end
 			end,
 			
@@ -120,7 +120,7 @@ function OFNPCP_SetUpPlayer2Menu(player2Menu)
 					aiSettings.player2.device = responseData.p2Key
 					save_settings()
 				else
-					notification.AddLegacy("获取API失败，未知错误", NOTIFY_ERROR, 5)
+					notification.AddLegacy("获取API失败：" .. "Unknown", NOTIFY_ERROR, 5)
 				end
 			end,
 			

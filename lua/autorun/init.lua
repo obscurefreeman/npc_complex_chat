@@ -13829,6 +13829,7 @@ GLOBAL_OFNPC_DATA = {
                     no_ai_settings = "未检测到有效AI配置，请前往AI设置面板进行初始化。",
                     unknown = "未知",
                     submit = "发送",
+                    no_model = "没有配置供应商及模型",
                 },
                 card_editor = {
                     title = "卡牌编辑器",
@@ -13887,6 +13888,7 @@ GLOBAL_OFNPC_DATA = {
                     enable_randommodel = "启用随机模型",
                     enable_randomskin = "启用随机皮肤",
                     enable_randombodygroup = "启用随机身体组",
+                    ["model.enable_sandboxlimitation"] = "此页功能仅限沙盒模式",
                     citizen = "市民",
                     combine = "联合军",
                     metropolice = "国民护卫队",
@@ -13921,6 +13923,8 @@ GLOBAL_OFNPC_DATA = {
                     enable_server_share = "（服务器）所有玩家均可共享服务器的Player2服务",
                     enable = "（客户端）使用Player2，而非自己配置好的AI",
                     enable_tts = "（客户端）使用Player2的tts，而非自己配置好的tts服务",
+                    get_device_key = "获取设备码",
+                    get_api = "获取API",
                 },
                 time = {
                     just_now = "刚刚",

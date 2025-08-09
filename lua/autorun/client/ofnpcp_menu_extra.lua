@@ -44,12 +44,7 @@ function OFNPCP_SetUpExtraFeatureMenu(pan1)
 		pan1TopPanel:Dock(TOP)
 		pan1TopPanel:SetTall(300 * OFGUI.ScreenScale)  -- 设置顶部面板高度为屏幕高度的30%
 
-		local pan1TopHorizontalDivider = vgui.Create("DHorizontalDivider", pan1TopPanel)
-		pan1TopHorizontalDivider:Dock(FILL)
-		pan1TopHorizontalDivider:DockMargin(6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale)
-		pan1TopHorizontalDivider:SetLeftWidth(ScrW() / 6)
-
-		local pan1ModelPanel = vgui.Create("DAdjustableModelPanel")
+		local pan1ModelPanel = vgui.Create("DAdjustableModelPanel", pan1TopPanel)
 		pan1ModelPanel:SetFOV(80)
 		pan1ModelPanel:SetAnimated( true )
 		pan1ModelPanel:SetAnimationEnabled(true)
@@ -64,6 +59,9 @@ function OFNPCP_SetUpExtraFeatureMenu(pan1)
 		pan1ModelPanel:SetLookAng(Angle(0, 180, 0))
 		pan1ModelPanel:SetCamPos(Vector(50, 0, 35))
 
+		pan1ModelPanel:Dock(LEFT)
+		pan1ModelPanel:SetWidth(ScrW() / 6)
+
 		function pan1ModelPanel:LayoutEntity( ent )
 			if IsValid(ent) then
 				local eyeAngles = (pan1ModelPanel:GetCamPos() - ent:GetPos()):Angle()
@@ -71,14 +69,14 @@ function OFNPCP_SetUpExtraFeatureMenu(pan1)
 				ent:FrameAdvance(FrameTime())
 			end
 		end
-		pan1TopHorizontalDivider:SetLeft(pan1ModelPanel)
 	
-		local pan1ListPanel = vgui.Create("OFListView")
+		local pan1ListPanel = vgui.Create("OFListView", pan1TopPanel)
 		pan1ListPanel:AddColumn( "ID" )
 		pan1ListPanel:AddColumn( ofTranslate("ui.model.bodygroup") )
 		pan1ListPanel:AddColumn( ofTranslate("ui.model.current_display") )
 		pan1ListPanel:AddColumn( ofTranslate("ui.model.block") )
-		pan1TopHorizontalDivider:SetRight(pan1ListPanel)
+		pan1ListPanel:Dock(FILL)
+		pan1ListPanel:DockMargin(6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale)
 
 		-- 添加点击事件处理
 		pan1ListPanel.OnRowSelected = function(_, _, line)
@@ -374,6 +372,7 @@ function OFNPCP_SetUpExtraFeatureMenu(pan1)
 		OFNPCPCreateCheckBoxPanel(pan1LeftPanel, "of_garrylord_model_replacement", "ui.model.enable_randommodel")
 		OFNPCPCreateCheckBoxPanel(pan1LeftPanel, "of_garrylord_model_randomskin", "ui.model.enable_randomskin")
 		OFNPCPCreateCheckBoxPanel(pan1LeftPanel, "of_garrylord_model_randombodygroup", "ui.model.enable_randombodygroup")
+		OFNPCPCreateCheckBoxPanel(pan1LeftPanel, "of_garrylord_model_sandboxlimitation", "ui.model.enable_sandboxlimitation")
 
 		OFNPCPCreateControl(pan1LeftPanel, "OFTextLabel", {
 			SetText = ofTranslate("ui.model.model_pool")

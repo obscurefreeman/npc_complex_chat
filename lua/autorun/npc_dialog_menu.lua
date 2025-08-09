@@ -624,12 +624,12 @@ if CLIENT then
                                     role = "user",
                                     content = inputText
                                 })
-                                -- 调试信息：打印发送的AI对话数据
-                                print("[DEBUG] 发送AI对话请求：")
-                                print("NPC: ", npc)
-                                print("输入文本: ", inputText)
-                                print("AI详情: ", util.TableToJSON(aidetail or {}))
-                                print("对话历史: ", util.TableToJSON(aiDialogs or {}))
+                                -- -- 调试信息：打印发送的AI对话数据
+                                -- print("[DEBUG] 发送AI对话请求：")
+                                -- print("NPC: ", npc)
+                                -- print("输入文本: ", inputText)
+                                -- print("AI详情: ", util.TableToJSON(aidetail or {}))
+                                -- print("对话历史: ", util.TableToJSON(aiDialogs or {}))
 
                                 -- 发送网络消息
                                 net.Start("OFNPCP_NS_PlayerDialog")

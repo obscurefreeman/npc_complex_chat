@@ -1,6 +1,7 @@
 CreateConVar("of_garrylord_model_replacement", "0", FCVAR_ARCHIVE, "")
 CreateConVar("of_garrylord_model_randomskin", "0", FCVAR_ARCHIVE, "")
 CreateConVar("of_garrylord_model_randombodygroup", "0", FCVAR_ARCHIVE, "")
+CreateConVar("of_garrylord_model_sandboxlimitation", "0", FCVAR_ARCHIVE, "")
 
 local activemodelSettings = {}
 local blockedBodygroups = {}
@@ -38,6 +39,7 @@ function OFNPCP_ReplaceNPCModel( ent, identity )
   if not IsValid(ent) or not ent:IsNPC() then return end
   local entClass = identity.info
   if entClass ~= "npc_combine_s" and entClass ~= "npc_citizen" and entClass ~= "npc_metropolice" then return end
+  if GetConVar("of_garrylord_model_sandboxlimitation"):GetBool() and engine.ActiveGamemode() ~= "sandbox" then return end
 
   local randommodel, randomskin
   local randombodygroups = {}
