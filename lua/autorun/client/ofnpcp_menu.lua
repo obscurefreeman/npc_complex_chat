@@ -898,9 +898,15 @@ function AddOFFrame()
 
 	-- 模型设置面板 (pan6)
 	local pan6 = vgui.Create("EditablePanel", sheet)
-	sheet:AddSheet(ofTranslate("ui.tab.extra"), pan6, "icon16/add.png")
+	sheet:AddSheet(ofTranslate("ui.tab.model"), pan6, "icon16/monkey.png")
 
 	OFNPCP_SetUpExtraFeatureMenu(pan6)
+
+	-- Player2设置面板 (pan7)
+	local pan7 = vgui.Create("EditablePanel", sheet)
+	sheet:AddSheet(ofTranslate("ui.tab.player2"), pan7, "ofnpcp/ai/icon16/player2.png")
+
+	OFNPCP_SetUpPlayer2Menu(pan7)
 
 	-- 创建AI设置面板布局
 	local aiHorizontalDivider = vgui.Create("DHorizontalDivider", pan2)
@@ -914,10 +920,19 @@ function AddOFFrame()
 	local aiRightPanel = vgui.Create("OFScrollPanel")
 	aiHorizontalDivider:SetRight(aiRightPanel)
 
-	-- 读取AI设置文件
-	local aiSettings = file.Read("of_npcp/ai_settings.txt", "DATA")
-	if aiSettings then
-		aiSettings = util.JSONToTable(aiSettings)
+	-- 读取AI设置文件并处理旧版格式
+	local aiSettings = {}
+	local rawSettings = file.Read("of_npcp/ai_settings.txt", "DATA")
+	if rawSettings then
+		aiSettings = util.JSONToTable(rawSettings) or {}
+		if aiSettings.provider then
+			local providerKey = aiSettings.provider
+			aiSettings = {
+				[providerKey] = aiSettings
+			}
+			-- 保存转换后的格式
+			file.Write("of_npcp/ai_settings.txt", util.TableToJSON(aiSettings))
+		end
 	end
 
 	-- 加载AI设置面板
@@ -926,11 +941,16 @@ function AddOFFrame()
 
 		-- 获取当前提供商的默认设置
 		local provider = GLOBAL_OFNPC_DATA.aiProviders[providerKey]
-		local settings = aiSettings and aiSettings.provider == providerKey and aiSettings or {
+		local settings = aiSettings[providerKey] or {
 			url = provider.url,
 			temperature = 1,
 			max_tokens = 500
 		}
+
+		-- 添加供应商标题
+		local providerLabel = OFNPCPCreateControl(aiRightPanel, "OFTextLabel", {
+			SetText = ofTranslate(provider.name)
+		})
 
 		-- 创建设置控件
 		local apiUrlEntry = OFNPCPCreateControl(aiRightPanel, "OFTextEntry", {
@@ -987,16 +1007,18 @@ function AddOFFrame()
 			temperature = math.floor(temperature * 10) / 10
 			maxTokens = math.floor(maxTokens)
 			
-			local newSettings = {
-				provider = providerKey,
+			-- 更新当前提供商的设置
+			aiSettings[providerKey] = {
 				url = apiUrlEntry:GetValue(),
 				key = apiKeyEntry:GetValue(),
 				model = modelComboBox:GetValue(),
 				temperature = temperature,
 				max_tokens = maxTokens
 			}
-			file.Write("of_npcp/ai_settings.txt", util.TableToJSON(newSettings))
+			
+			file.Write("of_npcp/ai_settings.txt", util.TableToJSON(aiSettings))
 			notification.AddLegacy(ofTranslate("ui.ai_system.save_success"), NOTIFY_GENERIC, 5)
+			RunConsoleCommand("of_garrylord_provider", providerKey)
 		end
 		-- 添加阵营提示词内容
 		local camps = {
@@ -1034,9 +1056,14 @@ function AddOFFrame()
 		end
 	end
 
-	-- 加载默认设置
-	if aiSettings then
-		LoadAISettings(aiSettings.provider, aiRightPanel)
+	local providername = GetConVar("of_garrylord_provider"):GetString()
+
+	-- 加载默认设置或者加载第一个提供商的设置
+	if aiSettings[providername] then
+		LoadAISettings(providername, aiRightPanel)
+	elseif next(aiSettings) then
+		local firstProvider = next(aiSettings)
+		LoadAISettings(firstProvider, aiRightPanel)
 	end
 
 	-- 初始加载NPC列表

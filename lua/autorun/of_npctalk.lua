@@ -247,7 +247,7 @@ if CLIENT then
             local dialog = activeDialogs[i]
             
             -- 检查说话者是否有效
-            if not IsValid(dialog.npc) then
+            if not IsValid(dialog.npc) or dialog.npc:Health() <= 0 then
                 table.remove(activeDialogs, i)
                 continue
             end

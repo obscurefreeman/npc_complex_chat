@@ -40,6 +40,7 @@ if SERVER then
 end
 
 if CLIENT then
+    CreateClientConVar("of_garrylord_provider", "", true, true)
 
     -- 显示对话选项菜单
     net.Receive("OFNPCP_NS_OpenNPCDialogMenu", function()
@@ -536,6 +537,62 @@ if CLIENT then
                         textEntry:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
                         textEntry:SetFont("ofgui_huge")
 
+                        local aiSettings = util.JSONToTable(file.Read("of_npcp/ai_settings.txt", "DATA") or "{}")
+                        local providername = GetConVar("of_garrylord_provider"):GetString()
+                        local aidetail = {}
+                        -- 如果是老文件
+                        if aiSettings and aiSettings.provider then
+                            aidetail = aiSettings and {
+                                model = aiSettings.model,
+                                provider = aiSettings.provider
+                            }
+                        -- 如果是新文件
+                        elseif aiSettings and aiSettings[providername] then
+                            aidetail = aiSettings[providername]
+                            aidetail.provider = providername
+                        end
+
+                        local modelComboBox = vgui.Create("OFComboBox", scrollPanel)
+                        modelComboBox:SetValue( ofTranslate("ui.ai_system.model_select") )
+                        modelComboBox:Dock(TOP)
+                        modelComboBox:DockMargin(4, 4, 4, 4)
+                        modelComboBox:SetTall(30 * OFGUI.ScreenScale)
+
+                        if aiSettings then
+                            -- 设置默认选择
+                            if providername then
+                                modelComboBox:SetValue(providername)
+                            end
+
+                            -- 如果不是老文件
+
+                            if not aiSettings.provider then
+                                -- 所有提供商添加到下拉框
+                                for providerKey, providerData in pairs(aiSettings) do
+                                    modelComboBox:AddChoice(providerKey, providerKey)
+                                end
+                            end
+                        end
+
+                        -- 玩家选了模型
+                        modelComboBox.OnSelect = function(_, index, value, data)
+                            if data then
+                                -- 存convar
+                                RunConsoleCommand("of_garrylord_provider", data)
+                                -- 如果是老文件
+                                if aiSettings and aiSettings.provider then
+                                    aidetail = aiSettings and {
+                                        model = aiSettings.model,
+                                        provider = aiSettings.provider
+                                    }
+                                -- 如果是新文件
+                                elseif aiSettings and aiSettings[providername] then
+                                    aidetail = aiSettings[data]
+                                    aidetail.provider = data
+                                end
+                            end
+                        end
+
                         local randomLeave = GLOBAL_OFNPC_DATA.playerTalks.leave[math.random(#GLOBAL_OFNPC_DATA.playerTalks.leave)]
                         local translatedOption = OFNPCP_ReplacePlaceholders(ofTranslate(randomLeave), npcIdentity)
 
@@ -567,13 +624,12 @@ if CLIENT then
                                     role = "user",
                                     content = inputText
                                 })
-
-                                -- 读取AI设置
-                                local aiSettings = util.JSONToTable(file.Read("of_npcp/ai_settings.txt", "DATA") or "{}")
-                                local aidetail = aiSettings and {
-                                    model = aiSettings.model,
-                                    provider = aiSettings.provider
-                                } or {}
+                                -- 调试信息：打印发送的AI对话数据
+                                print("[DEBUG] 发送AI对话请求：")
+                                print("NPC: ", npc)
+                                print("输入文本: ", inputText)
+                                print("AI详情: ", util.TableToJSON(aidetail or {}))
+                                print("对话历史: ", util.TableToJSON(aiDialogs or {}))
 
                                 -- 发送网络消息
                                 net.Start("OFNPCP_NS_PlayerDialog")
@@ -730,6 +786,8 @@ if CLIENT then
     function SendAIDialogRequest(npc, aiDialogs)
         -- 读取本地AI设置
         local aiSettings = file.Read("of_npcp/ai_settings.txt", "DATA")
+        local aidetail = {}
+        local providername = GetConVar("of_garrylord_provider"):GetString()
         
         -- 添加检查
         if not aiSettings or aiSettings == "" or aiSettings == nil then
@@ -738,14 +796,23 @@ if CLIENT then
             net.WriteString(ofTranslate("ui.dialog.no_ai_settings"))
             net.WriteTable({})
             net.SendToServer()
+            return
         end
         aiSettings = util.JSONToTable(aiSettings)
         if aiSettings then
+            -- 处理老文件
+            if aiSettings.provider then
+                aidetail = aiSettings
+            -- 如果是新文件
+            elseif aiSettings[providername] then
+                aidetail = aiSettings[providername]
+                aidetail.provider = providername
+            end
 
             local requiredFields = {"max_tokens", "temperature", "provider", "model", "key", "url"}
             local isValid = true
             for _, field in ipairs(requiredFields) do
-                if not aiSettings[field] then
+                if not aidetail[field] then
                     isValid = false
                     break
                 end
@@ -767,19 +834,19 @@ if CLIENT then
             
             -- 在客户端处理HTTP请求
             local requestBody = {
-                model = aiSettings.model,
+                model = aidetail.model,
                 messages = aiDialogs,
-                max_tokens = aiSettings.max_tokens or 500,
-                temperature = aiSettings.temperature or 1
+                max_tokens = aidetail.max_tokens or 500,
+                temperature = aidetail.temperature or 1
             }
             
             HTTP({
-                url = aiSettings.url,
+                url = aidetail.url,
                 type = "application/json",
                 method = "post",
                 headers = {
                     ["Content-Type"] = "application/json",
-                    ["Authorization"] = "Bearer " .. aiSettings.key
+                    ["Authorization"] = "Bearer " .. aidetail.key
                 },
                 body = correctFloatToInt(util.TableToJSON(requestBody)),
                 

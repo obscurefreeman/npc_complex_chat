@@ -1,13 +1,6 @@
 -- CreateClientConVar("of_garrylord_player2_enable", "0", true, true, "", 0, 1)
 
-function OFNPCP_SetUpExtraFeatureMenu(extraFeatureMenu)
-	local sheet = vgui.Create("OFPropertySheet", extraFeatureMenu)
-	sheet:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
-	sheet:Dock(FILL)
-
-	local pan1 = vgui.Create("EditablePanel", sheet)
-	sheet:AddSheet(ofTranslate("ui.tab.model"), pan1, "icon16/monkey.png")
-
+function OFNPCP_SetUpExtraFeatureMenu(pan1)
 	local pan1HorizontalDivider = vgui.Create("DHorizontalDivider", pan1)
 	pan1HorizontalDivider:Dock(FILL)
 	pan1HorizontalDivider:DockMargin(6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale)
