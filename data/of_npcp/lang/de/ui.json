@@ -41,7 +41,7 @@
             "max_tokens": "Maximaler Charakterverbrauch",
             "save_settings": "Einstellungen speichern",
             "save_success": "Die KI -Einstellungen wurden lokal gespeichert.",
-            "system_prompt": "Systemaufforderung: Wörter:",
+            "system_prompt": "Systemaufforderung: Wörter: ",
             "update_prompt": "Aktualisieren Sie Eingabeaufforderung"
         },
         "dialog": {
@@ -58,11 +58,12 @@
             "footnote_npc": "Modell: %s | Antwortzeit: %s | Verbrauchsmarke: %d",
             "footnote_player": "Modell: %s | Serviceplattform: %s",
             "invalid_response": "Ungültige AI -Antwort: Schlüssellefelder fehlen. Bitte überprüfen Sie die Konsole für die API -Ausgabe.",
-            "error": "AI-Antwort erfolgreich erhalten, aber ein Fehler ist aufgetreten:",
-            "http_error": "Ausnahme der Netzwerkkommunikation:",
+            "error": "AI-Antwort erfolgreich erhalten, aber ein Fehler ist aufgetreten: ",
+            "http_error": "Ausnahme der Netzwerkkommunikation: ",
             "no_ai_settings": "Es wurde keine gültige KI -Konfiguration erkannt. Bitte gehen Sie zur Initialisierung zum AI -Einstellungsfeld.",
             "unknown": "unbekannt",
-            "submit": "Senden"
+            "submit": "Senden",
+            "no_model": "Kein Anbieter und Modell konfiguriert"
         },
         "card_editor": {
             "title": "Kartenredakteur",
@@ -121,6 +122,7 @@
             "enable_randommodel": "Zufälliges Modell aktivieren",
             "enable_randomskin": "Zufällige Haut aktivieren",
             "enable_randombodygroup": "Zufällige Körpergruppe aktivieren",
+            "enable_sandboxlimitation": "Die Funktionen dieser Seite sind nur im Sandbox-Modus verfügbar",
             "citizen": "Bürger",
             "combine": "Kombinieren",
             "metropolice": "Metropolizei",
@@ -140,7 +142,7 @@
             "export": "Freigabecode kopieren",
             "export_success": "Freigabecode in die Zwischenablage kopiert",
             "export_fail": "Freigabecode konnte nicht abgerufen werden",
-            "tooltip_add": "Linksklick, um zum Modellpool hinzuzufügen, Rechtsklick, um das Dropdown-Menü zu öffnen\nModell:",
+            "tooltip_add": "Linksklick, um zum Modellpool hinzuzufügen, Rechtsklick, um das Dropdown-Menü zu öffnen\nModell: ",
             "tooltip_remove": "Linksklick, um aus dem Modellpool zu entfernen, Rechtsklick, um das Dropdown-Menü zu öffnen",
             "tooltip_bodygroup": "Linksklick, um Körpergruppe anzuzeigen, Rechtsklick, um Blockierung umzuschalten",
             "copy": "Modellpfad kopieren",
@@ -151,10 +153,17 @@
             "remove": "Aus Modellpool entfernen"
         },
         "player2": {
-            "enable_server": "(Server) Player2 auf dem Server aktivieren",
-            "enable_server_share": "(Server) Alle Spieler können den Player2-Dienst des Servers nutzen",
-            "enable": "(Client) Player2 anstelle von selbst konfigurierter KI verwenden",
-            "enable_tts": "(Client) Player2s TTS anstelle von selbst konfiguriertem TTS-Dienst verwenden"
+            "enable_tts": "Player2 Sprachdienst aktivieren",
+            "login_status_connected": "Player2 Konto verbunden, Gerätecode: ",
+            "login_status_disconnected": "Player2 Konto nicht verbunden",
+            "get_device_key": "Bei Player2 Konto anmelden",
+            "get_device_key_success": "Gerätecode-Anforderung erfolgreich, Überprüfung wird beginnen",
+            "get_device_key_fail": "Fehler bei der Anforderung des Gerätecodes: ",
+            "get_device_key_loading": "Gerätecode wird abgerufen",
+            "get_api": "Anmeldung abschließen, API beanspruchen",
+            "get_api_success": "API erfolgreich erhalten, PLAYER2API lokal gespeichert, Sie können es jetzt verwenden",
+            "get_api_fail": "Fehler beim Abrufen der API: ",
+            "get_api_loading": "API wird abgerufen"
         },
         "time": {
             "just_now": "Nur",

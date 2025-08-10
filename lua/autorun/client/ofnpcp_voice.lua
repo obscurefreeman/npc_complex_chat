@@ -12,6 +12,7 @@ end
 
 -- 添加客户端ConVar
 CreateClientConVar("of_garrylord_voice", "0", true, true, "", 0, 1)
+CreateClientConVar("of_garrylord_player2_tts", "0", true, true, "", 0, 1)
 
 hook.Add("OnNPCTalkStart", "PlayNPCDialogVoice", function(npc, text)
     if not IsValid(npc) or GetConVar("of_garrylord_voice"):GetInt() == 0 then return end
@@ -68,4 +69,72 @@ hook.Add("OnNPCTalkStart", "PlayNPCDialogVoice", function(npc, text)
         --     print("[GarryLord] Failed to play URL: " .. (err or "unknown error") .. " (" .. (errName or "unknown") .. ")")
         end
     end)
+end)
+
+hook.Add("OnNPCTalkStart", "PlayNPCDialogTTSPlayer2", function(npc, text)
+    if not IsValid(npc) or GetConVar("of_garrylord_player2_tts"):GetInt() == 0 then return end
+
+    -- 获取NPC列表并检查NPC身份信息是否存在
+    local gender = "male"
+    local userLang = GetConVar("of_garrylord_language"):GetString()
+    userLang = userLang ~= "" and userLang or GetConVar("gmod_language"):GetString()
+    
+    if npc:IsNPC() then
+        local npcs = GetAllNPCsList()
+        local npcIdentity = npcs and npcs[npc:EntIndex()] or {}
+        if npcIdentity.gender then
+            gender = npcIdentity.gender
+        end
+    end
+
+    -- -- 在客户端处理HTTP请求
+    -- local requestBody = {
+    --     text = text,
+    --     voice_ids = {"01955d76-ed5b-7612-bf44-f7bdcc808356"},
+    --     speed = 0.25,
+    --     audio_format = "mp3",
+    --     voice_gender = gender,
+    --     voice_language = userLang
+    -- }
+
+    -- HTTP({
+    --     url = "https://api.player2.game/v1/tts/speak",
+    --     type = "application/json",
+    --     method = "post",
+    --     headers = {
+    --         ["Content-Type"] = "application/json",
+    --         ["Authorization"] = "Bearer *************",
+    --         ["Accept"] = "application/json"
+    --     },
+    --     body = requestBody,
+        
+    --     success = function(code, body, headers)
+    --         local response = util.JSONToTable(body)
+    --         PrintTable(requestBody)
+    --         PrintTable(response)
+    --         if response and response.data then
+    --             -- 将Base64字符串解码为二进制数据
+    --             local binaryData = util.Base64Decode(response.data)
+                
+    --             -- 将二进制数据保存为临时mp3文件
+    --             local tempFileName = "ofnpcp/tts_temp.mp3"
+    --             if not file.IsDir("ofnpcp", "DATA") then
+    --                 file.CreateDir("ofnpcp")
+    --             end
+    --             file.Write(tempFileName, binaryData)
+                
+    --             -- 播放音频文件
+    --             sound.PlayFile("data/"..tempFileName, "noplay", function(station, err, errName)
+    --                 if IsValid(station) then
+    --                     station:Play()
+    --                     -- 播放完成后删除临时文件
+    --                     timer.Simple(station:GetLength(), function()
+    --                         file.Delete(tempFileName)
+    --                     end)
+    --                 end
+    --             end)
+    --         end
+    --     end
+    -- })
+
 end)

@@ -16,7 +16,7 @@ function OFNPCP_SetUpPlayer2Menu(player2Menu)
 		aiSettings["player2"] = {
 			url = API_BASE_URL,
 			key = "",
-			model = "player2",
+			model = "elefant-ai-200b-fp8",
 			temperature = 1,
 			max_tokens = 500
 		}
@@ -39,18 +39,20 @@ function OFNPCP_SetUpPlayer2Menu(player2Menu)
 	player2Panel:Dock(FILL)
 
 	local player2Label = OFNPCPCreateControl(player2Panel, "OFTextLabel", {
-		SetText = ofTranslate("ui.tab.player2")
+		SetText = GetConVar("of_garrylord_player2_device"):GetString() == "" 
+			and ofTranslate("ui.player2.login_status_disconnected")
+			or ofTranslate("ui.player2.login_status_connected")
 	})
 
 	-- 创建设备码输入框
 	local deviceCodeEntry = OFNPCPCreateControl(player2Panel, "OFTextEntry", {
 		SetValue = GetConVar("of_garrylord_player2_device"):GetString() or "",
-		SetPlaceholderText = "Player2 设备码"
+		SetPlaceholderText = ofTranslate("ui.player2.login_status_disconnected")
 	})
 
 	local function OFNPCP_Player2AuthDevice()
 		-- 显示进度通知
-		notification.AddProgress("Player2AuthDevice", "正在获取设备码")
+		notification.AddProgress("Player2AuthDevice", ofTranslate("ui.player2.get_device_key_loading"))
 
 		HTTP({
 			url = API_BASE_URL .. "/login/device/new",
@@ -63,17 +65,19 @@ function OFNPCP_SetUpPlayer2Menu(player2Menu)
 				local responseData = util.JSONToTable(body)
 				
 				if responseData.deviceCode then
-					notification.AddLegacy("申请设备码成功，即将开始验证", NOTIFY_GENERIC, 5)
-					deviceCodeEntry:SetValue(responseData.deviceCode)  -- 将设备码显示在输入框中
+					notification.AddLegacy(ofTranslate("ui.player2.get_device_key_success"), NOTIFY_GENERIC, 5)
+					if IsValid(deviceCodeEntry) then
+						deviceCodeEntry:SetValue(responseData.deviceCode)  -- 将设备码显示在输入框中
+					end
 					gui.OpenURL(responseData.verificationUriComplete)
 					RunConsoleCommand("of_garrylord_player2_device", responseData.deviceCode)
 				else
-					notification.AddLegacy("申请设备码失败：" .. responseData.error_description or "Unknown", NOTIFY_ERROR, 5)
+					notification.AddLegacy(ofTranslate("ui.player2.get_device_key_fail") .. responseData.error_description or "Unknown", NOTIFY_ERROR, 5)
 				end
 			end,
 			
 			failed = function(err)
-				notification.AddLegacy("申请设备码失败：" .. err, NOTIFY_ERROR, 5)
+				notification.AddLegacy(ofTranslate("ui.player2.get_device_key_fail") .. err, NOTIFY_ERROR, 5)
 				notification.Kill("Player2AuthDevice")
 			end
 		})
@@ -94,7 +98,7 @@ function OFNPCP_SetUpPlayer2Menu(player2Menu)
 
 	local function OFNPCP_Player2AuthAPI()
 		-- 显示进度通知
-		notification.AddProgress("Player2AuthAPI", "正在获取API")
+		notification.AddProgress("Player2AuthAPI", ofTranslate("ui.player2.get_api_loading"))
 
 		HTTP({
 			url = API_BASE_URL .. "/login/device/token",
@@ -110,22 +114,25 @@ function OFNPCP_SetUpPlayer2Menu(player2Menu)
 				notification.Kill("Player2AuthAPI")
 				local responseData = util.JSONToTable(body)
 
-				print("Response Table:")
-				PrintTable(responseData)
-				PrintTable(aiSettings.player2)
+				-- print("Response Table:")
+				-- PrintTable(responseData)
+				-- PrintTable(aiSettings.player2)
 				
 				if responseData.p2Key then
-					notification.AddLegacy("获取API成功，PLAYER2API已保存到本地，您现在可以使用它了", NOTIFY_GENERIC, 5)
-					apiCodeEntry:SetValue(responseData.p2Key)
+					notification.AddLegacy(ofTranslate("ui.player2.get_api_success"), NOTIFY_GENERIC, 5)
+					if IsValid(apiCodeEntry) then
+						apiCodeEntry:SetValue(responseData.p2Key)
+					end
+					
 					aiSettings.player2.key = responseData.p2Key
 					save_settings()
 				else
-					notification.AddLegacy("获取API失败：" .. responseData.error_description or "Unknown", NOTIFY_ERROR, 5)
+					notification.AddLegacy(ofTranslate("ui.player2.get_api_fail") .. responseData.error or "Unknown", NOTIFY_ERROR, 5)
 				end
 			end,
 			
 			failed = function(err)
-				notification.AddLegacy("获取API失败：" .. err, NOTIFY_ERROR, 5)
+				notification.AddLegacy(ofTranslate("ui.player2.get_api_fail") .. err, NOTIFY_ERROR, 5)
 				notification.Kill("Player2AuthAPI")
 			end
 		})
@@ -137,4 +144,72 @@ function OFNPCP_SetUpPlayer2Menu(player2Menu)
 	getapiButton.DoClick = function()
 		OFNPCP_Player2AuthAPI()
 	end
+
+	local voiceCheckPanel = vgui.Create("EditablePanel", player2Panel)
+	voiceCheckPanel:Dock(TOP)
+	voiceCheckPanel:SetTall(21 * OFGUI.ScreenScale)
+	voiceCheckPanel:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+
+	local voiceCheckBox = vgui.Create("OFCheckBox", voiceCheckPanel)
+	voiceCheckBox:Dock(LEFT)
+	voiceCheckBox:SetSize(21 * OFGUI.ScreenScale, 21 * OFGUI.ScreenScale)
+	voiceCheckBox:DockMargin(0, 0, 8 * OFGUI.ScreenScale, 0)
+	voiceCheckBox:SetConVar("of_garrylord_player2_tts")
+
+	local voiceCheckLabel = vgui.Create("OFTextLabel", voiceCheckPanel)
+	voiceCheckLabel:SetFont("ofgui_small")
+	voiceCheckLabel:Dock(FILL)
+	voiceCheckLabel:SetText(ofTranslate("ui.player2.enable_tts"))
+
+	-- local player2VoiceListPanel = vgui.Create("OFListView", player2Panel)
+	-- player2VoiceListPanel:AddColumn( "ID" )
+	-- player2VoiceListPanel:AddColumn( "Name" )
+	-- player2VoiceListPanel:AddColumn( "Language" )
+	-- player2VoiceListPanel:AddColumn( "Gender" )
+	-- player2VoiceListPanel:Dock(TOP)
+	-- player2VoiceListPanel:DockMargin(6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale)
+	-- player2VoiceListPanel:SetTall(400 * OFGUI.ScreenScale)
+
+	-- -- 创建获取语音按钮
+	-- local getVoicesButton = OFNPCPCreateControl(player2Panel, "OFButton", {
+	-- 	SetText = ("获取语音列表")
+	-- })
+	-- getVoicesButton.DoClick = function()
+		
+	-- 	-- 发送HTTP请求获取可用语音
+	-- 	HTTP({
+	-- 		url = "https://api.player2.game/v1/tts/voices",
+	-- 		type = "application/json",
+	-- 		method = "get",
+	-- 		headers = {
+	-- 			["Content-Type"] = "application/json",
+	-- 			["Authorization"] = "Bearer *********"
+	-- 		},
+			
+	-- 		success = function(code, body, headers)
+	-- 			local response = util.JSONToTable(body)
+	-- 			if response and response.voices then
+	-- 				-- 清空列表
+	-- 				player2VoiceListPanel:Clear()
+					
+	-- 				-- 遍历语音列表并添加到面板
+	-- 				for _, voice in ipairs(response.voices) do
+	-- 					player2VoiceListPanel:AddLine(
+	-- 						voice.id,
+	-- 						voice.name,
+	-- 						voice.language,
+	-- 						voice.gender
+	-- 					)
+	-- 				end
+	-- 				notification.AddLegacy("成功获取语音列表", NOTIFY_GENERIC, 5)
+	-- 			else
+	-- 				notification.AddLegacy("获取语音列表失败", NOTIFY_ERROR, 5)
+	-- 			end
+	-- 		end,
+			
+	-- 		failed = function(err)
+	-- 			notification.AddLegacy("获取语音列表失败：" .. err, NOTIFY_ERROR, 5)
+	-- 		end
+	-- 	})
+	-- end
 end

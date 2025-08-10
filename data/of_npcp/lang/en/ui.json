@@ -58,11 +58,12 @@
             "footnote_npc": "Model: %s | Response Time: %s | Tokens Used: %d",
             "footnote_player": "Model: %s | Service Platform: %s",
             "invalid_response": "Invalid AI response: key fields missing, please check the console for the API output.",
-            "error": "AI response received successfully, but an error occurred:",
+            "error": "AI response received successfully, but an error occurred: ",
             "http_error": "Network communication error: ",
             "no_ai_settings": "No valid AI configuration detected, please go to the AI settings panel to initialize.",
             "unknown": "Unknown",
-            "submit": "Submit"
+            "submit": "Submit",
+            "no_model": "No provider and model configured"
         },
         "card_editor": {
             "title": "Card Editor",
@@ -121,6 +122,7 @@
             "enable_randommodel": "Enable Random Model",
             "enable_randomskin": "Enable Random Skin",
             "enable_randombodygroup": "Enable Random Body Group",
+            "enable_sandboxlimitation": "This page's features are only available in Sandbox mode",
             "citizen": "Citizen",
             "combine": "Combine",
             "metropolice": "Metro Police",
@@ -140,7 +142,7 @@
             "export": "Copy Share Code",
             "export_success": "Share code saved to clipboard",
             "export_fail": "Failed to get share code",
-            "tooltip_add": "Left click to add to model pool, right click to open dropdown menu\nModel:",
+            "tooltip_add": "Left click to add to model pool, right click to open dropdown menu\nModel: ",
             "tooltip_remove": "Left click to remove from model pool, right click to open dropdown menu",
             "tooltip_bodygroup": "Left click to preview body group, right click to toggle block",
             "copy": "Copy Model Path",
@@ -151,10 +153,17 @@
             "remove": "Remove from Model Pool"
         },
         "player2": {
-            "enable_server": "(Server) Enable Player2 on server",
-            "enable_server_share": "(Server) All players can share the server's Player2 service",
-            "enable": "(Client) Use Player2 instead of self-configured AI",
-            "enable_tts": "(Client) Use Player2's TTS instead of self-configured TTS service"
+            "enable_tts": "Enable Player2 Voice Service",
+            "login_status_connected": "Player2 account connected, device code: ",
+            "login_status_disconnected": "Player2 account not connected",
+            "get_device_key": "Login to Player2 account",
+            "get_device_key_success": "Device code request successful, verification will begin",
+            "get_device_key_fail": "Failed to request device code: ",
+            "get_device_key_loading": "Getting device code",
+            "get_api": "Complete login, claim API",
+            "get_api_success": "API obtained successfully, PLAYER2API saved locally, you can now use it",
+            "get_api_fail": "Failed to get API: ",
+            "get_api_loading": "Getting API"
         },
         "time": {
             "just_now": "Just now",

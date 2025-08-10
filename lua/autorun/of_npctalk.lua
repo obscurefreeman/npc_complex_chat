@@ -282,7 +282,9 @@ if CLIENT then
             speakerAngles:RotateAroundAxis(speakerAngles:Forward(), 90)
 
             local headBoneIndex = dialog.npc:LookupBone("ValveBiped.Bip01_Head1")
+            if not headBoneIndex then return end  -- 如果没有找到头部骨骼，直接返回不显示
             local headPos = dialog.npc:GetBonePosition(headBoneIndex)
+            if not headPos then return end  -- 如果无法获取头部位置，直接返回不显示
             
             local finalPos = Vector(speakerPos.x, speakerPos.y, headPos.z + 10)
             

@@ -91,10 +91,10 @@
     "player2": {
         "name": "ai.providor.player2.name",
         "description": "ai.providor.player2.description",
-        "url": "https://api.player2.game/v1",
+        "url": "https://api.player2.game/v1/chat/completions",
         "index": 7,
         "model": [
-            "player2"
+            "elefant-ai-200b-fp8"
         ]
     },
     "groq": {
