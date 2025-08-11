@@ -189,6 +189,7 @@ function OFNPCP_SetUpPlayer2Menu(player2Menu)
 	-- 		success = function(code, body, headers)
 	-- 			local response = util.JSONToTable(body)
 	-- 			if response and response.voices then
+	-- 				PrintTable(response.voices)
 	-- 				-- 清空列表
 	-- 				player2VoiceListPanel:Clear()
 					

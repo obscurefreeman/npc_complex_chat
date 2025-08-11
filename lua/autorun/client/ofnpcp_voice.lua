@@ -87,54 +87,77 @@ hook.Add("OnNPCTalkStart", "PlayNPCDialogTTSPlayer2", function(npc, text)
         end
     end
 
-    -- -- 在客户端处理HTTP请求
-    -- local requestBody = {
-    --     text = text,
-    --     voice_ids = {"01955d76-ed5b-7612-bf44-f7bdcc808356"},
-    --     speed = 0.25,
-    --     audio_format = "mp3",
-    --     voice_gender = gender,
-    --     voice_language = userLang
-    -- }
+    -- 在客户端处理HTTP请求
+    local requestBody = {
+        text = text,
+        speed = 1,
+        audio_format = "mp3",
+        voice_ids = {
+            "01955d76-ed5b-75fb-87dd-ebbed25d2585"
+        },
+        voice_gender = "male",
+        voice_language = "zh_CN"
+    }
 
-    -- HTTP({
-    --     url = "https://api.player2.game/v1/tts/speak",
-    --     type = "application/json",
-    --     method = "post",
-    --     headers = {
-    --         ["Content-Type"] = "application/json",
-    --         ["Authorization"] = "Bearer *************",
-    --         ["Accept"] = "application/json"
-    --     },
-    --     body = requestBody,
+    HTTP({
+        url = "https://api.player2.game/v1/tts/speak",
+        type = "application/json",
+        method = "post",
+        headers = {
+            ["Content-Type"] = "application/json",
+            ["Accept"] = "application/json",
+            ["Authorization"] = "Bearer ***********"
+        },
+        body = util.TableToJSON(requestBody),
         
-    --     success = function(code, body, headers)
-    --         local response = util.JSONToTable(body)
-    --         PrintTable(requestBody)
-    --         PrintTable(response)
-    --         if response and response.data then
-    --             -- 将Base64字符串解码为二进制数据
-    --             local binaryData = util.Base64Decode(response.data)
+        success = function(code, body, headers)
+            local response = util.JSONToTable(body)
+            print("[Player2 TTS] RequestBody:")
+            PrintTable(requestBody)
+            print("[Player2 TTS] Response:")
+            PrintTable(response)
+
+
+            if response and response.data then
+                -- 去除data:audio/mp3;base64,前缀
+                local base64Data = string.sub(response.data, string.len("data:audio/mp3;base64,") + 1)
+                local binaryData = util.Base64Decode(base64Data)
+
+                print("[Player2 TTS] Response") 
+                print(base64Data)
                 
-    --             -- 将二进制数据保存为临时mp3文件
-    --             local tempFileName = "ofnpcp/tts_temp.mp3"
-    --             if not file.IsDir("ofnpcp", "DATA") then
-    --                 file.CreateDir("ofnpcp")
-    --             end
-    --             file.Write(tempFileName, binaryData)
+                -- 将二进制数据保存为临时mp3文件
+                local tempFileName = "of_npcp_tts/tts_" .. os.time() .. "_" .. math.random(1000, 9999) .. ".mp3"
+                if not file.IsDir("of_npcp_tts", "DATA") then
+                    file.CreateDir("of_npcp_tts")
+                end
+                file.Write(tempFileName, binaryData)
                 
-    --             -- 播放音频文件
-    --             sound.PlayFile("data/"..tempFileName, "noplay", function(station, err, errName)
-    --                 if IsValid(station) then
-    --                     station:Play()
-    --                     -- 播放完成后删除临时文件
-    --                     timer.Simple(station:GetLength(), function()
-    --                         file.Delete(tempFileName)
-    --                     end)
-    --                 end
-    --             end)
-    --         end
-    --     end
-    -- })
+                -- 播放音频文件
+                sound.PlayFile("data/"..tempFileName, "3d noplay", function(station, err, errName)
+                    if IsValid(station) then
+                        if IsValid(npc) then
+                            -- 将声音绑定到NPC位置
+                            station:SetPos(npc:GetPos())
+                            station:Play()
+                            
+                            -- 删除临时文件
+                            timer.Simple(30, function()
+                                if IsValid(station) then
+                                    station:Stop()
+                                end
+                                file.Delete(tempFileName)
+                            end)
+                        else
+                            station:Stop()
+                            file.Delete(tempFileName)
+                        end
+                    else
+                        file.Delete(tempFileName)
+                    end
+                end)
+            end
+        end
+    })
 
 end)
