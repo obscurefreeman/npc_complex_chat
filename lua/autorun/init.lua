@@ -5071,6 +5071,7 @@ GLOBAL_OFNPC_DATA = {
                 maincharacter = "Sie sind ein Charakter im Half-Life-Universum, /name/. Die aktuelle Spielkarte ist /map/. Der Benutzer wird mit Ihnen interagieren. Bitte antworten Sie in der Sprache des Benutzers, und Ihre Antworten sollten bodenständig, konsistent mit der Charaktereinstellung und reich an Details sein.",
             },
             ui = {
+                garrylord = "GarryLord",
                 title = "Willkommen zurück, /name/!",
                 tab = {
                     home = "Titelseite",
@@ -7731,6 +7732,7 @@ GLOBAL_OFNPC_DATA = {
                 maincharacter = "You are a character in the Half-Life universe, /name/. The current game map is /map/. The user will interact with you. Please respond in the user's language, and your responses should be down-to-earth, consistent with the character's setting, and rich in detail.",
             },
             ui = {
+                garrylord = "GarryLord",
                 title = "Welcome back, /name/!",
                 tab = {
                     home = "Home",
@@ -11131,6 +11133,7 @@ GLOBAL_OFNPC_DATA = {
                 maincharacter = "Вы персонаж во вселенной Half-Life, /name/. Текущая игровая карта /map/. Пользователь будет взаимодействовать с вами. Пожалуйста, отвечайте на языке пользователя, и ваши ответы должны быть реалистичными, соответствовать настройкам персонажа и быть насыщенными деталями.",
             },
             ui = {
+                garrylord = "GarryLord",
                 title = "Добро пожаловать обратно, /name/!",
                 tab = {
                     home = "Первая страница",
@@ -13793,6 +13796,7 @@ GLOBAL_OFNPC_DATA = {
                 maincharacter = "你是半条命世界观的角色，/name/。当前游戏的地图为/map/，用户将和你进行交流，请使用用户的语言进行回答，回答应当接地气，符合人物设定且细节丰富。",
             },
             ui = {
+                garrylord = "盖瑞霸业",
                 title = "欢迎回来，/name/！",
                 tab = {
                     home = "首页",
@@ -16451,6 +16455,7 @@ GLOBAL_OFNPC_DATA = {
                 maincharacter = "你是半條命世界觀的角色，/name/。當前遊戲的地圖為/map/，用戶將和你進行交流，請使用用戶的語言進行回答，回答應當接地氣，符合人物設定且細節豐富。",
             },
             ui = {
+                garrylord = "蓋瑞霸業",
                 title = "歡迎回來，/name/！",
                 tab = {
                     home = "首頁",

@@ -1,5 +1,6 @@
 {
     "ui": {
+        "garrylord": "GarryLord",
         "title": "Welcome back, /name/!",
         "tab": {
             "home": "Home",
