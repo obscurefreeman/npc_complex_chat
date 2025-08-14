@@ -2,7 +2,7 @@
 CreateClientConVar("of_garrylord_voice", "0", true, true, "", 0, 1)
 CreateClientConVar("of_garrylord_player2_tts", "0", true, true, "", 0, 1)
 
-local PLAYER2API = "p2_APvDS1-2M-YVPS6Rovb48g"
+local PLAYER2API
 local userLang_voices = {}
 
 -- 自定义URL编码函数
@@ -88,8 +88,13 @@ hook.Add("OnNPCTalkStart", "PlayNPCDialogTTSPlayer2", function(npc, text)
         end
     end
 
+    if not PLAYER2API or PLAYER2API == "" then
+        PLAYER2API = OFNPCP_Player2GetAPI()
+        if not PLAYER2API or PLAYER2API == "" then return end
+    end
+
     if not userLang_voices or #userLang_voices == 0 then
-        OFPlayer2InitializeTTS()
+        OFNPCP_Player2InitializeTTS()
         return
     end
     -- 获取符合性别的语音ID
@@ -128,7 +133,6 @@ hook.Add("OnNPCTalkStart", "PlayNPCDialogTTSPlayer2", function(npc, text)
             -- PrintTable(requestBody)
             -- print("[Player2 TTS] Response:")
             -- PrintTable(response)
-
 
             if response and response.data then
                 -- 去除data:audio/mp3;base64,前缀
@@ -196,7 +200,7 @@ local function FilterVoicesByLanguage(voicesTable)
 end
 
 -- 定义一个独立的函数来初始化TTS系统
-function OFPlayer2InitializeTTS()
+function OFNPCP_Player2InitializeTTS()
     -- 检查并创建必要的目录
     if not file.IsDir("of_npcp_tts", "DATA") then
         file.CreateDir("of_npcp_tts")
@@ -207,65 +211,6 @@ function OFPlayer2InitializeTTS()
     for _, filename in ipairs(files) do
         file.Delete("of_npcp_tts/" .. filename)
     end
-
-    local available_voices = {
-        {gender = "female", id = "01955d76-ed5b-73e0-a88d-cbeb3c5b499d", language = "american_english", name = "Sophia"},
-        {gender = "female", id = "01955d76-ed5b-7407-a03c-cdd993439ba4", language = "american_english", name = "Madison"},
-        {gender = "female", id = "01955d76-ed5b-7416-82d8-5fc486e2f676", language = "american_english", name = "Harper"},
-        {gender = "female", id = "01955d76-ed5b-7426-8748-4b0e5aea1974", language = "american_english", name = "Olivia"},
-        {gender = "female", id = "01955d76-ed5b-7436-a182-c4d21aaca9fc", language = "american_english", name = "Ava"},
-        {gender = "female", id = "01955d76-ed5b-7441-a184-5f5ee015e4fe", language = "american_english", name = "Amelia"},
-        {gender = "female", id = "01955d76-ed5b-7451-92d6-5ef579d3ed28", language = "american_english", name = "Charlotte"},
-        {gender = "female", id = "01955d76-ed5b-745d-add1-b755d440192d", language = "american_english", name = "Evelyn"},
-        {gender = "female", id = "01955d76-ed5b-7468-83a7-bfc267cf4849", language = "american_english", name = "Abigail"},
-        {gender = "female", id = "01955d76-ed5b-7474-86b2-a41b310c2a2d", language = "american_english", name = "Mia"},
-        {gender = "female", id = "01955d76-ed5b-7480-951c-af1dd9873e34", language = "american_english", name = "Chloe"},
-        {gender = "male", id = "01955d76-ed5b-748c-8d98-0fb708ef0fbd", language = "american_english", name = "Ethan"},
-        {gender = "male", id = "01955d76-ed5b-7497-9f8e-0e7448515bf3", language = "american_english", name = "Noah"},
-        {gender = "male", id = "01955d76-ed5b-74a3-9129-c3253d01f690", language = "american_english", name = "Mason"},
-        {gender = "male", id = "01955d76-ed5b-74af-a2be-9302077075b8", language = "american_english", name = "Logan"},
-        {gender = "male", id = "01955d76-ed5b-74ba-89e5-2b4b45e632cd", language = "american_english", name = "Benjamin"},
-        {gender = "male", id = "01955d76-ed5b-74c6-ac15-ab68ee19d560", language = "american_english", name = "Lucas"},
-        {gender = "male", id = "01955d76-ed5b-74d2-a33c-b2b8e998658f", language = "american_english", name = "Jackson"},
-        {gender = "male", id = "01955d76-ed5b-74de-83e5-800a44fee0d1", language = "american_english", name = "Caleb"},
-        {gender = "male", id = "01955d76-ed5b-74e9-9fea-1f8cad1cd9c5", language = "american_english", name = "Nicholas"},
-        {gender = "female", id = "01955d76-ed5b-74f9-b54a-2d051890468d", language = "british_english", name = "Eleanor"},
-        {gender = "female", id = "01955d76-ed5b-751c-b341-0ee85dbefd92", language = "british_english", name = "Poppy"},
-        {gender = "female", id = "01955d76-ed5b-7528-86ee-3348a642af7e", language = "british_english", name = "Florence"},
-        {gender = "female", id = "01955d76-ed5b-7534-b7a6-028adcfb4e7d", language = "british_english", name = "Amelia"},
-        {gender = "male", id = "01955d76-ed5b-753f-9f74-c0674216f0f5", language = "british_english", name = "Oliver"},
-        {gender = "male", id = "01955d76-ed5b-754f-a070-a570ddfed516", language = "british_english", name = "Harry"},
-        {gender = "male", id = "01955d76-ed5b-755b-9b43-890d73586908", language = "british_english", name = "William"},
-        {gender = "male", id = "01955d76-ed5b-7566-9c0e-bce4d88ceba0", language = "british_english", name = "Charles"},
-        {gender = "female", id = "01955d76-ed5b-757a-9bdb-94fa0a2b7893", language = "japanese", name = "Sakura"},
-        {gender = "female", id = "01955d76-ed5b-7591-9d3f-f919ac645bb6", language = "japanese", name = "Akari"},
-        {gender = "female", id = "01955d76-ed5b-75a1-96f8-7a82e767e2c4", language = "japanese", name = "Yuki"},
-        {gender = "female", id = "01955d76-ed5b-75ad-afe3-ac5eb3d0a16e", language = "japanese", name = "Hana"},
-        {gender = "male", id = "01955d76-ed5b-75b8-b70f-dfaf400b7c42", language = "japanese", name = "Takashi"},
-        {gender = "female", id = "01955d76-ed5b-75c8-8386-b83ff9c45856", language = "mandarin_chinese", name = "Mei"},
-        {gender = "female", id = "01955d76-ed5b-75d4-8338-3d7108137cd1", language = "mandarin_chinese", name = "Ling"},
-        {gender = "female", id = "01955d76-ed5b-75df-8ca5-a6f84acaff76", language = "mandarin_chinese", name = "Jingyi"},
-        {gender = "female", id = "01955d76-ed5b-75eb-b509-e7bf29b3b530", language = "mandarin_chinese", name = "Qiuyue"},
-        {gender = "male", id = "01955d76-ed5b-75fb-87dd-ebbed25d2585", language = "mandarin_chinese", name = "Wei"},
-        {gender = "male", id = "01955d76-ed5b-7606-9e21-8b236fbe12a8", language = "mandarin_chinese", name = "Liang"},
-        {gender = "male", id = "01955d76-ed5b-7612-bf44-f7bdcc808356", language = "mandarin_chinese", name = "Ming"},
-        {gender = "male", id = "01955d76-ed5b-761e-abac-1956f66ac089", language = "mandarin_chinese", name = "Hao"},
-        {gender = "female", id = "01955d76-ed5b-762a-9a2a-0fec3b7ace8b", language = "spanish", name = "Carmen"},
-        {gender = "male", id = "01955d76-ed5b-7649-ac1e-c56a13c3302f", language = "spanish", name = "Miguel"},
-        {gender = "male", id = "01955d76-ed5b-7655-98bb-fd7578af9617", language = "spanish", name = "Javier"},
-        {gender = "female", id = "01955d76-ed5b-7668-877b-2fa240c1d5ee", language = "french", name = "Sophie"},
-        {gender = "female", id = "01955d76-ed5b-7678-b678-3ddc5ec8b5c4", language = "hindi", name = "Priya"},
-        {gender = "female", id = "01955d76-ed5b-7683-a79d-253390189fdb", language = "hindi", name = "Aditi"},
-        {gender = "male", id = "01955d76-ed5b-768f-9e5b-8bcc89ba8f3d", language = "hindi", name = "Arjun"},
-        {gender = "male", id = "01955d76-ed5b-769b-bd00-002a8e88dc65", language = "hindi", name = "Vikram"},
-        {gender = "female", id = "01955d76-ed5b-76ab-bc6b-57cc5dfeaf01", language = "italian", name = "Bianca"},
-        {gender = "male", id = "01955d76-ed5b-76ba-898e-c65bd579a334", language = "italian", name = "Marco"},
-        {gender = "female", id = "01955d76-ed5b-76c6-8b9e-b713d3f0b866", language = "brazilian_portuguese", name = "Isabela"},
-        {gender = "male", id = "01955d76-ed5b-76d2-8f05-b9a34b5f9011", language = "brazilian_portuguese", name = "Gabriel"},
-        {gender = "male", id = "01955d76-ed5b-76dd-bef6-37119ea2f99f", language = "brazilian_portuguese", name = "Rafael"}
-    }
-
-    userLang_voices = FilterVoicesByLanguage(available_voices)
 
     HTTP({
         url = "https://api.player2.game/v1/tts/voices",
@@ -285,3 +230,48 @@ function OFPlayer2InitializeTTS()
         end
     })
 end
+
+-- 获取Player2 API的函数
+function OFNPCP_Player2GetAPI()
+    -- 确保文件存在
+    if not file.Exists("of_npcp/ai_settings.txt", "DATA") then return "" end
+
+    local aiSettings = file.Read("of_npcp/ai_settings.txt", "DATA")
+    if aiSettings then
+        aiSettings = util.JSONToTable(aiSettings)
+        if aiSettings and aiSettings.player2 then
+            return aiSettings.player2.key or ""
+        end
+    end
+    return ""
+end
+
+-- 健康查询放这里啦
+
+timer.Create("OFNPCP_Player2_HealthCheck", 60, 0, function()
+    if GetConVar("of_garrylord_provider"):GetString() ~= "player2" then return end
+    
+    -- 如果没有PLAYER2API，则尝试获取
+    if not PLAYER2API or PLAYER2API == "" then
+        PLAYER2API = OFNPCP_Player2GetAPI()
+        if not PLAYER2API or PLAYER2API == "" then return end
+    end
+
+    HTTP({
+        url = "https://api.player2.game/v1/health",
+        type = "application/json",
+        method = "get",
+        headers = {
+            ["Content-Type"] = "application/json",
+            ["Accept"] = "application/json",
+            ["Authorization"] = "Bearer " .. PLAYER2API
+        }
+        
+        -- success = function(code, body, headers)
+        --     local response = util.JSONToTable(body)
+        --     if response then
+        --         print(PLAYER2API)
+        --     end
+        -- end
+    })
+end)

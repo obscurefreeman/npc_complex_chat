@@ -30,7 +30,7 @@
                 "description": "Locally deployed open-source models."
             },
             "player2": {
-                "name": "Player2 Local Deployment (Recommended)",
+                "name": "Player2 (Recommended)",
                 "description": "Build, play and share AI mods and games through our platform for the community and indie developers."
             },
             "groq": {

@@ -30,7 +30,7 @@
                 "description": "本地部署开源模型。"
             },
             "player2": {
-                "name": "Player2 本地部署（推荐）",
+                "name": "Player2（推荐）",
                 "description": "通过我们的平台为社区和独立开发者构建、玩和分享 AI 模组和游戏。"
             },
             "groq": {
