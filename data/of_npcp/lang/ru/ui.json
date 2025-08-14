@@ -155,7 +155,7 @@
         },
         "player2": {
             "firstplay": "Нет API? Привяжите аккаунт Player2, чтобы получить бесплатный API",
-            "enable_tts": "Включить голосовой сервис Player2",
+            "enable_tts": "Включить голосовой сервис Player2 (Только для диалогов с ИИ)",
             "login_status_connected": "Аккаунт Player2 подключен, код устройства: ",
             "login_status_disconnected": "Аккаунт Player2 не подключен",
             "get_device_key": "Войти в аккаунт Player2",

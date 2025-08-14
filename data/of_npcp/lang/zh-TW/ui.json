@@ -155,7 +155,7 @@
         },
         "player2": {
             "firstplay": "沒有 API ？可綁定 Player2 帳號獲取免費 API",
-            "enable_tts": "啟用 Player2 語音服務",
+            "enable_tts": "啟用 Player2 語音服務（僅針對 AI 對話）",
             "login_status_connected": "已連接 Player2 帳號，設備碼：",
             "login_status_disconnected": "未連接 Player2 帳號",
             "get_device_key": "登入 Player2 帳號",

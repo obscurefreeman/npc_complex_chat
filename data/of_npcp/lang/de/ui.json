@@ -155,7 +155,7 @@
         },
         "player2": {
             "firstplay": "Keine API? Binden Sie ein Player2-Konto an, um eine kostenlose API zu erhalten",
-            "enable_tts": "Player2 Sprachdienst aktivieren",
+            "enable_tts": "Player2 Sprachdienst aktivieren (Nur für KI-Dialoge)",
             "login_status_connected": "Player2 Konto verbunden, Gerätecode: ",
             "login_status_disconnected": "Player2 Konto nicht verbunden",
             "get_device_key": "Bei Player2 Konto anmelden",

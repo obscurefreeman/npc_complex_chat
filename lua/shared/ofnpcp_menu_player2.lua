@@ -18,7 +18,7 @@ function OFNPCP_SetUpPlayer2Menu(player2Menu, isSimplified)
 	-- 如果不存在Player2设置，则初始化默认设置，暂时不保存，只是呆在这里
 	if not aiSettings["player2"] then
 		aiSettings["player2"] = {
-			url = API_BASE_URL,
+			url = API_BASE_URL .. "/chat/completions",
 			key = "",
 			model = "elefant-ai-200b-fp8",
 			temperature = 1,
@@ -194,7 +194,7 @@ function OFNPCP_SetUpPlayer2Menu(player2Menu, isSimplified)
 end
 
 
-hook.Add("OnNPCTalkStart", "PlayNPCDialogTTSPlayer2", function(npc, text)
+hook.Add("OnNPCAITalkStart", "PlayNPCDialogTTSPlayer2", function(npc, text)
     if not IsValid(npc) or GetConVar("of_garrylord_player2_tts"):GetInt() == 0 then return end
 
     -- 获取NPC列表并检查NPC身份信息是否存在

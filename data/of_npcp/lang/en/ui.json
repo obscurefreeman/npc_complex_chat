@@ -155,7 +155,7 @@
         },
         "player2": {
             "firstplay": "No API? Bind a Player2 account to get a free API",
-            "enable_tts": "Enable Player2 Voice Service",
+            "enable_tts": "Enable Player2 Voice Service (Only for AI dialogues)",
             "login_status_connected": "Player2 account connected, device code: ",
             "login_status_disconnected": "Player2 account not connected",
             "get_device_key": "Login to Player2 account",

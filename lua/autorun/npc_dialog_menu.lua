@@ -872,6 +872,7 @@ if CLIENT then
                 method = "post",
                 headers = {
                     ["Content-Type"] = "application/json",
+                    ["Accept"] = "application/json",
                     ["Authorization"] = "Bearer " .. aidetail.key
                 },
                 body = correctFloatToInt(util.TableToJSON(requestBody)),
@@ -879,9 +880,18 @@ if CLIENT then
                 success = function(code, body, headers)
                     local response = util.JSONToTable(body)
                     -- 重要debug代码，如果获得了回应，就会立即将上下文和回复打在控制台里
-                    if aiDialogs and response then
-                        PrintTable(aiDialogs)
+                    if requestBody then
+                        -- print("URL:" .. aidetail.url)
+                        -- print("Key:" .. aidetail.key)
+                        print("------[GarryLord] Request Body------")
+                        PrintTable(requestBody)
+                    end
+
+                    if response then
+                        print("------[GarryLord] API Response------")
                         PrintTable(response)
+                    else
+                        print("------[GarryLord] NO Response------")
                     end
                     
                     if response and response.choices and #response.choices > 0 and response.choices[1].message then
@@ -893,6 +903,7 @@ if CLIENT then
                         net.WriteString(responseContent)
                         net.WriteTable(response or {})
                         net.SendToServer()
+                        hook.Run("OnNPCAITalkStart", npc, responseContent)
                     elseif response and response.error and response.error.message then
                         -- 成功了，但报错
                         net.Start("OFNPCP_NS_NPCAIDialog")
