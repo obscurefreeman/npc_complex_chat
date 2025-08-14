@@ -34,18 +34,14 @@ function OFNPCP_SetUpPlayer2Menu(player2Menu)
 		RunConsoleCommand("of_garrylord_provider", "player2")
 	end
 
-	local player2Panel = vgui.Create("OFScrollPanel", player2Menu)
-	player2Panel:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
-	player2Panel:Dock(FILL)
-
-	local player2Label = OFNPCPCreateControl(player2Panel, "OFTextLabel", {
+	local player2Label = OFNPCPCreateControl(player2Menu, "OFTextLabel", {
 		SetText = GetConVar("of_garrylord_player2_device"):GetString() == "" 
 			and ofTranslate("ui.player2.login_status_disconnected")
 			or ofTranslate("ui.player2.login_status_connected")
 	})
 
 	-- 创建设备码输入框
-	local deviceCodeEntry = OFNPCPCreateControl(player2Panel, "OFTextEntry", {
+	local deviceCodeEntry = OFNPCPCreateControl(player2Menu, "OFTextEntry", {
 		SetValue = GetConVar("of_garrylord_player2_device"):GetString() or "",
 		SetPlaceholderText = ofTranslate("ui.player2.login_status_disconnected")
 	})
@@ -83,7 +79,7 @@ function OFNPCP_SetUpPlayer2Menu(player2Menu)
 		})
 	end
 
-	local getDeviceKeyButton = OFNPCPCreateControl(player2Panel, "OFButton", {
+	local getDeviceKeyButton = OFNPCPCreateControl(player2Menu, "OFButton", {
 		SetText = (ofTranslate("ui.player2.get_device_key"))
 	})
 	getDeviceKeyButton.DoClick = function()
@@ -91,7 +87,7 @@ function OFNPCP_SetUpPlayer2Menu(player2Menu)
 	end
 
 	-- 创建API输入框
-	local apiCodeEntry = OFNPCPCreateControl(player2Panel, "OFTextEntry", {
+	local apiCodeEntry = OFNPCPCreateControl(player2Menu, "OFTextEntry", {
 		SetValue = aiSettings.player2 and aiSettings.player2.key or "",
 		SetPlaceholderText = "Player2 API"
 	})
@@ -138,14 +134,14 @@ function OFNPCP_SetUpPlayer2Menu(player2Menu)
 		})
 	end
 
-	local getapiButton = OFNPCPCreateControl(player2Panel, "OFButton", {
+	local getapiButton = OFNPCPCreateControl(player2Menu, "OFButton", {
 		SetText = (ofTranslate("ui.player2.get_api"))
 	})
 	getapiButton.DoClick = function()
 		OFNPCP_Player2AuthAPI()
 	end
 
-	local voiceCheckPanel = vgui.Create("EditablePanel", player2Panel)
+	local voiceCheckPanel = vgui.Create("EditablePanel", player2Menu)
 	voiceCheckPanel:Dock(TOP)
 	voiceCheckPanel:SetTall(21 * OFGUI.ScreenScale)
 	voiceCheckPanel:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)

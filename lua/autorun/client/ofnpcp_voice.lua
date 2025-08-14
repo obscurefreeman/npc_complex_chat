@@ -266,12 +266,5 @@ timer.Create("OFNPCP_Player2_HealthCheck", 60, 0, function()
             ["Accept"] = "application/json",
             ["Authorization"] = "Bearer " .. PLAYER2API
         }
-        
-        -- success = function(code, body, headers)
-        --     local response = util.JSONToTable(body)
-        --     if response then
-        --         print(PLAYER2API)
-        --     end
-        -- end
     })
 end)

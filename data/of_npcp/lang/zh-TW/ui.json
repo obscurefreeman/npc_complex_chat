@@ -158,13 +158,17 @@
             "login_status_connected": "已連接 Player2 帳號，設備碼：",
             "login_status_disconnected": "未連接 Player2 帳號",
             "get_device_key": "登入 Player2 帳號",
+            "get_device_key_re": "重新登入 Player2 帳號",
+            "get_device_key_entry": "請點擊下方按鈕，在彈出視窗中登入帳號",
             "get_device_key_success": "申請設備碼成功，即將開始驗證",
             "get_device_key_fail": "申請設備碼失敗：",
             "get_device_key_loading": "正在獲取設備碼",
-            "get_api": "完成登入，領取API",
-            "get_api_success": "獲取API成功，PLAYER2API已保存到本地，您現在可以使用它了",
-            "get_api_fail": "獲取API失敗：",
-            "get_api_loading": "正在獲取API"
+            "get_api": "完成登入，領取 API",
+            "get_api_re": "API 已領取",
+            "get_api_entry": "完成登入後，點擊下方按鈕獲取 API",
+            "get_api_success": "獲取 API 成功，PLAYER2API 已保存到本地，您現在可以使用它了",
+            "get_api_fail": "獲取 API 失敗：",
+            "get_api_loading": "正在獲取 API"
         },
         "time": {
             "just_now": "剛剛",

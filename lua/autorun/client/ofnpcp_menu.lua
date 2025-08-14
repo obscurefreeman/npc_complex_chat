@@ -1,5 +1,8 @@
 AddCSLuaFile()
 
+include("shared/ofnpcp_menu_player2.lua")
+include("shared/ofnpcp_menu_model.lua")
+
 local frame  -- 添加一个变量来跟踪打开的菜单
 
 local function RefreshNPCButtons(left_panel, right_panel)
@@ -446,6 +449,74 @@ end
 local function LoadpersonalizationSettings(personalizationLeftPanel)
     personalizationLeftPanel:Clear()
 
+	local helpLabel = OFNPCPCreateControl(personalizationLeftPanel, "OFTextLabel", {
+        SetText = ofTranslate("ui.personalization.guide")
+    })
+
+	local helpButtonSteam = OFNPCPCreateControl(personalizationLeftPanel, "OFButton", {
+		SetText = "Official Guide",
+	})
+
+	helpButtonSteam.DoClick = function()
+		gui.OpenURL("https://steamcommunity.com/sharedfiles/filedetails/?id=3456122462")
+	end
+
+	-- 添加语言设置
+	local langLabel = OFNPCPCreateControl(personalizationLeftPanel, "OFTextLabel", {
+		SetText = ofTranslate("ui.personalization.language_setting")
+	})
+
+	-- 从language.json获取支持的语言列表
+	local supportedLanguages = {
+		{name = ofTranslate("ui.personalization.follow_system"), code = "", icon = "ofnpcp/lang/gm.png"}
+	}
+	
+	-- 添加语言选项
+	for langCode, langData in pairs(GLOBAL_OFNPC_DATA.lang.language) do
+		table.insert(supportedLanguages, {
+			name = langData.name,
+			code = langCode,
+			icon = langData.icon
+		})
+	end
+
+	-- 获取当前语言设置
+	local currentLang = GetConVar("of_garrylord_language"):GetString()
+	local currentValue = ofTranslate("ui.personalization.follow_system")  -- 默认值
+
+	-- 根据currentLang查找对应的语言名称
+	for _, lang in ipairs(supportedLanguages) do
+		if lang.code == currentLang then
+			currentValue = lang.name
+			break
+		end
+	end
+
+	local langComboBox = OFNPCPCreateControl(personalizationLeftPanel, "OFComboBox", {
+		SetValue = currentValue
+	})
+
+	-- 添加语言选项
+	for _, lang in ipairs(supportedLanguages) do
+		langComboBox:AddChoice(lang.name, lang.code, false, lang.icon)
+	end
+
+	langComboBox.OnSelect = function(panel, index, value, data)
+		RunConsoleCommand("of_garrylord_language", data)
+		notification.AddLegacy(ofTranslate("ui.personalization.language_changed"), NOTIFY_GENERIC, 5)
+		
+		-- 关闭当前菜单
+		if IsValid(frame) then
+			frame:Close()
+		end
+
+		timer.Simple(0.1, function()
+			AddOFFrame()
+		end)
+	end
+
+	OFNPCP_SetUpPlayer2Menu(personalizationLeftPanel)
+
     -- 读取本地保存的配音设置
     local personalizationSettings = file.Read("of_npcp/personalization_settings.txt", "DATA")
     if personalizationSettings then
@@ -555,88 +626,6 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
         
         notification.AddLegacy(ofTranslate("ui.personalization.player_voice_setting"), NOTIFY_GENERIC, 5)
     end
-
-    -- 添加语言设置
-    local langLabel = OFNPCPCreateControl(personalizationLeftPanel, "OFTextLabel", {
-        SetText = ofTranslate("ui.personalization.language_setting")
-    })
-
-    -- 从language.json获取支持的语言列表
-    local supportedLanguages = {
-        {name = ofTranslate("ui.personalization.follow_system"), code = "", icon = "ofnpcp/lang/gm.png"}
-    }
-    
-    -- 添加语言选项
-    for langCode, langData in pairs(GLOBAL_OFNPC_DATA.lang.language) do
-        table.insert(supportedLanguages, {
-            name = langData.name,
-            code = langCode,
-            icon = langData.icon
-        })
-    end
-
-    -- 获取当前语言设置
-    local currentLang = GetConVar("of_garrylord_language"):GetString()
-    local currentValue = ofTranslate("ui.personalization.follow_system")  -- 默认值
-
-    -- 根据currentLang查找对应的语言名称
-    for _, lang in ipairs(supportedLanguages) do
-        if lang.code == currentLang then
-            currentValue = lang.name
-            break
-        end
-    end
-
-    local langComboBox = OFNPCPCreateControl(personalizationLeftPanel, "OFComboBox", {
-        SetValue = currentValue
-    })
-
-    -- 添加语言选项
-    for _, lang in ipairs(supportedLanguages) do
-        langComboBox:AddChoice(lang.name, lang.code, false, lang.icon)
-    end
-
-    langComboBox.OnSelect = function(panel, index, value, data)
-        RunConsoleCommand("of_garrylord_language", data)
-        notification.AddLegacy(ofTranslate("ui.personalization.language_changed"), NOTIFY_GENERIC, 5)
-        
-        -- 关闭当前菜单
-        if IsValid(frame) then
-            frame:Close()
-        end
-
-        timer.Simple(0.1, function()
-            AddOFFrame()
-        end)
-    end
-
-	local helpLabel = OFNPCPCreateControl(personalizationLeftPanel, "OFTextLabel", {
-        SetText = ofTranslate("ui.personalization.guide")
-    })
-
-	local helpButtonWebsite = OFNPCPCreateControl(personalizationLeftPanel, "OFButton", {
-		SetText = "Official Website",
-	})
-
-	local helpButtonSteam = OFNPCPCreateControl(personalizationLeftPanel, "OFButton", {
-		SetText = "Steam Guide",
-	})
-
-	local helpButtonBilibili = OFNPCPCreateControl(personalizationLeftPanel, "OFButton", {
-		SetText = "Bilibili",
-	})
-
-	helpButtonWebsite.DoClick = function()
-		gui.OpenURL("https://obscurefreeman.github.io/npc_complex_chat/")
-	end
-
-	helpButtonSteam.DoClick = function()
-		gui.OpenURL("https://steamcommunity.com/sharedfiles/filedetails/?id=3456122462")
-	end
-
-	helpButtonBilibili.DoClick = function()
-		gui.OpenURL("https://www.bilibili.com/opus/1050866948495114242")
-	end
 
 	-- 添加UI设置
 	local uiLabel = OFNPCPCreateControl(personalizationLeftPanel, "OFTextLabel", {
@@ -900,13 +889,7 @@ function AddOFFrame()
 	local pan6 = vgui.Create("EditablePanel", sheet)
 	sheet:AddSheet(ofTranslate("ui.tab.model"), pan6, "icon16/monkey.png")
 
-	OFNPCP_SetUpExtraFeatureMenu(pan6)
-
-	-- Player2设置面板 (pan7)
-	local pan7 = vgui.Create("EditablePanel", sheet)
-	sheet:AddSheet(ofTranslate("ui.tab.player2"), pan7, "ofnpcp/ai/icon16/player2.png")
-
-	OFNPCP_SetUpPlayer2Menu(pan7)
+	OFNPCP_SetUpModelMenu(pan6)
 
 	-- 创建AI设置面板布局
 	local aiHorizontalDivider = vgui.Create("DHorizontalDivider", pan2)

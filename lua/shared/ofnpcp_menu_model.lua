@@ -1,6 +1,6 @@
 -- CreateClientConVar("of_garrylord_player2_enable", "0", true, true, "", 0, 1)
 
-function OFNPCP_SetUpExtraFeatureMenu(pan1)
+function OFNPCP_SetUpModelMenu(pan1)
 	local pan1HorizontalDivider = vgui.Create("DHorizontalDivider", pan1)
 	pan1HorizontalDivider:Dock(FILL)
 	pan1HorizontalDivider:DockMargin(6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale, 6 * OFGUI.ScreenScale)
