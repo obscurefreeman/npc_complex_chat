@@ -515,7 +515,7 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
 		end)
 	end
 
-	OFNPCP_SetUpPlayer2Menu(personalizationLeftPanel)
+	OFNPCP_SetUpPlayer2Menu(personalizationLeftPanel, false)
 
     -- 读取本地保存的配音设置
     local personalizationSettings = file.Read("of_npcp/personalization_settings.txt", "DATA")

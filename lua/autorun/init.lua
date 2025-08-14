@@ -5225,6 +5225,7 @@ GLOBAL_OFNPC_DATA = {
                     remove = "Aus Modellpool entfernen",
                 },
                 player2 = {
+                    firstplay = "Keine API? Binden Sie ein Player2-Konto an, um eine kostenlose API zu erhalten",
                     enable_tts = "Player2 Sprachdienst aktivieren",
                     login_status_connected = "Player2 Konto verbunden, Gerätecode: ",
                     login_status_disconnected = "Player2 Konto nicht verbunden",
@@ -7890,6 +7891,7 @@ GLOBAL_OFNPC_DATA = {
                     remove = "Remove from Model Pool",
                 },
                 player2 = {
+                    firstplay = "No API? Bind a Player2 account to get a free API",
                     enable_tts = "Enable Player2 Voice Service",
                     login_status_connected = "Player2 account connected, device code: ",
                     login_status_disconnected = "Player2 account not connected",
@@ -9242,6 +9244,7 @@ GLOBAL_OFNPC_DATA = {
                     remove = "Удалить из пула моделей",
                 },
                 player2 = {
+                    firstplay = "Нет API? Привяжите аккаунт Player2, чтобы получить бесплатный API",
                     enable_tts = "Включить голосовой сервис Player2",
                     login_status_connected = "Аккаунт Player2 подключен, код устройства: ",
                     login_status_disconnected = "Аккаунт Player2 не подключен",
@@ -11909,6 +11912,7 @@ GLOBAL_OFNPC_DATA = {
                     remove = "从模型池中移除",
                 },
                 player2 = {
+                    firstplay = "没有 API ？可绑定 Player2 账号获取免费 API",
                     enable_tts = "启用 Player2 语音服务",
                     login_status_connected = "已连接 Player2 账号，设备码：",
                     login_status_disconnected = "未连接 Player2 账号",
@@ -14572,6 +14576,7 @@ GLOBAL_OFNPC_DATA = {
                     remove = "從模型池中移除",
                 },
                 player2 = {
+                    firstplay = "沒有 API ？可綁定 Player2 帳號獲取免費 API",
                     enable_tts = "啟用 Player2 語音服務",
                     login_status_connected = "已連接 Player2 帳號，設備碼：",
                     login_status_disconnected = "未連接 Player2 帳號",

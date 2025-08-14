@@ -537,7 +537,7 @@ if CLIENT then
                             aidetail.provider = providername
                         else
                             -- 如果是菜鸟，啥都没有，就让它注册免费账户
-                            OFNPCP_SetUpPlayer2Menu(scrollPanel)
+                            OFNPCP_SetUpPlayer2Menu(scrollPanel, true)
                             local randomLeave = GLOBAL_OFNPC_DATA.playerTalks.leave[math.random(#GLOBAL_OFNPC_DATA.playerTalks.leave)]
                             local translatedOption = OFNPCP_ReplacePlaceholders(ofTranslate(randomLeave), npcIdentity)
     

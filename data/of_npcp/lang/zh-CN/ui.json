@@ -154,6 +154,7 @@
             "remove": "从模型池中移除"
         },
         "player2": {
+            "firstplay": "没有 API ？可绑定 Player2 账号获取免费 API",
             "enable_tts": "启用 Player2 语音服务",
             "login_status_connected": "已连接 Player2 账号，设备码：",
             "login_status_disconnected": "未连接 Player2 账号",

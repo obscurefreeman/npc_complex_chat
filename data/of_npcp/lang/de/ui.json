@@ -154,6 +154,7 @@
             "remove": "Aus Modellpool entfernen"
         },
         "player2": {
+            "firstplay": "Keine API? Binden Sie ein Player2-Konto an, um eine kostenlose API zu erhalten",
             "enable_tts": "Player2 Sprachdienst aktivieren",
             "login_status_connected": "Player2 Konto verbunden, Gerätecode: ",
             "login_status_disconnected": "Player2 Konto nicht verbunden",

@@ -154,6 +154,7 @@
             "remove": "Remove from Model Pool"
         },
         "player2": {
+            "firstplay": "No API? Bind a Player2 account to get a free API",
             "enable_tts": "Enable Player2 Voice Service",
             "login_status_connected": "Player2 account connected, device code: ",
             "login_status_disconnected": "Player2 account not connected",

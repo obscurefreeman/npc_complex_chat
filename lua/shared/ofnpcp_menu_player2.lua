@@ -4,7 +4,7 @@ CreateClientConVar("of_garrylord_player2_tts", "0", true, true, "", 0, 1)
 local PLAYER2API
 local userLang_voices = {}
 
-function OFNPCP_SetUpPlayer2Menu(player2Menu)
+function OFNPCP_SetUpPlayer2Menu(player2Menu, isSimplified)
 
 	local CLIENT_ID = "0198804b-941a-71e0-8b49-37e15b1b2dd8"
 	local API_BASE_URL = "https://api.player2.game/v1"
@@ -38,11 +38,17 @@ function OFNPCP_SetUpPlayer2Menu(player2Menu)
 		RunConsoleCommand("of_garrylord_provider", "player2")
 	end
 
-	local player2Label = OFNPCPCreateControl(player2Menu, "OFTextLabel", {
-		SetText = GetConVar("of_garrylord_player2_device"):GetString() == "" 
-			and ofTranslate("ui.player2.login_status_disconnected")
-			or ofTranslate("ui.player2.login_status_connected")
-	})
+	if not isSimplified then
+		local player2Label = OFNPCPCreateControl(player2Menu, "OFTextLabel", {
+			SetText = GetConVar("of_garrylord_player2_device"):GetString() == "" 
+				and ofTranslate("ui.player2.login_status_disconnected")
+				or ofTranslate("ui.player2.login_status_connected")
+		})
+	else
+		local player2Label = OFNPCPCreateControl(player2Menu, "OFTextLabel", {
+			SetText = ofTranslate("ui.player2.firstplay")
+		})
+	end
 
 	-- 创建设备码输入框
 	local deviceCodeEntry = OFNPCPCreateControl(player2Menu, "OFTextEntry", {
@@ -168,21 +174,23 @@ function OFNPCP_SetUpPlayer2Menu(player2Menu)
 		OFNPCP_Player2AuthAPI()
 	end
 
-	local voiceCheckPanel = vgui.Create("EditablePanel", player2Menu)
-	voiceCheckPanel:Dock(TOP)
-	voiceCheckPanel:SetTall(21 * OFGUI.ScreenScale)
-	voiceCheckPanel:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+	if not isSimplified then
+		local voiceCheckPanel = vgui.Create("EditablePanel", player2Menu)
+		voiceCheckPanel:Dock(TOP)
+		voiceCheckPanel:SetTall(21 * OFGUI.ScreenScale)
+		voiceCheckPanel:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
 
-	local voiceCheckBox = vgui.Create("OFCheckBox", voiceCheckPanel)
-	voiceCheckBox:Dock(LEFT)
-	voiceCheckBox:SetSize(21 * OFGUI.ScreenScale, 21 * OFGUI.ScreenScale)
-	voiceCheckBox:DockMargin(0, 0, 8 * OFGUI.ScreenScale, 0)
-	voiceCheckBox:SetConVar("of_garrylord_player2_tts")
+		local voiceCheckBox = vgui.Create("OFCheckBox", voiceCheckPanel)
+		voiceCheckBox:Dock(LEFT)
+		voiceCheckBox:SetSize(21 * OFGUI.ScreenScale, 21 * OFGUI.ScreenScale)
+		voiceCheckBox:DockMargin(0, 0, 8 * OFGUI.ScreenScale, 0)
+		voiceCheckBox:SetConVar("of_garrylord_player2_tts")
 
-	local voiceCheckLabel = vgui.Create("OFTextLabel", voiceCheckPanel)
-	voiceCheckLabel:SetFont("ofgui_small")
-	voiceCheckLabel:Dock(FILL)
-	voiceCheckLabel:SetText(ofTranslate("ui.player2.enable_tts"))
+		local voiceCheckLabel = vgui.Create("OFTextLabel", voiceCheckPanel)
+		voiceCheckLabel:SetFont("ofgui_small")
+		voiceCheckLabel:Dock(FILL)
+		voiceCheckLabel:SetText(ofTranslate("ui.player2.enable_tts"))
+	end
 end
 
 
