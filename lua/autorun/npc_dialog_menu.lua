@@ -522,6 +522,46 @@ if CLIENT then
                     local function CreateChatInput()
                         scrollPanel:Clear()
 
+                        local aiSettings = util.JSONToTable(file.Read("of_npcp/ai_settings.txt", "DATA") or "{}")
+                        local providername = GetConVar("of_garrylord_provider"):GetString()
+                        local aidetail = {}
+                        -- 如果是老文件
+                        if aiSettings and aiSettings.provider then
+                            aidetail = aiSettings and {
+                                model = aiSettings.model,
+                                provider = aiSettings.provider
+                            }
+                            -- 如果是新文件
+                        elseif aiSettings and aiSettings[providername] then
+                            aidetail = aiSettings[providername]
+                            aidetail.provider = providername
+                        else
+                            -- 如果是菜鸟，啥都没有，就让它注册免费账户
+                            OFNPCP_SetUpPlayer2Menu(scrollPanel)
+                            local randomLeave = GLOBAL_OFNPC_DATA.playerTalks.leave[math.random(#GLOBAL_OFNPC_DATA.playerTalks.leave)]
+                            local translatedOption = OFNPCP_ReplacePlaceholders(ofTranslate(randomLeave), npcIdentity)
+    
+                            local button = vgui.Create("OFChatButton", scrollPanel)
+                            button:SetChatText(translatedOption)
+                            button:SetTitle(ofTranslate("ui.dialog.leave"))
+                            button:Dock(TOP)
+                            button:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
+                            button:SetIcon("ofnpcp/chaticons/preview/leave.png")
+                            button:SetCardIcon("ofnpcp/chaticons/large/leave.png")
+                            button:SetTall(50 * OFGUI.ScreenScale)
+    
+                            local optionColor = dialogOptions["leave"].color
+                            button:SetHoveredColor(Color(optionColor.r, optionColor.g, optionColor.b))
+    
+                            -- 添加点击事件关闭frame
+                            button.DoClick = function()
+                                if IsValid(frame) then
+                                    frame:Close()
+                                end
+                            end
+                            return
+                        end
+
                         local textingarea = vgui.Create("EditablePanel", scrollPanel)
                         textingarea:Dock(TOP)
                         textingarea:SetTall(80 * OFGUI.ScreenScale)
@@ -536,21 +576,6 @@ if CLIENT then
                         textEntry:Dock(FILL)
                         textEntry:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
                         textEntry:SetFont("ofgui_huge")
-
-                        local aiSettings = util.JSONToTable(file.Read("of_npcp/ai_settings.txt", "DATA") or "{}")
-                        local providername = GetConVar("of_garrylord_provider"):GetString()
-                        local aidetail = {}
-                        -- 如果是老文件
-                        if aiSettings and aiSettings.provider then
-                            aidetail = aiSettings and {
-                                model = aiSettings.model,
-                                provider = aiSettings.provider
-                            }
-                        -- 如果是新文件
-                        elseif aiSettings and aiSettings[providername] then
-                            aidetail = aiSettings[providername]
-                            aidetail.provider = providername
-                        end
 
                         local modelComboBox = vgui.Create("OFComboBox", scrollPanel)
                         modelComboBox:SetValue( ofTranslate("ui.dialo.no_model") )
