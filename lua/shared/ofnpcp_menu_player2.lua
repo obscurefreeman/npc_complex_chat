@@ -43,7 +43,24 @@ function OFNPCP_SetUpPlayer2Menu(player2Menu)
 	-- 创建设备码输入框
 	local deviceCodeEntry = OFNPCPCreateControl(player2Menu, "OFTextEntry", {
 		SetValue = GetConVar("of_garrylord_player2_device"):GetString() or "",
-		SetPlaceholderText = ofTranslate("ui.player2.login_status_disconnected")
+		SetPlaceholderText = ofTranslate("ui.player2.get_device_key_entry")
+	})
+
+	local getDeviceKeyButton = OFNPCPCreateControl(player2Menu, "OFButton", {
+		SetText = GetConVar("of_garrylord_player2_device"):GetString() == "" 
+			and ofTranslate("ui.player2.get_device_key")
+			or ofTranslate("ui.player2.get_device_key_re")
+	})
+
+	-- 创建API输入框
+	local apiCodeEntry = OFNPCPCreateControl(player2Menu, "OFTextEntry", {
+		SetValue = aiSettings.player2 and aiSettings.player2.key or "",
+		SetPlaceholderText = ofTranslate("ui.player2.get_api_entry")
+	})
+
+	local getapiButton = OFNPCPCreateControl(player2Menu, "OFButton", {
+		SetText = (aiSettings.player2 and aiSettings.player2.key and aiSettings.player2.key ~= "") and ofTranslate("ui.player2.get_api_re") or ofTranslate("ui.player2.get_api"),
+		SetEnabled = not (aiSettings.player2 and aiSettings.player2.key and aiSettings.player2.key ~= "")
 	})
 
 	local function OFNPCP_Player2AuthDevice()
@@ -65,6 +82,19 @@ function OFNPCP_SetUpPlayer2Menu(player2Menu)
 					if IsValid(deviceCodeEntry) then
 						deviceCodeEntry:SetValue(responseData.deviceCode)  -- 将设备码显示在输入框中
 					end
+					if IsValid(getDeviceKeyButton) then
+						getDeviceKeyButton:SetText(ofTranslate("ui.player2.get_device_key_re"))
+					end
+					-- 清空API设置
+					aiSettings.player2.key = ""
+					if IsValid(apiCodeEntry) then
+						apiCodeEntry:SetValue("")
+					end
+					if IsValid(getapiButton) then
+						getapiButton:SetEnabled(true)
+						getapiButton:SetText(ofTranslate("ui.player2.get_api"))
+					end
+					save_settings()
 					gui.OpenURL(responseData.verificationUriComplete)
 					RunConsoleCommand("of_garrylord_player2_device", responseData.deviceCode)
 				else
@@ -78,19 +108,6 @@ function OFNPCP_SetUpPlayer2Menu(player2Menu)
 			end
 		})
 	end
-
-	local getDeviceKeyButton = OFNPCPCreateControl(player2Menu, "OFButton", {
-		SetText = (ofTranslate("ui.player2.get_device_key"))
-	})
-	getDeviceKeyButton.DoClick = function()
-		OFNPCP_Player2AuthDevice()
-	end
-
-	-- 创建API输入框
-	local apiCodeEntry = OFNPCPCreateControl(player2Menu, "OFTextEntry", {
-		SetValue = aiSettings.player2 and aiSettings.player2.key or "",
-		SetPlaceholderText = "Player2 API"
-	})
 
 	local function OFNPCP_Player2AuthAPI()
 		-- 显示进度通知
@@ -119,6 +136,10 @@ function OFNPCP_SetUpPlayer2Menu(player2Menu)
 					if IsValid(apiCodeEntry) then
 						apiCodeEntry:SetValue(responseData.p2Key)
 					end
+					if IsValid(getapiButton) then
+						getapiButton:SetEnabled(false)
+						getapiButton:SetText(ofTranslate("ui.player2.get_api_re"))
+					end
 					
 					aiSettings.player2.key = responseData.p2Key
 					save_settings()
@@ -134,9 +155,10 @@ function OFNPCP_SetUpPlayer2Menu(player2Menu)
 		})
 	end
 
-	local getapiButton = OFNPCPCreateControl(player2Menu, "OFButton", {
-		SetText = (ofTranslate("ui.player2.get_api"))
-	})
+	getDeviceKeyButton.DoClick = function()
+		OFNPCP_Player2AuthDevice()
+	end
+
 	getapiButton.DoClick = function()
 		OFNPCP_Player2AuthAPI()
 	end
