@@ -1,6 +1,12 @@
 {
     "log": [
         {
+            "title": "August 2025 Update",
+            "content": "Added Player2AI support, allowing users to log in to Player2. Guided users when they don't have valid AI configurations.\nReplaced some chat icons and modified the logic of certain panels.\nAdded support for saving multiple AI configurations.\nFixed the bug where NPC death dialogues wouldn't disappear.",
+            "image": "8_2025",
+            "timestamp": 1755164826
+        },
+        {
             "title": "July 2025 Update",
             "content": "Added automated model assignment tool.\nMonthly bug fix, improved usability. Removed local models from AI list.\nSubsequent updates: Fixed the operation logic of the model replacement interface, removed icons from dropdown menus, and unified localization.",
             "image": "7_2025",
@@ -50,6 +56,12 @@
         }
     ],
     "event": [
+        {
+            "title": "article.event.freeapi.title",
+            "content": "article.event.freeapi.content",
+            "image": "freeapi",
+            "timestamp": 1755165128
+        },
         {
             "title": "article.event.vote.title",
             "content": "article.event.vote.content",

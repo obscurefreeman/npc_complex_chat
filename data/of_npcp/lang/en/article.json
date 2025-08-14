@@ -1,6 +1,10 @@
 {
     "article": {
         "event": {
+            "freeapi": {
+                "title": "Free API: Available to Everyone!",
+                "content": "This update brings a long-awaited new feature: free API for all players! Now go to the personalization menu and link your Player2 account!"
+            },
             "vote": {
                 "title": "Vote for features",
                 "content": "From now on, you can participate in voting to decide the direction of the next feature.\n\nCustom Name/Nickname Pool: Tired of the same old NPC names? Now you can create your own name pool. When a new NPC is spawned, a name will be randomly selected from your pool. You can even import names from your Discord group.\n\nVisual Novel Mode: Engage in pre-set dialogues with NPCs where different choices will determine the story's direction. You can freely create and share these stories.\n\nCome and vote to contribute your ideas for the future development of this mod!"

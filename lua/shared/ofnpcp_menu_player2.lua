@@ -14,6 +14,15 @@ function OFNPCP_SetUpPlayer2Menu(player2Menu, isSimplified)
 	local rawSettings = file.Read("of_npcp/ai_settings.txt", "DATA")
 	if rawSettings then
 		aiSettings = util.JSONToTable(rawSettings) or {}
+		if aiSettings.provider then
+			local providerKey = aiSettings.provider
+			aiSettings = {
+				[providerKey] = aiSettings
+			}
+			-- 保存转换后的格式
+			file.Write("of_npcp/ai_settings.txt", util.TableToJSON(aiSettings))
+			-- 因为rawSettings必定存在，因此不用创建文件夹
+		end
 	end
 	-- 如果不存在Player2设置，则初始化默认设置，暂时不保存，只是呆在这里
 	if not aiSettings["player2"] then
@@ -154,6 +163,10 @@ function OFNPCP_SetUpPlayer2Menu(player2Menu, isSimplified)
 					aiSettings.player2.key = responseData.p2Key
 					save_settings()
 					PLAYER2API = responseData.p2Key
+					-- 如果语音和TTS都未启用，则自动启用 Player2 TTS
+					if GetConVar("of_garrylord_voice"):GetInt() == 0 and GetConVar("of_garrylord_player2_tts"):GetInt() == 0 then
+						RunConsoleCommand("of_garrylord_player2_tts", "1")
+					end
 				else
 					notification.AddLegacy(ofTranslate("ui.player2.get_api_fail") .. responseData.error or "Unknown", NOTIFY_ERROR, 5)
 				end
