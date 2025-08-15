@@ -515,8 +515,6 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
 		end)
 	end
 
-	OFNPCP_SetUpPlayer2Menu(personalizationLeftPanel, false)
-
     -- 读取本地保存的配音设置
     local personalizationSettings = file.Read("of_npcp/personalization_settings.txt", "DATA")
     if personalizationSettings then
@@ -533,21 +531,8 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
         SetText = ofTranslate("ui.personalization.voice_service")
     })
 
-	local voiceCheckPanel = vgui.Create("EditablePanel", personalizationLeftPanel)
-	voiceCheckPanel:Dock(TOP)
-	voiceCheckPanel:SetTall(21 * OFGUI.ScreenScale)
-	voiceCheckPanel:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
-
-	local voiceCheckBox = vgui.Create("OFCheckBox", voiceCheckPanel)
-	voiceCheckBox:Dock(LEFT)
-	voiceCheckBox:SetSize(21 * OFGUI.ScreenScale, 21 * OFGUI.ScreenScale)
-	voiceCheckBox:DockMargin(0, 0, 8 * OFGUI.ScreenScale, 0)
-	voiceCheckBox:SetConVar("of_garrylord_voice")
-
-	local voiceCheckLabel = vgui.Create("OFTextLabel", voiceCheckPanel)
-	voiceCheckLabel:SetFont("ofgui_small")
-	voiceCheckLabel:Dock(FILL)
-	voiceCheckLabel:SetText(ofTranslate("ui.personalization.enable_voice"))
+	OFNPCPCreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_player2_tts", "ui.player2.enable_tts")
+	OFNPCPCreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_voice", "ui.personalization.enable_voice")
 
     -- 创建API URL输入框
     local apiUrlEntry = OFNPCPCreateControl(personalizationLeftPanel, "OFTextEntry", {
@@ -930,80 +915,83 @@ function AddOFFrame()
 			temperature = 1,
 			max_tokens = 500
 		}
+		if providerKey ~= "player2" then
+			-- 添加供应商标题
+			local providerLabel = OFNPCPCreateControl(aiRightPanel, "OFTextLabel", {
+				SetText = ofTranslate(provider.name)
+			})
 
-		-- 添加供应商标题
-		local providerLabel = OFNPCPCreateControl(aiRightPanel, "OFTextLabel", {
-			SetText = ofTranslate(provider.name)
-		})
+			-- 创建设置控件
+			local apiUrlEntry = OFNPCPCreateControl(aiRightPanel, "OFTextEntry", {
+				SetValue = settings.url,
+				SetPlaceholderText = "API URL"
+			})
 
-		-- 创建设置控件
-		local apiUrlEntry = OFNPCPCreateControl(aiRightPanel, "OFTextEntry", {
-			SetValue = settings.url,
-			SetPlaceholderText = "API URL"
-		})
+			local apiKeyEntry = OFNPCPCreateControl(aiRightPanel, "OFTextEntry", {
+				SetValue = settings.key or "",
+				SetPlaceholderText = ofTranslate(provider.name) .. " API"
+			})
 
-		local apiKeyEntry = OFNPCPCreateControl(aiRightPanel, "OFTextEntry", {
-			SetValue = settings.key or "",
-			SetPlaceholderText = ofTranslate(provider.name) .. " API"
-		})
-
-		local modelComboBox = OFNPCPCreateControl(aiRightPanel, "OFComboBox", {
-			SetValue = settings.model or ofTranslate("ui.ai_system.model_select")
-		})
-		for _, model in ipairs(provider.model) do
-			modelComboBox:AddChoice(model)
-		end
-		if settings.model then
-			modelComboBox:SetValue(settings.model)
-		else
-			modelComboBox:SetValue(provider.model[1])
-		end
-
-		local tempSlider = OFNPCPCreateControl(aiRightPanel, "OFNumSlider", {
-			SetText = ofTranslate("ui.ai_system.temperature"),
-			SetMin = 0,
-			SetMax = 2,
-			SetDecimals = 1,
-			SetValue = settings.temperature
-		})
-
-		local maxTokensSlider = OFNPCPCreateControl(aiRightPanel, "OFNumSlider", {
-			SetText = ofTranslate("ui.ai_system.max_tokens"),
-			SetMin = 100,
-			SetMax = 2000,
-			SetDecimals = 0,
-			SetValue = settings.max_tokens
-		})
-
-		-- 保存按钮
-		local saveButton = OFNPCPCreateControl(aiRightPanel, "OFButton", {
-			SetText = ofTranslate("ui.ai_system.save_settings")
-		})
-		saveButton.DoClick = function()
-			-- 创建文件夹
-			if not file.IsDir("of_npcp", "DATA") then
-				file.CreateDir("of_npcp")
+			local modelComboBox = OFNPCPCreateControl(aiRightPanel, "OFComboBox", {
+				SetValue = settings.model or ofTranslate("ui.ai_system.model_select")
+			})
+			for _, model in ipairs(provider.model) do
+				modelComboBox:AddChoice(model)
+			end
+			if settings.model then
+				modelComboBox:SetValue(settings.model)
+			else
+				modelComboBox:SetValue(provider.model[1])
 			end
 
-			-- 保存时确保符合要求
+			local tempSlider = OFNPCPCreateControl(aiRightPanel, "OFNumSlider", {
+				SetText = ofTranslate("ui.ai_system.temperature"),
+				SetMin = 0,
+				SetMax = 2,
+				SetDecimals = 1,
+				SetValue = settings.temperature
+			})
 
-			local temperature = tonumber(tempSlider:GetValue()) or 1
-			local maxTokens = tonumber(maxTokensSlider:GetValue()) or 500
-			temperature = math.floor(temperature * 10) / 10
-			maxTokens = math.floor(maxTokens)
-			
-			-- 更新当前提供商的设置
-			aiSettings[providerKey] = {
-				url = apiUrlEntry:GetValue(),
-				key = apiKeyEntry:GetValue(),
-				model = modelComboBox:GetValue(),
-				temperature = temperature,
-				max_tokens = maxTokens
-			}
-			
-			file.Write("of_npcp/ai_settings.txt", util.TableToJSON(aiSettings))
-			notification.AddLegacy(ofTranslate("ui.ai_system.save_success"), NOTIFY_GENERIC, 5)
-			RunConsoleCommand("of_garrylord_provider", providerKey)
+			local maxTokensSlider = OFNPCPCreateControl(aiRightPanel, "OFNumSlider", {
+				SetText = ofTranslate("ui.ai_system.max_tokens"),
+				SetMin = 100,
+				SetMax = 2000,
+				SetDecimals = 0,
+				SetValue = settings.max_tokens
+			})
+
+			-- 保存按钮
+			local saveButton = OFNPCPCreateControl(aiRightPanel, "OFButton", {
+				SetText = ofTranslate("ui.ai_system.save_settings")
+			})
+			saveButton.DoClick = function()
+				-- 创建文件夹
+				if not file.IsDir("of_npcp", "DATA") then
+					file.CreateDir("of_npcp")
+				end
+
+				-- 保存时确保符合要求
+
+				local temperature = tonumber(tempSlider:GetValue()) or 1
+				local maxTokens = tonumber(maxTokensSlider:GetValue()) or 500
+				temperature = math.floor(temperature * 10) / 10
+				maxTokens = math.floor(maxTokens)
+				
+				-- 更新当前提供商的设置
+				aiSettings[providerKey] = {
+					url = apiUrlEntry:GetValue(),
+					key = apiKeyEntry:GetValue(),
+					model = modelComboBox:GetValue(),
+					temperature = temperature,
+					max_tokens = maxTokens
+				}
+				
+				file.Write("of_npcp/ai_settings.txt", util.TableToJSON(aiSettings))
+				notification.AddLegacy(ofTranslate("ui.ai_system.save_success"), NOTIFY_GENERIC, 5)
+				RunConsoleCommand("of_garrylord_provider", providerKey)
+			end
+		else
+			OFNPCP_SetUpPlayer2Menu(aiRightPanel, false)
 		end
 		-- 添加阵营提示词内容
 		local camps = {

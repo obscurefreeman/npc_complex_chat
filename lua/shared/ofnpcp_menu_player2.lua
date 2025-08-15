@@ -54,8 +54,12 @@ function OFNPCP_SetUpPlayer2Menu(player2Menu, isSimplified)
 				or ofTranslate("ui.player2.login_status_connected")
 		})
 	else
-		local player2Label = OFNPCPCreateControl(player2Menu, "OFTextLabel", {
-			SetText = ofTranslate("ui.player2.firstplay")
+		local button = OFNPCPCreateControl(player2Menu, "OFAdvancedButton", {
+			SetTall = 80 * OFGUI.ScreenScale,
+			SetTitle = ofTranslate("ai.providor.player2.name"),
+			SetDescription = ofTranslate("ui.player2.firstplay"),
+			SetIcon = "ofnpcp/ai/providers/player2.png",
+			SetShowHoverCard = false
 		})
 	end
 
@@ -188,21 +192,43 @@ function OFNPCP_SetUpPlayer2Menu(player2Menu, isSimplified)
 	end
 
 	if not isSimplified then
-		local voiceCheckPanel = vgui.Create("EditablePanel", player2Menu)
-		voiceCheckPanel:Dock(TOP)
-		voiceCheckPanel:SetTall(21 * OFGUI.ScreenScale)
-		voiceCheckPanel:DockMargin(4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale, 4 * OFGUI.ScreenScale)
 
-		local voiceCheckBox = vgui.Create("OFCheckBox", voiceCheckPanel)
-		voiceCheckBox:Dock(LEFT)
-		voiceCheckBox:SetSize(21 * OFGUI.ScreenScale, 21 * OFGUI.ScreenScale)
-		voiceCheckBox:DockMargin(0, 0, 8 * OFGUI.ScreenScale, 0)
-		voiceCheckBox:SetConVar("of_garrylord_player2_tts")
+		local tempSlider = OFNPCPCreateControl(player2Menu, "OFNumSlider", {
+			SetText = ofTranslate("ui.ai_system.temperature"),
+			SetMin = 0,
+			SetMax = 2,
+			SetDecimals = 1,
+			SetValue = aiSettings.player2.temperature
+		})
 
-		local voiceCheckLabel = vgui.Create("OFTextLabel", voiceCheckPanel)
-		voiceCheckLabel:SetFont("ofgui_small")
-		voiceCheckLabel:Dock(FILL)
-		voiceCheckLabel:SetText(ofTranslate("ui.player2.enable_tts"))
+		local maxTokensSlider = OFNPCPCreateControl(player2Menu, "OFNumSlider", {
+			SetText = ofTranslate("ui.ai_system.max_tokens"),
+			SetMin = 100,
+			SetMax = 2000,
+			SetDecimals = 0,
+			SetValue = aiSettings.player2.max_tokens
+		})
+		
+		OFNPCPCreateCheckBoxPanel(player2Menu, "of_garrylord_player2_tts", "ui.player2.enable_tts")
+
+		-- 保存按钮
+		local saveButton = OFNPCPCreateControl(player2Menu, "OFButton", {
+			SetText = ofTranslate("ui.ai_system.save_settings")
+		})
+		saveButton.DoClick = function()
+			-- 获取滑块值并确保在合理范围内
+			local temperature = tonumber(tempSlider:GetValue()) or 1
+			local maxTokens = tonumber(maxTokensSlider:GetValue()) or 500
+			temperature = math.Clamp(math.floor(temperature * 10) / 10, 0, 2)
+			maxTokens = math.Clamp(math.floor(maxTokens), 100, 2000)
+
+			-- 更新Player2设置
+			aiSettings.player2.temperature = temperature
+			aiSettings.player2.max_tokens = maxTokens
+			save_settings()
+			notification.AddLegacy(ofTranslate("ui.ai_system.save_success"), NOTIFY_GENERIC, 5)
+			RunConsoleCommand("of_garrylord_provider", "player2")
+		end
 	end
 end
 

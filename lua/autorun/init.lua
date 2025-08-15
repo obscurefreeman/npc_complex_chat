@@ -5305,7 +5305,7 @@ GLOBAL_OFNPC_DATA = {
                         description = "Locally deployed open-source models.",
                     },
                     player2 = {
-                        name = "Player2 (Recommended)",
+                        name = "Player2 (Free API)",
                         description = "Build, play and share AI mods and games through our platform for the community and indie developers.",
                     },
                     groq = {
@@ -5426,7 +5426,7 @@ GLOBAL_OFNPC_DATA = {
                 event = {
                     freeapi = {
                         title = "Free API: Available to Everyone!",
-                        content = "This update brings a long-awaited new feature: free API for all players! Now go to the personalization menu and link your Player2 account!",
+                        content = "This update brings a long-awaited new feature: free API for all players! Now go to the AI Setting menu and link your Player2 account!",
                     },
                     vote = {
                         title = "Vote for features",
@@ -9328,7 +9328,7 @@ GLOBAL_OFNPC_DATA = {
                         description = "本地部署开源模型。",
                     },
                     player2 = {
-                        name = "Player2（推荐）",
+                        name = "Player2（免费 API）",
                         description = "通过我们的平台为社区和独立开发者构建、玩和分享 AI 模组和游戏。",
                     },
                     groq = {
@@ -9449,7 +9449,7 @@ GLOBAL_OFNPC_DATA = {
                 event = {
                     freeapi = {
                         title = "免费的API：所有人都可用！",
-                        content = "本次更新带来了大家期待已久的新功能：为所有玩家提供免费的 API！现在就前往个性化菜单，关联你的 Player2 账号吧！",
+                        content = "本次更新带来了大家期待已久的新功能：为所有玩家提供免费的 API！现在就前往AI设置界面，关联你的 Player2 账号吧！",
                     },
                     vote = {
                         title = "投票决定下一次更新",
@@ -12000,7 +12000,7 @@ GLOBAL_OFNPC_DATA = {
                         description = "本地部署開源模型。",
                     },
                     player2 = {
-                        name = "Player2（推薦）",
+                        name = "Player2（免費 API）",
                         description = "通過我們的平台為社區和獨立開發者構建、玩和分享 AI 模組和遊戲。",
                     },
                     groq = {
@@ -12121,7 +12121,7 @@ GLOBAL_OFNPC_DATA = {
                 event = {
                     freeapi = {
                         title = "免費的API：所有人都可用！",
-                        content = "本次更新帶來了大家期待已久的新功能：為所有玩家提供免費的 API！現在就前往個性化菜單，關聯你的 Player2 賬號吧！",
+                        content = "本次更新帶來了大家期待已久的新功能：為所有玩家提供免費的 API！現在就前往AI設置界面，關聯你的 Player2 帳號吧！",
                     },
                     vote = {
                         title = "投票決定下一次更新",
