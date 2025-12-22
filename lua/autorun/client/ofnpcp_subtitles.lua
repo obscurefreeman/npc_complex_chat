@@ -4,7 +4,7 @@ CreateClientConVar("of_garrylord_subtitles_position", "160", true, true, "", 0, 
 CreateClientConVar("of_garrylord_subtitles_maxlines", "3", true, true, "", 1, 10)
 CreateClientConVar("of_garrylord_subtitles_showname", "1", true, true, "", 0, 1)
 CreateClientConVar("of_garrylord_subtitles_cc", "1", true, true, "", 0, 1)
-CreateClientConVar("of_garrylord_subtitles_cc_duration", "3", true, true, "", 1, 7)
+CreateClientConVar("of_garrylord_subtitles_cc_duration", "1", true, true, "", 1, 7)
 
 local activeSubtitles = {}
 local transitionTime = 0.3
@@ -108,25 +108,23 @@ hook.Add("HUDPaint", "DrawNPCDialogSubtitles", function()
     local bottomMargin = position * OFGUI.ScreenScale
     local maxWidth = 1500 * OFGUI.ScreenScale
     local spacing = 10 * OFGUI.ScreenScale
+    local showName = GetConVar("of_garrylord_subtitles_showname"):GetInt() ~= 0
 
-    -- 先计算所有字幕的高度
+    -- 优化字幕高度计算，确保名字显示状态切换无误并避免重复定义变量
     for i, tbl in ipairs(activeSubtitles) do
-        local markup = markup.Parse(
-            "<color=" .. (tbl.color and tbl.color.r or 255) .. "," .. (tbl.color and tbl.color.g or 255) .. "," .. (tbl.color and tbl.color.b or 255) .. ",255>" .. 
-            "<font=ofgui_medium>" .. (tbl.name or "") .. "</font></color>" .. 
-            "<font=ofgui_medium>" .. (tbl.text or "") .. "</font>", 
-            maxWidth
-        )
-
-        if GetConVar("of_garrylord_subtitles_showname"):GetInt() == 0 then
-            local markup = markup.Parse(
-                "<color=" .. (tbl.color and tbl.color.r or 255) .. "," .. (tbl.color and tbl.color.g or 255) .. "," .. (tbl.color and tbl.color.b or 255) .. ",255>" .. 
-                "<font=ofgui_medium>" .. (tbl.text or "") .. "</font></color>", 
-                maxWidth
-            )
+        local colorString = (tbl.color and tbl.color.r or 255) .. "," .. (tbl.color and tbl.color.g or 255) .. "," .. (tbl.color and tbl.color.b or 255) .. ",255"
+        local textMarkup
+        if showName then
+            textMarkup = "<color=" .. colorString .. ">" ..
+                         "<font=ofgui_medium>" .. (tbl.name or "") .. "</font></color>" ..
+                         "<font=ofgui_medium>" .. (tbl.text or "") .. "</font>"
+        else
+            textMarkup = "<color=" .. colorString .. ">" ..
+                         "<font=ofgui_medium>" .. (tbl.text or "") .. "</font></color>"
         end
-        
-        tbl.height = markup:GetHeight()
+
+        local markupObj = markup.Parse(textMarkup, maxWidth)
+        tbl.height = markupObj:GetHeight()
     end
 
     -- 从下往上计算每个字幕的目标位置
@@ -172,23 +170,31 @@ hook.Add("HUDPaint", "DrawNPCDialogSubtitles", function()
         -- 平滑移动
         tbl.currentY = Lerp(FrameTime() * 10, tbl.currentY or h, tbl.targetY)
 
-        -- 绘制投影
-        local shadowMarkup = markup.Parse(
-            "<color=0,0,0," .. math.floor(alpha * 0.5) .. ">" .. 
-            "<font=ofgui_medium>" .. (tbl.name or "") .. "</font>" .. 
-            "<font=ofgui_medium>" .. (tbl.text or "") .. "</font></color>", 
-            maxWidth
-        )
+        -- 绘制文字相关，考虑是否显示名字
+        local shadowTextMarkup, mainTextMarkup
+        if showName then
+            shadowTextMarkup = 
+                "<color=0,0,0," .. math.floor(alpha * 0.5) .. ">" ..
+                "<font=ofgui_medium>" .. (tbl.name or "") .. "</font>" ..
+                "<font=ofgui_medium>" .. (tbl.text or "") .. "</font></color>"
+            mainTextMarkup =
+                "<color=" .. color.r .. "," .. color.g .. "," .. color.b .. "," .. alpha .. ">" ..
+                "<font=ofgui_medium>" .. (tbl.name or "") .. "</font></color>" ..
+                "<font=ofgui_medium>" .. (tbl.text or "") .. "</font>"
+        else
+            shadowTextMarkup = 
+                "<color=0,0,0," .. math.floor(alpha * 0.5) .. ">" ..
+                "<font=ofgui_medium>" .. (tbl.text or "") .. "</font></color>"
+            mainTextMarkup =
+                "<color=" .. color.r .. "," .. color.g .. "," .. color.b .. "," .. alpha .. ">" ..
+                "<font=ofgui_medium>" .. (tbl.text or "") .. "</font></color>"
+        end
+
+        local shadowMarkup = markup.Parse(shadowTextMarkup, maxWidth)
         shadowMarkup:Draw(w / 2 + 1 * OFGUI.ScreenScale, tbl.currentY + 1 * OFGUI.ScreenScale, TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, nil, TEXT_ALIGN_CENTER)
 
-        -- 绘制原文字
-        local markup = markup.Parse(
-            "<color=" .. color.r .. "," .. color.g .. "," .. color.b .. "," .. alpha .. ">" .. 
-            "<font=ofgui_medium>" .. (tbl.name or "") .. "</font></color>" .. 
-            "<font=ofgui_medium>" .. (tbl.text or "") .. "</font>", 
-            maxWidth
-        )
-        
-        markup:Draw(w / 2, tbl.currentY, TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, nil, TEXT_ALIGN_CENTER)
+        local markupObj = markup.Parse(mainTextMarkup, maxWidth)
+        markupObj:Draw(w / 2, tbl.currentY, TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, nil, TEXT_ALIGN_CENTER)
+
     end
 end)
