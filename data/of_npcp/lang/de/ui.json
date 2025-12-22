@@ -113,7 +113,7 @@
             "enable_player_hud": "Spieler-HUD aktivieren",
             "enable_npcinfo_hud": "NPC-Info-HUD aktivieren",
             "enable_levelup_effects": "Level-Up-Effekte aktivieren",
-            "enable_subtitles_cc_duration": "Dauer der Untertitel",
+            "subtitles_cc_duration": "Dauer der Untertitel",
             "subtitles_position": "Untertitelposition",
             "subtitles_maxlines": "Maximale Untertitelzeilen",
             "enable_killfeeds": "Tötungsbenachrichtigungen aktivieren",

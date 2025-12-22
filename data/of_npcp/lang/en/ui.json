@@ -113,7 +113,7 @@
             "enable_player_hud": "Enable Player HUD",
             "enable_npcinfo_hud": "Enable NPC Info HUD",
             "enable_levelup_effects": "Enable Level Up Effects",
-            "enable_subtitles_cc_duration": "Native subtitle duration",
+            "subtitles_cc_duration": "Native subtitle duration",
             "subtitles_position": "Subtitles Position",
             "subtitles_maxlines": "Subtitles Max Lines",
             "enable_killfeeds": "Enable Kill Feeds",

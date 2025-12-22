@@ -113,7 +113,7 @@
             "enable_player_hud": "啟用玩家HUD",
             "enable_npcinfo_hud": "啟用NPC資訊HUD",
             "enable_levelup_effects": "啟用升級特效",
-            "enable_subtitles_cc_duration": "原生字幕持續時間",
+            "subtitles_cc_duration": "原生字幕持續時間",
             "subtitles_position": "字幕位置",
             "subtitles_maxlines": "字幕最大行數",
             "enable_killfeeds": "啟用擊殺提示",

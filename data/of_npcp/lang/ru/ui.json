@@ -113,7 +113,7 @@
             "enable_player_hud": "Включить HUD игрока",
             "enable_npcinfo_hud": "Включить HUD информации о NPC",
             "enable_levelup_effects": "Включить эффекты повышения уровня",
-            "enable_subtitles_cc_duration": "Продолжительность субтитров",
+            "subtitles_cc_duration": "Продолжительность субтитров",
             "subtitles_position": "Позиция субтитров",
             "subtitles_maxlines": "Максимальное количество строк субтитров",
             "enable_killfeeds": "Включить уведомления об убийствах",
