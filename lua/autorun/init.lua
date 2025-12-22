@@ -3072,6 +3072,12 @@ GLOBAL_OFNPC_DATA = {
         },
         event = {
             {
+                title = "article.event.anniversary.title",
+                content = "article.event.anniversary.content",
+                image = "anniversary",
+                timestamp = 1766415301,
+            },
+            {
                 title = "article.event.freeapi.title",
                 content = "article.event.freeapi.content",
                 image = "freeapi",
