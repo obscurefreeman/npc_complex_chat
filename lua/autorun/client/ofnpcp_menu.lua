@@ -619,6 +619,8 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
 
     -- 使用函数简化开关的添加
     OFNPCPCreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_subtitles", "ui.personalization.enable_subtitles")
+	OFNPCPCreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_subtitles_cc", "ui.personalization.enable_subtitles_cc")
+	OFNPCPCreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_subtitles_showname", "ui.personalization.enable_subtitles_showname")
     OFNPCPCreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_subtitles3d", "ui.personalization.enable_subtitles3d")
     OFNPCPCreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_subtitles3d_localplayer", "ui.personalization.enable_subtitles3d_localplayer")
 	OFNPCPCreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_subtitles3d_sound", "ui.personalization.enable_subtitles3d_sound")
@@ -626,6 +628,15 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
     OFNPCPCreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_killfeeds", "ui.personalization.enable_killfeeds")
     OFNPCPCreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_npcinfo_hud", "ui.personalization.enable_npcinfo_hud")
     OFNPCPCreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_levelup_effects", "ui.personalization.enable_levelup_effects")
+
+
+	local subtitlesCCDurationSlider = OFNPCPCreateControl(personalizationLeftPanel, "OFNumSlider", {
+		SetText = ofTranslate("ui.personalization.subtitles_cc_duration"),
+		SetMin = 1,
+		SetMax = 7,
+		SetDecimals = 0,
+		SetConVar = "of_garrylord_subtitles_cc_duration"
+	})
 
     -- 添加字幕位置调节滑块
     local subtitlesPositionSlider = OFNPCPCreateControl(personalizationLeftPanel, "OFNumSlider", {

@@ -26,7 +26,7 @@
             "npc_name": "NPC -Name",
             "comment": "Kommentar",
             "ai_prompt": "KI -schnelle Wörter",
-            "voice": "Ton"
+            "voice": "GarryLord Sprachdienst-Ton"
         },
         "deck_system": {
             "deck": " Deck",
@@ -95,7 +95,7 @@
             "title": "Personalisierung",
             "voice_service": "Sprachdienst",
             "volume_setting": "Lautstärkeeinstellungen",
-            "enable_voice": "Sprachdienst aktivieren",
+            "enable_voice": "GarryLord Sprachdienst aktivieren",
             "voice_player": "Deine Stimme",
             "save_settings": "Einstellungen speichern",
             "player_voice_setting": "Synchronisierungseinstellungen werden gespeichert.",
@@ -105,12 +105,15 @@
             "language_changed": "Die Sprache wurde geändert.",
             "ui_setting": "UI-Einstellungen",
             "enable_subtitles": "Untertitel aktivieren",
+            "enable_subtitles_cc": "Wenn Untertitel aktiviert sind, automatisch Untertitel verwenden",
+            "enable_subtitles_showname": "Namen der Sprecher in Untertiteln anzeigen",
             "enable_subtitles3d": "3D-Untertitel aktivieren",
             "enable_subtitles3d_localplayer": "3D-Untertitel über dem eigenen Kopf aktivieren",
             "enable_subtitles3d_sound": "3D-Untertitel-Soundeffekte aktivieren",
             "enable_player_hud": "Spieler-HUD aktivieren",
             "enable_npcinfo_hud": "NPC-Info-HUD aktivieren",
             "enable_levelup_effects": "Level-Up-Effekte aktivieren",
+            "enable_subtitles_cc_duration": "Dauer der Untertitel",
             "subtitles_position": "Untertitelposition",
             "subtitles_maxlines": "Maximale Untertitelzeilen",
             "enable_killfeeds": "Tötungsbenachrichtigungen aktivieren",
@@ -155,7 +158,7 @@
         },
         "player2": {
             "firstplay": "Keine API? Binden Sie ein Player2-Konto an, um eine kostenlose API zu erhalten",
-            "enable_tts": "Player2 Sprachdienst aktivieren (Nur für KI-Dialoge)",
+            "enable_tts": "Player2 Sprachdienst aktivieren (Nur für KI-Dialoge, nicht mit GarryLord's)",
             "login_status_connected": "Player2 Konto verbunden, Gerätecode: ",
             "login_status_disconnected": "Player2 Konto nicht verbunden",
             "get_device_key": "Bei Player2 Konto anmelden",

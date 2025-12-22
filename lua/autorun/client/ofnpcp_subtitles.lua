@@ -2,6 +2,9 @@
 CreateClientConVar("of_garrylord_subtitles", "1", true, true, "", 0, 1)
 CreateClientConVar("of_garrylord_subtitles_position", "160", true, true, "", 0, 500)
 CreateClientConVar("of_garrylord_subtitles_maxlines", "3", true, true, "", 1, 10)
+CreateClientConVar("of_garrylord_subtitles_showname", "1", true, true, "", 0, 1)
+CreateClientConVar("of_garrylord_subtitles_cc", "1", true, true, "", 0, 1)
+CreateClientConVar("of_garrylord_subtitles_cc_duration", "3", true, true, "", 1, 7)
 
 local activeSubtitles = {}
 local transitionTime = 0.3
@@ -41,6 +44,21 @@ function OFNPC_GetNPCHUD(npc, class)
     return npcColor, npcName, description
 end
 
+local function OFNPC_CreateCCSubtitles(tbl)
+    if GetConVar("of_garrylord_subtitles"):GetInt() == 0 or GetConVar("of_garrylord_subtitles_cc"):GetInt() == 0 or GetConVar("closecaption"):GetInt() == 0 then return end
+    -- 一定要自动原生字幕和字幕同时开启，否则不显示
+    local ccsubcolor = (tbl.color and tbl.color.r or 255) .. "," .. (tbl.color and tbl.color.g or 255) .. "," .. (tbl.color and tbl.color.b or 255)
+    local ccsubtext = "<clr:" .. ccsubcolor .. "><B>" .. tbl.name .. "<B><clr:255,255,255>" .. tbl.text
+    local ccsubduration = GetConVar("of_garrylord_subtitles_cc_duration"):GetInt()
+
+    if GetConVar("of_garrylord_subtitles_showname"):GetInt() == 0 then
+        ccsubtext = "<clr:" .. ccsubcolor .. ">" .. tbl.text
+    end
+
+    gui.AddCaption( ccsubtext, ccsubduration )
+    -- print(ccsubtext)
+end
+
 -- 创建字幕
 hook.Add("OnNPCTalkStart", "CreateNPCDialogSubtitles", function(npc, text)
     if GetConVar("of_garrylord_subtitles"):GetInt() == 0 then return end
@@ -70,6 +88,8 @@ hook.Add("OnNPCTalkStart", "CreateNPCDialogSubtitles", function(npc, text)
     end
     
     table.insert(activeSubtitles, dialog)
+
+    OFNPC_CreateCCSubtitles(dialog)
     
     timer.Simple(8, function()
         dialog.removeTime = RealTime()
@@ -79,6 +99,7 @@ end)
 -- HUD绘制钩子
 hook.Add("HUDPaint", "DrawNPCDialogSubtitles", function()
     if GetConVar("of_garrylord_subtitles"):GetInt() == 0 then return end
+    if GetConVar("of_garrylord_subtitles_cc"):GetInt() == 1 and GetConVar("closecaption"):GetInt() == 1 then return end
 
     local w = ScrW()
     local h = ScrH()
@@ -96,6 +117,15 @@ hook.Add("HUDPaint", "DrawNPCDialogSubtitles", function()
             "<font=ofgui_medium>" .. (tbl.text or "") .. "</font>", 
             maxWidth
         )
+
+        if GetConVar("of_garrylord_subtitles_showname"):GetInt() == 0 then
+            local markup = markup.Parse(
+                "<color=" .. (tbl.color and tbl.color.r or 255) .. "," .. (tbl.color and tbl.color.g or 255) .. "," .. (tbl.color and tbl.color.b or 255) .. ",255>" .. 
+                "<font=ofgui_medium>" .. (tbl.text or "") .. "</font></color>", 
+                maxWidth
+            )
+        end
+        
         tbl.height = markup:GetHeight()
     end
 

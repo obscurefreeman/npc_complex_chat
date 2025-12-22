@@ -1,6 +1,12 @@
 {
     "log": [
         {
+            "title": "December 2025 Update",
+            "content": "Added native subtitles support and options in the personalization page. Added hide speaker name option for subtitles.",
+            "image": "12_2025",
+            "timestamp": 1766415301
+        },
+        {
             "title": "August 2025 Update",
             "content": "Added Player2AI support, allowing users to log in to Player2. Guided users when they don't have valid AI configurations.\nReplaced some chat icons and modified the logic of certain panels.\nAdded support for saving multiple AI configurations.\nFixed the bug where NPC death dialogues wouldn't disappear.",
             "image": "8_2025",

@@ -26,7 +26,7 @@
             "npc_name": "NPC名稱",
             "comment": "評論",
             "ai_prompt": "AI 提示詞",
-            "voice": "音色"
+            "voice": "GarryLord 語音服務音色"
         },
         "deck_system": {
             "deck": "牌組",
@@ -95,7 +95,7 @@
             "title": "個性化",
             "voice_service": "語音服務",
             "volume_setting": "音量設置",
-            "enable_voice": "啟用語音服務",
+            "enable_voice": "啟用 GarryLord 語音服務",
             "voice_player": "你的聲音",
             "save_settings": "保存設置",
             "player_voice_setting": "配音設置已保存。",
@@ -105,12 +105,15 @@
             "language_changed": "語言已更改。",
             "ui_setting": "UI 設定",
             "enable_subtitles": "啟用字幕",
+            "enable_subtitles_cc": "若原生字幕開啟，則自動選用原生字幕",
+            "enable_subtitles_showname": "字幕顯示說話者名稱",
             "enable_subtitles3d": "啟用立體字幕",
             "enable_subtitles3d_localplayer": "啟用自己頭頂的立體字幕",
             "enable_subtitles3d_sound": "啟用立體字幕音效",
             "enable_player_hud": "啟用玩家HUD",
             "enable_npcinfo_hud": "啟用NPC資訊HUD",
             "enable_levelup_effects": "啟用升級特效",
+            "enable_subtitles_cc_duration": "原生字幕持續時間",
             "subtitles_position": "字幕位置",
             "subtitles_maxlines": "字幕最大行數",
             "enable_killfeeds": "啟用擊殺提示",
@@ -155,7 +158,7 @@
         },
         "player2": {
             "firstplay": "沒有 API ？可綁定 Player2 帳號獲取免費 API",
-            "enable_tts": "啟用 Player2 語音服務（僅針對 AI 對話）",
+            "enable_tts": "啟用 Player2 語音服務（僅針對 AI 對話，不要和 GarryLord 語音服務一起使用）",
             "login_status_connected": "已連接 Player2 帳號，設備碼：",
             "login_status_disconnected": "未連接 Player2 帳號",
             "get_device_key": "登入 Player2 帳號",

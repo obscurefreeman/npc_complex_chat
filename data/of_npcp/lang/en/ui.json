@@ -26,7 +26,7 @@
             "npc_name": "NPC Name",
             "comment": "Comment",
             "ai_prompt": "AI Prompt",
-            "voice": "Voice"
+            "voice": "GarryLord Voice Service Voice"
         },
         "deck_system": {
             "deck": " Deck",
@@ -95,7 +95,7 @@
             "title": "Personalization",
             "voice_service": "Voice Service",
             "volume_setting": "Volume Setting",
-            "enable_voice": "Enable Voice Services",
+            "enable_voice": "Enable GarryLord Voice Service",
             "voice_player": "Your Voice",
             "save_settings": "Save Settings",
             "player_voice_setting": "Voice Setting Saved.",
@@ -105,12 +105,15 @@
             "language_changed": "Language changed.",
             "ui_setting": "UI Setting",
             "enable_subtitles": "Enable Subtitles",
+            "enable_subtitles_cc": "Auto use native subtitles if enabled",
+            "enable_subtitles_showname": "Display speaker names in subtitles",
             "enable_subtitles3d": "Enable 3D Subtitles",
             "enable_subtitles3d_localplayer": "Enable 3D subtitles above your head",
             "enable_subtitles3d_sound": "Enable 3D Subtitles Sound Effects",
             "enable_player_hud": "Enable Player HUD",
             "enable_npcinfo_hud": "Enable NPC Info HUD",
             "enable_levelup_effects": "Enable Level Up Effects",
+            "enable_subtitles_cc_duration": "Native subtitle duration",
             "subtitles_position": "Subtitles Position",
             "subtitles_maxlines": "Subtitles Max Lines",
             "enable_killfeeds": "Enable Kill Feeds",
@@ -155,7 +158,7 @@
         },
         "player2": {
             "firstplay": "No API? Bind a Player2 account to get a free API",
-            "enable_tts": "Enable Player2 Voice Service (Only for AI dialogues)",
+            "enable_tts": "Enable Player2 Voice Service (AI dialogues only, not with GarryLord's)",
             "login_status_connected": "Player2 account connected, device code: ",
             "login_status_disconnected": "Player2 account not connected",
             "get_device_key": "Login to Player2 account",
