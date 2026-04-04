@@ -5441,7 +5441,7 @@ GLOBAL_OFNPC_DATA = {
                 event = {
                     anniversary = {
                         title = "Anniversary!",
-                        content = "The memory of creating a new folder is still vivid—it’s hard to believe this mod has been with us for a whole year. Thank you to everyone who has played this mod; your endless creativity brings this game to life. That’s why GMOD never dies.",
+                        content = "The memory of creating a new folder is still vivid—it’s hard to believe this mod has been with us for a whole year. Thank you to everyone who has played this mod, your inexhaustible creativity brings this game to life. That’s why GMOD never dies.",
                     },
                     freeapi = {
                         title = "Free API: Available to Everyone!",

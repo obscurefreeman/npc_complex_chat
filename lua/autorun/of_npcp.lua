@@ -1,4 +1,8 @@
 if SERVER then
+
+    AddCSLuaFile("shared/ofnpcp_menu_model.lua")
+    AddCSLuaFile("shared/ofnpcp_menu_player2.lua")
+
     -- 将 OFNPCS 设置为全局变量
     OFNPCS = {}
     OFPLAYERS = OFPLAYERS or {}  -- 确保OFPLAYERS被初始化
