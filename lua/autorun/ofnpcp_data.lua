@@ -3410,6 +3410,32 @@ GLOBAL_OFNPC_DATA = {
             image = "lyx",
             order = 5,
         },
+        {
+            name = "星海时倾",
+            badges = {
+                "ui.sponsor.sponsor",
+            },
+            color = {
+                255,
+                99,
+                71,
+            },
+            image = "xhsq",
+            order = 5,
+        },
+        {
+            name = "爱发电用户_1606f",
+            badges = {
+                "ui.sponsor.sponsor",
+            },
+            color = {
+                30,
+                144,
+                255,
+            },
+            image = "ifdian",
+            order = 5,
+        },
     },
     aiProviders = {
         openai = {
