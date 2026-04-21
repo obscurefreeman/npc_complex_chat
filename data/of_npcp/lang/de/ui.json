@@ -112,7 +112,7 @@
             "enable_subtitles3d_sound": "3D-Untertitel-Soundeffekte aktivieren",
             "enable_player_hud": "Spieler-HUD aktivieren",
             "enable_npcinfo_hud": "NPC-Info-HUD aktivieren",
-            "enable_player_interaction": "Spielerinteraktion mit E-Taste aktivieren (Server)",
+            "enable_player_interaction": "Spielerinteraktion mit USE-Taste aktivieren (erfordert aktiviertes NPC-Info-HUD)",
             "enable_levelup": "Level-Up-System aktivieren (Server)",
             "enable_levelup_effects": "Level-Up-Effekte aktivieren",
             "enable_levelup_heal": "Level-Up-Heilung aktivieren (Server)",
@@ -194,5 +194,9 @@
             "senior_sponsor": "Senior -Sponsor -Medaille",
             "sponsor": "Sponsor -Medaille"
         }
+    },
+    "hud": {
+        "npcinfo_hold_use": "BENUTZEN-Taste halten für Dialog",
+        "npcinfo_release_use": "BENUTZEN-Taste loslassen für Dialog"
     }
 }

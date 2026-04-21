@@ -112,8 +112,8 @@
             "enable_subtitles3d_sound": "Enable 3D Subtitles Sound Effects",
             "enable_player_hud": "Enable Player HUD",
             "enable_npcinfo_hud": "Enable NPC Info HUD",
-            "enable_player_interaction": "Enable player Interaction With E Key (Server)",
-            "enable_levelup": "Enable Level Up system (Server)",
+            "enable_player_interaction": "Enable Player Interaction with USE Key (Requires NPC Info HUD Enabled)",
+            "enable_levelup": "Enable Level Up System (Server)",
             "enable_levelup_effects": "Enable Level Up Effects",
             "enable_levelup_heal": "Enable Level Up Healing(Server)",
             "subtitles_cc_duration": "Native Subtitle Duration",
@@ -194,5 +194,9 @@
             "senior_sponsor": "Senior Sponsor Badge",
             "sponsor": "Sponsor Badge"
         }
+    },
+    "hud": {
+        "npcinfo_hold_use": "Hold USE Key for Dialog",
+        "npcinfo_release_use": "Release USE Key to Start a Dialog"
     }
 }

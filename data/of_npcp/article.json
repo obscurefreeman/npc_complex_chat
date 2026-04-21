@@ -1,6 +1,12 @@
 {
     "log": [
         {
+            "title": "April 2026 Update",
+            "content": "Optimized NPC dialogue triggering logic: Now requires the player to aim at the NPC and hold the use key, reducing accidental interactions (NPC Info HUD must be enabled).\nInteraction logic moved from server to client for improved responsiveness.\nAdded option to enable or restrict player interactions with NPCs.\nAdded option to enable NPC healing upon ranking up.\nFixed menu lag and file path issues.",
+            "image": "4_2026",
+            "timestamp": 1776753143
+        },
+        {
             "title": "December 2025 Update",
             "content": "Added native subtitles support and options in the personalization page. Added hide speaker name option for subtitles.",
             "image": "12_2025",

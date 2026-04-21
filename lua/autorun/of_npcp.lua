@@ -16,7 +16,6 @@ if SERVER then
     util.AddNetworkString("OFNPCP_NS_NPCAIDialog")  -- 新增AI对话网络消息
 
     util.AddNetworkString("OFNPCP_NS_TalkStart")
-    util.AddNetworkString("OFNPCP_NS_OpenNPCDialogMenu")
     util.AddNetworkString("OFNPCP_NS_RequestClientNPCData")
     util.AddNetworkString("OFNPCP_NS_SendClientNPCData")
     util.AddNetworkString("OFNPCP_NS_PlayerDialog")

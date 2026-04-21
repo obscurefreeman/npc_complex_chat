@@ -617,7 +617,7 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
 		SetText = ofTranslate("ui.personalization.ui_setting")
 	})
 
-    -- 使用函数简化开关的添加
+	OFNPCPCreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_player_interaction", "ui.personalization.enable_player_interaction")
     OFNPCPCreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_subtitles", "ui.personalization.enable_subtitles")
 	OFNPCPCreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_subtitles_cc", "ui.personalization.enable_subtitles_cc")
 	OFNPCPCreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_subtitles_showname", "ui.personalization.enable_subtitles_showname")
@@ -627,7 +627,6 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
     OFNPCPCreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_player_hud", "ui.personalization.enable_player_hud")
     OFNPCPCreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_killfeeds", "ui.personalization.enable_killfeeds")
     OFNPCPCreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_npcinfo_hud", "ui.personalization.enable_npcinfo_hud")
-	OFNPCPCreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_player_interaction", "ui.personalization.enable_player_interaction")
 	OFNPCPCreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_levelup_enable", "ui.personalization.enable_levelup")
 	OFNPCPCreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_levelup_heal", "ui.personalization.enable_levelup_heal")
     OFNPCPCreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_levelup_effects", "ui.personalization.enable_levelup_effects")
@@ -886,9 +885,15 @@ function AddOFFrame()
 
 	-- 模型设置面板 (pan6)
 	local pan6 = vgui.Create("EditablePanel", sheet)
-	sheet:AddSheet(ofTranslate("ui.tab.model"), pan6, "icon16/monkey.png")
+	local modelSheet = sheet:AddSheet(ofTranslate("ui.tab.model"), pan6, "icon16/monkey.png")
 
-	OFNPCP_SetUpModelMenu(pan6)
+	modelSheet.Tab.DoClick = function()
+		sheet:SetActiveTab(modelSheet.Tab)
+		if not pan6._ofnpcp_model_menu_initialized then
+			OFNPCP_SetUpModelMenu(pan6)
+			pan6._ofnpcp_model_menu_initialized = true
+		end
+	end
 
 	-- 创建AI设置面板布局
 	local aiHorizontalDivider = vgui.Create("DHorizontalDivider", pan2)

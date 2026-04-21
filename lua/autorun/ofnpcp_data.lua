@@ -3010,6 +3010,12 @@ GLOBAL_OFNPC_DATA = {
     article = {
         log = {
             {
+                title = "April 2026 Update",
+                content = "Optimized NPC dialogue triggering logic: Now requires the player to aim at the NPC and hold the use key, reducing accidental interactions (NPC Info HUD must be enabled).\nInteraction logic moved from server to client for improved responsiveness.\nAdded option to enable or restrict player interactions with NPCs.\nAdded option to enable NPC healing upon ranking up.\nFixed menu lag and file path issues.",
+                image = "4_2026",
+                timestamp = 1776753143,
+            },
+            {
                 title = "December 2025 Update",
                 content = "Added native subtitles support and options in the personalization page. Added hide speaker name option for subtitles.",
                 image = "12_2025",
@@ -5233,7 +5239,7 @@ GLOBAL_OFNPC_DATA = {
                     enable_subtitles3d_sound = "3D-Untertitel-Soundeffekte aktivieren",
                     enable_player_hud = "Spieler-HUD aktivieren",
                     enable_npcinfo_hud = "NPC-Info-HUD aktivieren",
-                    enable_player_interaction = "Spielerinteraktion mit E-Taste aktivieren (Server)",
+                    enable_player_interaction = "Spielerinteraktion mit USE-Taste aktivieren (erfordert aktiviertes NPC-Info-HUD)",
                     enable_levelup = "Level-Up-System aktivieren (Server)",
                     enable_levelup_effects = "Level-Up-Effekte aktivieren",
                     enable_levelup_heal = "Level-Up-Heilung aktivieren (Server)",
@@ -5315,6 +5321,10 @@ GLOBAL_OFNPC_DATA = {
                     senior_sponsor = "Senior -Sponsor -Medaille",
                     sponsor = "Sponsor -Medaille",
                 },
+            },
+            hud = {
+                npcinfo_hold_use = "BENUTZEN-Taste halten für Dialog",
+                npcinfo_release_use = "BENUTZEN-Taste loslassen für Dialog",
             },
         },
         en = {
@@ -7913,8 +7923,8 @@ GLOBAL_OFNPC_DATA = {
                     enable_subtitles3d_sound = "Enable 3D Subtitles Sound Effects",
                     enable_player_hud = "Enable Player HUD",
                     enable_npcinfo_hud = "Enable NPC Info HUD",
-                    enable_player_interaction = "Enable player Interaction With E Key (Server)",
-                    enable_levelup = "Enable Level Up system (Server)",
+                    enable_player_interaction = "Enable Player Interaction with USE Key (Requires NPC Info HUD Enabled)",
+                    enable_levelup = "Enable Level Up System (Server)",
                     enable_levelup_effects = "Enable Level Up Effects",
                     enable_levelup_heal = "Enable Level Up Healing(Server)",
                     subtitles_cc_duration = "Native Subtitle Duration",
@@ -7995,6 +8005,10 @@ GLOBAL_OFNPC_DATA = {
                     senior_sponsor = "Senior Sponsor Badge",
                     sponsor = "Sponsor Badge",
                 },
+            },
+            hud = {
+                npcinfo_hold_use = "Hold USE Key for Dialog",
+                npcinfo_release_use = "Release USE Key to Start a Dialog",
             },
         },
         ["en-PT"] = {
@@ -9272,7 +9286,7 @@ GLOBAL_OFNPC_DATA = {
                     enable_subtitles3d_sound = "Включить звуковые эффекты 3D субтитров",
                     enable_player_hud = "Включить HUD игрока",
                     enable_npcinfo_hud = "Включить HUD информации о NPC",
-                    enable_player_interaction = "Включить взаимодействие игрока клавишей E (Сервер)",
+                    enable_player_interaction = "Включить взаимодействие игрока с помощью клавиши USE (требуется включённый HUD информации о NPC)",
                     enable_levelup = "Включить систему повышения уровня (Сервер)",
                     enable_levelup_effects = "Включить эффекты повышения уровня",
                     enable_levelup_heal = "Включить лечение при повышении уровня (Сервер)",
@@ -9354,6 +9368,10 @@ GLOBAL_OFNPC_DATA = {
                     senior_sponsor = "Старший спонсор медаль",
                     sponsor = "Спонсорская медаль",
                 },
+            },
+            hud = {
+                npcinfo_hold_use = "Удерживайте ИСПОЛЬЗОВАТЬ для диалога",
+                npcinfo_release_use = "Отпустите ИСПОЛЬЗОВАТЬ для начала диалога",
             },
         },
         ["zh-CN"] = {
@@ -11954,7 +11972,7 @@ GLOBAL_OFNPC_DATA = {
                     enable_subtitles3d_sound = "启用立体字幕音效",
                     enable_player_hud = "启用玩家HUD",
                     enable_npcinfo_hud = "启用NPC信息HUD",
-                    enable_player_interaction = "启用玩家E键交互（服务器）",
+                    enable_player_interaction = "启用玩家使用键交互（需要开启NPC信息HUD）",
                     enable_levelup = "启用晋升系统（服务器）",
                     enable_levelup_effects = "启用晋升特效",
                     enable_levelup_heal = "启用晋升回血（服务器）",
@@ -12035,6 +12053,10 @@ GLOBAL_OFNPC_DATA = {
                     localization_consultant = "本地化顾问",
                     senior_sponsor = "高级赞助者勋章",
                     sponsor = "赞助者勋章",
+                },
+                hud = {
+                    npcinfo_hold_use = "长按使用键进行对话",
+                    npcinfo_release_use = "松开使用键开始对话",
                 },
             },
         },
@@ -14636,7 +14658,7 @@ GLOBAL_OFNPC_DATA = {
                     enable_subtitles3d_sound = "啟用立體字幕音效",
                     enable_player_hud = "啟用玩家HUD",
                     enable_npcinfo_hud = "啟用NPC資訊HUD",
-                    enable_player_interaction = "啟用玩家E鍵互動（伺服器）",
+                    enable_player_interaction = "啟用玩家使用鍵互動（需啟用NPC資訊HUD）",
                     enable_levelup = "啟用晉升系統（伺服器）",
                     enable_levelup_effects = "啟用晉升特效",
                     enable_levelup_heal = "啟用晉升回復生命（伺服器）",
@@ -14717,6 +14739,10 @@ GLOBAL_OFNPC_DATA = {
                     localization_consultant = "本地化顧問",
                     senior_sponsor = "高級贊助者勳章",
                     sponsor = "贊助者勳章",
+                },
+                hud = {
+                    npcinfo_hold_use = "長按使用鍵進行對話",
+                    npcinfo_release_use = "鬆開使用鍵開始對話",
                 },
             },
         },

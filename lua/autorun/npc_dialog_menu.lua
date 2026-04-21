@@ -43,8 +43,7 @@ if CLIENT then
     CreateClientConVar("of_garrylord_provider", "", true, true)
 
     -- 显示对话选项菜单
-    net.Receive("OFNPCP_NS_OpenNPCDialogMenu", function()
-        local npc = net.ReadEntity()
+    function OFNPCP_OpenNPCDialogMenu(npc)
 
         local npcs = GetAllNPCsList()
         local npcIdentity = npcs[npc:EntIndex()]
@@ -806,7 +805,7 @@ if CLIENT then
                 frame:Close()
             end
         end)
-    end)
+    end
 
     function SendAIDialogRequest(npc, aiDialogs)
         -- 读取本地AI设置

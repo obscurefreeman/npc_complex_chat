@@ -408,8 +408,9 @@ end
 -- 健康查询放这里啦
 
 timer.Create("OFNPCP_Player2_HealthCheck", 60, 0, function()
-    if GetConVar("of_garrylord_provider"):GetString() ~= "player2" then return end
-    
+    local ok, provider = pcall(function() return GetConVar("of_garrylord_provider"):GetString() end)
+    if not ok or provider ~= "player2" then return end
+	
     -- 如果没有PLAYER2API，则尝试获取
     if not PLAYER2API or PLAYER2API == "" then
         PLAYER2API = OFNPCP_Player2GetAPI()

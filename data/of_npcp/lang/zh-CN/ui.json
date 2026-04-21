@@ -112,7 +112,7 @@
             "enable_subtitles3d_sound": "启用立体字幕音效",
             "enable_player_hud": "启用玩家HUD",
             "enable_npcinfo_hud": "启用NPC信息HUD",
-            "enable_player_interaction": "启用玩家E键交互（服务器）",
+            "enable_player_interaction": "启用玩家使用键交互（需要开启NPC信息HUD）",
             "enable_levelup": "启用晋升系统（服务器）",
             "enable_levelup_effects": "启用晋升特效",
             "enable_levelup_heal": "启用晋升回血（服务器）",
@@ -193,6 +193,10 @@
             "localization_consultant": "本地化顾问",
             "senior_sponsor": "高级赞助者勋章",
             "sponsor": "赞助者勋章"
+        },
+        "hud": {
+            "npcinfo_hold_use": "长按使用键进行对话",
+            "npcinfo_release_use": "松开使用键开始对话"
         }
     }
 } 

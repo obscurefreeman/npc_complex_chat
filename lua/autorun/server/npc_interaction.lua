@@ -1,5 +1,3 @@
-CreateConVar("of_garrylord_player_interaction", "1", FCVAR_ARCHIVE, "")
-
 -- 定义全局变量
 local playerCooldowns = {}
 local PLAYER_COOLDOWN = 0.5
@@ -89,34 +87,6 @@ hook.Add("PlayerDeath", "NPCTalkPlayerDeath", function(victim, inflictor, attack
             end
         end
     end
-end)
-
--- 钩子：玩家使用NPC事件
-hook.Add("PlayerUse", "NPCTalkGreeting", function(ply, ent)
-    if GetConVar("of_garrylord_player_interaction"):GetInt() ~= 1 then return end
-
-    local steamID = ply:SteamID()
-    if playerCooldowns[steamID] and (CurTime() - playerCooldowns[steamID] < PLAYER_COOLDOWN) then
-        return
-    end
-    if not (IsValid(ent) and ent:IsNPC()) then return end
-    local npcIndex = ent:EntIndex()
-    if NPCTalkManager:IsNPCChating(ent) then
-        return
-    end
-    playerCooldowns[steamID] = CurTime()
-    local identity = OFNPCS and OFNPCS[npcIndex]
-    if not identity then return end
-    local greetings = GLOBAL_OFNPC_DATA.npcTalks.greetings[identity.camp]
-    if greetings and #greetings > 0 then
-        local randomGreeting = greetings[math.random(#greetings)]
-        timer.Simple(0.1, function()
-            NPCTalkManager:StartDialog(ent, randomGreeting, "dialogue", ply, true)
-        end)
-    end
-    net.Start("OFNPCP_NS_OpenNPCDialogMenu")
-    net.WriteEntity(ent)
-    net.Send(ply)
 end)
 
 -- 钩子：玩家断开连接事件
