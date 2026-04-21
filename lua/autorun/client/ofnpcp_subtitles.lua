@@ -100,6 +100,7 @@ end)
 hook.Add("HUDPaint", "DrawNPCDialogSubtitles", function()
     if GetConVar("of_garrylord_subtitles"):GetInt() == 0 then return end
     if GetConVar("of_garrylord_subtitles_cc"):GetInt() == 1 and GetConVar("closecaption"):GetInt() == 1 then return end
+    if GetConVar("cl_drawhud"):GetInt() ~= 1 then return end
 
     local w = ScrW()
     local h = ScrH()

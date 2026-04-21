@@ -1,3 +1,5 @@
+CreateConVar("of_garrylord_player_interaction", "1", FCVAR_ARCHIVE, "")
+
 -- 定义全局变量
 local playerCooldowns = {}
 local PLAYER_COOLDOWN = 0.5
@@ -91,6 +93,8 @@ end)
 
 -- 钩子：玩家使用NPC事件
 hook.Add("PlayerUse", "NPCTalkGreeting", function(ply, ent)
+    if GetConVar("of_garrylord_player_interaction"):GetInt() ~= 1 then return end
+
     local steamID = ply:SteamID()
     if playerCooldowns[steamID] and (CurTime() - playerCooldowns[steamID] < PLAYER_COOLDOWN) then
         return

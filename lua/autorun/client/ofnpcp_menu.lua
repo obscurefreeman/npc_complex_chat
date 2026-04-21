@@ -627,6 +627,9 @@ local function LoadpersonalizationSettings(personalizationLeftPanel)
     OFNPCPCreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_player_hud", "ui.personalization.enable_player_hud")
     OFNPCPCreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_killfeeds", "ui.personalization.enable_killfeeds")
     OFNPCPCreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_npcinfo_hud", "ui.personalization.enable_npcinfo_hud")
+	OFNPCPCreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_player_interaction", "ui.personalization.enable_player_interaction")
+	OFNPCPCreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_levelup_enable", "ui.personalization.enable_levelup")
+	OFNPCPCreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_levelup_heal", "ui.personalization.enable_levelup_heal")
     OFNPCPCreateCheckBoxPanel(personalizationLeftPanel, "of_garrylord_levelup_effects", "ui.personalization.enable_levelup_effects")
 
 

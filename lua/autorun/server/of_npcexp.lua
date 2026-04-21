@@ -1,4 +1,8 @@
+CreateConVar("of_garrylord_levelup_enable", "1", FCVAR_ARCHIVE, "")
+CreateConVar("of_garrylord_levelup_heal", "1", FCVAR_ARCHIVE, "")
+
 hook.Add("OnNPCKilled", "NPCRankUp", function(victim, attacker, inflictor)
+    if GetConVar("of_garrylord_levelup_enable"):GetInt() == 0 then return end
     if not (IsValid(attacker) and attacker:IsNPC()) then return end
     local identity = OFNPCS and OFNPCS[attacker:EntIndex()]
     if not identity then return end
@@ -15,7 +19,9 @@ hook.Add("OnNPCKilled", "NPCRankUp", function(victim, attacker, inflictor)
                 identity.exp = identity.exp - nextLevelExp
                 leveledUp = true  -- 标记为升级
 
-                attacker:SetHealth(attacker:GetMaxHealth())
+                if GetConVar("of_garrylord_levelup_heal"):GetInt() == 1 then
+                    attacker:SetHealth(attacker:GetMaxHealth())
+                end
                 
                 -- 广播更新后的身份信息给所有客户端
                 net.Start("OFNPCP_NS_NPCIdentityUpdate")

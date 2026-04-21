@@ -7,7 +7,7 @@ local displayDelay = 0.1 -- 显示延迟时间
 local fadeSpeed = 10 -- 淡入淡出速度
 
 hook.Add("HUDPaint", "ofnpcp_npcinfo_hud", function()
-    if GetConVar("of_garrylord_npcinfo_hud"):GetInt() == 0 then return end
+    if GetConVar("of_garrylord_npcinfo_hud"):GetInt() ~= 1 or GetConVar("cl_drawhud"):GetInt() ~= 1 then return end
     
     local tr = util.GetPlayerTrace(LocalPlayer())
     local trace = util.TraceLine(tr)
