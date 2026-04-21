@@ -3011,7 +3011,7 @@ GLOBAL_OFNPC_DATA = {
         log = {
             {
                 title = "April 2026 Update",
-                content = "Optimized NPC dialogue triggering logic: Now requires the player to aim at the NPC and hold the use key, reducing accidental interactions (NPC Info HUD must be enabled).\nInteraction logic moved from server to client for improved responsiveness.\nAdded option to enable or restrict player interactions with NPCs.\nAdded option to enable NPC healing upon ranking up.\nFixed menu lag and file path issues.",
+                content = "Optimized NPC dialogue triggering logic: Now requires the player to aim at the NPC and hold the use key, reducing accidental interactions (NPC Info HUD must be enabled).\nAdded option to enable or restrict player interactions with NPCs.\nAdded option to enable NPC healing upon ranking up.\nFixed menu lag and file path issues.",
                 image = "4_2026",
                 timestamp = 1776753143,
             },
