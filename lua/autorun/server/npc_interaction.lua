@@ -90,7 +90,7 @@ hook.Add("PlayerDeath", "NPCTalkPlayerDeath", function(victim, inflictor, attack
 end)
 
 -- 玩家和NPC互动事件
-net.Receive("OFNPCP_NS_OpenNPCDialogMenu", function()
+net.Receive("OFNPCP_NS_PreOpenNPCDialogMenu", function()
     local ent = net.ReadEntity()
     local ply = net.ReadEntity()
 

@@ -144,8 +144,8 @@ hook.Add("HUDPaint", "ofnpcp_npcinfo_hud", function()
 
         -- 必须加一个menu已开标记，否则GMod可能会多次触发或者误触发
         if not isHoldingUse then
-            if (not holdTriggeredMenuFired) and isfunction(OFNPCP_OpenNPCDialogMenu) and IsValid(lastLookedAtNPC) then
-                net.Start("OFNPCP_NS_OpenNPCDialogMenu")
+            if (not holdTriggeredMenuFired) and IsValid(lastLookedAtNPC) then
+                net.Start("OFNPCP_NS_PreOpenNPCDialogMenu")
                     net.WriteEntity(lastLookedAtNPC)
                     net.WriteEntity(LocalPlayer())
                 net.SendToServer()
